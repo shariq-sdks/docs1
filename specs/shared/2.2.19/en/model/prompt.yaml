@@ -1,0 +1,3 @@
+allOf:
+  - $ref: './prompt_none.yaml'
+  - $ref: './prompt_except_for_none.yaml'

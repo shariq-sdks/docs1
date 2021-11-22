@@ -1,0 +1,7 @@
+content:
+  application/json:
+    schema:
+      $ref: result.yaml
+    example:
+      resultCode: A001215
+      resultMessage: '[A001215] /auth/authorization, The client (ID = 26837717140341) is locked.'

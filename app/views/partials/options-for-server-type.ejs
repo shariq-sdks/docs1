@@ -1,0 +1,9 @@
+<% if (config.supportedServerTypes.includes(serverType)) { -%>
+<%   for (const version of config.supportedVersions[serverType]) { -%>
+<%- include('option.ejs', {
+    value: `${serverType}/${version}`,
+    label: `${translations.serverTypes[serverType]}@${version}`,
+    selected: (serverType === req.params.serverType && version === req.params.version)
+}); %>
+<%   }; -%>
+<% }; -%>

@@ -1,0 +1,8 @@
+type: object
+properties:
+  elements:
+    type: array
+    items:
+      $ref: ./authorization_details_element.yaml
+    description: |
+      Elements of this authorization details.

@@ -1,0 +1,8 @@
+serverTypes:
+  shared: shared server
+  dedicated: dedicated server
+  onpremise: onpremise server
+errors:
+  unauthorized: Access is denied.
+  not_found: Page Not Found.
+  internal_server_error: Internal Server Error.

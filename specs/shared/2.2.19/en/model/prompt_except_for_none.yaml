@@ -1,0 +1,5 @@
+type: string
+enum:
+  - LOGIN
+  - CONSENT
+  - SELECT_ACCOUNT

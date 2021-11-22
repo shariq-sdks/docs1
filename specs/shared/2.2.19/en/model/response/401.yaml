@@ -1,0 +1,7 @@
+content:
+  application/json:
+    schema:
+      $ref: result.yaml
+    example:
+      resultCode: A001202
+      resultMessage: '[A001202] /auth/authorization, Authorization header is missing.'

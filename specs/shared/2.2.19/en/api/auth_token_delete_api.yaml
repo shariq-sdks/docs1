@@ -1,0 +1,99 @@
+delete:
+  summary: /auth/token/delete API
+  description: |
+    Delete an access token.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: accessTokenIdentifier
+      schema:
+        type: string
+      required: true
+      description: |
+        The identifier of an existing access token. The identifier is the value of the access token
+        or the value of the hash of the access token.
+  responses:
+    '204':
+      $ref: ../model/response/token_delete_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: ''
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X DELETE https://api.authlete.com/api/auth/token/delete/Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg \
+        -H 'Content-Type:application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        String accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+
+        api.tokenDelete(accessToken);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        string accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+
+        await api.TokenDelete(accessToken);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+
+        $api.tokenDelete($accessToken);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        access_token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+
+        api.token_delete(access_token)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        accessTokenIdentifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+
+        api.tokenDelete(accessToken)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        accessTokenIdentifier := "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg"
+
+        api.TokenDelete(accessTokenIdentifier)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Token Operations

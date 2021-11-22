@@ -1,0 +1,27 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            action:
+              type: string
+              enum:
+                - INTERNAL_SERVER_ERROR
+                - BAD_REQUEST
+                - DELETED
+                - UNAUTHORIZED
+              description: |
+                The next action that the authorization server implementation should take.
+            responseContent:
+              type: string
+              description: |
+                The content that the authorization server implementation is to return to the client application.
+                Its format varies depending on the value of `action` parameter.
+    example:
+      {
+        "resultCode": "A216001",
+        "resultMessage": "[A216001] The client has been deleted.",
+        "action": "DELETED"
+      }

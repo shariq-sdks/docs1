@@ -1,0 +1,10 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+    example:
+      {
+        "resultCode": "A138001",
+        "resultMessage": "[A138001] Updated 1 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762)."
+      }

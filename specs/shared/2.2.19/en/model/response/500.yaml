@@ -1,0 +1,7 @@
+content:
+  application/json:
+    schema:
+      $ref: result.yaml
+    example:
+      resultCode: A001101
+      resultMessage: '[A001101] /auth/authorization, Authlete Server error.'

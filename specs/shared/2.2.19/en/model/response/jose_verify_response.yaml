@@ -1,0 +1,40 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            valid:
+              type: boolean
+              description: |
+                The result of the verification on the JOSE object.
+            signatureValid:
+              type: boolean
+              description: |
+                The result of the signature verification.
+            missingClaims:
+              type: array
+              items:
+                type: string
+              description: |
+                The list of missing claims.
+            invalidClaims:
+              type: array
+              items:
+                type: string
+              description: |
+                The list of invalid claims.
+            errorDescriptions:
+              type: array
+              items:
+                type: string
+              description: |
+                The list of error messages.
+    example:
+      {
+        "resultCode": "A160001",
+        "resultMessage": "[A160001] The JOSE is valid.",
+        "signatureValid": true,
+        "valid": true
+      }

@@ -1,0 +1,8 @@
+type: object
+required: [ parameters ]
+properties:
+  ticket:
+    type: string
+    required: true
+    description: |
+      The ticket issued from Authlete's `/backchannel/authentication` API.

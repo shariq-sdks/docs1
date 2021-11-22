@@ -1,0 +1,29 @@
+<!doctype html> <!-- Important: must specify -->
+<html>
+  <head>
+    <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+    <script type='text/javascript'>const apiSpecData = <%- JSON.stringify(spec) %>;</script>
+    <script type="module" src="/js/rapidoc-min.js"></script>
+    <script type="text/javascript" src="/js/api-doc.js"></script>
+  </head>
+  <body>
+    <rapi-doc
+      id="apiDoc"
+      allow-try="<%- allowTry %>"
+      schema-expand-level=1
+      schema-style="tree"
+      schema-description-expanded="true"
+      show-components='true'
+      show-header="false"
+      theme="light"
+      primary-color="#1472aa"
+      nav-accent-color="#dee5ec"
+      use-path-in-nav-bar="true"
+      render-style="focused">
+      <div slot="nav-logo">
+<%- include('partials/locale-switcher', { config: config, req: req }) %>
+<%- include('partials/document-switcher', { config: config, translations: translations, req: req }) %>
+      </div>
+    </rapi-doc>
+  </body>
+</html>

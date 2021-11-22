@@ -1,0 +1,76 @@
+type: object
+required: [ ticket, result, subject ]
+properties:
+  ticket:
+    type: string
+    required: true
+    description: |
+      The ticket issued by Authlete's `/backchannel/authentication` API.
+  result:
+    type: string
+    enum:
+      - TRANSACTION_FAILED
+      - ACCESS_DENIED
+      - AUTHORIZED
+    required: true
+    description: |
+      The result of the end-user authentication and authorization. One of the following. Details are
+      described in the description.
+  subject:
+    type: string
+    required: true
+    description: |
+      The subject (= unique identifier) of the end-user.
+  sub:
+    type: string
+    required: false
+    description: |
+      The value of the sub claim that should be used in the ID token.
+  authTime:
+    type: string
+    required: false
+    description: |
+      The time at which the end-user was authenticated. Its value is the number of seconds from `1970-01-01`.
+  acr:
+    type: string
+    required: false
+    description: |
+      The reference of the authentication context class which the end-user authentication satisfied.
+  claims:
+    type: string
+    required: false
+    description: |
+      Additional claims which will be embedded in the ID token.
+  properties:
+    type: array
+    items:
+      $ref: ../property.yaml
+    required: false
+    description: |
+      The extra properties associated with the access token.
+  scopes:
+    type: array
+    items:
+      type: string
+    description: |
+      Scopes to replace the scopes specified in the original backchannel authentication request with.
+      When nothing is specified for this parameter, replacement is not performed.
+  idHeaderParams:
+    type: string
+    required: false
+    description: |
+      JSON that represents additional JWS header parameters for ID tokens.
+  errorDescription:
+    type: string
+    required: true
+    description: |
+      The description of the error. If this optional request parameter is given, its value is used as
+      the value of the `error_description` property, but it is used only when the result is not `AUTHORIZED`.
+      To comply with the specification strictly, the description must not include characters outside
+      the set `%x20-21 / %x23-5B / %x5D-7E`.
+  errorUri:
+    type: string
+    required: true
+    description: |
+      The URI of a document which describes the error in detail. This corresponds to the `error_uri`
+      property in the response to the client.

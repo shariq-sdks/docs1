@@ -1,0 +1,192 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            action:
+              type: string
+              enum:
+                - INTERNAL_SERVER_ERROR
+                - INVALID_CLIENT
+                - BAD_REQUEST
+                - PASSWORD
+                - OK
+              description: The next action that the authorization server implementation should take.
+            responseContent:
+              type: string
+              description: |
+                The content that the authorization server implementation is to return to the client application.
+                Its format varies depending on the value of `action` parameter.
+            username:
+              type: string
+              description: |
+                 The value of `username` request parameter in the token request.
+                 The client application must specify username when it uses [Resource Owner Password Grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3).
+                 In other words, when the value of `grant_type` request parameter is `password`, `username` request parameter must come along.
+
+                 This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
+            password:
+              type: string
+              description: |
+                 The value of `password` request parameter in the token request.
+                 The client application must specify password when it uses [Resource Owner Password Grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3).
+                 In other words, when the value of `grant_type` request parameter is `password`, `password` request parameter must come along.
+
+                 This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
+            ticket:
+              type: string
+              description: |
+                The ticket which is necessary to call Authlete's `/auth/token/fail` API or `/auth/token/issue` API.
+
+                This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
+            accessToken:
+              type: string
+              description: The newly issued access token.
+            accessTokenExpiresAt:
+              type: integer
+              format: int64
+              description: |
+                The datetime at which the newly issued access token will expire.
+                The value is represented in milliseconds since the Unix epoch (1970-01-01).
+            accessTokenDuration:
+              type: integer
+              format: int64
+              description: The duration of the newly issued access token in seconds.
+            refreshToken:
+              type: string
+              description: The newly issued refresh token.
+            refreshTokenExpiresAt:
+              type: integer
+              format: int64
+              description: |
+                The datetime at which the newly issued refresh token will expire.
+                The value is represented in milliseconds since the Unix epoch (1970-01-01).
+            refreshTokenDuration:
+              type: integer
+              format: int64
+              description: The duration of the newly issued refresh token in seconds.
+            idToken:
+              type: string
+              description: |
+                The newly issued ID token. Note that an ID token is issued from a token endpoint only when the `response_type` request parameter
+                of the authorization request to an authorization endpoint has contained `code` and the `scope` request parameter has contained `openid`.
+            grantType:
+              type: string
+              description: The grant type of the token request.
+            clientId:
+              type: integer
+              format: int64
+              description: The client ID.
+            clientIdAlias:
+              type: string
+              description: |
+                The client ID alias when the token request was made. If the client did not have an alias, this parameter is `null`.
+                Also, if the token request was invalid and it failed to identify a client, this parameter is `null`.
+            clientIdAliasUsed:
+              type: boolean
+              description: |
+                The flag which indicates whether the client ID alias was used when the token request was made.
+                `true` if the client ID alias was used when the token request was made.
+            subject:
+              type: string
+              description: |
+                The subject (= resource owner's ID) of the access token.
+                Even if an access token has been issued by the call of `/api/auth/token` API, this parameter is `null` if the flow of the token request was
+                [Client Credentials Flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) (`grant_type=client_credentials`) because it means the access token
+                is not associated with any specific end-user.
+            scopes:
+              type: array
+              items:
+                type: string
+              description: The scopes covered by the access token.
+            properties:
+              type: array
+              items:
+                $ref: ../property.yaml
+              description: |
+                The extra properties associated with the access token.
+                This parameter is `null` when no extra property is associated with the issued access token.
+            jwtAccessToken:
+              type: string
+              description: |
+                The newly issued access token in JWT format. If the authorization server is configured
+                to issue JWT-based access tokens (= if the service's `accessTokenSignAlg` value is a
+                non-null value), a JWT-based access token is issued along with the original random-string
+                one.
+            resources:
+              type: array
+              items:
+                type: string
+              description: |
+                The resources specified by the `resource` request parameters in the token request.
+                See "Resource Indicators for OAuth 2.0" for details.
+            accessTokenResources:
+              type: array
+              items:
+                type: string
+              description: |
+                The target resources of the access token being issued. See "Resource Indicators for OAuth 2.0" for details.
+            authorizationDetails:
+              allOf:
+                - $ref: ../authorization_details.yaml
+              description: |
+                The authorization details. This represents the value of the `authorization_details` request parameter which is defined in "OAuth 2.0 Rich Authorization Requests".
+
+                When the `action` is `PASSWORD`, this property holds an array that represents the `authorization_details` request parameter included in the token request.
+                In other successful cases, this property holds the authorization details associated with the issued access token.
+            serviceAttributes:
+              type: array
+              items:
+                $ref: ../pair.yaml
+              description: |
+                The attributes of this service that the client application belongs to.
+            clientAttributes:
+              type: array
+              items:
+                $ref: ../pair.yaml
+              description: |
+                The attributes of the client.
+    example:
+      {
+        "resultCode": "A050001",
+        "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
+        "accessToken": "C4SrUTijIj2IxqE1xBASr3dxQWgso3BpY49g8CyjGjQ",
+        "accessTokenDuration": 3600,
+        "accessTokenExpiresAt": 1640252942736,
+        "action": "OK",
+        "clientAttributes": [
+          {
+            "key": "attribute1-key",
+            "value": "attribute1-value"
+          },
+          {
+            "key": "attribute2-key",
+            "value": "attribute2-value"
+          }
+        ],
+        "clientId": 26478243745571,
+        "clientIdAlias": "my-client",
+        "clientIdAliasUsed": false,
+        "grantType": "AUTHORIZATION_CODE",
+        "refreshToken": "60k0cZ38sJcpTgdxvG9Sqa-3RG5AmGExGpFB-1imSxo",
+        "refreshTokenDuration": 3600,
+        "refreshTokenExpiresAt": 1640252942736,
+        "responseContent": "{\\\"access_token\\\":\\\"C4SrUTijIj2IxqE1xBASr3dxQWgso3BpY49g8CyjGjQ\\\",\\\"refresh_token\\\":\\\"60k0cZ38sJcpTgdxvG9Sqa-3RG5AmGExGpFB-1imSxo\\\",\\\"scope\\\":\\\"history.read timeline.read\\\",\\\"token_type\\\":\\\"Bearer\\\",\\\"expires_in\\\":3600}",
+        "scopes": [
+          "history.read",
+          "timeline.read"
+        ],
+        "serviceAttributes": [
+          {
+            "key": "attribute1-key",
+            "value": "attribute1-value"
+          },
+          {
+            "key": "attribute2-key",
+            "value": "attribute2-value"
+          }
+        ],
+        "subject": "john"
+      }

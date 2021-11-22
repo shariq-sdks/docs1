@@ -1,0 +1,25 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            action:
+              type: string
+              enum:
+                - INTERNAL_SERVER_ERROR
+                - BAD_REQUEST
+              description: The next action that the authorization server implementation should take.
+            responseContent:
+              type: string
+              description: |
+                The content that the authorization server implementation is to return to the client application.
+                Its format varies depending on the value of `action` parameter. See description for details.
+    example:
+      {
+        "resultCode": "A067301",
+        "resultMessage": "[A067301] The credentials (username & password) passed to the token endpoint are invalid.",
+        "action": "BAD_REQUEST",
+        "responseContent": "{\\\"error_description\\\":\\\"[A067301] The credentials (username & password) passed to the token endpoint are invalid.\\\",\\\"error\\\":\\\"invalid_request\\\",\\\"error_uri\\\":\\\"https://docs.authlete.com/#A067301\\\"}"
+      }

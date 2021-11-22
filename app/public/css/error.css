@@ -1,0 +1,15 @@
+.status {
+    margin-top: 1.0em;
+    font-size: 60;
+}
+
+.message {
+    margin-top: 1.5em;
+    font-size: 30;
+}
+
+.status, .message {
+    text-align: center;
+    /* font-family: Monaco, "Andale Mono", "Roboto Mono", Consolas, monospace; */
+    font-family: "Open Sans", Avenir, "Segoe UI", Arial, sans-serif;
+}

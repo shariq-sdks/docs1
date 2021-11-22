@@ -1,0 +1,3 @@
+<% if (config.supportedLocales.includes(locale)) { -%>
+<%- include('option.ejs', { value: locale, label: label, selected: locale === req.params.locale }); %>
+<% }; -%>

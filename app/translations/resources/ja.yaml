@@ -1,0 +1,8 @@
+serverTypes:
+  shared: 共用クラウド
+  dedicated: 専用クラウド
+  onpremise: オンプレミス
+errors:
+  unauthorized: アクセスが拒否されました。
+  not_found: ページが見つかりませんでした。
+  internal_server_error: サーバーエラー。

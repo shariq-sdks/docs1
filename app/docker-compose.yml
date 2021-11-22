@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    image: api-doc
+    volumes:
+      - .:/authlete/app
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      USERNAME_DEDICATED: ${USERNAME_DEDICATED:-ded}
+      PASSWORD_DEDICATED: ${PASSWORD_DEDICATED:-ded}
+      USERNAME_ONPREMISE: ${USERNAME_ONPREMISE:-onp}
+      PASSWORD_ONPREMISE: ${PASSWORD_ONPREMISE:-onp}
+      PORT: ${CONTAINER_PORT:-8080}
+    ports:
+      - "${HOST_PORT:-8080}:${CONTAINER_PORT:-8080}"
+    command: node app.js

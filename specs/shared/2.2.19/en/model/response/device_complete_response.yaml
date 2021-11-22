@@ -1,0 +1,23 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            action:
+              type: string
+              enum:
+                - SERVER_ERROR
+                - USER_CODE_NOT_EXIST
+                - USER_CODE_EXPIRED
+                - INVALID_REQUEST
+                - SUCCESS
+              description: |
+                The next action that the authorization server implementation should take.
+    example:
+      {
+        "resultCode": "A241001",
+        "resultMessage": "[A241001] The API call was processed successfully.",
+        "action": "SUCCESS"
+      }

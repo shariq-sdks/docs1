@@ -1,0 +1,40 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            serviceApiKey:
+              type: string
+              description: |
+                Service API key.
+            clientId:
+              type: string
+              description: |
+                A client ID.
+            subject:
+              type: string
+              description: |
+                Unique user ID of an end-user.
+            latestGrantedScopes:
+              type: array
+              items:
+                type: string
+              description: |
+                Scopes granted by the last authorization process. (See description for details.)
+            mergedGrantedScopes:
+              type: array
+              items:
+                type: string
+              description: |
+                All scopes granted so far. (See description for details.)
+    example:
+      {
+        "type": "GrantedScopesGetResponse",
+        "serviceApiKey": 21653835348762,
+        "clientId": 26478243745571,
+        "subject": "john",
+        "latestGrantedScopes": [ "history.read" ],
+        "mergedGrantedScopes": [ "history.read", "timeline.read" ]
+      }

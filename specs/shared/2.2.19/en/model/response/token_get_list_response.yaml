@@ -1,0 +1,141 @@
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+          description: |
+            Start index of search results (inclusive).
+        end:
+          type: integer
+          format: int32
+          description: |
+            End index of search results (exclusive).
+        totalCount:
+          type: integer
+          format: int32
+          description: |
+            Unique ID of a client developer.
+        client:
+          allOf:
+            - $ref: ../client.yaml
+          description: |
+            An array of clients.
+        subject:
+          type: string
+          description: |
+            Unique user ID of an end-user.
+        accessTokens:
+          type: array
+          items:
+            $ref: ../access_token.yaml
+          description: |
+            An array of access tokens.
+    example:
+      {
+        "accessTokens": [
+          {
+            "accessTokenExpiresAt": 1642048149000,
+            "accessTokenHash": "tC5hpjGylLiiw-vsd5_tqVHtYSUHblAGimEJ-5xqAco",
+            "clientId": 26888344961664,
+            "createdAt": 1642044549000,
+            "grantType": "AUTHORIZATION_CODE",
+            "lastRefreshedAt": 0,
+            "refreshTokenExpiresAt": 1642048149000,
+            "refreshTokenHash": "jv4B_7_kpY-Rez_E7bYIxGYnZk43w18uigkaeUe6tc4",
+            "scopes": [
+              "history.read"
+            ],
+            "subject": "john"
+          },
+          {
+            "accessTokenExpiresAt": 1642051604000,
+            "accessTokenHash": "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg",
+            "clientId": 26888344961664,
+            "createdAt": 1642048004000,
+            "grantType": "AUTHORIZATION_CODE",
+            "lastRefreshedAt": 0,
+            "refreshTokenExpiresAt": 1642051604000,
+            "refreshTokenHash": "YHmwk4xETvoIJ_maWCpJDlpvmcFLkxmaaSS-v9KPng4",
+            "scopes": [
+              "history.read",
+              "openid",
+              "timeline.read"
+            ],
+            "subject": "john"
+          },
+          {
+            "accessTokenExpiresAt": 1642052094000,
+            "accessTokenHash": "UUatYXjkqYFbRQlnItjq03DtUYA2MRRtuL88GCbQpbw",
+            "clientId": 26888344961664,
+            "createdAt": 1642048494000,
+            "grantType": "AUTHORIZATION_CODE",
+            "lastRefreshedAt": 0,
+            "refreshTokenExpiresAt": 1642052094000,
+            "refreshTokenHash": "wjc-IXoScxDiVyBmRrB92I-B0zMXSSKw_qwP_WK1lFM",
+            "scopes": [
+              "history.read"
+            ],
+            "subject": "john"
+          }
+        ],
+        "client": {
+          "authTimeRequired": false,
+          "bcUserCodeRequired": false,
+          "clientId": 26888344961664,
+          "clientIdAliasEnabled": false,
+          "clientName": "My Device Flow Client",
+          "clientSecret": "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog",
+          "clientType": "CONFIDENTIAL",
+          "createdAt": 1641996927000,
+          "defaultMaxAge": 0,
+          "derivedSectorIdentifier": "api.authlete.com",
+          "developer": "authlete_21653835348762",
+          "dynamicallyRegistered": false,
+          "extension": {
+            "accessTokenDuration": 0,
+            "refreshTokenDuration": 0,
+            "requestableScopesEnabled": false
+          },
+          "frontChannelRequestObjectEncryptionRequired": false,
+          "grantTypes": [
+            "AUTHORIZATION_CODE",
+            "IMPLICIT",
+            "PASSWORD",
+            "CLIENT_CREDENTIALS",
+            "REFRESH_TOKEN",
+            "CIBA",
+            "DEVICE_CODE"
+          ],
+          "idTokenSignAlg": "HS256",
+          "modifiedAt": 1641996927000,
+          "number": 6260,
+          "parRequired": false,
+          "redirectUris": [
+            "https://api.authlete.com/api/mock/redirection/21653835348762"
+          ],
+          "requestObjectEncryptionAlgMatchRequired": false,
+          "requestObjectEncryptionEncMatchRequired": false,
+          "requestObjectRequired": false,
+          "responseTypes": [
+            "NONE",
+            "CODE",
+            "TOKEN",
+            "ID_TOKEN",
+            "CODE_TOKEN",
+            "CODE_ID_TOKEN",
+            "ID_TOKEN_TOKEN",
+            "CODE_ID_TOKEN_TOKEN"
+          ],
+          "serviceNumber": 5041,
+          "subjectType": "PUBLIC",
+          "tlsClientCertificateBoundAccessTokens": false,
+          "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+        },
+        "end": 3,
+        "start": 0,
+        "subject": "john",
+        "totalCount": 3
+      }

@@ -1,0 +1,26 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            action:
+              type: string
+              enum:
+                - INTERNAL_SERVER_ERROR
+                - BAD_REQUEST
+                - FORBIDDEN
+              description: The next action that the authorization server implementation should take.
+            responseContent:
+              type: string
+              description: |
+                The content that the authorization server implementation is to return to the client
+                application. Its format varies depending on the value of `action` parameter.
+    example:
+      {
+        "resultCode": "A185001",
+        "resultMessage": "[A185001] Successfully generated an error response for the backchannel authentication request.",
+        "action": "FORBIDDEN",
+        "responseContent": "{\\\"error\\\":\\\"access_denied\\\"}"
+      }

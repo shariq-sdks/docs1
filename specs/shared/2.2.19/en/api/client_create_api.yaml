@@ -1,0 +1,145 @@
+post:
+  summary: /client/create API
+  description: |
+    Create a new client.
+  security:
+    - ServiceCredentials: []
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/client_create_request.yaml
+        example:
+          developer: john
+          clientName: My Client
+          clientIdAlias: my-client
+          clientIdAliasEnabled: true
+          clientType: CONFIDENTIAL
+          applicationType: WEB
+          grantTypes:
+            - AUTHORIZATION_CODE
+            - REFRESH_TOKEN
+          responseTypes:
+            - CODE
+            - TOKEN
+          redirectUris:
+            - https://my-client.example.com/cb1
+            - https://my-client.example.com/cb2
+          tokenAuthMethod: CLIENT_SECRET_BASIC
+          attributes:
+            - key: attribute1-key
+              value: attribute1-value
+            - key: attribute2-key
+              value: attribute2-value
+  responses:
+    '200':
+      $ref: ../model/response/client_create_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: ''
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/client/create \
+        -H 'Content-Type:application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "developer": "john", "clientName": "My Client", ... }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        Client client = new Client();
+        client.setDeveloper("john");
+        client.setClientName("My Client");
+        ...
+
+        api.createClient(client);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        Client client = new Client();
+        client.Developer = "john";
+        client.ClientName = "My Client";
+        ...
+
+        await api.CreateClient(client);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $client = new Client();
+        $client.setDeveloper("john");
+        $client.setClientName("My Client");
+        ...
+
+        $api.createClient($client);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        client = Authlete::Model::Client.new
+        client.developer = 'john'
+        client.client_name = 'My Client'
+        ...
+
+        api.client_create(client)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        client = Client()
+        client.developer = 'john'
+        client.clientName = 'My Client'
+        ...
+
+        api.createClient(client)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        client := dto.Client{}
+        client.Developer = "john"
+        client.ClientName = "My Client"
+        ...
+
+        api.CreateClient(client)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const client = new Client();
+        client.developer = 'john';
+        client.clientName = 'My Client';
+        ...
+
+        await api.createClient(client);
+
+  tags:
+    - Client Management

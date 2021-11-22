@@ -1,0 +1,126 @@
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: result.yaml
+        - type: object
+          properties:
+            action:
+              type: string
+              enum:
+                - INTERNAL_SERVER_ERROR
+                - NOT_EXIST
+                - EXPIRED
+                - VALID
+              description: The next action that the authorization server implementation should take.
+            responseContent:
+              type: string
+              description: |
+                The content that the authorization server implementation is to return to the client
+                application. Its format varies depending on the value of `action` parameter.
+            clientId:
+              type: integer
+              format: int64
+              description: |
+                The client ID of the client application to which the user code has been issued.
+            clientIdAlias:
+              type: string
+              description: |
+                The client ID alias of the client application to which the user code has been issued.
+            clientIdAliasUsed:
+              type: boolean
+              description: |
+                `true` if the value of the `client_id` request parameter included in the device authorization
+                request is the client ID alias. `false` if the value is the original numeric client ID.
+            clientName:
+              type: string
+              description: |
+                The name of the client application to which the user code has been issued.
+            scopes:
+              type: array
+              items:
+                type: string
+              description: |
+                The scopes requested by the device authorization request.
+
+                Note that `description` property and `descriptions` property of each scope object in
+                the array contained in this property is always null even if descriptions of the scopes
+                are registered.
+            claimNames:
+              type: array
+              items:
+                type: string
+              description: |
+                The names of the claims which were requested indirectly via some special scopes.
+                See [5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims)
+                in OpenID Connect Core 1.0 for details.
+
+                This property is always `null` if the `scope` request parameter of the device authorization
+                request does not include the `openid` scope even if special scopes (such as `profile`)
+                are included in the request (unless the openid scope is included in the default set
+                of scopes which is used when the `scope` request parameter is omitted).
+            acrs:
+              type: array
+              items:
+                type: string
+              description: |
+                The list of ACR values requested by the device authorization request.
+            resources:
+              type: array
+              items:
+                type: string
+              description: |
+                The resources specified by the `resource` request parameters or by the `resource` property
+                in the request object. If both are given, the values in the request object should be
+                set. See "Resource Indicators for OAuth 2.0" for details.
+            authorizationDetails:
+              allOf:
+                $ref: ../authorization_details.yaml
+              description: |
+                The authorization details. This represents the value of the `authorization_details`
+                request parameter in the preceding device authorization request which is defined in
+                "OAuth 2.0 Rich Authorization Requests".
+            serviceAttributes:
+              type: array
+              items:
+                $ref: ../pair.yaml
+              description: |
+                The attributes of this service that the client application belongs to.
+            clientAttributes:
+              type: array
+              items:
+                $ref: ../pair.yaml
+              description: |
+                The attributes of the client.
+            dynamicScopes:
+              type: array
+              items:
+                $ref: ../dynamic_scope.yaml
+              description: |
+                The dynamic scopes which the client application requested by the scope request parameter.
+    example:
+      {
+        "resultCode": "A224001",
+        "resultMessage": "[A224001] The user code is valid.",
+        "action": "VALID",
+        "clientId": 26888344961664,
+        "clientIdAliasUsed": false,
+        "clientName": "My Device Flow Client",
+        "expiresAt": 1642001978000,
+        "scopes": [
+          {
+            "defaultEntry": false,
+            "name": "history.read"
+          }
+        ],
+        "serviceAttributes": [
+          {
+            "key": "attribute1-key",
+            "value": "attribute1-value"
+          },
+          {
+            "key": "attribute2-key",
+            "value": "attribute2-value"
+          }
+        ]
+      }

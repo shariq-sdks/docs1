@@ -1,0 +1,190 @@
+post:
+  summary: /auth/token/fail API
+  description: |
+    This API generates a content of an error token response that the authorization server implementation
+    returns to the client application.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    This API is supposed to be called from within the implementation of the token endpoint of the service
+    in order to generate an error response to the client application.
+
+    The description of the `/auth/token` API describes the timing when this API should be called. See
+    the description for the case of `action=PASSWORD`.
+
+    The response from `/auth/token/fail` API has some parameters. Among them, it is `action` parameter
+    that the authorization server implementation should check first because it denotes the next action
+    that the authorization server implementation should take. According to the value of `action`, the
+    authorization server implementation must take the steps described below.
+
+    **INTERNAL_SERVER_ERROR**
+
+    When the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the request from the authorization
+    server implementation was wrong or that an error occurred in Authlete.
+
+    In either case, from the viewpoint of the client application, it is an error on the server side.
+    Therefore, the service implementation should generate a response to the client application with
+    HTTP status of "500 Internal Server Error".
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used
+    as the entity body of the response.
+
+    The following illustrates the response which the service implementation should generate and return
+    to the client application.
+
+    ```http
+    HTTP/1.1 500 Internal Server Error
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    The endpoint implementation may return another different response to the client application
+    since "500 Internal Server Error" is not required by OAuth 2.0.
+
+    **BAD_REQUEST**
+
+    When the value of `action` is `BAD_REQUEST`, it means that Authlete's `/auth/token/fail` API successfully
+    generated an error response for the client application.
+
+    The HTTP status of the response returned to the client application must be "400 Bad Request" and
+    the content type must be `application/json`.
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used
+    as the entity body of the response.
+
+    The following illustrates the response which the service implementation should generate and return
+    to the client application.
+
+    ```http
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    </details>
+
+  security:
+    - ServiceCredentials: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/token_fail_request.yaml
+        example:
+          ticket: 83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c
+          reason: INVALID_RESOURCE_OWNER_CREDENTIALS
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/token_fail_request.yaml
+  responses:
+    '200':
+      $ref: ../model/response/token_fail_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: ''
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/auth/token/fail \
+        -H 'Content-Type: application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "ticket": "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c", "reason": "INVALID_RESOURCE_OWNER_CREDENTIALS" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        TokenFailRequest req = new TokenFailRequest();
+        req.setTicket("83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c");
+        req.setReason(TokenFailRequest.Reason.INVALID_RESOURCE_OWNER_CREDENTIALS);
+
+        api.tokenFail(req);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        TokenFailRequest req = new TokenFailRequest();
+        req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c";
+        req.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS;
+
+        await api.TokenFail(req);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $req = new TokenFailRequest();
+        $req.setTicket("83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c");
+        $req.setReason(TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS);
+
+        $api.tokenFail($req);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = Authlete::Model::Request::TokenFailRequest.new
+        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'
+        req.reason = 'INVALID_RESOURCE_OWNER_CREDENTIALS'
+
+        api.token_fail(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = TokenFailRequest()
+        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'
+        req.reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS
+
+        api.tokenFail(req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        req := dto.TokenFailRequest{}
+        req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c"
+        req.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS
+
+        api.TokenFail(&req)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const req = new TokenFailRequest();
+        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';
+        req.reason = TokenFailRequest.Reason.INVALID_RESOURCE_OWNER_CREDENTIALS;
+
+        await api.tokenFail(req);
+  tags:
+    - Token Endpoint

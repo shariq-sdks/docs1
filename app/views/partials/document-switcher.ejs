@@ -1,0 +1,5 @@
+<select id="documentSwitcher">
+<%- include('options-for-server-type', { config: config, translations: translations, req: req, serverType: 'shared' }) %>
+<%- include('options-for-server-type', { config: config, translations: translations, req: req, serverType: 'dedicated' }) %>
+<%- include('options-for-server-type', { config: config, translations: translations, req: req, serverType: 'onpremise' }) %>
+</select>
