@@ -3,6 +3,8 @@
 # This workaround is also described in https://stackoverflow.com/a/35317425.
 FROM node:17
 
+CMD ["node", "app.js"]
+
 # Set the working directory to the directory for the installed dependencies.
 WORKDIR /authlete/install
 

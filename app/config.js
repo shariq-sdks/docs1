@@ -29,7 +29,10 @@ config.credentials = {
 };
 
 // Log level.
-config.logLevel = process.env.NODE_ENV === 'production' ? 'error' : 'info';
+config.logLevel = process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'error' : 'info');
+
+// Log destination.
+config.logDestination = process.env.LOG_DESTINATION;
 
 // Expose the custom configuration.
 module.exports = config;
