@@ -1,5 +1,6 @@
 const authenticateUser  = require('../handlers/authenticate-user');
 const handleUnknown     = require('../handlers/handle-unknown');
+const healthcheck       = require('../handlers/healthcheck');
 const processVersion    = require('../handlers/process-version');
 const processLocale     = require('../handlers/process-locale');
 const processServerType = require('../handlers/process-server-type');
@@ -16,6 +17,9 @@ module.exports = function(app) {
   // The root path. This setup makes requests to the root path redirect
   // to the path specified by 'defaultPath' configuration property.
   app.get('/', redirectToDefault);
+
+  // Healthcheck endpoint
+  app.get('/__healthz', healthcheck);
 
   // The path to get the latest version of the API doc for a server
   // type and a locale.

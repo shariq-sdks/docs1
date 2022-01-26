@@ -1,0 +1,25 @@
+variables:
+  IMAGE: gcr.io/authlete/new-api-doc:$CI_COMMIT_SHA
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - cd app
+    - docker build . -t $IMAGE --build-arg NODE_ENV=production
+    - docker push $IMAGE
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - gcloud config set project authlete
+    - gcloud container clusters get-credentials web --zone=us-central1-f
+    - kubectl set image deployment/new-api-doc new-api-doc=$IMAGE
+    - kubectl rollout status deployment/new-api-doc
