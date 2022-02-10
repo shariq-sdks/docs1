@@ -5,7 +5,7 @@ const ok = function(req, res, view, locals) {
 };
 
 const okWithYaml = function(res, yaml) {
-  return setupResponse(res, 200, 'text/yaml').send(yaml);
+  return setupResponse(res, 200, 'text/yaml; charset=utf-8').send(yaml);
 };
 
 const unauthorized = function(req, res) {
@@ -20,7 +20,7 @@ const internalServerError = function(req, res) {
   return render(req, setupResponse(res, 500), 'errors/internal-server-error');
 };
 
-const setupResponse = function(res, status, contentType = 'text/html') {
+const setupResponse = function(res, status, contentType = 'text/html; charset=utf-8') {
   return res
     .status(status)
     .header('Content-Type', contentType)
