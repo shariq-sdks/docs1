@@ -89,11 +89,6 @@ const getDocumentSwitcher = function() {
   return document.getElementById('documentSwitcher');
 };
 
-const loadApiDocSpec = function() {
-  // Load API document spec data into the 'apiDoc' element.
-  getApiDocElement().loadSpec(apiSpecData);
-};
-
 const getApiDocElement = function() {
   return document.getElementById('apiDoc');
 };
@@ -216,12 +211,9 @@ window.addEventListener('load', (e) => {
   // Set up switchers.
   setupSwitchers();
 
-  // Load API spec data.
-  loadApiDocSpec();
-
   // Wait for the API spec to be completely loaded and then ensure that
   // the current fragment value is valid. If the hash value is invalid
   // (= no element exists for the ID specified by the fragment value),
   // the fragment value falls back to '#overview'.
-  setTimeout(checkFragment, 500);
+  setTimeout(checkFragment, 1000);
 });

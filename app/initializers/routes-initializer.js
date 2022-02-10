@@ -6,6 +6,7 @@ const processLocale     = require('../handlers/process-locale');
 const processServerType = require('../handlers/process-server-type');
 const redirectToDefault = require('../handlers/redirect-to-default');
 const redirectToLatest  = require('../handlers/redirect-to-latest');
+const renderDoc         = require('../handlers/render-doc');
 const renderSpec        = require('../handlers/render-spec');
 
 module.exports = function(app) {
@@ -18,16 +19,22 @@ module.exports = function(app) {
   // to the path specified by 'defaultPath' configuration property.
   app.get('/', redirectToDefault);
 
-  // Healthcheck endpoint
+  // Healthcheck endpoint.
   app.get('/__healthz', healthcheck);
 
   // The path to get the latest version of the API doc for a server
   // type and a locale.
-  app.get('/:locale/:serverType/latest', processLocale, processServerType, redirectToLatest);
+  app.get('/:locale/:serverType/latest',
+    processLocale, processServerType, redirectToLatest);
 
   // The path to get the API doc for a version, a server type and a
   // locale.
   app.get('/:locale/:serverType/:version',
+    processLocale, processServerType, processVersion, authenticateUser, renderDoc);
+
+  // The path to get the API spec for a version, a server type and a
+  // locale.
+  app.get('/:locale/:serverType/:version/spec',
     processLocale, processServerType, processVersion, authenticateUser, renderSpec);
 
   // Unknown paths with a locale. This setup is just for rendering
