@@ -2,14 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
-    <script type='text/javascript'>const apiSpecData = <%- JSON.stringify(spec) %>;</script>
     <script type="module" src="/js/rapidoc-min.js"></script>
     <script type="text/javascript" src="/js/api-doc.js"></script>
   </head>
   <body>
     <rapi-doc
       id="apiDoc"
+      spec-url="<%- `/${req.params.locale}/${req.params.serverType}/${req.params.version}/spec` %>"
       allow-try="<%- allowTry %>"
+      allow-spec-file-download="true"
       schema-expand-level=1
       schema-style="tree"
       schema-description-expanded="true"
