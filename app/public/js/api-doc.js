@@ -207,13 +207,16 @@ const getNavigationSection = function() {
   return getApiDocElement().shadowRoot.querySelector("[part='section-navbar-scroll']");
 };
 
-window.addEventListener('load', (e) => {
+window.addEventListener('DOMContentLoaded', (e) => {
   // Set up switchers.
   setupSwitchers();
 
-  // Wait for the API spec to be completely loaded and then ensure that
-  // the current fragment value is valid. If the hash value is invalid
-  // (= no element exists for the ID specified by the fragment value),
-  // the fragment value falls back to '#overview'.
-  setTimeout(checkFragment, 1000);
+  // Add an event listener for 'spec-loaded' event.
+  // NOTE: This must be done after ensuring that the DOM content is loaded.
+  getApiDocElement().addEventListener('spec-loaded', (e) => {
+    // Ensure that the current fragment value is valid. If the fragment
+    // value is invalid (= no element exists for the ID specified by the
+    // fragment value), the fragment value falls back to '#overview'.
+    checkFragment();
+  });
 });
