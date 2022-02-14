@@ -24,8 +24,7 @@ paths:
           description: The API key of a service.
       responses:
         '200':
-          description: |
-            The service was successfully fetched.
+          description: ''
           content:
             application/json:
               schema:
@@ -223,6 +222,7 @@ paths:
           description: End index (exclusive) of the result set. The default value is 5. Must not be a negative number.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -502,8 +502,7 @@ paths:
               $ref: '#/paths/~1service~1create/post/requestBody/content/application~1json/schema'
       responses:
         '200':
-          description: |
-            The service was successfully created.
+          description: ''
           content:
             application/json:
               schema:
@@ -819,8 +818,7 @@ paths:
               $ref: '#/paths/~1service~1update~1%7BserviceApiKey%7D/post/requestBody/content/application~1json/schema'
       responses:
         '200':
-          description: |
-            The service was successfully updated.
+          description: ''
           content:
             application/json:
               schema:
@@ -1140,8 +1138,7 @@ paths:
           description: A client ID.
       responses:
         '200':
-          description: |
-            The client was successfully fetched.
+          description: ''
           content:
             application/json:
               schema:
@@ -1297,6 +1294,7 @@ paths:
           description: End index (exclusive) of the result set. The default value is 5. Must not be a negative number.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1304,7 +1302,6 @@ paths:
                 properties:
                   developer:
                     type: string
-                    required: false
                     description: |
                       The developer of the client applications. If the request did not contain `developer` request
                       parameter, this property is set to `null`.
@@ -1523,8 +1520,7 @@ paths:
                   value: attribute2-value
       responses:
         '200':
-          description: |
-            The client was successfully created.
+          description: ''
           content:
             application/json:
               schema:
@@ -1747,8 +1743,7 @@ paths:
               $ref: '#/paths/~1client~1update~1%7BclientId%7D/post/requestBody/content/application~1json/schema'
       responses:
         '200':
-          description: |
-            The client was successfully updated.
+          description: ''
           content:
             application/json:
               schema:
@@ -2022,6 +2017,7 @@ paths:
             The client ID or the client ID alias of a client.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2144,7 +2140,6 @@ paths:
               properties:
                 clientSecret:
                   type: string
-                  required: true
                   description: |
                     The new value of the client secret. Valid characters for a client secret are `A-Z`, `a-z`, `0-9`,
                     `-`, and `_`. The maximum length of a client secret is 86.
@@ -2155,6 +2150,7 @@ paths:
               $ref: '#/paths/~1client~1secret~1update~1%7BclientIdentifier%7D/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2294,6 +2290,7 @@ paths:
             End index of search results (exclusive). The default value is 5.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2311,12 +2308,10 @@ paths:
                       End index of search results (exclusive).
                   developer:
                     type: string
-                    required: false
                     description: |
                       Unique ID of a client developer.
                   subject:
                     type: string
-                    required: false
                     description: |
                       Unique user ID of an end-user.
                   totalCount:
@@ -2513,6 +2508,7 @@ paths:
               $ref: '#/paths/~1client~1authorization~1update~1%7BclientId%7D/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2643,6 +2639,7 @@ paths:
             Unique user ID of an end-user.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2887,6 +2884,7 @@ paths:
             Unique user ID of an end-user.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3520,7 +3518,6 @@ paths:
               properties:
                 parameters:
                   type: string
-                  required: true
                   description: |
                     OAuth 2.0 authorization request parameters which are the request parameters that the OAuth 2.0 authorization endpoint of
                     the authorization server implementation received from the client application.
@@ -3535,6 +3532,7 @@ paths:
               $ref: '#/paths/~1auth~1authorization/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4187,11 +4185,10 @@ paths:
               type: object
               required:
                 - ticket
-                - resason
+                - reason
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket issued from Authlete `/auth/authorization` API.
                 reason:
@@ -4210,13 +4207,11 @@ paths:
                     - CONSENT_REQUIRED
                     - INTERACTION_REQUIRED
                     - INVALID_TARGET
-                  required: true
                   description: |
                     The reason of the failure of the authorization request.
                     For more details, see [NO_INTERACTION] in the description of `/auth/authorization` API.
                 description:
                   type: string
-                  required: false
                   description: |
                     The custom description about the authorization failure.
             example:
@@ -4227,6 +4222,7 @@ paths:
               $ref: '#/paths/~1auth~1authorization~1fail/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4571,26 +4567,21 @@ paths:
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket issued from Authlete `/auth/authorization` API.
                 subject:
                   type: string
-                  required: true
-                  descriptoin: |
+                  description: |
                     The subject (= a user account managed by the service) who has granted authorization to the client application.
                 authTime:
                   type: string
-                  required: false
                   description: |
                     The time when the authentication of the end-user occurred. Its value is the number of seconds from `1970-01-01`.
                 acr:
                   type: string
-                  required: false
                   description: The Authentication Context Class Reference performed for the end-user authentication.
                 claims:
                   type: string
-                  required: false
                   description: |
                     The claims of the end-user (= pieces of information about the end-user) in JSON format.
                     See [OpenID Connect Core 1.0, 5.1. Standard Claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims) for details about the format.
@@ -4598,25 +4589,21 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/Property'
-                  required: false
                   description: Extra properties to associate with an access token and/or an authorization code.
                 scopes:
                   type: array
                   items:
                     type: string
-                  required: false
                   description: |
                     Scopes to associate with an access token and/or an authorization code.
                     If a non-empty string array is given, it replaces the scopes specified by the original authorization request.
                 sub:
                   type: string
-                  required: false
                   description: |
                     The value of the `sub` claim to embed in an ID token. If this request parameter is `null` or empty,
                     the value of the `subject` request parameter is used as the value of the `sub` claim.
                 idHeaderParams:
                   type: string
-                  required: false
                   description: |
                     JSON that represents additional JWS header parameters for ID tokens that may be issued based on
                     the authorization request.
@@ -4628,6 +4615,7 @@ paths:
               $ref: '#/paths/~1auth~1authorization~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -5028,6 +5016,7 @@ paths:
               $ref: '#/paths/~1auth~1token/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -5208,6 +5197,7 @@ paths:
                     value: attribute2-value
                 subject: john
         '400':
+          description: ''
           content:
             application/json:
               schema:
@@ -5223,6 +5213,7 @@ paths:
                 resultCode: A001201
                 resultMessage: '[A001201] /auth/authorization, TLS must be used.'
         '401':
+          description: ''
           content:
             application/json:
               schema:
@@ -5231,6 +5222,7 @@ paths:
                 resultCode: A001202
                 resultMessage: '[A001202] /auth/authorization, Authorization header is missing.'
         '403':
+          description: ''
           content:
             application/json:
               schema:
@@ -5239,6 +5231,7 @@ paths:
                 resultCode: A001215
                 resultMessage: '[A001215] /auth/authorization, The client (ID = 26837717140341) is locked.'
         '500':
+          description: ''
           content:
             application/json:
               schema:
@@ -5425,7 +5418,6 @@ paths:
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket issued from Authlete `/auth/token` API.
                 reason:
@@ -5434,7 +5426,6 @@ paths:
                     - UNKNOWN
                     - INVALID_RESOURCE_OWNER_CREDENTIALS
                     - INVALID_TARGET
-                  required: true
                   description: |
                     The reason of the failure of the token request.
             example:
@@ -5445,6 +5436,7 @@ paths:
               $ref: '#/paths/~1auth~1token~1fail/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -5648,19 +5640,16 @@ paths:
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket issued from Authlete `/auth/token` API.
                 subject:
                   type: string
-                  required: true
-                  descriptoin: |
+                  description: |
                     The subject (= unique identifier) of the authenticated user.
                 properties:
                   type: array
                   items:
                     $ref: '#/components/schemas/Property'
-                  required: false
                   description: |
                     Extra properties to associate with a newly created access token. Note that properties parameter is accepted only
                     when `Content-Type` of the request is `application/json`, so don't use `application/x-www-form-urlencoded`
@@ -5673,6 +5662,7 @@ paths:
               $ref: '#/paths/~1auth~1token~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -6091,11 +6081,9 @@ paths:
               properties:
                 token:
                   type: string
-                  required: true
                   description: An access token to introspect.
                 scopes:
                   type: string
-                  required: false
                   description: |
                     A string array listing names of scopes which the caller (= a protected resource endpoint of the
                     service) requires. When the content type of the request from the service is `application/x-www-form-urlencoded`,
@@ -6105,7 +6093,6 @@ paths:
                     access token,`action=FORBIDDEN` with `error=insufficient_scope` is returned from Authlete.
                 subject:
                   type: string
-                  required: false
                   description: |
                     A subject (= a user account managed by the service) whom the caller (= a protected resource
                     endpoint of the service) requires.
@@ -6114,13 +6101,11 @@ paths:
                     with the access token, `action=FORBIDDEN` with `error=invalid_request` is returned from Authlete.
                 clientCertificate:
                   type: string
-                  required: false
                   description: |
                     Client certificate in PEM format, used to validate binding against access tokens using the TLS
                     client certificate confirmation method.
                 dpop:
                   type: string
-                  required: false
                   description: |
                     `DPoP` header presented by the client during the request to the resource server.
 
@@ -6129,7 +6114,6 @@ paths:
                     Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) for details.
                 htm:
                   type: string
-                  required: false
                   description: |
                     HTTP method of the request from the client to the protected resource endpoint. This field is
                     used to validate the `DPoP` header.
@@ -6138,7 +6122,6 @@ paths:
                     for details.
                 htu:
                   type: string
-                  required: false
                   description: |
                     URL of the protected resource endpoint. This field is used to validate the `DPoP` header.
 
@@ -6155,6 +6138,7 @@ paths:
               $ref: '#/paths/~1auth~1introspection/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -6507,7 +6491,6 @@ paths:
               properties:
                 parameters:
                   type: string
-                  required: true
                   description: |
                     Request parameters which comply with the introspection request defined
                     in "[2.1. Introspection Request](https://datatracker.ietf.org/doc/html/rfc7662#section-2.1)" in
@@ -6536,6 +6519,7 @@ paths:
               $ref: '#/paths/~1auth~1introspection~1standard/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -6794,7 +6778,6 @@ paths:
               properties:
                 parameters:
                   type: string
-                  required: true
                   description: |
                     OAuth 2.0 token revocation request parameters which are the request parameters that the OAuth 2.0 token revocation endpoint
                     ([RFC 7009](https://datatracker.ietf.org/doc/html/rfc7009)) of the authorization server implementation received from the
@@ -6804,7 +6787,6 @@ paths:
                     from the client application.
                 clientId:
                   type: string
-                  required: false
                   description: |
                     The client ID extracted from `Authorization` header of the revocation request from the client application.
 
@@ -6813,7 +6795,6 @@ paths:
                     `Authorization` header, the value should be extracted and set to this parameter.
                 clientSecret:
                   type: string
-                  required: false
                   description: |
                     The client secret extracted from `Authorization` header of the revocation request from the client application.
 
@@ -6822,12 +6803,10 @@ paths:
                     the value should be extracted and set to this parameter.
                 clientCertificate:
                   type: string
-                  required: false
                   description: |
                     The client certificate used in the TLS connection between the client application and the revocation endpoint.
                 clientCertificatePath:
                   type: string
-                  required: false
                   description: |
                     The certificate path presented by the client during client authentication.
             example:
@@ -6839,6 +6818,7 @@ paths:
               $ref: '#/paths/~1auth~1revocation/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -7107,12 +7087,10 @@ paths:
               properties:
                 token:
                   type: string
-                  required: true
                   description: |
                     An access token.
                 clientCertificate:
                   type: string
-                  required: false
                   description: |
                     Client certificate used in the TLS connection established between the client application and the userinfo endpoint.
 
@@ -7121,7 +7099,6 @@ paths:
                     (https://datatracker.ietf.org/doc/rfc8705/) for details about the specification of certificate-bound access tokens.
                 dpop:
                   type: string
-                  required: false
                   description: |
                     `DPoP` header presented by the client during the request to the user info endpoint.
 
@@ -7130,13 +7107,11 @@ paths:
                     for details.
                 htm:
                   type: string
-                  required: false
                   description: |
                     HTTP method of the user info request. This field is used to validate the DPoP header.
                     In normal cases, the value is either `GET` or `POST`.
                 htu:
                   type: string
-                  required: false
                   description: |
                     URL of the user info endpoint. This field is used to validate the DPoP header.
 
@@ -7150,6 +7125,7 @@ paths:
               $ref: '#/paths/~1auth~1userinfo/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -7174,7 +7150,6 @@ paths:
                           The list of claims that the client application requests to be embedded in the ID token.
                       clientId:
                         type: string
-                        required: false
                         description: |
                           The ID of the client application which is associated with the access token.
                       clientIdAlias:
@@ -7532,20 +7507,17 @@ paths:
               properties:
                 token:
                   type: string
-                  required: true
                   description: |
-                    The access token that has been passed to the userinfo endpoint by the client application. In other words, 
+                    The access token that has been passed to the userinfo endpoint by the client application. In other words,
                     the access token which was contained in the userinfo request.
                 claims:
                   type: string
-                  required: false
                   description: |
-                    Claims in JSON format. As for the format, see [OpenID Connect Core 1.0, 5.1. Standard Claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims). 
+                    Claims in JSON format. As for the format, see [OpenID Connect Core 1.0, 5.1. Standard Claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims).
                 sub:
                   type: string
-                  required: false
                   description: |
-                    The value of the `sub` claim. If the value of this request parameter is not empty, it is used as the value of 
+                    The value of the `sub` claim. If the value of this request parameter is not empty, it is used as the value of
                     the `sub` claim. Otherwise, the value of the subject associated with the access token is used.
             example:
               token: Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI
@@ -7554,6 +7526,7 @@ paths:
               $ref: '#/paths/~1auth~1userinfo~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -7702,6 +7675,7 @@ paths:
           description: 'This boolean value indicates whether the JSON in the response should be formatted or not. If `true`, the JSON in the response is pretty-formatted. The default value is `false`.'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -7711,11 +7685,8 @@ paths:
                     type: array
                     items:
                       type: object
-                      additionalProperties:
-                        type: any
-                        description: |
-                          A JWK parameter such as `"kid"`. See [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517)
-                          for more details.
+                      description: |
+                        An object representing JWK. See [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517) for more details.
                     description: 'An array of [JWK](https://datatracker.ietf.org/doc/html/rfc7517)s.'
               example:
                 keys:
@@ -7850,17 +7821,13 @@ paths:
           description: 'This boolean value indicates whether the JSON in the response should be formatted or not. If `true`, the JSON in the response is pretty-formatted. The default value is `false`.'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-                additionalProperties:
-                  type: any
-                  description: |
-                    OpenID Provider Metadata such as `"issuer"`.
-                    See [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata)
-                    and [OpenID Provider Configuration Response](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)
-                    for more details.
+                description: |
+                  An object representing OpenID Provider configuration information. See [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata) and [OpenID Provider Configuration Response](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse) for more details.
               example:
                 issuer: 'https://my-service.example.com'
                 authorization_endpoint: 'https://my-service.example.com/authz'
@@ -8303,7 +8270,6 @@ paths:
               properties:
                 json:
                   type: string
-                  required: true
                   description: |
                     Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)
                     (OAuth 2.0 Dynamic Client Registration Protocol).
@@ -8314,6 +8280,7 @@ paths:
               $ref: '#/paths/~1client~1registration/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -8576,12 +8543,10 @@ paths:
               properties:
                 clientId:
                   type: string
-                  required: true
                   description: |
                     Client ID.
                 token:
                   type: string
-                  required: true
                   description: |
                     Client registration access token.
             example:
@@ -8592,6 +8557,7 @@ paths:
               $ref: '#/paths/~1client~1registration~1get/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -8862,17 +8828,14 @@ paths:
               properties:
                 clientId:
                   type: string
-                  required: true
                   description: |
                     Client ID.
                 token:
                   type: string
-                  required: true
                   description: |
                     Client registration access token.
                 json:
                   type: string
-                  required: true
                   description: |
                     Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)
                     (OAuth 2.0 Dynamic Client Registration Protocol).
@@ -8885,6 +8848,7 @@ paths:
               $ref: '#/paths/~1client~1registration~1update/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -9150,16 +9114,15 @@ paths:
             schema:
               type: object
               required:
-                - json
+                - clientId
+                - token
               properties:
                 clientId:
                   type: string
-                  required: true
                   description: |
                     Client ID.
                 token:
                   type: string
-                  required: true
                   description: |
                     Client registration access token.
             example:
@@ -9170,6 +9133,7 @@ paths:
               $ref: '#/paths/~1client~1registration~1delete/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -9608,7 +9572,6 @@ paths:
               properties:
                 parameters:
                   type: string
-                  required: true
                   description: |
                     Parameters of a backchannel authentication request which are the request parameters that the
                     backchannel authentication endpoint of the OpenID provider implementation received from the client
@@ -9618,7 +9581,6 @@ paths:
                     of the request from the client application.
                 clientId:
                   type: string
-                  required: false
                   description: |
                     The client ID extracted from Authorization header of the backchannel authentication request from
                     the client application.
@@ -9628,7 +9590,6 @@ paths:
                     contained its client ID in Authorization header, the value should be extracted and set to this parameter.
                 clientSecret:
                   type: string
-                  required: false
                   description: |
                     The client secret extracted from Authorization header of the backchannel authentication request
                     from the client application.
@@ -9639,13 +9600,11 @@ paths:
                     this parameter.
                 clientCertificate:
                   type: string
-                  required: false
                   description: |
                     The client certification used in the TLS connection between the client application and the
                     backchannel authentication endpoint of the OpenID provider.
                 clientCertificatePath:
                   type: string
-                  required: false
                   description: |
                     The client certificate path presented by the client during client authentication. Each element
                     is a string in PEM format.
@@ -9658,6 +9617,7 @@ paths:
               $ref: '#/paths/~1backchannel~1authentication/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -10041,11 +10001,10 @@ paths:
             schema:
               type: object
               required:
-                - parameters
+                - ticket
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket issued from Authlete's `/backchannel/authentication` API.
             example:
@@ -10055,6 +10014,7 @@ paths:
               $ref: '#/paths/~1backchannel~1authentication~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -10231,7 +10191,6 @@ paths:
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket which should be deleted on a call of Authlete's `/backchannel/authentication/fail` API.
                     This request parameter is not mandatory but optional. If this request parameter is given and the
@@ -10249,20 +10208,17 @@ paths:
                     - SERVER_ERROR
                     - UNAUTHORIZED_CLIENT
                     - UNKNOWN_USER_ID
-                  required: true
                   description: |
                     The reason of the failure of the backchannel authentication request. This request parameter is
                     not mandatory but optional. However, giving this parameter is recommended. If omitted, `SERVER_ERROR`
                     is used as a reason.
                 errorDescription:
                   type: string
-                  required: false
                   description: |
                     The description of the error. This corresponds to the `error_description` property in the response
                     to the client.
                 errorUri:
                   type: string
-                  required: false
                   description: |
                     The URI of a document which describes the error in detail. If this optional request parameter
                     is given, its value is used as the value of the `error_uri` property.
@@ -10271,6 +10227,7 @@ paths:
               $ref: '#/paths/~1backchannel~1authentication~1fail/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -10508,7 +10465,6 @@ paths:
               properties:
                 ticket:
                   type: string
-                  required: true
                   description: |
                     The ticket issued by Authlete's `/backchannel/authentication` API.
                 result:
@@ -10517,40 +10473,33 @@ paths:
                     - TRANSACTION_FAILED
                     - ACCESS_DENIED
                     - AUTHORIZED
-                  required: true
                   description: |
                     The result of the end-user authentication and authorization. One of the following. Details are
                     described in the description.
                 subject:
                   type: string
-                  required: true
                   description: |
                     The subject (= unique identifier) of the end-user.
                 sub:
                   type: string
-                  required: false
                   description: |
                     The value of the sub claim that should be used in the ID token.
                 authTime:
                   type: string
-                  required: false
                   description: |
                     The time at which the end-user was authenticated. Its value is the number of seconds from `1970-01-01`.
                 acr:
                   type: string
-                  required: false
                   description: |
                     The reference of the authentication context class which the end-user authentication satisfied.
                 claims:
                   type: string
-                  required: false
                   description: |
                     Additional claims which will be embedded in the ID token.
                 properties:
                   type: array
                   items:
                     $ref: '#/components/schemas/Property'
-                  required: false
                   description: |
                     The extra properties associated with the access token.
                 scopes:
@@ -10562,12 +10511,10 @@ paths:
                     When nothing is specified for this parameter, replacement is not performed.
                 idHeaderParams:
                   type: string
-                  required: false
                   description: |
                     JSON that represents additional JWS header parameters for ID tokens.
                 errorDescription:
                   type: string
-                  required: true
                   description: |
                     The description of the error. If this optional request parameter is given, its value is used as
                     the value of the `error_description` property, but it is used only when the result is not `AUTHORIZED`.
@@ -10575,7 +10522,6 @@ paths:
                     the set `%x20-21 / %x23-5B / %x5D-7E`.
                 errorUri:
                   type: string
-                  required: true
                   description: |
                     The URI of a document which describes the error in detail. This corresponds to the `error_uri`
                     property in the response to the client.
@@ -10588,6 +10534,7 @@ paths:
               $ref: '#/paths/~1backchannel~1authentication~1complete/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -10929,7 +10876,6 @@ paths:
               properties:
                 parameters:
                   type: string
-                  required: true
                   description: |
                     Parameters of a device authorization request which are the request parameters that the device
                     authorization endpoint of the authorization server implementation received from the client application.
@@ -10938,7 +10884,6 @@ paths:
                     of the request from the client application.
                 clientId:
                   type: string
-                  required: false
                   description: |
                     The client ID extracted from Authorization header of the device authorization request from the
                     client application.
@@ -10949,7 +10894,6 @@ paths:
                     parameter.
                 clientSecret:
                   type: string
-                  required: false
                   description: |
                     The client secret extracted from `Authorization` header of the device authorization request from
                     the client application.
@@ -10960,13 +10904,11 @@ paths:
                     this parameter.
                 clientCertificate:
                   type: string
-                  required: false
                   description: |
                     The client certificate used in the TLS connection between the client application and the device
                     authorization endpoint of the authorization server.
                 clientCertificatePath:
                   type: string
-                  required: false
                   description: |
                     The client certificate path presented by the client during client authentication. Each element
                     is a string in PEM format.
@@ -10979,6 +10921,7 @@ paths:
               $ref: '#/paths/~1device~1authorization/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -11301,7 +11244,6 @@ paths:
               properties:
                 userCode:
                   type: string
-                  required: true
                   description: |
                     A user code.
             example:
@@ -11311,6 +11253,7 @@ paths:
               $ref: '#/paths/~1device~1verification/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -11388,7 +11331,7 @@ paths:
                           set. See "Resource Indicators for OAuth 2.0" for details.
                       authorizationDetails:
                         allOf:
-                          $ref: '#/components/schemas/AuthorizationDetails'
+                          - $ref: '#/components/schemas/AuthorizationDetails'
                         description: |
                           The authorization details. This represents the value of the `authorization_details`
                           request parameter in the preceding device authorization request which is defined in
@@ -11591,10 +11534,11 @@ paths:
               type: object
               required:
                 - userCode
+                - result
+                - subject
               properties:
                 userCode:
                   type: string
-                  required: true
                   description: |
                     A user code.
                 result:
@@ -11608,34 +11552,28 @@ paths:
                     described in the description.
                 subject:
                   type: string
-                  required: true
                   description: |
                     The subject (= unique identifier) of the end-user.
                 sub:
                   type: string
-                  required: false
                   description: |
                     The value of the sub claim that should be used in the ID token.
                 authTime:
                   type: string
-                  required: false
                   description: |
                     The time at which the end-user was authenticated. Its value is the number of seconds from `1970-01-01`.
                 acr:
                   type: string
-                  required: false
                   description: |
                     The reference of the authentication context class which the end-user authentication satisfied.
                 claims:
                   type: string
-                  required: false
                   description: |
                     Additional claims which will be embedded in the ID token.
                 properties:
                   type: array
                   items:
                     $ref: '#/components/schemas/Property'
-                  required: false
                   description: |
                     The extra properties associated with the access token.
                 scopes:
@@ -11647,7 +11585,6 @@ paths:
                     When nothing is specified for this parameter, replacement is not performed.
                 errorDescription:
                   type: string
-                  required: true
                   description: |
                     The description of the error. If this optional request parameter is given, its value is used as
                     the value of the `error_description` property, but it is used only when the result is not `AUTHORIZED`.
@@ -11655,13 +11592,11 @@ paths:
                     the set `%x20-21 / %x23-5B / %x5D-7E`.
                 errorUri:
                   type: string
-                  required: true
                   description: |
                     The URI of a document which describes the error in detail. This corresponds to the `error_uri`
                     property in the response to the client.
                 idHeaderParams:
                   type: string
-                  required: false
                   description: |
                     JSON that represents additional JWS header parameters for ID tokens.
             example:
@@ -11673,6 +11608,7 @@ paths:
               $ref: '#/paths/~1device~1complete/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -11801,7 +11737,7 @@ paths:
           required: false
           description: |
             Client Identifier (client ID or client ID alias).
-        - in: path
+        - in: query
           name: subject
           schema:
             type: string
@@ -11825,6 +11761,7 @@ paths:
             End index of search results (exclusive). The default value is 5.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -12180,6 +12117,7 @@ paths:
               $ref: '#/paths/~1auth~1token~1create/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -12466,6 +12404,7 @@ paths:
               $ref: '#/paths/~1auth~1token~1update/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -12744,6 +12683,7 @@ paths:
               $ref: '#/paths/~1jose~1verify/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -13003,9 +12943,7 @@ components:
             levels of privilege being requested at the resource."_
 
             This property may be `null`.
-      additionalProperties:
-        type: any
-        description: Arbitrary field.
+      additionalProperties: true
     ClaimType:
       type: string
       enum:
@@ -13431,16 +13369,16 @@ components:
 
             This property corresponds to `request_object_encryption_enc` in
             [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-          requestUris:
-            type: array
-            items:
-              type: string
-            description: |
-              An array of URLs each of which points to a request object.
+        requestUris:
+          type: array
+          items:
+            type: string
+          description: |
+            An array of URLs each of which points to a request object.
 
-              Authlete requires that URLs used as values for `request_uri` request parameter be pre-registered.
-              This property is used for the pre-registration.
-              See [OpenID Connect Core 1.0, 6.2. Passing a Request Object by Reference](https://openid.net/specs/openid-connect-core-1_0.html#RequestUriParameter) for details.
+            Authlete requires that URLs used as values for `request_uri` request parameter be pre-registered.
+            This property is used for the pre-registration.
+            See [OpenID Connect Core 1.0, 6.2. Passing a Request Object by Reference](https://openid.net/specs/openid-connect-core-1_0.html#RequestUriParameter) for details.
         defaultMaxAge:
           type: integer
           format: int32

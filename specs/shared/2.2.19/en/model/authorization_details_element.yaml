@@ -58,23 +58,14 @@ properties:
       levels of privilege being requested at the resource."_
 
       This property may be `null`.
-additionalProperties:
-  type: any
-  description: Arbitrary field.
-
-  #     Note: each object in `elements` property may contain its own fields other than above.
-  #     The following show an example of a JSON representing Authorization Details.
-  #     ```json
-  #     {
-  #       "type"      : "my_type",
-  #       "privileges": [ "admin" ],
-  #       "locations" : [ "loc0", "loc1" ],
-  #       "actions"   : [ "act0", "act1" ],
-  #       "identifier": "my_id",
-  #       "prop0"     : "a",
-  #       "prop1"     : [ "b", "c" ],
-  #       "prop2"     : {
-  #       "sub0"      : "d",
-  #       "sub1"      : [ "e", "f" ]
-  #     }
-  #     ```
+additionalProperties: true
+# The following code doesn't work due to rapidoc's bug/
+# additionalProperties:
+#   oneOf:
+#     - type: array
+#     - type: boolean
+#     - type: integer
+#     - type: number
+#     - type: object
+#     - type: string
+#   description: Arbitrary field.

@@ -1,3 +1,4 @@
+description: ""
 content:
   application/json:
     schema:
@@ -75,7 +76,7 @@ content:
                 set. See "Resource Indicators for OAuth 2.0" for details.
             authorizationDetails:
               allOf:
-                $ref: ../authorization_details.yaml
+                - $ref: ../authorization_details.yaml
               description: |
                 The authorization details. This represents the value of the `authorization_details`
                 request parameter in the preceding device authorization request which is defined in

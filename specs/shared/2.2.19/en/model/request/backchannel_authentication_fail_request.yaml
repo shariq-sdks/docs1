@@ -3,7 +3,6 @@ required: [ ticket, reason ]
 properties:
   ticket:
     type: string
-    required: true
     description: |
       The ticket which should be deleted on a call of Authlete's `/backchannel/authentication/fail` API.
       This request parameter is not mandatory but optional. If this request parameter is given and the
@@ -21,20 +20,17 @@ properties:
       - SERVER_ERROR
       - UNAUTHORIZED_CLIENT
       - UNKNOWN_USER_ID
-    required: true
     description: |
       The reason of the failure of the backchannel authentication request. This request parameter is
       not mandatory but optional. However, giving this parameter is recommended. If omitted, `SERVER_ERROR`
       is used as a reason.
   errorDescription:
     type: string
-    required: false
     description: |
       The description of the error. This corresponds to the `error_description` property in the response
       to the client.
   errorUri:
     type: string
-    required: false
     description: |
       The URI of a document which describes the error in detail. If this optional request parameter
       is given, its value is used as the value of the `error_uri` property.

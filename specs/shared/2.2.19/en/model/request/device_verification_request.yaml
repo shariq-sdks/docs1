@@ -3,6 +3,5 @@ required: [ userCode ]
 properties:
   userCode:
     type: string
-    required: true
     description: |
       A user code.

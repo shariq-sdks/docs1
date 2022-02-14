@@ -3,7 +3,6 @@ required: [ ticket, reason ]
 properties:
   ticket:
     type: string
-    required: true
     description: |
       The ticket issued from Authlete `/auth/token` API.
   reason:
@@ -12,6 +11,5 @@ properties:
       - UNKNOWN
       - INVALID_RESOURCE_OWNER_CREDENTIALS
       - INVALID_TARGET
-    required: true
     description: |
       The reason of the failure of the token request.

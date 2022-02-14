@@ -1,5 +1,4 @@
-description: |
-  The service was successfully fetched.
+description: ""
 content:
   application/json:
     schema:

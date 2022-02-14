@@ -355,16 +355,16 @@ properties:
 
       This property corresponds to `request_object_encryption_enc` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-    requestUris:
-      type: array
-      items:
-        type: string
-      description: |
-        An array of URLs each of which points to a request object.
+  requestUris:
+    type: array
+    items:
+      type: string
+    description: |
+      An array of URLs each of which points to a request object.
 
-        Authlete requires that URLs used as values for `request_uri` request parameter be pre-registered.
-        This property is used for the pre-registration.
-        See [OpenID Connect Core 1.0, 6.2. Passing a Request Object by Reference](https://openid.net/specs/openid-connect-core-1_0.html#RequestUriParameter) for details.
+      Authlete requires that URLs used as values for `request_uri` request parameter be pre-registered.
+      This property is used for the pre-registration.
+      See [OpenID Connect Core 1.0, 6.2. Passing a Request Object by Reference](https://openid.net/specs/openid-connect-core-1_0.html#RequestUriParameter) for details.
   defaultMaxAge:
     type: integer
     format: int32

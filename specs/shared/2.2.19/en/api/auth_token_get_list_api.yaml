@@ -12,7 +12,7 @@ get:
       required: false
       description: |
         Client Identifier (client ID or client ID alias).
-    - in: path
+    - in: query
       name: subject
       schema:
         type: string

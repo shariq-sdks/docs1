@@ -1,3 +1,4 @@
+description: ""
 content:
   application/json:
     schema:
@@ -15,12 +16,10 @@ content:
             End index of search results (exclusive).
         developer:
           type: string
-          required: false
           description: |
             Unique ID of a client developer.
         subject:
           type: string
-          required: false
           description: |
             Unique user ID of an end-user.
         totalCount:

@@ -3,7 +3,6 @@ required: [ parameters ]
 properties:
   parameters:
     type: string
-    required: true
     description: |
       Request parameters which comply with the introspection request defined
       in "[2.1. Introspection Request](https://datatracker.ietf.org/doc/html/rfc7662#section-2.1)" in

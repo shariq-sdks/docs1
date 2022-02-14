@@ -3,7 +3,6 @@ required: [ parameters ]
 properties:
   parameters:
     type: string
-    required: true
     description: |
       OAuth 2.0 authorization request parameters which are the request parameters that the OAuth 2.0 authorization endpoint of
       the authorization server implementation received from the client application.

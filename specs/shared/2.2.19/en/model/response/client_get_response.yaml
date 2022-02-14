@@ -1,5 +1,4 @@
-description: |
-  The client was successfully fetched.
+description: ""
 content:
   application/json:
     schema:
