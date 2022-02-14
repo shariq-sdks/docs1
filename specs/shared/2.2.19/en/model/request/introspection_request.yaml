@@ -3,11 +3,9 @@ required: [ token ]
 properties:
   token:
     type: string
-    required: true
     description: An access token to introspect.
   scopes:
     type: string
-    required: false
     description: |
       A string array listing names of scopes which the caller (= a protected resource endpoint of the
       service) requires. When the content type of the request from the service is `application/x-www-form-urlencoded`,
@@ -17,7 +15,6 @@ properties:
       access token,`action=FORBIDDEN` with `error=insufficient_scope` is returned from Authlete.
   subject:
     type: string
-    required: false
     description: |
       A subject (= a user account managed by the service) whom the caller (= a protected resource
       endpoint of the service) requires.
@@ -26,13 +23,11 @@ properties:
       with the access token, `action=FORBIDDEN` with `error=invalid_request` is returned from Authlete.
   clientCertificate:
     type: string
-    required: false
     description: |
       Client certificate in PEM format, used to validate binding against access tokens using the TLS
       client certificate confirmation method.
   dpop:
     type: string
-    required: false
     description: |
       `DPoP` header presented by the client during the request to the resource server.
 
@@ -41,7 +36,6 @@ properties:
       Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop) for details.
   htm:
     type: string
-    required: false
     description: |
       HTTP method of the request from the client to the protected resource endpoint. This field is
       used to validate the `DPoP` header.
@@ -50,7 +44,6 @@ properties:
       for details.
   htu:
     type: string
-    required: false
     description: |
       URL of the protected resource endpoint. This field is used to validate the `DPoP` header.
 

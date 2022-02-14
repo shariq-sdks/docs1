@@ -1,3 +1,4 @@
+description: ""
 content:
   application/json:
     schema:
@@ -5,7 +6,6 @@ content:
       properties:
         developer:
           type: string
-          required: false
           description: |
             The developer of the client applications. If the request did not contain `developer` request
             parameter, this property is set to `null`.

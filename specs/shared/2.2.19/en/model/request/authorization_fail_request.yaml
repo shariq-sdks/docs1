@@ -1,9 +1,8 @@
 type: object
-required: [ ticket, resason ]
+required: [ ticket, reason ]
 properties:
   ticket:
     type: string
-    required: true
     description: |
       The ticket issued from Authlete `/auth/authorization` API.
   reason:
@@ -22,12 +21,10 @@ properties:
       - CONSENT_REQUIRED
       - INTERACTION_REQUIRED
       - INVALID_TARGET
-    required: true
     description: |
       The reason of the failure of the authorization request.
       For more details, see [NO_INTERACTION] in the description of `/auth/authorization` API.
   description:
     type: string
-    required: false
     description: |
       The custom description about the authorization failure.

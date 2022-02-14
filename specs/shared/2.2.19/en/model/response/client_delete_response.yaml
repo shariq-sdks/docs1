@@ -1,6 +1,2 @@
 description: |
   The client was successfully deleted.
-# content:
-#   application/json:
-#     schema:
-#       $ref: result.yaml

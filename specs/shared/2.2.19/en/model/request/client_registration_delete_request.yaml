@@ -1,13 +1,11 @@
 type: object
-required: [ json ]
+required: [ clientId, token ]
 properties:
   clientId:
     type: string
-    required: true
     description: |
       Client ID.
   token:
     type: string
-    required: true
     description: |
       Client registration access token.

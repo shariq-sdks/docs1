@@ -2,11 +2,9 @@
   name: includePrivateKeys
   schema:
     type: boolean
-  required: false
   description: If true, the endpoint returns only the user metadata.
 - in: query
   name: pretty
   schema:
     type: boolean
-  required: false
   description: If true, the endpoint returns only the user metadata.

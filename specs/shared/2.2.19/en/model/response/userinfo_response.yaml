@@ -1,3 +1,4 @@
+description: ""
 content:
   application/json:
     schema:
@@ -22,7 +23,6 @@ content:
                 The list of claims that the client application requests to be embedded in the ID token.
             clientId:
               type: string
-              required: false
               description: |
                 The ID of the client application which is associated with the access token.
             clientIdAlias:

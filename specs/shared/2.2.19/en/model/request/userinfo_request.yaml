@@ -3,12 +3,10 @@ required: [ token ]
 properties:
   token:
     type: string
-    required: true
     description: |
       An access token.
   clientCertificate:
     type: string
-    required: false
     description: |
       Client certificate used in the TLS connection established between the client application and the userinfo endpoint.
 
@@ -17,7 +15,6 @@ properties:
       (https://datatracker.ietf.org/doc/rfc8705/) for details about the specification of certificate-bound access tokens.
   dpop:
     type: string
-    required: false
     description: |
       `DPoP` header presented by the client during the request to the user info endpoint.
 
@@ -26,13 +23,11 @@ properties:
       for details.
   htm:
     type: string
-    required: false
     description: |
       HTTP method of the user info request. This field is used to validate the DPoP header.
       In normal cases, the value is either `GET` or `POST`.
   htu:
     type: string
-    required: false
     description: |
       URL of the user info endpoint. This field is used to validate the DPoP header.
 

@@ -1,12 +1,12 @@
 type: object
-required: [ clientSecret ]
 properties:
   requestableScopes:
     type: array
     items:
       type: string
     description: |
-      The set of scopes that the client application is allowed to request. This paramter will be one of the following. Details are described in the description.
+      The set of scopes that the client application is allowed to request.
+      This parameter will be one of the following. Details are described in the description.
 
       - null
       - an empty set

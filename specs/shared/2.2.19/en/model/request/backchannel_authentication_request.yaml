@@ -3,7 +3,6 @@ required: [ parameters ]
 properties:
   parameters:
     type: string
-    required: true
     description: |
       Parameters of a backchannel authentication request which are the request parameters that the
       backchannel authentication endpoint of the OpenID provider implementation received from the client
@@ -13,7 +12,6 @@ properties:
       of the request from the client application.
   clientId:
     type: string
-    required: false
     description: |
       The client ID extracted from Authorization header of the backchannel authentication request from
       the client application.
@@ -23,7 +21,6 @@ properties:
       contained its client ID in Authorization header, the value should be extracted and set to this parameter.
   clientSecret:
     type: string
-    required: false
     description: |
       The client secret extracted from Authorization header of the backchannel authentication request
       from the client application.
@@ -34,13 +31,11 @@ properties:
       this parameter.
   clientCertificate:
     type: string
-    required: false
     description: |
       The client certification used in the TLS connection between the client application and the
       backchannel authentication endpoint of the OpenID provider.
   clientCertificatePath:
     type: string
-    required: false
     description: |
       The client certificate path presented by the client during client authentication. Each element
       is a string in PEM format.

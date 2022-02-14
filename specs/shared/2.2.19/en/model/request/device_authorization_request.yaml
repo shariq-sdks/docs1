@@ -3,7 +3,6 @@ required: [ parameters ]
 properties:
   parameters:
     type: string
-    required: true
     description: |
       Parameters of a device authorization request which are the request parameters that the device
       authorization endpoint of the authorization server implementation received from the client application.
@@ -12,7 +11,6 @@ properties:
       of the request from the client application.
   clientId:
     type: string
-    required: false
     description: |
       The client ID extracted from Authorization header of the device authorization request from the
       client application.
@@ -23,7 +21,6 @@ properties:
       parameter.
   clientSecret:
     type: string
-    required: false
     description: |
       The client secret extracted from `Authorization` header of the device authorization request from
       the client application.
@@ -34,13 +31,11 @@ properties:
       this parameter.
   clientCertificate:
     type: string
-    required: false
     description: |
       The client certificate used in the TLS connection between the client application and the device
       authorization endpoint of the authorization server.
   clientCertificatePath:
     type: string
-    required: false
     description: |
       The client certificate path presented by the client during client authentication. Each element
       is a string in PEM format.

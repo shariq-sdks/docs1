@@ -3,7 +3,6 @@ required: [ parameters ]
 properties:
   parameters:
     type: string
-    required: true
     description: |
       OAuth 2.0 token revocation request parameters which are the request parameters that the OAuth 2.0 token revocation endpoint
       ([RFC 7009](https://datatracker.ietf.org/doc/html/rfc7009)) of the authorization server implementation received from the
@@ -13,7 +12,6 @@ properties:
       from the client application.
   clientId:
     type: string
-    required: false
     description: |
       The client ID extracted from `Authorization` header of the revocation request from the client application.
 
@@ -22,7 +20,6 @@ properties:
       `Authorization` header, the value should be extracted and set to this parameter.
   clientSecret:
     type: string
-    required: false
     description: |
       The client secret extracted from `Authorization` header of the revocation request from the client application.
 
@@ -31,11 +28,9 @@ properties:
       the value should be extracted and set to this parameter.
   clientCertificate:
     type: string
-    required: false
     description: |
       The client certificate used in the TLS connection between the client application and the revocation endpoint.
   clientCertificatePath:
     type: string
-    required: false
     description: |
       The certificate path presented by the client during client authentication.

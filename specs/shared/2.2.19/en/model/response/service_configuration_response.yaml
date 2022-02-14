@@ -1,14 +1,13 @@
+description: ""
 content:
   application/json:
     schema:
       type: object
-      additionalProperties:
-        type: any
-        description: |
-          OpenID Provider Metadata such as `"issuer"`.
-          See [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata)
-          and [OpenID Provider Configuration Response](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)
-          for more details.
+      description: >
+        An object representing OpenID Provider configuration information.
+        See [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata)
+        and [OpenID Provider Configuration Response](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)
+        for more details.
     example:
       {
         "issuer": "https://my-service.example.com",
