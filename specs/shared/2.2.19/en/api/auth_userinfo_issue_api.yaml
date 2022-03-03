@@ -35,7 +35,7 @@ post:
     1.0 requires that an error response from userinfo endpoint comply with RFC 6750. See [5.3.3. UserInfo
     Response](https://openid.net/specs/openid-connect-core-1_0.html#UserInfoError) for details.
 
-    ```http
+    ```
     HTTP/1.1 500 Internal Server Error
     WWW-Authenticate: {responseContent}
     Cache-Control: no-store
@@ -57,7 +57,7 @@ post:
     1.0 requires that an error response from userinfo endpoint comply with RFC 6750. See [5.3.3. UserInfo
     Response](https://openid.net/specs/openid-connect-core-1_0.html#UserInfoError) for details.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     WWW-Authenticate: {responseContent}
     Cache-Control: no-store
@@ -78,7 +78,7 @@ post:
     1.0 requires that an error response from userinfo endpoint comply with RFC 6750. See [5.3.3. UserInfo
     Response](https://openid.net/specs/openid-connect-core-1_0.html#UserInfoError) for details.
 
-    ```http
+    ```
     HTTP/1.1 401 Unauthorized
     WWW-Authenticate: {responseContent}
     Cache-Control: no-store
@@ -99,7 +99,7 @@ post:
     1.0 requires that an error response from userinfo endpoint comply with RFC 6750. See [5.3.3. UserInfo
     Response](https://openid.net/specs/openid-connect-core-1_0.html#UserInfoError) for details.
 
-    ```http
+    ```
     HTTP/1.1 403 Forbidden
     WWW-Authenticate: {responseContent}
     Cache-Control: no-store
@@ -118,7 +118,7 @@ post:
     The value of `responseContent` is the ID token in JSON format when `action` is `JSON`, so
     a response to the client can be built like below.
 
-    ```http
+    ```
     HTTP/1.1 200 OK
     Cache-Control: no-store
     Pragma: no-cache
@@ -140,7 +140,7 @@ post:
     The value of `responseContent` is the ID token in JSON format when `action` is `JWT`, so a response
     to the client can be built like below.
 
-    ```http
+    ```
     HTTP/1.1 200 OK
     Cache-Control: no-store
     Pragma: no-cache

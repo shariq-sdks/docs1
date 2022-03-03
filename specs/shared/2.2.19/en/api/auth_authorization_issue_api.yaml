@@ -34,7 +34,7 @@ post:
     The following illustrates the response which the service implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 500 Internal Server Error
     Content-Type: application/json
     Cache-Control: no-store
@@ -62,7 +62,7 @@ post:
     The following illustrates the response which the service implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
     Cache-Control: no-store
@@ -86,7 +86,7 @@ post:
     The following illustrates the response which the service implementation must generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 302 Found
     Location: {responseContent}
     Cache-Control: no-store
@@ -105,7 +105,7 @@ post:
     The following illustrates the response which the service implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 200 OK
     Content-Type: text/html;charset=UTF-8
     Cache-Control: no-store

@@ -100,7 +100,7 @@ post:
     token is the `clientNotificationToken` parameter. With these methods, the notification can be built
     like the following.
 
-    ```http
+    ```
     POST {clientNotificationEndpoint} HTTP/1.1
     HOST: {The host of clientNotificationEndpoint}
     Authorization: Bearer {notificationToken}
