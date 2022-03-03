@@ -28,7 +28,7 @@ post:
     The following illustrates the response which the authorization server implementation should generate
     and return to the client or developer.
 
-    ```http
+    ```
     HTTP/1.1 500 Internal Server Error
     Content-Type: application/json
     Cache-Control: no-store
@@ -53,7 +53,7 @@ post:
     The following illustrates the response which the authorization server implementation should generate
     and return to the client or developer.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
     Cache-Control: no-store
@@ -77,7 +77,7 @@ post:
     The following illustrates the response which the endpoint implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 401 Unauthorized
     Content-Type: application/json
     Cache-Control: no-store
@@ -102,7 +102,7 @@ post:
     The following illustrates the response which the authorization server implementation should generate
     and return to the client or developer.
 
-    ```http
+    ```
     HTTP/1.1 200 OK
     Content-Type: application/json
     Cache-Control: no-store

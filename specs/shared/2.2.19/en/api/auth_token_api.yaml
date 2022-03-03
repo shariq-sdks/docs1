@@ -2,25 +2,25 @@ post:
   summary: /auth/token API
   description: |
     This API parses request parameters of an authorization request and returns necessary data for the
-    authorization server　implementation to process the authorization request further.
+    authorization server implementation to process the authorization request further.
 
     <br>
     <details>
     <summary>Description</summary>
 
     This API is supposed to be called from with the implementation of the token endpoint of the service.
-    The endpoint implementation must　extract the request parameters from the token request from the
-    client application and pass them as the value of parameters request parameter　to Authlete's `/auth/token` API.
+    The endpoint implementation must extract the request parameters from the token request from the
+    client application and pass them as the value of parameters request parameter to Authlete's `/auth/token` API.
     The value of parameters is the entire entity body (which is formatted in `application/x-www-form-urlencoded`)
     of the token request.
 
     In addition, if the token endpoint of the authorization server implementation supports basic authentication
-    as a means of　[client authentication](https://datatracker.ietf.org/doc/html/rfc6749#section-2.3),
-    the client credentials must be extracted from　`Authorization` header and they must be passed as
+    as a means of [client authentication](https://datatracker.ietf.org/doc/html/rfc6749#section-2.3),
+    the client credentials must be extracted from `Authorization` header and they must be passed as
     `clientId` request parameter and `clientSecret` request parameter to Authlete's `/auth/token` API.
 
     The following code snippet is an example in JAX-RS showing how to extract request parameters from
-    the token request and client credentials　from Authorization header.
+    the token request and client credentials from Authorization header.
 
     ```java
     @POST
@@ -46,18 +46,18 @@ post:
     ```
 
     The response from `/auth/token` API has some parameters. Among them, it is action parameter that
-    the service implementation should check first　because it denotes the next action that the authorization
-    server implementation should take. According to the value of action, the authorization　server
+    the service implementation should check first because it denotes the next action that the authorization
+    server implementation should take. According to the value of action, the authorization server
     implementation must take the steps described below.
 
     **INTERNAL_SERVER_ERROR**
 
     When the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the request from the authorization
-    server implementation was wrong　or that an error occurred in Authlete.
+    server implementation was wrong or that an error occurred in Authlete.
     In either case, from the viewpoint of the client application, it is an error on the server side.
     Therefore, the service implementation should generate a response to the client application with
-    HTTP status of "500 Internal Server Error".　Authlete recommends `application/json` as the content
-    type although OAuth 2.0 specification does not mention the format of the error response　when the
+    HTTP status of "500 Internal Server Error". Authlete recommends `application/json` as the content
+    type although OAuth 2.0 specification does not mention the format of the error response when the
     redirect URI is not usable.
 
     The value of `responseContent` is a JSON string which describes the error, so it can be
@@ -66,7 +66,7 @@ post:
     The following illustrates the response which the service implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 500 Internal Server Error
     Content-Type: application/json
     Cache-Control: no-store
@@ -82,15 +82,15 @@ post:
     **INVALID_CLIENT**
 
     When the value of `action` is `INVALID_CLIENT`, it means that authentication of the client failed.
-    In this case, the HTTP status of the response to　the client application is either "400 Bad Request"
+    In this case, the HTTP status of the response to the client application is either "400 Bad Request"
     or "401 Unauthorized". This requirement comes from [RFC 6749, 5.2. Error Response](https://datatracker.ietf.org/doc/html/rfc6749#section-5.2).
     The description about `invalid_client` shown below is an excerpt from RFC 6749.
 
     Client authentication failed (e.g., unknown client, no client authentication included, or unsupported
-    authentication method).　The authorization server MAY return an HTTP 401 (Unauthorized) status code
-    to indicate which HTTP authentication schemes are supported.　If the client attempted to authenticate
+    authentication method). The authorization server MAY return an HTTP 401 (Unauthorized) status code
+    to indicate which HTTP authentication schemes are supported. If the client attempted to authenticate
     via the `Authorization` request header field, the authorization server MUST respond with an HTTP
-    401 (Unauthorized) status code　and include the `WWW-Authenticate` response header field matching
+    401 (Unauthorized) status code and include the `WWW-Authenticate` response header field matching
     the authentication scheme used by the client.
 
     In either case, the value of `responseContent` is a JSON string which can be used as the entity
@@ -99,7 +99,7 @@ post:
     The following illustrate responses which the service implementation must generate and return to
     the client application.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
     Cache-Control: no-store
@@ -108,8 +108,9 @@ post:
     {responseContent}
     ```
 
+    <br>
 
-    ```http
+    ```
     HTTP/1.1 401 Unauthorized
     WWW-Authenticate: {challenge}
     Content-Type: application/json
@@ -133,7 +134,7 @@ post:
     The following illustrates the response which the service implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
     Cache-Control: no-store
@@ -156,7 +157,7 @@ post:
     The following illustrates the response which the service implementation must generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 200 OK
     Content-Type: application/json
     Cache-Control: no-store

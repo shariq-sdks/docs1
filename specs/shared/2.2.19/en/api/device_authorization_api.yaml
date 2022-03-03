@@ -28,7 +28,7 @@ post:
     The following illustrates the response which the authorization server implementation should generate
     and return to the client application.
 
-    ```http
+    ```
     HTTP/1.1 500 Internal Server Error
     Content-Type: application/json
     Cache-Control: no-store
@@ -51,7 +51,7 @@ post:
     The following illustrates the response which the service implementation should generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
     Cache-Control: no-store
@@ -74,7 +74,7 @@ post:
     The following illustrates the response which the service implementation must generate and return
     to the client application.
 
-    ```http
+    ```
     HTTP/1.1 401 Unauthorized
     WWW-Authenticate: (challenge)
     Content-Type: application/json

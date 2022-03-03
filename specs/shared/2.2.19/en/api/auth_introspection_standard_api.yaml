@@ -39,7 +39,7 @@ post:
     The following illustrates an example response which the introspection endpoint of the authorization
     server implementation generates and returns to the client application.
 
-    ```http
+    ```
     HTTP/1.1 500 Internal Server Error
     Content-Type: application/json
 
@@ -62,7 +62,7 @@ post:
     The following illustrates an example response which the introspection endpoint of the authorization
     server implementation generates and returns to the client application.
 
-    ```http
+    ```
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
 
@@ -82,7 +82,7 @@ post:
     The following illustrates the response which the introspection endpoint of your authorization server
     implementation should generate and return to the client application.
 
-    ```http
+    ```
     HTTP/1.1 200 OK
     Content-Type: application/json
 
