@@ -166,8 +166,8 @@ const getNewFragment = function(currentFragment) {
   // in the old API doc for pointing to an 'API result code'. And if
   // that's the case, replace it with the corresponding fragment value
   // used in this API doc.
-  // For instance, '#A000101' is replaced with '#cmp--api-result-code-A000101'.
-  newFragment = `#cmp--api-result-code-${currentFragment.substring(1).toLowerCase()}`;
+  // For instance, '#A000101' is replaced with '#cmp--apiresultcode-A000101'.
+  newFragment = `#cmp--apiresultcode-${currentFragment.substring(1).toLowerCase()}`;
   if (isValidFragment(newFragment))
   {
     // OK. This means the assumption on check 3 is right. The current
