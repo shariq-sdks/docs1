@@ -8,6 +8,9 @@ info:
   description: |
     Authlete API Document.
   version: '2.2.19'
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
 
 #
 # SERVERS
@@ -191,17 +194,32 @@ components:
 #
 tags:
   - name: Service Management
+    description: desc1
   - name: Client Management
+    description: desc1
   - name: Authorization Endpoint
+    description: desc1
   - name: Token Endpoint
+    description: desc1
   - name: Introspection Endpoint
+    description: desc1
   - name: Revocation Endpoint
+    description: desc1
   - name: UserInfo Endpoint
+    description: desc1
   - name: JWK Set Endpoint
+    description: desc1
   - name: Discovery Endpoint
+    description: desc1
   - name: Configuration Endpoint
+    description: desc1
   - name: Dynamic Client Registration
+    description: desc1
   - name: CIBA
+    description: desc1
   - name: Device Flow
+    description: desc1
   - name: Token Operations
+    description: desc1
   - name: Jose Object
+    description: desc1

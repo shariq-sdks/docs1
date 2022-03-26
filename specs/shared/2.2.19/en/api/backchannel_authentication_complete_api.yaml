@@ -136,7 +136,7 @@ post:
       $ref: ../model/response/403.yaml
     '500':
       $ref: ../model/response/500.yaml
-  operationId: ''
+  operationId: 'backchannel_authentication_complete_api'
   x-code-samples:
     - lang: shell
       label: curl
