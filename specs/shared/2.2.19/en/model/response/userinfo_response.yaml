@@ -123,7 +123,7 @@ content:
         "resultCode": "A091001",
         "resultMessage": "[A091001] The access token presented at the userinfo endpoint is valid.",
         "action": "OK",
-        "clientId": 15518267821,
+        "clientId": "15518267821",
         "clientIdAliasUsed": false,
         "scopes": [ "openid" ],
         "subject": "john",

@@ -9,7 +9,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../model/request/service_create_request.yaml
+          $ref: ../model/service.yaml
         example:
           serviceName: My service
           issuer: https://my-service.example.com
@@ -47,7 +47,7 @@ post:
               value: attribute2-value
       application/x-www-form-urlencoded:
         schema:
-          $ref: ../model/request/service_create_request.yaml
+          $ref: ../model/service.yaml
   responses:
     '200':
       $ref: ../model/response/service_create_response.yaml

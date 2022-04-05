@@ -1,4 +1,4 @@
-allOf:
+anyOf:
   - $ref: './jws_alg_none.yaml'
   - $ref: './jws_alg_symmetric.yaml'
   - $ref: './jws_alg_asymmetric.yaml'

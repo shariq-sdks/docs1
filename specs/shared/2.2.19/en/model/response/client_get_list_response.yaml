@@ -28,7 +28,7 @@ content:
         clients:
           type: array
           items:
-            $ref: ../service.yaml
+            $ref: ../client.yaml
           description: |
             An array of clients.
     example:

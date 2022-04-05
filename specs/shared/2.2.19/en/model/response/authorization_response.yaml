@@ -145,7 +145,7 @@ content:
             prompts:
               type: array
               items:
-                allOf:
+                anyOf:
                   - $ref: ../prompt_except_for_none.yaml
                   - $ref: ../prompt_none.yaml
               description:  The list of values of prompt request parameter. See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), prompt" for prompt request parameter.
@@ -293,7 +293,6 @@ content:
                 The dynamic scopes which the client application requested by the scope request parameter.
     example:
       {
-        "type": "authorizationResponse",
         "resultCode": "A004001",
         "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 21653835348762) for the authorization request from the client (ID = 26478243745571). [response_type=code, openid=false]",
         "acrEssential": false,

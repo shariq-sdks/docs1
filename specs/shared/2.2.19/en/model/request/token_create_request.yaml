@@ -9,7 +9,8 @@ properties:
       When `grantType` is either IMPLICIT or CLIENT_CREDENTIALS, a refresh token is not issued.
       See the description of grant types for details about the values above.
   clientId:
-    type: string
+    type: integer
+    format: int64
     description: |
       The ID of the client application which will be associated with a newly created access token.
   subject:

@@ -14,7 +14,7 @@ post:
           jose: eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA
           clockSkew: 100
           signedByClient: true
-          clientIdentifier: 57297408867
+          clientIdentifier: "57297408867"
       application/x-www-form-urlencoded:
         schema:
           $ref: ../model/request/jose_verify_request.yaml

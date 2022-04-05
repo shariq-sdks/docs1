@@ -43,7 +43,7 @@ content:
             scopes:
               type: array
               items:
-                type: string
+                $ref: ../scope.yaml
               description: |
                 The scopes requested by the backchannel authentication request.
 
@@ -165,6 +165,9 @@ content:
                 $ref: ../dynamic_scope.yaml
               description: |
                 The dynamic scopes which the client application requested by the scope request parameter.
+            deliveryMode:
+              allOf:
+                - $ref: ../delivery_mode.yaml
     example:
       {
         "resultCode": "A179001",

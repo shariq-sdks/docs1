@@ -3,11 +3,13 @@ properties:
   number:
     type: integer
     format: int32
+    readOnly: true
     description: |
       The sequential number of the client. The value of this property is assigned by Authlete.
   serviceNumber:
     type: integer
     format: int32
+    readOnly: true
     description: |
       The sequential number of the service of the client application. The value of this property is
       assigned by Authlete.
@@ -40,9 +42,11 @@ properties:
   clientId:
     type: integer
     format: int64
+    readOnly: true
     description: The client ID. The value of this property is assigned by Authlete.
   clientSecret:
     type: string
+    readOnly: true
     description: |
       The client secret. A random 512-bit value encoded by base64url (86 letters). The value of this
       property is assigned by Authlete.
@@ -77,9 +81,7 @@ properties:
       The client type, either `CONFIDENTIAL` or `PUBLIC`. See [RFC 6749, 2.1. Client Types](https://datatracker.ietf.org/doc/html/rfc6749#section-2.1)
       for details.
   applicationType:
-    allOf:
-      - $ref: ./application_type.yaml
-      - $ref: ./enum_null.yaml
+    $ref: ./application_type.yaml
     description: |
       The application type. The value of this property affects the validation steps for a redirect URI.
       See the description about `redirectUris` property for more details.
@@ -112,6 +114,7 @@ properties:
       The flag to indicate whether this client use TLS client certificate bound access tokens.
   dynamicallyRegistered:
     type: boolean
+    readOnly: true
     description: |
       The flag to indicate whether this client has been registered dynamically.
       For more details, see [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591).
@@ -137,11 +140,13 @@ properties:
   createdAt:
     type: integer
     format: int64
+    readOnly: true
     description: The time at which this client was created.
       The value is represented as milliseconds since the UNIX epoch (1970-01-01).
   modifiedAt:
     type: integer
     format: int64
+    readOnly: true
     description: The time at which this client was last modified.
       The value is represented as milliseconds since the UNIX epoch (1970-01-01).
   grantTypes:
@@ -161,7 +166,7 @@ properties:
       This property corresponds to `response_types` in [OpenID Connect Dynamic Client Registration 1.0,
       2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   redirectUris:
-    type: string
+    type: array
     items:
       type: string
     description: |
@@ -215,7 +220,7 @@ properties:
        This property corresponds to the `authorization_data_types` metadata. See "OAuth 2.0 Rich
        Authorization Requests" (RAR) for details.
   authorizationSignAlg:
-    allOf:
+    anyOf:
       - $ref: ./jws_alg_none.yaml
       - $ref: ./jws_alg_asymmetric.yaml
       - $ref: ./jws_alg_symmetric.yaml
@@ -226,7 +231,7 @@ properties:
       This property corresponds to `authorization_signed_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
       of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
   authorizationEncryptionAlg:
-    allOf:
+    anyOf:
       - $ref: ./jwe_alg.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -235,7 +240,7 @@ properties:
       This property corresponds to `authorization_encrypted_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
       of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
   authorizationEncryptionEnc:
-    allOf:
+    anyOf:
       - $ref: ./jwe_enc.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -244,14 +249,14 @@ properties:
       This property corresponds to `authorization_encrypted_response_enc` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
       of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
   tokenAuthMethod:
-    allOf:
+    anyOf:
       - $ref: ./client_authentication_method.yaml
     description: |
       The client authentication method that the client application declares that it uses at the token
       endpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic
       Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   tokenAuthSignAlg:
-    allOf:
+    anyOf:
       - $ref: ./jws_alg_symmetric.yaml
       - $ref: ./jws_alg_asymmetric.yaml
       - $ref: ./enum_null.yaml
@@ -320,7 +325,7 @@ properties:
       set to `false`, authorization requests from this client are processed as if `require_signed_request_object`
       client metadata of this client is `true`. The metadata is defined in "JAR (JWT Secured Authorization Request)".
   requestSignAlg:
-    allOf:
+    anyOf:
         - $ref: ./jws_alg_symmetric.yaml
         - $ref: ./jws_alg_asymmetric.yaml
         - $ref: ./jws_alg_none.yaml
@@ -335,7 +340,7 @@ properties:
       referred to by its jwksUri configuration property. This property corresponds to `request_object_signing_alg`
       in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   requestEncryptionAlg:
-    allOf:
+    anyOf:
       - $ref: ./jwe_alg.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -347,7 +352,7 @@ properties:
       This property corresponds to `request_object_encryption_alg` in [OpenID Connect Dynamic Client
       Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   requestEncryptionEnc:
-    allOf:
+    anyOf:
       - $ref: ./jwe_enc.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -382,7 +387,7 @@ properties:
       request from the client application has neither `acr_values` request parameter nor `acr` claim
       in claims request parameter.
   idTokenSignAlg:
-    allOf:
+    anyOf:
       - $ref: ./jws_alg_symmetric.yaml
       - $ref: ./jws_alg_asymmetric.yaml
       - $ref: ./jws_alg_none.yaml
@@ -395,7 +400,7 @@ properties:
       This property corresponds to `id_token_signed_response_alg` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   idTokenEncryptionAlg:
-    allOf:
+    anyOf:
       - $ref: ./jwe_alg.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -407,7 +412,7 @@ properties:
       This property corresponds to `id_token_encrypted_response_alg` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   idTokenEncryptionEnc:
-    allOf:
+    anyOf:
       - $ref: ./jwe_enc.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -423,7 +428,7 @@ properties:
       This property corresponds to `require_auth_time` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   subjectType:
-    allOf:
+    anyOf:
       - $ref: ./subject_type.yaml
     description: |
       The subject type that the client application requests. Details about the subject type are described in
@@ -447,6 +452,7 @@ properties:
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
   derivedSectorIdentifier:
     type: string
+    readOnly: true
     description: |
       The sector identifier host component as derived from either the `sector_identifier_uri` or the
       registered redirect URI. If no `sector_identifier_uri` is registered and multiple redirect URIs
@@ -487,7 +493,7 @@ properties:
       This property corresponds to `jwks_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2.
       Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   userInfoSignAlg:
-    allOf:
+    anyOf:
       - $ref: ./jws_alg_symmetric.yaml
       - $ref: ./jws_alg_asymmetric.yaml
       - $ref: ./jws_alg_none.yaml
@@ -504,7 +510,7 @@ properties:
       This property corresponds to `userinfo_signed_response_alg` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   userInfoEncryptionAlg:
-    allOf:
+    anyOf:
       - $ref: ./jwe_alg.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -521,7 +527,7 @@ properties:
       This property corresponds to `userinfo_encrypted_response_alg` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   userInfoEncryptionEnc:
-    allOf:
+    anyOf:
       - $ref: ./jwe_enc.yaml
       - $ref: ./enum_null.yaml
     description: |
@@ -599,7 +605,7 @@ properties:
       The backchannel token delivery mode is defined in the specification of "CIBA (Client Initiated
       Backchannel Authentication)".
   bcRequestSignAlg:
-    allOf:
+    anyOf:
       - $ref: ./jws_alg_symmetric.yaml
       - $ref: ./jws_alg_asymmetric.yaml
       - $ref: ./jws_alg_none.yaml

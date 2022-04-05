@@ -40,6 +40,10 @@ content:
                 - $ref: ../authorization_details.yaml
               description: |
                 The authorization details associated with the access token.
+            tokenType:
+              type: string
+              description: |
+                The token type associated with the access token.
     example:
       {
         "resultCode": "A135001",

@@ -5,7 +5,9 @@ properties:
     type: string
     description: An access token to introspect.
   scopes:
-    type: string
+    type: array
+    items:
+      type: string
     description: |
       A string array listing names of scopes which the caller (= a protected resource endpoint of the
       service) requires. When the content type of the request from the service is `application/x-www-form-urlencoded`,

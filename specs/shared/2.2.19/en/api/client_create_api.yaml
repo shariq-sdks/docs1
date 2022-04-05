@@ -9,7 +9,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../model/request/client_create_request.yaml
+          $ref: ../model/client.yaml
         example:
           developer: john
           clientName: My Client
