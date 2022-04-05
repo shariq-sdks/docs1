@@ -143,8 +143,8 @@ post:
         schema:
           $ref: ../model/request/revocation_request.yaml
         example:
-          token: VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI&token_type_hint=access_token
-          clientId: 26478243745571
+          parameters: VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI&token_type_hint=access_token
+          clientId: "26478243745571"
           clientSecret: gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ
       application/x-www-form-urlencoded:
         schema:

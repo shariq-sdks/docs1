@@ -17,7 +17,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../model/request/service_update_request.yaml
+          $ref: ../model/service.yaml
         example:
           accessTokenDuration: 3600
           accessTokenType: Bearer
@@ -103,7 +103,7 @@ post:
           userCodeLength: 0
       application/x-www-form-urlencoded:
         schema:
-          $ref: ../model/request/service_update_request.yaml
+          $ref: ../model/service.yaml
   responses:
     '200':
       $ref: ../model/response/service_update_response.yaml

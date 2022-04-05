@@ -25,14 +25,15 @@ properties:
     description: |
       The timestamp at which the access token was last refreshed using the refresh token.
   clientId:
-    type: string
+    type: integer
+    format: int64
     description: |
       The ID of the client associated with the access token.
   subject:
     type: string
     description: |
       The subject (= unique user ID) associated with the access token.
-  grant_type:
+  grantType:
     allOf:
       - $ref: ./grant_type.yaml
     description: |

@@ -40,7 +40,7 @@ content:
             scopes:
               type: array
               items:
-                type: string
+                $ref: ../scope.yaml
               description: |
                 The scopes requested by the device authorization request.
 
@@ -99,6 +99,11 @@ content:
                 $ref: ../dynamic_scope.yaml
               description: |
                 The dynamic scopes which the client application requested by the scope request parameter.
+            expiresAt:
+              type: integer
+              format: int64
+              description: |
+                Get the date in milliseconds since the Unix epoch (1970-01-01) at which the user code will expire.
     example:
       {
         "resultCode": "A224001",

@@ -1,4 +1,6 @@
 type: string
+nullable: true
 enum:
   - WEB
   - NATIVE
+  - null

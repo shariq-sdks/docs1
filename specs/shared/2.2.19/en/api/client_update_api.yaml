@@ -17,7 +17,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../model/request/client_update_request.yaml
+          $ref: ../model/client.yaml
         example:
           {
             "applicationType": "WEB",
@@ -65,7 +65,7 @@ post:
           }
       application/x-www-form-urlencoded:
         schema:
-          $ref: ../model/request/client_update_request.yaml
+          $ref: ../model/client.yaml
   responses:
     '200':
       $ref: ../model/response/client_update_response.yaml
