@@ -1,4 +1,12 @@
 type: string
+description: |
+  The value of `alg` header parameter of JWE that the client application uses for encrypting a request object.
+  Regardless of whether the value of this property is `null` or not, the client application may
+  and may not encrypt a request object. Furthermore, the client application may use other supported
+  encryption algorithms.
+
+  This property corresponds to `request_object_encryption_alg` in [OpenID Connect Dynamic Client
+  Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
 enum:
   - RSA1_5
   - RSA_OAEP

@@ -2955,7 +2955,11 @@
                               "$ref": "#/components/schemas/Prompt/anyOf/1"
                             },
                             {
-                              "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
+                              "type": "string",
+                              "nullable": true,
+                              "enum": [
+                                "null"
+                              ]
                             }
                           ],
                           "description": "The prompt that the UI displayed to the end-user must satisfy as the minimum level. This value comes from `prompt` request parameter.\n\nWhen the authorization request does not contain `prompt` request parameter, `CONSENT` is used as the default value.\n\nSee \"[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), prompt\" for `prompt` request parameter.\n"
@@ -9251,12 +9255,7 @@
             "description": "The subject (= unique user ID) associated with the access token.\n"
           },
           "grantType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GrantType"
-              }
-            ],
-            "description": "The grant type of the access token when the access token was created.\n"
+            "$ref": "#/components/schemas/GrantType"
           },
           "scopes": {
             "type": "array",
@@ -9277,6 +9276,7 @@
       "ApplicationType": {
         "type": "string",
         "nullable": true,
+        "description": "The application type. The value of this property affects the validation steps for a redirect URI.\nSee the description about `redirectUris` property for more details.\n",
         "enum": [
           "WEB",
           "NATIVE",
@@ -9350,10 +9350,11 @@
       },
       "ClientAuthenticationMethod": {
         "type": "string",
+        "description": "The client authentication method that the client application declares that it uses at the token\nendpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic\nClient Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n",
         "enum": [
           "NONE",
           "CLIENT_SECRET_BASIC",
-          "CLIENT_SECRET_BASIC",
+          "CLIENT_SECRET_POST",
           "CLIENT_SECRET_JWT",
           "PRIVATE_KEY_JWT",
           "TLS_CLIENT_AUTH",
@@ -9451,8 +9452,7 @@
             "description": "The client type, either `CONFIDENTIAL` or `PUBLIC`. See [RFC 6749, 2.1. Client Types](https://datatracker.ietf.org/doc/html/rfc6749#section-2.1)\nfor details.\n"
           },
           "applicationType": {
-            "$ref": "#/components/schemas/ApplicationType",
-            "description": "The application type. The value of this property affects the validation steps for a redirect URI.\nSee the description about `redirectUris` property for more details.\n"
+            "$ref": "#/components/schemas/ApplicationType"
           },
           "logoUri": {
             "type": "string",
@@ -9534,65 +9534,19 @@
             "description": "The data types that this client may use as values of the type field in `authorization_details`.\n\nThis property corresponds to the `authorization_data_types` metadata. See \"OAuth 2.0 Rich\nAuthorization Requests\" (RAR) for details.\n"
           },
           "authorizationSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/0"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/1"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The JWS `alg` algorithm for signing authorization responses.\n\nThis property corresponds to `authorization_signed_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)\nof [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "authorizationEncryptionAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEAlg"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The JWE `alg` algorithm for encryption authorization responses.\n\nThis property corresponds to `authorization_encrypted_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)\nof [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).\n"
+            "$ref": "#/components/schemas/JWEAlg"
           },
           "authorizationEncryptionEnc": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEEnc"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The JWE `enc` algorithm for encryption authorization responses.\n\nThis property corresponds to `authorization_encrypted_response_enc` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)\nof [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).\n"
+            "$ref": "#/components/schemas/JWEEnc"
           },
           "tokenAuthMethod": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ClientAuthenticationMethod"
-              }
-            ],
-            "description": "The client authentication method that the client application declares that it uses at the token\nendpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic\nClient Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/ClientAuthenticationMethod"
           },
           "tokenAuthSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/1"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `alg` header parameter of JWS which is used for client authentication at the token\nendpoint. Note that this property is used only for the two JWT-based client authentication, namely,\n`PRIVATE_KEY_JWT` and `CLIENT_SECRET_JWT`. This property corresponds to `token_endpoint_auth_signing_alg`\nin [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "selfSignedCertificateKeyId": {
             "type": "string",
@@ -9627,47 +9581,13 @@
             "description": "The flag to indicate whether authorization requests from this client are always required to\nutilize a request object by using either `request` or `request_uri` request parameter.\n\nIf this flag is set to `true` and the service's `traditionalRequestObjectProcessingApplied` is\nset to `false`, authorization requests from this client are processed as if `require_signed_request_object`\nclient metadata of this client is `true`. The metadata is defined in \"JAR (JWT Secured Authorization Request)\".\n"
           },
           "requestSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/1"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/0"
-              },
-              {
-                "type": "string",
-                "nullable": true,
-                "enum": [
-                  "null"
-                ]
-              }
-            ],
-            "description": "The value of `alg` header parameter of JWS that the client application uses for signing a request object.\nIf the value of this property is not `null`, request objects sent from the client application\nmust be signed using the algorithm. Request objects signed by other algorithms are rejected.\nNote that `null` and `NONE` are different for this property. If the value of this property indicates\nan asymmetric signing algorithm, the client application must make available its JWK Set which\ncontains a public key for the service to verify the signature of the request object at the URL\nreferred to by its jwksUri configuration property. This property corresponds to `request_object_signing_alg`\nin [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "requestEncryptionAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEAlg"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `alg` header parameter of JWE that the client application uses for encrypting a request object.\nRegardless of whether the value of this property is `null` or not, the client application may\nand may not encrypt a request object. Furthermore, the client application may use other supported\nencryption algorithms.\n\nThis property corresponds to `request_object_encryption_alg` in [OpenID Connect Dynamic Client\nRegistration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWEAlg"
           },
           "requestEncryptionEnc": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEEnc"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `enc` header parameter of JWE that the client application uses for encrypting a request object.\n\nThis property corresponds to `request_object_encryption_enc` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWEEnc"
           },
           "requestUris": {
             "type": "array",
@@ -9689,55 +9609,20 @@
             "description": "The default ACRs (Authentication Context Class References). This value is used when an authorization\nrequest from the client application has neither `acr_values` request parameter nor `acr` claim\nin claims request parameter.\n"
           },
           "idTokenSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/1"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/0"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of alg header parameter of JWS that the client application requires the service to use\nfor signing an ID token. `NONE` may be specified, but in that case, the client application cannot\nobtain an ID token from the service. That is, an authorization request requesting an ID token fails.\n\nThis property corresponds to `id_token_signed_response_alg` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "idTokenEncryptionAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEAlg"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `alg` header parameter of JWE that the client application requires the service to use for encrypting an ID token.\n\nIf the value of this property indicates an asymmetric encryption algorithm, the client application must make available its JWK Set which contains a public key\nfor encryption at the URL referred to by its `jwksUri` configuration property.\n\nThis property corresponds to `id_token_encrypted_response_alg` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWEAlg"
           },
           "idTokenEncryptionEnc": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEEnc"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `enc` header parameter of JWE that the client application requires the service to use for encrypting an ID token.\n\nThis property corresponds to `id_token_encrypted_response_enc` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWEEnc"
           },
           "authTimeRequired": {
             "type": "boolean",
             "description": "The flag to indicate whether this client requires `auth_time` claim to be embedded in the ID token.\n\nThis property corresponds to `require_auth_time` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
           },
           "subjectType": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/SubjectType"
-              }
-            ],
-            "description": "The subject type that the client application requests. Details about the subject type are described in\n[OpenID Connect Core 1.0, 8. Subjct Identifier Types](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes).\n\nThis property corresponds to `subject_type` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/SubjectType"
           },
           "sectorIdentifier": {
             "type": "string",
@@ -9761,43 +9646,13 @@
             "description": "The content of the JWK Set of the client application.\nThe format is described in\n[JSON Web Key (JWK), 5. JWK Set Format](https://datatracker.ietf.org/doc/html/rfc7517#section-5).\nThe JWK Set must not include private keys of the client application.\n\n[OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html)\nsays that `jwks` must not be used when the client can use `jwks_uri`, but Authlete allows both\nproperties to be registered at the same time. However, Authlete does not use the content of `jwks`\nwhen `jwksUri` is registered.\n\nThis property corresponds to `jwks_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2.\nClient Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
           },
           "userInfoSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/1"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/0"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `alg` header parameter of JWS that the client application requires the service to\nuse for signing the JWT returned from the user info endpoint.\n\nIf both `userInfoSignAlg` and `userInfoEncryptionAlg` are `null`, the format of the response\nfrom the user info endpoint is a plain JSON (not JWT).\n\nNote that `null` and `NONE` are different for this property.\n\nThis property corresponds to `userinfo_signed_response_alg` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "userInfoEncryptionAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEAlg"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `alg` header parameter of JWE that the client application requires the service to\nuse for encrypting the JWT returned from the user info endpoint.\n\nIf the value of this property indicates an asymmetric encryption algorithm, the client application\nmust make available its JWK Set which contains a public key for encryption at the URL referred\nto by its `jwksUri` configuration property.\n\nIf both `userInfoSignAlg` and `userInfoEncryptionAlg` are `null`, the format of the response\nfrom the user info endpoint is a plain JSON (not JWT).\n\nThis property corresponds to `userinfo_encrypted_response_alg` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWEAlg"
           },
           "userInfoEncryptionEnc": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWEEnc"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The value of `enc` header parameter of JWE that the client application requires the service to\nuse for encrypting the JWT returned from the user info endpoint.\n\nThis property corresponds to `userinfo_encrypted_response_enc` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
+            "$ref": "#/components/schemas/JWEEnc"
           },
           "loginUri": {
             "type": "string",
@@ -9845,21 +9700,7 @@
             "description": "The backchannel client notification endpoint.\n\nThis property corresponds to the `backchannel_client_notification_endpoint` metadata.\nThe backchannel token delivery mode is defined in the specification of \"CIBA (Client Initiated\nBackchannel Authentication)\".\n"
           },
           "bcRequestSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/1"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/0"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The signature algorithm of the request to the backchannel authentication endpoint.\n\nThis property corresponds to the `backchannel_authentication_request_signing_alg` metadata.\nThe backchannel token delivery mode is defined in the specification of \"CIBA (Client Initiated\nBackchannel Authentication)\".\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "bcUserCodeRequired": {
             "type": "boolean",
@@ -9873,12 +9714,7 @@
             "description": "The attributes of this client.\n"
           },
           "extension": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ClientExtension"
-              }
-            ],
-            "description": "The extended information about this client.\n"
+            "$ref": "#/components/schemas/ClientExtension"
           },
           "authorizationDetailsTypes": {
             "type": "array",
@@ -9937,6 +9773,7 @@
       },
       "GrantType": {
         "type": "string",
+        "description": "The grant type of the access token when the access token was created.\n",
         "enum": [
           "AUTHORIZATION_CODE",
           "IMPLICIT",
@@ -9947,8 +9784,9 @@
           "DEVICE_CODE"
         ]
       },
-      "jWEAlg": {
+      "JWEAlg": {
         "type": "string",
+        "description": "The value of `alg` header parameter of JWE that the client application uses for encrypting a request object.\nRegardless of whether the value of this property is `null` or not, the client application may\nand may not encrypt a request object. Furthermore, the client application may use other supported\nencryption algorithms.\n\nThis property corresponds to `request_object_encryption_alg` in [OpenID Connect Dynamic Client\nRegistration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n",
         "enum": [
           "RSA1_5",
           "RSA_OAEP",
@@ -9969,8 +9807,9 @@
           "PBES2_HS512_A256KW"
         ]
       },
-      "jWEEnc": {
+      "JWEEnc": {
         "type": "string",
+        "description": "The value of `enc` header parameter of JWE that the client application uses for encrypting a request object.\n\nThis property corresponds to `request_object_encryption_enc` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n",
         "enum": [
           "A128CBC_HS256",
           "A192CBC_HS384",
@@ -9980,38 +9819,25 @@
           "A256GCM"
         ]
       },
-      "jWSAlg": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": [
-              "NONE"
-            ]
-          },
-          {
-            "type": "string",
-            "enum": [
-              "HS256",
-              "HS384",
-              "HS512"
-            ]
-          },
-          {
-            "type": "string",
-            "enum": [
-              "RS256",
-              "RS384",
-              "RS512",
-              "ES256",
-              "ES384",
-              "ES512",
-              "PS256",
-              "PS384",
-              "PS512",
-              "ES256K",
-              "EdDSA"
-            ]
-          }
+      "JWSAlg": {
+        "type": "string",
+        "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
+        "enum": [
+          "NONE",
+          "HS256",
+          "HS384",
+          "HS512",
+          "RS256",
+          "RS384",
+          "RS512",
+          "ES256",
+          "ES384",
+          "ES512",
+          "PS256",
+          "PS384",
+          "PS512",
+          "ES256K",
+          "EdDSA"
         ]
       },
       "NamedUri": {
@@ -10433,18 +10259,7 @@
             "description": "The flag to indicate whether the number of access tokens per subject (and per client) is at most one or can be more.\n\nIf `true`, an attempt to issue a new access token invalidates existing access tokens that are associated with the same subject and the same client.\n\nNote that, however, attempts by [Client Credentials Flow](https://tools.ietf.org/html/rfc6749#section-4.4) do not invalidate existing access tokens because access tokens issued by Client Credentials Flow are not associated with any end-user's subject. Also note that an attempt by [Refresh Token Flow](https://tools.ietf.org/html/rfc6749#section-6) invalidates the coupled access token only and this invalidation is always performed regardless of whether the value of this setting item is `true` or `false`.\n"
           },
           "accessTokenSignAlg": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/0"
-              },
-              {
-                "$ref": "#/components/schemas/jWSAlg/anyOf/2"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The signature algorithm of access tokens.\n\nWhen `null` is set, access tokens issued by this service are just random strings.\nOn the other hand, when a `non-null` value is set, access tokens issued by this service are JWTs\nand the value of this property is used as the signature algorithm of the JWTs.\n\nNote that access tokens generated by older Authlete versions are always random strings.\n"
+            "$ref": "#/components/schemas/JWSAlg"
           },
           "accessTokenSignatureKeyId": {
             "type": "string",
@@ -10632,15 +10447,7 @@
             "description": "The minimum interval between polling requests to the token endpoint from client applications in\nseconds in device flow. This is used as the value of the `interval` property in responses from\nthe device authorization endpoint.\n"
           },
           "userCodeCharset": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/UserCodeCharset"
-              },
-              {
-                "$ref": "#/components/schemas/Client/properties/requestSignAlg/anyOf/3"
-              }
-            ],
-            "description": "The character set for end-user verification codes (`user_code`) for Device Flow.\n"
+            "$ref": "#/components/schemas/UserCodeCharset"
           },
           "userCodeLength": {
             "type": "integer",
@@ -10774,6 +10581,7 @@
       },
       "SubjectType": {
         "type": "string",
+        "description": "The subject type that the client application requests. Details about the subject type are described in\n[OpenID Connect Core 1.0, 8. Subjct Identifier Types](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes).\n\nThis property corresponds to `subject_type` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n",
         "enum": [
           "PUBLIC",
           "PAIRWISE"
@@ -10794,6 +10602,7 @@
       },
       "UserCodeCharset": {
         "type": "string",
+        "description": "The character set for end-user verification codes (`user_code`) for Device Flow.\n",
         "enum": [
           "BASE20",
           "NUMERIC"

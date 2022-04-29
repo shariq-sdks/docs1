@@ -82,9 +82,6 @@ properties:
       for details.
   applicationType:
     $ref: ./application_type.yaml
-    description: |
-      The application type. The value of this property affects the validation steps for a redirect URI.
-      See the description about `redirectUris` property for more details.
   logoUri:
     type: string
     description: |
@@ -220,51 +217,15 @@ properties:
        This property corresponds to the `authorization_data_types` metadata. See "OAuth 2.0 Rich
        Authorization Requests" (RAR) for details.
   authorizationSignAlg:
-    anyOf:
-      - $ref: ./jws_alg_none.yaml
-      - $ref: ./jws_alg_asymmetric.yaml
-      - $ref: ./jws_alg_symmetric.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The JWS `alg` algorithm for signing authorization responses.
-
-      This property corresponds to `authorization_signed_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
-      of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
+    $ref: jws_alg.yaml
   authorizationEncryptionAlg:
-    anyOf:
-      - $ref: ./jwe_alg.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The JWE `alg` algorithm for encryption authorization responses.
-
-      This property corresponds to `authorization_encrypted_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
-      of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
+    $ref: jwe_alg.yaml
   authorizationEncryptionEnc:
-    anyOf:
-      - $ref: ./jwe_enc.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The JWE `enc` algorithm for encryption authorization responses.
-
-      This property corresponds to `authorization_encrypted_response_enc` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
-      of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
+    $ref: jwe_enc.yaml
   tokenAuthMethod:
-    anyOf:
-      - $ref: ./client_authentication_method.yaml
-    description: |
-      The client authentication method that the client application declares that it uses at the token
-      endpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic
-      Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: ./client_authentication_method.yaml
   tokenAuthSignAlg:
-    anyOf:
-      - $ref: ./jws_alg_symmetric.yaml
-      - $ref: ./jws_alg_asymmetric.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `alg` header parameter of JWS which is used for client authentication at the token
-      endpoint. Note that this property is used only for the two JWT-based client authentication, namely,
-      `PRIVATE_KEY_JWT` and `CLIENT_SECRET_JWT`. This property corresponds to `token_endpoint_auth_signing_alg`
-      in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: jws_alg.yaml
   selfSignedCertificateKeyId:
     type: string
     description: |
@@ -325,41 +286,11 @@ properties:
       set to `false`, authorization requests from this client are processed as if `require_signed_request_object`
       client metadata of this client is `true`. The metadata is defined in "JAR (JWT Secured Authorization Request)".
   requestSignAlg:
-    anyOf:
-        - $ref: ./jws_alg_symmetric.yaml
-        - $ref: ./jws_alg_asymmetric.yaml
-        - $ref: ./jws_alg_none.yaml
-        - $ref: ./enum_null.yaml
-    description: |
-      The value of `alg` header parameter of JWS that the client application uses for signing a request object.
-      If the value of this property is not `null`, request objects sent from the client application
-      must be signed using the algorithm. Request objects signed by other algorithms are rejected.
-      Note that `null` and `NONE` are different for this property. If the value of this property indicates
-      an asymmetric signing algorithm, the client application must make available its JWK Set which
-      contains a public key for the service to verify the signature of the request object at the URL
-      referred to by its jwksUri configuration property. This property corresponds to `request_object_signing_alg`
-      in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: jws_alg.yaml
   requestEncryptionAlg:
-    anyOf:
-      - $ref: ./jwe_alg.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `alg` header parameter of JWE that the client application uses for encrypting a request object.
-      Regardless of whether the value of this property is `null` or not, the client application may
-      and may not encrypt a request object. Furthermore, the client application may use other supported
-      encryption algorithms.
-
-      This property corresponds to `request_object_encryption_alg` in [OpenID Connect Dynamic Client
-      Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: jwe_alg.yaml
   requestEncryptionEnc:
-    anyOf:
-      - $ref: ./jwe_enc.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `enc` header parameter of JWE that the client application uses for encrypting a request object.
-
-      This property corresponds to `request_object_encryption_enc` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: jwe_enc.yaml
   requestUris:
     type: array
     items:
@@ -387,39 +318,11 @@ properties:
       request from the client application has neither `acr_values` request parameter nor `acr` claim
       in claims request parameter.
   idTokenSignAlg:
-    anyOf:
-      - $ref: ./jws_alg_symmetric.yaml
-      - $ref: ./jws_alg_asymmetric.yaml
-      - $ref: ./jws_alg_none.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of alg header parameter of JWS that the client application requires the service to use
-      for signing an ID token. `NONE` may be specified, but in that case, the client application cannot
-      obtain an ID token from the service. That is, an authorization request requesting an ID token fails.
-
-      This property corresponds to `id_token_signed_response_alg` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: jws_alg.yaml
   idTokenEncryptionAlg:
-    anyOf:
-      - $ref: ./jwe_alg.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `alg` header parameter of JWE that the client application requires the service to use for encrypting an ID token.
-
-      If the value of this property indicates an asymmetric encryption algorithm, the client application must make available its JWK Set which contains a public key
-      for encryption at the URL referred to by its `jwksUri` configuration property.
-
-      This property corresponds to `id_token_encrypted_response_alg` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: ./jwe_alg.yaml
   idTokenEncryptionEnc:
-    anyOf:
-      - $ref: ./jwe_enc.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `enc` header parameter of JWE that the client application requires the service to use for encrypting an ID token.
-
-      This property corresponds to `id_token_encrypted_response_enc` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: ./jwe_enc.yaml
   authTimeRequired:
     type: boolean
     description: |
@@ -428,14 +331,7 @@ properties:
       This property corresponds to `require_auth_time` in
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   subjectType:
-    anyOf:
-      - $ref: ./subject_type.yaml
-    description: |
-      The subject type that the client application requests. Details about the subject type are described in
-      [OpenID Connect Core 1.0, 8. Subjct Identifier Types](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes).
-
-      This property corresponds to `subject_type` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: ./subject_type.yaml
   sectorIdentifier:
     type: string
     description: |
@@ -493,49 +389,11 @@ properties:
       This property corresponds to `jwks_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2.
       Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   userInfoSignAlg:
-    anyOf:
-      - $ref: ./jws_alg_symmetric.yaml
-      - $ref: ./jws_alg_asymmetric.yaml
-      - $ref: ./jws_alg_none.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `alg` header parameter of JWS that the client application requires the service to
-      use for signing the JWT returned from the user info endpoint.
-
-      If both `userInfoSignAlg` and `userInfoEncryptionAlg` are `null`, the format of the response
-      from the user info endpoint is a plain JSON (not JWT).
-
-      Note that `null` and `NONE` are different for this property.
-
-      This property corresponds to `userinfo_signed_response_alg` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: jws_alg.yaml
   userInfoEncryptionAlg:
-    anyOf:
-      - $ref: ./jwe_alg.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `alg` header parameter of JWE that the client application requires the service to
-      use for encrypting the JWT returned from the user info endpoint.
-
-      If the value of this property indicates an asymmetric encryption algorithm, the client application
-      must make available its JWK Set which contains a public key for encryption at the URL referred
-      to by its `jwksUri` configuration property.
-
-      If both `userInfoSignAlg` and `userInfoEncryptionAlg` are `null`, the format of the response
-      from the user info endpoint is a plain JSON (not JWT).
-
-      This property corresponds to `userinfo_encrypted_response_alg` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: ./jwe_alg.yaml
   userInfoEncryptionEnc:
-    anyOf:
-      - $ref: ./jwe_enc.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The value of `enc` header parameter of JWE that the client application requires the service to
-      use for encrypting the JWT returned from the user info endpoint.
-
-      This property corresponds to `userinfo_encrypted_response_enc` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+    $ref: ./jwe_enc.yaml
   loginUri:
     type: string
     description: |
@@ -605,17 +463,7 @@ properties:
       The backchannel token delivery mode is defined in the specification of "CIBA (Client Initiated
       Backchannel Authentication)".
   bcRequestSignAlg:
-    anyOf:
-      - $ref: ./jws_alg_symmetric.yaml
-      - $ref: ./jws_alg_asymmetric.yaml
-      - $ref: ./jws_alg_none.yaml
-      - $ref: ./enum_null.yaml
-    description: |
-      The signature algorithm of the request to the backchannel authentication endpoint.
-
-      This property corresponds to the `backchannel_authentication_request_signing_alg` metadata.
-      The backchannel token delivery mode is defined in the specification of "CIBA (Client Initiated
-      Backchannel Authentication)".
+    $ref: jws_alg.yaml
   bcUserCodeRequired:
     type: boolean
     description: |
@@ -630,10 +478,7 @@ properties:
     description: |
       The attributes of this client.
   extension:
-    allOf:
-      - $ref: ./client_extension.yaml
-    description: |
-      The extended information about this client.
+    $ref: ./client_extension.yaml
   authorizationDetailsTypes:
     type: array
     items:

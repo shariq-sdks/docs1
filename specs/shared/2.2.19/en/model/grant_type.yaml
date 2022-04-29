@@ -1,4 +1,6 @@
 type: string
+description: |
+  The grant type of the access token when the access token was created.
 enum:
   - AUTHORIZATION_CODE
   - IMPLICIT

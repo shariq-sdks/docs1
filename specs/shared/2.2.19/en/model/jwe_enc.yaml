@@ -1,4 +1,9 @@
 type: string
+description: |
+  The value of `enc` header parameter of JWE that the client application uses for encrypting a request object.
+
+  This property corresponds to `request_object_encryption_enc` in
+  [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
 enum:
   - A128CBC_HS256
   - A192CBC_HS384
