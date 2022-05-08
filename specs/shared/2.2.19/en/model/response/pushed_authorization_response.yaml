@@ -1,0 +1,26 @@
+description: ""
+content:
+  application/json:
+    schema:
+      properties:
+        action:
+          type: string
+          enum:
+            - CREATED
+            - BAD_REQUEST
+            - UNAUTHORIZED
+            - FORBIDDEN
+            - PAYLOAD_TOO_LARGE
+            - INTERNAL_SERVER_ERROR
+          description: The next action that the authorization server implementation should take. Any other value other than "CREATED" should be handled as unsuccessful result.
+        requestUri:
+          type: string
+          description: |
+            The request_uri created to the client to be used as request_uri on the authorize call.
+        responseContent:
+          type: string
+          description: |
+            The content that the authorization server implementation is to return to the client
+            application.
+        clientAuthMethod:
+          &ref: ../client_authentication_method.yaml
