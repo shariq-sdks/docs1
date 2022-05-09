@@ -1,0 +1,133 @@
+post:
+  summary: /pushed_auth_req API
+  description: |
+    This API creates a pushed request authorization. It authenticates the client and creates a authorization_uri to be returned by the authorization server.
+  security:
+    - ServiceCredentials: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/pushed_authorization_request.yaml
+        example:
+          parameters: "response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256"
+          clientId: "5921531358155430"
+          clientSecret: "P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA"
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/pushed_authorization_request.yaml
+        example:
+          parameters: "response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256"
+          clientId: "5921531358155430"
+          clientSecret: "P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA"
+  responses:
+    '200':
+      $ref: ../model/response/pushed_authorization_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'pushed_auth_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/pushed_auth_req \
+        -H 'Content-Type: application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "parameters": "response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256", "clientId": "5921531358155430", "clientSecret" : "P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA"}'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        PushedAuthReqRequest req = new PushedAuthReqRequest();
+        req.setParameters(...);
+        req.setClientId("57297408867");
+        req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
+
+        api.token(req);
+
+    - lang: cs
+      label: C#
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        PushedAuthReqRequest req = new PushedAuthReqRequest();
+        req.setParameters(...);
+        req.setClientId("57297408867");
+        req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
+
+        api.token(req);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $req = new PushedAuthReqRequest();
+        $req.setParameters(...);
+        $req.setClientId("57297408867");
+        $req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
+
+        $api.token($req);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = Authlete::Model::Request::PushedAuthReqRequest.new
+        req.parameters = '...'
+        req.client_id = '57297408867'
+        req.client_secret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'
+
+        api.token(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = PushedAuthReqRequest()
+        req.parameters = ...
+        req.clientId = '57297408867'
+        req.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'
+
+        api.token(req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        req := dto.PushedAuthReqRequest{}
+        req.Parameters = ...
+        req.ClientId = "57297408867"
+        req.ClientSecret = "J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A"
+
+        api.Token(&req)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const req = new PushedAuthReqRequest();
+        req.parameters = ...;
+        req.clientId = '57297408867';
+        req.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';
+
+        await api.token(req);
+  tags:
+    - Pushed Authorization Endpoint
