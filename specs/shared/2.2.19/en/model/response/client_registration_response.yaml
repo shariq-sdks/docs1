@@ -1,59 +1,23 @@
-description: ""
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        resultCode:
-          type: string
-          description: The code which represents the result of the API call.
-        resultMessage:
-          type: string
-          description: A short message which explains the result of the API call.
-        action:
-          type: string
-          enum:
-            - INTERNAL_SERVER_ERROR
-            - BAD_REQUEST
-            - CREATED
-          description: |
-            The next action that the authorization server implementation should take.
-        responseContent:
-          type: string
-          description: |
-            The content that the authorization server implementation is to return to the client application.
-            Its format varies depending on the value of `action` parameter.
-        client:
-          $ref: ../client.yaml
-    example:
-      {
-        "resultCode": "A202001",
-        "resultMessage": "[A202001] The client was created with id 26837717140341.",
-        "action": "CREATED",
-        "client": {
-          "authTimeRequired": false,
-          "bcUserCodeRequired": false,
-          "clientId": 26837717140341,
-          "clientIdAliasEnabled": false,
-          "clientName": "My Dynamic Client",
-          "clientSecret": "bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw",
-          "clientType": "CONFIDENTIAL",
-          "createdAt": 1641735467000,
-          "defaultMaxAge": 0,
-          "developer": "authlete_21653835348762",
-          "dynamicallyRegistered": true,
-          "frontChannelRequestObjectEncryptionRequired": false,
-          "idTokenSignAlg": "RS256",
-          "modifiedAt": 1641735467013,
-          "number": 6248,
-          "parRequired": false,
-          "requestObjectEncryptionAlgMatchRequired": false,
-          "requestObjectEncryptionEncMatchRequired": false,
-          "requestObjectRequired": false,
-          "serviceNumber": 5041,
-          "subjectType": "PUBLIC",
-          "tlsClientCertificateBoundAccessTokens": false,
-          "tokenAuthMethod": "CLIENT_SECRET_BASIC"
-        },
-        "responseContent": "{\\\"default_max_age\\\":0,\\\"registration_client_uri\\\":\\\"https://my-service.example.com/dcr/register/26837717140341\\\",\\\"registration_access_token\\\":\\\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\\\",\\\"client_id\\\":\\\"26837717140341\\\",\\\"token_endpoint_auth_method\\\":\\\"client_secret_basic\\\",\\\"require_pushed_authorization_requests\\\":false,\\\"backchannel_user_code_parameter\\\":false,\\\"client_secret\\\":\\\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\\\",\\\"client_id_issued_at\\\":1641735467,\\\"tls_client_certificate_bound_access_tokens\\\":false,\\\"client_name\\\":\\\"My Dynamic Client\\\",\\\"id_token_signed_response_alg\\\":\\\"RS256\\\",\\\"subject_type\\\":\\\"public\\\",\\\"client_secret_expires_at\\\":0,\\\"require_signed_request_object\\\":false}"
-      }
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.
+  action:
+    type: string
+    enum:
+      - INTERNAL_SERVER_ERROR
+      - BAD_REQUEST
+      - CREATED
+    description: |
+      The next action that the authorization server implementation should take.
+  responseContent:
+    type: string
+    description: |
+      The content that the authorization server implementation is to return to the client application.
+      Its format varies depending on the value of `action` parameter.
+  client:
+    $ref: ../client.yaml

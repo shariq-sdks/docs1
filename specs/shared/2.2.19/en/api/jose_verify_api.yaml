@@ -20,7 +20,18 @@ post:
           $ref: ../model/request/jose_verify_request.yaml
   responses:
     '200':
-      $ref: ../model/response/jose_verify_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/jose_verify_response.yaml
+          example:
+            {
+              "resultCode": "A160001",
+              "resultMessage": "[A160001] The JOSE is valid.",
+              "signatureValid": true,
+              "valid": true
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

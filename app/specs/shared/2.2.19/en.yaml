@@ -1950,7 +1950,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -1967,20 +1966,6 @@ paths:
                     type: string
                     description: |
                       The old client secret.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      newClientSecret:
-                        type: string
-                        description: |
-                          The new client secret.
-                      oldClientSecret:
-                        type: string
-                        description: |
-                          The old client secret.
->>>>>>> par_endpoint
               example:
                 resultCode: A148001
                 resultMessage: '[A148001] Successfully refreshed the client secret of the client (ID = 26478243745571).'
@@ -2101,7 +2086,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -2118,20 +2102,6 @@ paths:
                     type: string
                     description: |
                       The old client secret.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      newClientSecret:
-                        type: string
-                        description: |
-                          The new client secret.
-                      oldClientSecret:
-                        type: string
-                        description: |
-                          The old client secret.
->>>>>>> par_endpoint
               example:
                 resultCode: A149001
                 resultMessage: '[A149001] Successfully updated the client secret of the client (ID = 26478243745571).'
@@ -2478,7 +2448,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -2487,10 +2456,6 @@ paths:
                   resultMessage:
                     type: string
                     description: A short message which explains the result of the API call.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
->>>>>>> par_endpoint
               example:
                 resultCode: A138001
                 resultMessage: '[A138001] Updated 1 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762).'
@@ -2620,19 +2585,7 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                type: object
-                properties:
-                  resultCode:
-                    type: string
-                    description: The code which represents the result of the API call.
-                  resultMessage:
-                    type: string
-                    description: A short message which explains the result of the API call.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
->>>>>>> par_endpoint
+                $ref: '#/paths/~1api~1client~1granted_scopes~1get~1%7BclientId%7D~1%7Bsubject%7D/get/responses/200'
               example:
                 resultCode: A137001
                 resultMessage: '[A137001] Deleted 3 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762).'
@@ -2761,7 +2714,14 @@ paths:
             Unique user ID of an end-user.
       responses:
         '200':
-          $ref: '#/paths/~1client~1authorization~1delete~1%7BclientId%7D~1%7Bsubject%7D/delete/responses/200'
+          type: object
+          properties:
+            resultCode:
+              type: string
+              description: The code which represents the result of the API call.
+            resultMessage:
+              type: string
+              description: A short message which explains the result of the API call.
         '400':
           $ref: '#/paths/~1auth~1token/post/responses/400'
         '401':
@@ -2876,7 +2836,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -2885,10 +2844,6 @@ paths:
                   resultMessage:
                     type: string
                     description: A short message which explains the result of the API call.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
->>>>>>> par_endpoint
         '400':
           $ref: '#/paths/~1auth~1token/post/responses/400'
         '401':
@@ -3535,7 +3490,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -3799,297 +3753,6 @@ paths:
                       $ref: '#/components/schemas/DynamicScope'
                     description: |
                       The dynamic scopes which the client application requested by the scope request parameter.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - LOCATION
-                          - FORM
-                          - NO_INTERACTION
-                          - INTERACTION
-                        description: The next action that the authorization server implementation should take.
-                      client:
-                        allOf:
-                          - $ref: '#/components/schemas/Client'
-                        description: Information about the client application which made the authorization request.
-                      display:
-                        allOf:
-                          - $ref: '#/components/schemas/Display'
-                        description: |
-                          The display mode which the client application requests by `display` request parameter.
-                          When the authorization request does not have `display` request parameter, `PAGE` is set as the default value.
-
-                          It is ensured that the value of `display` is one of the supported display modes which are specified
-                          by `supportedDisplays` configuration parameter of the service. If the display mode specified by the
-                          authorization request is not supported, an error is raised.
-
-                          Values for this property correspond to the values listed in
-                          "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), display".
-                      maxAge:
-                        type: integer
-                        format: int32
-                        description: |
-                          The maximum authentication age. This value comes from `max_age` request parameter, or `defaultMaxAge` configuration parameter
-                          of the client application when the authorization request does not contain `max_age` request parameter.
-
-                          See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), max_age"
-                          for `max_age` request parameter, and see "[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata), default_max_age"
-                          for `defaultMaxAge` configuration parameter.
-                      service:
-                        allOf:
-                          - $ref: '#/components/schemas/Service'
-                        description: Information about the service to which the authorization request was made.
-                      scopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Scope'
-                        description: |
-                          The scopes that the client application requests. This value comes from `scope` request parameter.
-                          If the request does not contain `scope` parameter, this parameter is a list of scopes which are registered as default.
-                          If the authorization request does not have `scope` request parameter and the service has not registered any default scope,
-                          the value of this parameter is `null`.
-
-                          It is ensured that scopes listed by this parameters are contained in the list of supported scopes which are specified
-                          by `supportedScopes` configuration parameter of the service. Unsupported scopes in the authorization request do not cause
-                          an error and are just ignored.
-
-                          OpenID Connect defines some scope names which need to be treated specially. The table below lists the special scope names.
-
-                          | Name | Description |
-                          | --- | --- |
-                          | `openid` | This scope must be contained in `scope` request parameter to promote an OAuth 2.0 authorization request to an OpenID Connect request. It is described in "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), scope". |
-                          | `profile` | This scope is used to request some claims to be embedded in the ID token. The claims are `name`, `family_name`, `given_name`, `middle_name`, `nickname`, `preferred_username`, `profile`, `picture`, `website`, `gender`, `birthdate`, `zoneinfo`, `locale`, and `updated_at`. It is described in [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims). |
-                          | `email` | This scope is used to request some claims to be embedded in the ID token. The claims are `email` and `email_verified`. It is described in [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims). |
-                          | `address` |  This scope is used to request `address` claim to be embedded in the ID token. It is described in [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims).<br><br> The format of `address` claim is not a simple string. It is described in [OpenID Connect Core 1.0, 5.1.1. Address Claim](https://openid.net/specs/openid-connect-core-1_0.html#AddressClaim).  |
-                          | `phone` | This scope is used to request some claims to be embedded in the ID token. The claims are `phone_number` and `phone_number_verified`. It is described in [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims).  |
-                          | `offline_access` | The following is an excerpt about this scope from [OpenID Connect Core 1.0, 11. Offline Access](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess). <blockquote>This scope value requests that an OAuth 2.0 Refresh Token be issued that can be used to obtain an Access Token that grants access to the end-user's userinfo endpoint even when the end-user is not present (not logged in).</blockquote>  |
-
-                          Note that, if `response_type` request parameter does not contain code, `offline_acccess` scope is removed from this list even
-                          when scope request parameter contains `offline_access`. This behavior is a requirement written in
-                          [OpenID Connect Core 1.0, 11. Offline Access](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess).
-                      uiLocales:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The locales that the client application presented as candidates to be used for UI.
-                          This value comes from `ui_locales` request parameter. The format of `ui_locales` is a space-separated list of language tag values
-                          defined in [RFC5646](https://datatracker.ietf.org/doc/html/rfc5646).
-                          See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), ui_locales" for details.
-
-                          It is ensured that locales listed by this parameters are contained in the list of supported UI locales which are specified
-                          by `supportedUiLocales` configuration parameter of the service. Unsupported UI locales in the authorization request do not
-                          cause an error and are just ignored.
-                      claimsLocales:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          End-user's preferred languages and scripts for claims. This value comes from `claims_locales` request parameter.
-                          The format of `claims_locales` is a space-separated list of language tag values defined in [RFC5646](https://datatracker.ietf.org/doc/html/rfc5646).
-                          See "[OpenID Connect Core 1.0, 5.2. Claims Languages and Scripts](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsLanguagesAndScripts)" for details.
-
-                          It is ensured that locales listed by this parameters are contained in the list of supported claim locales
-                          which are specified by `supportedClaimsLocales` configuration parameter of the service.
-                          Unsupported claim locales in the authorization request do not cause an error and are just ignored.
-                      claims:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of claims that the client application requests to be embedded in the ID token.
-                          The value comes from (1) `id_token` in `claims` request parameter [1] and/or (2) special scopes (`profile`, `email`, `address` and `phone`)
-                          which are expanded to claims.
-
-                          See [OpenID Connect Core 1.0, 5.5. Requesting Claims using the "claims" Request Parameter](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter)
-                          for `claims` request parameter, and see [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims)
-                          for the special scopes.
-                      acrEssential:
-                        type: boolean
-                        description: |
-                          This boolean value indicates whether the authentication of the end-user must be one of the ACRs (Authentication Context Class References) listed in `acrs` parameter.
-                          This parameter becomes `true` only when (1) the authorization request contains `claims` request parameter and (2) `acr` claim is in it, and (3) `essential` property of
-                          the `acr` claim is `true`. See [OpenID Connect Core 1.0, 5.5.1.1. Requesting the "acr" Claim](https://openid.net/specs/openid-connect-core-1_0.html#acrSemantics) for details.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          `true` if the value of the `client_id` request parameter included in the authorization request is the client ID alias.
-                          `false` if the value is the original numeric client ID.
-                      acrs:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of ACRs (Authentication Context Class References) one of which the client application requests to be satisfied for the authentication of the end-user.
-                          This value comes from `acr_values` request parameter or `defaultAcrs` configuration parameter of the client application.
-
-                          See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), acr_values" for `acr_values`
-                          request parameter, and see "[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata),
-                          default_acr_values" for `defaultAcrs` configuration parameter.
-                      subject:
-                        type: string
-                        description: |
-                          The subject (= unique user ID managed by the authorization server implementation) that the client application expects to grant authorization.
-                          The value comes from `sub` claim in `claims` request parameter.
-                      loginHint:
-                        type: string
-                        description: A hint about the login identifier of the end-user. The value comes from `login_hint` request parameter.
-                      prompts:
-                        type: array
-                        items:
-                          anyOf:
-                            - $ref: '#/components/schemas/Prompt/anyOf/1'
-                            - $ref: '#/components/schemas/Prompt/anyOf/0'
-                        description: 'The list of values of prompt request parameter. See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), prompt" for prompt request parameter.'
-                      lowestPrompt:
-                        allOf:
-                          - $ref: '#/components/schemas/Prompt/anyOf/1'
-                          - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-                        description: |
-                          The prompt that the UI displayed to the end-user must satisfy as the minimum level. This value comes from `prompt` request parameter.
-
-                          When the authorization request does not contain `prompt` request parameter, `CONSENT` is used as the default value.
-
-                          See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), prompt" for `prompt` request parameter.
-                      requestObjectPayload:
-                        type: string
-                        description: |
-                          The payload part of the request object. The value of this proprty is `null` if the authorization request does not include a request object.
-                      idTokenClaims:
-                        type: string
-                        description: |
-                          The value of the `id_token` property in the claims request parameter or in the claims property in a request object.
-
-                          A client application may request certain claims be embedded in an ID token or in a response from the userInfo endpoint.
-                          There are several ways. Including the `claims` request parameter and including the `claims` property in a request object are such examples.
-                          In both the cases, the value of the `claims` parameter/property is JSON. Its format is described in [5.5. Requesting Claims using the "claims"
-                          Request Parameter](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter).
-
-                          The following is an excerpt from the specification.
-                          You can find `userinfo` and `id_token` are top-level properties.
-
-                          ```json
-                          {
-                            "userinfo":
-                            {
-                              "given_name": { "essential": true },
-                              "nickname": null,
-                              "email": { "essential": true },
-                              "email_verified": { "essential": true },
-                              "picture": null,
-                              "http://example.info/claims/groups": null
-                            },
-                            "id_token":
-                            {
-                              "auth_time": { "essential": true },
-                              "acr": { "values": [ "urn:mace:incommon:iap:silver" ] }
-                            }
-                          }
-                          ```
-
-                          This value of this property is the value of the `id_token` property in JSON format.
-                          For example, if the JSON above is included in an authorization request, this property holds JSON equivalent to the following.
-
-                          ```json
-                          {
-                            "auth_time": { "essential": true },
-                            "acr": { "values": [ "urn:mace:incommon:iap:silver" ] }
-                          }
-                          ```
-
-                          Note that if a request object is given and it contains the `claims` property and if the `claims` request parameter is also given,
-                          this property holds the former value.
-                      userInfoClaims:
-                        type: string
-                        description: |
-                          The value of the `userinfo` property in the `claims` request parameter or in the `claims` property in a request object.
-
-                          A client application may request certain claims be embedded in an ID token or in a response from the userInfo endpoint.
-                          There are several ways. Including the `claims` request parameter and including the `claims` property in a request object are such examples.
-                          In both the cases, the value of the `claims` parameter/property is JSON. Its format is described in [5.5. Requesting Claims using the "claims"
-                          Request Parameter](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter).
-
-                          The following is an excerpt from the specification. You can find `userinfo` and `id_token` are top-level properties.
-
-                          ```json
-                          {
-                            "userinfo":
-                            {
-                              "given_name": { "essential": true },
-                              "nickname": null,
-                              "email": { "essential": true },
-                              "email_verified": { "essential": true },
-                              "picture": null,
-                              "http://example.info/claims/groups": null
-                            },
-                            "id_token":
-                            {
-                              "auth_time": { "essential": true },
-                              "acr": { "values": [ "urn:mace:incommon:iap:silver" ] }
-                            }
-                          }
-                          ````
-
-                          The value of this property is the value of the `userinfo` property in JSON format.
-                          For example, if the JSON above is included in an authorization request, this property holds JSON equivalent to the following.
-
-                          ```json
-                          {
-                            "given_name": { "essential": true },
-                            "nickname": null,
-                            "email": { "essential": true },
-                            "email_verified": { "essential": true },
-                            "picture": null,
-                            "http://example.info/claims/groups": null
-                          }
-                          ```
-
-                          Note that if a request object is given and it contains the `claims` property and if the `claims` request parameter is also given,
-                          the value of this property holds the former value.
-                      resources:
-                        type: string
-                        description: |
-                          The resources specified by the `resource` request parameters or by the `resource` property in the request object.
-                          If both are given, the values in the request object should be set. See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details`
-                          request parameter in the preceding device authorization request which is defined in
-                          "OAuth 2.0 Rich Authorization Requests".
-                      purpose:
-                        type: string
-                        description: |
-                          The `purpose` request parameter is defined in [9. Transaction-specific Purpose](https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-transaction-specific-purpos)
-                          of [OpenID Connect for Identity Assurance 1.0](https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html) as follows:
-
-                          > purpose: OPTIONAL. String describing the purpose for obtaining certain user data from the OP. The purpose MUST NOT be shorter than 3 characters and MUST NOT be longer than 300 characters.
-                          If these rules are violated, the authentication request MUST fail and the OP returns an error invalid_request to the RP.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
-                      ticket:
-                        type: string
-                        description: |
-                          A ticket issued by Authlete to the service implementation. This is needed when the service
-                          implementation calls either `/auth/authorization/fail` API or `/auth/authorization/issue`
-                          API.
-                      dynamicScopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/DynamicScope'
-                        description: |
-                          The dynamic scopes which the client application requested by the scope request parameter.
->>>>>>> par_endpoint
               example:
                 resultCode: A004001
                 resultMessage: '[A004001] Authlete has successfully issued a ticket to the service (API Key = 21653835348762) for the authorization request from the client (ID = 26478243745571). [response_type=code, openid=false]'
@@ -4490,7 +4153,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -4512,25 +4174,6 @@ paths:
                     description: |
                       The content that the authorization server implementation is to return to the client application.
                       Its format varies depending on the value of `action` parameter.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - LOCATION
-                          - FORM
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
->>>>>>> par_endpoint
               example:
                 resultCode: A004201
                 resultMessage: '[A004201] The authorization request from the service does not contain ''parameters'' parameter.'
@@ -4812,7 +4455,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -4865,56 +4507,6 @@ paths:
                     description: |
                       The newly issued access token in JWT format. If the service is not configured to issue JWT-based access tokens,
                       this property is always set to `null`.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - LOCATION
-                          - FORM
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
-                      accessToken:
-                        type: string
-                        description: |
-                          The newly issued access token. Note that an access token is issued from an authorization endpoint only
-                          when `response_type` contains token.
-                      accessTokenExpiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The datetime at which the newly issued access token will expire. The value is represented in milliseconds
-                          since the Unix epoch (1970-01-01).
-                      accessTokenDuration:
-                        type: integer
-                        format: int64
-                        description: |
-                          The duration of the newly issued access token in seconds.
-                      idToken:
-                        type: string
-                        description: |
-                          The newly issued ID token. Note that an ID token is issued from an authorization endpoint only
-                          when `response_type` contains `id_token`.
-                      authorizationCode:
-                        type: string
-                        description: |
-                          The newly issued authorization code. Note that an authorization code is issued only
-                          when `response_type` contains code.
-                      jwtAccessToken:
-                        type: string
-                        description: |
-                          The newly issued access token in JWT format. If the service is not configured to issue JWT-based access tokens,
-                          this property is always set to `null`.
->>>>>>> par_endpoint
               example:
                 resultCode: A040001
                 resultMessage: '[A040001] The authorization request was processed successfully.'
@@ -5016,8 +4608,6 @@ paths:
             await api.authorizationIssue(req);
       tags:
         - Authorization Endpoint
-<<<<<<< HEAD
-=======
   /pushed_auth_req:
     post:
       summary: /pushed_auth_req API
@@ -5082,6 +4672,7 @@ paths:
           content:
             application/json:
               schema:
+                type: object
                 properties:
                   resultCode:
                     type: string
@@ -5215,7 +4806,6 @@ paths:
             await api.token(req);
       tags:
         - Pushed Authorization Endpoint
->>>>>>> par_endpoint
   /auth/token:
     post:
       summary: /auth/token API
@@ -5469,7 +5059,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -5615,155 +5204,6 @@ paths:
                       $ref: '#/components/schemas/Pair'
                     description: |
                       The attributes of the client.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - INVALID_CLIENT
-                          - BAD_REQUEST
-                          - PASSWORD
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
-                      username:
-                        type: string
-                        description: |
-                          The value of `username` request parameter in the token request.
-                          The client application must specify username when it uses [Resource Owner Password Grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3).
-                          In other words, when the value of `grant_type` request parameter is `password`, `username` request parameter must come along.
-
-                          This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
-                      password:
-                        type: string
-                        description: |
-                          The value of `password` request parameter in the token request.
-                          The client application must specify password when it uses [Resource Owner Password Grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3).
-                          In other words, when the value of `grant_type` request parameter is `password`, `password` request parameter must come along.
-
-                          This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
-                      ticket:
-                        type: string
-                        description: |
-                          The ticket which is necessary to call Authlete's `/auth/token/fail` API or `/auth/token/issue` API.
-
-                          This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
-                      accessToken:
-                        type: string
-                        description: The newly issued access token.
-                      accessTokenExpiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The datetime at which the newly issued access token will expire.
-                          The value is represented in milliseconds since the Unix epoch (1970-01-01).
-                      accessTokenDuration:
-                        type: integer
-                        format: int64
-                        description: The duration of the newly issued access token in seconds.
-                      refreshToken:
-                        type: string
-                        description: The newly issued refresh token.
-                      refreshTokenExpiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The datetime at which the newly issued refresh token will expire.
-                          The value is represented in milliseconds since the Unix epoch (1970-01-01).
-                      refreshTokenDuration:
-                        type: integer
-                        format: int64
-                        description: The duration of the newly issued refresh token in seconds.
-                      idToken:
-                        type: string
-                        description: |
-                          The newly issued ID token. Note that an ID token is issued from a token endpoint only when the `response_type` request parameter
-                          of the authorization request to an authorization endpoint has contained `code` and the `scope` request parameter has contained `openid`.
-                      grantType:
-                        type: string
-                        description: The grant type of the token request.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: The client ID.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias when the token request was made. If the client did not have an alias, this parameter is `null`.
-                          Also, if the token request was invalid and it failed to identify a client, this parameter is `null`.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          The flag which indicates whether the client ID alias was used when the token request was made.
-                          `true` if the client ID alias was used when the token request was made.
-                      subject:
-                        type: string
-                        description: |
-                          The subject (= resource owner's ID) of the access token.
-                          Even if an access token has been issued by the call of `/api/auth/token` API, this parameter is `null` if the flow of the token request was
-                          [Client Credentials Flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) (`grant_type=client_credentials`) because it means the access token
-                          is not associated with any specific end-user.
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: The scopes covered by the access token.
-                      properties:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Property'
-                        description: |
-                          The extra properties associated with the access token.
-                          This parameter is `null` when no extra property is associated with the issued access token.
-                      jwtAccessToken:
-                        type: string
-                        description: |
-                          The newly issued access token in JWT format. If the authorization server is configured
-                          to issue JWT-based access tokens (= if the service's `accessTokenSignAlg` value is a
-                          non-null value), a JWT-based access token is issued along with the original random-string
-                          one.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The resources specified by the `resource` request parameters in the token request.
-                          See "Resource Indicators for OAuth 2.0" for details.
-                      accessTokenResources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The target resources of the access token being issued. See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details` request parameter which is defined in "OAuth 2.0 Rich Authorization Requests".
-
-                          When the `action` is `PASSWORD`, this property holds an array that represents the `authorization_details` request parameter included in the token request.
-                          In other successful cases, this property holds the authorization details associated with the issued access token.
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
->>>>>>> par_endpoint
               example:
                 resultCode: A050001
                 resultMessage: '[A050001] The token request (grant_type=authorization_code) was processed successfully.'
@@ -6037,7 +5477,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -6057,23 +5496,6 @@ paths:
                     description: |
                       The content that the authorization server implementation is to return to the client application.
                       Its format varies depending on the value of `action` parameter. See description for details.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter. See description for details.
->>>>>>> par_endpoint
               example:
                 resultCode: A067301
                 resultMessage: '[A067301] The credentials (username & password) passed to the token endpoint are invalid.'
@@ -6249,7 +5671,6 @@ paths:
         - ServiceCredentials: []
       requestBody:
         required: true
-<<<<<<< HEAD
         content:
           application/json:
             schema:
@@ -6406,164 +5827,6 @@ paths:
                       $ref: '#/components/schemas/Pair'
                     description: |
                       The attributes of the client.
-=======
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - ticket
-                - subject
-              properties:
-                ticket:
-                  type: string
-                  description: |
-                    The ticket issued from Authlete `/auth/token` API.
-                subject:
-                  type: string
-                  description: |
-                    The subject (= unique identifier) of the authenticated user.
-                properties:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Property'
-                  description: |
-                    Extra properties to associate with a newly created access token. Note that properties parameter is accepted only
-                    when `Content-Type` of the request is `application/json`, so don't use `application/x-www-form-urlencoded`
-                    if you want to specify properties.
-            example:
-              ticket: p7SXQ9JFjng7KFOZdCMBKcoR3ift7B54l1LGIgQXqEM
-              subject: john
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/paths/~1auth~1token~1issue/post/requestBody/content/application~1json/schema'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format is JSON.
-                      username:
-                        type: string
-                        description: |
-                          The value of `username` request parameter in the token request.
-                          The client application must specify username when it uses [Resource Owner Password Grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3).
-                          In other words, when the value of `grant_type` request parameter is `password`, `username` request parameter must come along.
-
-                          This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
-                      accessToken:
-                        type: string
-                        description: The newly issued access token. This parameter is a non-null value only when the value of `action` parameter is `OK`.
-                      accessTokenExpiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The datetime at which the newly issued access token will expire.
-                          The value is represented in milliseconds since the Unix epoch (1970-01-01).
-                      accessTokenDuration:
-                        type: integer
-                        format: int64
-                        description: The duration of the newly issued access token in seconds.
-                      refreshToken:
-                        type: string
-                        description: |
-                          The refresh token. This parameter is a non-null value only when `action` is `OK` and the service supports the refresh token flow.
-                          If `refreshTokenKept` is set to `false`, a new refresh token is issued and the old refresh token used in the refresh token flow
-                          is invalidated. On the contrary, if `refreshTokenKept` is set to `true`, the refresh token itself is not refreshed.
-                      refreshTokenExpiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The datetime at which the newly issued refresh token will expire.
-                          The value is represented in milliseconds since the Unix epoch (1970-01-01).
-                      refreshTokenDuration:
-                        type: integer
-                        format: int64
-                        description: The duration of the newly issued refresh token in seconds.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: The client ID.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias. If the client did not have an alias, this parameter is `null`.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          The flag which indicates whether the client ID alias was used when the token request was made.
-                          `true` if the client ID alias was used when the token request was made.
-                      subject:
-                        type: string
-                        description: |
-                          The subject (= resource owner's ID) of the access token.
-                          Even if an access token has been issued by calling `/api/auth/token` API, this parameter is `null` if the flow of the token request was
-                          [Client Credentials Flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) (`grant_type=client_credentials`) because it means
-                          the access token is not associated with any specific end-user.
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: The scopes covered by the access token.
-                      properties:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Property'
-                        description: |
-                          The extra properties associated with the access token.
-                          This parameter is `null` when no extra property is associated with the issued access token.
-                      jwtAccessToken:
-                        type: string
-                        description: |
-                          The newly issued access token in JWT format. If the authorization server is configured to issue JWT-based access tokens
-                          (= if the service's `accessTokenSignAlg` value is a non-null value), a JWT-based access token is issued along with the
-                          original random-string one.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The resources specified by the `resource` request parameters in the token request. See "Resource Indicators for OAuth 2.0" for details.
-                      accessTokenResources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The target resources of the access token being issued. See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details`
-                          request parameter which is defined in "OAuth 2.0 Rich Authorization Requests".
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
->>>>>>> par_endpoint
               example:
                 resultCode: A054001
                 resultMessage: '[A054001] The token request (grant_type=password) was processed successfully.'
@@ -6922,7 +6185,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -7040,125 +6302,6 @@ paths:
                       $ref: '#/components/schemas/Pair'
                     description: |
                       The attributes of the client.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - UNAUTHORIZED
-                          - FORBIDDEN
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation can use as the value of `WWW-Authenticate` header on errors.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: The client ID.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias when the token request was made. If the client did not have an alias, this parameter is `null`.
-                          Also, if the token request was invalid and it failed to identify a client, this parameter is `null`.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          The flag which indicates whether the client ID alias was used when the token request was made.
-                          `true` if the client ID alias was used when the token request was made.
-                      expiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The time at which the access token expires.
-                          The value is represented in milliseconds since the Unix epoch (1970-01-01).
-                      subject:
-                        type: string
-                        description: |
-                          The subject who is associated with the access token.
-                          The value of this property is `null` if the access token was issued using the flow of [Client Credentials Grant](tools.ietf.org/html/rfc6749#section-4.4).
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The scopes covered by the access token.
-                      existent:
-                        type: boolean
-                        description: |
-                          `true` if the access token exists.
-                      usable:
-                        type: boolean
-                        description: |
-                          true` if the access token is usable (= exists and has not expired).
-                      sufficient:
-                        type: boolean
-                        description: |
-                          `true` if the access token exists.
-                      refreshable:
-                        type: boolean
-                        description: |
-                          `true` if the access token can be refreshed using the associated refresh token which had been issued
-                          along with the access token. `false` if the refresh token for the access token has expired or the access
-                          token has no associated refresh token.
-                      properties:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Property'
-                        description: The extra properties associated with the access token.
-                      certificateThumbprint:
-                        type: string
-                        description: |
-                          The client certificate thumbprint used to validate the access token.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The target resources. This represents the resources specified by the `resource` request parameters
-                          or by the `resource` property in the request object.
-
-                          See "Resource Indicators for OAuth 2.0" for details.
-                      accessTokenResources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The target resources this proeprty holds may be the same as or different from the ones `resource` property holds.
-
-                          In some flows, the initial request and the subsequent token request are sent to different endpoints.
-                          Example flows are the Authorization Code Flow, the Refresh Token Flow, the CIBA Ping Mode, the CIBA Poll Mode and the Device Flow.
-                          In these flows, not only the initial request but also the subsequent token request can include the `resource` request parameters.
-                          The purpose of the `resource` request parameters in the token request is to narrow the range of the target resources from the original
-                          set of target resources requested by the preceding initial request. If narrowing down is performed, the target resources holded by the
-                          `resource` proeprty and the ones holded by this property are different. This property holds the narrowed set of target resources.
-
-                          See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details` request parameter which is defined in
-                          "OAuth 2.0 Rich Authorization Requests".
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
->>>>>>> par_endpoint
               example:
                 resultCode: A056001
                 resultMessage: '[A056001] The access token is valid.'
@@ -7423,7 +6566,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -7444,24 +6586,6 @@ paths:
                     description: |
                       The content that the authorization server implementation is to return to the client
                       application.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application.
->>>>>>> par_endpoint
               example:
                 resultCode: A145001
                 resultMessage: '[A145001] Introspection was performed successfully (type=access_token, active=true).'
@@ -7746,7 +6870,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -7768,25 +6891,6 @@ paths:
                     description: |
                       The content that the authorization server implementation is to return to the client application.
                       Its format varies depending on the value of `action` parameter.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - INVALID_CLIENT
-                          - BAD_REQUEST
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
->>>>>>> par_endpoint
               example:
                 resultCode: A113001
                 resultMessage: '[A113001] The token has been revoked successfully.'
@@ -8077,7 +7181,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -8198,124 +7301,6 @@ paths:
                       $ref: '#/components/schemas/Pair'
                     description: |
                       The attributes of the client.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - UNAUTHORIZED
-                          - FORBIDDEN
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      claims:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of claims that the client application requests to be embedded in the ID token.
-                      clientId:
-                        type: string
-                        description: |
-                          The ID of the client application which is associated with the access token.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias when the authorization request for the access token was made.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          The flag which indicates whether the client ID alias was used when the authorization
-                          request for the access token was made.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation can use as the value of `WWW-Authenticate`
-                          header on errors.
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The scopes covered by the access token.
-                      subject:
-                        type: string
-                        description: |
-                          The subject (= resource owner's ID).
-                      token:
-                        type: string
-                        description: |
-                          The access token that came along with the userinfo request.
-                      properties:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Property'
-                        description: |
-                          The extra properties associated with the access token.
-                      userInfoClaims:
-                        type: string
-                        description: |
-                          The value of the `userinfo` property in the `claims` request parameter or in the `claims` property in an authorization request object.
-
-                          A client application may request certain claims be embedded in an ID token or in a response from the userInfo endpoint.
-                          There are several ways. Including the `claims` request parameter and including the `claims` property in a request object are such examples.
-                          In both cases, the value of the `claims` parameter/property is JSON. Its format is described in [5.5. Requesting Claims using the "claims"
-                          Request Parameter](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter).
-
-                          The following is an excerpt from the specification. You can find `userinfo` and `id_token` are top-level properties.
-
-                          ```json
-                          {
-                            "userinfo":
-                            {
-                              "given_name": { "essential": true },
-                              "nickname": null,
-                              "email": { "essential": true },
-                              "email_verified": { "essential": true },
-                              "picture": null,
-                              "http://example.info/claims/groups": null
-                            },
-                            "id_token":
-                            {
-                              "auth_time": { "essential": true },
-                              "acr": { "values": [ "urn:mace:incommon:iap:silver" ] }
-                            }
-                          }
-                          ````
-
-                          The value of this property is the value of the `userinfo` property in JSON format.
-                          For example, if the JSON above is included in an authorization request, this property holds JSON equivalent to the following.
-
-                          ```json
-                          {
-                            "given_name": { "essential": true },
-                            "nickname": null,
-                            "email": { "essential": true },
-                            "email_verified": { "essential": true },
-                            "picture": null,
-                            "http://example.info/claims/groups": null
-                          }
-                          ```
-
-                          Note that if a request object is given and it contains the `claims` property and if the `claims` request parameter is also given,
-                          the value of this property holds the former value.
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
->>>>>>> par_endpoint
               example:
                 resultCode: A091001
                 resultMessage: '[A091001] The access token presented at the userinfo endpoint is valid.'
@@ -8601,7 +7586,10 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
+                description: ''
+                content:
+                  application/json:
+                    schema: null
                 type: object
                 properties:
                   resultCode:
@@ -8625,27 +7613,6 @@ paths:
                     description: |
                       The content that the authorization server implementation can use as the value of `WWW-Authenticate`
                       header on errors.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - UNAUTHORIZED
-                          - FORBIDDEN
-                          - JSON
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation can use as the value of `WWW-Authenticate`
-                          header on errors.
->>>>>>> par_endpoint
               example:
                 resultCode: A096001
                 resultMessage: '[A096001] An ID token was generated successfully.'
@@ -9381,7 +8348,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -9405,30 +8371,6 @@ paths:
                       Its format varies depending on the value of `action` parameter.
                   client:
                     $ref: '#/components/schemas/Client'
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - CREATED
-                        description: |
-                          The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
-                      client:
-                        allOf:
-                          - $ref: '#/components/schemas/Client'
-                        description: |
-                          The created client.
->>>>>>> par_endpoint
               example:
                 resultCode: A202001
                 resultMessage: '[A202001] The client was created with id 26837717140341.'
@@ -9684,7 +8626,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -9709,31 +8650,6 @@ paths:
                       Its format varies depending on the value of `action` parameter.
                   client:
                     $ref: '#/components/schemas/Client'
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - OK
-                          - UNAUTHORIZED
-                        description: |
-                          The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
-                      client:
-                        allOf:
-                          - $ref: '#/components/schemas/Client'
-                        description: |
-                          The retrieved client.
->>>>>>> par_endpoint
               example:
                 resultCode: A217001
                 resultMessage: '[A217001] The client information has been returned.'
@@ -10002,7 +8918,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -10027,31 +8942,6 @@ paths:
                       Its format varies depending on the value of `action` parameter.
                   client:
                     $ref: '#/components/schemas/Client'
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - UPDATED
-                          - UNAUTHORIZED
-                        description: |
-                          The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
-                      client:
-                        allOf:
-                          - $ref: '#/components/schemas/Client'
-                        description: |
-                          The updated client.
->>>>>>> par_endpoint
               example:
                 resultCode: A213001
                 resultMessage: '[A213001] The client has been updated.'
@@ -10314,7 +9204,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -10337,26 +9226,6 @@ paths:
                     description: |
                       The content that the authorization server implementation is to return to the client application.
                       Its format varies depending on the value of `action` parameter.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - DELETED
-                          - UNAUTHORIZED
-                        description: |
-                          The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client application.
-                          Its format varies depending on the value of `action` parameter.
->>>>>>> par_endpoint
               example:
                 resultCode: A216001
                 resultMessage: '[A216001] The client has been deleted.'
@@ -10823,7 +9692,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -10988,174 +9856,6 @@ paths:
                       The dynamic scopes which the client application requested by the scope request parameter.
                   deliveryMode:
                     $ref: '#/components/schemas/DeliveryMode'
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - UNAUTHORIZED
-                          - USER_IDENTIFICATION
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application. Its format varies depending on the value of `action` parameter.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: |
-                          The client ID of the client application that has made the backchannel authentication
-                          request.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias of the client application that has made the backchannel authentication
-                          request.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          `true` if the value of the client_id request parameter included in the backchannel
-                          authentication request is the client ID alias. `false` if the value is the original
-                          numeric client ID.
-                      clientName:
-                        type: string
-                        description: |
-                          The name of the client application which has made the backchannel authentication request.
-                      scopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Scope'
-                        description: |
-                          The scopes requested by the backchannel authentication request.
-
-                          Basically, this property holds the value of the `scope` request parameter in the backchannel
-                          authentication request. However, because unregistered scopes are dropped on Authlete side,
-                          if the `scope` request parameter contains unknown scopes, the list returned by this
-                          property becomes different from the value of the `scope` request parameter.
-
-                          Note that `description` property and `descriptions` property of each `scope` object
-                          in the array contained in this property is always null even if descriptions of the scopes
-                          are registered.
-                      claimNames:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The names of the claims which were requested indirectly via some special scopes.
-                          See [5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims)
-                          in OpenID Connect Core 1.0 for details.
-                      clientNotificationToken:
-                        type: string
-                        description: |
-                          The client notification token included in the backchannel authentication request.
-                      acrs:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of ACR values requested by the backchannel authentication request.
-
-                          Basically, this property holds the value of the `acr_values` request parameter in the
-                          backchannel authentication request. However, because unsupported ACR values are dropped
-                          on Authlete side, if the `acr_values` request parameter contains unrecognized ACR values,
-                          the list returned by this property becomes different from the value of the `acr_values`
-                          request parameter.
-                      hintType:
-                        type: string
-                        description: |
-                          The type of the hint for end-user identification which was included in the backchannel authentication request.
-                      hint:
-                        type: string
-                        description: |
-                          The value of the hint for end-user identification.
-                      sub:
-                        type: string
-                        description: |
-                          The value of the `sub` claim contained in the ID token hint included in the backchannel authentication request.
-                      bindingMessage:
-                        type: string
-                        description: |
-                          The binding message included in the backchannel authentication request.
-                      userCode:
-                        type: string
-                        description: |
-                          The binding message included in the backchannel authentication request.
-                      userCodeRequired:
-                        type: boolean
-                        description: |
-                          The flag which indicates whether a user code is required.
-
-                          `true` when both the `backchannel_user_code_parameter` metadata of the client (= Client's
-                          `bcUserCodeRequired` property) and the `backchannel_user_code_parameter_supported`
-                          metadata of the service (= Service's `backchannelUserCodeParameterSupported` property)
-                          are `true`.
-                      requestedExpiry:
-                        type: integer
-                        format: int32
-                        description: |
-                          The requested expiry for the authentication request ID (`auth_req_id`).
-                      requestContext:
-                        type: string
-                        description: |
-                          The request context of the backchannel authentication request.
-
-                          It is the value of the request_context claim in the signed authentication request and
-                          its format is JSON. request_context is a new claim added by the FAPI-CIBA profile.
-                      warnings:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The warnings raised during processing the backchannel authentication request.
-                      ticket:
-                        type: string
-                        description: |
-                          The ticket which is necessary to call Authlete's `/auth/token/fail` API or `/auth/token/issue` API.
-
-                          This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The resources specified by the `resource` request parameters or by the `resource` property
-                          in the request object. If both are given, the values in the request object should be
-                          set. See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details`
-                          request parameter in the preceding device authorization request which is defined in
-                          "OAuth 2.0 Rich Authorization Requests".
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
-                      dynamicScopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/DynamicScope'
-                        description: |
-                          The dynamic scopes which the client application requested by the scope request parameter.
-                      deliveryMode:
-                        allOf:
-                          - $ref: '#/components/schemas/DeliveryMode'
->>>>>>> par_endpoint
               example:
                 resultCode: A179001
                 resultMessage: '[A179001] The backchannel authentication request was processed successfully.'
@@ -11390,7 +10090,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -11426,39 +10125,6 @@ paths:
                     description: |
                       The minimum amount of time in seconds that the client must wait for between polling
                       requests to the token endpoint.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - INVALID_TICKET
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application. Its format varies depending on the value of `action` parameter.
-                      authReqId:
-                        type: string
-                        description: |
-                          The newly issued authentication request ID.
-                      expiresIn:
-                        type: integer
-                        format: int32
-                        description: |
-                          The duration of the issued authentication request ID in seconds.
-                      interval:
-                        type: integer
-                        format: int32
-                        description: |
-                          The minimum amount of time in seconds that the client must wait for between polling
-                          requests to the token endpoint.
->>>>>>> par_endpoint
               example:
                 resultCode: A183001
                 resultMessage: '[A183001] An auth_req_id was issued successfully.'
@@ -11641,7 +10307,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -11662,24 +10327,6 @@ paths:
                     description: |
                       The content that the authorization server implementation is to return to the client
                       application. Its format varies depending on the value of `action` parameter.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - FORBIDDEN
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application. Its format varies depending on the value of `action` parameter.
->>>>>>> par_endpoint
               example:
                 resultCode: A185001
                 resultMessage: '[A185001] Successfully generated an error response for the backchannel authentication request.'
@@ -11971,7 +10618,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -12084,124 +10730,6 @@ paths:
                       $ref: '#/components/schemas/Pair'
                     description: |
                       The attributes of the client.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - SERVER_ERROR
-                          - NO_ACTION
-                          - NOTIFICATION
-                        description: |
-                          The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application. Its format varies depending on the value of `action` parameter.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: |
-                          The client ID of the client application that has made the backchannel authentication
-                          request.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias of the client application that has made the backchannel authentication
-                          request.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          `true` if the value of the client_id request parameter included in the backchannel
-                          authentication request is the client ID alias. `false` if the value is the original
-                          numeric client ID.
-                      clientName:
-                        type: string
-                        description: |
-                          The name of the client application which has made the backchannel authentication request.
-                      deliveryMode:
-                        allOf:
-                          - $ref: '#/components/schemas/DeliveryMode'
-                        description: |
-                          The backchannel token delivery mode.
-                      clientNotificationEndpoint:
-                        type: string
-                        description: |
-                          The client notification endpoint to which a notification needs to be sent. This corresponds
-                          to the `client_notification_endpoint` metadata of the client application.
-                      clientNotificationToken:
-                        type: string
-                        description: |
-                          The client notification token which needs to be embedded as a Bearer token in the Authorization
-                          header in the notification. This is the value of the `client_notification_token` request
-                          parameter included in the backchannel authentication request.
-                      authReqId:
-                        type: string
-                        description: |
-                          The newly issued authentication request ID.
-                      accessToken:
-                        type: string
-                        description: |
-                          The issued access token.
-                      refreshToken:
-                        type: string
-                        description: |
-                          The issued refresh token.
-                      idToken:
-                        type: string
-                        description: |
-                          The issued ID token.
-                      accessTokenDuration:
-                        type: integer
-                        format: int64
-                        description: |
-                          The duration of the access token in seconds.
-                      refreshTokenDuration:
-                        type: integer
-                        format: int64
-                        description: |
-                          The duration of the refresh token in seconds.
-                      idTokenDuration:
-                        type: integer
-                        format: int64
-                        description: |
-                          The duration of the ID token in seconds.
-                      jwtAccessToken:
-                        type: string
-                        description: |
-                          The issued access token in JWT format.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The resources specified by the `resource` request parameters or by the `resource` property
-                          in the request object. If both are given, the values in the request object should be
-                          set. See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details`
-                          request parameter in the preceding device authorization request which is defined in
-                          "OAuth 2.0 Rich Authorization Requests".
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
->>>>>>> par_endpoint
               example:
                 resultCode: A198001
                 resultMessage: '[A198001] Successfully updated the database so that the token endpoint can generate tokens (mode = poll, result = AUTHORIZED).'
@@ -12473,7 +11001,28 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
+                example:
+                  resultCode: A220001
+                  resultMessage: '[A220001] The device authorization request was processed successfully.'
+                  action: OK
+                  clientId: 26888344961664
+                  clientIdAliasUsed: false
+                  clientName: My Device Flow Client
+                  deviceCode: p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I
+                  expiresIn: 3600
+                  interval: 0
+                  responseContent: '{"user_code":"XWWKPBWVXQ","device_code":"p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I","verification_uri_complete":"https://my-service.com/df/verification?XWWKPBWVXQ","verification_uri":"https://my-service.com/df/verification","expires_in":3600}'
+                  scopes:
+                    - defaultEntry: false
+                      name: history.read
+                  serviceAttributes:
+                    - key: attribute1-key
+                      value: attribute1-value
+                    - key: attribute2-key
+                      value: attribute2-value
+                  userCode: XWWKPBWVXQ
+                  verificationUri: 'https://my-service.com/df/verification'
+                  verificationUriComplete: 'https://my-service.com/df/verification?XWWKPBWVXQ'
                 type: object
                 properties:
                   resultCode:
@@ -12620,177 +11169,6 @@ paths:
                       $ref: '#/components/schemas/DynamicScope'
                     description: |
                       The dynamic scopes which the client application requested by the scope request parameter.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - UNAUTHORIZED
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application. Its format varies depending on the value of `action` parameter.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: |
-                          The client ID of the client application that has made the device authorization request.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias of the client application that has made the device authorization
-                          request.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          `true` if the value of the client_id request parameter included in the device authorization
-                          request is the client ID alias. `false` if the value is the original numeric client ID.
-                      clientName:
-                        type: string
-                        description: |
-                          The name of the client application which has made the device authorization request.
-                      clientAuthMethod:
-                        type: string
-                        description: |
-                          The client authentication method that should be performed at the device authorization
-                          endpoint.
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The scopes requested by the device authorization request.
-
-                          Basically, this property holds the value of the scope request parameter in the device
-                          authorization request. However, because unregistered scopes are dropped on Authlete
-                          side, if the `scope` request parameter contains unknown scopes, the list returned by
-                          this property becomes different from the value of the `scope` request parameter.
-
-                          Note that `description` property and `descriptions` property of each scope object in the
-                          array contained in this property is always `null` even if descriptions of the scopes
-                          are registered.
-                      claimNames:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The names of the claims which were requested indirectly via some special scopes.
-                          See [5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims)
-                          in OpenID Connect Core 1.0 for details.
-                      acrs:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of ACR values requested by the device authorization request.
-
-                          Basically, this property holds the value of the `acr_values` request parameter in the
-                          device authorization request. However, because unsupported ACR values are dropped
-                          on Authlete side, if the `acr_values` request parameter contains unrecognized ACR values,
-                          the list returned by this property becomes different from the value of the `acr_values`
-                          request parameter.
-                      deviceCode:
-                        type: string
-                        description: |
-                          The device verification code. This corresponds to the `device_code` property in the
-                          response to the client.
-                      userCode:
-                        type: string
-                        description: |
-                          The end-user verification code. This corresponds to the `user_code` property in the
-                          response to the client.
-                      verificationUri:
-                        type: string
-                        description: |
-                          The end-user verification URI. This corresponds to the `verification_uri` property in
-                          the response to the client.
-                      verificationUriComplete:
-                        type: string
-                        description: |
-                          The end-user verification URI that includes the end-user verification code. This corresponds
-                          to the `verification_uri_complete` property in the response to the client.
-                      expiresIn:
-                        type: integer
-                        format: int32
-                        description: |
-                          The duration of the device verification code in seconds. This corresponds to the `expires_in`
-                          property in the response to the client.
-                      interval:
-                        type: integer
-                        format: int32
-                        description: |
-                          The minimum amount of time in seconds that the client must wait for between polling
-                          requests to the token endpoint. This corresponds to the `interval` property in the response
-                          to the client.
-                      warnings:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The warnings raised during processing the backchannel authentication request.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The resources specified by the `resource` request parameters. See "Resource Indicators
-                          for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details`
-                          request parameter in the preceding device authorization request which is defined in
-                          "OAuth 2.0 Rich Authorization Requests".
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
-                      dynamicScopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/DynamicScope'
-                        description: |
-                          The dynamic scopes which the client application requested by the scope request parameter.
->>>>>>> par_endpoint
-                example:
-                  resultCode: A220001
-                  resultMessage: '[A220001] The device authorization request was processed successfully.'
-                  action: OK
-                  clientId: 26888344961664
-                  clientIdAliasUsed: false
-                  clientName: My Device Flow Client
-                  deviceCode: p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I
-                  expiresIn: 3600
-                  interval: 0
-                  responseContent: '{"user_code":"XWWKPBWVXQ","device_code":"p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I","verification_uri_complete":"https://my-service.com/df/verification?XWWKPBWVXQ","verification_uri":"https://my-service.com/df/verification","expires_in":3600}'
-                  scopes:
-                    - defaultEntry: false
-                      name: history.read
-                  serviceAttributes:
-                    - key: attribute1-key
-                      value: attribute1-value
-                    - key: attribute2-key
-                      value: attribute2-value
-                  userCode: XWWKPBWVXQ
-                  verificationUri: 'https://my-service.com/df/verification'
-                  verificationUriComplete: 'https://my-service.com/df/verification?XWWKPBWVXQ'
         '400':
           $ref: '#/paths/~1auth~1token/post/responses/400'
         '401':
@@ -12954,7 +11332,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -13056,110 +11433,6 @@ paths:
                     format: int64
                     description: |
                       Get the date in milliseconds since the Unix epoch (1970-01-01) at which the user code will expire.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - NOT_EXIST
-                          - EXPIRED
-                          - VALID
-                        description: The next action that the authorization server implementation should take.
-                      responseContent:
-                        type: string
-                        description: |
-                          The content that the authorization server implementation is to return to the client
-                          application. Its format varies depending on the value of `action` parameter.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: |
-                          The client ID of the client application to which the user code has been issued.
-                      clientIdAlias:
-                        type: string
-                        description: |
-                          The client ID alias of the client application to which the user code has been issued.
-                      clientIdAliasUsed:
-                        type: boolean
-                        description: |
-                          `true` if the value of the `client_id` request parameter included in the device authorization
-                          request is the client ID alias. `false` if the value is the original numeric client ID.
-                      clientName:
-                        type: string
-                        description: |
-                          The name of the client application to which the user code has been issued.
-                      scopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Scope'
-                        description: |
-                          The scopes requested by the device authorization request.
-
-                          Note that `description` property and `descriptions` property of each scope object in
-                          the array contained in this property is always null even if descriptions of the scopes
-                          are registered.
-                      claimNames:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The names of the claims which were requested indirectly via some special scopes.
-                          See [5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims)
-                          in OpenID Connect Core 1.0 for details.
-
-                          This property is always `null` if the `scope` request parameter of the device authorization
-                          request does not include the `openid` scope even if special scopes (such as `profile`)
-                          are included in the request (unless the openid scope is included in the default set
-                          of scopes which is used when the `scope` request parameter is omitted).
-                      acrs:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of ACR values requested by the device authorization request.
-                      resources:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The resources specified by the `resource` request parameters or by the `resource` property
-                          in the request object. If both are given, the values in the request object should be
-                          set. See "Resource Indicators for OAuth 2.0" for details.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details. This represents the value of the `authorization_details`
-                          request parameter in the preceding device authorization request which is defined in
-                          "OAuth 2.0 Rich Authorization Requests".
-                      serviceAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of this service that the client application belongs to.
-                      clientAttributes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Pair'
-                        description: |
-                          The attributes of the client.
-                      dynamicScopes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/DynamicScope'
-                        description: |
-                          The dynamic scopes which the client application requested by the scope request parameter.
-                      expiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          Get the date in milliseconds since the Unix epoch (1970-01-01) at which the user code will expire.
->>>>>>> par_endpoint
               example:
                 resultCode: A224001
                 resultMessage: '[A224001] The user code is valid.'
@@ -13418,7 +11691,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -13437,22 +11709,6 @@ paths:
                       - SUCCESS
                     description: |
                       The next action that the authorization server implementation should take.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - SERVER_ERROR
-                          - USER_CODE_NOT_EXIST
-                          - USER_CODE_EXPIRED
-                          - INVALID_REQUEST
-                          - SUCCESS
-                        description: |
-                          The next action that the authorization server implementation should take.
->>>>>>> par_endpoint
               example:
                 resultCode: A241001
                 resultMessage: '[A241001] The API call was processed successfully.'
@@ -13610,14 +11866,7 @@ paths:
                     description: |
                       Unique ID of a client developer.
                   client:
-<<<<<<< HEAD
                     $ref: '#/components/schemas/Client'
-=======
-                    allOf:
-                      - $ref: '#/components/schemas/Client'
-                    description: |
-                      An array of clients.
->>>>>>> par_endpoint
                   subject:
                     type: string
                     description: |
@@ -13809,16 +12058,7 @@ paths:
                 - clientId
               properties:
                 grantType:
-<<<<<<< HEAD
                   $ref: '#/components/schemas/GrantType'
-=======
-                  allOf:
-                    - $ref: '#/components/schemas/GrantType'
-                  description: |
-                    The grant type for a newly created access token. `REFRESH_TOKEN` is not allowed.
-                    When `grantType` is either IMPLICIT or CLIENT_CREDENTIALS, a refresh token is not issued.
-                    See the description of grant types for details about the values above.
->>>>>>> par_endpoint
                 clientId:
                   type: integer
                   format: int64
@@ -13928,14 +12168,7 @@ paths:
                     set, a DPoP proof signed with the corresponding private key MUST be presented with the access
                     token when it is used by a client. Additionally, the token's `token_type` will be set to 'DPoP'.
                 authorizationDetails:
-<<<<<<< HEAD
                   $ref: '#/components/schemas/AuthorizationDetails'
-=======
-                  allOf:
-                    - $ref: '#/components/schemas/AuthorizationDetails'
-                  description: |
-                    The value of the `authorization_details` to associate with the token.
->>>>>>> par_endpoint
                 resources:
                   type: array
                   items:
@@ -13961,7 +12194,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -14033,78 +12265,6 @@ paths:
                       random-string one.
                   authorizationDetails:
                     $ref: '#/components/schemas/AuthorizationDetails'
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - FORBIDDEN
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      accessToken:
-                        type: string
-                        description: The newly issued access token.
-                      clientId:
-                        type: integer
-                        format: int64
-                        description: |
-                          The ID of the client application associated with the access token.
-                      expiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The time at which the access token expires.
-                      expiresIn:
-                        type: integer
-                        format: int64
-                        description: |
-                          The duration of the newly issued access token in seconds.
-                      grantType:
-                        type: string
-                        description: |
-                          The grant type for the newly issued access token.
-                      properties:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Property'
-                        description: |
-                          The extra properties associated with the access token.
-                      refreshToken:
-                        type: string
-                        description: |
-                          The newly issued refresh token.
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          Scopes which are associated with the access token.
-                      subject:
-                        type: string
-                        description: |
-                          The subject (= unique identifier) of the user associated with the newly issued access
-                          token.
-                      tokenType:
-                        type: string
-                        description: |
-                          The token type of the access token.
-                      jwtAccessToken:
-                        type: string
-                        description: |
-                          If the authorization server is configured to issue JWT-based access tokens (= if `Service.accessTokenSignAlg`
-                          is set to a `non-null` value), a JWT-based access token is issued along with the original
-                          random-string one.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details associated with the access token.
->>>>>>> par_endpoint
               example:
                 resultCode: A109001
                 resultMessage: '[A109001] An access token was created successfully: authorization_code, client = 26888344961664'
@@ -14303,16 +12463,7 @@ paths:
                     set, a DPoP proof signed with the corresponding private key MUST be presented with the access
                     token when it is used by a client. Additionally, the token's `token_type` will be set to 'DPoP'.
                 authorizationDetails:
-<<<<<<< HEAD
                   $ref: '#/components/schemas/AuthorizationDetails'
-=======
-                  allOf:
-                    - $ref: '#/components/schemas/AuthorizationDetails'
-                  description: |
-                    The value of the `authorization_details` to associate with the token. If this value is `null`,
-                    the authorization details will not be changed. If this property is set, it will completely replace
-                    the authorization details previously set on the token.
->>>>>>> par_endpoint
             example:
               accessToken: Z5a40U6dWvw2gMoCOAFbZcM85q4HC0Z--0YKD9-Nf6Q
               scopes:
@@ -14326,7 +12477,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -14370,50 +12520,6 @@ paths:
                     type: string
                     description: |
                       The token type associated with the access token.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      action:
-                        type: string
-                        enum:
-                          - INTERNAL_SERVER_ERROR
-                          - BAD_REQUEST
-                          - FORBIDDEN
-                          - NOT_FOUND
-                          - OK
-                        description: The next action that the authorization server implementation should take.
-                      accessToken:
-                        type: string
-                        description: The access token which has been specified by the request.
-                      accessTokenExpiresAt:
-                        type: integer
-                        format: int64
-                        description: |
-                          The date at which the access token will expire.
-                      properties:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Property'
-                        description: |
-                          The extra properties associated with the access token.
-                      scopes:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The scopes associated with the access token.
-                      authorizationDetails:
-                        allOf:
-                          - $ref: '#/components/schemas/AuthorizationDetails'
-                        description: |
-                          The authorization details associated with the access token.
-                      tokenType:
-                        type: string
-                        description: |
-                          The token type associated with the access token.
->>>>>>> par_endpoint
               example:
                 resultCode: A135001
                 resultMessage: '[A135001] Updated the access token successfully.'
@@ -14655,7 +12761,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 type: object
                 properties:
                   resultCode:
@@ -14690,38 +12795,6 @@ paths:
                       type: string
                     description: |
                       The list of error messages.
-=======
-                allOf:
-                  - $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
-                  - type: object
-                    properties:
-                      valid:
-                        type: boolean
-                        description: |
-                          The result of the verification on the JOSE object.
-                      signatureValid:
-                        type: boolean
-                        description: |
-                          The result of the signature verification.
-                      missingClaims:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of missing claims.
-                      invalidClaims:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of invalid claims.
-                      errorDescriptions:
-                        type: array
-                        items:
-                          type: string
-                        description: |
-                          The list of error messages.
->>>>>>> par_endpoint
               example:
                 resultCode: A160001
                 resultMessage: '[A160001] The JOSE is valid.'
@@ -14857,14 +12930,7 @@ components:
           description: |
             The subject (= unique user ID) associated with the access token.
         grantType:
-<<<<<<< HEAD
           $ref: '#/components/schemas/GrantType'
-=======
-          allOf:
-            - $ref: '#/components/schemas/GrantType'
-          description: |
-            The grant type of the access token when the access token was created.
->>>>>>> par_endpoint
         scopes:
           type: array
           items:
@@ -14880,25 +12946,19 @@ components:
     ApplicationType:
       type: string
       nullable: true
-<<<<<<< HEAD
       description: |
         The application type. The value of this property affects the validation steps for a redirect URI.
         See the description about `redirectUris` property for more details.
-=======
->>>>>>> par_endpoint
       enum:
         - WEB
         - NATIVE
         - null
     AuthorizationDetails:
       type: object
-<<<<<<< HEAD
       description: |
         The authorization details. This represents the value of the `authorization_details`
         request parameter in the preceding device authorization request which is defined in
         "OAuth 2.0 Rich Authorization Requests".
-=======
->>>>>>> par_endpoint
       properties:
         elements:
           type: array
@@ -14977,13 +13037,10 @@ components:
         - DISTRIBUTED
     ClientAuthenticationMethod:
       type: string
-<<<<<<< HEAD
       description: |
         The client authentication method that the client application declares that it uses at the token
         endpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic
         Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-=======
->>>>>>> par_endpoint
       enum:
         - NONE
         - CLIENT_SECRET_BASIC
@@ -15127,12 +13184,6 @@ components:
             for details.
         applicationType:
           $ref: '#/components/schemas/ApplicationType'
-<<<<<<< HEAD
-=======
-          description: |
-            The application type. The value of this property affects the validation steps for a redirect URI.
-            See the description about `redirectUris` property for more details.
->>>>>>> par_endpoint
         logoUri:
           type: string
           description: |
@@ -15266,7 +13317,6 @@ components:
             This property corresponds to the `authorization_data_types` metadata. See "OAuth 2.0 Rich
             Authorization Requests" (RAR) for details.
         authorizationSignAlg:
-<<<<<<< HEAD
           $ref: '#/components/schemas/JWSAlg'
         authorizationEncryptionAlg:
           $ref: '#/components/schemas/JWEAlg'
@@ -15276,53 +13326,6 @@ components:
           $ref: '#/components/schemas/ClientAuthenticationMethod'
         tokenAuthSignAlg:
           $ref: '#/components/schemas/JWSAlg'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/0'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/1'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The JWS `alg` algorithm for signing authorization responses.
-
-            This property corresponds to `authorization_signed_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
-            of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
-        authorizationEncryptionAlg:
-          anyOf:
-            - $ref: '#/components/schemas/jWEAlg'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The JWE `alg` algorithm for encryption authorization responses.
-
-            This property corresponds to `authorization_encrypted_response_alg` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
-            of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
-        authorizationEncryptionEnc:
-          anyOf:
-            - $ref: '#/components/schemas/jWEEnc'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The JWE `enc` algorithm for encryption authorization responses.
-
-            This property corresponds to `authorization_encrypted_response_enc` in [5. Client Metadata](https://openid.net/specs/openid-financial-api-jarm.html#client-metadata)
-            of [Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html).
-        tokenAuthMethod:
-          anyOf:
-            - $ref: '#/components/schemas/ClientAuthenticationMethod'
-          description: |
-            The client authentication method that the client application declares that it uses at the token
-            endpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic
-            Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        tokenAuthSignAlg:
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/1'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `alg` header parameter of JWS which is used for client authentication at the token
-            endpoint. Note that this property is used only for the two JWT-based client authentication, namely,
-            `PRIVATE_KEY_JWT` and `CLIENT_SECRET_JWT`. This property corresponds to `token_endpoint_auth_signing_alg`
-            in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
->>>>>>> par_endpoint
         selfSignedCertificateKeyId:
           type: string
           description: |
@@ -15383,52 +13386,11 @@ components:
             set to `false`, authorization requests from this client are processed as if `require_signed_request_object`
             client metadata of this client is `true`. The metadata is defined in "JAR (JWT Secured Authorization Request)".
         requestSignAlg:
-<<<<<<< HEAD
           $ref: '#/components/schemas/JWSAlg'
         requestEncryptionAlg:
           $ref: '#/components/schemas/JWEAlg'
         requestEncryptionEnc:
           $ref: '#/components/schemas/JWEEnc'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/1'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/0'
-            - type: string
-              nullable: true
-              enum:
-                - 'null'
-          description: |
-            The value of `alg` header parameter of JWS that the client application uses for signing a request object.
-            If the value of this property is not `null`, request objects sent from the client application
-            must be signed using the algorithm. Request objects signed by other algorithms are rejected.
-            Note that `null` and `NONE` are different for this property. If the value of this property indicates
-            an asymmetric signing algorithm, the client application must make available its JWK Set which
-            contains a public key for the service to verify the signature of the request object at the URL
-            referred to by its jwksUri configuration property. This property corresponds to `request_object_signing_alg`
-            in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        requestEncryptionAlg:
-          anyOf:
-            - $ref: '#/components/schemas/jWEAlg'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `alg` header parameter of JWE that the client application uses for encrypting a request object.
-            Regardless of whether the value of this property is `null` or not, the client application may
-            and may not encrypt a request object. Furthermore, the client application may use other supported
-            encryption algorithms.
-
-            This property corresponds to `request_object_encryption_alg` in [OpenID Connect Dynamic Client
-            Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        requestEncryptionEnc:
-          anyOf:
-            - $ref: '#/components/schemas/jWEEnc'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `enc` header parameter of JWE that the client application uses for encrypting a request object.
-
-            This property corresponds to `request_object_encryption_enc` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
->>>>>>> par_endpoint
         requestUris:
           type: array
           items:
@@ -15456,47 +13418,11 @@ components:
             request from the client application has neither `acr_values` request parameter nor `acr` claim
             in claims request parameter.
         idTokenSignAlg:
-<<<<<<< HEAD
           $ref: '#/components/schemas/JWSAlg'
         idTokenEncryptionAlg:
           $ref: '#/components/schemas/JWEAlg'
         idTokenEncryptionEnc:
           $ref: '#/components/schemas/JWEEnc'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/1'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/0'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of alg header parameter of JWS that the client application requires the service to use
-            for signing an ID token. `NONE` may be specified, but in that case, the client application cannot
-            obtain an ID token from the service. That is, an authorization request requesting an ID token fails.
-
-            This property corresponds to `id_token_signed_response_alg` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        idTokenEncryptionAlg:
-          anyOf:
-            - $ref: '#/components/schemas/jWEAlg'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `alg` header parameter of JWE that the client application requires the service to use for encrypting an ID token.
-
-            If the value of this property indicates an asymmetric encryption algorithm, the client application must make available its JWK Set which contains a public key
-            for encryption at the URL referred to by its `jwksUri` configuration property.
-
-            This property corresponds to `id_token_encrypted_response_alg` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        idTokenEncryptionEnc:
-          anyOf:
-            - $ref: '#/components/schemas/jWEEnc'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `enc` header parameter of JWE that the client application requires the service to use for encrypting an ID token.
-
-            This property corresponds to `id_token_encrypted_response_enc` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
->>>>>>> par_endpoint
         authTimeRequired:
           type: boolean
           description: |
@@ -15505,18 +13431,7 @@ components:
             This property corresponds to `require_auth_time` in
             [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
         subjectType:
-<<<<<<< HEAD
           $ref: '#/components/schemas/SubjectType'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/SubjectType'
-          description: |
-            The subject type that the client application requests. Details about the subject type are described in
-            [OpenID Connect Core 1.0, 8. Subjct Identifier Types](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes).
-
-            This property corresponds to `subject_type` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
->>>>>>> par_endpoint
         sectorIdentifier:
           type: string
           description: |
@@ -15574,57 +13489,11 @@ components:
             This property corresponds to `jwks_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2.
             Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
         userInfoSignAlg:
-<<<<<<< HEAD
           $ref: '#/components/schemas/JWSAlg'
         userInfoEncryptionAlg:
           $ref: '#/components/schemas/JWEAlg'
         userInfoEncryptionEnc:
           $ref: '#/components/schemas/JWEEnc'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/1'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/0'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `alg` header parameter of JWS that the client application requires the service to
-            use for signing the JWT returned from the user info endpoint.
-
-            If both `userInfoSignAlg` and `userInfoEncryptionAlg` are `null`, the format of the response
-            from the user info endpoint is a plain JSON (not JWT).
-
-            Note that `null` and `NONE` are different for this property.
-
-            This property corresponds to `userinfo_signed_response_alg` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        userInfoEncryptionAlg:
-          anyOf:
-            - $ref: '#/components/schemas/jWEAlg'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `alg` header parameter of JWE that the client application requires the service to
-            use for encrypting the JWT returned from the user info endpoint.
-
-            If the value of this property indicates an asymmetric encryption algorithm, the client application
-            must make available its JWK Set which contains a public key for encryption at the URL referred
-            to by its `jwksUri` configuration property.
-
-            If both `userInfoSignAlg` and `userInfoEncryptionAlg` are `null`, the format of the response
-            from the user info endpoint is a plain JSON (not JWT).
-
-            This property corresponds to `userinfo_encrypted_response_alg` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-        userInfoEncryptionEnc:
-          anyOf:
-            - $ref: '#/components/schemas/jWEEnc'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The value of `enc` header parameter of JWE that the client application requires the service to
-            use for encrypting the JWT returned from the user info endpoint.
-
-            This property corresponds to `userinfo_encrypted_response_enc` in
-            [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
->>>>>>> par_endpoint
         loginUri:
           type: string
           description: |
@@ -15694,21 +13563,7 @@ components:
             The backchannel token delivery mode is defined in the specification of "CIBA (Client Initiated
             Backchannel Authentication)".
         bcRequestSignAlg:
-<<<<<<< HEAD
           $ref: '#/components/schemas/JWSAlg'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/1'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/0'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The signature algorithm of the request to the backchannel authentication endpoint.
-
-            This property corresponds to the `backchannel_authentication_request_signing_alg` metadata.
-            The backchannel token delivery mode is defined in the specification of "CIBA (Client Initiated
-            Backchannel Authentication)".
->>>>>>> par_endpoint
         bcUserCodeRequired:
           type: boolean
           description: |
@@ -15723,14 +13578,7 @@ components:
           description: |
             The attributes of this client.
         extension:
-<<<<<<< HEAD
           $ref: '#/components/schemas/ClientExtension'
-=======
-          allOf:
-            - $ref: '#/components/schemas/ClientExtension'
-          description: |
-            The extended information about this client.
->>>>>>> par_endpoint
         authorizationDetailsTypes:
           type: array
           items:
@@ -15842,7 +13690,6 @@ components:
         - PUSH
     Display:
       type: string
-<<<<<<< HEAD
       description: |
         The display mode which the client application requests by `display` request parameter.
         When the authorization request does not have `display` request parameter, `PAGE` is set as the default value.
@@ -15853,8 +13700,6 @@ components:
 
         Values for this property correspond to the values listed in
         "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), display".
-=======
->>>>>>> par_endpoint
       enum:
         - PAGE
         - POPUP
@@ -15871,11 +13716,8 @@ components:
           description: The scope value.
     GrantType:
       type: string
-<<<<<<< HEAD
       description: |
         The grant type of the access token when the access token was created.
-=======
->>>>>>> par_endpoint
       enum:
         - AUTHORIZATION_CODE
         - IMPLICIT
@@ -15884,7 +13726,6 @@ components:
         - REFRESH_TOKEN
         - CIBA
         - DEVICE_CODE
-<<<<<<< HEAD
     JWEAlg:
       type: string
       description: |
@@ -15895,10 +13736,6 @@ components:
         - as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens
 
         **Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.
-=======
-    jWEAlg:
-      type: string
->>>>>>> par_endpoint
       enum:
         - RSA1_5
         - RSA_OAEP
@@ -15917,7 +13754,6 @@ components:
         - PBES2_HS256_A128KW
         - PBES2_HS384_A192KW
         - PBES2_HS512_A256KW
-<<<<<<< HEAD
     JWEEnc:
       type: string
       description: |
@@ -15926,10 +13762,6 @@ components:
           - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response
           - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object
           - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens
-=======
-    jWEEnc:
-      type: string
->>>>>>> par_endpoint
       enum:
         - A128CBC_HS256
         - A192CBC_HS384
@@ -15937,7 +13769,6 @@ components:
         - A128GCM
         - A192GCM
         - A256GCM
-<<<<<<< HEAD
     JWSAlg:
       type: string
       description: |
@@ -15964,31 +13795,6 @@ components:
         - PS512
         - ES256K
         - EdDSA
-=======
-    jWSAlg:
-      anyOf:
-        - type: string
-          enum:
-            - NONE
-        - type: string
-          enum:
-            - HS256
-            - HS384
-            - HS512
-        - type: string
-          enum:
-            - RS256
-            - RS384
-            - RS512
-            - ES256
-            - ES384
-            - ES512
-            - PS256
-            - PS384
-            - PS512
-            - ES256K
-            - EdDSA
->>>>>>> par_endpoint
     NamedUri:
       type: object
       properties:
@@ -16007,7 +13813,6 @@ components:
           type: string
           description: The value part.
     Prompt:
-<<<<<<< HEAD
       type: string
       description: |
         The prompt that the UI displayed to the end-user must satisfy as the minimum level. This value comes from `prompt` request parameter.
@@ -16020,17 +13825,6 @@ components:
         - LOGIN
         - CONSENT
         - SELECT_ACCOUNT
-=======
-      anyOf:
-        - type: string
-          enum:
-            - NONE
-        - type: string
-          enum:
-            - LOGIN
-            - CONSENT
-            - SELECT_ACCOUNT
->>>>>>> par_endpoint
     Property:
       type: object
       properties:
@@ -16526,22 +14320,7 @@ components:
 
             Note that, however, attempts by [Client Credentials Flow](https://tools.ietf.org/html/rfc6749#section-4.4) do not invalidate existing access tokens because access tokens issued by Client Credentials Flow are not associated with any end-user's subject. Also note that an attempt by [Refresh Token Flow](https://tools.ietf.org/html/rfc6749#section-6) invalidates the coupled access token only and this invalidation is always performed regardless of whether the value of this setting item is `true` or `false`.
         accessTokenSignAlg:
-<<<<<<< HEAD
           $ref: '#/components/schemas/JWSAlg'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/jWSAlg/anyOf/0'
-            - $ref: '#/components/schemas/jWSAlg/anyOf/2'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The signature algorithm of access tokens.
-
-            When `null` is set, access tokens issued by this service are just random strings.
-            On the other hand, when a `non-null` value is set, access tokens issued by this service are JWTs
-            and the value of this property is used as the signature algorithm of the JWTs.
-
-            Note that access tokens generated by older Authlete versions are always random strings.
->>>>>>> par_endpoint
         accessTokenSignatureKeyId:
           type: string
           description: |
@@ -16928,15 +14707,7 @@ components:
             seconds in device flow. This is used as the value of the `interval` property in responses from
             the device authorization endpoint.
         userCodeCharset:
-<<<<<<< HEAD
           $ref: '#/components/schemas/UserCodeCharset'
-=======
-          anyOf:
-            - $ref: '#/components/schemas/UserCodeCharset'
-            - $ref: '#/components/schemas/Client/properties/requestSignAlg/anyOf/3'
-          description: |
-            The character set for end-user verification codes (`user_code`) for Device Flow.
->>>>>>> par_endpoint
         userCodeLength:
           type: integer
           format: int32
@@ -17204,7 +14975,6 @@ components:
             property to `true`. This feature is called "requestable scopes".
 
             This property affects behaviors of `/api/client/registration` and other family APIs.
-<<<<<<< HEAD
         endSessionEndpoint:
           type: string
           format: uri
@@ -17215,8 +14985,6 @@ components:
 
             The value of this property is used as `end_session_endpoint` property in the [OpenID Provider
             Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-=======
->>>>>>> par_endpoint
     SnsCredentials:
       type: object
       properties:
@@ -17235,15 +15003,12 @@ components:
         - FACEBOOK
     SubjectType:
       type: string
-<<<<<<< HEAD
       description: |
         The subject type that the client application requests. Details about the subject type are described in
         [OpenID Connect Core 1.0, 8. Subjct Identifier Types](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes).
 
         This property corresponds to `subject_type` in
         [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
-=======
->>>>>>> par_endpoint
       enum:
         - PUBLIC
         - PAIRWISE
@@ -17258,11 +15023,8 @@ components:
           description: The value part.
     UserCodeCharset:
       type: string
-<<<<<<< HEAD
       description: |
         The character set for end-user verification codes (`user_code`) for Device Flow.
-=======
->>>>>>> par_endpoint
       enum:
         - BASE20
         - NUMERIC

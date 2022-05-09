@@ -123,7 +123,17 @@ post:
           $ref: ../model/request/client_registration_delete_request.yaml
   responses:
     '200':
-      $ref: ../model/response/client_registration_delete_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_registration_delete_response.yaml
+          example:
+            {
+              "resultCode": "A216001",
+              "resultMessage": "[A216001] The client has been deleted.",
+              "action": "DELETED"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

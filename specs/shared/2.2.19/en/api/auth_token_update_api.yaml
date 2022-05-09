@@ -18,7 +18,23 @@ post:
           $ref: ../model/request/token_update_request.yaml
   responses:
     '200':
-      $ref: ../model/response/token_update_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/token_update_response.yaml
+          example:
+            {
+              "resultCode": "A135001",
+              "resultMessage": "[A135001] Updated the access token successfully.",
+              "accessToken": "Z5a40U6dWvw2gMoCOAFbZcM85q4HC0Z--0YKD9-Nf6Q",
+              "accessTokenExpiresAt": 1642048149000,
+              "action": "OK",
+              "scopes": [
+                "history.read"
+              ],
+              "tokenType": "Bearer"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

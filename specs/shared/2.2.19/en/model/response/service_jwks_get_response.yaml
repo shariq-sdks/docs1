@@ -1,49 +1,10 @@
-description: ""
-content:
-  application/json:
-    schema:
+type: object
+properties:
+  keys:
+    type: array
+    items:
       type: object
-      properties:
-        keys:
-          type: array
-          items:
-            type: object
-            description: >
-              An object representing JWK. See [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517)
-              for more details.
-          description: An array of [JWK](https://datatracker.ietf.org/doc/html/rfc7517)s.
-    example:
-      {
-        "keys": [
-          {
-            "e": "AQAB",
-            "n": "kVXi0XB8LGYZfFPXymaszWjBQsO22tasQH3PEiPeLSymBHbp7PtqM8O8xblqhbxV-24lKNs2zDugQaBiVt4zpalyYxL5kqnfY247priZRfmeUatdECh81T-i3VcLpz_M5yfljfVp3sFdaURUQNA3ow9VtUfvPIxN_9YIxXN1zP2nLP5amC2XA8xMt5iubRwbbPbrLyg69zTOzosDVhRTSs5adHK5HNwVn8wCCZPbU7u1cQD8hFNn8xlQcmOmJjSXUQ9slBpLc7G-dUEOI59RxiPd4R44GtSe8gA1WFXvOAdtGjivSm8BAbxuNO8HFtDJmpVl9YsDr9FsxirFl9ZPKs",
-            "kty": "RSA",
-            "use": "sig",
-            "kid": "rsa-sig-001"
-          },
-          {
-            "e": "AQAB",
-            "n": "lQui3_DlrkLs_dyaOQBOclphIIRTTMo0gNlnAgfEM9xjbYQJQzi0CLtO6eseecE3HtvDBWVTw-rMM_NMJTlPTO0_ODWvmJRjXy9DZGEm05LFd_qr6jZ7cdOvjD7zUC3GI9TIokPbjGzueBPJjtAvv_tAazRFCQQfiFy7sQR3u-J4tM8fNo9szo9H09R_eA29llZ3hU39JDKs9nzG60I1mVZtJYPx0_bnO8eYeVDHqoj4SZ4jeru3iX9iDeccH_cDm3M87UomUh-Ri4LlAxXgewDvOaPxAef9ADkDvBVmRo5t60_PJxQ3Tug2EKK-xF1_T7I4TxgS7ga8entMmCxLca",
-            "kty": "RSA",
-            "use": "enc",
-            "kid": "rsa-enc-001"
-          },
-          {
-            "crv": "P-256",
-            "kty": "EC",
-            "use": "sig",
-            "y": "824At71mYpbGK2oOCKAL1Z2scLPrbVwhM882v3a9gBq",
-            "x": "ZXE3h9BxCyyb_Z9ZJ5qH4Vx650y09qwI1EpZO4o4OmL",
-            "kid": "ec256-sig-001"
-          },
-          {
-            "crv": "P-256",
-            "kty": "EC",
-            "use": "enc",
-            "y": "j80Y3leZHHnxC_gN-Ols_l_VfEBQkfGDFFDG5LNJKMl",
-            "x": "xAdEkaExYWGGAC1xYjwxzvqcaCyDloylZk04yiE9_OF",
-            "kid": "ec256-enc-001"
-          }
-        ]
-      }
+      description: >
+        An object representing JWK. See [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517)
+        for more details.
+    description: An array of [JWK](https://datatracker.ietf.org/doc/html/rfc7517)s.

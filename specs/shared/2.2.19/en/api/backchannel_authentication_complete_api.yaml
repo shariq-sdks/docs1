@@ -127,7 +127,35 @@ post:
           $ref: ../model/request/backchannel_authentication_complete_request.yaml
   responses:
     '200':
-      $ref: ../model/response/backchannel_authentication_complete_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/backchannel_authentication_complete_response.yaml
+          example:
+            {
+              "resultCode": "A198001",
+              "resultMessage": "[A198001] Successfully updated the database so that the token endpoint can generate tokens (mode = poll, result = AUTHORIZED).",
+              "accessTokenDuration": 0,
+              "action": "NO_ACTION",
+              "authReqId": "_mzc-ZQdAhSPuMxTlO-MC_oqaOqYCrdNQ39PVxisaiE",
+              "clientId": 26862190133482,
+              "clientIdAliasUsed": false,
+              "clientName": "My CIBA Client",
+              "deliveryMode": "POLL",
+              "idTokenDuration": 0,
+              "refreshTokenDuration": 0,
+              "serviceAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ]
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

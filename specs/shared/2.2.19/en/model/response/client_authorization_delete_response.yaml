@@ -1,17 +1,8 @@
-description: ""
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        resultCode:
-          type: string
-          description: The code which represents the result of the API call.
-        resultMessage:
-          type: string
-          description: A short message which explains the result of the API call.
-    example:
-      {
-        "resultCode": "A137001",
-        "resultMessage": "[A137001] Deleted 3 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762)."
-      }
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.

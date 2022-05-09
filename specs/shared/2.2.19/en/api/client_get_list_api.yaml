@@ -32,7 +32,70 @@ get:
         End index (exclusive) of the result set. The default value is 5. Must not be a negative number.
   responses:
     '200':
-      $ref: ../model/response/client_get_list_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_get_list_response.yaml
+          example:
+            {
+              "clients": [
+                {
+                  "applicationType": "WEB",
+                  "attributes": [
+                    {
+                      "key": "attribute1-key",
+                      "value": "attribute1-value"
+                    },
+                    {
+                      "key": "attribute2-key",
+                      "value": "attribute2-value"
+                    }
+                  ],
+                  "authTimeRequired": false,
+                  "bcUserCodeRequired": false,
+                  "clientId": 26478243745571,
+                  "clientIdAlias": "my-client",
+                  "clientIdAliasEnabled": true,
+                  "clientName": "My client",
+                  "clientSecret": "gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ",
+                  "clientType": "CONFIDENTIAL",
+                  "createdAt": 1639468356000,
+                  "defaultMaxAge": 0,
+                  "derivedSectorIdentifier": "my-client.example.com",
+                  "developer": "john",
+                  "dynamicallyRegistered": false,
+                  "frontChannelRequestObjectEncryptionRequired": false,
+                  "grantTypes": [
+                    "AUTHORIZATION_CODE",
+                    "REFRESH_TOKEN"
+                  ],
+                  "idTokenSignAlg": "RS256",
+                  "modifiedAt": 1639468356000,
+                  "number": 6164,
+                  "parRequired": false,
+                  "redirectUris": [
+                    "https://my-client.example.com/cb1",
+                    "https://my-client.example.com/cb2"
+                  ],
+                  "requestObjectEncryptionAlgMatchRequired": false,
+                  "requestObjectEncryptionEncMatchRequired": false,
+                  "requestObjectRequired": false,
+                  "responseTypes": [
+                    "CODE",
+                    "TOKEN"
+                  ],
+                  "serviceNumber": 5041,
+                  "subjectType": "PUBLIC",
+                  "tlsClientCertificateBoundAccessTokens": false,
+                  "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+                }
+              ],
+              "developer": "john",
+              "end": 3,
+              "start": 0,
+              "totalCount": 1
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

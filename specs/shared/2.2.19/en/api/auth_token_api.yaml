@@ -184,7 +184,53 @@ post:
           $ref: ../model/request/token_request.yaml
   responses:
     '200':
-      $ref: ../model/response/token_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/token_response.yaml
+          example:
+            {
+              "resultCode": "A050001",
+              "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
+              "accessToken": "C4SrUTijIj2IxqE1xBASr3dxQWgso3BpY49g8CyjGjQ",
+              "accessTokenDuration": 3600,
+              "accessTokenExpiresAt": 1640252942736,
+              "action": "OK",
+              "clientAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ],
+              "clientId": 26478243745571,
+              "clientIdAlias": "my-client",
+              "clientIdAliasUsed": false,
+              "grantType": "AUTHORIZATION_CODE",
+              "refreshToken": "60k0cZ38sJcpTgdxvG9Sqa-3RG5AmGExGpFB-1imSxo",
+              "refreshTokenDuration": 3600,
+              "refreshTokenExpiresAt": 1640252942736,
+              "responseContent": "{\\\"access_token\\\":\\\"C4SrUTijIj2IxqE1xBASr3dxQWgso3BpY49g8CyjGjQ\\\",\\\"refresh_token\\\":\\\"60k0cZ38sJcpTgdxvG9Sqa-3RG5AmGExGpFB-1imSxo\\\",\\\"scope\\\":\\\"history.read timeline.read\\\",\\\"token_type\\\":\\\"Bearer\\\",\\\"expires_in\\\":3600}",
+              "scopes": [
+                "history.read",
+                "timeline.read"
+              ],
+              "serviceAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ],
+              "subject": "john"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':
