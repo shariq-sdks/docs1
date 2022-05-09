@@ -70,9 +70,4 @@ properties:
       set, a DPoP proof signed with the corresponding private key MUST be presented with the access
       token when it is used by a client. Additionally, the token's `token_type` will be set to 'DPoP'.
   authorizationDetails:
-    allOf:
-      - $ref: ../authorization_details.yaml
-    description: |
-      The value of the `authorization_details` to associate with the token. If this value is `null`,
-      the authorization details will not be changed. If this property is set, it will completely replace
-      the authorization details previously set on the token.
+    $ref: ../authorization_details.yaml

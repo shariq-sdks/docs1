@@ -2,12 +2,7 @@ type: object
 required: [ grantType, clientId ]
 properties:
   grantType:
-    allOf:
-      - $ref: ../grant_type.yaml
-    description: |
-      The grant type for a newly created access token. `REFRESH_TOKEN` is not allowed.
-      When `grantType` is either IMPLICIT or CLIENT_CREDENTIALS, a refresh token is not issued.
-      See the description of grant types for details about the values above.
+    $ref: ../grant_type.yaml
   clientId:
     type: integer
     format: int64
@@ -117,10 +112,7 @@ properties:
       set, a DPoP proof signed with the corresponding private key MUST be presented with the access
       token when it is used by a client. Additionally, the token's `token_type` will be set to 'DPoP'.
   authorizationDetails:
-    allOf:
-      - $ref: ../authorization_details.yaml
-    description: |
-      The value of the `authorization_details` to associate with the token.
+    $ref: ../authorization_details.yaml
   resources:
     type: array
     items:

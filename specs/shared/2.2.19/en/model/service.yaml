@@ -1095,6 +1095,17 @@ properties:
       property to `true`. This feature is called "requestable scopes".
 
       This property affects behaviors of `/api/client/registration` and other family APIs.
+  endSessionEndpoint:
+    type: string
+    format: uri
+    description: |
+      The endpoint for clients ending the sessions.
+
+      A URL that starts with `https://` and has no fragment component. For example, `https://example.com/auth/endSession`.
+
+      The value of this property is used as `end_session_endpoint` property in the [OpenID Provider
+      Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
+
   # loopbackRedirectionUriVariable is not supported by this version.
   # loopbackRedirectionUriVariable:
   #   type: boolean

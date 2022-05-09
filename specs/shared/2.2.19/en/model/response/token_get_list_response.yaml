@@ -20,10 +20,7 @@ content:
           description: |
             Unique ID of a client developer.
         client:
-          allOf:
-            - $ref: ../client.yaml
-          description: |
-            An array of clients.
+          $ref: ../client.yaml
         subject:
           type: string
           description: |
