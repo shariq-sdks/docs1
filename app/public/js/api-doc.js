@@ -97,45 +97,38 @@ const checkFragment = function() {
   // The current fragment value.
   const currentFragment = location.hash;
 
-  // If fragment value is not specified, fallback.
-  if (!currentFragment)
+  // Get a fragment value that replaces the current fragment value. This
+  // value is a non-null value if replacement is necessary.
+  const replacementFragment = getReplacementFragment(currentFragment);
+
+  // Replace the current fragment value if necessary.
+  if (replacementFragment)
   {
-    location.hash = FALLBACK_FRAGMENT;
-    return;
+    location.hash = replacementFragment;
   }
-
-  // Get a new fragment value that replaces the current fragment value
-  // if the current fragment value is a fragment value used in the old
-  // API doc.
-  const newFragment = getNewFragment(currentFragment);
-  if (newFragment)
-  {
-    // OK. The current fragment value should be replaced with the new
-    // value.
-    location.hash = newFragment;
-    return;
-  }
-
-  // If the code reaches here, it means the current fragment value shouldn't
-  // be replaced as it can't be considered as a fragment value used in
-  // the old API doc. (e.g. '#service-create-api') Instead, we need to
-  // consider the current fragment value as a fragment value used in this
-  // API doc. (e.g. '#post-/service/create')
-
-  // Check if the current fragment value is valid (= exists) in this API
-  // doc.
-  if (isValidFragment(currentFragment))
-  {
-    // OK. The current fragment value is valid (= exists) in this API doc.
-    return;
-  }
-
-  // The current fragment value is invalid (= doesn't exist) in this API
-  // doc. Then, fallback.
-  location.hash = FALLBACK_FRAGMENT;
 };
 
-const getNewFragment = function(currentFragment) {
+const getReplacementFragment = function(currentFragment) {
+  // If fragment value is not specified, set the current fragment value
+  // to the fallback fragment value.
+  if (!currentFragment)
+  {
+    return FALLBACK_FRAGMENT;
+  }
+
+  // Check if the current fragment value is valid.
+  if (isValidFragment(currentFragment))
+  {
+    // OK. The current fragment value is valid. Then, it should not be
+    // replaced.
+    return null;
+  }
+
+  // The current frangment value is not valid but it could be a fragment
+  // value used in the old API doc. The following code tries to replace
+  // an old fragment value with the corresponding fragment value in this
+  // API doc.
+
   // Check 1. Assume the current fragment value is an fragment value used
   // in the old API doc for pointing to an 'Authlete API'. And if that's
   // the case, replace it with the corresponding fragment value used in
@@ -144,7 +137,7 @@ const getNewFragment = function(currentFragment) {
   let newFragment = API_FRAGMENT_MAP[currentFragment];
   if (newFragment)
   {
-    // OK. This means the assumption on check 1 is right. The current
+    // OK. This means the assumption on check 1 is right. Then, the current
     // fragment value should be replaced with the new one.
     return newFragment;
   }
@@ -157,7 +150,7 @@ const getNewFragment = function(currentFragment) {
   newFragment = `#cmp--schemas-${currentFragment.substring(1).replace('-', '')}`
   if (isValidFragment(newFragment))
   {
-    // OK. This means the assumption on check 2 is right. The current
+    // OK. This means the assumption on check 2 is right. Then, the current
     // fragment value should be replaced with the new one.
     return newFragment;
   }
@@ -170,15 +163,15 @@ const getNewFragment = function(currentFragment) {
   newFragment = `#cmp--apiresultcode-${currentFragment.substring(1).toLowerCase()}`;
   if (isValidFragment(newFragment))
   {
-    // OK. This means the assumption on check 3 is right. The current
+    // OK. This means the assumption on check 3 is right. Then, the current
     // fragment value should be replaced with the new one.
     return newFragment;
   }
 
-  // This means the current fragment value shouldn't be replaced as none
-  // of the assumptions above is applicable to the current fragment value.
-  return null;
-}
+  // The current fragment value is not valid and all the assumptions above
+  // can't be applied. Then, return the fallback value.
+  return FALLBACK_FRAGMENT;
+};
 
 const isValidFragment = function(fragment) {
   // We can't validate the fragment value by directly checking if the
@@ -214,9 +207,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
   // Add an event listener for 'spec-loaded' event.
   // NOTE: This must be done after ensuring that the DOM content is loaded.
   getApiDocElement().addEventListener('spec-loaded', (e) => {
-    // Ensure that the current fragment value is valid. If the fragment
-    // value is invalid (= no element exists for the ID specified by the
-    // fragment value), the fragment value falls back to '#overview'.
+    // Check the current fragment value and replace it if necessary.
     checkFragment();
   });
 });
