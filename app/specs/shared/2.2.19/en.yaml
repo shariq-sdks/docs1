@@ -4627,30 +4627,21 @@ paths:
                 parameters:
                   type: string
                   description: |
-                    OAuth 2.0 token request parameters which are the request parameters that the OAuth 2.0 token endpoint of the authorization server
-                    implementation received from the client application.
+                    The pushed authorization request body received from the client application.
 
                     The value of parameters is the entire entity body (which is formatted in `application/x-www-form-urlencoded`) of the request from
                     the client application.
                 clientId:
                   type: string
                   description: |
-                    The client ID extracted from `Authorization` header of the token request from the client application.
-
-                    If the token endpoint of the authorization server implementation supports basic authentication as
-                    a means of client authentication, and the request from the client application contained its client ID
-                    in `Authorization` header, the value should be extracted and set to this parameter.
+                    The client ID extracted from `Authorization` header of the pushed request from the client application.
                 clientSecret:
                   type: string
                   description: |
-                    The client secret extracted from `Authorization` header of the token request from the client application.
-
-                    If the token endpoint of the authorization server implementation supports basic authentication as a means of
-                    client authentication, and the request from the client application contained its client secret in `Authorization` header,
-                    the value should be extracted and set to this parameter.
+                    The client secret extracted from `Authorization` header of the pushed authorization request from the client application.
                 clientCertificate:
                   type: string
-                  description: The client certificate from the MTLS of the token request from the client application.
+                  description: The client certificate from the MTLS connection to pushed authorization endpoint from the client application.
                 clientCertificatePath:
                   type: string
                   description: |
@@ -13182,6 +13173,9 @@ components:
           description: |
             The client type, either `CONFIDENTIAL` or `PUBLIC`. See [RFC 6749, 2.1. Client Types](https://datatracker.ietf.org/doc/html/rfc6749#section-2.1)
             for details.
+          enum:
+            - PUBLIC
+            - CONFIDENTIAL
         applicationType:
           $ref: '#/components/schemas/ApplicationType'
         logoUri:

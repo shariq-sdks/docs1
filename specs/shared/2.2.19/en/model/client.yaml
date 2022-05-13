@@ -76,10 +76,7 @@ properties:
        property is set to `false`, the client ID alias of this client is not recognized even if this
        client's `clientIdAliasEnabled` property is set to `true`.
   clientType:
-    type: string
-    description: |
-      The client type, either `CONFIDENTIAL` or `PUBLIC`. See [RFC 6749, 2.1. Client Types](https://datatracker.ietf.org/doc/html/rfc6749#section-2.1)
-      for details.
+    $ref: ./client_type.yaml
   applicationType:
     $ref: ./application_type.yaml
   logoUri:
