@@ -156,11 +156,11 @@ components:
       $ref: model/dynamic_scope.yaml
     GrantType:
       $ref: model/grant_type.yaml
-    jWEAlg:
+    JWEAlg:
       $ref: model/jwe_alg.yaml
-    jWEEnc:
+    JWEEnc:
       $ref: model/jwe_enc.yaml
-    jWSAlg:
+    JWSAlg:
       $ref: model/jws_alg.yaml
     NamedUri:
       $ref: model/named_uri.yaml
@@ -188,6 +188,7 @@ components:
       $ref: model/tagged_value.yaml
     UserCodeCharset:
       $ref: model/user_code_charset.yaml
+
   APIResultCode:
     $ref: model/api_result_code.yaml
 

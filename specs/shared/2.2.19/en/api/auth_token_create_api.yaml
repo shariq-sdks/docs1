@@ -20,7 +20,29 @@ post:
           $ref: ../model/request/token_create_request.yaml
   responses:
     '200':
-      $ref: ../model/response/token_create_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/token_create_response.yaml
+          example:
+            {
+              "resultCode": "A109001",
+              "resultMessage": "[A109001] An access token was created successfully: authorization_code, client = 26888344961664",
+              "accessToken": "Z5a40U6dWvw2gMoCOAFbZcM85q4HC0Z--0YKD9-Nf6Q",
+              "action": "OK",
+              "clientId": 26888344961664,
+              "expiresAt": 1642048148973,
+              "expiresIn": 3600,
+              "grantType": "AUTHORIZATION_CODE",
+              "refreshToken": "9beh15GWkGLseBBO1tPobnsGpKLHV3mTkm0EWnNBa4g",
+              "scopes": [
+                "history.read",
+                "timeline.read"
+              ],
+              "subject": "john",
+              "tokenType": "Bearer"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

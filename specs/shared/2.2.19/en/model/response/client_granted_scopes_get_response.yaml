@@ -2,34 +2,38 @@ description: ""
 content:
   application/json:
     schema:
-      allOf:
-        - $ref: result.yaml
-        - type: object
-          properties:
-            serviceApiKey:
-              type: string
-              description: |
-                Service API key.
-            clientId:
-              type: string
-              description: |
-                A client ID.
-            subject:
-              type: string
-              description: |
-                Unique user ID of an end-user.
-            latestGrantedScopes:
-              type: array
-              items:
-                type: string
-              description: |
-                Scopes granted by the last authorization process. (See description for details.)
-            mergedGrantedScopes:
-              type: array
-              items:
-                type: string
-              description: |
-                All scopes granted so far. (See description for details.)
+      type: object
+      properties:
+        resultCode:
+          type: string
+          description: The code which represents the result of the API call.
+        resultMessage:
+          type: string
+          description: A short message which explains the result of the API call.
+        serviceApiKey:
+          type: string
+          description: |
+            Service API key.
+        clientId:
+          type: string
+          description: |
+            A client ID.
+        subject:
+          type: string
+          description: |
+            Unique user ID of an end-user.
+        latestGrantedScopes:
+          type: array
+          items:
+            type: string
+          description: |
+            Scopes granted by the last authorization process. (See description for details.)
+        mergedGrantedScopes:
+          type: array
+          items:
+            type: string
+          description: |
+            All scopes granted so far. (See description for details.)
     example:
       {
         "type": "GrantedScopesGetResponse",

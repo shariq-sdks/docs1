@@ -87,7 +87,18 @@ post:
           $ref: ../model/request/token_fail_request.yaml
   responses:
     '200':
-      $ref: ../model/response/token_fail_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/token_fail_response.yaml
+          example:
+            {
+              "resultCode": "A067301",
+              "resultMessage": "[A067301] The credentials (username & password) passed to the token endpoint are invalid.",
+              "action": "BAD_REQUEST",
+              "responseContent": "{\\\"error_description\\\":\\\"[A067301] The credentials (username & password) passed to the token endpoint are invalid.\\\",\\\"error\\\":\\\"invalid_request\\\",\\\"error_uri\\\":\\\"https://docs.authlete.com/#A067301\\\"}"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

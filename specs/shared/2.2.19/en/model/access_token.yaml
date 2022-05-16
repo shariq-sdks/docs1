@@ -34,10 +34,7 @@ properties:
     description: |
       The subject (= unique user ID) associated with the access token.
   grantType:
-    allOf:
-      - $ref: ./grant_type.yaml
-    description: |
-      The grant type of the access token when the access token was created.
+    $ref: ./grant_type.yaml
   scopes:
     type: array
     items:

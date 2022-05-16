@@ -89,7 +89,17 @@ post:
           $ref: ../model/request/device_complete_request.yaml
   responses:
     '200':
-      $ref: ../model/response/device_complete_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/device_complete_response.yaml
+          example:
+            {
+              "resultCode": "A241001",
+              "resultMessage": "[A241001] The API call was processed successfully.",
+              "action": "SUCCESS"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

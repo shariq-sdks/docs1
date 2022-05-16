@@ -329,7 +329,44 @@ post:
           $ref: ../model/request/backchannel_authentication_request.yaml
   responses:
     '200':
-      $ref: ../model/response/backchannel_authentication_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/backchannel_authentication_response.yaml
+          example:
+            {
+              "resultCode": "A179001",
+              "resultMessage": "[A179001] The backchannel authentication request was processed successfully.",
+              "action": "USER_IDENTIFICATION",
+              "clientId": 26862190133482,
+              "clientIdAliasUsed": false,
+              "clientName": "My CIBA Client",
+              "clientNotificationToken": "my-client-notification-token",
+              "deliveryMode": "POLL",
+              "hint": "john",
+              "hintType": "LOGIN_HINT",
+              "requestedExpiry": 0,
+              "scopes": [
+                {
+                  "defaultEntry": false,
+                  "name": "openid"
+                }
+              ],
+              "serviceAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ],
+              "ticket": "Y1qeCf0A-JUz6caceaBfd2AaBYNZ-X-WGTP5Qv47cQI",
+              "userCode": "my-user-code",
+              "userCodeRequired": false
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

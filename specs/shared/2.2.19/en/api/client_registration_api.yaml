@@ -99,7 +99,43 @@ post:
           $ref: ../model/request/client_registration_request.yaml
   responses:
     '200':
-      $ref: ../model/response/client_registration_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_registration_response.yaml
+          example:
+            {
+              "resultCode": "A202001",
+              "resultMessage": "[A202001] The client was created with id 26837717140341.",
+              "action": "CREATED",
+              "client": {
+                "authTimeRequired": false,
+                "bcUserCodeRequired": false,
+                "clientId": 26837717140341,
+                "clientIdAliasEnabled": false,
+                "clientName": "My Dynamic Client",
+                "clientSecret": "bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw",
+                "clientType": "CONFIDENTIAL",
+                "createdAt": 1641735467000,
+                "defaultMaxAge": 0,
+                "developer": "authlete_21653835348762",
+                "dynamicallyRegistered": true,
+                "frontChannelRequestObjectEncryptionRequired": false,
+                "idTokenSignAlg": "RS256",
+                "modifiedAt": 1641735467013,
+                "number": 6248,
+                "parRequired": false,
+                "requestObjectEncryptionAlgMatchRequired": false,
+                "requestObjectEncryptionEncMatchRequired": false,
+                "requestObjectRequired": false,
+                "serviceNumber": 5041,
+                "subjectType": "PUBLIC",
+                "tlsClientCertificateBoundAccessTokens": false,
+                "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+              },
+              "responseContent": "{\\\"default_max_age\\\":0,\\\"registration_client_uri\\\":\\\"https://my-service.example.com/dcr/register/26837717140341\\\",\\\"registration_access_token\\\":\\\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\\\",\\\"client_id\\\":\\\"26837717140341\\\",\\\"token_endpoint_auth_method\\\":\\\"client_secret_basic\\\",\\\"require_pushed_authorization_requests\\\":false,\\\"backchannel_user_code_parameter\\\":false,\\\"client_secret\\\":\\\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\\\",\\\"client_id_issued_at\\\":1641735467,\\\"tls_client_certificate_bound_access_tokens\\\":false,\\\"client_name\\\":\\\"My Dynamic Client\\\",\\\"id_token_signed_response_alg\\\":\\\"RS256\\\",\\\"subject_type\\\":\\\"public\\\",\\\"client_secret_expires_at\\\":0,\\\"require_signed_request_object\\\":false}"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

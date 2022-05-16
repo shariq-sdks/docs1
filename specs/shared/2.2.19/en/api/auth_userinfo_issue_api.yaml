@@ -166,7 +166,18 @@ post:
           $ref: ../model/request/userinfo_issue_request.yaml
   responses:
     '200':
-      $ref: ../model/response/userinfo_issue_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/userinfo_issue_response.yaml
+          example:
+            {
+              "resultCode": "A096001",
+              "resultMessage": "[A096001] An ID token was generated successfully.",
+              "action": "JSON",
+              "responseContent": "{\\\"exp\\\":1511600971,\\\"sub\\\":\\\"john\\\",\\\"aud\\\":[\\\"26478243745571\\\"],\\\"iss\\\":\\\"https://authlete.com\\\",\\\"iat\\\":1511514571}"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

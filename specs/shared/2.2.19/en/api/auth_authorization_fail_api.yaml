@@ -127,7 +127,18 @@ post:
           $ref: ../model/request/authorization_fail_request.yaml
   responses:
     '200':
-      $ref: ../model/response/authorization_fail_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/authorization_fail_response.yaml
+          example:
+            {
+              "resultCode": "A004201",
+              "resultMessage": "[A004201] The authorization request from the service does not contain 'parameters' parameter.",
+              "action": "BAD_REQUEST",
+              "responseContent": "{\\\"error_description\\\":\\\"[A004201] The authorization request from the service does not contain 'parameters' parameter.\\\",\\\"error\\\":\\\"invalid_request\\\",\\\"error_uri\\\":\\\"https://docs.authlete.com/#A004201\\\"}"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

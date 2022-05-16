@@ -23,7 +23,19 @@ post:
           clientSecret: "P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA"
   responses:
     '200':
-      $ref: ../model/response/pushed_authorization_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/pushed_authorization_response.yaml
+          example:
+            {
+              "resultCode": "A245001",
+              "resultMessage": "[A245001] Successfully registered a request object for client (5921531358155430), URI is urn:ietf:params:oauth:request_uri:CAK9YEtNorwXE3UwSyihsBOL0jFrqUup7yAACw5y5Zg.",
+              "action": "CREATED",
+              "requestUri": "urn:ietf:params:oauth:request_uri:CAK9YEtNorwXE3UwSyihsBOL0jFrqUup7yAACw5y5Zg",
+              "responseContent": "{\"expires_in\":600,\"request_uri\":\"urn:ietf:params:oauth:request_uri:CAK9YEtNorwXE3UwSyihsBOL0jFrqUup7yAACw5y5Zg\"}"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':

@@ -1,5 +1,0 @@
-type: string
-enum:
-  - HS256
-  - HS384
-  - HS512

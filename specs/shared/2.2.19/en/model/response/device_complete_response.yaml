@@ -1,24 +1,18 @@
-description: ""
-content:
-  application/json:
-    schema:
-      allOf:
-        - $ref: result.yaml
-        - type: object
-          properties:
-            action:
-              type: string
-              enum:
-                - SERVER_ERROR
-                - USER_CODE_NOT_EXIST
-                - USER_CODE_EXPIRED
-                - INVALID_REQUEST
-                - SUCCESS
-              description: |
-                The next action that the authorization server implementation should take.
-    example:
-      {
-        "resultCode": "A241001",
-        "resultMessage": "[A241001] The API call was processed successfully.",
-        "action": "SUCCESS"
-      }
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.
+  action:
+    type: string
+    enum:
+      - SERVER_ERROR
+      - USER_CODE_NOT_EXIST
+      - USER_CODE_EXPIRED
+      - INVALID_REQUEST
+      - SUCCESS
+    description: |
+      The next action that the authorization server implementation should take.
