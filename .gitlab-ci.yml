@@ -84,6 +84,10 @@ delete-go-client-review:
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     action: stop
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
+    - if: $CI_COMMIT_BRANCH
   before_script:
     - mkdir ~/.ssh/
     - echo "${CI_KNOWN_HOSTS}" > ~/.ssh/known_hosts
