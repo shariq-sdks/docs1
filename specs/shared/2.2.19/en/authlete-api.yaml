@@ -156,11 +156,11 @@ components:
       $ref: model/dynamic_scope.yaml
     GrantType:
       $ref: model/grant_type.yaml
-    JWEAlg:
+    JweAlg:
       $ref: model/jwe_alg.yaml
-    JWEEnc:
+    JweEnc:
       $ref: model/jwe_enc.yaml
-    JWSAlg:
+    JwsAlg:
       $ref: model/jws_alg.yaml
     NamedUri:
       $ref: model/named_uri.yaml
