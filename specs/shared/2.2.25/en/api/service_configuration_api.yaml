@@ -1,0 +1,101 @@
+get:
+  summary: /service/configuration API
+  description: |
+    This API gathers configuration information about a service.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    This API is supposed to be called from within the implementation of the configuration endpoint of
+    the service where the service that supports OpenID Connect and [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html)
+    must expose its configuration information in a JSON format. Details about the format are described
+    in "[3. OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata)"
+    in OpenID Connect Discovery 1.0.
+
+    </details>
+
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: query
+      name: pretty
+      schema:
+        type: boolean
+      required: false
+      description:
+        This boolean value indicates whether the JSON in the response should be formatted or not. If
+        `true`, the JSON in the response is pretty-formatted. The default value is `false`.
+  responses:
+    '200':
+      $ref: ../model/response/service_configuration_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'service_configuration_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/service/configuration?pretty=true \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        api.getServiceConfiguration(true);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        await api.GetServiceConfiguration(true);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $api.getServiceConfiguration(true);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        api.get_service_configuration(pretty: true)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        api.getServiceConfiguration(True)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        api.GetServiceConfiguration(true)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        await api.getServiceConfiguration(true);
+  tags:
+    - Configuration Endpoint

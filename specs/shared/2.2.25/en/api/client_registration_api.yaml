@@ -1,0 +1,225 @@
+post:
+  summary: /client/registration API
+  description: |
+    Register a client. This API is supposed to be used to implement a client registration endpoint that
+    complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591) (OAuth 2.0 Dynamic Client
+    Registration Protocol).
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    This API is supposed to be called from the within the implementation of the client registration
+    endpoint of the authorization server. The authorization server implementation should retrieve
+    the value of `action` from the response and take the following steps according to the value.
+
+    **INTERNAL_SERVER_ERROR**
+
+    When the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the API call from the authorization
+    server implementation was wrong or that an error occurred in Authlete.
+
+    In either case, from a viewpoint of the client or developer, it is an error on the server side.
+    Therefore, the authorization server implementation should generate a response with "500 Internal
+    Server Error"s and `application/json`.
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used as
+    the entity body of the response.
+
+    The following illustrates the response which the authorization server implementation should generate
+    and return to the client or developer.
+
+    ```
+    HTTP/1.1 500 Internal Server Error
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    The endpoint implementation may return another different response to the client or developer since
+    "500 Internal Server Error" is not required by the specification.
+
+    **BAD_REQUEST**
+
+    When the value of `action` is `BAD_REQUEST`, it means that the request from the client or developer
+    was wrong.
+
+    The authorization server implementation should generate a response with "400 Bad Request" and `application/json`.
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used
+    as the entity body of the response.
+
+    The following illustrates the response which the authorization server implementation should generate
+    and return to the client or developer.
+
+    ```
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    **CREATED**
+
+    When the value of `action` is `CREATED`, it means that the request from the client or developer is
+    valid.
+
+    The authorization server implementation should generate a response to the client or developer with
+    "201 CREATED" and `application/json`.
+
+    The `responseContent` a JSON string which can be used as the entity body of the response.
+
+    The following illustrates the response which the authorization server implementation should generate
+    and return to the client or developer.
+
+    ```
+    HTTP/1.1 201 CREATED
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+    </details>
+  security:
+    - ServiceCredentials: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/client_registration_request.yaml
+        example:
+          json: "{ \"client_name\": \"My Dynamic Client\" }"
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/client_registration_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_registration_response.yaml
+          example:
+            {
+              "resultCode": "A202001",
+              "resultMessage": "[A202001] The client was created with id 26837717140341.",
+              "action": "CREATED",
+              "client": {
+                "authTimeRequired": false,
+                "bcUserCodeRequired": false,
+                "clientId": 26837717140341,
+                "clientIdAliasEnabled": false,
+                "clientName": "My Dynamic Client",
+                "clientSecret": "bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw",
+                "clientType": "CONFIDENTIAL",
+                "createdAt": 1641735467000,
+                "defaultMaxAge": 0,
+                "developer": "authlete_21653835348762",
+                "dynamicallyRegistered": true,
+                "frontChannelRequestObjectEncryptionRequired": false,
+                "idTokenSignAlg": "RS256",
+                "modifiedAt": 1641735467013,
+                "number": 6248,
+                "parRequired": false,
+                "requestObjectEncryptionAlgMatchRequired": false,
+                "requestObjectEncryptionEncMatchRequired": false,
+                "requestObjectRequired": false,
+                "serviceNumber": 5041,
+                "subjectType": "PUBLIC",
+                "tlsClientCertificateBoundAccessTokens": false,
+                "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+              },
+              "responseContent": "{\\\"default_max_age\\\":0,\\\"registration_client_uri\\\":\\\"https://my-service.example.com/dcr/register/26837717140341\\\",\\\"registration_access_token\\\":\\\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\\\",\\\"client_id\\\":\\\"26837717140341\\\",\\\"token_endpoint_auth_method\\\":\\\"client_secret_basic\\\",\\\"require_pushed_authorization_requests\\\":false,\\\"backchannel_user_code_parameter\\\":false,\\\"client_secret\\\":\\\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\\\",\\\"client_id_issued_at\\\":1641735467,\\\"tls_client_certificate_bound_access_tokens\\\":false,\\\"client_name\\\":\\\"My Dynamic Client\\\",\\\"id_token_signed_response_alg\\\":\\\"RS256\\\",\\\"subject_type\\\":\\\"public\\\",\\\"client_secret_expires_at\\\":0,\\\"require_signed_request_object\\\":false}"
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_registration_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/client/registration \
+        -H 'Content-Type:application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "json": "{ \"client_name\": \"My Dynamic Client\" }" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        ClientRegistrationRequest req = new ClientRegistrationRequest();
+        req.setJson(...);
+
+        api.dynamicClientRegister(req);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        ClientRegistrationRequest req = new ClientRegistrationRequest();
+        req.Json = "...";
+
+        await api.DynamicClientRegister(req);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $req = new ClientRegistrationRequest();
+        $req.json = "...";
+
+        $api.dynamicClientRegister($req);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = Authlete::Model::ClientRegistrationRequest.new
+        req.json = '...'
+
+        api.dynamic_client_register(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = new ClientRegistrationRequest()
+        req.json = '...'
+
+        api.dynamicClientRegister(req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        req := dto.ClientRegistrationRequest{}
+        req.Json = "..."
+
+        api.DynamicClientRegister(&req)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+  tags:
+    - Dynamic Client Registration

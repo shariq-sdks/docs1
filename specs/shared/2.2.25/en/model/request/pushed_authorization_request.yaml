@@ -1,0 +1,25 @@
+type: object
+required: [ parameters ]
+properties:
+  parameters:
+    type: string
+    description: |
+      The pushed authorization request body received from the client application.
+
+      The value of parameters is the entire entity body (which is formatted in `application/x-www-form-urlencoded`) of the request from
+      the client application.
+  clientId:
+    type: string
+    description: |
+      The client ID extracted from `Authorization` header of the pushed request from the client application.
+  clientSecret:
+    type: string
+    description: |
+      The client secret extracted from `Authorization` header of the pushed authorization request from the client application.
+  clientCertificate:
+    type: string
+    description: The client certificate from the MTLS connection to pushed authorization endpoint from the client application.
+  clientCertificatePath:
+    type: string
+    description: |
+      The certificate path presented by the client during client authentication. These certificates are strings in PEM format.

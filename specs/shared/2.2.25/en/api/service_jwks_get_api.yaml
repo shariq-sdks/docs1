@@ -1,0 +1,168 @@
+get:
+  summary: /service/jwks/get API
+  description: |
+    This API gathers JWK Set information for a service so that its client applications can verify
+    signatures by the service and encrypt their requests to the service.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    This API is supposed to be called from within the implementation of the jwk set endpoint of the
+    service where the service that supports OpenID Connect must expose its JWK Set information so that
+    client applications can verify signatures by the service and encrypt their requests to the service.
+    The URI of the endpoint can be found as the value of `jwks_uri` in [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata)
+    if the service supports [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html).
+
+    </details>
+
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: query
+      name: includePrivateKeys
+      schema:
+        type: boolean
+      required: false
+      description:
+        The boolean value that indicates whether the response should include the private keys associated
+        with the service or not. If `true`, the private keys are included in the response. The default
+        value is `false`.
+    - in: query
+      name: pretty
+      schema:
+        type: boolean
+      required: false
+      description:
+        This boolean value indicates whether the JSON in the response should be formatted or not. If
+        `true`, the JSON in the response is pretty-formatted. The default value is `false`.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/service_jwks_get_response.yaml
+          example:
+            {
+              "keys": [
+                {
+                  "e": "AQAB",
+                  "n": "kVXi0XB8LGYZfFPXymaszWjBQsO22tasQH3PEiPeLSymBHbp7PtqM8O8xblqhbxV-24lKNs2zDugQaBiVt4zpalyYxL5kqnfY247priZRfmeUatdECh81T-i3VcLpz_M5yfljfVp3sFdaURUQNA3ow9VtUfvPIxN_9YIxXN1zP2nLP5amC2XA8xMt5iubRwbbPbrLyg69zTOzosDVhRTSs5adHK5HNwVn8wCCZPbU7u1cQD8hFNn8xlQcmOmJjSXUQ9slBpLc7G-dUEOI59RxiPd4R44GtSe8gA1WFXvOAdtGjivSm8BAbxuNO8HFtDJmpVl9YsDr9FsxirFl9ZPKs",
+                  "kty": "RSA",
+                  "use": "sig",
+                  "kid": "rsa-sig-001"
+                },
+                {
+                  "e": "AQAB",
+                  "n": "lQui3_DlrkLs_dyaOQBOclphIIRTTMo0gNlnAgfEM9xjbYQJQzi0CLtO6eseecE3HtvDBWVTw-rMM_NMJTlPTO0_ODWvmJRjXy9DZGEm05LFd_qr6jZ7cdOvjD7zUC3GI9TIokPbjGzueBPJjtAvv_tAazRFCQQfiFy7sQR3u-J4tM8fNo9szo9H09R_eA29llZ3hU39JDKs9nzG60I1mVZtJYPx0_bnO8eYeVDHqoj4SZ4jeru3iX9iDeccH_cDm3M87UomUh-Ri4LlAxXgewDvOaPxAef9ADkDvBVmRo5t60_PJxQ3Tug2EKK-xF1_T7I4TxgS7ga8entMmCxLca",
+                  "kty": "RSA",
+                  "use": "enc",
+                  "kid": "rsa-enc-001"
+                },
+                {
+                  "crv": "P-256",
+                  "kty": "EC",
+                  "use": "sig",
+                  "y": "824At71mYpbGK2oOCKAL1Z2scLPrbVwhM882v3a9gBq",
+                  "x": "ZXE3h9BxCyyb_Z9ZJ5qH4Vx650y09qwI1EpZO4o4OmL",
+                  "kid": "ec256-sig-001"
+                },
+                {
+                  "crv": "P-256",
+                  "kty": "EC",
+                  "use": "enc",
+                  "y": "j80Y3leZHHnxC_gN-Ols_l_VfEBQkfGDFFDG5LNJKMl",
+                  "x": "xAdEkaExYWGGAC1xYjwxzvqcaCyDloylZk04yiE9_OF",
+                  "kid": "ec256-enc-001"
+                }
+              ]
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'service_jwks_get_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/service/jwks/get?pretty=true \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        boolean pretty = true;
+        boolean includePrivateKey = false;
+
+        api.getServiceJwks(pretty, includePrivateKey);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        bool pretty = true;
+        bool includePrivateKey = false;
+
+        await api.GetServiceJwks(pretty, includePrivateKey);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $pretty = true;
+        $includePrivateKey = false;
+
+        $api.getServiceJwks($pretty, $includePrivateKey);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        api.get_service_jwks(pretty: true, includePrivateKeys: false)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        pretty = True
+        includePrivateKey = False
+
+        api.getServiceJwks(pretty, includePrivateKey)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        pretty := true
+        includePrivateKey := false
+
+        api.GetServiceJwks(pretty, includePrivateKey)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const pretty = true;
+        const includePrivateKey = false;
+
+        await api.getServiceJwks(pretty, includePrivateKey);
+  tags:
+    - JWK Set Endpoint

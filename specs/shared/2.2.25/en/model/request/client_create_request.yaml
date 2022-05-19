@@ -1,0 +1,21 @@
+allOf:
+  - $ref: ../client.yaml
+  - type: object
+    required: [ developer ]
+    properties:
+      number:
+        readOnly: true
+      serviceNumber:
+        readOnly: true
+      clientId:
+        readOnly: true
+      clientSecret:
+        readOnly: true
+      dynamicallyRegistered:
+        readOnly: true
+      createdAt:
+        readOnly: true
+      modifiedAt:
+        readOnly: true
+      derivedSectorIdentifier:
+        readOnly: true

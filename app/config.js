@@ -9,7 +9,7 @@ config.supportedServerTypes = [ 'shared' ];
 
 // Supported API document versions for each server type.
 config.supportedVersions = {
-  shared: [ '2.2.19' ]
+  shared: [ '2.2.19', '2.2.25' ]
 };
 
 // The default locale.

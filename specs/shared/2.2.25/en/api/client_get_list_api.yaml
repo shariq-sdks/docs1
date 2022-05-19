@@ -1,0 +1,195 @@
+get:
+  summary: /client/get/list API
+  description: |
+    Get a list of clients.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: query
+      name: developer
+      schema:
+        type: string
+      required: false
+      description: |
+        The developer of client applications. The default value is null. If this parameter is not set
+        to `null`, client application of the specified developer are returned. Otherwise, all client
+        applications that belong to the service are returned.
+    - in: query
+      name: start
+      schema:
+        type: integer
+        format: int32
+      required: false
+      description:
+        Start index (inclusive) of the result set. The default value is 0. Must not be a negative number.
+    - in: query
+      name: end
+      schema:
+        type: integer
+        format: int32
+      required: false
+      description:
+        End index (exclusive) of the result set. The default value is 5. Must not be a negative number.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_get_list_response.yaml
+          example:
+            {
+              "clients": [
+                {
+                  "applicationType": "WEB",
+                  "attributes": [
+                    {
+                      "key": "attribute1-key",
+                      "value": "attribute1-value"
+                    },
+                    {
+                      "key": "attribute2-key",
+                      "value": "attribute2-value"
+                    }
+                  ],
+                  "authTimeRequired": false,
+                  "bcUserCodeRequired": false,
+                  "clientId": 26478243745571,
+                  "clientIdAlias": "my-client",
+                  "clientIdAliasEnabled": true,
+                  "clientName": "My client",
+                  "clientSecret": "gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ",
+                  "clientType": "CONFIDENTIAL",
+                  "createdAt": 1639468356000,
+                  "defaultMaxAge": 0,
+                  "derivedSectorIdentifier": "my-client.example.com",
+                  "developer": "john",
+                  "dynamicallyRegistered": false,
+                  "frontChannelRequestObjectEncryptionRequired": false,
+                  "grantTypes": [
+                    "AUTHORIZATION_CODE",
+                    "REFRESH_TOKEN"
+                  ],
+                  "idTokenSignAlg": "RS256",
+                  "modifiedAt": 1639468356000,
+                  "number": 6164,
+                  "parRequired": false,
+                  "redirectUris": [
+                    "https://my-client.example.com/cb1",
+                    "https://my-client.example.com/cb2"
+                  ],
+                  "requestObjectEncryptionAlgMatchRequired": false,
+                  "requestObjectEncryptionEncMatchRequired": false,
+                  "requestObjectRequired": false,
+                  "responseTypes": [
+                    "CODE",
+                    "TOKEN"
+                  ],
+                  "serviceNumber": 5041,
+                  "subjectType": "PUBLIC",
+                  "tlsClientCertificateBoundAccessTokens": false,
+                  "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+                }
+              ],
+              "developer": "john",
+              "end": 3,
+              "start": 0,
+              "totalCount": 1
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_get_list_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/client/get/list?developer=john\&start=0\&end=5 \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        String developer = "john";
+        int start = 0;
+        int end = 5;
+
+        api.getClientList(developer, start, end);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        String developer = "john";
+        int start = 0;
+        int end = 5;
+
+        await api.GetClientList(developer, start, end);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $developer = "john";
+        $start = 0;
+        $end = 5;
+
+        $api.getClientList($developer, $start, $end);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = { developer: 'john', start: 0, end: 5 }
+
+        api.client_list_get(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        developer = 'john'
+        start = 0
+        end = 5
+
+        api.getClientList(developer, start, end)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        developer = "john"
+        start := 0
+        end := 5
+
+        api.GetClientList(developer, start, end)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const developer = 'john';
+        const start = 0;
+        const end = 5;
+
+        await api.getClientList(developer, start, end);
+
+  tags:
+    - Client Management
