@@ -75,7 +75,7 @@ gen-go-client-review:
     - git config user.name "CI"
     - git checkout -b $CI_COMMIT_BRANCH || true
     - git add *.go go.* docs api .openapi-generator*
-    - git commit -m "Authlete CI - ${CI_COMMIT_SHA}"
+    - git commit -m "Authlete CI - ${CI_COMMIT_SHA}" || true
     - git push origin $CI_COMMIT_BRANCH:refs/heads/$CI_COMMIT_BRANCH --force
 
 delete-go-client-review:
