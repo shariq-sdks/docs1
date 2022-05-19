@@ -1,0 +1,8 @@
+type: object
+required: [ json ]
+properties:
+  json:
+    type: string
+    description: |
+      Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)
+      (OAuth 2.0 Dynamic Client Registration Protocol).

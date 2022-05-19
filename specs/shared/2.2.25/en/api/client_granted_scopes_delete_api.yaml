@@ -1,0 +1,122 @@
+delete:
+  summary: /client/granted_scopes/delete/{clientId}/{subject} API
+  description: |
+    Delete the set of scopes that an end-user has granted to a client application.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    Even if records about granted scopes are deleted by calling this API, existing access tokens are
+    not deleted and scopes of existing access tokens are not changed.
+    </details>
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: clientId
+      schema:
+        type: string
+      required: true
+      description: |
+        A client ID.
+    - in: path
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID of an end-user.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_granted_scopes_delete_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_granted_scopes_delete_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X DELETE https://api.authlete.com/api/client/granted_scopes/delete/26478243745571/john \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        long clientId  = ...;
+        String subject = "john";
+
+        api.deleteGrantedScopes(clientId, subject);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        long clientId  = ...;
+        string subject = "john";
+
+        await api.DeleteGrantedScopes(clientId, subject);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $clientId = ...;
+        $subject = "john";
+
+        $api.deleteGrantedScopes($clientId, $subject);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        client_id = ...
+        subject = 'john'
+
+        api.delete_granted_scopes(client_id, subject)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        clientId = ...
+        subject = 'john'
+
+        api.deleteGrantedScopes(clientId, subject)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        clientId := ...
+        subject := "john"
+
+        api.DeleteGrantedScopes(clientId, subject)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Client Management

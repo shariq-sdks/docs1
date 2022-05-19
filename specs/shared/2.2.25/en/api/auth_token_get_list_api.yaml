@@ -1,0 +1,232 @@
+get:
+  summary: /auth/token/get/list API
+  description: |
+    Get a list of client applications that an end-user has authorized.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: query
+      name: clientIdentifier
+      schema:
+        type: string
+      required: false
+      description: |
+        Client Identifier (client ID or client ID alias).
+    - in: query
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID.
+    - in: query
+      name: start
+      schema:
+        type: integer
+        format: int32
+      required: false
+      description:
+        Start index of search results (inclusive). The default value is 0.
+    - in: query
+      name: end
+      schema:
+        type: integer
+        format: int32
+      required: false
+      description: |
+        End index of search results (exclusive). The default value is 5.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/token_get_list_response.yaml
+          example:
+            {
+              "accessTokens": [
+                {
+                  "accessTokenExpiresAt": 1642048149000,
+                  "accessTokenHash": "tC5hpjGylLiiw-vsd5_tqVHtYSUHblAGimEJ-5xqAco",
+                  "clientId": 26888344961664,
+                  "createdAt": 1642044549000,
+                  "grantType": "AUTHORIZATION_CODE",
+                  "lastRefreshedAt": 0,
+                  "refreshTokenExpiresAt": 1642048149000,
+                  "refreshTokenHash": "jv4B_7_kpY-Rez_E7bYIxGYnZk43w18uigkaeUe6tc4",
+                  "scopes": [
+                    "history.read"
+                  ],
+                  "subject": "john"
+                },
+                {
+                  "accessTokenExpiresAt": 1642051604000,
+                  "accessTokenHash": "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg",
+                  "clientId": 26888344961664,
+                  "createdAt": 1642048004000,
+                  "grantType": "AUTHORIZATION_CODE",
+                  "lastRefreshedAt": 0,
+                  "refreshTokenExpiresAt": 1642051604000,
+                  "refreshTokenHash": "YHmwk4xETvoIJ_maWCpJDlpvmcFLkxmaaSS-v9KPng4",
+                  "scopes": [
+                    "history.read",
+                    "openid",
+                    "timeline.read"
+                  ],
+                  "subject": "john"
+                },
+                {
+                  "accessTokenExpiresAt": 1642052094000,
+                  "accessTokenHash": "UUatYXjkqYFbRQlnItjq03DtUYA2MRRtuL88GCbQpbw",
+                  "clientId": 26888344961664,
+                  "createdAt": 1642048494000,
+                  "grantType": "AUTHORIZATION_CODE",
+                  "lastRefreshedAt": 0,
+                  "refreshTokenExpiresAt": 1642052094000,
+                  "refreshTokenHash": "wjc-IXoScxDiVyBmRrB92I-B0zMXSSKw_qwP_WK1lFM",
+                  "scopes": [
+                    "history.read"
+                  ],
+                  "subject": "john"
+                }
+              ],
+              "client": {
+                "authTimeRequired": false,
+                "bcUserCodeRequired": false,
+                "clientId": 26888344961664,
+                "clientIdAliasEnabled": false,
+                "clientName": "My Device Flow Client",
+                "clientSecret": "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog",
+                "clientType": "CONFIDENTIAL",
+                "createdAt": 1641996927000,
+                "defaultMaxAge": 0,
+                "derivedSectorIdentifier": "api.authlete.com",
+                "developer": "authlete_21653835348762",
+                "dynamicallyRegistered": false,
+                "extension": {
+                  "accessTokenDuration": 0,
+                  "refreshTokenDuration": 0,
+                  "requestableScopesEnabled": false
+                },
+                "frontChannelRequestObjectEncryptionRequired": false,
+                "grantTypes": [
+                  "AUTHORIZATION_CODE",
+                  "IMPLICIT",
+                  "PASSWORD",
+                  "CLIENT_CREDENTIALS",
+                  "REFRESH_TOKEN",
+                  "CIBA",
+                  "DEVICE_CODE"
+                ],
+                "idTokenSignAlg": "HS256",
+                "modifiedAt": 1641996927000,
+                "number": 6260,
+                "parRequired": false,
+                "redirectUris": [
+                  "https://api.authlete.com/api/mock/redirection/21653835348762"
+                ],
+                "requestObjectEncryptionAlgMatchRequired": false,
+                "requestObjectEncryptionEncMatchRequired": false,
+                "requestObjectRequired": false,
+                "responseTypes": [
+                  "NONE",
+                  "CODE",
+                  "TOKEN",
+                  "ID_TOKEN",
+                  "CODE_TOKEN",
+                  "CODE_ID_TOKEN",
+                  "ID_TOKEN_TOKEN",
+                  "CODE_ID_TOKEN_TOKEN"
+                ],
+                "serviceNumber": 5041,
+                "subjectType": "PUBLIC",
+                "tlsClientCertificateBoundAccessTokens": false,
+                "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+              },
+              "end": 3,
+              "start": 0,
+              "subject": "john",
+              "totalCount": 3
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'auth_token_get_list_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/auth/token/get/list/?clientIdentifier=26888344961664\&subject=john\&start=0\&end=3 \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        String clientIdentifier = "26888344961664";
+        String subject = "john";
+        int start = 0;
+        int end = 3;
+
+        api.getTokenList(clientIdentifier, subject, start, end);
+
+    - lang: cs
+      label: C#
+      source: |
+        // This API is not supported yet.
+
+    - lang: php
+      label: PHP
+      source: |
+        // This API is not supported yet.
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        api.get_token_list(
+          client_identifier: '26888344961664',
+          subject: 'john',
+          start: 0,
+          end: 3
+        )
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        clientIdentifier = '26888344961664'
+        subject = 'john'
+        start = 0
+        end = 3
+
+        api.getTokenList(clientIdentifier, subject, start, end)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        clientIdentifier = "26888344961664"
+        subject = "john"
+        start = 0
+        end = 3
+
+        api.GetTokenList(clientIdentifier, subject, start, end)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Token Operations

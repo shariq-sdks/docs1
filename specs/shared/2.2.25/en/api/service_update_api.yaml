@@ -1,0 +1,229 @@
+post:
+  summary: /service/update/{serviceApiKey} API
+  description: |
+    Update a service.
+  security:
+    - ServiceOwnerCredentials: []
+  parameters:
+    - in: path
+      name: serviceApiKey
+      schema:
+        type: string
+      required: true
+      description:
+        The API key of the target service.
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/service.yaml
+        example:
+          accessTokenDuration: 3600
+          accessTokenType: Bearer
+          allowableClockSkew: 0
+          attributes:
+            - key: attribute1-key
+              value: attribute1-value
+            - key: attribute2-key
+              value: attribute2-value
+          authorizationEndpoint: https://my-service.example.com/authz
+          authorizationResponseDuration: 0
+          backchannelAuthReqIdDuration: 0
+          backchannelBindingMessageRequiredInFapi: false
+          backchannelPollingInterval: 0
+          backchannelUserCodeParameterSupported: false
+          claimShortcutRestrictive: false
+          clientIdAliasEnabled: true
+          clientsPerDeveloper: 0
+          dcrScopeUsedAsRequestable: false
+          deviceFlowCodeDuration: 0
+          deviceFlowPollingInterval: 0
+          directAuthorizationEndpointEnabled: false
+          directIntrospectionEndpointEnabled: false
+          directJwksEndpointEnabled: false
+          directRevocationEndpointEnabled: false
+          directTokenEndpointEnabled: false
+          directUserInfoEndpointEnabled: false
+          dynamicRegistrationSupported: false
+          errorDescriptionOmitted: false
+          errorUriOmitted: false
+          frontChannelRequestObjectEncryptionRequired: false
+          grantManagementActionRequired: false
+          hsmEnabled: false
+          idTokenDuration: 0
+          introspectionEndpoint: https://my-service.example.com/introspection
+          issSuppressed: false
+          issuer: https://my-service.example.com
+          missingClientIdAllowed: false
+          mutualTlsValidatePkiCertChain: false
+          nbfOptional: false
+          parRequired: false
+          pkceRequired: true
+          pkceS256Required: false
+          pushedAuthReqDuration: 0
+          refreshTokenDuration: 3600
+          refreshTokenDurationKept: false
+          refreshTokenDurationReset: false
+          refreshTokenKept: false
+          requestObjectEncryptionAlgMatchRequired: false
+          requestObjectEncryptionEncMatchRequired: false
+          requestObjectRequired: false
+          revocationEndpoint: https://my-service.example.com/revocation
+          scopeRequired: false
+          serviceName: My updated service
+          singleAccessTokenPerSubject: false
+          supportedClaimTypes:
+            - NORMAL
+          supportedDisplays:
+            - PAGE
+          supportedGrantTypes:
+            - AUTHORIZATION_CODE
+            - REFRESH_TOKEN
+          supportedIntrospectionAuthMethods:
+            - CLIENT_SECRET_BASIC
+          supportedResponseTypes:
+            - CODE
+          supportedRevocationAuthMethods:
+            - CLIENT_SECRET_BASIC
+          supportedScopes:
+            - defaultEntry: false
+              description: A permission to read your history.
+              name: history.read
+            - defaultEntry: false
+              description: A permission to read your timeline.
+              name: timeline.read
+          supportedTokenAuthMethods:
+            - CLIENT_SECRET_BASIC
+          tlsClientCertificateBoundAccessTokens: false
+          tokenEndpoint: https://my-service.example.com/token
+          tokenExpirationLinked: false
+          traditionalRequestObjectProcessingApplied: false
+          unauthorizedOnClientConfigSupported: false
+          userCodeLength: 0
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/service.yaml
+  responses:
+    '200':
+      $ref: ../model/response/service_update_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'service_update_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/service/update/21653835348762 \
+        -H 'Content-Type:application/json' \
+        -u '9503564192:cxRpzPEkvqYbDu14gpCVKi_p6kMQvcW-lBMi7IfWLK4' \
+        -d '{ "serviceName": "My updated service", ... }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        // Get an existing service.
+        long serviceApiKey = ...;
+        Service service = api.getService(serviceApiKey);
+
+        // Update "service name".
+        service.setAServiceName("My updated service");
+
+        api.updateService(service);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        // Get an existing service.
+        long serviceApiKey = ...;
+        Service service = api.GetService(serviceApiKey);
+
+        // Update "service name".
+        service.ServiceName = "My updated service";
+
+        await api.UpdateService(service);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        // Get an existing service.
+        $serviceApiKey = ...;
+        $api.getService($serviceApiKey);
+
+        // Update "service name".
+        service.setServiceName("My updated service");
+
+        $api.updateService($service);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        service_api_key = ...
+        api.service_get(service_api_key)
+
+        # Update "service name".
+        service.serviceName = 'My updated service';
+
+        api.service_update(service)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        # Get an existing service.
+        serviceApiKey = ...
+        service = api.getService(serviceApiKey)
+
+        # Update "service name".
+        service.serviceName = 'My updated service'
+
+        api.updateService(service)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        // Get an existing service.
+        serviceApiKey := ...
+        service, _ := api.GetService(serviceApiKey)
+
+        // Update "service name".
+        service.ServiceName := "My updated service"
+
+        api.UpdateService(&service)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        // Get an existing service.
+        const serviceApiKey = ...;
+        const service = await api.getService(serviceApiKey);
+
+        // Update "service name".
+        service.serviceName = 'My updated service';
+
+        await api.updateService(service);
+  tags:
+    - Service Management

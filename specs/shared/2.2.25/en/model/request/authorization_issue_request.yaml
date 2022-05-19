@@ -1,0 +1,45 @@
+type: object
+required: [ ticket, subject ]
+properties:
+  ticket:
+    type: string
+    description: |
+      The ticket issued from Authlete `/auth/authorization` API.
+  subject:
+    type: string
+    description: |
+      The subject (= a user account managed by the service) who has granted authorization to the client application.
+  authTime:
+    type: string
+    description: |
+      The time when the authentication of the end-user occurred. Its value is the number of seconds from `1970-01-01`.
+  acr:
+    type: string
+    description: The Authentication Context Class Reference performed for the end-user authentication.
+  claims:
+    type: string
+    description: |
+      The claims of the end-user (= pieces of information about the end-user) in JSON format.
+      See [OpenID Connect Core 1.0, 5.1. Standard Claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims) for details about the format.
+  properties:
+    type: array
+    items:
+      $ref: ../property.yaml
+    description: Extra properties to associate with an access token and/or an authorization code.
+  scopes:
+    type: array
+    items:
+      type: string
+    description: |
+      Scopes to associate with an access token and/or an authorization code.
+      If a non-empty string array is given, it replaces the scopes specified by the original authorization request.
+  sub:
+    type: string
+    description: |
+      The value of the `sub` claim to embed in an ID token. If this request parameter is `null` or empty,
+      the value of the `subject` request parameter is used as the value of the `sub` claim.
+  idHeaderParams:
+    type: string
+    description: |
+      JSON that represents additional JWS header parameters for ID tokens that may be issued based on
+      the authorization request.
