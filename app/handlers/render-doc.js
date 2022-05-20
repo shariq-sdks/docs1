@@ -3,6 +3,9 @@ const NotFoundException = require('../exceptions/not-found-exception');
 const ResponseUtil      = require('../utils/response-util');
 const SpecUtil          = require('../utils/spec-util');
 
+// The latest version of 'shared'.
+const LATEST_VERSION_OF_SHARED = config.supportedVersions['shared'].at(-1);
+
 const isTryAllowed = function(req) {
   // When the requested server type is 'shared', we only enable 'TRY'
   // function on the API doc (Function of making test API calls from the
@@ -25,11 +28,8 @@ const isTryAllowed = function(req) {
     return true;
   }
 
-  // Read the latest version for 'shared' from the application config.
-  const latestVersionOfShared = config.supportedVersions['shared'].at(-1);
-
   // Check if the requested version is the latest one.
-  return req.params.version === latestVersionOfShared;
+  return req.params.version === LATEST_VERSION_OF_SHARED;
 }
 
 module.exports = async function(req, res, next) {
