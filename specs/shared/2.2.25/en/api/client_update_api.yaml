@@ -1,5 +1,5 @@
 post:
-  summary: /client/update/{clientId} API
+  summary: /api/client/update/{clientId} API
   description: |
     Update a client.
   security:

@@ -1,5 +1,5 @@
 post:
-  summary: /client/registration/update API
+  summary: /api/client/registration/update API
   description: |
     Update a dynamically registered client. This API is supposed to be used to implement a client
     registration management endpoint that complies with [RFC 7592](https://datatracker.ietf.org/doc/html/rfc7592)

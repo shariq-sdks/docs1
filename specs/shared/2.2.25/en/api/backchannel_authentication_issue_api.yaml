@@ -1,5 +1,5 @@
 post:
-  summary: /backchannel/authentication/issue API
+  summary: /api/backchannel/authentication/issue API
   description: |
     This API prepares JSON that contains an `auth_req_id`. The JSON should be used as the response body
     of the response which is returned to the client from the [backchannel authentication endpoint](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_backchannel_endpoint)

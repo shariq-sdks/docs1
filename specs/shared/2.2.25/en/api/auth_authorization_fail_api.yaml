@@ -1,5 +1,5 @@
 post:
-  summary: /auth/authorization/fail API
+  summary: /api/auth/authorization/fail API
   description: |
     This API generates a content of an error authorization response that the authorization server implementation
     returns to the client application.

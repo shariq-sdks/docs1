@@ -1,5 +1,5 @@
 get:
-  summary: /auth/token/get/list API
+  summary: /api/auth/token/get/list API
   description: |
     Get a list of client applications that an end-user has authorized.
   security:

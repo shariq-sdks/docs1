@@ -1,5 +1,5 @@
 delete:
-  summary: /client/authorization/delete/{clientId}/{subject} API
+  summary: /api/client/authorization/delete/{clientId}/{subject} API
   description: |
     Delete all existing access tokens issued to a client application by an end-user.
   security:
