@@ -6,7 +6,7 @@ const loadSpec = async function(req) {
 };
 
 const getPathToSpec = function(req) {
-  return path.join(__dirname, `../specs/${req.params.serverType}/${req.params.version}/${req.params.locale}.yaml`);
+  return path.join(__dirname, `../specs/${req.params.serverType}/${req.versionInfo.version}/${req.params.locale}.yaml`);
 };
 
 module.exports = {

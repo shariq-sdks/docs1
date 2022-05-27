@@ -1,3 +1,5 @@
+documentSwitcher:
+  select: --- 選択してください ---
 serverTypes:
   shared: 共用クラウド
   dedicated: 専用クラウド
