@@ -1,7 +1,9 @@
+documentSwitcher:
+  select: --- Select ---
 serverTypes:
-  shared: shared server
-  dedicated: dedicated server
-  onpremise: onpremise server
+  shared: Shared Cloud
+  dedicated: Dedicated Cloud
+  onpremise: Onpremise
 errors:
   unauthorized: Access is denied.
   not_found: Page Not Found.
