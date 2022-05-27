@@ -2585,7 +2585,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api~1api~1client~1granted_scopes~1get~1%7BclientId%7D~1%7Bsubject%7D/get/responses/200'
+                $ref: '#/paths/~1api~1client~1granted_scopes~1get~1%7BclientId%7D~1%7Bsubject%7D/get/responses/200'
               example:
                 resultCode: A137001
                 resultMessage: '[A137001] Deleted 3 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762).'
@@ -2667,7 +2667,7 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  '/api/api/client/granted_scopes/get/{clientId}/{subject}':
+  '/api/client/granted_scopes/get/{clientId}/{subject}':
     get:
       summary: '/api/client/granted_scopes/get/{clientId}/{subject} API'
       description: |
@@ -2800,7 +2800,7 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  '/api/api/client/granted_scopes/delete/{clientId}/{subject}':
+  '/api/client/granted_scopes/delete/{clientId}/{subject}':
     delete:
       summary: '/api/client/granted_scopes/delete/{clientId}/{subject} API'
       description: |

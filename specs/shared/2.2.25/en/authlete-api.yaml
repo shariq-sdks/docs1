@@ -53,9 +53,9 @@ paths:
     $ref: ./api/client_authorization_update_api.yaml
   /api/client/authorization/delete/{clientId}/{subject}:
     $ref: ./api/client_authorization_delete_api.yaml
-  /api/api/client/granted_scopes/get/{clientId}/{subject}:
+  /api/client/granted_scopes/get/{clientId}/{subject}:
     $ref: ./api/client_granted_scopes_get_api.yaml
-  /api/api/client/granted_scopes/delete/{clientId}/{subject}:
+  /api/client/granted_scopes/delete/{clientId}/{subject}:
     $ref: ./api/client_granted_scopes_delete_api.yaml
   /api/auth/authorization:
     $ref: ./api/auth_authorization_api.yaml
