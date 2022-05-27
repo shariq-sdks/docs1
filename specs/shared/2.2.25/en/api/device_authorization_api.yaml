@@ -1,5 +1,5 @@
 post:
-  summary: /device/authorization API
+  summary: /api/device/authorization API
   description: |
     This API parses request parameters of a [device authorization request](https://datatracker.ietf.org/doc/html/rfc8628#section-3.1)
     and returns necessary data for the authorization server implementation to process the device authorization

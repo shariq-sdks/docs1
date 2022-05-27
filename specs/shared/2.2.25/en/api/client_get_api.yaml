@@ -1,5 +1,5 @@
 get:
-  summary: /client/get/{clientId} API
+  summary: /api/client/get/{clientId} API
   description: |
     Get a client.
   security:

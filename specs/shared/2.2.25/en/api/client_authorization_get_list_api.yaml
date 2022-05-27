@@ -1,5 +1,5 @@
 get:
-  summary: /client/authorization/get/list/{subject} API
+  summary: /api/client/authorization/get/list/{subject} API
   description: |
     Get a list of client applications that an end-user has authorized.
   security:

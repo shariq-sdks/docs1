@@ -1,5 +1,5 @@
 post:
-  summary: /service/create API
+  summary: /api/service/create API
   description: |
     Create a new service.
   security:

@@ -1,5 +1,5 @@
 post:
-  summary: /client/authorization/update/{clientId} API
+  summary: /api/client/authorization/update/{clientId} API
   description: |
     Update attributes of all existing access tokens given to a client application.
   security:

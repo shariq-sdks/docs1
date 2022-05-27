@@ -1,5 +1,5 @@
 get:
-  summary: /service/configuration API
+  summary: /api/service/configuration API
   description: |
     This API gathers configuration information about a service.
 

@@ -1,5 +1,5 @@
 post:
-  summary: /client/create API
+  summary: /api/client/create API
   description: |
     Create a new client.
   security:

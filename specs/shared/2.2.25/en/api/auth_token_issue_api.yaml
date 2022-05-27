@@ -1,5 +1,5 @@
 post:
-  summary: /auth/token/issue API
+  summary: /api/auth/token/issue API
   description: |
     This API generates a content of a successful token response that the authorization server implementation
     returns to the client application.
