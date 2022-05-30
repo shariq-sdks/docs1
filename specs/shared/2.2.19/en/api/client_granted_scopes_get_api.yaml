@@ -1,5 +1,5 @@
 get:
-  summary: /client/granted_scopes/get/{clientId}/{subject} API
+  summary: /api/client/granted_scopes/get/{clientId}/{subject} API
   description: |
     Get the set of scopes that a user has granted to a client application.
 

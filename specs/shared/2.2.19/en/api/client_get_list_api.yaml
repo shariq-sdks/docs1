@@ -1,5 +1,5 @@
 get:
-  summary: /client/get/list API
+  summary: /api/client/get/list API
   description: |
     Get a list of clients.
   security:

@@ -1,5 +1,5 @@
 post:
-  summary: /service/update/{serviceApiKey} API
+  summary: /api/service/update/{serviceApiKey} API
   description: |
     Update a service.
   security:

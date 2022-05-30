@@ -1,5 +1,5 @@
 post:
-  summary: /backchannel/authentication/complete API
+  summary: /api/backchannel/authentication/complete API
   description: |
     This API returns information about what action the authorization server should take after it receives
     the result of end-user's decision about whether the end-user has approved or rejected a client application's

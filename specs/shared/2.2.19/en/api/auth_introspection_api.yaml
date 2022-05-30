@@ -1,5 +1,5 @@
 post:
-  summary: /auth/introspection API
+  summary: /api/auth/introspection API
   description: |
     This API gathers information about an access token.
 

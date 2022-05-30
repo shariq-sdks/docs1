@@ -1,5 +1,5 @@
 post:
-  summary: /auth/userinfo API
+  summary: /api/auth/userinfo API
   description: |
     This API gathers information about a user.
 

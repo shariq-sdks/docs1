@@ -1,5 +1,5 @@
 post:
-  summary: /backchannel/authentication API
+  summary: /api/backchannel/authentication API
   description: |
     This API parses request parameters of a [backchannel authentication request](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_request)
     and returns necessary data for the authorization server implementation to process the backchannel

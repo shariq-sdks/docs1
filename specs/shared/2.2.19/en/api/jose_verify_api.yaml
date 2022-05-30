@@ -1,5 +1,5 @@
 post:
-  summary: /jose/verify API
+  summary: /api/jose/verify API
   description: |
     This API verifies a JOSE object.
   security:

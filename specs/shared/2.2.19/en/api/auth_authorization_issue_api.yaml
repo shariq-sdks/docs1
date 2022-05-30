@@ -1,5 +1,5 @@
 post:
-  summary: /auth/authorization/issue API
+  summary: /api/auth/authorization/issue API
   description: |
     This API parses request parameters of an authorization request and returns necessary data for the
     authorization server implementation to process the authorization request further.

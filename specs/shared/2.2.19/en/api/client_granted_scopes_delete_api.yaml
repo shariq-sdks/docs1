@@ -1,5 +1,5 @@
 delete:
-  summary: /client/granted_scopes/delete/{clientId}/{subject} API
+  summary: /api/client/granted_scopes/delete/{clientId}/{subject} API
   description: |
     Delete the set of scopes that an end-user has granted to a client application.
 

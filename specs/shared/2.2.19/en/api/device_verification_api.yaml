@@ -1,5 +1,5 @@
 post:
-  summary: /device/verification API
+  summary: /api/device/verification API
   description: |
     The API returns information associated with a user code.
 

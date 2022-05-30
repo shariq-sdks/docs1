@@ -1,5 +1,5 @@
 post:
-  summary: /auth/token/create API
+  summary: /api/auth/token/create API
   description: |
     Create an access token.
   security:
