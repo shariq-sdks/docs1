@@ -1,10 +1,29 @@
 const config            = require('../config');
 const NotFoundException = require('../exceptions/not-found-exception');
 
-// A map holding the latest versions for each server type.
-const LATEST_VERSION_MAP = Object.entries(config.supportedVersions).reduce(
-  (prev, [k, v]) => { return { ...prev, [k]: v.at(-1) } }, {}
-);
+// A cache object holding the latest versions for each server type.
+const LATEST_VERSION_CACHE = {};
+
+const getLatestVersion = function(serverType) {
+  // Get the latest version for the server type from the cache.
+  let latestVersion = LATEST_VERSION_CACHE[serverType];
+
+  // If the cache doesn't have the latest version for the server type.
+  if (!latestVersion)
+  {
+    // Read the latest version for the server type from the configuration.
+    latestVersion = config.supportedVersions[serverType].at(-1);
+
+    // Update the cache with it.
+    LATEST_VERSION_CACHE[serverType] = latestVersion;
+  }
+
+  return latestVersion;
+};
+
+const isLatestVersion = function(serverType, version) {
+  return getLatestVersion(serverType) === version;
+};
 
 const createVersionInfo = function(version, latest) {
   return { version: version, latest: latest };
@@ -16,7 +35,7 @@ module.exports = function(req, res, next) {
   {
     // Create a version info.
     req.versionInfo =
-      createVersionInfo(req.params.version, LATEST_VERSION_MAP[req.params.serverType] === req.params.version);
+      createVersionInfo(req.params.version, isLatestVersion(req.params.serverType, req.params.version));
 
     // Pass control to the next process.
     return next();
@@ -28,7 +47,7 @@ module.exports = function(req, res, next) {
     // Look up the latest version of the server type and then create a
     // version info.
     req.versionInfo =
-      createVersionInfo(LATEST_VERSION_MAP[req.params.serverType], true);
+      createVersionInfo(getLatestVersion(req.params.serverType), true);
 
     // Pass control to the next process.
     return next();
