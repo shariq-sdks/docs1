@@ -1,5 +1,5 @@
 post:
-  summary: /auth/userinfo/issue API
+  summary: /api/auth/userinfo/issue API
   description: |
     This API generates an ID token.
 

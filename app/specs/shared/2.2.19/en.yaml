@@ -8,12 +8,12 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
-  - url: 'https://api.authlete.com/api'
+  - url: 'https://api.authlete.com'
     description: Shared production server.
 paths:
-  '/service/get/{serviceApiKey}':
+  '/api/service/get/{serviceApiKey}':
     get:
-      summary: '/service/get/{serviceApiKey} API'
+      summary: '/api/service/get/{serviceApiKey} API'
       description: |
         Get a service.
       security:
@@ -125,13 +125,13 @@ paths:
                 unauthorizedOnClientConfigSupported: false
                 userCodeLength: 0
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_get_api
       x-code-samples:
         - lang: shell
@@ -201,9 +201,9 @@ paths:
             await api.getService(serviceApiKey);
       tags:
         - Service Management
-  /service/get/list:
+  /api/service/get/list:
     get:
-      summary: /service/get/list API
+      summary: /api/service/get/list API
       description: |
         Get a list of services.
       security:
@@ -352,13 +352,13 @@ paths:
                     unauthorizedOnClientConfigSupported: false
                     userCodeLength: 0
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_get_list_api
       x-code-samples:
         - lang: shell
@@ -434,9 +434,9 @@ paths:
             await api.getServiceList(start, end);
       tags:
         - Service Management
-  /service/create:
+  /api/service/create:
     post:
-      summary: /service/create API
+      summary: /api/service/create API
       description: |
         Create a new service.
       security:
@@ -585,13 +585,13 @@ paths:
                 unauthorizedOnClientConfigSupported: false
                 userCodeLength: 0
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_create_api
       x-code-samples:
         - lang: shell
@@ -677,9 +677,9 @@ paths:
             await api.createService(service);
       tags:
         - Service Management
-  '/service/update/{serviceApiKey}':
+  '/api/service/update/{serviceApiKey}':
     post:
-      summary: '/service/update/{serviceApiKey} API'
+      summary: '/api/service/update/{serviceApiKey} API'
       description: |
         Update a service.
       security:
@@ -883,13 +883,13 @@ paths:
                 unauthorizedOnClientConfigSupported: false
                 userCodeLength: 0
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_update_api
       x-code-samples:
         - lang: shell
@@ -995,9 +995,9 @@ paths:
             await api.updateService(service);
       tags:
         - Service Management
-  '/service/delete/{serviceApiKey}':
+  '/api/service/delete/{serviceApiKey}':
     delete:
-      summary: '/service/delete/{serviceApiKey} API'
+      summary: '/api/service/delete/{serviceApiKey} API'
       description: |
         Delete a service.
       security:
@@ -1013,13 +1013,13 @@ paths:
         '204':
           description: The service was successfully deleted.
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_delete_api
       x-code-samples:
         - lang: shell
@@ -1089,9 +1089,9 @@ paths:
             await api.deleteService(serviceApiKey);
       tags:
         - Service Management
-  '/client/get/{clientId}':
+  '/api/client/get/{clientId}':
     get:
-      summary: '/client/get/{clientId} API'
+      summary: '/api/client/get/{clientId} API'
       description: |
         Get a client.
       security:
@@ -1152,13 +1152,13 @@ paths:
                 tlsClientCertificateBoundAccessTokens: false
                 tokenAuthMethod: CLIENT_SECRET_BASIC
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_get_api
       x-code-samples:
         - lang: shell
@@ -1228,9 +1228,9 @@ paths:
             await api.getClient(clientId);
       tags:
         - Client Management
-  /client/get/list:
+  /api/client/get/list:
     get:
-      summary: /client/get/list API
+      summary: /api/client/get/list API
       description: |
         Get a list of clients.
       security:
@@ -1341,13 +1341,13 @@ paths:
                 start: 0
                 totalCount: 1
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_get_list_api
       x-code-samples:
         - lang: shell
@@ -1429,9 +1429,9 @@ paths:
             await api.getClientList(developer, start, end);
       tags:
         - Client Management
-  /client/create:
+  /api/client/create:
     post:
-      summary: /client/create API
+      summary: /api/client/create API
       description: |
         Create a new client.
       security:
@@ -1513,13 +1513,13 @@ paths:
                 tlsClientCertificateBoundAccessTokens: false
                 tokenAuthMethod: CLIENT_SECRET_BASIC
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_create_api
       x-code-samples:
         - lang: shell
@@ -1612,9 +1612,9 @@ paths:
             await api.createClient(client);
       tags:
         - Client Management
-  '/client/update/{clientId}':
+  '/api/client/update/{clientId}':
     post:
-      summary: '/client/update/{clientId} API'
+      summary: '/api/client/update/{clientId} API'
       description: |
         Update a client.
       security:
@@ -1719,13 +1719,13 @@ paths:
                 tlsClientCertificateBoundAccessTokens: false
                 tokenAuthMethod: CLIENT_SECRET_BASIC
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_update_api
       x-code-samples:
         - lang: shell
@@ -1832,9 +1832,9 @@ paths:
             await api.updateClient(client);
       tags:
         - Client Management
-  '/client/delete/{clientId}':
+  '/api/client/delete/{clientId}':
     delete:
-      summary: '/client/delete/{clientId} API'
+      summary: '/api/client/delete/{clientId} API'
       description: |
         Delete a client.
       security:
@@ -1850,13 +1850,13 @@ paths:
         '204':
           description: The client was successfully deleted.
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_delete_api
       x-code-samples:
         - lang: shell
@@ -1926,9 +1926,9 @@ paths:
             await api.deleteClient(clientId);
       tags:
         - Client Management
-  '/client/secret/refresh/{clientIdentifier}':
+  '/api/client/secret/refresh/{clientIdentifier}':
     get:
-      summary: /client/secret/refresh API
+      summary: /api/client/secret/refresh API
       description: |
         Refresh the client secret of a client. A new value of the client secret will be generated by the
         Authlete server.
@@ -1972,13 +1972,13 @@ paths:
                 newClientSecret: 6Rg_WDO23F0HSZe8GzE5_ZxRHD2pCA02M7T87s0MNOmnf8hg9eYScgeH6P_tb42yiaRuptJmMY12jwWuoy2KeA
                 oldClientSecret: gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_secret_refresh_api
       x-code-samples:
         - lang: shell
@@ -2043,9 +2043,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  '/client/secret/update/{clientIdentifier}':
+  '/api/client/secret/update/{clientIdentifier}':
     post:
-      summary: /client/secret/update API
+      summary: /api/client/secret/update API
       description: |
         Update the client secret of a client.
 
@@ -2079,7 +2079,7 @@ paths:
               clientSecret: my_updated_client_secret
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1client~1secret~1update~1%7BclientIdentifier%7D/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1client~1secret~1update~1%7BclientIdentifier%7D/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -2108,13 +2108,13 @@ paths:
                 newClientSecret: my_updated_client_secret
                 oldClientSecret: 6Rg_WDO23F0HSZe8GzE5_ZxRHD2pCA02M7T87s0MNOmnf8hg9eYScgeH6P_tb42yiaRuptJmMY12jwWuoy2KeA
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_secret_update_api
       x-code-samples:
         - lang: shell
@@ -2187,9 +2187,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  '/client/authorization/get/list/{subject}':
+  '/api/client/authorization/get/list/{subject}':
     get:
-      summary: '/client/authorization/get/list/{subject} API'
+      summary: '/api/client/authorization/get/list/{subject} API'
       description: |
         Get a list of client applications that an end-user has authorized.
       security:
@@ -2308,13 +2308,13 @@ paths:
                 subject: john
                 totalCount: 1
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_authorization_get_list_api
       x-code-samples:
         - lang: shell
@@ -2397,9 +2397,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  '/client/authorization/update/{clientId}':
+  '/api/client/authorization/update/{clientId}':
     post:
-      summary: '/client/authorization/update/{clientId} API'
+      summary: '/api/client/authorization/update/{clientId} API'
       description: |
         Update attributes of all existing access tokens given to a client application.
       security:
@@ -2441,7 +2441,7 @@ paths:
                 - history.read
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1client~1authorization~1update~1%7BclientId%7D/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1client~1authorization~1update~1%7BclientId%7D/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -2460,13 +2460,13 @@ paths:
                 resultCode: A138001
                 resultMessage: '[A138001] Updated 1 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762).'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_authorization_update_api
       x-code-samples:
         - lang: shell
@@ -2557,9 +2557,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  '/client/authorization/delete/{clientId}/{subject}':
+  '/api/client/authorization/delete/{clientId}/{subject}':
     delete:
-      summary: '/client/authorization/delete/{clientId}/{subject} API'
+      summary: '/api/client/authorization/delete/{clientId}/{subject} API'
       description: |
         Delete all existing access tokens issued to a client application by an end-user.
       security:
@@ -2590,13 +2590,13 @@ paths:
                 resultCode: A137001
                 resultMessage: '[A137001] Deleted 3 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762).'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_authorization_delete_api
       x-code-samples:
         - lang: shell
@@ -2669,7 +2669,7 @@ paths:
         - Client Management
   '/api/client/granted_scopes/get/{clientId}/{subject}':
     get:
-      summary: '/client/granted_scopes/get/{clientId}/{subject} API'
+      summary: '/api/client/granted_scopes/get/{clientId}/{subject} API'
       description: |
         Get the set of scopes that a user has granted to a client application.
 
@@ -2723,13 +2723,13 @@ paths:
               type: string
               description: A short message which explains the result of the API call.
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_granted_scopes_get_api
       x-code-samples:
         - lang: shell
@@ -2802,7 +2802,7 @@ paths:
         - Client Management
   '/api/client/granted_scopes/delete/{clientId}/{subject}':
     delete:
-      summary: '/client/granted_scopes/delete/{clientId}/{subject} API'
+      summary: '/api/client/granted_scopes/delete/{clientId}/{subject} API'
       description: |
         Delete the set of scopes that an end-user has granted to a client application.
 
@@ -2845,13 +2845,13 @@ paths:
                     type: string
                     description: A short message which explains the result of the API call.
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_granted_scopes_delete_api
       x-code-samples:
         - lang: shell
@@ -2922,9 +2922,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Client Management
-  /auth/authorization:
+  /api/auth/authorization:
     post:
-      summary: /auth/authorization API
+      summary: /api/auth/authorization API
       description: |
         This API parses request parameters of an authorization request and returns necessary data for the authorization server
         implementation to process the authorization request further.
@@ -3483,7 +3483,7 @@ paths:
               parameters: response_type=code&client_id=26478243745571&redirect_uri=https%3A%2F%2Fmy-client.example.com%2Fcb1&scope=timeline.read+history.read&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1authorization/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1authorization/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -3903,13 +3903,13 @@ paths:
                   userCodeLength: 0
                 ticket: hXoY87t_t23enrVHWxpXNP5FfVDhDypD3T6H6lt4IPA
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_authorization_api
       x-code-samples:
         - lang: shell
@@ -3988,9 +3988,9 @@ paths:
             await api.authorization(req);
       tags:
         - Authorization Endpoint
-  /auth/authorization/fail:
+  /api/auth/authorization/fail:
     post:
-      summary: /auth/authorization/fail API
+      summary: /api/auth/authorization/fail API
       description: |
         This API generates a content of an error authorization response that the authorization server implementation
         returns to the client application.
@@ -4146,7 +4146,7 @@ paths:
               reason: NOT_AUTHENTICATED
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1authorization~1fail/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1authorization~1fail/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -4180,13 +4180,13 @@ paths:
                 action: BAD_REQUEST
                 responseContent: '{\"error_description\":\"[A004201] The authorization request from the service does not contain ''parameters'' parameter.\",\"error\":\"invalid_request\",\"error_uri\":\"https://docs.authlete.com/#A004201\"}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_authorization_fail_api
       x-code-samples:
         - lang: shell
@@ -4272,9 +4272,9 @@ paths:
             await api.authorizationFail(req);
       tags:
         - Authorization Endpoint
-  /auth/authorization/issue:
+  /api/auth/authorization/issue:
     post:
-      summary: /auth/authorization/issue API
+      summary: /api/auth/authorization/issue API
       description: |
         This API parses request parameters of an authorization request and returns necessary data for the
         authorization server implementation to process the authorization request further.
@@ -4448,7 +4448,7 @@ paths:
               subject: john
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1authorization~1issue/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1authorization~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -4516,13 +4516,13 @@ paths:
                 authorizationCode: Xv_su944auuBgc5mfUnxXayiiQU9Z4-T_Yae_UfExmo
                 responseContent: 'https://my-client.example.com/cb1?code=Xv_su944auuBgc5mfUnxXayiiQU9Z4-T_Yae_UfExmo&iss=https%3A%2F%2Fmy-service.example.com'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_authorization_issue_api
       x-code-samples:
         - lang: shell
@@ -4608,9 +4608,9 @@ paths:
             await api.authorizationIssue(req);
       tags:
         - Authorization Endpoint
-  /pushed_auth_req:
+  /api/pushed_auth_req:
     post:
-      summary: /pushed_auth_req API
+      summary: /api/pushed_auth_req API
       description: |
         This API creates a pushed request authorization. It authenticates the client and creates a authorization_uri to be returned by the authorization server.
       security:
@@ -4652,7 +4652,7 @@ paths:
               clientSecret: P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1pushed_auth_req/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1pushed_auth_req/post/requestBody/content/application~1json/schema'
             example:
               parameters: response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256
               clientId: '5921531358155430'
@@ -4698,13 +4698,13 @@ paths:
                 requestUri: 'urn:ietf:params:oauth:request_uri:CAK9YEtNorwXE3UwSyihsBOL0jFrqUup7yAACw5y5Zg'
                 responseContent: '{"expires_in":600,"request_uri":"urn:ietf:params:oauth:request_uri:CAK9YEtNorwXE3UwSyihsBOL0jFrqUup7yAACw5y5Zg"}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: pushed_auth_api
       x-code-samples:
         - lang: shell
@@ -4797,9 +4797,9 @@ paths:
             await api.token(req);
       tags:
         - Pushed Authorization Endpoint
-  /auth/token:
+  /api/auth/token:
     post:
-      summary: /auth/token API
+      summary: /api/auth/token API
       description: |
         This API parses request parameters of an authorization request and returns necessary data for the
         authorization server implementation to process the authorization request further.
@@ -5043,7 +5043,7 @@ paths:
               clientSecret: gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1token/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1token/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -5245,7 +5245,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1api~1auth~1token/post/responses/400/content/application~1json/schema'
               example:
                 resultCode: A001202
                 resultMessage: '[A001202] /auth/authorization, Authorization header is missing.'
@@ -5254,7 +5254,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1api~1auth~1token/post/responses/400/content/application~1json/schema'
               example:
                 resultCode: A001215
                 resultMessage: '[A001215] /auth/authorization, The client (ID = 26837717140341) is locked.'
@@ -5263,7 +5263,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth~1token/post/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1api~1auth~1token/post/responses/400/content/application~1json/schema'
               example:
                 resultCode: A001101
                 resultMessage: '[A001101] /auth/authorization, Authlete Server error.'
@@ -5359,9 +5359,9 @@ paths:
             await api.token(req);
       tags:
         - Token Endpoint
-  /auth/token/fail:
+  /api/auth/token/fail:
     post:
-      summary: /auth/token/fail API
+      summary: /api/auth/token/fail API
       description: |
         This API generates a content of an error token response that the authorization server implementation
         returns to the client application.
@@ -5461,7 +5461,7 @@ paths:
               reason: INVALID_RESOURCE_OWNER_CREDENTIALS
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1token~1fail/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1token~1fail/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -5493,13 +5493,13 @@ paths:
                 action: BAD_REQUEST
                 responseContent: '{\"error_description\":\"[A067301] The credentials (username & password) passed to the token endpoint are invalid.\",\"error\":\"invalid_request\",\"error_uri\":\"https://docs.authlete.com/#A067301\"}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_token_fail_api
       x-code-samples:
         - lang: shell
@@ -5585,9 +5585,9 @@ paths:
             await api.tokenFail(req);
       tags:
         - Token Endpoint
-  /auth/token/issue:
+  /api/auth/token/issue:
     post:
-      summary: /auth/token/issue API
+      summary: /api/auth/token/issue API
       description: |
         This API generates a content of a successful token response that the authorization server implementation
         returns to the client application.
@@ -5691,7 +5691,7 @@ paths:
               subject: john
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1token~1issue/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1token~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -5844,13 +5844,13 @@ paths:
                     value: attribute2-value
                 subject: john
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_token_issue_api
       x-code-samples:
         - lang: shell
@@ -5929,9 +5929,9 @@ paths:
             await api.tokenIssue(req);
       tags:
         - Token Endpoint
-  /auth/introspection:
+  /api/auth/introspection:
     post:
-      summary: /auth/introspection API
+      summary: /api/auth/introspection API
       description: |
         This API gathers information about an access token.
 
@@ -6169,7 +6169,7 @@ paths:
                 - timeline.read
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1introspection/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1introspection/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -6321,13 +6321,13 @@ paths:
                 sufficient: true
                 usable: true
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_introspection_api
       x-code-samples:
         - lang: shell
@@ -6413,9 +6413,9 @@ paths:
             await api.introspection(req);
       tags:
         - Introspection Endpoint
-  /auth/introspection/standard:
+  /api/auth/introspection/standard:
     post:
-      summary: /auth/intraspection/standard API
+      summary: /api/auth/intraspection/standard API
       description: |
         This API exists to help your authorization server provide its own introspection API which complies
         with [RFC 7662](https://tools.ietf.org/html/rfc7662) (OAuth 2.0 Token Introspection).
@@ -6550,7 +6550,7 @@ paths:
               parameters: token=VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI&token_type_hint=access_token
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1introspection~1standard/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1introspection~1standard/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -6583,13 +6583,13 @@ paths:
                 action: OK
                 responseContent: '{\"sub\":\"john\",\"scope\":\"history.read timeline.read\",\"iss\":\"https://my-service.example.com\",\"active\":true,\"token_type\":\"Bearer\",\"exp\":1640416873,\"client_id\":\"26478243745571\"}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_introspection_standard_api
       x-code-samples:
         - lang: shell
@@ -6668,9 +6668,9 @@ paths:
             await api.standardIntrospection(req);
       tags:
         - Introspection Endpoint
-  /auth/revocation:
+  /api/auth/revocation:
     post:
-      summary: /auth/revocation API
+      summary: /api/auth/revocation API
       description: |
         This API revokes access tokens and refresh tokens.
 
@@ -6854,7 +6854,7 @@ paths:
               clientSecret: gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1revocation/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1revocation/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -6887,13 +6887,13 @@ paths:
                 resultMessage: '[A113001] The token has been revoked successfully.'
                 action: OK
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_revocation_api
       x-code-samples:
         - lang: shell
@@ -6972,9 +6972,9 @@ paths:
             await api.revocation(req);
       tags:
         - Revocation Endpoint
-  /auth/userinfo:
+  /api/auth/userinfo:
     post:
-      summary: /auth/userinfo API
+      summary: /api/auth/userinfo API
       description: |
         This API gathers information about a user.
 
@@ -7165,7 +7165,7 @@ paths:
               token: Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1userinfo/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1userinfo/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -7303,13 +7303,13 @@ paths:
                 subject: john
                 token: Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_userinfo_api
       x-code-samples:
         - lang: shell
@@ -7388,9 +7388,9 @@ paths:
             await api.userInfo(req);
       tags:
         - UserInfo Endpoint
-  /auth/userinfo/issue:
+  /api/auth/userinfo/issue:
     post:
-      summary: /auth/userinfo/issue API
+      summary: /api/auth/userinfo/issue API
       description: |
         This API generates an ID token.
 
@@ -7570,7 +7570,7 @@ paths:
               token: Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1userinfo~1issue/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1userinfo~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -7610,13 +7610,13 @@ paths:
                 action: JSON
                 responseContent: '{\"exp\":1511600971,\"sub\":\"john\",\"aud\":[\"26478243745571\"],\"iss\":\"https://authlete.com\",\"iat\":1511514571}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_userinfo_issue_api
       x-code-samples:
         - lang: shell
@@ -7695,9 +7695,9 @@ paths:
             await api.userInfoIssue(req);
       tags:
         - UserInfo Endpoint
-  /service/jwks/get:
+  /api/service/jwks/get:
     get:
-      summary: /service/jwks/get API
+      summary: /api/service/jwks/get API
       description: |
         This API gathers JWK Set information for a service so that its client applications can verify
         signatures by the service and encrypt their requests to the service.
@@ -7768,13 +7768,13 @@ paths:
                     x: xAdEkaExYWGGAC1xYjwxzvqcaCyDloylZk04yiE9_OF
                     kid: ec256-enc-001
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_jwks_get_api
       x-code-samples:
         - lang: shell
@@ -7848,9 +7848,9 @@ paths:
             await api.getServiceJwks(pretty, includePrivateKey);
       tags:
         - JWK Set Endpoint
-  /service/configuration:
+  /api/service/configuration:
     get:
-      summary: /service/configuration API
+      summary: /api/service/configuration API
       description: |
         This API gathers configuration information about a service.
 
@@ -8163,13 +8163,13 @@ paths:
                 require_signed_request_object: false
                 authorization_response_iss_parameter_supported: true
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: service_configuration_api
       x-code-samples:
         - lang: shell
@@ -8225,9 +8225,9 @@ paths:
             await api.getServiceConfiguration(true);
       tags:
         - Configuration Endpoint
-  /client/registration:
+  /api/client/registration:
     post:
-      summary: /client/registration API
+      summary: /api/client/registration API
       description: |
         Register a client. This API is supposed to be used to implement a client registration endpoint that
         complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591) (OAuth 2.0 Dynamic Client
@@ -8332,7 +8332,7 @@ paths:
               json: '{ "client_name": "My Dynamic Client" }'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1client~1registration/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1client~1registration/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -8392,13 +8392,13 @@ paths:
                   tokenAuthMethod: CLIENT_SECRET_BASIC
                 responseContent: '{\"default_max_age\":0,\"registration_client_uri\":\"https://my-service.example.com/dcr/register/26837717140341\",\"registration_access_token\":\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\",\"client_id\":\"26837717140341\",\"token_endpoint_auth_method\":\"client_secret_basic\",\"require_pushed_authorization_requests\":false,\"backchannel_user_code_parameter\":false,\"client_secret\":\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\",\"client_id_issued_at\":1641735467,\"tls_client_certificate_bound_access_tokens\":false,\"client_name\":\"My Dynamic Client\",\"id_token_signed_response_alg\":\"RS256\",\"subject_type\":\"public\",\"client_secret_expires_at\":0,\"require_signed_request_object\":false}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_registration_api
       x-code-samples:
         - lang: shell
@@ -8471,9 +8471,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Dynamic Client Registration
-  /client/registration/get:
+  /api/client/registration/get:
     post:
-      summary: /client/registration/get API
+      summary: /api/client/registration/get API
       description: |
         Get a dynamically registered client. This API is supposed to be used to implement a client registration
         management endpoint that complies with [RFC 7592](https://datatracker.ietf.org/doc/html/rfc7592)
@@ -8610,7 +8610,7 @@ paths:
               token: qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1client~1registration~1get/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1client~1registration~1get/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -8671,13 +8671,13 @@ paths:
                   tokenAuthMethod: CLIENT_SECRET_BASIC
                 responseContent: '{\"default_max_age\":0,\"registration_client_uri\":\"https://my-service.example.com/dcr/register/26837717140341\",\"registration_access_token\":\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\",\"client_id\":\"26837717140341\",\"token_endpoint_auth_method\":\"client_secret_basic\",\"require_pushed_authorization_requests\":false,\"backchannel_user_code_parameter\":false,\"client_secret\":\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\",\"client_id_issued_at\":1641735467,\"tls_client_certificate_bound_access_tokens\":false,\"client_name\":\"My Dynamic Client\",\"id_token_signed_response_alg\":\"RS256\",\"subject_type\":\"public\",\"client_secret_expires_at\":0,\"require_signed_request_object\":false}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_registration_get_api
       x-code-samples:
         - lang: shell
@@ -8756,9 +8756,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Dynamic Client Registration
-  /client/registration/update:
+  /api/client/registration/update:
     post:
-      summary: /client/registration/update API
+      summary: /api/client/registration/update API
       description: |
         Update a dynamically registered client. This API is supposed to be used to implement a client
         registration management endpoint that complies with [RFC 7592](https://datatracker.ietf.org/doc/html/rfc7592)
@@ -8902,7 +8902,7 @@ paths:
               json: '{"client_name":"My Updated Dynamic Client","default_max_age":0,"registration_client_uri":"https://my-service.example.com/dcr/register/26837717140341","client_id":"26837717140341","token_endpoint_auth_method":"client_secret_basic","require_pushed_authorization_requests":false,"backchannel_user_code_parameter":false,"client_secret":"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw","tls_client_certificate_bound_access_tokens":false,"id_token_signed_response_alg":"RS256","subject_type":"public","require_signed_request_object":false}'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1client~1registration~1update/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1client~1registration~1update/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -8963,13 +8963,13 @@ paths:
                   tokenAuthMethod: CLIENT_SECRET_BASIC
                 responseContent: '{\"default_max_age\":0,\"registration_client_uri\":\"https://my-service.example.com/dcr/register/26837717140341\",\"registration_access_token\":\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\",\"client_id\":\"26837717140341\",\"token_endpoint_auth_method\":\"client_secret_basic\",\"require_pushed_authorization_requests\":false,\"backchannel_user_code_parameter\":false,\"client_secret\":\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\",\"client_id_issued_at\":1641735467,\"tls_client_certificate_bound_access_tokens\":false,\"client_name\":\"My Updated Dynamic Client\",\"id_token_signed_response_alg\":\"RS256\",\"subject_type\":\"public\",\"client_secret_expires_at\":0,\"require_signed_request_object\":false}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_registration_update_api
       x-code-samples:
         - lang: shell
@@ -9054,9 +9054,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Dynamic Client Registration
-  /client/registration/delete:
+  /api/client/registration/delete:
     post:
-      summary: /client/registration/delete API
+      summary: /api/client/registration/delete API
       description: |
         Delete a dynamically registered client. This API is supposed to be used to implement a client
         registration management endpoint that complies with [RFC 7592](https://datatracker.ietf.org/doc/html/rfc7592)
@@ -9188,7 +9188,7 @@ paths:
               token: qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1client~1registration~1delete/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1client~1registration~1delete/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -9222,13 +9222,13 @@ paths:
                 resultMessage: '[A216001] The client has been deleted.'
                 action: DELETED
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: client_registration_delete_api
       x-code-samples:
         - lang: shell
@@ -9307,9 +9307,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Dynamic Client Registration
-  /backchannel/authentication:
+  /api/backchannel/authentication:
     post:
-      summary: /backchannel/authentication API
+      summary: /api/backchannel/authentication API
       description: |
         This API parses request parameters of a [backchannel authentication request](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_request)
         and returns necessary data for the authorization server implementation to process the backchannel
@@ -9676,7 +9676,7 @@ paths:
               clientSecret: 8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1backchannel~1authentication/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1backchannel~1authentication/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -9871,13 +9871,13 @@ paths:
                 userCode: my-user-code
                 userCodeRequired: false
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: backchannel_authentication_api
       x-code-samples:
         - lang: shell
@@ -9962,9 +9962,9 @@ paths:
             // This API is not supported yet.
       tags:
         - CIBA
-  /backchannel/authentication/issue:
+  /api/backchannel/authentication/issue:
     post:
-      summary: /backchannel/authentication/issue API
+      summary: /api/backchannel/authentication/issue API
       description: |
         This API prepares JSON that contains an `auth_req_id`. The JSON should be used as the response body
         of the response which is returned to the client from the [backchannel authentication endpoint](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_backchannel_endpoint)
@@ -10074,7 +10074,7 @@ paths:
               ticket: NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1backchannel~1authentication~1issue/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1backchannel~1authentication~1issue/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -10125,13 +10125,13 @@ paths:
                 interval: 0
                 responseContent: '{\"auth_req_id\":\"_mzc-ZQdAhSPuMxTlO-MC_oqaOqYCrdNQ39PVxisaiE\",\"interval\":0,\"expires_in\":3600}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: backchannel_authentication_issue_api
       x-code-samples:
         - lang: shell
@@ -10204,9 +10204,9 @@ paths:
             // This API is not supported yet.
       tags:
         - CIBA
-  /backchannel/authentication/fail:
+  /api/backchannel/authentication/fail:
     post:
-      summary: /backchannel/authentication/fail API
+      summary: /api/backchannel/authentication/fail API
       description: |
         The API prepares JSON that contains an error. The JSON should be used as the response body of the
         response which is returned to the client from the [backchannel authentication endpoint](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_backchannel_endpoint).
@@ -10291,7 +10291,7 @@ paths:
                     is given, its value is used as the value of the `error_uri` property.
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1backchannel~1authentication~1fail/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1backchannel~1authentication~1fail/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -10324,13 +10324,13 @@ paths:
                 action: FORBIDDEN
                 responseContent: '{\"error\":\"access_denied\"}'
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: backchannel_authentication_fail_api
       x-code-samples:
         - lang: shell
@@ -10409,9 +10409,9 @@ paths:
             // This API is not supported yet.
       tags:
         - CIBA
-  /backchannel/authentication/complete:
+  /api/backchannel/authentication/complete:
     post:
-      summary: /backchannel/authentication/complete API
+      summary: /api/backchannel/authentication/complete API
       description: |
         This API returns information about what action the authorization server should take after it receives
         the result of end-user's decision about whether the end-user has approved or rejected a client application's
@@ -10602,7 +10602,7 @@ paths:
               subject: john
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1backchannel~1authentication~1complete/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1backchannel~1authentication~1complete/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -10739,13 +10739,13 @@ paths:
                   - key: attribute2-key
                     value: attribute2-value
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: backchannel_authentication_complete_api
       x-code-samples:
         - lang: shell
@@ -10830,9 +10830,9 @@ paths:
             // This API is not supported yet.
       tags:
         - CIBA
-  /device/authorization:
+  /api/device/authorization:
     post:
-      summary: /device/authorization API
+      summary: /api/device/authorization API
       description: |
         This API parses request parameters of a [device authorization request](https://datatracker.ietf.org/doc/html/rfc8628#section-3.1)
         and returns necessary data for the authorization server implementation to process the device authorization
@@ -10985,7 +10985,7 @@ paths:
               clientSecret: SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1device~1authorization/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1device~1authorization/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -11161,13 +11161,13 @@ paths:
                     description: |
                       The dynamic scopes which the client application requested by the scope request parameter.
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: device_authorization_api
       x-code-samples:
         - lang: shell
@@ -11252,9 +11252,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Device Flow
-  /device/verification:
+  /api/device/verification:
     post:
-      summary: /device/verification API
+      summary: /api/device/verification API
       description: |
         The API returns information associated with a user code.
 
@@ -11316,7 +11316,7 @@ paths:
               userCode: XWWKPBWVXQ
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1device~1verification/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1device~1verification/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -11441,13 +11441,13 @@ paths:
                   - key: attribute2-key
                     value: attribute2-value
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: device_verification_api
       x-code-samples:
         - lang: shell
@@ -11520,9 +11520,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Device Flow
-  /device/complete:
+  /api/device/complete:
     post:
-      summary: /device/complete API
+      summary: /api/device/complete API
       description: |
         This API returns information about what action the authorization server should take after it receives
         the result of end-user's decision about whether the end-user has approved or rejected a client
@@ -11675,7 +11675,7 @@ paths:
               subject: john
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1device~1complete/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1device~1complete/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -11705,13 +11705,13 @@ paths:
                 resultMessage: '[A241001] The API call was processed successfully.'
                 action: SUCCESS
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: device_complete_api
       x-code-samples:
         - lang: shell
@@ -11796,9 +11796,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Device Flow
-  /auth/token/get/list:
+  /api/auth/token/get/list:
     get:
-      summary: /auth/token/get/list API
+      summary: /api/auth/token/get/list API
       description: |
         Get a list of client applications that an end-user has authorized.
       security:
@@ -11958,13 +11958,13 @@ paths:
                 subject: john
                 totalCount: 3
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_token_get_list_api
       x-code-samples:
         - lang: shell
@@ -12031,9 +12031,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Token Operations
-  /auth/token/create:
+  /api/auth/token/create:
     post:
-      summary: /auth/token/create API
+      summary: /api/auth/token/create API
       description: |
         Create an access token.
       security:
@@ -12178,7 +12178,7 @@ paths:
                 - timeline.read
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1token~1create/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1token~1create/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -12272,13 +12272,13 @@ paths:
                 subject: john
                 tokenType: Bearer
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_token_create_api
       x-code-samples:
         - lang: shell
@@ -12369,9 +12369,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Token Operations
-  /auth/token/update:
+  /api/auth/token/update:
     post:
-      summary: /auth/token/update API
+      summary: /api/auth/token/update API
       description: |
         Update an access token.
       security:
@@ -12461,7 +12461,7 @@ paths:
                 - history.read
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1token~1update/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1auth~1token~1update/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -12521,13 +12521,13 @@ paths:
                   - history.read
                 tokenType: Bearer
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_token_update_api
       x-code-samples:
         - lang: shell
@@ -12606,9 +12606,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Token Operations
-  '/auth/token/delete/{accessTokenIdentifier}':
+  '/api/auth/token/delete/{accessTokenIdentifier}':
     delete:
-      summary: /auth/token/delete API
+      summary: /api/auth/token/delete API
       description: |
         Delete an access token.
       security:
@@ -12627,13 +12627,13 @@ paths:
           description: |
             The access token was successfully deleted.
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: auth_token_delete_api
       x-code-samples:
         - lang: shell
@@ -12699,9 +12699,9 @@ paths:
             // This API is not supported yet.
       tags:
         - Token Operations
-  /jose/verify:
+  /api/jose/verify:
     post:
-      summary: /jose/verify API
+      summary: /api/jose/verify API
       description: |
         This API verifies a JOSE object.
       security:
@@ -12745,7 +12745,7 @@ paths:
               clientIdentifier: '57297408867'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1jose~1verify/post/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1api~1jose~1verify/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: ''
@@ -12792,13 +12792,13 @@ paths:
                 signatureValid: true
                 valid: true
         '400':
-          $ref: '#/paths/~1auth~1token/post/responses/400'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/400'
         '401':
-          $ref: '#/paths/~1auth~1token/post/responses/401'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/401'
         '403':
-          $ref: '#/paths/~1auth~1token/post/responses/403'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/403'
         '500':
-          $ref: '#/paths/~1auth~1token/post/responses/500'
+          $ref: '#/paths/~1api~1auth~1token/post/responses/500'
       operationId: jose_verify_api
       x-code-samples:
         - lang: shell

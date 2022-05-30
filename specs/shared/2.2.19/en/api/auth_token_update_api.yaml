@@ -1,5 +1,5 @@
 post:
-  summary: /auth/token/update API
+  summary: /api/auth/token/update API
   description: |
     Update an access token.
   security:

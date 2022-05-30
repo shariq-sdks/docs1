@@ -1,5 +1,5 @@
 post:
-  summary: /auth/revocation API
+  summary: /api/auth/revocation API
   description: |
     This API revokes access tokens and refresh tokens.
 

@@ -1,5 +1,5 @@
 delete:
-  summary: /service/delete/{serviceApiKey} API
+  summary: /api/service/delete/{serviceApiKey} API
   description: |
     Delete a service.
   security:

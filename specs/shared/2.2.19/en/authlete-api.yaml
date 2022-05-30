@@ -16,106 +16,106 @@ info:
 # SERVERS
 #
 servers:
-  - url: 'https://api.authlete.com/api'
+  - url: 'https://api.authlete.com'
     description: Shared production server.
 
 #
 # API PATH
 #
 paths:
-  /service/get/{serviceApiKey}:
+  /api/service/get/{serviceApiKey}:
     $ref: ./api/service_get_api.yaml
-  /service/get/list:
+  /api/service/get/list:
     $ref: ./api/service_get_list_api.yaml
-  /service/create:
+  /api/service/create:
     $ref: ./api/service_create_api.yaml
-  /service/update/{serviceApiKey}:
+  /api/service/update/{serviceApiKey}:
     $ref: ./api/service_update_api.yaml
-  /service/delete/{serviceApiKey}:
+  /api/service/delete/{serviceApiKey}:
     $ref: ./api/service_delete_api.yaml
-  /client/get/{clientId}:
+  /api/client/get/{clientId}:
     $ref: ./api/client_get_api.yaml
-  /client/get/list:
+  /api/client/get/list:
     $ref: ./api/client_get_list_api.yaml
-  /client/create:
+  /api/client/create:
     $ref: ./api/client_create_api.yaml
-  /client/update/{clientId}:
+  /api/client/update/{clientId}:
     $ref: ./api/client_update_api.yaml
-  /client/delete/{clientId}:
+  /api/client/delete/{clientId}:
     $ref: ./api/client_delete_api.yaml
-  /client/secret/refresh/{clientIdentifier}:
+  /api/client/secret/refresh/{clientIdentifier}:
     $ref: ./api/client_secret_refresh_api.yaml
-  /client/secret/update/{clientIdentifier}:
+  /api/client/secret/update/{clientIdentifier}:
     $ref: ./api/client_secret_update_api.yaml
-  /client/authorization/get/list/{subject}:
+  /api/client/authorization/get/list/{subject}:
     $ref: ./api/client_authorization_get_list_api.yaml
-  /client/authorization/update/{clientId}:
+  /api/client/authorization/update/{clientId}:
     $ref: ./api/client_authorization_update_api.yaml
-  /client/authorization/delete/{clientId}/{subject}:
+  /api/client/authorization/delete/{clientId}/{subject}:
     $ref: ./api/client_authorization_delete_api.yaml
   /api/client/granted_scopes/get/{clientId}/{subject}:
     $ref: ./api/client_granted_scopes_get_api.yaml
   /api/client/granted_scopes/delete/{clientId}/{subject}:
     $ref: ./api/client_granted_scopes_delete_api.yaml
-  /auth/authorization:
+  /api/auth/authorization:
     $ref: ./api/auth_authorization_api.yaml
-  /auth/authorization/fail:
+  /api/auth/authorization/fail:
     $ref: ./api/auth_authorization_fail_api.yaml
-  /auth/authorization/issue:
+  /api/auth/authorization/issue:
     $ref: ./api/auth_authorization_issue_api.yaml
-  /pushed_auth_req:
+  /api/pushed_auth_req:
     $ref: ./api/pushed_auth_api.yaml
-  /auth/token:
+  /api/auth/token:
     $ref: ./api/auth_token_api.yaml
-  /auth/token/fail:
+  /api/auth/token/fail:
     $ref: ./api/auth_token_fail_api.yaml
-  /auth/token/issue:
+  /api/auth/token/issue:
     $ref: ./api/auth_token_issue_api.yaml
-  /auth/introspection:
+  /api/auth/introspection:
     $ref: ./api/auth_introspection_api.yaml
-  /auth/introspection/standard:
+  /api/auth/introspection/standard:
     $ref: ./api/auth_introspection_standard_api.yaml
-  /auth/revocation:
+  /api/auth/revocation:
     $ref: ./api/auth_revocation_api.yaml
-  /auth/userinfo:
+  /api/auth/userinfo:
     $ref: ./api/auth_userinfo_api.yaml
-  /auth/userinfo/issue:
+  /api/auth/userinfo/issue:
     $ref: ./api/auth_userinfo_issue_api.yaml
-  /service/jwks/get:
+  /api/service/jwks/get:
     $ref: ./api/service_jwks_get_api.yaml
-  /service/configuration:
+  /api/service/configuration:
     $ref: ./api/service_configuration_api.yaml
-  /client/registration:
+  /api/client/registration:
     $ref: ./api/client_registration_api.yaml
-  /client/registration/get:
+  /api/client/registration/get:
     $ref: ./api/client_registration_get_api.yaml
-  /client/registration/update:
+  /api/client/registration/update:
     $ref: ./api/client_registration_update_api.yaml
-  /client/registration/delete:
+  /api/client/registration/delete:
     $ref: ./api/client_registration_delete_api.yaml
-  /backchannel/authentication:
+  /api/backchannel/authentication:
     $ref: ./api/backchannel_authentication_api.yaml
-  /backchannel/authentication/issue:
+  /api/backchannel/authentication/issue:
     $ref: ./api/backchannel_authentication_issue_api.yaml
-  /backchannel/authentication/fail:
+  /api/backchannel/authentication/fail:
     $ref: ./api/backchannel_authentication_fail_api.yaml
-  /backchannel/authentication/complete:
+  /api/backchannel/authentication/complete:
     $ref: ./api/backchannel_authentication_complete_api.yaml
-  /device/authorization:
+  /api/device/authorization:
     $ref: ./api/device_authorization_api.yaml
-  /device/verification:
+  /api/device/verification:
     $ref: ./api/device_verification_api.yaml
-  /device/complete:
+  /api/device/complete:
     $ref: ./api/device_complete_api.yaml
-  /auth/token/get/list:
+  /api/auth/token/get/list:
     $ref: ./api/auth_token_get_list_api.yaml
-  /auth/token/create:
+  /api/auth/token/create:
     $ref: ./api/auth_token_create_api.yaml
-  /auth/token/update:
+  /api/auth/token/update:
     $ref: ./api/auth_token_update_api.yaml
-  /auth/token/delete/{accessTokenIdentifier}:
+  /api/auth/token/delete/{accessTokenIdentifier}:
     $ref: ./api/auth_token_delete_api.yaml
-  /jose/verify:
+  /api/jose/verify:
     $ref: ./api/jose_verify_api.yaml
 
 #

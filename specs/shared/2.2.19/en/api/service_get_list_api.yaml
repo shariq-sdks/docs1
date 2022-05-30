@@ -1,5 +1,5 @@
 get:
-  summary: /service/get/list API
+  summary: /api/service/get/list API
   description: |
     Get a list of services.
   security:

@@ -1,5 +1,5 @@
 get:
-  summary: /service/jwks/get API
+  summary: /api/service/jwks/get API
   description: |
     This API gathers JWK Set information for a service so that its client applications can verify
     signatures by the service and encrypt their requests to the service.

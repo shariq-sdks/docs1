@@ -1,5 +1,5 @@
 delete:
-  summary: /auth/token/delete API
+  summary: /api/auth/token/delete API
   description: |
     Delete an access token.
   security:

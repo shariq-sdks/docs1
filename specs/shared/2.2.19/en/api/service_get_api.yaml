@@ -1,5 +1,5 @@
 get:
-  summary: /service/get/{serviceApiKey} API
+  summary: /api/service/get/{serviceApiKey} API
   description: |
     Get a service.
   security:
