@@ -1,7 +1,7 @@
 const path     = require('path');
 const config   = require('../config');
-const Util     = require('../utils/util');
 const YamlUtil = require('../utils/yaml-util');
+const Util     = require('../utils/util');
 
 const getPathToTranslation = function(locale) {
   return path.join(__dirname, `resources/${locale}.yaml`);
