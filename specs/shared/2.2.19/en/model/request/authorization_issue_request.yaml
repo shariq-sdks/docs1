@@ -38,7 +38,7 @@ properties:
     description: |
       The value of the `sub` claim to embed in an ID token. If this request parameter is `null` or empty,
       the value of the `subject` request parameter is used as the value of the `sub` claim.
-  idHeaderParams:
+  idtHeaderParams:
     type: string
     description: |
       JSON that represents additional JWS header parameters for ID tokens that may be issued based on

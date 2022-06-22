@@ -204,15 +204,6 @@ properties:
       RFC 6749 allows partial match of redirect URI under some conditions (see [RFC 6749, 3.1.2.2.
       Registration Requirements](https://datatracker.ietf.org/doc/html/rfc6749#section-3.1.2.2) for
       details), but OpenID Connect requires exact match.
-  authorizationDataTypes:
-    type: array
-    items:
-      type: string
-    description: |
-       The data types that this client may use as values of the type field in `authorization_details`.
-
-       This property corresponds to the `authorization_data_types` metadata. See "OAuth 2.0 Rich
-       Authorization Requests" (RAR) for details.
   authorizationSignAlg:
     $ref: jws_alg.yaml
   authorizationEncryptionAlg:
@@ -329,14 +320,6 @@ properties:
       [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   subjectType:
     $ref: ./subject_type.yaml
-  sectorIdentifier:
-    type: string
-    description: |
-      The sector identifier which is a URL starting with `https`. This URL is used by the service to calculate pairwise subject values.
-      See [OpenID Connect Core 1.0, 8.1. Pairwise Identifier Algorithm](https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg).
-
-      This property corresponds to `sector_identifier_uri` in
-      [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
   sectorIdentifierUri:
     type: string
     description: |

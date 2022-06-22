@@ -92,12 +92,6 @@ properties:
       The newly issued access token in JWT format. If the authorization server is configured to issue JWT-based access tokens
       (= if the service's `accessTokenSignAlg` value is a non-null value), a JWT-based access token is issued along with the
       original random-string one.
-  resources:
-    type: array
-    items:
-      type: string
-    description: |
-      The resources specified by the `resource` request parameters in the token request. See "Resource Indicators for OAuth 2.0" for details.
   accessTokenResources:
     type: array
     items:

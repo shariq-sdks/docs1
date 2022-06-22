@@ -47,7 +47,7 @@ properties:
     description: |
       Scopes to replace the scopes specified in the original backchannel authentication request with.
       When nothing is specified for this parameter, replacement is not performed.
-  idHeaderParams:
+  idtHeaderParams:
     type: string
     description: |
       JSON that represents additional JWS header parameters for ID tokens.

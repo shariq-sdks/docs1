@@ -1036,7 +1036,7 @@ properties:
 
       Even if this flag is `true`, HSM-related features do not work if the configuration of the Authlete
       server you are using does not support HSM.
-  Hsks:
+  hsks:
     type: array
     items:
       $ref: ./pair.yaml
@@ -1147,7 +1147,7 @@ properties:
       Section 7.3 and Section 8.3 of [RFC 8252](https://www.rfc-editor.org/rfc/rfc8252.html) state
       that loopback redirection URIs use the `"http"` scheme, but Authlete allows the port number
       component to be variable in other cases (e.g. in the case of the `"https"` scheme), too.
-  isRequestObjectAudienceChecked:
+  requestObjectAudienceChecked:
     type: boolean
     description: |
       The flag indicating whether Authlete checks whether the `aud` claim of request objects matches

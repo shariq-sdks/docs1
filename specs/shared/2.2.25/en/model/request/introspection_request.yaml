@@ -51,3 +51,9 @@ properties:
 
       See [OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)
       for details.
+  resources:
+    type: array
+    items:
+      type: string
+    description: |
+      The resources specified by the `resource` request parameters in the token request. See "Resource Indicators for OAuth 2.0" for details.
