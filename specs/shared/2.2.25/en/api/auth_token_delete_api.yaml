@@ -15,7 +15,8 @@ delete:
         or the value of the hash of the access token.
   responses:
     '204':
-      $ref: ../model/response/token_delete_response.yaml
+      description: |
+        The access token was successfully deleted.
     '400':
       $ref: ../model/response/400.yaml
     '401':

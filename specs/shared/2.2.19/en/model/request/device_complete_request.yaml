@@ -59,7 +59,7 @@ properties:
     description: |
       The URI of a document which describes the error in detail. This corresponds to the `error_uri`
       property in the response to the client.
-  idHeaderParams:
+  idtHeaderParams:
     type: string
     description: |
       JSON that represents additional JWS header parameters for ID tokens.

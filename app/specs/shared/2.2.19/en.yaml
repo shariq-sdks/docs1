@@ -4438,7 +4438,7 @@ paths:
                   description: |
                     The value of the `sub` claim to embed in an ID token. If this request parameter is `null` or empty,
                     the value of the `subject` request parameter is used as the value of the `sub` claim.
-                idHeaderParams:
+                idtHeaderParams:
                   type: string
                   description: |
                     JSON that represents additional JWS header parameters for ID tokens that may be issued based on
@@ -10580,7 +10580,7 @@ paths:
                   description: |
                     Scopes to replace the scopes specified in the original backchannel authentication request with.
                     When nothing is specified for this parameter, replacement is not performed.
-                idHeaderParams:
+                idtHeaderParams:
                   type: string
                   description: |
                     JSON that represents additional JWS header parameters for ID tokens.
@@ -11665,7 +11665,7 @@ paths:
                   description: |
                     The URI of a document which describes the error in detail. This corresponds to the `error_uri`
                     property in the response to the client.
-                idHeaderParams:
+                idtHeaderParams:
                   type: string
                   description: |
                     JSON that represents additional JWS header parameters for ID tokens.
@@ -14978,7 +14978,7 @@ components:
             A URL that starts with `https://` and has no fragment component. For example, `https://example.com/auth/endSession`.
 
             The value of this property is used as `end_session_endpoint` property in the [OpenID Provider
-            Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
+            Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
     SnsCredentials:
       type: object
       properties:

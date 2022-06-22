@@ -58,14 +58,8 @@ properties:
       levels of privilege being requested at the resource."_
 
       This property may be `null`.
-additionalProperties: true
-# The following code doesn't work due to rapidoc's bug/
-# additionalProperties:
-#   oneOf:
-#     - type: array
-#     - type: boolean
-#     - type: integer
-#     - type: number
-#     - type: object
-#     - type: string
-#   description: Arbitrary field.
+  otherFields:
+    type: string
+    description: |
+      The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.
+      The content and semantics are specific to the deployment and the use case implemented.

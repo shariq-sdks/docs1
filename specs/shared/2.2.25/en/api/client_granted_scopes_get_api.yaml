@@ -44,7 +44,20 @@ get:
         Unique user ID of an end-user.
   responses:
     '200':
-      $ref: ../model/response/client_authorization_delete_response.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_authorization_delete_response.yaml
+          example:
+            {
+              "type": "GrantedScopesGetResponse",
+              "serviceApiKey": 21653835348762,
+              "clientId": 26478243745571,
+              "subject": "john",
+              "latestGrantedScopes": [ "history.read" ],
+              "mergedGrantedScopes": [ "history.read", "timeline.read" ]
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':
