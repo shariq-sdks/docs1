@@ -74,9 +74,6 @@ A001222:
 A001223:
   code: A001223
   message: "{API Path}, The feature '{Feature}' must be enabled to use this API."
-A001224:
-  code: A001224
-  message: "{API Path}, The request parameter '{Request Parameter Name}' failed to be parsed as '{Java Class}'."
 A001300:
   code: A001300
   message: "{API Path}, Unable to load introspected token data from external server ('{Introspection URL}')."
@@ -707,102 +704,6 @@ A006333:
 A006334:
   code: A006334
   message: "The request object passed through the front channel is not encrypted."
-A006335:
-  code: A006335
-  message: "The request object passed by the 'request' parameter contains 'exp' but its value is not a number."
-A006336:
-  code: A006336
-  message: "The payload of the JWE passed by the 'request' parameter contains 'exp' but its value is not a number."
-A006337:
-  code: A006337
-  message: "The request object pointed to by the 'request_uri' parameter contains 'exp' but its value is not a number."
-A006338:
-  code: A006338
-  message: "The payload of the JWE pointed to by the 'request_uri' parameter contains 'exp' but its value is not a number."
-A006339:
-  code: A006339
-  message: "The request object passed by the 'request' parameter has already expired."
-A006340:
-  code: A006340
-  message: "The payload of the JWE passed by the 'request' parameter has already expired."
-A006341:
-  code: A006341
-  message: "The request object pointed to by the 'request_uri' parameter has already expired."
-A006342:
-  code: A006342
-  message: "The payload of the JWE pointed to by the 'request_uri' parameter has already expired."
-A006343:
-  code: A006343
-  message: "The request object passed by the 'request' parameter contains 'nbf' but its value is not a number."
-A006344:
-  code: A006344
-  message: "The payload of the JWE passed by the 'request' parameter contains 'nbf' but its value is not a number."
-A006345:
-  code: A006345
-  message: "The request object pointed to by the 'request_uri' parameter contains 'nbf' but its value is not a number."
-A006346:
-  code: A006346
-  message: "The payload of the JWE pointed to by the 'request_uri' parameter contains 'nbf' but its value is not a number."
-A006347:
-  code: A006347
-  message: "The request object passed by the 'request' parameter has not started its validity period yet."
-A006348:
-  code: A006348
-  message: "The payload of the JWE passed by the 'request' parameter not started its validity period yet."
-A006349:
-  code: A006349
-  message: "The request object pointed to by the 'request_uri' parameter not started its validity period yet."
-A006350:
-  code: A006350
-  message: "The payload of the JWE pointed to by the 'request_uri' parameter not started its validity period yet."
-A006351:
-  code: A006351
-  message: "The request object passed by the 'request' parameter contains no 'aud' claim."
-A006352:
-  code: A006352
-  message: "The payload of the JWE passed by the 'request' parameter contains no 'aud' claim."
-A006353:
-  code: A006353
-  message: "The request object pointed to by the 'request_uri' parameter contains no 'aud' claim."
-A006354:
-  code: A006354
-  message: "The payload of the JWE pointed to by the 'request_uri' parameter contains no 'aud' claim."
-A006355:
-  code: A006355
-  message: "The value of the 'aud' claim in the request object passed by the 'request' parameter is neither a string nor an array."
-A006356:
-  code: A006356
-  message: "The value of the 'aud' claim in the payload of the JWE passed by the 'request' parameter is neither a string nor an array."
-A006357:
-  code: A006357
-  message: "The value of the 'aud' claim in the request object pointed to by the 'request_uri' parameter is neither a string nor an array."
-A006358:
-  code: A006358
-  message: "The value of the 'aud' claim in the payload of the JWE pointed to by the 'request_uri' parameter is neither a string nor an array."
-A006359:
-  code: A006359
-  message: "The value of the 'aud' claim in the request object passed by the 'request' parameter does not match the issuer identifier of this service."
-A006360:
-  code: A006360
-  message: "The value of the 'aud' claim in the payload of the JWE passed by the 'request' parameter does not match the issuer identifier of this service."
-A006361:
-  code: A006361
-  message: "The value of the 'aud' claim in the request object pointed to by the 'request_uri' parameter does not match the issuer identifier of this service."
-A006362:
-  code: A006362
-  message: "The value of the 'aud' claim in the payload of the JWE pointed to by the 'request_uri' parameter does not match the issuer identifier of this service."
-A006363:
-  code: A006363
-  message: "None of the element in the 'aud' claim in the request object passed by the 'request' parameter match the issuer identifier of this service."
-A006364:
-  code: A006364
-  message: "None of the element in the 'aud' claim in the payload of the JWE passed by the 'request' parameter match the issuer identifier of this service."
-A006365:
-  code: A006365
-  message: "None of the element in the 'aud' claim in the request object pointed to by the 'request_uri' parameter match the issuer identifier of this service."
-A006366:
-  code: A006366
-  message: "None of the element in the 'aud' claim in the payload of the JWE pointed to by the 'request_uri' parameter match the issuer identifier of this service."
 A007101:
   code: A007101
   message: "Failed to get the list of pre-defined scopes from 'scope' table."
@@ -1133,15 +1034,6 @@ A022306:
 A022307:
   code: A022307
   message: "'{Context}/verified_claims' in the 'claims' request parameter is invalid: {Error Message}"
-A022308:
-  code: A022308
-  message: "The value of 'transformed_claims' in 'claims' is not a JSON object."
-A022309:
-  code: A022309
-  message: "The value of 'transformed_claims' in 'claims' is invalid: {Error Message}"
-A022401:
-  code: A022401
-  message: "The 'transformed_claims' in 'claims' is ignored because the feature of 'Transformed Claims' is not enabled on this server."
 A023301:
   code: A023301
   message: "The value of '{Property Name}' in 'claims' is not a JSON object."
@@ -1571,24 +1463,6 @@ A039231:
 A039232:
   code: A039232
   message: "{API Path}, The value '{Value}' (supportedCustomClientMetadata[%d]) is reserved."
-A039233:
-  code: A039233
-  message: "{API Path}, The value of 'predefinedTransformedClaims' failed to be parsed as a JSON object."
-A039234:
-  code: A039234
-  message: "{API Path}, The value of 'predefinedTransformedClaims' is invalid: {Error Message}"
-A039235:
-  code: A039235
-  message: "{API Path}, The value of 'predefinedTransformedClaims' is too big."
-A039236:
-  code: A039236
-  message: "{API Path}, When 'supportedEvidence' contains 'document' or 'id_document', 'supportedDocuments' must not be empty."
-A039237:
-  code: A039237
-  message: "{API Path}, When 'supportedEvidence' contains 'electronic_record', 'supportedElectronicRecords' must not be empty."
-A039238:
-  code: A039238
-  message: "{API Path}, When 'supportedAttachments' contains 'EXTERNAL', 'supportedDigestAlgorithms' must contain 'sha-256'."
 A040001:
   code: A040001
   message: "The authorization request was processed successfully."
@@ -1613,30 +1487,15 @@ A042202:
 A042203:
   code: A042203
   message: "The 'subject' in the /api/auth/authorization/issue request contains non-ASCII letters."
-A042401:
-  code: A042401
-  message: "The authenticated user is different from the user of the grant '{Grant ID}'. Request parameters related to grant management are ignored."
 A043201:
   code: A043201
   message: "The length of 'acr' in the /api/auth/authorization/issue request exceeds the maximum length ({Number})."
-A044101:
-  code: A044101
-  message: "Failed to parse 'transformed_claims': {Error Message}"
 A044201:
   code: A044201
   message: "The value of 'claims' in the /api/auth/authorization/issue request failed to be parsed as a JSON object."
 A044202:
   code: A044202
   message: "'verified_claims' in the 'claims' request parameter is invalid: {Error Message}"
-A044203:
-  code: A044203
-  message: "The value of the 'claimsForTx' request parameter failed to be parsed as a JSON object."
-A044204:
-  code: A044204
-  message: "The element at the index '{Index}' of the 'verifiedClaimsForTx' request parameter failed to be parsed as a JSON object."
-A044301:
-  code: A044301
-  message: "Failed to compute the value of the transformed claim '{Transformed Claim Name}': {Error Message}"
 A045101:
   code: A045101
   message: "Failed to issue a code and/or token(s) from /api/auth/authorization/issue endpoint."
@@ -1910,12 +1769,6 @@ A050103:
 A050105:
   code: A050105
   message: "Failed to get the list of scope attributes from 'scope_attributes' table."
-A050106:
-  code: A050106
-  message: "Failed to get live access token records: grant_id={Grant ID}, client_id={Client ID}"
-A050107:
-  code: A050107
-  message: "Unexpected error in getting live access token records: grant_id={Grant ID}, client_id={Client ID}"
 A050201:
   code: A050201
   message: "The total size of 'properties' is too big."
@@ -2411,9 +2264,6 @@ A089316:
 A090101:
   code: A090101
   message: "Failed to get the list of claims supported by the service."
-A090102:
-  code: A090102
-  message: "Failed to parse transformed claims: {Error Message}"
 A091001:
   code: A091001
   message: "The access token presented at the userinfo endpoint is valid."
@@ -2459,24 +2309,12 @@ A093305:
 A093306:
   code: A093306
   message: "An access token issued through the grant type of 'Resource Owner Password Credentials' is not allowed to access the userinfo endpoint."
-A094101:
-  code: A094101
-  message: "Failed to parse 'transformed_claims': {Error Message}"
 A094201:
   code: A094201
   message: "The value of 'claims' in the /api/auth/userinfo/issue request failed to be parsed as a JSON object."
 A094202:
   code: A094202
   message: "'verified_claims' in the 'claims' request parameter is invalid: {Error Message}"
-A094203:
-  code: A094203
-  message: "The value of the 'claimsForTx' request parameter failed to be parsed as a JSON object."
-A094204:
-  code: A094204
-  message: "The element at the index '{Index}' of the 'verifiedClaimsForTx' request parameter failed to be parsed as a JSON object."
-A094301:
-  code: A094301
-  message: "Failed to compute the value of the transformed claim '{Transformed Claim Name}': {Error Message}"
 A095301:
   code: A095301
   message: "The client application (ID = {Client ID}) has been deleted, so the user information cannot be serialized."
@@ -2594,9 +2432,6 @@ A108203:
 A108204:
   code: A108204
   message: "The 'refreshToken' parameter cannot be specified when 'grant_type' is 'client_credentials'."
-A108205:
-  code: A108205
-  message: "Failed to prepare a JWT-based access token: {Error Message}"
 A109001:
   code: A109001
   message: "An access token was created successfully: {Grant Type}, client = {Client ID}"
@@ -2990,42 +2825,6 @@ A149601:
 A150101:
   code: A150101
   message: "Failed to get the list of registered redirect URIs from 'redirect_uri' table."
-A150307:
-  code: A150307
-  message: "'redirect_uri' parameter must be contained in the authorization request."
-A150310:
-  code: A150310
-  message: "The client has not registered any redirect URI."
-A150311:
-  code: A150311
-  message: "The value of 'redirect_uri' ({Redirect URI}) is not registered."
-A150313:
-  code: A150313
-  message: "The 'state' request parameter is not contained in the request."
-A150314:
-  code: A150314
-  message: "The 'nonce' request parameter is not contained in the request."
-A150315:
-  code: A150315
-  message: "The 'code_challenge' parameter is not contained in the request."
-A150316:
-  code: A150316
-  message: "The value of 'code_challenge_method' parameter ({Parameter Name}) is not allowed."
-A150323:
-  code: A150323
-  message: "The scheme of the redirect URI must be 'https'."
-A150339:
-  code: A150339
-  message: "The value of 'redirect_uri' contained in the request is not well-formed."
-A150340:
-  code: A150340
-  message: "The value of 'redirect_uri' contained in the request is not absolute."
-A150341:
-  code: A150341
-  message: "The value of 'redirect_uri' contained in the request has a fragment component."
-A150201:
-  code: A150201
-  message: "The key of the algorithm ('{Signature Algorithm}') to sign the authorization response with is not available."
 A150301:
   code: A150301
   message: "A request object is required."
@@ -3044,9 +2843,42 @@ A150305:
 A150306:
   code: A150306
   message: "The value of the signing algorithm for the request object ({Algorithm}) is not allowed."
+A150307:
+  code: A150307
+  message: "'redirect_uri' parameter must be contained in the authorization request."
+A150308:
+  code: A150308
+  message: "The value of 'redirect_uri' in the request object is not a string."
+A150309:
+  code: A150309
+  message: "The authorization request contains multiple 'redirect_uri' parameters."
+A150310:
+  code: A150310
+  message: "The client has not registered any redirect URI."
+A150311:
+  code: A150311
+  message: "The value of 'redirect_uri' ({Redirect URI}) is not registered."
 A150312:
   code: A150312
   message: "The value of 'response_type' ({Response Type}) is not allowed."
+A150313:
+  code: A150313
+  message: "The 'state' request parameter is not contained in the request."
+A150314:
+  code: A150314
+  message: "The 'nonce' request parameter is not contained in the request."
+A150315:
+  code: A150315
+  message: "The 'code_challenge' parameter is not contained in the request."
+A150316:
+  code: A150316
+  message: "The value of 'code_challenge_method' parameter ({Parameter Name}) is not allowed."
+A150317:
+  code: A150317
+  message: "The 'acr' claim is not contained in the request."
+A150318:
+  code: A150318
+  message: "The value of the 'essential' of the 'acr' claim must be 'true'."
 A150319:
   code: A150319
   message: "An 'exp' claim is required but not contained in the request object passed by 'request' parameter."
@@ -3059,6 +2891,9 @@ A150321:
 A150322:
   code: A150322
   message: "The value of the signing algorithm ({Algorithm}) for the authorization response is not allowed."
+A150323:
+  code: A150323
+  message: "The scheme of the redirect URI must be 'https'."
 A150324:
   code: A150324
   message: "The request object pointed to by 'request_uri' parameter is not signed."
@@ -3104,12 +2939,24 @@ A150337:
 A150338:
   code: A150338
   message: "The value of the 'aud' claim in the request object pointed to by 'request_uri' parameter does not contain the issuer identifier of the OpenID provider."
+A150339:
+  code: A150339
+  message: "The value of 'redirect_uri' contained in the request is not well-formed."
+A150340:
+  code: A150340
+  message: "The value of 'redirect_uri' contained in the request is not absolute."
+A150341:
+  code: A150341
+  message: "The value of 'redirect_uri' contained in the request has a fragment component."
 A150342:
   code: A150342
   message: "The value of 'response_mode' in the request object is not a string."
 A150343:
   code: A150343
   message: "The authorization request contains multiple 'response_mode' parameters."
+A150344:
+  code: A150344
+  message: "The value of 'response_mode' is not supported."
 A150345:
   code: A150345
   message: "For the response type ('{Response Type}'), the response mode ('{Response Mode}') is allowed only when the authorization response JWT is encrypted. Set the value of the 'authorization_encrypted_response_alg' metadata of the client (ID = {Client ID})."
@@ -3125,6 +2972,9 @@ A150348:
 A150349:
   code: A150349
   message: "The authorization request required the authorization response be encoded as JWT by specifying 'response_mode={Response Mode}', but the 'authorization_encrypted_response_alg' metadata of the client (ID = {Client ID}) is a symmetric algorithm ('{Algorithm}'). Change the algorithm to an asymmetric one or change the client type to 'confidential'."
+A150201:
+  code: A150201
+  message: "The key of the algorithm ('{Signature Algorithm}') to sign the authorization response with is not available."
 A150350:
   code: A150350
   message: "The key of the algorithm ('{Encryption Algorithm}') to encrypt the authorization response with is not available."
@@ -3178,7 +3028,7 @@ A150366:
   message: "The lifetime of the request object pointed to by the 'request_uri' parameter exceeds the allowed maximum value ({Maximum Lifetime} seconds)."
 A150367:
   code: A150367
-  message: "Public clients are not allowed to make this kind of authorization requests."
+  message: "Clients with the client type '{Client Type}' are not allowed to make this kind of authorization requests."
 A150378:
   code: A150378
   message: "The encryption algorithm ('{Algorithm}') of the request object passed by the 'request' parameter is prohibited."
@@ -3196,40 +3046,22 @@ A151302:
   message: "The encryption algorithm for ID tokens ('{Algorithm}' for 'id_token_encrypted_response_alg') is prohibited."
 A152301:
   code: A152301
-  message: "The client authentication method ({Client Authentication Method}) is not allowed."
-A152303:
-  code: A152303
-  message: "The length of the key to verify the signature of the client's assertion is shorter than the minimum size ({Key Length})."
-A152201:
-  code: A152201
-  message: "MTLS is required as sender-constraining mechanism for access tokens but the service doesn't enable it."
+  message: "The client authentication method (%s) is not allowed."
 A152302:
   code: A152302
   message: "The value of the signing algorithm used for the client's assertion (%s) is not allowed."
+A152303:
+  code: A152303
+  message: "The length of the key to verify the signature of the client's assertion is shorter than the minimum size ({Key Length})."
 A152304:
   code: A152304
   message: "The algorithm ('{Algorithm}' for 'id_token_signed_response_alg') to sign the ID token is not allowed."
 A152305:
   code: A152305
-  message: "MTLS is required as sender-constraining mechanism for access tokens but the client doesn't enable it."
+  message: "The service and the client are not configured so that the required Holder of Key methods are performed."
 A152306:
   code: A152306
   message: "The encryption algorithm for ID tokens ('{Algorithm}' for 'id_token_encrypted_response_alg') is prohibited."
-A152307:
-  code: A152307
-  message: "Public clients are not allowed to make this kind of authorization requests."
-A152308:
-  code: A152308
-  message: "The client authentication method ({Client Authentication Method}) is not allowed."
-A152309:
-  code: A152309
-  message: "The length of the key to verify the signature of the client's assertion is shorter than the minimum size ({Key Length})."
-A152310:
-  code: A152310
-  message: "The signing algorithm used for DPoP proof JWTs ('{Algorithm}') is not allowed."
-A152311:
-  code: A152311
-  message: "The access token associated with the presented refresh token is not sender-constrained with MTLS."
 A153301:
   code: A153301
   message: "The algorithm ('{Algorithm}' for 'userinfo_signed_response_alg') to sign the response is not allowed."
@@ -4142,12 +3974,6 @@ A197101:
 A197102:
   code: A197102
   message: "Failed to update the database record."
-A197103:
-  code: A197103
-  message: "Unexpected error in getting live access token records: grant_id={Grant ID}, client_id={Client ID}"
-A197104:
-  code: A197104
-  message: "Failed to get live access token records: grant_id={Grant ID}, client_id={Client ID}"
 A197301:
   code: A197301
   message: "The algorithm for signing ID tokens must not be 'none'."
@@ -4193,12 +4019,6 @@ A200102:
 A200103:
   code: A200103
   message: "Failed to insert a new access token into the database."
-A200104:
-  code: A200104
-  message: "Unexpected error in getting live access token records: grant_id={Grant ID}, client_id={Client ID}"
-A200105:
-  code: A200105
-  message: "Failed to get live access token records: grant_id={Grant ID}, client_id={Client ID}"
 A200201:
   code: A200201
   message: "The total size of 'properties' is too big."
@@ -4691,12 +4511,6 @@ A242102:
 A242103:
   code: A242103
   message: "Failed to insert a new access token into the database."
-A242104:
-  code: A242104
-  message: "Unexpected error in getting live access token records: grant_id={Grant ID}, client_id={Client ID}"
-A242105:
-  code: A242105
-  message: "Failed to get live access token records: grant_id={Grant ID}, client_id={Client ID}"
 A242201:
   code: A242201
   message: "The total size of 'properties' is too big."
@@ -4748,15 +4562,15 @@ A243304:
 A243305:
   code: A243305
   message: "The client authentication method ({Client Authentication Method}) used at the backchannel authentication endpoint is not allowed."
-A243308:
-  code: A243308
-  message: "The size (%d) of the signing key of the client assertion is less than the allowed minimum size (%d)."
 A243306:
   code: A243306
   message: "The signature algorithm ({Algorithm}) of the signed authentication request is not allowed."
 A243307:
   code: A243307
   message: "The signature algorithm ({Algorithm}) of the client assertion is not allowed."
+A243308:
+  code: A243308
+  message: "The size (%d) of the signing key of the client assertion is less than the allowed minimum size (%d)."
 A244101:
   code: A244101
   message: "Failed to get information about the authorization code."
@@ -4820,9 +4634,6 @@ A245301:
 A245302:
   code: A245302
   message: "A claim in the request object did not match the plain parameter '{Parameter Name}'."
-A245303:
-  code: A245303
-  message: "The value of 'response_type' ({Response Type}) is not allowed when 'scope' does not contain 'openid'."
 A245401:
   code: A245401
   message: "The response from Authlete's /api/pushed_auth_req endpoint is: {Response Message}"
@@ -5009,6 +4820,21 @@ A252303:
 A252304:
   code: A252304
   message: "The length of 'purpose' is longer than {Upper Limit}."
+A253101:
+  code: A253101
+  message: "Failed to get the list of registered redirect URIs."
+A253301:
+  code: A253301
+  message: "The '{Parameter Name}' in the request failed to be parsed as a string."
+A253302:
+  code: A253302
+  message: "The 'redirect_uri' parameter must be explicitly included when the 'scope' parameter includes 'openid'."
+A253303:
+  code: A253303
+  message: "The 'redirect_uri' is not registered."
+A253304:
+  code: A253304
+  message: "The 'redirect_uri' is malformed."
 A254301:
   code: A254301
   message: "There was a problem processing the DPoP header: {Error}"
@@ -5296,10 +5122,10 @@ A275401:
   message: "Decrypted: hsm={HSM}, alg={Algorithm}, kid={Key ID}, handle={Handle}"
 A276001:
   code: A276001
-  message: "Successfully updated the service owner's delete flag (Service Owner Identifier = {Service Owner Identifier})."
+  message: "Successfully updated the service owner's 'deleted' flag (Login ID = {Login ID})."
 A276101:
   code: A276101
-  message: "Failed to update the service owner's delete flag."
+  message: "Failed to update the service owner's 'deleted' flag."
 A276201:
   code: A276201
   message: "The 'id' request parameter must be specified."
@@ -5312,369 +5138,3 @@ A276203:
 A276204:
   code: A276204
   message: "The service owner is already undeleted."
-A277001:
-  code: A277001
-  message: "The grant management action '{Action}' for the grant ID '{Grant ID}' was processed successfully."
-A278201:
-  code: A278201
-  message: "The 'gmAction' request parameter is missing or its value is unknown."
-A278202:
-  code: A278202
-  message: "The value of the 'gmAction' request parameter ('{Action}') is not supported at the grant management endpoint."
-A279101:
-  code: A279101
-  message: "Failed to get the access token record."
-A279301:
-  code: A279301
-  message: "The grant management '{Action}' request contains no access token."
-A279302:
-  code: A279302
-  message: "When the format of an access token is JWT, it must be a JWS signed with an asymmetric algorithm without encryption."
-A279303:
-  code: A279303
-  message: "Validation of the JWT access token failed."
-A279304:
-  code: A279304
-  message: "Failed to extract the value of the 'jti' claim from the access token."
-A279305:
-  code: A279305
-  message: "The value of the 'jti' claim in the access token is null or empty."
-A279306:
-  code: A279306
-  message: "The access token does not exist."
-A279307:
-  code: A279307
-  message: "The access token does not belong to the service."
-A280101:
-  code: A280101
-  message: "Failed to get the client record."
-A280301:
-  code: A280301
-  message: "The client application associated with the presented access token does not exist any longer."
-A280302:
-  code: A280302
-  message: "The client application associated with the presented access token has been deleted."
-A280303:
-  code: A280303
-  message: "The client application associated with the presented access token is locked."
-A281101:
-  code: A281101
-  message: "Failed to delete the access token record."
-A281102:
-  code: A281102
-  message: "Failed to calculate the thumbprint of the client certificate."
-A281201:
-  code: A281201
-  message: "The client certificate passed from the implementation of the grant management endpoint is malformed."
-A281301:
-  code: A281301
-  message: "The access token has expired."
-A281302:
-  code: A281302
-  message: "The access token does not have the required scope '{Scope}'."
-A281303:
-  code: A281303
-  message: "The thumbprint of the client certificate used in the grant management request does not match the thumbprint of the client certificate to which the access token is bound."
-A281304:
-  code: A281304
-  message: "The access token is bound to a client certificate, but the grant management request includes no client certificate."
-A281305:
-  code: A281305
-  message: "The access token is bound to a public key but the grant management request includes no DPoP header."
-A281306:
-  code: A281306
-  message: "The signature algorithm of the DPoP proof JWT is missing or unsupported."
-A281307:
-  code: A281307
-  message: "The signature algorithm of the DPoP proof JWT must be asymmetric."
-A281308:
-  code: A281308
-  message: "The DPoP proof JWT does not include a JWK."
-A281309:
-  code: A281309
-  message: "The DPoP proof JWT is malformed."
-A281310:
-  code: A281310
-  message: "The thumbprint of the DPoP proof JWT does not match the expected value."
-A282201:
-  code: A282201
-  message: "The API call includes no grant ID."
-A283101:
-  code: A283101
-  message: "Failed to get records from the 'access_token' table: grant_id={Grant ID}, client_id={Client ID}"
-A283102:
-  code: A283102
-  message: "Failed to collect information about the grant: grant_id={Grant ID}, client_id={Client ID}"
-A283301:
-  code: A283301
-  message: "The grant ID '{Grant ID}' does not exist or is not for the client '{Client ID}', or it once existed but all its privileges have expired."
-A284101:
-  code: A284101
-  message: "Failed to get records from the 'access_token' table: grant_id={Grant ID}, client_id={Client ID}"
-A284102:
-  code: A284102
-  message: "Failed to delete a record from the 'access_token' table: grant_id={Grant ID}, client_id={Client ID}"
-A284103:
-  code: A284103
-  message: "Failed to revoke the grant '{Grant ID}': client_id={Client ID}"
-A285101:
-  code: A285101
-  message: "Failed to retrieve information about the grant '{Grant ID}'."
-A285102:
-  code: A285102
-  message: "Failed to get access token records: grant_id={Grant ID}, client_id={Client ID}"
-A285301:
-  code: A285301
-  message: "The value of the 'grant_id' request parameter is not a string."
-A285302:
-  code: A285302
-  message: "The 'grant_id' request parameter is included more than once."
-A285303:
-  code: A285303
-  message: "The value of the 'grant_management_action' request parameter is not a string."
-A285304:
-  code: A285304
-  message: "The 'grant_management_action' request parameter is included more than once."
-A285305:
-  code: A285305
-  message: "The value of the 'grant_management_action' request parameter is invalid."
-A285306:
-  code: A285306
-  message: "'{Action}' is not allowed as a value for the 'grant_management_action' request parameter."
-A285307:
-  code: A285307
-  message: "The 'grant_management_action' request parameter must be always specified."
-A285308:
-  code: A285308
-  message: "The 'grant_id' request parameter is given without the 'grant_management_action' request parameter."
-A285309:
-  code: A285309
-  message: "The 'grant_id' request parameter is given although the value of the 'grant_management_action' request parameter is 'create'."
-A285310:
-  code: A285310
-  message: "The 'grant_id' request parameter must be given when the value of the 'grant_management_action' is '{Action}'."
-A285311:
-  code: A285311
-  message: "It is confidential clients only that are allowed to use the grant management feature."
-A285312:
-  code: A285312
-  message: "The grant specified by the grant ID '{Grant ID}' does not exist or is not for the client '{Client ID}', or all the privileges of the grant have expired."
-A286301:
-  code: A286301
-  message: "The access token does not cover necessary scopes."
-A286302:
-  code: A286302
-  message: "The access token does not cover necessary resources."
-A286303:
-  code: A286303
-  message: "The access token does not cover the necessary combination of scopes and resources."
-A287101:
-  code: A287101
-  message: "Failed to get access token records: grant_id={Grant ID}, client_id={Client ID}"
-A287102:
-  code: A287102
-  message: "Failed to retrieve information about the grant '{Grant ID}'."
-A287301:
-  code: A287301
-  message: "The value of the 'grant_management_action' request parameter is invalid."
-A287302:
-  code: A287302
-  message: "'{Grant Management Action}' is not allowed as a value for the 'grant_management_action' request parameter."
-A287303:
-  code: A287303
-  message: "The 'grant_management_action' request parameter must be always specified."
-A287304:
-  code: A287304
-  message: "The 'grant_id' request parameter is given without the 'grant_management_action' request parameter."
-A287305:
-  code: A287305
-  message: "The 'grant_id' request parameter is given although the value of the 'grant_management_action' request parameter is 'create'."
-A287306:
-  code: A287306
-  message: "The 'grant_id' request parameter must be given when the value of the 'grant_management_action' is '{Grant Management Action}'."
-A287307:
-  code: A287307
-  message: "It is confidential clients only that are allowed to use the grant management feature."
-A287308:
-  code: A287308
-  message: "The grant specified by the grant ID '{Grant ID}' does not exist or is not for the client '{Client ID}', or all the privileges of the  grant have expired."
-A288101:
-  code: A288101
-  message: "Failed to get access token records: grant_id={Grant ID}, client_id={Client ID}"
-A288102:
-  code: A288102
-  message: "Failed to retrieve information about the grant '{Grant ID}'."
-A288301:
-  code: A288301
-  message: "The value of the 'grant_management_action' request parameter is invalid."
-A288302:
-  code: A288302
-  message: "'{Grant Management Action}' is not allowed as a value for the 'grant_management_action' request parameter."
-A288303:
-  code: A288303
-  message: "The 'grant_management_action' request parameter must be always specified."
-A288304:
-  code: A288304
-  message: "The 'grant_id' request parameter is given without the 'grant_management_action' request parameter."
-A288305:
-  code: A288305
-  message: "The 'grant_id' request parameter is given although the value of the 'grant_management_action' request parameter is 'create'."
-A288306:
-  code: A288306
-  message: "The 'grant_id' request parameter must be given when the value of the 'grant_management_action' is '{Grant Management Action}'."
-A288307:
-  code: A288307
-  message: "It is confidential clients only that are allowed to use the grant management feature."
-A288308:
-  code: A288308
-  message: "The grant specified by the grant ID '{Grant ID}' does not exist or is not for the client '{Client ID}', or all the privileges of the  grant have expired."
-A289101:
-  code: A289101
-  message: "Failed to get records from the 'access_token' table: grant_id={Grant ID}, client_id={Client ID}"
-A289102:
-  code: A289102
-  message: "Failed to collect information about the grant: grant_id={Grant ID}, client_id={Client ID}"
-A290101:
-  code: A290101
-  message: "Failed to get records from the 'claims' table."
-A291101:
-  code: A291101
-  message: "Failed to get records from the 'claims' table."
-A292101:
-  code: A292101
-  message: "Failed to get records from the 'claims' table."
-A293001:
-  code: A293001
-  message: "Successfully updated the client's lock flag (Client Identifier = {Client Identifier})."
-A293101:
-  code: A293101
-  message: "Failed to update the client's lock flag."
-A293201:
-  code: A293201
-  message: "A client identifier must be specified."
-A293202:
-  code: A293202
-  message: "The client has already been deleted."
-A293203:
-  code: A293203
-  message: "The client is already locked."
-A293204:
-  code: A293204
-  message: "The client is already unlocked."
-A294301:
-  code: A294301
-  message: "The signing algorithm used for authorization responses ('{Algorithm}') is not allowed."
-A294302:
-  code: A294302
-  message: "The encryption algorithm for authorization responses ('{Algorithm}') is not allowed."
-A294303:
-  code: A294303
-  message: "The value of 'response_type' ('{Response Type}') is not allowed."
-A294304:
-  code: A294304
-  message: "The value of 'redirect_uri' contained in the request is not well-formed."
-A294305:
-  code: A294305
-  message: "The value of 'redirect_uri' contained in the request is not absolute."
-A294306:
-  code: A294306
-  message: "The value of 'redirect_uri' contained in the request has a fragment component."
-A294307:
-  code: A294307
-  message: "Redirect URIs that use the 'http' scheme is not allowed except for native clients that use Loopback Interface Redirection."
-A294308:
-  code: A294308
-  message: "The authorization request was sent without PAR."
-A294309:
-  code: A294309
-  message: "The 'code_challenge' parameter is not contained in the authorization request."
-A294310:
-  code: A294310
-  message: "The value of 'code_challenge_method' parameter ('{Parameter Name}') is not allowed."
-A295301:
-  code: A295301
-  message: "The client authentication method ('{Client Authentication Method}') is not allowed."
-A295302:
-  code: A295302
-  message: "The value of the signing algorithm used for the client's assertion ('{Algorithm}') is not allowed."
-A295303:
-  code: A295303
-  message: "The length of the key to verify the signature of the client's assertion is shorter than the minimum size ({Minimum Size})."
-A295304:
-  code: A295304
-  message: "The signing algorithm used for ID tokens ('{Algorithm}') is not allowed."
-A295305:
-  code: A295305
-  message: "The encryption algorithm used for ID tokens ('{Algorithm}') is not allowed."
-A295306:
-  code: A295306
-  message: "The grant type ('{Grant Type}') is not allowed."
-A295307:
-  code: A295307
-  message: "Public clients are not allowed."
-A295308:
-  code: A295308
-  message: "Sender-constraining mechanism must be used for access tokens."
-A295309:
-  code: A295309
-  message: "The signing algorithm used for DPoP proof JWTs ('{Algorithm}') is not allowed."
-A295310:
-  code: A295310
-  message: "The access token associated with the presented refresh token is not sender-constrained."
-A296301:
-  code: A296301
-  message: "The signing algorithm used for userinfo responses ('{Algorithm}') is not allowed."
-A296302:
-  code: A296302
-  message: "The encryption algorithm used for userinfo responses ('{Algorithm}') is not allowed."
-A297301:
-  code: A297301
-  message: "The 'response_type' in the request failed to be parsed as a string."
-A297302:
-  code: A297302
-  message: "The value of 'response_type' parameter is invalid."
-A297303:
-  code: A297303
-  message: "The response type '{Response Type}' is not supported by this service."
-A297304:
-  code: A297304
-  message: "The client (ID = {Client ID}) does not declare it uses the response type '{Response Type}'."
-A298301:
-  code: A298301
-  message: "The 'scope' in the request failed to be parsed as a string."
-A298302:
-  code: A298302
-  message: "The authorization request has no 'scope' parameter or none of the given scopes is recognized as valid, and the service's default scope set is empty. The service's configuration does not allow requests that request no scope."
-A299301:
-  code: A299301
-  message: "The 'scope' in the request failed to be parsed as a string."
-A299302:
-  code: A299302
-  message: "The 'redirect_uri' parameter must be explicitly included when the 'scope' parameter includes 'openid'."
-A299303:
-  code: A299303
-  message: "The 'redirect_uri' is malformed."
-A299304:
-  code: A299304
-  message: "The 'redirect_uri' is not registered."
-A300301:
-  code: A300301
-  message: "The client authentication method ('{Client Authentication Method}') is not allowed."
-A300302:
-  code: A300302
-  message: "The value of the signing algorithm used for the client's assertion ('{Client Assertion Signing Algorithm}') is not allowed."
-A300303:
-  code: A300303
-  message: "The length of the key to verify the signature of the client's assertion is shorter than the minimum size ({Minimum Size})."
-A300304:
-  code: A300304
-  message: "The signing algorithm used for the request object ('{Algorithm}') is not allowed."
-A300305:
-  code: A300305
-  message: "The request object JWE header's 'alg' value ('{Algorithm}') is not allowed."
-A300306:
-  code: A300306
-  message: "Public clients are not allowed."
-A300307:
-  code: A300307
-  message: "A redirect URI must be contained in the request."
