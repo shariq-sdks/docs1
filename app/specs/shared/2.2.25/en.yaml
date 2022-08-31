@@ -857,6 +857,10 @@
                     "requestObjectAudienceChecked": {
                       "type": "boolean",
                       "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                    },
+                    "dcrDuplicateSoftwareIdBlocked": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
                   }
                 },
@@ -1990,6 +1994,10 @@
                           "requestObjectAudienceChecked": {
                             "type": "boolean",
                             "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                          },
+                          "dcrDuplicateSoftwareIdBlocked": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                           }
                         }
                       },
@@ -3091,6 +3099,10 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                  },
+                  "dcrDuplicateSoftwareIdBlocked": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               },
@@ -3963,6 +3975,10 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                  },
+                  "dcrDuplicateSoftwareIdBlocked": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               }
@@ -4790,6 +4806,10 @@
                     "requestObjectAudienceChecked": {
                       "type": "boolean",
                       "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                    },
+                    "dcrDuplicateSoftwareIdBlocked": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
                   }
                 },
@@ -5891,6 +5911,10 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                  },
+                  "dcrDuplicateSoftwareIdBlocked": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               },
@@ -6813,6 +6837,10 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                  },
+                  "dcrDuplicateSoftwareIdBlocked": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               }
@@ -7753,6 +7781,10 @@
                     "requestObjectAudienceChecked": {
                       "type": "boolean",
                       "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                    },
+                    "dcrDuplicateSoftwareIdBlocked": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
                   }
                 }
@@ -18059,6 +18091,10 @@
                         "requestObjectAudienceChecked": {
                           "type": "boolean",
                           "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+                        },
+                        "dcrDuplicateSoftwareIdBlocked": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                         }
                       }
                     },
@@ -18251,7 +18287,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -19839,7 +19875,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -20584,7 +20620,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -21092,7 +21128,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -26652,7 +26688,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -27761,7 +27797,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -28245,7 +28281,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -28669,7 +28705,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -30548,7 +30584,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -30718,7 +30754,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -30882,7 +30918,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -31184,7 +31220,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -31319,7 +31355,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -31446,7 +31482,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -32220,7 +32256,7 @@
                 },
                 "otherFields": {
                   "type": "string",
-                  "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                  "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                 }
               }
             },
@@ -32272,7 +32308,7 @@
           },
           "otherFields": {
             "type": "string",
-            "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+            "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
           }
         }
       },
@@ -34068,6 +34104,10 @@
           "requestObjectAudienceChecked": {
             "type": "boolean",
             "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
+          },
+          "dcrDuplicateSoftwareIdBlocked": {
+            "type": "boolean",
+            "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
           }
         }
       },
