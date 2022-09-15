@@ -1,0 +1,102 @@
+delete:
+  summary: /api/client/delete/{clientId} API
+  description: |
+    Delete a client.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: clientId
+      schema:
+        type: string
+      required: true
+      description:
+        The client ID.
+  responses:
+    '204':
+      description:  The client was successfully deleted.
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_delete_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X DELETE https://api.authlete.com/api/client/delete/26478243745571 \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        long clientId = ...;
+
+        api.deleteClient(clientId);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        long clientId = ...;
+
+        await api.DeleteClient(clientId);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $clientId = ...;
+
+        $api.deleteClient($clientId);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        client_id = ...
+
+        api.client_delete(client_id)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        clientId = ...
+
+        api.deleteClient(clientId)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        clientId := ...
+
+        api.DeleteClient(clientId)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const clientId = ...
+
+        await api.deleteClient(clientId);
+
+  tags:
+    - Client Management

@@ -64,7 +64,7 @@ paths:
   /api/auth/authorization/issue:
     $ref: ./api/auth_authorization_issue_api.yaml
   /api/pushed_auth_req:
-    $ref: ./api/pushed_auth_api.yaml
+    $ref: ./api/pushed_auth_req_api.yaml
   /api/auth/token:
     $ref: ./api/auth_token_api.yaml
   /api/auth/token/fail:

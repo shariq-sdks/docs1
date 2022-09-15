@@ -1,0 +1,216 @@
+get:
+  summary: /api/service/get/list API
+  description: |
+    Get a list of services.
+  security:
+    - ServiceOwnerCredentials: []
+  parameters:
+    - in: query
+      name: start
+      schema:
+        type: integer
+        format: int32
+      required: false
+      description:
+        Start index (inclusive) of the result set. The default value is 0. Must not be a negative number.
+    - in: query
+      name: end
+      schema:
+        type: integer
+        format: int32
+      required: false
+      description:
+        End index (exclusive) of the result set. The default value is 5. Must not be a negative number.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/service_get_list_response.yaml
+          example:
+            start: 0
+            end: 5
+            totalCount: 1
+            services:
+              - accessTokenDuration: 3600
+                accessTokenType: Bearer
+                allowableClockSkew: 0
+                apiKey: 21653835348762
+                apiSecret: uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls
+                attributes:
+                  - key: attribute1-key
+                    value: attribute1-value
+                  - key: attribute2-key
+                    value: attribute2-value
+                authorizationEndpoint: https://as.example.com/authz
+                authorizationResponseDuration: 0
+                backchannelAuthReqIdDuration: 0
+                backchannelBindingMessageRequiredInFapi: false
+                backchannelPollingInterval: 0
+                backchannelUserCodeParameterSupported: false
+                claimShortcutRestrictive: false
+                clientIdAliasEnabled: true
+                clientsPerDeveloper: 0
+                createdAt: 1639373421000
+                dcrScopeUsedAsRequestable: false
+                deviceFlowCodeDuration: 0
+                deviceFlowPollingInterval: 0
+                directAuthorizationEndpointEnabled: false
+                directIntrospectionEndpointEnabled: false
+                directJwksEndpointEnabled: false
+                directRevocationEndpointEnabled: false
+                directTokenEndpointEnabled: false
+                directUserInfoEndpointEnabled: false
+                dynamicRegistrationSupported: false
+                errorDescriptionOmitted: false
+                errorUriOmitted: false
+                frontChannelRequestObjectEncryptionRequired: false
+                grantManagementActionRequired: false
+                hsmEnabled: false
+                idTokenDuration: 0
+                introspectionEndpoint: https://my-service.example.com/introspection
+                issSuppressed: false
+                issuer: https://my-service.example.com
+                metadata:
+                  - key: clientCount
+                    value: '1'
+                missingClientIdAllowed: false
+                modifiedAt: 1639373421000
+                mutualTlsValidatePkiCertChain: false
+                nbfOptional: false
+                number: 5041
+                parRequired: false
+                pkceRequired: true
+                pkceS256Required: false
+                pushedAuthReqDuration: 0
+                refreshTokenDuration: 3600
+                refreshTokenDurationKept: false
+                refreshTokenDurationReset: false
+                refreshTokenKept: false
+                requestObjectEncryptionAlgMatchRequired: false
+                requestObjectEncryptionEncMatchRequired: false
+                requestObjectRequired: false
+                revocationEndpoint: https://my-service.example.com/revocation
+                scopeRequired: false
+                serviceName: My service
+                serviceOwnerNumber: 2
+                singleAccessTokenPerSubject: false
+                supportedClaimTypes:
+                  - NORMAL
+                supportedDisplays:
+                  - PAGE
+                supportedGrantTypes:
+                  - AUTHORIZATION_CODE
+                  - REFRESH_TOKEN
+                supportedIntrospectionAuthMethods:
+                  - CLIENT_SECRET_BASIC
+                supportedResponseTypes:
+                  - CODE
+                supportedRevocationAuthMethods:
+                  - CLIENT_SECRET_BASIC
+                supportedScopes:
+                  - defaultEntry: false
+                    description: A permission to read your history.
+                    name: history.read
+                  - defaultEntry: false
+                    description: A permission to read your timeline.
+                    name: timeline.read
+                supportedTokenAuthMethods:
+                  - CLIENT_SECRET_BASIC
+                tlsClientCertificateBoundAccessTokens: false
+                tokenEndpoint: https://my-service.example.com/token
+                tokenExpirationLinked: false
+                traditionalRequestObjectProcessingApplied: false
+                unauthorizedOnClientConfigSupported: false
+                userCodeLength: 0
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'service_get_list_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/service/get/list?start=0\&end=5 \
+        -u '9503564192:cxRpzPEkvqYbDu14gpCVKi_p6kMQvcW-lBMi7IfWLK4'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        int start = 0;
+        int end = 5;
+
+        api.getServiceList(start, end);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        int start = 0;
+        int end = 5;
+
+        await api.GetServiceList(start, end);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $start = 0;
+        $end = 5;
+
+        $api.getServiceList($start, $end);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = { start: 0, end: 5 }
+
+        api.service_get_list(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        start = 0
+        end = 5
+
+        api.getServiceList(start, end)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        start := 0
+        end := 5
+
+        api.GetServiceList(start, end)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const start = 0;
+        const end = 5;
+
+        await api.getServiceList(start, end);
+  tags:
+    - Service Management

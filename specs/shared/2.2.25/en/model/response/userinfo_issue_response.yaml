@@ -1,7 +1,3 @@
-description: ""
-content:
-  application/json:
-    schema:
 type: object
 properties:
   resultCode:

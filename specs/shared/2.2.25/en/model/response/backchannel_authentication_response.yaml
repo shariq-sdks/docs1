@@ -162,7 +162,3 @@ properties:
       The dynamic scopes which the client application requested by the scope request parameter.
   deliveryMode:
     $ref: ../delivery_mode.yaml
-  clientAuthMethod:
-    type: string
-    description: |
-      The client authentication method that was performed.

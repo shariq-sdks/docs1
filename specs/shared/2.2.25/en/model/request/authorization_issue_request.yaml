@@ -43,3 +43,5 @@ properties:
     description: |
       JSON that represents additional JWS header parameters for ID tokens that may be issued based on
       the authorization request.
+  authorizationDetails:
+    $ref: ../authorization_details.yaml

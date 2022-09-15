@@ -9,14 +9,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../model/request/pushed_authorization_request.yaml
+          $ref: ../model/request/pushed_auth_req_request.yaml
         example:
           parameters: "response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256"
           clientId: "5921531358155430"
           clientSecret: "P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA"
       application/x-www-form-urlencoded:
         schema:
-          $ref: ../model/request/pushed_authorization_request.yaml
+          $ref: ../model/request/pushed_auth_req_request.yaml
         example:
           parameters: "response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256"
           clientId: "5921531358155430"
@@ -27,7 +27,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../model/response/pushed_authorization_response.yaml
+            $ref: ../model/response/pushed_auth_req_response.yaml
           example:
             {
               "resultCode": "A245001",
@@ -44,7 +44,7 @@ post:
       $ref: ../model/response/403.yaml
     '500':
       $ref: ../model/response/500.yaml
-  operationId: 'pushed_auth_api'
+  operationId: 'pushed_auth_req_api'
   x-code-samples:
     - lang: shell
       label: curl
@@ -65,7 +65,7 @@ post:
         req.setClientId("57297408867");
         req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
 
-        api.token(req);
+        api.pushAuthorizationRequest(req);
 
     - lang: cs
       label: C#
@@ -78,7 +78,7 @@ post:
         req.setClientId("57297408867");
         req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
 
-        api.token(req);
+        api.PushAuthorizationRequest(req);
 
     - lang: php
       label: PHP
@@ -115,7 +115,7 @@ post:
         req.clientId = '57297408867'
         req.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'
 
-        api.token(req)
+        api.pushAuthorizationRequest(req)
 
     - lang: go
       source: |
@@ -127,7 +127,7 @@ post:
         req.ClientId = "57297408867"
         req.ClientSecret = "J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A"
 
-        api.Token(&req)
+        api.PushAuthorizationRequest(&req)
 
     - lang: ts
       label: deno
@@ -140,6 +140,6 @@ post:
         req.clientId = '57297408867';
         req.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';
 
-        await api.token(req);
+        await api.pushAuthorizationRequest(req);
   tags:
     - Pushed Authorization Endpoint
