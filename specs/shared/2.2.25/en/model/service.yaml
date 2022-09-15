@@ -1169,8 +1169,3 @@ properties:
       As excerpted above, validation on the `aud` claim of request objects is optional. However, if
       this flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer
       identifier of this service and raises an error if they are different.
-  dcrDuplicateSoftwareIdBlocked:
-    type: boolean
-    description: |
-      The flag indicating whether to block DCR (Dynamic Client Registration)
-      requests whose "software_id" has already been used previously.

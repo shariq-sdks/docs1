@@ -25,5 +25,3 @@ properties:
     description: |
       The content that the authorization server implementation is to return to the client
       application.
-  clientAuthMethod:
-    &ref: ../client_authentication_method.yaml

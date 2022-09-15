@@ -661,6 +661,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                         "enum": [
                           "PING",
                           "POLL",
@@ -857,10 +858,6 @@
                     "requestObjectAudienceChecked": {
                       "type": "boolean",
                       "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                    },
-                    "dcrDuplicateSoftwareIdBlocked": {
-                      "type": "boolean",
-                      "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
                   }
                 },
@@ -1798,6 +1795,7 @@
                             "type": "array",
                             "items": {
                               "type": "string",
+                              "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                               "enum": [
                                 "PING",
                                 "POLL",
@@ -1994,10 +1992,6 @@
                           "requestObjectAudienceChecked": {
                             "type": "boolean",
                             "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                          },
-                          "dcrDuplicateSoftwareIdBlocked": {
-                            "type": "boolean",
-                            "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                           }
                         }
                       },
@@ -2903,6 +2897,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -3099,10 +3094,6 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                  },
-                  "dcrDuplicateSoftwareIdBlocked": {
-                    "type": "boolean",
-                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               },
@@ -3779,6 +3770,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -3975,10 +3967,6 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                  },
-                  "dcrDuplicateSoftwareIdBlocked": {
-                    "type": "boolean",
-                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               }
@@ -4610,6 +4598,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                         "enum": [
                           "PING",
                           "POLL",
@@ -4806,10 +4795,6 @@
                     "requestObjectAudienceChecked": {
                       "type": "boolean",
                       "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                    },
-                    "dcrDuplicateSoftwareIdBlocked": {
-                      "type": "boolean",
-                      "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
                   }
                 },
@@ -5715,6 +5700,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -5911,10 +5897,6 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                  },
-                  "dcrDuplicateSoftwareIdBlocked": {
-                    "type": "boolean",
-                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               },
@@ -6641,6 +6623,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -6837,10 +6820,6 @@
                   "requestObjectAudienceChecked": {
                     "type": "boolean",
                     "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                  },
-                  "dcrDuplicateSoftwareIdBlocked": {
-                    "type": "boolean",
-                    "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                   }
                 }
               }
@@ -7585,6 +7564,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                         "enum": [
                           "PING",
                           "POLL",
@@ -7781,10 +7761,6 @@
                     "requestObjectAudienceChecked": {
                       "type": "boolean",
                       "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                    },
-                    "dcrDuplicateSoftwareIdBlocked": {
-                      "type": "boolean",
-                      "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
                   }
                 }
@@ -16128,11 +16104,40 @@
                     "resultMessage": {
                       "type": "string",
                       "description": "A short message which explains the result of the API call."
+                    },
+                    "serviceApiKey": {
+                      "type": "number",
+                      "description": "The API key of the service."
+                    },
+                    "clientId": {
+                      "type": "number",
+                      "description": "The client ID."
+                    },
+                    "subject": {
+                      "type": "string",
+                      "description": "The subject (= unique identifier) of the user who has granted authorization to the client."
+                    },
+                    "latestGrantedScopes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The scopes granted to the client application by the last authorization process by the user (who\nis identified by the subject). `null` means that there is no record about granted scopes. An empty\narray means that there exists a record about granted scopes but no scope has been granted to the\nclient application. If the returned array holds some elements, they are the scopes granted to\nthe client application by the last authorization process.\n"
+                    },
+                    "mergedGrantedScopes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The scopes granted to the client application by all the past authorization processes. Note that\nrevoked scopes are not included.\n"
+                    },
+                    "modifiedAt": {
+                      "type": "number",
+                      "description": "The timestamp in milliseconds since Unix epoch at which this record was modified.\n"
                     }
                   }
                 },
                 "example": {
-                  "type": "GrantedScopesGetResponse",
                   "serviceApiKey": 21653835348762,
                   "clientId": 26478243745571,
                   "subject": "john",
@@ -16142,7 +16147,8 @@
                   "mergedGrantedScopes": [
                     "history.read",
                     "timeline.read"
-                  ]
+                  ],
+                  "modifiedAt": 1663144643000
                 }
               }
             }
@@ -17895,6 +17901,7 @@
                           "type": "array",
                           "items": {
                             "type": "string",
+                            "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                             "enum": [
                               "PING",
                               "POLL",
@@ -18091,10 +18098,6 @@
                         "requestObjectAudienceChecked": {
                           "type": "boolean",
                           "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-                        },
-                        "dcrDuplicateSoftwareIdBlocked": {
-                          "type": "boolean",
-                          "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                         }
                       }
                     },
@@ -19008,6 +19011,64 @@
                   "idtHeaderParams": {
                     "type": "string",
                     "description": "JSON that represents additional JWS header parameters for ID tokens that may be issued based on\nthe authorization request.\n"
+                  },
+                  "authorizationDetails": {
+                    "type": "object",
+                    "description": "The authorization details. This represents the value of the `authorization_details`\nrequest parameter in the preceding device authorization request which is defined in\n\"OAuth 2.0 Rich Authorization Requests\".\n",
+                    "properties": {
+                      "elements": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "type"
+                          ],
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "The type of this element.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"The type of authorization data as a string.\nThis field MAY define which other elements are allowed in the request. This element is REQUIRED.\"_\n\nThis property is always NOT `null`.\n"
+                            },
+                            "locations": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The resources and/or resource servers. This property may be `null`.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the location of\nthe resource or resource server. This is typically composed of URIs.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "actions": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The actions.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the kinds of actions\nto be taken at the resource. The values of the strings are determined by the API being protected.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "dataTypes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "From _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the kinds of data being requested\nfrom the resource.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "identifier": {
+                              "type": "string",
+                              "description": "The identifier of a specific resource.\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"A string identifier indicating a specific resource available at the API.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "privileges": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The types or levels of privilege.\nFrom \"OAuth 2.0 Rich Authorization Requests\": _\"An array of strings representing the types or\nlevels of privilege being requested at the resource.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "otherFields": {
+                              "type": "string",
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
+                            }
+                          }
+                        },
+                        "description": "Elements of this authorization details.\n"
+                      }
+                    }
                   }
                 }
               },
@@ -19079,6 +19140,64 @@
                   "idtHeaderParams": {
                     "type": "string",
                     "description": "JSON that represents additional JWS header parameters for ID tokens that may be issued based on\nthe authorization request.\n"
+                  },
+                  "authorizationDetails": {
+                    "type": "object",
+                    "description": "The authorization details. This represents the value of the `authorization_details`\nrequest parameter in the preceding device authorization request which is defined in\n\"OAuth 2.0 Rich Authorization Requests\".\n",
+                    "properties": {
+                      "elements": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "type"
+                          ],
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "The type of this element.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"The type of authorization data as a string.\nThis field MAY define which other elements are allowed in the request. This element is REQUIRED.\"_\n\nThis property is always NOT `null`.\n"
+                            },
+                            "locations": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The resources and/or resource servers. This property may be `null`.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the location of\nthe resource or resource server. This is typically composed of URIs.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "actions": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The actions.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the kinds of actions\nto be taken at the resource. The values of the strings are determined by the API being protected.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "dataTypes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "From _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the kinds of data being requested\nfrom the resource.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "identifier": {
+                              "type": "string",
+                              "description": "The identifier of a specific resource.\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"A string identifier indicating a specific resource available at the API.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "privileges": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The types or levels of privilege.\nFrom \"OAuth 2.0 Rich Authorization Requests\": _\"An array of strings representing the types or\nlevels of privilege being requested at the resource.\"_\n\nThis property may be `null`.\n"
+                            },
+                            "otherFields": {
+                              "type": "string",
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
+                            }
+                          }
+                        },
+                        "description": "Elements of this authorization details.\n"
+                      }
+                    }
                   }
                 }
               }
@@ -19416,8 +19535,7 @@
                     "responseContent": {
                       "type": "string",
                       "description": "The content that the authorization server implementation is to return to the client\napplication.\n"
-                    },
-                    "clientAuthMethod": "../client_authentication_method.yaml"
+                    }
                   }
                 },
                 "example": {
@@ -19527,7 +19645,7 @@
             }
           }
         },
-        "operationId": "pushed_auth_api",
+        "operationId": "pushed_auth_req_api",
         "x-code-samples": [
           {
             "lang": "shell",
@@ -19537,12 +19655,12 @@
           {
             "lang": "java",
             "label": "java",
-            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.pushAuthorizationRequest(req);\n"
           },
           {
             "lang": "cs",
             "label": "C#",
-            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.PushAuthorizationRequest(req);\n"
           },
           {
             "lang": "php",
@@ -19555,16 +19673,16 @@
           },
           {
             "lang": "python",
-            "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = PushedAuthReqRequest()\nreq.parameters = ...\nreq.clientId = '57297408867'\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.token(req)\n"
+            "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = PushedAuthReqRequest()\nreq.parameters = ...\nreq.clientId = '57297408867'\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.pushAuthorizationRequest(req)\n"
           },
           {
             "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.PushedAuthReqRequest{}\nreq.Parameters = ...\nreq.ClientId = \"57297408867\"\nreq.ClientSecret = \"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\"\n\napi.Token(&req)\n"
+            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.PushedAuthReqRequest{}\nreq.Parameters = ...\nreq.ClientId = \"57297408867\"\nreq.ClientSecret = \"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\"\n\napi.PushAuthorizationRequest(&req)\n"
           },
           {
             "lang": "ts",
             "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new PushedAuthReqRequest();\nreq.parameters = ...;\nreq.clientId = '57297408867';\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';\n\nawait api.token(req);\n"
+            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new PushedAuthReqRequest();\nreq.parameters = ...;\nreq.clientId = '57297408867';\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';\n\nawait api.pushAuthorizationRequest(req);\n"
           }
         ],
         "tags": [
@@ -22334,12 +22452,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "",
-                  "content": {
-                    "application/json": {
-                      "schema": null
-                    }
-                  },
                   "type": "object",
                   "properties": {
                     "resultCode": {
@@ -26749,15 +26861,12 @@
                     },
                     "deliveryMode": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
                         "PUSH"
                       ]
-                    },
-                    "clientAuthMethod": {
-                      "type": "string",
-                      "description": "The client authentication method that was performed.\n"
                     }
                   }
                 },
@@ -27691,6 +27800,7 @@
                     },
                     "deliveryMode": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -33067,6 +33177,7 @@
       },
       "DeliveryMode": {
         "type": "string",
+        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
         "enum": [
           "PING",
           "POLL",
@@ -33908,6 +34019,7 @@
             "type": "array",
             "items": {
               "type": "string",
+              "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
               "enum": [
                 "PING",
                 "POLL",
@@ -34104,10 +34216,6 @@
           "requestObjectAudienceChecked": {
             "type": "boolean",
             "description": "The flag indicating whether Authlete checks whether the `aud` claim of request objects matches\nthe issuer identifier of this service.\n\n[Section 6.1. Passing a Request Object by Value](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)\nof [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) has the following\nstatement.\n\n> The `aud` value SHOULD be or include the OP's Issuer Identifier URL.\n\nLikewise, [Section 4. Request Object](https://www.rfc-editor.org/rfc/rfc9101.html#section-4) of\n[RFC 9101](https://www.rfc-editor.org/rfc/rfc9101.html) (The OAuth 2.0 Authorization Framework:\nJWT-Secured Authorization Request (JAR)) has the following statement.\n\n> The value of aud should be the value of the authorization server (AS) issuer, as defined in\n[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).\n\nAs excerpted above, validation on the `aud` claim of request objects is optional. However, if\nthis flag is turned on, Authlete checks whether the `aud` claim of request objects matches the issuer\nidentifier of this service and raises an error if they are different.\n"
-          },
-          "dcrDuplicateSoftwareIdBlocked": {
-            "type": "boolean",
-            "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
           }
         }
       },
