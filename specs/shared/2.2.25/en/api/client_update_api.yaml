@@ -125,13 +125,41 @@ post:
               "tokenAuthMethod": "CLIENT_SECRET_BASIC"
             }
     '400':
-      $ref: ../model/response/400.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /client/update/{clientId}, TLS must be used.'
     '401':
-      $ref: ../model/response/401.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /client/update/{clientId}, Authorization header is missing.'
     '403':
-      $ref: ../model/response/403.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /client/update/{clientId}, The service (API Key = 21653835348762) is locked.'
     '500':
-      $ref: ../model/response/500.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /client/update/{clientId}, Authlete Server error.'
   operationId: 'client_update_api'
   x-code-samples:
     - lang: shell

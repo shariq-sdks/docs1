@@ -167,13 +167,41 @@ post:
               "responseContent": "{\\\"default_max_age\\\":0,\\\"registration_client_uri\\\":\\\"https://my-service.example.com/dcr/register/26837717140341\\\",\\\"registration_access_token\\\":\\\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\\\",\\\"client_id\\\":\\\"26837717140341\\\",\\\"token_endpoint_auth_method\\\":\\\"client_secret_basic\\\",\\\"require_pushed_authorization_requests\\\":false,\\\"backchannel_user_code_parameter\\\":false,\\\"client_secret\\\":\\\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\\\",\\\"client_id_issued_at\\\":1641735467,\\\"tls_client_certificate_bound_access_tokens\\\":false,\\\"client_name\\\":\\\"My Updated Dynamic Client\\\",\\\"id_token_signed_response_alg\\\":\\\"RS256\\\",\\\"subject_type\\\":\\\"public\\\",\\\"client_secret_expires_at\\\":0,\\\"require_signed_request_object\\\":false}"
             }
     '400':
-      $ref: ../model/response/400.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /client/registration/update, TLS must be used.'
     '401':
-      $ref: ../model/response/401.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /client/registration/update, Authorization header is missing.'
     '403':
-      $ref: ../model/response/403.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /client/registration/update, The service (API Key = 21653835348762) is locked.'
     '500':
-      $ref: ../model/response/500.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /client/registration/update, Authlete Server error.'
   operationId: 'client_registration_update_api'
   x-code-samples:
     - lang: shell

@@ -148,14 +148,33 @@ get:
               "subject": "john",
               "totalCount": 3
             }
-    '400':
-      $ref: ../model/response/400.yaml
     '401':
-      $ref: ../model/response/401.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /auth/token/get/list, Authorization header is missing.'
     '403':
-      $ref: ../model/response/403.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /auth/token/get/list, The service (API Key = 21653835348762) is locked.'
     '500':
-      $ref: ../model/response/500.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /auth/token/get/list, Authlete Server error.'
   operationId: 'auth_token_get_list_api'
   x-code-samples:
     - lang: shell

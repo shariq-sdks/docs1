@@ -145,15 +145,42 @@ post:
               "authorizationCode": "Xv_su944auuBgc5mfUnxXayiiQU9Z4-T_Yae_UfExmo",
               "responseContent": "https://my-client.example.com/cb1?code=Xv_su944auuBgc5mfUnxXayiiQU9Z4-T_Yae_UfExmo&iss=https%3A%2F%2Fmy-service.example.com"
             }
-
     '400':
-      $ref: ../model/response/400.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /auth/authorization/issue, TLS must be used.'
     '401':
-      $ref: ../model/response/401.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /auth/authorization/issue, Authorization header is missing.'
     '403':
-      $ref: ../model/response/403.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /auth/authorization/issue, The service (API Key = 21653835348762) is locked.'
     '500':
-      $ref: ../model/response/500.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /auth/authorization/issue, Authlete Server error.'
   operationId: 'auth_authorization_issue_api'
   x-code-samples:
     - lang: shell

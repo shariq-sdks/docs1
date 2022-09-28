@@ -1,8 +1,0 @@
-description: ""
-content:
-  application/json:
-    schema:
-      $ref: result.yaml
-    example:
-      resultCode: A001201
-      resultMessage: '[A001201] /auth/authorization, TLS must be used.'
