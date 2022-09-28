@@ -1,12 +1,12 @@
 delete:
-  summary: /api/auth/token/delete API
+  summary: /api/auth/token/delete/{tokenIdentifier} API
   description: |
     Delete an access token.
   security:
     - ServiceCredentials: []
   parameters:
     - in: path
-      name: accessTokenIdentifier
+      name: tokenIdentifier
       schema:
         type: string
       required: true
@@ -15,16 +15,43 @@ delete:
         or the value of the hash of the access token.
   responses:
     '204':
-      description: |
-        The access token was successfully deleted.
+      description: The access token was successfully deleted.
     '400':
-      $ref: ../model/response/400.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /auth/token/delete/{tokenIdentifier}, TLS must be used.'
     '401':
-      $ref: ../model/response/401.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /auth/token/delete/{tokenIdentifier}, Authorization header is missing.'
     '403':
-      $ref: ../model/response/403.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /auth/token/delete/{tokenIdentifier}, The service (API Key = 21653835348762) is locked.'
     '500':
-      $ref: ../model/response/500.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /auth/token/delete/{tokenIdentifier}, Authlete Server error.'
   operationId: 'auth_token_delete_api'
   x-code-samples:
     - lang: shell
@@ -40,9 +67,9 @@ delete:
         AuthleteConfiguration conf = ...;
         AuthleteApi api = AuthleteApiFactory.create(conf);
 
-        String accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+        String tokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
 
-        api.tokenDelete(accessToken);
+        api.tokenDelete(tokenIdentifier);
 
     - lang: cs
       label: C#
@@ -50,9 +77,9 @@ delete:
         IAuthleteConfiguration conf = ...;
         IAuthleteApi api = new AuthleteApi(conf);
 
-        string accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+        string tokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
 
-        await api.TokenDelete(accessToken);
+        await api.TokenDelete(tokenIdentifier);
 
     - lang: php
       label: PHP
@@ -60,36 +87,36 @@ delete:
         $conf = ...;
         $api = new AuthleteApiImpl($conf);
 
-        $accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+        $tokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
 
-        $api.tokenDelete($accessToken);
+        $api.tokenDelete($tokenIdentifier);
 
     - lang: ruby
       source: |
         conf = ...
         api = Authlete::Api.new(conf)
 
-        access_token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+        token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
 
-        api.token_delete(access_token)
+        api.token_delete(token_identifier)
 
     - lang: python
       source: |
         conf = ...
         api = AuthleteApiImpl(conf)
 
-        accessTokenIdentifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+        tokenIdentifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
 
-        api.tokenDelete(accessToken)
+        api.tokenDelete(tokenIdentifier)
 
     - lang: go
       source: |
         conf := ...
         api := api.New(&conf)
 
-        accessTokenIdentifier := "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg"
+        tokenIdentifier := "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg"
 
-        api.TokenDelete(accessTokenIdentifier)
+        api.TokenDelete(tokenIdentifier)
 
     - lang: ts
       label: deno

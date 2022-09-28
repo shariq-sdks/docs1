@@ -33,15 +33,46 @@ delete:
       content:
         application/json:
           schema:
-            $ref: ../model/response/client_granted_scopes_delete_response.yaml
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A140001
+            resultMessage: '[A140001] There was no information about scopes granted to the combination of the client (ID = 26478243745571) and the subject (john).'
     '400':
-      $ref: ../model/response/400.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /client/granted_scopes/delete/{clientId}, TLS must be used.'
     '401':
-      $ref: ../model/response/401.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /client/granted_scopes/delete/{clientId}, Authorization header is missing.'
     '403':
-      $ref: ../model/response/403.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /client/granted_scopes/delete/{clientId}, The service (API Key = 21653835348762) is locked.'
     '500':
-      $ref: ../model/response/500.yaml
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /client/granted_scopes/delete/{clientId}, Authlete Server error.'
   operationId: 'client_granted_scopes_delete_api'
   x-code-samples:
     - lang: shell
