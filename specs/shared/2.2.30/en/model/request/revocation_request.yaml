@@ -26,11 +26,12 @@ properties:
       If the revocation endpoint of the authorization server implementation supports basic authentication as a means of
       client authentication, and the request from the client application contained its client secret in `Authorization` header,
       the value should be extracted and set to this parameter.
-  clientCertificate:
-    type: string
-    description: |
-      The client certificate used in the TLS connection between the client application and the revocation endpoint.
-  clientCertificatePath:
-    type: string
-    description: |
-      The certificate path presented by the client during client authentication.
+  # The following parameters are not supported by Authlete yet (as of Nov 2, 2022).
+  # clientCertificate:
+  #   type: string
+  #   description: |
+  #     The client certificate used in the TLS connection between the client application and the revocation endpoint.
+  # clientCertificatePath:
+  #   type: string
+  #   description: |
+  #     The certificate path presented by the client during client authentication.

@@ -21798,14 +21798,6 @@
                   "clientSecret": {
                     "type": "string",
                     "description": "The client secret extracted from `Authorization` header of the revocation request from the client application.\n\nIf the revocation endpoint of the authorization server implementation supports basic authentication as a means of\nclient authentication, and the request from the client application contained its client secret in `Authorization` header,\nthe value should be extracted and set to this parameter.\n"
-                  },
-                  "clientCertificate": {
-                    "type": "string",
-                    "description": "The client certificate used in the TLS connection between the client application and the revocation endpoint.\n"
-                  },
-                  "clientCertificatePath": {
-                    "type": "string",
-                    "description": "The certificate path presented by the client during client authentication.\n"
                   }
                 }
               },
@@ -21833,14 +21825,6 @@
                   "clientSecret": {
                     "type": "string",
                     "description": "The client secret extracted from `Authorization` header of the revocation request from the client application.\n\nIf the revocation endpoint of the authorization server implementation supports basic authentication as a means of\nclient authentication, and the request from the client application contained its client secret in `Authorization` header,\nthe value should be extracted and set to this parameter.\n"
-                  },
-                  "clientCertificate": {
-                    "type": "string",
-                    "description": "The client certificate used in the TLS connection between the client application and the revocation endpoint.\n"
-                  },
-                  "clientCertificatePath": {
-                    "type": "string",
-                    "description": "The certificate path presented by the client during client authentication.\n"
                   }
                 }
               }
