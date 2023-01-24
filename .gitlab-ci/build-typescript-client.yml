@@ -1,0 +1,108 @@
+stages:
+  - generate client
+  - delete review client
+  - push client
+
+variables:
+  CLIENT_REPO: openapi-for-typescript
+  GENERATOR_IMAGE: openapitools/openapi-generator-cli:v6.2.1
+
+.prepare_github_step:
+  before_script:
+    - mkdir ~/.ssh/
+    - echo "${CI_KNOWN_HOSTS}" > ~/.ssh/known_hosts
+    - echo "${TS_SSH_PUSH_KEY}" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - git config user.email "ci@authlete.com"
+    - git config user.name "CI"
+
+generate client:
+  stage: generate client
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    on_stop: delete review client
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        - specs/**/*
+        - typescript-client-codegen.yml
+  extends:
+    - .prepare_github_step
+  script:
+    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - rm -Rf ${CLIENT_REPO}/*.ts ${CLIENT_REPO}/apis ${CLIENT_REPO}/models ${CLIENT_REPO}/.openapi-generator* ${CLIENT_REPO}/package.json ${CLIENT_REPO}/tsconfig.json
+    - docker run --rm -v ${PWD}:/local ${GENERATOR_IMAGE} batch /local/typescript-client-codegen.yml
+    - cd ${CLIENT_REPO}
+    - git config user.email "ci@authlete.com"
+    - git config user.name "CI"
+    - |
+      if [ "${CI_COMMIT_BRANCH}" == "${CI_DEFAULT_BRANCH}" ]; then
+        git checkout main || true
+        git add .
+        git commit -m "Authlete CI - ${CI_COMMIT_SHA}"
+        git push origin main:refs/heads/main
+      else
+        git checkout -b $CI_COMMIT_BRANCH || true
+        git add *.ts apis models .gitignore .openapi-generator* package.json tsconfig.json
+        git commit -m "Authlete CI - ${CI_COMMIT_SHA}" || true
+        git push origin $CI_COMMIT_BRANCH:refs/heads/$CI_COMMIT_BRANCH --force
+      fi
+
+check version already published:
+  image: node:latest
+  stage: generate client
+  extends:
+    - .prepare_github_step
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        - specs/**/*
+        - typescript-client-codegen.yml
+  script:
+    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - cd ${CLIENT_REPO}
+    - git checkout $CI_COMMIT_BRANCH || true
+    - version=$(npm pkg get version)
+    - version=${version%\"}
+    - version=${version#\"}
+    - npm install -g version-exists
+    - (! version-exists @authlete/openapi-client $version)
+
+push client:
+  image: node:latest
+  stage: push client
+  only:
+    refs:
+      - master
+    changes:
+        - specs/**/*
+        - typescript-client-codegen.yml
+  extends:
+    - .prepare_github_step
+  script:
+    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - cd ${CLIENT_REPO}
+    - git checkout $CI_COMMIT_BRANCH || true
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+    - npm install
+    - npm publish --access public
+
+delete review client:
+  when: manual
+  stage: delete review client
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        - specs/**/*
+        - typescript-client-codegen.yml
+  extends:
+    - .prepare_github_step
+  script:
+    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - cd ${CLIENT_REPO}
+    - git push origin +:refs/heads/$CI_COMMIT_REF_SLUG
