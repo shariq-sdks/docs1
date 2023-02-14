@@ -1,13 +1,9 @@
 variables:
   IMAGE: gcr.io/authlete/new-api-doc:$CI_COMMIT_SHA
-  GO_GENERATOR_IMAGE: openapitools/openapi-generator-cli:v6.2.1
 
 stages:
   - build
   - deploy
-  - gen-go-client-master
-  - gen-go-client-review
-  - delete-go-client-review
   - build clients
 
 build:
@@ -29,93 +25,16 @@ deploy:
     - kubectl set image deployment/new-api-doc new-api-doc=$IMAGE
     - kubectl rollout status deployment/new-api-doc
 
-.prepare_github_step:
-  before_script:
-    - mkdir ~/.ssh/
-    - echo "${CI_KNOWN_HOSTS}" > ~/.ssh/known_hosts
-    - echo "${SSH_PUSH_KEY}" > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - git config user.email "ci@authlete.com"
-    - git config user.name "CI"
-
-.test_go_client: &test_go_client
-  - export AUTHLETE_SO_KEY=${SHARED_CLOUD_SO_KEY}
-  - export AUTHLETE_SO_SECRET=${SHARED_CLOUD_SO_SECRET}
-  - go mod tidy
-  - go test -v -cover ./...
-  - export AUTHLETE_SO_KEY=${FAPI_DEV_SO_KEY}
-  - export AUTHLETE_SO_SECRET=${FAPI_DEV_SO_SECRET}
-  - export AUTHLETE_API_SERVER=${FAPI_DEV_API_SERVER}
-  - go test -v -cover ./...
-
-.checkout_and_generate_go_client: &checkout_and_generate_go_client
-  - git clone git@github.com:authlete/openapi-for-go.git
-  - rm -Rf openapi-for-go/*.go openapi-for-go/go.* openapi-for-go/docs openapi-for-go/api openapi-for-go/.openapi-generator*
-  - docker run --rm -v ${PWD}:/local ${GO_GENERATOR_IMAGE} batch /local/go-client-codegen.yml
-  - cd openapi-for-go
-  - git config user.email "ci@authlete.com"
-  - git config user.name "CI"
-
-gen-go-client-master:
-  stage: gen-go-client-master
-  only:
-    refs:
-      - master
-    changes:
-      - specs/**/*
-      - go-client-codegen.yml
-  extends:
-    - .prepare_github_step
-  script:
-    - *checkout_and_generate_go_client
-    - *test_go_client
-    - git checkout main || true
-    - git add .
-    - git commit -m "Authlete CI - ${CI_COMMIT_SHA}"
-    - git push origin main:refs/heads/main
-
-gen-go-client-review:
-  stage: gen-go-client-review
-  environment:
-    name: review/$CI_COMMIT_REF_SLUG
-    on_stop: delete-go-client-review
+build go client:
+  stage: build clients
+  trigger:
+    include: .gitlab-ci/build-go-client.yml
+    strategy: depend
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: never
     - if: $CI_COMMIT_BRANCH
       changes:
         - specs/**/*
         - go-client-codegen.yml
-  extends:
-    - .prepare_github_step
-  script:
-    - *checkout_and_generate_go_client
-    - *test_go_client
-    - git checkout -b $CI_COMMIT_BRANCH || true
-    - git add *.go go.* docs api .openapi-generator*
-    - git commit -m "Authlete CI - ${CI_COMMIT_SHA}" || true
-    - git push origin $CI_COMMIT_BRANCH:refs/heads/$CI_COMMIT_BRANCH --force
-
-delete-go-client-review:
-  when: manual
-  stage: delete-go-client-review
-  environment:
-    name: review/$CI_COMMIT_REF_SLUG
-    action: stop
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: never
-    - if: $CI_COMMIT_BRANCH
-      changes:
-        - specs/**/*
-        - go-client-codegen.yml
-  extends:
-    - .prepare_github_step
-  script:
-    - git clone git@github.com:authlete/openapi-for-go.git
-    - cd openapi-for-go
-    - git pull
-    - git push origin +:refs/heads/$CI_COMMIT_REF_SLUG
 
 build typescript client:
   stage: build clients

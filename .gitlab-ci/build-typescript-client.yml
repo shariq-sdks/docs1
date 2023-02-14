@@ -19,7 +19,7 @@ variables:
 generate client:
   stage: generate client
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/ts-$CI_COMMIT_REF_SLUG
     on_stop: delete review client
   rules:
     - if: $CI_COMMIT_BRANCH
@@ -48,7 +48,7 @@ generate client:
         git push origin $CI_COMMIT_BRANCH:refs/heads/$CI_COMMIT_BRANCH --force
       fi
 
-check version already published:
+.check version already published:
   image: node:latest
   stage: generate client
   allow_failure: true
@@ -69,7 +69,7 @@ check version already published:
     - npm install -g version-exists
     - (! version-exists @authlete/openapi-client $version)
 
-push client:
+.push client:
   image: node:latest
   stage: push client
   needs: ["check version already published"]
@@ -93,7 +93,7 @@ delete review client:
   when: manual
   stage: delete review client
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/ts-$CI_COMMIT_REF_SLUG
     action: stop
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
