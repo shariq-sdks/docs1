@@ -51,6 +51,7 @@ generate client:
 check version already published:
   image: node:latest
   stage: generate client
+  allow_failure: true
   extends:
     - .prepare_github_step
   rules:
@@ -71,6 +72,7 @@ check version already published:
 push client:
   image: node:latest
   stage: push client
+  needs: ["check version already published"]
   only:
     refs:
       - master
