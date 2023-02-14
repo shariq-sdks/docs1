@@ -1,0 +1,35 @@
+type: object
+properties:
+  clientId:
+    type: integer
+    description: The client id.
+  clientIdAlias:
+    type: string
+    description: The alias of the client.
+  clientIdAliasUsed:
+    type: boolean
+    description: Flag specifying if the alias was used to identify the client
+  subject:
+    type: string
+    description: the resource owner unique id
+  scopes:
+    type: array
+    items:
+      type: string
+    description: The scopes granted on the token
+  expiresAt:
+    type: integer
+    description: time which the token expires.
+  properties:
+    type: array
+    description: Extra properties associated with the token
+    items:
+      $ref: ./property.yaml
+  resources:
+    type: array
+    description: |-
+      The array of the resources of the token.
+    items:
+      type: string
+  authorizationDetails:
+    $ref: ./authorization_details_element.yaml

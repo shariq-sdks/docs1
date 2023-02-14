@@ -1,0 +1,21 @@
+type: object
+required: [ token ]
+properties:
+  token:
+    type: string
+    description: |
+      The access token that has been passed to the userinfo endpoint by the client application. In other words,
+      the access token which was contained in the userinfo request.
+  claims:
+    type: string
+    description: |
+      Claims in JSON format. As for the format, see [OpenID Connect Core 1.0, 5.1. Standard Claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims).
+  sub:
+    type: string
+    description: |
+      The value of the `sub` claim. If the value of this request parameter is not empty, it is used as the value of
+      the `sub` claim. Otherwise, the value of the subject associated with the access token is used.
+  claimsForTx:
+    type: string
+    description: |
+      Claim key-value pairs that are used to compute transformed claims.

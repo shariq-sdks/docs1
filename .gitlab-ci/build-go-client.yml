@@ -27,7 +27,7 @@ variables:
 
 .checkout_and_generate_go_client: &checkout_and_generate_go_client
   - git clone git@github.com:authlete/openapi-for-go.git
-  - rm -Rf openapi-for-go/*.go openapi-for-go/go.* openapi-for-go/docs openapi-for-go/api openapi-for-go/.openapi-generator*
+  - rm -Rf openapi-for-go/*.go openapi-for-go/*/*.go openapi-for-go/go.* openapi-for-go/docs openapi-for-go/api openapi-for-go/.openapi-generator*
   - docker run --rm -v ${PWD}:/local ${GENERATOR_IMAGE} batch /local/go-client-codegen.yml
   - cd openapi-for-go
   - git config user.email "ci@authlete.com"
