@@ -3,6 +3,7 @@ const path              = require('path');
 const NotFoundException = require('../exceptions/not-found-exception');
 const FileUtil          = require('../utils/file-util');
 const ResponseUtil      = require('../utils/response-util');
+const config            = require("../config");
 
 const getPathToSpec = function(serverType, version, locale) {
   return path.join(__dirname, `../specs/${serverType}/${version}/${locale}.yaml`);
@@ -31,7 +32,7 @@ const doGetSpec = async function(serverType, version, locale) {
 // after the first call to 'getSpec' with a server type, a version and
 // a locale, the following calls to 'getSpec' with the server, the version
 // and the locale will return the cached information.
-const getSpec = memoizee(doGetSpec, { promise: true });
+const getSpec = config.isProduction ? memoizee(doGetSpec, { promise: true }) : doGetSpec;
 
 module.exports = async function(req, res, next) {
   let spec;
