@@ -1,0 +1,152 @@
+post:
+  summary: /api/jose/verify API
+  description: |
+    This API verifies a JOSE object.
+  security:
+    - ServiceOwnerCredentials: []
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/jose_verify_request.yaml
+        example:
+          jose: eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA
+          clockSkew: 100
+          signedByClient: true
+          clientIdentifier: "57297408867"
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/jose_verify_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/jose_verify_response.yaml
+          example:
+            {
+              "resultCode": "A160001",
+              "resultMessage": "[A160001] The JOSE is valid.",
+              "signatureValid": true,
+              "valid": true
+            }
+    '400':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /jose/verify, TLS must be used.'
+    '401':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /jose/verify, Authorization header is missing.'
+    '403':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /jose/verify, The service owner (API Key = 9503564192) is locked.'
+    '500':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /jose/verify, Authlete Server error.'
+  operationId: 'jose_verify_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/jose/verify \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d jose=eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA \
+        -d clockSkew=100 \
+        -d signedByClient=true \
+        -d clientIdentifier=57297408867
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        JoseVerifyRequest req = new JoseVerifyRequest();
+        req.setJose("eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw");
+        req.setClockSkew(100);
+        req.setSinedByClient(true);
+        req.setClientIdentifier("57297408867");
+
+        api.verifyJose(request);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        JoseVerifyRequest req = new JoseVerifyRequest();
+        req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw";
+        req.ClockSkew = 100;
+        req.SinedByClient = true;
+        req.ClientIdentifier = "57297408867";
+
+        await api.VerifyJose(req);
+
+    - lang: php
+      label: PHP
+      source: |
+        // This API is not supported yet.
+
+    - lang: ruby
+      source: |
+        # This API is not supported yet.
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = JoseVerifyRequest()
+        req.jose = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw'
+        req.clockSkew = 100
+        req.sinedByClient = True
+        req.clientIdentifier = '57297408867'
+
+        api.verifyJose(req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        req := dto.JoseVerifyRequest{}
+        req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw"
+        req.ClockSkew = 100
+        req.SinedByClient = true
+        req.ClientIdentifier = "57297408867"
+
+        api.VerifyJose(&req)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Jose Object

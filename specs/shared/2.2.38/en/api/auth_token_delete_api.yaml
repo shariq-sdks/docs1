@@ -1,0 +1,127 @@
+delete:
+  summary: /api/auth/token/delete/{tokenIdentifier} API
+  description: |
+    Delete an access token.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: tokenIdentifier
+      schema:
+        type: string
+      required: true
+      description: |
+        The identifier of an existing access token. The identifier is the value of the access token
+        or the value of the hash of the access token.
+  responses:
+    '204':
+      description: The access token was successfully deleted.
+    '400':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /auth/token/delete/{tokenIdentifier}, TLS must be used.'
+    '401':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /auth/token/delete/{tokenIdentifier}, Authorization header is missing.'
+    '403':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /auth/token/delete/{tokenIdentifier}, The service (API Key = 21653835348762) is locked.'
+    '500':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /auth/token/delete/{tokenIdentifier}, Authlete Server error.'
+  operationId: 'auth_token_delete_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X DELETE https://api.authlete.com/api/auth/token/delete/Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg \
+        -H 'Content-Type:application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        String tokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+
+        api.tokenDelete(tokenIdentifier);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        string tokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+
+        await api.TokenDelete(tokenIdentifier);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $tokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+
+        $api.tokenDelete($tokenIdentifier);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+
+        api.token_delete(token_identifier)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        tokenIdentifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+
+        api.tokenDelete(tokenIdentifier)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        tokenIdentifier := "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg"
+
+        api.TokenDelete(tokenIdentifier)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Token Operations

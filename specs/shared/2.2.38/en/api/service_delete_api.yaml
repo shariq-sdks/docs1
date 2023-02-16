@@ -1,0 +1,129 @@
+delete:
+  summary: /api/service/delete/{serviceApiKey} API
+  description: |
+    Delete a service.
+  security:
+    - ServiceOwnerCredentials: []
+  parameters:
+    - in: path
+      name: serviceApiKey
+      schema:
+        type: string
+      required: true
+      description:
+        The API key of the target service.
+  responses:
+    '204':
+      description: The service was successfully deleted.
+    '400':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /service/delete/{serviceApiKey}, TLS must be used.'
+    '401':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /service/delete/{serviceApiKey}, Authorization header is missing.'
+    '403':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /service/delete/{serviceApiKey}, The service owner (API Key = 9503564192) is locked.'
+    '500':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /service/delete/{serviceApiKey}, Authlete Server error.'
+  operationId: 'service_delete_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X DELETE https://api.authlete.com/api/service/delete/21653835348762 \
+        -u '9503564192:cxRpzPEkvqYbDu14gpCVKi_p6kMQvcW-lBMi7IfWLK4'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        long serviceApiKey = ...;
+
+        api.deleteService(serviceApiKey);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        long serviceApiKey = ...;
+
+        await api.DeleteService(serviceApiKey);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $serviceApiKey = ...;
+
+        $api.deleteService($serviceApiKey);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        service_api_key = ...
+
+        api.service_delete(service_api_key)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        serviceApiKey = ...
+
+        api.deleteService(serviceApiKey)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        serviceApiKey := ...
+
+        api.DeleteService(serviceApiKey)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const serviceApiKey = ...;
+
+        await api.deleteService(serviceApiKey);
+  tags:
+    - Service Management

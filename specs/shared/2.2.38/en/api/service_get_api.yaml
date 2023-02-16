@@ -1,0 +1,225 @@
+get:
+  summary: /api/service/get/{serviceApiKey} API
+  description: |
+    Get a service.
+  security:
+    - ServiceOwnerCredentials: []
+  parameters:
+    - in: path
+      name: serviceApiKey
+      schema:
+        type: string
+      required: true
+      description:
+        The API key of a service.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/service.yaml
+          example:
+            accessTokenDuration: 3600
+            accessTokenType: Bearer
+            allowableClockSkew: 0
+            apiKey: 21653835348762
+            apiSecret: uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls
+            attributes:
+              - key: attribute1-key
+                value: attribute1-value
+              - key: attribute2-key
+                value: attribute2-value
+            authorizationEndpoint: https://my-service.example.com/authz
+            authorizationResponseDuration: 0
+            backchannelAuthReqIdDuration: 0
+            backchannelBindingMessageRequiredInFapi: false
+            backchannelPollingInterval: 0
+            backchannelUserCodeParameterSupported: false
+            claimShortcutRestrictive: false
+            clientIdAliasEnabled: true
+            clientsPerDeveloper: 0
+            createdAt: 1639373421000
+            dcrScopeUsedAsRequestable: false
+            deviceFlowCodeDuration: 0
+            deviceFlowPollingInterval: 0
+            directAuthorizationEndpointEnabled: false
+            directIntrospectionEndpointEnabled: false
+            directJwksEndpointEnabled: false
+            directRevocationEndpointEnabled: false
+            directTokenEndpointEnabled: false
+            directUserInfoEndpointEnabled: false
+            dynamicRegistrationSupported: false
+            errorDescriptionOmitted: false
+            errorUriOmitted: false
+            frontChannelRequestObjectEncryptionRequired: false
+            grantManagementActionRequired: false
+            hsmEnabled: false
+            idTokenDuration: 0
+            introspectionEndpoint: https://my-service.example.com/introspection
+            issSuppressed: false
+            issuer: https://my-service.example.com
+            metadata:
+              - key: clientCount
+                value: '1'
+            missingClientIdAllowed: false
+            modifiedAt: 1639373421000
+            mutualTlsValidatePkiCertChain: false
+            nbfOptional: false
+            number: 5041
+            parRequired: false
+            pkceRequired: true
+            pkceS256Required: false
+            pushedAuthReqDuration: 0
+            refreshTokenDuration: 3600
+            refreshTokenDurationKept: false
+            refreshTokenDurationReset: false
+            refreshTokenKept: false
+            requestObjectEncryptionAlgMatchRequired: false
+            requestObjectEncryptionEncMatchRequired: false
+            requestObjectRequired: false
+            revocationEndpoint: https://my-service.example.com/revocation
+            scopeRequired: false
+            serviceName: My service
+            serviceOwnerNumber: 2
+            singleAccessTokenPerSubject: false
+            supportedClaimTypes:
+              - NORMAL
+            supportedDisplays:
+              - PAGE
+            supportedGrantTypes:
+              - AUTHORIZATION_CODE
+              - REFRESH_TOKEN
+            supportedIntrospectionAuthMethods:
+              - CLIENT_SECRET_BASIC
+            supportedResponseTypes:
+              - CODE
+            supportedRevocationAuthMethods:
+              - CLIENT_SECRET_BASIC
+            supportedScopes:
+              - defaultEntry: false
+                description: A permission to read your history.
+                name: history.read
+              - defaultEntry: false
+                description: A permission to read your timeline.
+                name: timeline.read
+            supportedTokenAuthMethods:
+              - CLIENT_SECRET_BASIC
+            tlsClientCertificateBoundAccessTokens: false
+            tokenEndpoint: https://my-service.example.com/token
+            tokenExpirationLinked: false
+            traditionalRequestObjectProcessingApplied: false
+            unauthorizedOnClientConfigSupported: false
+            userCodeLength: 0
+    '400':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001201
+            resultMessage: '[A001201] /service/get/{serviceApiKey}, TLS must be used.'
+    '401':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001202
+            resultMessage: '[A001202] /service/get/{serviceApiKey}, Authorization header is missing.'
+    '403':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001215
+            resultMessage: '[A001215] /service/get/{serviceApiKey}, The service owner (API Key = 9503564192) is locked.'
+    '500':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A001101
+            resultMessage: '[A001101] /service/get/{serviceApiKey}, Authlete Server error.'
+  operationId: 'service_get_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/service/get/21653835348762 \
+        -u '9503564192:cxRpzPEkvqYbDu14gpCVKi_p6kMQvcW-lBMi7IfWLK4'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        long serviceApiKey = ...;
+
+        api.getService(serviceApiKey);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        long serviceApiKey = ...;
+
+        await api.GetService(serviceApiKey);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $serviceApiKey = ...;
+
+        $api.getService($serviceApiKey);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        service_api_key = ...
+
+        api.service_get(service_api_key)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        serviceApiKey = ...
+
+        api.getService(serviceApiKey)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        serviceApiKey := ...
+
+        api.GetService(serviceApiKey)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const serviceApiKey = ...;
+
+        await api.getService(serviceApiKey);
+  tags:
+    - Service Management
