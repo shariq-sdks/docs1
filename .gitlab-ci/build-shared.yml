@@ -52,5 +52,4 @@ delete review client:
   script:
     - git clone git@github.com:authlete/${CLIENT_REPO}.git
     - cd ${CLIENT_REPO}
-    - git pull
-    - git push origin +:refs/heads/$CI_COMMIT_REF_SLUG
+    - git push origin -d $CI_COMMIT_REF_SLUG
