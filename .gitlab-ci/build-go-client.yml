@@ -1,0 +1,14 @@
+stages:
+  - generate client
+  - delete review client
+
+include: '.gitlab-ci/build-shared.yml'
+
+variables:
+  GENERATOR_IMAGE: openapitools/openapi-generator-cli:v6.2.1
+  GENERATOR_CONFIG: go-client-codegen.yml
+  CLIENT_REPO: openapi-for-go
+  GITHUB_SSH_PUSH_KEY: ${SSH_PUSH_KEY}
+  ENV_PREFIX: go
+  GIT_CLEAN_MASK: "*/*.go */go.* */*/*.go"
+

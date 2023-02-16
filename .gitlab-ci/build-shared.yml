@@ -1,0 +1,56 @@
+
+.prepare_github_step:
+  before_script:
+    - mkdir ~/.ssh/
+    - echo "${CI_KNOWN_HOSTS}" > ~/.ssh/known_hosts
+    - echo "${GITHUB_SSH_PUSH_KEY}" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - git config user.email "ci@authlete.com"
+    - git config user.name "CI"
+
+generate client:
+  stage: generate client
+  environment:
+    name: review/$ENV_PREFIX-$CI_COMMIT_REF_SLUG
+    on_stop: delete review client
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        - specs/**/*
+        - "*.yml"
+  extends:
+    - .prepare_github_step
+  script:
+    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - for i in ${GIT_CLEAN_MASK}; do echo "$i"; find ${CLIENT_REPO} -iname $i -delete;  done
+    - docker run --rm -v ${PWD}:/local ${GENERATOR_IMAGE} batch /local/${GENERATOR_CONFIG}
+    - cd ${CLIENT_REPO}
+    - git config user.email "ci@authlete.com"
+    - git config user.name "CI"
+    - |
+      if [ "${CI_COMMIT_BRANCH}" == "${CI_DEFAULT_BRANCH}" ]; then
+        git checkout main || true
+        git add .
+        git commit -m "Authlete CI - ${CI_COMMIT_SHA}"
+        git push origin main:refs/heads/main
+      else
+        git checkout -b $CI_COMMIT_BRANCH || true
+        git add .
+        git commit -m "Authlete CI - ${CI_COMMIT_SHA}" || true
+        git push origin $CI_COMMIT_BRANCH:refs/heads/$CI_COMMIT_BRANCH --force
+      fi
+
+
+delete review client:
+  when: manual
+  stage: delete review client
+  environment:
+    name: review/$ENV_PREFIX-$CI_COMMIT_REF_SLUG
+    action: stop
+  extends:
+    - .prepare_github_step
+  script:
+    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - cd ${CLIENT_REPO}
+    - git pull
+    - git push origin +:refs/heads/$CI_COMMIT_REF_SLUG
