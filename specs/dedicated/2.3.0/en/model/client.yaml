@@ -604,3 +604,7 @@ properties:
       If this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request
       whenever it includes the `code_challenge` request parameter.
       Neither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.
+  dpopRequired:
+    type: boolean
+    description: |
+      If the DPoP is required for this client

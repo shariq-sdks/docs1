@@ -181,3 +181,7 @@ properties:
     type: string
     description: |
       For RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants
+  previousRefreshTokenUsed:
+    type: boolean
+    description: |
+      Indicate whether the previous refresh token that had been kept in the database for a short time was used
