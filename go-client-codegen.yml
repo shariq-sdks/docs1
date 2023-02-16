@@ -1,4 +1,4 @@
-inputSpec: /local/specs/dedicated/2.3.0/en/authlete-api.yaml
+inputSpec: /local/specs/shared/2.2.38/en/authlete-api.yaml
 templateDir: /local/openapi-for-go/templates/
 outputDir: /local/openapi-for-go/
 generatorName: go
@@ -9,6 +9,6 @@ additionalProperties:
   enumClassPrefix: true
   generateInterfaces: true
   packageName: authlete
-  packageVersion: "2.3.0"
+  packageVersion: "2.2.38"
   prependFormOrBodyParameters: false
   useOneOfDiscriminatorLookup: true
