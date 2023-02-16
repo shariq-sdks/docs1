@@ -1,0 +1,18 @@
+type: object
+properties:
+  accessTokenIdentifier:
+    type: string
+    description: |
+      The identifier of an access token to revoke.
+  clientIdentifier:
+    type: string
+    description: |
+      The identifier of a client.
+  refreshTokenIdentifier:
+    type: string
+    description: |
+      The identifier of a refresh token to revoke.
+  subject:
+    type: string
+    description: |
+      The subject of a resource owner.

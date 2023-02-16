@@ -1,0 +1,31 @@
+type: object
+properties:
+  start:
+    type: integer
+    format: int32
+    description: |
+      Start index of search results (inclusive).
+  end:
+    type: integer
+    format: int32
+    description: |
+      End index of search results (exclusive).
+  developer:
+    type: string
+    description: |
+      Unique ID of a client developer.
+  subject:
+    type: string
+    description: |
+      Unique user ID of an end-user.
+  totalCount:
+    type: integer
+    format: int32
+    description: |
+      Unique ID of a client developer.
+  clients:
+    type: array
+    items:
+      $ref: ../client.yaml
+    description: |
+      An array of clients.
