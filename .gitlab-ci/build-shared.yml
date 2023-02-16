@@ -44,6 +44,8 @@ generate client:
 delete review client:
   when: manual
   stage: delete review client
+  variables:
+    GIT_STRATEGY: none
   environment:
     name: review/$ENV_PREFIX-$CI_COMMIT_REF_SLUG
     action: stop
