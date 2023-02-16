@@ -1,0 +1,22 @@
+type: object
+properties:
+  requestSignature:
+    type: string
+    description: |
+      The Signature header value from the request. All signatures in this header will be included in the output signature.
+  message:
+    type: string
+    description: |
+      The HTTP message response body. If included, the response will include the Content-Digest of the message and 
+      the digest will be covered in the signature.
+  headers:
+    type: array
+    items:
+      $ref: ../pair.yaml
+    description: |
+      The HTTP response headers, all will be included in the signature.
+  status:
+    type: integer
+    format: int32
+    description: |
+      The HTTP status code of the response.
