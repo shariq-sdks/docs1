@@ -1369,3 +1369,11 @@ properties:
       The flag indicating whether the openid scope should be dropped from 
       scopes list assigned to access token issued when a refresh token grant 
       is used.
+  supportedDocumentsCheckMethods:
+    type: array
+    items:
+      type: string
+    description: |
+      Supported document check methods. This property corresponds to the `documents_check_methods_supported`
+      server metadata which was added by the fourth implementer's draft of OpenID Connect for Identity
+      Assurance 1.0.

@@ -608,3 +608,13 @@ properties:
     type: boolean
     description: |
       If the DPoP is required for this client
+  automaticallyRegistered:
+    type: boolean
+    description: |
+      The flag indicating whether this client was registered by the
+      "automatic" client registration of OIDC Federation.
+  explicitlyRegistered:
+    type: boolean
+    description: |
+      The flag indicating whether this client was registered by the
+      "explicit" client registration of OIDC Federation.
