@@ -1,4 +1,4 @@
-inputSpec: /local/specs/shared/2.3.0/en/authlete-api.yaml
+inputSpec: /local/specs/dedicated/2.3.0/en/authlete-api.yaml
 templateDir: /local/openapi-for-typescript/templates/
 outputDir: /local/openapi-for-typescript/
 generatorName: typescript-rxjs
