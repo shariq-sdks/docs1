@@ -129,3 +129,11 @@ properties:
       left to implementations. Authlete will not perform the grant management
       action when the {@code subject} passed to Authlete does not match the
       user of the grant.
+  clientEntityId:
+    type: string
+    description: |
+      The entity ID of the client.
+  clientEntityIdUsed:
+    type: boolean
+    description: |
+      Flag which indicates whether the entity ID of the client was used when the request for the access token was made.

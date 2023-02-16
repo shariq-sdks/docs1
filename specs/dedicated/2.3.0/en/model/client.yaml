@@ -618,3 +618,54 @@ properties:
     description: |
       The flag indicating whether this client was registered by the
       "explicit" client registration of OIDC Federation.
+  rsResponseSigned:
+    type: boolean
+    description: |
+      The flag indicating whether this service signs responses from the resource server.
+  rsSignedRequestKeyId:
+    type: string
+    description: |
+      Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.
+  clientRegistrationTypes:
+    type: array
+    items:
+      $ref: client_registration_type.yaml
+    description: |
+      Get the client registration types that the client has declared it may use.
+  organizationName:
+    type: string
+    description: |
+      Get the human-readable name representing the organization that manages this client. This property corresponds 
+      to the organization_name client metadata that is defined in OpenID Connect Federation 1.0.
+  signedJwksUri:
+    type: string
+    description: |
+      Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property 
+      corresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.
+  entityId:
+    type: string
+    description: |
+      the entity ID of this client.
+  trustAnchorId:
+    type: string
+    description: |
+      The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by 
+      the mechanism defined in OpenID Connect Federation 1.0
+  trustChain:
+    type: array
+    items:
+      type: string
+    description: |
+      The trust chain that was used when this client was registered or updated by the mechanism defined in
+      OpenID Connect Federation 1.0
+  trustChainExpiresAt:
+    type: integer
+    format: int32
+    description: |
+      the expiration time of the trust chain that was used when this client was registered or updated by the mechanism 
+      defined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).
+  trustChainUpdatedAt:
+    type: integer
+    format: int32
+    description: |
+      the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0

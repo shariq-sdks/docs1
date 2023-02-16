@@ -65,3 +65,7 @@ properties:
     type: string
     description: |
       The representation of an access token that may be issued as a result of the Authlete API call.
+  jwtAtClaims:
+    type: string
+    description: |
+      Additional claims that are added to the payload part of the JWT access token.

@@ -118,3 +118,11 @@ properties:
       The `grant_id` request parameter is defined in
       [Grant Management for OAuth 2.0](https://openid.net/specs/fapi-grant-management.html)
       , which is supported by Authlete 2.3 and newer versions.
+  clientEntityId:
+    type: string
+    description: |
+      The entity ID of the client.
+  clientEntityIdUsed:
+    type: boolean
+    description: |
+      Flag which indicates whether the entity ID of the client was used when the request for the access token was made.

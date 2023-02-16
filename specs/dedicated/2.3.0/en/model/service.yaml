@@ -1377,3 +1377,11 @@ properties:
       Supported document check methods. This property corresponds to the `documents_check_methods_supported`
       server metadata which was added by the fourth implementer's draft of OpenID Connect for Identity
       Assurance 1.0.
+  rsResponseSigned:
+    type: boolean
+    description: |
+      The flag indicating whether this service signs responses from the resource server.
+  rsSignedRequestKeyId:
+    type: string
+    description: |
+      Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.

@@ -384,3 +384,7 @@ properties:
       the value of the `transformed_claims` property in the `claims` request
       parameter of an authorization request or in the `claims` property in a
       request object.
+  clientEntityIdUsed:
+    type: boolean
+    description: |
+      Flag which indicates whether the entity ID of the client was used when the request for the access token was made.

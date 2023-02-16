@@ -25,3 +25,15 @@ properties:
     description: |
       The content that the authorization server implementation can use as the value of `WWW-Authenticate`
       header on errors.
+  signature:
+    type: string
+    description: |
+      The signature header of the response message.
+  signatureInput:
+    type: string
+    description: |
+      The signature-input header of the response message
+  contentDigest:
+    type: string
+    description: |
+      The content-digest header of the response message
