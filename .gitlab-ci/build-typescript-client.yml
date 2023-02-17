@@ -34,10 +34,10 @@ variables:
     - npm install -g version-exists
     - (! version-exists @authlete/openapi-client $version)
 
-.push client:
+push client:
   image: node:latest
   stage: push client
-  needs: ["check version already published"]
+  when: manual
   only:
     refs:
       - master
