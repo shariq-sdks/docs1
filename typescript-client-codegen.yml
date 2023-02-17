@@ -1,4 +1,4 @@
-inputSpec: /local/specs/shared/2.2.25/en/authlete-api.yaml
+inputSpec: /local/specs/shared/2.2.38/en/authlete-api.yaml
 templateDir: /local/openapi-for-typescript/templates/
 outputDir: /local/openapi-for-typescript/
 generatorName: typescript-rxjs
@@ -6,4 +6,4 @@ validateSpec: false
 gitRepoId: openapi-for-typescript
 gitUserId: authlete
 npmName: "@authlete/openapi-client"
-npmVersion: "1.0.3"
+npmVersion: "1.0.4"
