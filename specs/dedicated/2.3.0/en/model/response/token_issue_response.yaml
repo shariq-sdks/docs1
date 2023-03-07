@@ -112,3 +112,11 @@ properties:
       $ref: ../pair.yaml
     description: |
       The attributes of the client.
+  clientEntityId:
+    type: string
+    description: |
+      The entity ID of the client.
+  clientEntityIdUsed:
+    type: boolean
+    description: |
+      Flag which indicates whether the entity ID of the client was used when the request for the access token was made.

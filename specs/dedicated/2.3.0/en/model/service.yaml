@@ -516,12 +516,6 @@ properties:
 
       However, if you interpret *"the default scope set exists but is empty"* as *"the default scope set does not exist"*
       and want to strictly conform to the requirement above, this flag has to be `true`.
-  openidDroppedOnRefreshWithoutOfflineAccess:
-    type: boolean
-    description: |
-      The flag indicating whether to remove the `openid` scope from a
-      new access token issued by the refresh token flow if the presented
-      refresh token does not contain the `offline_access` scope.
   idTokenDuration:
     type: integer
     format: int64
@@ -1375,3 +1369,19 @@ properties:
       The flag indicating whether the openid scope should be dropped from 
       scopes list assigned to access token issued when a refresh token grant 
       is used.
+  supportedDocumentsCheckMethods:
+    type: array
+    items:
+      type: string
+    description: |
+      Supported document check methods. This property corresponds to the `documents_check_methods_supported`
+      server metadata which was added by the fourth implementer's draft of OpenID Connect for Identity
+      Assurance 1.0.
+  rsResponseSigned:
+    type: boolean
+    description: |
+      The flag indicating whether this service signs responses from the resource server.
+  rsSignedRequestKeyId:
+    type: string
+    description: |
+      Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.

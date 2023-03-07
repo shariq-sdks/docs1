@@ -23,3 +23,15 @@ properties:
     type: string
     description: |
       The certificate path presented by the client during client authentication. These certificates are strings in PEM format.
+  dpop:
+    type: string
+    description: |
+      DPoP Header
+  htm:
+    type: string
+    description: |
+      HTTP Method (for DPoP validation).
+  htu:
+    type: string
+    description: |
+      HTTP URL base (for DPoP validation).

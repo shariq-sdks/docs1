@@ -19,3 +19,14 @@ properties:
     type: string
     description: |
       Claim key-value pairs that are used to compute transformed claims.
+  requestSignature:
+    type: string
+    description: |
+      The Signature header value from the request.
+  headers:
+    type: array
+    items:
+      $ref: ../pair.yaml
+    description: |
+      HTTP headers to be included in processing the signature. If this is a signed request, this must include the 
+      Signature and Signature-Input headers, as well as any additional headers covered by the signature.

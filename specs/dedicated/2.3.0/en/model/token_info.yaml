@@ -33,3 +33,11 @@ properties:
       type: string
   authorizationDetails:
     $ref: ./authorization_details_element.yaml
+  clientEntityId:
+    type: string
+    description: |
+      The entity ID of the client.
+  clientEntityIdUsed:
+    type: boolean
+    description: |
+      Flag which indicates whether the entity ID of the client was used when the request for the access token was made.

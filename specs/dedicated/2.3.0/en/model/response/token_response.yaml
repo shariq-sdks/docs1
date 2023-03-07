@@ -181,3 +181,15 @@ properties:
     type: string
     description: |
       For RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants
+  previousRefreshTokenUsed:
+    type: boolean
+    description: |
+      Indicate whether the previous refresh token that had been kept in the database for a short time was used
+  clientEntityId:
+    type: string
+    description: |
+      The entity ID of the client.
+  clientEntityIdUsed:
+    type: boolean
+    description: |
+      Flag which indicates whether the entity ID of the client was used when the request for the access token was made.

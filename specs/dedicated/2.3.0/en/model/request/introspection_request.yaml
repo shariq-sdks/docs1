@@ -57,3 +57,37 @@ properties:
       type: string
     description: |
       The resources specified by the `resource` request parameters in the token request. See "Resource Indicators for OAuth 2.0" for details.
+  acrValues:
+    type: array
+    items:
+      type: string
+    description: |
+      Authentication Context Class Reference values one of which the user authentication performed during the course 
+      of issuing the access token must satisfy.
+  maxAge:
+    type: integer
+    format: int64
+    description: |
+      The maximum authentication age which is the maximum allowable elapsed time since the user authentication 
+      was performed during the course of issuing the access token.
+  requiredComponents:
+    type: array
+    items:
+      type: string
+    description: |
+      HTTP Message Components required to be in the signature. If absent, defaults to [ "@method", "@target-uri", "authorization" ].
+  uri:
+    type: string
+    description: |
+      The full URL of the userinfo endpoint.
+  message:
+    type: string
+    description: |
+      The HTTP message body of the request, if present.
+  headers:
+    type: array
+    items:
+      $ref: ../pair.yaml
+    description: |
+      HTTP headers to be included in processing the signature. If this is a signed request, this must include the 
+      Signature and Signature-Input headers, as well as any additional headers covered by the signature.
