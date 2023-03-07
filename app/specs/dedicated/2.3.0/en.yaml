@@ -1028,6 +1028,21 @@
                     "openidDroppedOnRefreshWithoutOfflineAccess": {
                       "type": "boolean",
                       "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                    },
+                    "supportedDocumentsCheckMethods": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                    },
+                    "rsResponseSigned": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                    },
+                    "rsSignedRequestKeyId": {
+                      "type": "string",
+                      "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                     }
                   }
                 },
@@ -2332,6 +2347,21 @@
                           "openidDroppedOnRefreshWithoutOfflineAccess": {
                             "type": "boolean",
                             "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                          },
+                          "supportedDocumentsCheckMethods": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                          },
+                          "rsResponseSigned": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                          },
+                          "rsSignedRequestKeyId": {
+                            "type": "string",
+                            "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                           }
                         }
                       },
@@ -3604,6 +3634,21 @@
                   "openidDroppedOnRefreshWithoutOfflineAccess": {
                     "type": "boolean",
                     "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                  },
+                  "supportedDocumentsCheckMethods": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                   }
                 }
               },
@@ -4647,6 +4692,21 @@
                   "openidDroppedOnRefreshWithoutOfflineAccess": {
                     "type": "boolean",
                     "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                  },
+                  "supportedDocumentsCheckMethods": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                   }
                 }
               }
@@ -5645,6 +5705,21 @@
                     "openidDroppedOnRefreshWithoutOfflineAccess": {
                       "type": "boolean",
                       "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                    },
+                    "supportedDocumentsCheckMethods": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                    },
+                    "rsResponseSigned": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                    },
+                    "rsSignedRequestKeyId": {
+                      "type": "string",
+                      "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                     }
                   }
                 },
@@ -6917,6 +6992,21 @@
                   "openidDroppedOnRefreshWithoutOfflineAccess": {
                     "type": "boolean",
                     "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                  },
+                  "supportedDocumentsCheckMethods": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                   }
                 }
               },
@@ -8010,6 +8100,21 @@
                   "openidDroppedOnRefreshWithoutOfflineAccess": {
                     "type": "boolean",
                     "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                  },
+                  "supportedDocumentsCheckMethods": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                   }
                 }
               }
@@ -9121,6 +9226,21 @@
                     "openidDroppedOnRefreshWithoutOfflineAccess": {
                       "type": "boolean",
                       "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                    },
+                    "supportedDocumentsCheckMethods": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                    },
+                    "rsResponseSigned": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                    },
+                    "rsSignedRequestKeyId": {
+                      "type": "string",
+                      "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                     }
                   }
                 }
@@ -10185,6 +10305,71 @@
                     "pkceS256Required": {
                       "type": "boolean",
                       "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                    },
+                    "dpopRequired": {
+                      "type": "boolean",
+                      "description": "If the DPoP is required for this client\n"
+                    },
+                    "automaticallyRegistered": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                    },
+                    "explicitlyRegistered": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                    },
+                    "rsResponseSigned": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                    },
+                    "rsSignedRequestKeyId": {
+                      "type": "string",
+                      "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                    },
+                    "clientRegistrationTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                        "enum": [
+                          "AUTOMATIC",
+                          "EXPLICIT"
+                        ]
+                      },
+                      "description": "Get the client registration types that the client has declared it may use.\n"
+                    },
+                    "organizationName": {
+                      "type": "string",
+                      "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                    },
+                    "signedJwksUri": {
+                      "type": "string",
+                      "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "the entity ID of this client.\n"
+                    },
+                    "trustAnchorId": {
+                      "type": "string",
+                      "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                    },
+                    "trustChain": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                    },
+                    "trustChainExpiresAt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                    },
+                    "trustChainUpdatedAt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     }
                   }
                 },
@@ -11177,6 +11362,71 @@
                           "pkceS256Required": {
                             "type": "boolean",
                             "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                          },
+                          "dpopRequired": {
+                            "type": "boolean",
+                            "description": "If the DPoP is required for this client\n"
+                          },
+                          "automaticallyRegistered": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                          },
+                          "explicitlyRegistered": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                          },
+                          "rsResponseSigned": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                          },
+                          "rsSignedRequestKeyId": {
+                            "type": "string",
+                            "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                          },
+                          "clientRegistrationTypes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                              "enum": [
+                                "AUTOMATIC",
+                                "EXPLICIT"
+                              ]
+                            },
+                            "description": "Get the client registration types that the client has declared it may use.\n"
+                          },
+                          "organizationName": {
+                            "type": "string",
+                            "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                          },
+                          "signedJwksUri": {
+                            "type": "string",
+                            "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                          },
+                          "entityId": {
+                            "type": "string",
+                            "description": "the entity ID of this client.\n"
+                          },
+                          "trustAnchorId": {
+                            "type": "string",
+                            "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                          },
+                          "trustChain": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                          },
+                          "trustChainExpiresAt": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                          },
+                          "trustChainUpdatedAt": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                           }
                         }
                       },
@@ -12125,6 +12375,71 @@
                   "pkceS256Required": {
                     "type": "boolean",
                     "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                  },
+                  "dpopRequired": {
+                    "type": "boolean",
+                    "description": "If the DPoP is required for this client\n"
+                  },
+                  "automaticallyRegistered": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                  },
+                  "explicitlyRegistered": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                  },
+                  "clientRegistrationTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                      "enum": [
+                        "AUTOMATIC",
+                        "EXPLICIT"
+                      ]
+                    },
+                    "description": "Get the client registration types that the client has declared it may use.\n"
+                  },
+                  "organizationName": {
+                    "type": "string",
+                    "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                  },
+                  "signedJwksUri": {
+                    "type": "string",
+                    "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                  },
+                  "entityId": {
+                    "type": "string",
+                    "description": "the entity ID of this client.\n"
+                  },
+                  "trustAnchorId": {
+                    "type": "string",
+                    "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                  },
+                  "trustChain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                  },
+                  "trustChainExpiresAt": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                  },
+                  "trustChainUpdatedAt": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   }
                 }
               },
@@ -12892,6 +13207,71 @@
                     "pkceS256Required": {
                       "type": "boolean",
                       "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                    },
+                    "dpopRequired": {
+                      "type": "boolean",
+                      "description": "If the DPoP is required for this client\n"
+                    },
+                    "automaticallyRegistered": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                    },
+                    "explicitlyRegistered": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                    },
+                    "rsResponseSigned": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                    },
+                    "rsSignedRequestKeyId": {
+                      "type": "string",
+                      "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                    },
+                    "clientRegistrationTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                        "enum": [
+                          "AUTOMATIC",
+                          "EXPLICIT"
+                        ]
+                      },
+                      "description": "Get the client registration types that the client has declared it may use.\n"
+                    },
+                    "organizationName": {
+                      "type": "string",
+                      "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                    },
+                    "signedJwksUri": {
+                      "type": "string",
+                      "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "the entity ID of this client.\n"
+                    },
+                    "trustAnchorId": {
+                      "type": "string",
+                      "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                    },
+                    "trustChain": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                    },
+                    "trustChainExpiresAt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                    },
+                    "trustChainUpdatedAt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     }
                   }
                 },
@@ -13839,6 +14219,71 @@
                   "pkceS256Required": {
                     "type": "boolean",
                     "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                  },
+                  "dpopRequired": {
+                    "type": "boolean",
+                    "description": "If the DPoP is required for this client\n"
+                  },
+                  "automaticallyRegistered": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                  },
+                  "explicitlyRegistered": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                  },
+                  "clientRegistrationTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                      "enum": [
+                        "AUTOMATIC",
+                        "EXPLICIT"
+                      ]
+                    },
+                    "description": "Get the client registration types that the client has declared it may use.\n"
+                  },
+                  "organizationName": {
+                    "type": "string",
+                    "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                  },
+                  "signedJwksUri": {
+                    "type": "string",
+                    "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                  },
+                  "entityId": {
+                    "type": "string",
+                    "description": "the entity ID of this client.\n"
+                  },
+                  "trustAnchorId": {
+                    "type": "string",
+                    "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                  },
+                  "trustChain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                  },
+                  "trustChainExpiresAt": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                  },
+                  "trustChainUpdatedAt": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   }
                 }
               },
@@ -14613,6 +15058,71 @@
                   "pkceS256Required": {
                     "type": "boolean",
                     "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                  },
+                  "dpopRequired": {
+                    "type": "boolean",
+                    "description": "If the DPoP is required for this client\n"
+                  },
+                  "automaticallyRegistered": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                  },
+                  "explicitlyRegistered": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                  },
+                  "rsResponseSigned": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                  },
+                  "rsSignedRequestKeyId": {
+                    "type": "string",
+                    "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                  },
+                  "clientRegistrationTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                      "enum": [
+                        "AUTOMATIC",
+                        "EXPLICIT"
+                      ]
+                    },
+                    "description": "Get the client registration types that the client has declared it may use.\n"
+                  },
+                  "organizationName": {
+                    "type": "string",
+                    "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                  },
+                  "signedJwksUri": {
+                    "type": "string",
+                    "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                  },
+                  "entityId": {
+                    "type": "string",
+                    "description": "the entity ID of this client.\n"
+                  },
+                  "trustAnchorId": {
+                    "type": "string",
+                    "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                  },
+                  "trustChain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                  },
+                  "trustChainExpiresAt": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                  },
+                  "trustChainUpdatedAt": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   }
                 }
               }
@@ -15349,6 +15859,71 @@
                     "pkceS256Required": {
                       "type": "boolean",
                       "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                    },
+                    "dpopRequired": {
+                      "type": "boolean",
+                      "description": "If the DPoP is required for this client\n"
+                    },
+                    "automaticallyRegistered": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                    },
+                    "explicitlyRegistered": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                    },
+                    "rsResponseSigned": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                    },
+                    "rsSignedRequestKeyId": {
+                      "type": "string",
+                      "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                    },
+                    "clientRegistrationTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                        "enum": [
+                          "AUTOMATIC",
+                          "EXPLICIT"
+                        ]
+                      },
+                      "description": "Get the client registration types that the client has declared it may use.\n"
+                    },
+                    "organizationName": {
+                      "type": "string",
+                      "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                    },
+                    "signedJwksUri": {
+                      "type": "string",
+                      "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "the entity ID of this client.\n"
+                    },
+                    "trustAnchorId": {
+                      "type": "string",
+                      "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                    },
+                    "trustChain": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                    },
+                    "trustChainExpiresAt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                    },
+                    "trustChainUpdatedAt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     }
                   }
                 },
@@ -15708,6 +16283,190 @@
             "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst clientId = ...\n\nawait api.deleteClient(clientId);\n"
           }
         ],
+        "tags": [
+          "Client Management"
+        ]
+      }
+    },
+    "/api/client/lock_flag/update/{clientIdentifier}": {
+      "post": {
+        "summary": "/api/client/lock_flag/update/{clientIdentifier} API",
+        "description": "Lock and unlock a client\n",
+        "security": [
+          {
+            "ServiceCredentials": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "clientIdentifier",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "A client ID."
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "clientLocked"
+                ],
+                "properties": {
+                  "clientLocked": {
+                    "type": "boolean",
+                    "description": "The flag value to be set\n"
+                  }
+                }
+              },
+              "example": {
+                "clientLocked": true
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "clientLocked"
+                ],
+                "properties": {
+                  "clientLocked": {
+                    "type": "boolean",
+                    "description": "The flag value to be set\n"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "resultCode",
+                    "resultMessage"
+                  ],
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001201",
+                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001202",
+                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001215",
+                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001101",
+                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "client_flag_update_api",
         "tags": [
           "Client Management"
         ]
@@ -16950,6 +17709,71 @@
                           "pkceS256Required": {
                             "type": "boolean",
                             "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                          },
+                          "dpopRequired": {
+                            "type": "boolean",
+                            "description": "If the DPoP is required for this client\n"
+                          },
+                          "automaticallyRegistered": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                          },
+                          "explicitlyRegistered": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                          },
+                          "rsResponseSigned": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                          },
+                          "rsSignedRequestKeyId": {
+                            "type": "string",
+                            "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                          },
+                          "clientRegistrationTypes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                              "enum": [
+                                "AUTOMATIC",
+                                "EXPLICIT"
+                              ]
+                            },
+                            "description": "Get the client registration types that the client has declared it may use.\n"
+                          },
+                          "organizationName": {
+                            "type": "string",
+                            "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                          },
+                          "signedJwksUri": {
+                            "type": "string",
+                            "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                          },
+                          "entityId": {
+                            "type": "string",
+                            "description": "the entity ID of this client.\n"
+                          },
+                          "trustAnchorId": {
+                            "type": "string",
+                            "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                          },
+                          "trustChain": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                          },
+                          "trustChainExpiresAt": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                          },
+                          "trustChainUpdatedAt": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                           }
                         }
                       },
@@ -18791,6 +19615,71 @@
                         "pkceS256Required": {
                           "type": "boolean",
                           "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                        },
+                        "dpopRequired": {
+                          "type": "boolean",
+                          "description": "If the DPoP is required for this client\n"
+                        },
+                        "automaticallyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                        },
+                        "explicitlyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                        },
+                        "rsResponseSigned": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                        },
+                        "rsSignedRequestKeyId": {
+                          "type": "string",
+                          "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                        },
+                        "clientRegistrationTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                            "enum": [
+                              "AUTOMATIC",
+                              "EXPLICIT"
+                            ]
+                          },
+                          "description": "Get the client registration types that the client has declared it may use.\n"
+                        },
+                        "organizationName": {
+                          "type": "string",
+                          "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "signedJwksUri": {
+                          "type": "string",
+                          "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "entityId": {
+                          "type": "string",
+                          "description": "the entity ID of this client.\n"
+                        },
+                        "trustAnchorId": {
+                          "type": "string",
+                          "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                        },
+                        "trustChain": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                        },
+                        "trustChainExpiresAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                        },
+                        "trustChainUpdatedAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
                     },
@@ -19796,6 +20685,21 @@
                         "openidDroppedOnRefreshWithoutOfflineAccess": {
                           "type": "boolean",
                           "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+                        },
+                        "supportedDocumentsCheckMethods": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+                        },
+                        "rsResponseSigned": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                        },
+                        "rsSignedRequestKeyId": {
+                          "type": "string",
+                          "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
                         }
                       }
                     },
@@ -20153,6 +21057,10 @@
                     "transformedClaims": {
                       "type": "string",
                       "description": "the value of the `transformed_claims` property in the `claims` request\nparameter of an authorization request or in the `claims` property in a\nrequest object.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -21319,6 +22227,18 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The certificate path presented by the client during client authentication. These certificates are strings in PEM format.\n"
+                  },
+                  "dpop": {
+                    "type": "string",
+                    "description": "DPoP Header\n"
+                  },
+                  "htm": {
+                    "type": "string",
+                    "description": "HTTP Method (for DPoP validation).\n"
+                  },
+                  "htu": {
+                    "type": "string",
+                    "description": "HTTP URL base (for DPoP validation).\n"
                   }
                 }
               },
@@ -21354,6 +22274,18 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The certificate path presented by the client during client authentication. These certificates are strings in PEM format.\n"
+                  },
+                  "dpop": {
+                    "type": "string",
+                    "description": "DPoP Header\n"
+                  },
+                  "htm": {
+                    "type": "string",
+                    "description": "HTTP Method (for DPoP validation).\n"
+                  },
+                  "htu": {
+                    "type": "string",
+                    "description": "HTTP URL base (for DPoP validation).\n"
                   }
                 }
               },
@@ -21626,6 +22558,10 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "jwtAtClaims": {
+                    "type": "string",
+                    "description": "Additional claims that are added to the payload part of the JWT access token.\n"
                   }
                 }
               },
@@ -21681,6 +22617,10 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "jwtAtClaims": {
+                    "type": "string",
+                    "description": "Additional claims that are added to the payload part of the JWT access token.\n"
                   }
                 }
               }
@@ -22076,6 +23016,14 @@
                               "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
+                        },
+                        "clientEntityId": {
+                          "type": "string",
+                          "description": "The entity ID of the client.\n"
+                        },
+                        "clientEntityIdUsed": {
+                          "type": "boolean",
+                          "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                         }
                       }
                     },
@@ -22202,12 +23150,32 @@
                               "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
+                        },
+                        "clientEntityId": {
+                          "type": "string",
+                          "description": "The entity ID of the client.\n"
+                        },
+                        "clientEntityIdUsed": {
+                          "type": "boolean",
+                          "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                         }
                       }
                     },
                     "assertion": {
                       "type": "string",
                       "description": "For RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants\n"
+                    },
+                    "previousRefreshTokenUsed": {
+                      "type": "boolean",
+                      "description": "Indicate whether the previous refresh token that had been kept in the database for a short time was used\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -22965,6 +23933,14 @@
                         }
                       },
                       "description": "The attributes of the client.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -23205,6 +24181,50 @@
                       "type": "string"
                     },
                     "description": "The resources specified by the `resource` request parameters in the token request. See \"Resource Indicators for OAuth 2.0\" for details.\n"
+                  },
+                  "acrValues": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Authentication Context Class Reference values one of which the user authentication performed during the course \nof issuing the access token must satisfy.\n"
+                  },
+                  "maxAge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The maximum authentication age which is the maximum allowable elapsed time since the user authentication \nwas performed during the course of issuing the access token.\n"
+                  },
+                  "requiredComponents": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "HTTP Message Components required to be in the signature. If absent, defaults to [ \"@method\", \"@target-uri\", \"authorization\" ].\n"
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "The full URL of the userinfo endpoint.\n"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The HTTP message body of the request, if present.\n"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "The key part."
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value part."
+                        }
+                      }
+                    },
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   }
                 }
               },
@@ -23261,6 +24281,50 @@
                       "type": "string"
                     },
                     "description": "The resources specified by the `resource` request parameters in the token request. See \"Resource Indicators for OAuth 2.0\" for details.\n"
+                  },
+                  "acrValues": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Authentication Context Class Reference values one of which the user authentication performed during the course \nof issuing the access token must satisfy.\n"
+                  },
+                  "maxAge": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The maximum authentication age which is the maximum allowable elapsed time since the user authentication \nwas performed during the course of issuing the access token.\n"
+                  },
+                  "requiredComponents": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "HTTP Message Components required to be in the signature. If absent, defaults to [ \"@method\", \"@target-uri\", \"authorization\" ].\n"
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "The full URL of the userinfo endpoint.\n"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The HTTP message body of the request, if present.\n"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "The key part."
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value part."
+                        }
+                      }
+                    },
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   }
                 }
               }
@@ -23632,6 +24696,38 @@
                         "type": "string"
                       },
                       "description": "the claims that the user has consented for the client application\nto know.\n"
+                    },
+                    "grantType": {
+                      "type": "string",
+                      "description": "The grant type of the access token when the access token was created.\n",
+                      "enum": [
+                        "AUTHORIZATION_CODE",
+                        "IMPLICIT",
+                        "PASSWORD",
+                        "CLIENT_CREDENTIALS",
+                        "REFRESH_TOKEN",
+                        "CIBA",
+                        "DEVICE_CODE",
+                        "TOKEN_EXCHANGE",
+                        "JWT_BEARER"
+                      ]
+                    },
+                    "acr": {
+                      "type": "string",
+                      "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                    },
+                    "authTime": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The time when the user authentication was performed during the course of issuing the access token.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -24353,6 +25449,31 @@
                   "htu": {
                     "type": "string",
                     "description": "URL of the user info endpoint. This field is used to validate the DPoP header.\n\nIf this parameter is omitted, the `userInfoEndpoint` property of the service is used as the default value.\nSee [OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)\nfor details.\n"
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "The full URL of the userinfo endpoint.\n"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The HTTP message body of the request, if present.\n"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "The key part."
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value part."
+                        }
+                      }
+                    },
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   }
                 }
               },
@@ -24386,6 +25507,31 @@
                   "htu": {
                     "type": "string",
                     "description": "URL of the user info endpoint. This field is used to validate the DPoP header.\n\nIf this parameter is omitted, the `userInfoEndpoint` property of the service is used as the default value.\nSee [OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)\nfor details.\n"
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "The full URL of the userinfo endpoint.\n"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The HTTP message body of the request, if present.\n"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "The key part."
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value part."
+                        }
+                      }
+                    },
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   }
                 }
               }
@@ -24543,6 +25689,14 @@
                     "transformedClaims": {
                       "type": "string",
                       "description": "the value of the `transformed_claims` property in the `claims` request\nparameter of an authorization request or in the `claims` property in a\nrequest object.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -24737,6 +25891,27 @@
                   "claimsForTx": {
                     "type": "string",
                     "description": "Claim key-value pairs that are used to compute transformed claims.\n"
+                  },
+                  "requestSignature": {
+                    "type": "string",
+                    "description": "The Signature header value from the request.\n"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "The key part."
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value part."
+                        }
+                      }
+                    },
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   }
                 }
               },
@@ -24766,6 +25941,27 @@
                   "claimsForTx": {
                     "type": "string",
                     "description": "Claim key-value pairs that are used to compute transformed claims.\n"
+                  },
+                  "requestSignature": {
+                    "type": "string",
+                    "description": "The Signature header value from the request.\n"
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "The key part."
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value part."
+                        }
+                      }
+                    },
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   }
                 }
               }
@@ -24809,6 +26005,18 @@
                     "responseContent": {
                       "type": "string",
                       "description": "The content that the authorization server implementation can use as the value of `WWW-Authenticate`\nheader on errors.\n"
+                    },
+                    "signature": {
+                      "type": "string",
+                      "description": "The signature header of the response message.\n"
+                    },
+                    "signatureInput": {
+                      "type": "string",
+                      "description": "The signature-input header of the response message\n"
+                    },
+                    "contentDigest": {
+                      "type": "string",
+                      "description": "The content-digest header of the response message\n"
                     }
                   }
                 },
@@ -26708,6 +27916,71 @@
                         "pkceS256Required": {
                           "type": "boolean",
                           "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                        },
+                        "dpopRequired": {
+                          "type": "boolean",
+                          "description": "If the DPoP is required for this client\n"
+                        },
+                        "automaticallyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                        },
+                        "explicitlyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                        },
+                        "rsResponseSigned": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                        },
+                        "rsSignedRequestKeyId": {
+                          "type": "string",
+                          "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                        },
+                        "clientRegistrationTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                            "enum": [
+                              "AUTOMATIC",
+                              "EXPLICIT"
+                            ]
+                          },
+                          "description": "Get the client registration types that the client has declared it may use.\n"
+                        },
+                        "organizationName": {
+                          "type": "string",
+                          "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "signedJwksUri": {
+                          "type": "string",
+                          "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "entityId": {
+                          "type": "string",
+                          "description": "the entity ID of this client.\n"
+                        },
+                        "trustAnchorId": {
+                          "type": "string",
+                          "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                        },
+                        "trustChain": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                        },
+                        "trustChainExpiresAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                        },
+                        "trustChainUpdatedAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
                     }
@@ -27705,6 +28978,71 @@
                         "pkceS256Required": {
                           "type": "boolean",
                           "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                        },
+                        "dpopRequired": {
+                          "type": "boolean",
+                          "description": "If the DPoP is required for this client\n"
+                        },
+                        "automaticallyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                        },
+                        "explicitlyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                        },
+                        "rsResponseSigned": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                        },
+                        "rsSignedRequestKeyId": {
+                          "type": "string",
+                          "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                        },
+                        "clientRegistrationTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                            "enum": [
+                              "AUTOMATIC",
+                              "EXPLICIT"
+                            ]
+                          },
+                          "description": "Get the client registration types that the client has declared it may use.\n"
+                        },
+                        "organizationName": {
+                          "type": "string",
+                          "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "signedJwksUri": {
+                          "type": "string",
+                          "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "entityId": {
+                          "type": "string",
+                          "description": "the entity ID of this client.\n"
+                        },
+                        "trustAnchorId": {
+                          "type": "string",
+                          "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                        },
+                        "trustChain": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                        },
+                        "trustChainExpiresAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                        },
+                        "trustChainUpdatedAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
                     }
@@ -28708,6 +30046,71 @@
                         "pkceS256Required": {
                           "type": "boolean",
                           "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                        },
+                        "dpopRequired": {
+                          "type": "boolean",
+                          "description": "If the DPoP is required for this client\n"
+                        },
+                        "automaticallyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                        },
+                        "explicitlyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                        },
+                        "rsResponseSigned": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                        },
+                        "rsSignedRequestKeyId": {
+                          "type": "string",
+                          "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                        },
+                        "clientRegistrationTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                            "enum": [
+                              "AUTOMATIC",
+                              "EXPLICIT"
+                            ]
+                          },
+                          "description": "Get the client registration types that the client has declared it may use.\n"
+                        },
+                        "organizationName": {
+                          "type": "string",
+                          "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "signedJwksUri": {
+                          "type": "string",
+                          "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "entityId": {
+                          "type": "string",
+                          "description": "the entity ID of this client.\n"
+                        },
+                        "trustAnchorId": {
+                          "type": "string",
+                          "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                        },
+                        "trustChain": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                        },
+                        "trustChainExpiresAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                        },
+                        "trustChainUpdatedAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
                     }
@@ -29605,6 +31008,14 @@
                     "grantSubject": {
                       "type": "string",
                       "description": "The subject identifying the user who has given the grant identified\nby the `grant_id` request parameter of the device authorization\nrequest.\n\nAuthlete 2.3 and newer versions support <a href=\n\"https://openid.net/specs/fapi-grant-management.html\">Grant Management\nfor OAuth 2.0</a>. An authorization request may contain a {@code grant_id}\nrequest parameter which is defined in the specification. If the value of\nthe request parameter is valid, {@link #getGrantSubject()} will return\nthe subject of the user who has given the grant to the client application.\nAuthorization server implementations may use the value returned from\n{@link #getGrantSubject()} in order to determine the user to authenticate.\n\nThe user your system will authenticate during the authorization process\n(or has already authenticated) may be different from the user of the\ngrant. The first implementer's draft of \"Grant Management for OAuth 2.0\"\ndoes not mention anything about the case, so the behavior in the case is\nleft to implementations. Authlete will not perform the grant management\naction when the {@code subject} passed to Authlete does not match the\nuser of the grant.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -30719,6 +32130,14 @@
                     "grantId": {
                       "type": "string",
                       "description": "the value of the `grant_id` request parameter of the device authorization request.\n\nThe `grant_id` request parameter is defined in\n[Grant Management for OAuth 2.0](https://openid.net/specs/fapi-grant-management.html)\n, which is supported by Authlete 2.3 and newer versions.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -31328,6 +32747,14 @@
                     "grantSubject": {
                       "type": "string",
                       "description": "The subject identifying the user who has given the grant identified\nby the `grant_id` request parameter of the device authorization\nrequest.\n\nAuthlete 2.3 and newer versions support <a href=\n\"https://openid.net/specs/fapi-grant-management.html\">Grant Management\nfor OAuth 2.0</a>. An authorization request may contain a {@code grant_id}\nrequest parameter which is defined in the specification. If the value of\nthe request parameter is valid, {@link #getGrantSubject()} will return\nthe subject of the user who has given the grant to the client application.\nAuthorization server implementations may use the value returned from\n{@link #getGrantSubject()} in order to determine the user to authenticate.\n\nThe user your system will authenticate during the authorization process\n(or has already authenticated) may be different from the user of the\ngrant. The first implementer's draft of \"Grant Management for OAuth 2.0\"\ndoes not mention anything about the case, so the behavior in the case is\nleft to implementations. Authlete will not perform the grant management\naction when the {@code subject} passed to Authlete does not match the\nuser of the grant.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 }
@@ -31861,6 +33288,14 @@
                     "grantSubject": {
                       "type": "string",
                       "description": "The subject identifying the user who has given the grant identified\nby the `grant_id` request parameter of the device authorization\nrequest.\n\nAuthlete 2.3 and newer versions support <a href=\n\"https://openid.net/specs/fapi-grant-management.html\">Grant Management\nfor OAuth 2.0</a>. An authorization request may contain a {@code grant_id}\nrequest parameter which is defined in the specification. If the value of\nthe request parameter is valid, {@link #getGrantSubject()} will return\nthe subject of the user who has given the grant to the client application.\nAuthorization server implementations may use the value returned from\n{@link #getGrantSubject()} in order to determine the user to authenticate.\n\nThe user your system will authenticate during the authorization process\n(or has already authenticated) may be different from the user of the\ngrant. The first implementer's draft of \"Grant Management for OAuth 2.0\"\ndoes not mention anything about the case, so the behavior in the case is\nleft to implementations. Authlete will not perform the grant management\naction when the {@code subject} passed to Authlete does not match the\nuser of the grant.\n"
+                    },
+                    "clientEntityId": {
+                      "type": "string",
+                      "description": "The entity ID of the client.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     }
                   }
                 },
@@ -33221,6 +34656,71 @@
                         "pkceS256Required": {
                           "type": "boolean",
                           "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+                        },
+                        "dpopRequired": {
+                          "type": "boolean",
+                          "description": "If the DPoP is required for this client\n"
+                        },
+                        "automaticallyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+                        },
+                        "explicitlyRegistered": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+                        },
+                        "rsResponseSigned": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether this service signs responses from the resource server.\n"
+                        },
+                        "rsSignedRequestKeyId": {
+                          "type": "string",
+                          "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+                        },
+                        "clientRegistrationTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+                            "enum": [
+                              "AUTOMATIC",
+                              "EXPLICIT"
+                            ]
+                          },
+                          "description": "Get the client registration types that the client has declared it may use.\n"
+                        },
+                        "organizationName": {
+                          "type": "string",
+                          "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "signedJwksUri": {
+                          "type": "string",
+                          "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+                        },
+                        "entityId": {
+                          "type": "string",
+                          "description": "the entity ID of this client.\n"
+                        },
+                        "trustAnchorId": {
+                          "type": "string",
+                          "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+                        },
+                        "trustChain": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+                        },
+                        "trustChainExpiresAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+                        },
+                        "trustChainUpdatedAt": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
                     },
@@ -33748,6 +35248,19 @@
                   "jwtAtClaims": {
                     "type": "string",
                     "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                  },
+                  "acr": {
+                    "type": "string",
+                    "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                  },
+                  "authTime": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time when the user authentication was performed during the course of issuing the access token.\n"
+                  },
+                  "clientEntityIdUsed": {
+                    "type": "boolean",
+                    "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                   }
                 }
               },
@@ -33928,6 +35441,19 @@
                   "jwtAtClaims": {
                     "type": "string",
                     "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                  },
+                  "acr": {
+                    "type": "string",
+                    "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                  },
+                  "authTime": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time when the user authentication was performed during the course of issuing the access token.\n"
+                  },
+                  "clientEntityIdUsed": {
+                    "type": "boolean",
+                    "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                   }
                 }
               }
@@ -35713,6 +37239,160 @@
           "Federation Endpoint"
         ]
       }
+    },
+    "/api/info": {
+      "get": {
+        "summary": "/api/info API",
+        "description": "get the server version and enabled features\n",
+        "security": [
+          {
+            "ServiceCredentials": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "version",
+                    "features"
+                  ],
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "The server version."
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "the features that the server supports."
+                    }
+                  }
+                },
+                "example": {
+                  "version": "2.3.0",
+                  "features": [
+                    "ciba",
+                    "dcr",
+                    "deviceflow",
+                    "fapi",
+                    "openbanking",
+                    "hsm",
+                    "gm",
+                    "tc",
+                    "oidc_federation"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001201",
+                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001202",
+                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001215",
+                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001101",
+                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "info_api",
+        "tags": [
+          "Server Metadata"
+        ]
+      }
     }
   },
   "components": {
@@ -36706,6 +38386,71 @@
           "pkceS256Required": {
             "type": "boolean",
             "description": "The flag to indicate whether `S256` is always required as the code challenge method whenever [PKCE (RFC 7636)](https://tools.ietf.org/html/rfc7636) is used.\n\nIf this flag is set to `true`, `code_challenge_method=S256` must be included in the authorization request\nwhenever it includes the `code_challenge` request parameter.\nNeither omission of the `code_challenge_method` request parameter nor use of plain (`code_challenge_method=plain`) is allowed.\n"
+          },
+          "dpopRequired": {
+            "type": "boolean",
+            "description": "If the DPoP is required for this client\n"
+          },
+          "automaticallyRegistered": {
+            "type": "boolean",
+            "description": "The flag indicating whether this client was registered by the\n\"automatic\" client registration of OIDC Federation.\n"
+          },
+          "explicitlyRegistered": {
+            "type": "boolean",
+            "description": "The flag indicating whether this client was registered by the\n\"explicit\" client registration of OIDC Federation.\n"
+          },
+          "rsResponseSigned": {
+            "type": "boolean",
+            "description": "The flag indicating whether this service signs responses from the resource server.\n"
+          },
+          "rsSignedRequestKeyId": {
+            "type": "string",
+            "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
+          },
+          "clientRegistrationTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Values for the `client_registration_types` RP metadata and the\n `client_registration_types_supported` OP metadata that are defined in\n [OpenID Connect Federation 1.0](https://openid.net/specs/openid-connect-federation-1_0.html).\n",
+              "enum": [
+                "AUTOMATIC",
+                "EXPLICIT"
+              ]
+            },
+            "description": "Get the client registration types that the client has declared it may use.\n"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Get the human-readable name representing the organization that manages this client. This property corresponds \nto the organization_name client metadata that is defined in OpenID Connect Federation 1.0.\n"
+          },
+          "signedJwksUri": {
+            "type": "string",
+            "description": "Get the URI of the endpoint that returns this client's JWK Set document in the JWT format. This property \ncorresponds to the `signed_jwks_uri` client metadata defined in OpenID Connect Federation 1.0.\n"
+          },
+          "entityId": {
+            "type": "string",
+            "description": "the entity ID of this client.\n"
+          },
+          "trustAnchorId": {
+            "type": "string",
+            "description": "The entity ID of the trust anchor of the trust chain that was used when this client was registered or updated by \nthe mechanism defined in OpenID Connect Federation 1.0\n"
+          },
+          "trustChain": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The trust chain that was used when this client was registered or updated by the mechanism defined in\nOpenID Connect Federation 1.0\n"
+          },
+          "trustChainExpiresAt": {
+            "type": "integer",
+            "format": "int32",
+            "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
+          },
+          "trustChainUpdatedAt": {
+            "type": "integer",
+            "format": "int32",
+            "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
           }
         }
       },
@@ -37921,6 +39666,21 @@
           "openidDroppedOnRefreshWithoutOfflineAccess": {
             "type": "boolean",
             "description": "The flag indicating whether the openid scope should be dropped from \nscopes list assigned to access token issued when a refresh token grant \nis used.\n"
+          },
+          "supportedDocumentsCheckMethods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supported document check methods. This property corresponds to the `documents_check_methods_supported`\nserver metadata which was added by the fourth implementer's draft of OpenID Connect for Identity\nAssurance 1.0.\n"
+          },
+          "rsResponseSigned": {
+            "type": "boolean",
+            "description": "The flag indicating whether this service signs responses from the resource server.\n"
+          },
+          "rsSignedRequestKeyId": {
+            "type": "string",
+            "description": "Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.\n"
           }
         }
       },

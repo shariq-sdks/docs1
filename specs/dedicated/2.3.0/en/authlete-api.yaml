@@ -43,6 +43,8 @@ paths:
     $ref: ./api/client_update_api.yaml
   /api/client/delete/{clientId}:
     $ref: ./api/client_delete_api.yaml
+  /api/client/lock_flag/update/{clientIdentifier}:
+    $ref: ./api/client_flag_update_api.yaml
   /api/client/secret/refresh/{clientIdentifier}:
     $ref: ./api/client_secret_refresh_api.yaml
   /api/client/secret/update/{clientIdentifier}:
@@ -123,6 +125,8 @@ paths:
     $ref: ./api/jose_verify_api.yaml
   /api/federation/configuration:
     $ref: ./api/federation_configuration_api.yaml
+  /api/info:
+    $ref: ./api/info_api.yaml
 
 #
 # COMPONENTS

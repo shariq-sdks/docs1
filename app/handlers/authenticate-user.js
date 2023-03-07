@@ -3,7 +3,7 @@ const config                = require('../config');
 const UnauthorizedException = require('../exceptions/unauthorized-exception');
 
 // Server types that require user authentication.
-const PROTECTED_SERVER_TYPES = [ 'dedicated', 'onpremise' ];
+const PROTECTED_SERVER_TYPES = [ 'onpremise' ];
 
 const isAuthenticationRequired = function(req) {
   return PROTECTED_SERVER_TYPES.includes(req.params.serverType);
