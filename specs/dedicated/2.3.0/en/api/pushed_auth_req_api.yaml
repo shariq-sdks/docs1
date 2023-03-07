@@ -44,7 +44,7 @@ post:
       $ref: ../model/response/403.yaml
     '500':
       $ref: ../model/response/500.yaml
-  operationId: 'pushed_auth_api'
+  operationId: 'pushed_auth_req_api'
   x-code-samples:
     - lang: shell
       label: curl
