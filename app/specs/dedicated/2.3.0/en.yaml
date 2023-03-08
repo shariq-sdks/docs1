@@ -10363,12 +10363,12 @@
                     },
                     "trustChainExpiresAt": {
                       "type": "integer",
-                      "format": "int32",
+                      "format": "int64",
                       "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                     },
                     "trustChainUpdatedAt": {
                       "type": "integer",
-                      "format": "int32",
+                      "format": "int64",
                       "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     }
                   }
@@ -11420,12 +11420,12 @@
                           },
                           "trustChainExpiresAt": {
                             "type": "integer",
-                            "format": "int32",
+                            "format": "int64",
                             "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                           },
                           "trustChainUpdatedAt": {
                             "type": "integer",
-                            "format": "int32",
+                            "format": "int64",
                             "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                           }
                         }
@@ -12433,12 +12433,12 @@
                   },
                   "trustChainExpiresAt": {
                     "type": "integer",
-                    "format": "int32",
+                    "format": "int64",
                     "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                   },
                   "trustChainUpdatedAt": {
                     "type": "integer",
-                    "format": "int32",
+                    "format": "int64",
                     "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   }
                 }
@@ -13265,12 +13265,12 @@
                     },
                     "trustChainExpiresAt": {
                       "type": "integer",
-                      "format": "int32",
+                      "format": "int64",
                       "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                     },
                     "trustChainUpdatedAt": {
                       "type": "integer",
-                      "format": "int32",
+                      "format": "int64",
                       "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     }
                   }
@@ -14277,12 +14277,12 @@
                   },
                   "trustChainExpiresAt": {
                     "type": "integer",
-                    "format": "int32",
+                    "format": "int64",
                     "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                   },
                   "trustChainUpdatedAt": {
                     "type": "integer",
-                    "format": "int32",
+                    "format": "int64",
                     "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   }
                 }
@@ -15116,12 +15116,12 @@
                   },
                   "trustChainExpiresAt": {
                     "type": "integer",
-                    "format": "int32",
+                    "format": "int64",
                     "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                   },
                   "trustChainUpdatedAt": {
                     "type": "integer",
-                    "format": "int32",
+                    "format": "int64",
                     "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   }
                 }
@@ -15917,12 +15917,12 @@
                     },
                     "trustChainExpiresAt": {
                       "type": "integer",
-                      "format": "int32",
+                      "format": "int64",
                       "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                     },
                     "trustChainUpdatedAt": {
                       "type": "integer",
-                      "format": "int32",
+                      "format": "int64",
                       "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     }
                   }
@@ -17767,12 +17767,12 @@
                           },
                           "trustChainExpiresAt": {
                             "type": "integer",
-                            "format": "int32",
+                            "format": "int64",
                             "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                           },
                           "trustChainUpdatedAt": {
                             "type": "integer",
-                            "format": "int32",
+                            "format": "int64",
                             "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                           }
                         }
@@ -19673,12 +19673,12 @@
                         },
                         "trustChainExpiresAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                         },
                         "trustChainUpdatedAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
@@ -27974,12 +27974,12 @@
                         },
                         "trustChainExpiresAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                         },
                         "trustChainUpdatedAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
@@ -29036,12 +29036,12 @@
                         },
                         "trustChainExpiresAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                         },
                         "trustChainUpdatedAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
@@ -30104,12 +30104,12 @@
                         },
                         "trustChainExpiresAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                         },
                         "trustChainUpdatedAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
@@ -34714,12 +34714,12 @@
                         },
                         "trustChainExpiresAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
                         },
                         "trustChainUpdatedAt": {
                           "type": "integer",
-                          "format": "int32",
+                          "format": "int64",
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         }
                       }
@@ -38444,12 +38444,12 @@
           },
           "trustChainExpiresAt": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "the expiration time of the trust chain that was used when this client was registered or updated by the mechanism \ndefined in OpenID Connect Federation 1.0. The value is represented as milliseconds elapsed since the Unix epoch (1970-01-01).\n"
           },
           "trustChainUpdatedAt": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
           }
         }
