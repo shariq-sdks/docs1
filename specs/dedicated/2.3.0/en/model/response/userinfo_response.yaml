@@ -22,7 +22,8 @@ properties:
     description: |
       The list of claims that the client application requests to be embedded in the ID token.
   clientId:
-    type: string
+    type: integer
+    format: int64
     description: |
       The ID of the client application which is associated with the access token.
   clientIdAlias:
