@@ -1,0 +1,14 @@
+inputSpec: /local/specs/dedicated/3.0.0/en/authlete-api.yaml
+templateDir: /local/openapi-for-go/templates/
+outputDir: /local/openapi-for-go/
+generatorName: go
+validateSpec: false
+gitRepoId: openapi-for-go
+gitUserId: authlete
+additionalProperties:
+  enumClassPrefix: true
+  generateInterfaces: true
+  packageName: authlete
+  packageVersion: "3.0"
+  prependFormOrBodyParameters: false
+  useOneOfDiscriminatorLookup: true

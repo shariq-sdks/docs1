@@ -1,0 +1,185 @@
+post:
+  summary: /api/device/verification API
+  description: |
+    The API returns information associated with a user code.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    After receiving a response from the device authorization endpoint of the authorization server,
+    the client application shows the end-user the user code and the verification URI which are included
+    in the device authorization response. Then, the end-user will access the verification URI using
+    a web browser on another device (typically, a smart phone). In normal implementations, the verification
+    endpoint will return an HTML page with an input form where the end-user inputs a user code. The
+    authorization server will receive a user code from the form.
+
+    After receiving a user code, the authorization server should call Authlete's `/device/verification`
+    API with the user code. And then, the authorization server implementation should retrieve the value
+    of `action` parameter from the API response and take the following steps according to the value.
+
+    **SERVER_ERROR**
+
+    When the value of `action` is `SERVER_ERROR`, it means that an error occurred on Authlete side. The
+    authorization server implementation should tell the end-user that something wrong happened and
+    urge her to re-initiate a device flow.
+
+    **NOT_EXIST**
+
+    When the value of `action` is `NOT_EXIST`, it means that the user code does not exist. The authorization
+    server implementation should tell the end-user that the user code is invalid and urge her to retry
+    to input a valid user code.
+
+    **EXPIRED**
+
+    When the value of `action` is `EXPIRED`, it means that the user code has expired. The authorization
+    server implementation should tell the end-user that the user code has expired and urge her to
+    re-initiate a device flow.
+
+    **VALID**
+
+    When the value of `action` is `VALID`, it means that the user code exists, has not expired, and
+    belongs to the service. The authorization server implementation should interact with the end-user
+    to ask whether she approves or rejects the authorization request from the device.
+    </details>
+
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: serviceApiKey
+      description: serviceApiKey
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/device_verification_request.yaml
+        example:
+          userCode: XWWKPBWVXQ
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/device_verification_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/device_verification_response.yaml
+          example:
+            {
+              "resultCode": "A224001",
+              "resultMessage": "[A224001] The user code is valid.",
+              "action": "VALID",
+              "clientId": 26888344961664,
+              "clientIdAliasUsed": false,
+              "clientName": "My Device Flow Client",
+              "expiresAt": 1642001978000,
+              "scopes": [
+                {
+                  "defaultEntry": false,
+                  "name": "history.read"
+                }
+              ],
+              "serviceAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ]
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'device_verification_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/device/verification \
+        -H 'Content-Type: application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "userCode": "XWWKPBWVXQ" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        DeviceVerificationRequest req = new DeviceVerificationRequest();
+        req.setUserCode("XWWKPBWVXQ");
+
+        api.deviceVerification(req);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        DeviceVerificationRequest req = new DeviceVerificationRequest();
+        req.SetUserCode("XWWKPBWVXQ");
+
+        await api.DeviceVerification(req);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $req = new DeviceVerificationRequest();
+        $req.setUserCode("XWWKPBWVXQ");
+
+        $api.deviceVerification($req);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = Authlete::Model::Request::DeviceVerificationRequest.new
+        req.user_code = 'XWWKPBWVXQ'
+
+        api.deviceVerification(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = DeviceVerificationRequest()
+        req.setUserCode('XWWKPBWVXQ')
+
+        api.deviceVerification(req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        req := dto.DeviceVerificationRequest{}
+        req.UserCode = "XWWKPBWVXQ"
+
+        api.DeviceVerification(&req)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+  tags:
+    - Device Flow

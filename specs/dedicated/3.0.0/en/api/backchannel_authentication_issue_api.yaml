@@ -1,0 +1,217 @@
+post:
+  summary: /api/backchannel/authentication/issue API
+  description: |
+    This API prepares JSON that contains an `auth_req_id`. The JSON should be used as the response body
+    of the response which is returned to the client from the [backchannel authentication endpoint](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_backchannel_endpoint)
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    This API is supposed to be called from within the implementation of the backchannel authentication
+    endpoint of the service in order to generate a successful response to the client application.
+
+    The description of the `/backchannel/authentication` API describes the timing when this API should
+    be called and the meaning of request parameters. See [AUTH_REQ_ID ISSUE] in `USER_IDENTIFICATION`.
+
+    The response from `/backchannel/authentication/issue` API has some parameters. Among them, it is
+    `action` parameter that the authorization server implementation should check first because it denotes
+    the next `action` that the authorization server implementation should take. According to the value
+    of `action`, the authorization server implementation must take the steps described below.
+
+    ```java
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response post(String parameters)
+    {
+        // 'parameters' is the entity body of the backchannel authentication request.
+        ......
+    }
+    ```
+
+    The endpoint implementation does not have to parse the request parameters from the client application
+    because Authlete's `/backchannel/authentication` API does it.
+
+    The response from `/backchannel/authentication` API has various parameters. Among them, it is `action`
+    parameter that the authorization server implementation should check first because it denotes the
+    next action that the authorization server implementation should take. According to the value of
+    `action`, the service implementation must take the steps described below.
+
+    **INTERNAL_SERVER_ERROR**
+
+    When the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the request from the authorization
+    server implementation was wrong or that an error occurred in Authlete.
+    In either case, from the viewpoint of the client application, it is an error on the server side.
+    Therefore, the service implementation should generate a response to the client application with
+    HTTP status of "500 Internal Server Error" and `application/json`.
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used as
+    the entity body of the response.
+
+    The following illustrates the response which the service implementation should generate and return
+    to the client application.
+
+    ```
+    HTTP/1.1 500 Internal Server Error
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    **INVALID_TICKET**
+
+    When the value of `action` is `INVALID_TICKET`, it means that the ticket included in the API call
+    was invalid. For example, it does not exist or has expired.
+
+    From a viewpoint of the client application, this is an error on the server side. Therefore, the
+    authorization server implementation should generate a response to the client application with
+    "500 Internal Server Error" and `application/json`.
+
+    You can build an error response in the same way as shown in the description for the case of `INTERNAL_SERVER_ERROR`.
+
+    **OK**
+
+    When the value of `action` is `OK`, it means that Authlete has succeeded in preparing JSON that
+    contains an `auth_req_id`. The JSON should be used as the response body of the response that is
+    returned to the client from the backchannel authentication endpoint. `responseContent` contains
+    the JSON.
+
+    The following illustrates the response which the authorization server implementation should generate
+    and return to the client application.
+
+    ```
+    HTTP/1.1 200 OK
+    Content-Type: text/html;charset=UTF-8
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+    </details>
+
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: serviceApiKey
+      description: serviceApiKey
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/backchannel_authentication_issue_request.yaml
+        example:
+          ticket: NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/backchannel_authentication_issue_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/backchannel_authentication_issue_response.yaml
+          example:
+            {
+              "resultCode": "A183001",
+              "resultMessage": "[A183001] An auth_req_id was issued successfully.",
+              "action": "OK",
+              "authReqId": "_mzc-ZQdAhSPuMxTlO-MC_oqaOqYCrdNQ39PVxisaiE",
+              "expiresIn": 3600,
+              "interval": 0,
+              "responseContent": "{\\\"auth_req_id\\\":\\\"_mzc-ZQdAhSPuMxTlO-MC_oqaOqYCrdNQ39PVxisaiE\\\",\\\"interval\\\":0,\\\"expires_in\\\":3600}"
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'backchannel_authentication_issue_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/backchannel/authentication/issue \
+        -H 'Content-Type: application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "ticket": "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        BackchannelAuthenticationIssueRequest req = new BackchannelAuthenticationIssueRequest();
+        req.setTicket("NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q");
+
+        api.backchannelAuthenticationIssue(req);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        BackchannelAuthenticationIssueRequest req = new BackchannelAuthenticationIssueRequest();
+        req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q";
+
+        await api.BackchannelAuthenticationIssue(req);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $req = new BackchannelAuthenticationIssueRequest();
+        $req.setTicket("NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q");
+
+        $api.backchannelAuthenticationIssue($req);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        req = Authlete::Model::Request::BackchannelAuthenticationIssueRequest.new
+        req.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'
+
+        api.backchannel_authentication_issue(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = BackchannelAuthenticationIssueRequest()
+        req.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'
+
+        api.backchannelAuthenticationIssue(req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        req := dto.BackchannelAuthenticationIssueRequest{}
+        req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q"
+
+        api.BackchannelAuthenticationIssue(&req)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+  tags:
+    - CIBA
