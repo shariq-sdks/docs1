@@ -42,7 +42,7 @@ build go client v3:
     include: .gitlab-ci/build-go-client-v3.yml
     strategy: depend
   rules:
-    - if: ($CI_COMMIT_BRANCH == "v3") || ($CI_COMMIT_BRANCH == ${CI_DEFAULT_BRANCH})
+    - if: $CI_COMMIT_BRANCH == "v3" || $CI_COMMIT_BRANCH == "master"
       changes:
         - specs/**/*
         - go-client-codegen-v3.yml
