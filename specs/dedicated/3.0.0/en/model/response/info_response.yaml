@@ -1,0 +1,11 @@
+type: object
+required: [ version, features ]
+properties:
+  version:
+    type: string
+    description: The server version.
+  features:
+    type: array
+    items:
+      type: string
+    description: the features that the server supports.

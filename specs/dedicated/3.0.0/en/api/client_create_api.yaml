@@ -1,0 +1,207 @@
+post:
+  summary: /api/{serviceApiKey}/client/create API
+  description: |
+    Create a new client.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: serviceApiKey
+      description: serviceApiKey
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/client.yaml
+        example:
+          developer: john
+          clientName: My Client
+          clientIdAlias: my-client
+          clientIdAliasEnabled: true
+          clientType: CONFIDENTIAL
+          applicationType: WEB
+          grantTypes:
+            - AUTHORIZATION_CODE
+            - REFRESH_TOKEN
+          responseTypes:
+            - CODE
+            - TOKEN
+          redirectUris:
+            - https://my-client.example.com/cb1
+            - https://my-client.example.com/cb2
+          tokenAuthMethod: CLIENT_SECRET_BASIC
+          attributes:
+            - key: attribute1-key
+              value: attribute1-value
+            - key: attribute2-key
+              value: attribute2-value
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/client.yaml
+          example:
+            {
+              "applicationType": "WEB",
+              "attributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ],
+              "authTimeRequired": false,
+              "bcUserCodeRequired": false,
+              "clientId": 26478243745571,
+              "clientIdAlias": "my-client",
+              "clientIdAliasEnabled": true,
+              "clientName": "My client",
+              "clientSecret": "gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ",
+              "clientType": "CONFIDENTIAL",
+              "createdAt": 1639468356000,
+              "defaultMaxAge": 0,
+              "derivedSectorIdentifier": "my-client.example.com",
+              "developer": "john",
+              "dynamicallyRegistered": false,
+              "frontChannelRequestObjectEncryptionRequired": false,
+              "grantTypes": [
+                "AUTHORIZATION_CODE",
+                "REFRESH_TOKEN"
+              ],
+              "idTokenSignAlg": "RS256",
+              "modifiedAt": 1639468356000,
+              "number": 6164,
+              "parRequired": false,
+              "redirectUris": [
+                "https://my-client.example.com/cb1",
+                "https://my-client.example.com/cb2"
+              ],
+              "requestObjectEncryptionAlgMatchRequired": false,
+              "requestObjectEncryptionEncMatchRequired": false,
+              "requestObjectRequired": false,
+              "responseTypes": [
+                "CODE",
+                "TOKEN"
+              ],
+              "serviceNumber": 5041,
+              "subjectType": "PUBLIC",
+              "tlsClientCertificateBoundAccessTokens": false,
+              "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_create_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/client/create \
+        -H 'Content-Type:application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "developer": "john", "clientName": "My Client", ... }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        Client client = new Client();
+        client.setDeveloper("john");
+        client.setClientName("My Client");
+        ...
+
+        api.createClient(client);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        Client client = new Client();
+        client.Developer = "john";
+        client.ClientName = "My Client";
+        ...
+
+        await api.CreateClient(client);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $client = new Client();
+        $client.setDeveloper("john");
+        $client.setClientName("My Client");
+        ...
+
+        $api.createClient($client);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        client = Authlete::Model::Client.new
+        client.developer = 'john'
+        client.client_name = 'My Client'
+        ...
+
+        api.client_create(client)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        client = Client()
+        client.developer = 'john'
+        client.clientName = 'My Client'
+        ...
+
+        api.createClient(client)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        client := dto.Client{}
+        client.Developer = "john"
+        client.ClientName = "My Client"
+        ...
+
+        api.CreateClient(client)
+
+    - lang: ts
+      label: deno
+      source: |
+        const conf: AuthleteConfiguration = ...;
+        const api: AuthleteApi = new AuthleteApiImpl(conf);
+
+        const client = new Client();
+        client.developer = 'john';
+        client.clientName = 'My Client';
+        ...
+
+        await api.createClient(client);
+
+  tags:
+    - Client Management

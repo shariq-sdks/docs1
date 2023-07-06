@@ -1,0 +1,10 @@
+type: object
+properties:
+  keys:
+    type: array
+    items:
+      type: object
+      description: >
+        An object representing JWK. See [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517)
+        for more details.
+    description: An array of [JWK](https://datatracker.ietf.org/doc/html/rfc7517)s.
