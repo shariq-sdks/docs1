@@ -661,6 +661,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                         "enum": [
                           "PING",
                           "POLL",
@@ -995,7 +996,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/get/{serviceApiKey}, TLS must be used."
                 }
               }
             }
@@ -1019,7 +1020,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/get/{serviceApiKey}, Authorization header is missing."
                 }
               }
             }
@@ -1043,7 +1044,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/get/{serviceApiKey}, The service owner (API Key = 9503564192) is locked."
                 }
               }
             }
@@ -1067,7 +1068,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/get/{serviceApiKey}, Authlete Server error."
                 }
               }
             }
@@ -1794,6 +1795,7 @@
                             "type": "array",
                             "items": {
                               "type": "string",
+                              "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                               "enum": [
                                 "PING",
                                 "POLL",
@@ -2139,7 +2141,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/get/list, TLS must be used."
                 }
               }
             }
@@ -2163,7 +2165,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/get/list, Authorization header is missing."
                 }
               }
             }
@@ -2187,7 +2189,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/get/list, The service owner (API Key = 9503564192) is locked."
                 }
               }
             }
@@ -2211,7 +2213,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/get/list, Authlete Server error."
                 }
               }
             }
@@ -2895,6 +2897,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -3767,6 +3770,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -4594,6 +4598,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                         "enum": [
                           "PING",
                           "POLL",
@@ -4928,7 +4933,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/create, TLS must be used."
                 }
               }
             }
@@ -4952,7 +4957,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/create, Authorization header is missing."
                 }
               }
             }
@@ -4976,7 +4981,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/create, The service owner (API Key = 9503564192) is locked."
                 }
               }
             }
@@ -5000,7 +5005,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/create, Authlete Server error."
                 }
               }
             }
@@ -5695,6 +5700,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -6617,6 +6623,7 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -7557,6 +7564,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                         "enum": [
                           "PING",
                           "POLL",
@@ -7778,7 +7786,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/update/{serviceApiKey}, TLS must be used."
                 }
               }
             }
@@ -7802,7 +7810,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/update/{serviceApiKey}, Authorization header is missing."
                 }
               }
             }
@@ -7826,7 +7834,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/update/{serviceApiKey}, The service owner (API Key = 9503564192) is locked."
                 }
               }
             }
@@ -7850,7 +7858,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/update/{serviceApiKey}, Authlete Server error."
                 }
               }
             }
@@ -7944,7 +7952,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/delete/{serviceApiKey}, TLS must be used."
                 }
               }
             }
@@ -7968,7 +7976,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/delete/{serviceApiKey}, Authorization header is missing."
                 }
               }
             }
@@ -7992,7 +8000,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/delete/{serviceApiKey}, The service owner (API Key = 9503564192) is locked."
                 }
               }
             }
@@ -8016,7 +8024,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/delete/{serviceApiKey}, Authlete Server error."
                 }
               }
             }
@@ -8870,7 +8878,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/get/{clientId}, TLS must be used."
                 }
               }
             }
@@ -8894,7 +8902,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/get/{clientId}, Authorization header is missing."
                 }
               }
             }
@@ -8918,7 +8926,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/get/{clientId}, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -8942,7 +8950,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/get/{clientId}, Authlete Server error."
                 }
               }
             }
@@ -9852,7 +9860,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/get/list, TLS must be used."
                 }
               }
             }
@@ -9876,7 +9884,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/get/list, Authorization header is missing."
                 }
               }
             }
@@ -9900,7 +9908,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/get/list, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -9924,7 +9932,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/get/list, Authlete Server error."
                 }
               }
             }
@@ -11511,7 +11519,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/create, TLS must be used."
                 }
               }
             }
@@ -11535,7 +11543,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/create, Authorization header is missing."
                 }
               }
             }
@@ -11559,7 +11567,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/create, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -11583,7 +11591,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/create, Authlete Server error."
                 }
               }
             }
@@ -13902,7 +13910,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/update/{clientId}, TLS must be used."
                 }
               }
             }
@@ -13926,7 +13934,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/update/{clientId}, Authorization header is missing."
                 }
               }
             }
@@ -13950,7 +13958,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/update/{clientId}, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -13974,7 +13982,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/update/{clientId}, Authlete Server error."
                 }
               }
             }
@@ -14068,7 +14076,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/delete/{clientId}, TLS must be used."
                 }
               }
             }
@@ -14092,7 +14100,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/delete/{clientId}, Authorization header is missing."
                 }
               }
             }
@@ -14116,7 +14124,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/delete/{clientId}, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -14140,7 +14148,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/delete/{clientId}, Authlete Server error."
                 }
               }
             }
@@ -14193,7 +14201,7 @@
     },
     "/api/client/secret/refresh/{clientIdentifier}": {
       "get": {
-        "summary": "/api/client/secret/refresh API",
+        "summary": "/api/client/secret/refresh/{clientIdentifier} API",
         "description": "Refresh the client secret of a client. A new value of the client secret will be generated by the\nAuthlete server.\n\nIf you want to specify a new value, use `/api/client/secret/update` API.\n",
         "security": [
           {
@@ -14265,7 +14273,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/secret/refresh/{clientIdentifier}, TLS must be used."
                 }
               }
             }
@@ -14289,7 +14297,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/secret/refresh/{clientIdentifier}, Authorization header is missing."
                 }
               }
             }
@@ -14313,7 +14321,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/secret/refresh/{clientIdentifier}, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -14337,7 +14345,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/secret/refresh/{clientIdentifier}, Authlete Server error."
                 }
               }
             }
@@ -14390,7 +14398,7 @@
     },
     "/api/client/secret/update/{clientIdentifier}": {
       "post": {
-        "summary": "/api/client/secret/update API",
+        "summary": "/api/client/secret/update/{clientIdentifier} API",
         "description": "Update the client secret of a client.\n\nIf you want to have the Authlete server generate a new value of the client secret, use `/api/client/secret/refresh`\nAPI.\n",
         "security": [
           {
@@ -14498,7 +14506,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/secret/update/{clientIdentifier}, TLS must be used."
                 }
               }
             }
@@ -14522,7 +14530,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/secret/update/{clientIdentifier}, Authorization header is missing."
                 }
               }
             }
@@ -14546,7 +14554,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/secret/update/{clientIdentifier}, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -14570,7 +14578,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/secret/update/{clientIdentifier}, Authlete Server error."
                 }
               }
             }
@@ -15493,7 +15501,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/authorization/get/list, TLS must be used."
                 }
               }
             }
@@ -15517,7 +15525,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/authorization/get/list, Authorization header is missing."
                 }
               }
             }
@@ -15541,7 +15549,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/authorization/get/list, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -15565,7 +15573,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/authorization/get/list, Authlete Server error."
                 }
               }
             }
@@ -15733,7 +15741,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/authorization/update, TLS must be used."
                 }
               }
             }
@@ -15757,7 +15765,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/authorization/update, Authorization header is missing."
                 }
               }
             }
@@ -15781,7 +15789,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/authorization/update, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -15805,7 +15813,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/authorization/update, Authlete Server error."
                 }
               }
             }
@@ -15929,7 +15937,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/authorization/delete, TLS must be used."
                 }
               }
             }
@@ -15953,7 +15961,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/authorization/delete, Authorization header is missing."
                 }
               }
             }
@@ -15977,7 +15985,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/authorization/delete, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -16001,7 +16009,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/authorization/delete, Authlete Server error."
                 }
               }
             }
@@ -16303,6 +16311,10 @@
                       "description": "A short message which explains the result of the API call."
                     }
                   }
+                },
+                "example": {
+                  "resultCode": "A140001",
+                  "resultMessage": "[A140001] There was no information about scopes granted to the combination of the client (ID = 26478243745571) and the subject (john)."
                 }
               }
             }
@@ -16326,7 +16338,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/granted_scopes/delete/{clientId}, TLS must be used."
                 }
               }
             }
@@ -16350,7 +16362,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/granted_scopes/delete/{clientId}, Authorization header is missing."
                 }
               }
             }
@@ -16374,7 +16386,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/granted_scopes/delete/{clientId}, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -16398,7 +16410,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/granted_scopes/delete/{clientId}, Authlete Server error."
                 }
               }
             }
@@ -17863,6 +17875,7 @@
                           "type": "array",
                           "items": {
                             "type": "string",
+                            "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                             "enum": [
                               "PING",
                               "POLL",
@@ -18251,7 +18264,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -18545,7 +18558,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/authorization, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -18774,7 +18787,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/authorization/fail, TLS must be used."
                 }
               }
             }
@@ -18798,7 +18811,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/authorization/fail, Authorization header is missing."
                 }
               }
             }
@@ -18822,7 +18835,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/authorization/fail, The client (ID = 26837717140341) is locked."
                 }
               }
             }
@@ -18846,7 +18859,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/authorization/fail, Authlete Server error."
                 }
               }
             }
@@ -19138,7 +19151,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/authorization/issue, TLS must be used."
                 }
               }
             }
@@ -19162,7 +19175,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/authorization/issue, Authorization header is missing."
                 }
               }
             }
@@ -19186,7 +19199,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/authorization/issue, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -19210,7 +19223,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/authorization/issue, Authlete Server error."
                 }
               }
             }
@@ -19380,8 +19393,7 @@
                     "responseContent": {
                       "type": "string",
                       "description": "The content that the authorization server implementation is to return to the client\napplication.\n"
-                    },
-                    "clientAuthMethod": "../client_authentication_method.yaml"
+                    }
                   }
                 },
                 "example": {
@@ -19413,7 +19425,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /pushed_auth_req, TLS must be used."
                 }
               }
             }
@@ -19437,7 +19449,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /pushed_auth_req, Authorization header is missing."
                 }
               }
             }
@@ -19461,7 +19473,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /pushed_auth_req, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -19485,13 +19497,13 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /pushed_auth_req, Authlete Server error."
                 }
               }
             }
           }
         },
-        "operationId": "pushed_auth_api",
+        "operationId": "pushed_auth_req_api",
         "x-code-samples": [
           {
             "lang": "shell",
@@ -19501,12 +19513,12 @@
           {
             "lang": "java",
             "label": "java",
-            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.pushAuthorizationRequest(req);\n"
           },
           {
             "lang": "cs",
             "label": "C#",
-            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.PushAuthorizationRequest(req);\n"
           },
           {
             "lang": "php",
@@ -19519,16 +19531,16 @@
           },
           {
             "lang": "python",
-            "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = PushedAuthReqRequest()\nreq.parameters = ...\nreq.clientId = '57297408867'\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.token(req)\n"
+            "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = PushedAuthReqRequest()\nreq.parameters = ...\nreq.clientId = '57297408867'\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.pushAuthorizationRequest(req)\n"
           },
           {
             "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.PushedAuthReqRequest{}\nreq.Parameters = ...\nreq.ClientId = \"57297408867\"\nreq.ClientSecret = \"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\"\n\napi.Token(&req)\n"
+            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.PushedAuthReqRequest{}\nreq.Parameters = ...\nreq.ClientId = \"57297408867\"\nreq.ClientSecret = \"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\"\n\napi.PushAuthorizationRequest(&req)\n"
           },
           {
             "lang": "ts",
             "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new PushedAuthReqRequest();\nreq.parameters = ...;\nreq.clientId = '57297408867';\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';\n\nawait api.token(req);\n"
+            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new PushedAuthReqRequest();\nreq.parameters = ...;\nreq.clientId = '57297408867';\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';\n\nawait api.pushAuthorizationRequest(req);\n"
           }
         ],
         "tags": [
@@ -19839,7 +19851,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -19950,7 +19962,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/token, TLS must be used."
                 }
               }
             }
@@ -19974,7 +19986,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/token, Authorization header is missing."
                 }
               }
             }
@@ -19998,7 +20010,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/token, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -20022,7 +20034,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/token, Authlete Server error."
                 }
               }
             }
@@ -20197,7 +20209,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/token/fail, TLS must be used."
                 }
               }
             }
@@ -20221,7 +20233,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/token/fail, Authorization header is missing."
                 }
               }
             }
@@ -20245,7 +20257,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/token/fail, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -20269,7 +20281,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/token/fail, Authlete Server error."
                 }
               }
             }
@@ -20584,7 +20596,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -20686,7 +20698,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/token/issue, TLS must be used."
                 }
               }
             }
@@ -20710,7 +20722,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/token/issue, Authorization header is missing."
                 }
               }
             }
@@ -20734,7 +20746,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/token/issue, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -20758,7 +20770,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/token/issue, Authlete Server error."
                 }
               }
             }
@@ -20812,7 +20824,7 @@
     "/api/auth/introspection": {
       "post": {
         "summary": "/api/auth/introspection API",
-        "description": "This API gathers information about an access token.\n\n<br>\n<details>\n<summary>Description</summary>\n\nThis API is supposed to be called from within the implementations of protected resource endpoints\nof the authorization server implementation in order to get information about the access token which\nwas presented by the client application.\n\nIn general, a client application accesses a protected resource endpoint of a service with an access\ntoken, and the implementation of the endpoint checks whether the presented access token has enough\nprivileges (= scopes) to access the protected resource before returning the protected resource to\nthe client application. To achieve this flow, the endpoint implementation has to know detailed\ninformation about the access token. Authlete `/auth/introspection` API can be used to get such information.\n\nThe response from `/auth/introspection` API has some parameters. Among them, it is `action` parameter\nthat the authorization server implementation should check first because it denotes the next action\nthat the authorization server implementation should take. According to the value of `action`, the\nauthorization server implementation must take the steps described below.\n\n**INTERNAL_SERVER_ERROR**\n\nWhen the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the request from the authorization\nserver implementation was wrong or that an error occurred in Authlete.\nIn either case, from the viewpoint of the client application, it is an error on the server side.\nTherefore, the service implementation should generate a response to the client application with\nHTTP status of \"500 Internal Server Error\". Authlete recommends `application/json` as the content\ntype although OAuth 2.0 specification does not mention the format of the error response when the\nredirect URI is not usable.\n\nThe value of `responseContent` is a string which describes the error in the format of\n[RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage), so if\nthe protected resource of the service implementation wants to return an error response to the client\napplication in the way that complies with RFC 6750 (in other words, if `accessTokenType` configuration\nparameter of the service is Bearer), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 500 Internal Server Error\nContent-Type: application/json\nCache-Control: no-store\nPragma: no-cache\n\n{responseContent}\n```\n\n**BAD_REQUEST**\n\nWhen the value of `action` is `BAD_REQUEST`, it means that the request from the client application\ndoes not contain an access token (= the request from the authorization server implementation to\nAuthlete does not contain `token` request parameter).\n\nA response with HTTP status of \"400 Bad Request\" must be returned to the client application and\nthe content type must be `application/json`.\n\n\nThe value of `responseContent` is a string which describes the error in the format of [RFC\n6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage), so if the\nprotected resource of the service implementation wants to return an error response to the client\napplication in the way that complies with RFC 6750 (in other words, if `accessTokenType` configuration\nparameter of the service is `Bearer`), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 400 Bad Request\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\n**UNAUTHORIZED**\n\nWhen the value of `action` is `UNAUTHORIZED`, it means that the access token does not exist or has\nexpired.\n\nThe value of `responseContent` is a string which describes the error in the format of RFC\n6750 (OAuth 2.0 Bearer Token Usage), so if the protected resource of the service implementation\nwants to return an error response to the client application in the way that complies with [RFC\n6750](https://datatracker.ietf.org/doc/html/rfc6750) (in other words, if `accessTokenType` configuration\nparameter of the service is `Bearer`), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 401 Unauthorized\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\n**FORBIDDEN**\n\nWhen the value of `action` is `FORBIDDEN`, it means that the access token does not cover the required\nscopes or that the subject associated with the access token is different from the subject contained\nin the request.\n\nA response with HTTP status of \"400 Bad Request\" must be returned to the client application and\nthe content type must be `application/json`.\n\nThe value of `responseContent` is a string which describes the error in the format of [RFC\n6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage), so if the\nprotected resource of the service implementation wants to return an error response to the client\napplication in the way that complies with RFC 6750 (in other words, if `accessTokenType` configuration\nparameter of the service is Bearer), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 403 Forbidden\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\n**OK**\n\nWhen the value of `action` is `OK`, it means that the access token which the client application\npresented is valid (= exists and has not expired).\n\nThe implementation of the protected resource endpoint is supposed to return the protected resource\nto the client application.\n\nWhen action is `OK`, the value of `responseContent` is `\"Bearer error=\\\"invalid_request\\\"\"`. This\nis the simplest string which can be used as the value of `WWW-Authenticate` header to indicate\n\"400 Bad Request\". The implementation of the protected resource endpoint may use this string to\ntell the client application that the request was bad (e.g. in case necessary request parameters\nfor the protected resource endpoint are missing). However, in such a case, the implementation\nshould generate a more informative error message to help developers of client applications.\n\nThe following is an example error response which complies with RFC 6750.\n\n```\nHTTP/1.1 200 OK\nContent-Type: application/json\nCache-Control: no-store\nPragma: no-cache\n\n{responseContent}\n```\n\nBasically, The value of `responseContent` is a string which describes the error in the format of\n[RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage). So, if\nthe service has selected `Bearer` as the value of `accessTokenType` configuration parameter, the\nvalue of `responseContent` can be used directly as the value of `WWW-Authenticate` header. However,\nif the service has selected another different token type, the service has to generate error messages\nfor itself.\n\n_**JWT-based access token**_\n\nSince version 2.1, Authlete provides a feature to issue access tokens in JWT format. This feature\ncan be enabled by setting a non-null value to the `accessTokenSignAlg` property of the service\n(see the description of the Service class for details). `/api/auth/introspection` API can accept\naccess tokens in JWT format. However, note that the API does not return information contained in\na given JWT-based access token but returns information stored in the database record which corresponds\nto the given JWT-based access token. Because attributes of the database record can be modified\nafter the access token is issued (for example, by using `/api/auth/token/update` API), information\nreturned by `/api/auth/introspection` API and information the given JWT-based access token holds\nmay be different.\n\n</details>\n",
+        "description": "This API gathers information about an access token.\n\n<br>\n<details>\n<summary>Description</summary>\n\nThis API is supposed to be called from within the implementations of protected resource endpoints\nof the authorization server implementation in order to get information about the access token which\nwas presented by the client application.\n\nIn general, a client application accesses a protected resource endpoint of a service with an access\ntoken, and the implementation of the endpoint checks whether the presented access token has enough\nprivileges (= scopes) to access the protected resource before returning the protected resource to\nthe client application. To achieve this flow, the endpoint implementation has to know detailed\ninformation about the access token. Authlete `/auth/introspection` API can be used to get such information.\n\nThe response from `/auth/introspection` API has some parameters. Among them, it is `action` parameter\nthat the authorization server implementation should check first because it denotes the next action\nthat the authorization server implementation should take. According to the value of `action`, the\nauthorization server implementation must take the steps described below.\n\n**INTERNAL_SERVER_ERROR**\n\nWhen the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the request from the authorization\nserver implementation was wrong or that an error occurred in Authlete.\nIn either case, from the viewpoint of the client application, it is an error on the server side.\nTherefore, the service implementation should generate a response to the client application with\nHTTP status of \"500 Internal Server Error\". Authlete recommends `application/json` as the content\ntype although OAuth 2.0 specification does not mention the format of the error response when the\nredirect URI is not usable.\n\nThe value of `responseContent` is a string which describes the error in the format of\n[RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage), so if\nthe protected resource of the service implementation wants to return an error response to the client\napplication in the way that complies with RFC 6750 (in other words, if `accessTokenType` configuration\nparameter of the service is Bearer), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 500 Internal Server Error\nContent-Type: application/json\nCache-Control: no-store\nPragma: no-cache\n\n{responseContent}\n```\n\n**BAD_REQUEST**\n\nWhen the value of `action` is `BAD_REQUEST`, it means that the request from the client application\ndoes not contain an access token (= the request from the authorization server implementation to\nAuthlete does not contain `token` request parameter).\n\nA response with HTTP status of \"400 Bad Request\" must be returned to the client application and\nthe content type must be `application/json`.\n\n\nThe value of `responseContent` is a string which describes the error in the format of [RFC\n6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage), so if the\nprotected resource of the service implementation wants to return an error response to the client\napplication in the way that complies with RFC 6750 (in other words, if `accessTokenType` configuration\nparameter of the service is `Bearer`), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 400 Bad Request\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\n**UNAUTHORIZED**\n\nWhen the value of `action` is `UNAUTHORIZED`, it means that the access token does not exist or has\nexpired.\n\nThe value of `responseContent` is a string which describes the error in the format of RFC\n6750 (OAuth 2.0 Bearer Token Usage), so if the protected resource of the service implementation\nwants to return an error response to the client application in the way that complies with [RFC\n6750](https://datatracker.ietf.org/doc/html/rfc6750) (in other words, if `accessTokenType` configuration\nparameter of the service is `Bearer`), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 401 Unauthorized\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\n**FORBIDDEN**\n\nWhen the value of `action` is `FORBIDDEN`, it means that the access token does not cover the required\nscopes or that the subject associated with the access token is different from the subject contained\nin the request.\n\nA response with HTTP status of \"400 Bad Request\" must be returned to the client application and\nthe content type must be `application/json`.\n\nThe value of `responseContent` is a string which describes the error in the format of [RFC\n6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage), so if the\nprotected resource of the service implementation wants to return an error response to the client\napplication in the way that complies with RFC 6750 (in other words, if `accessTokenType` configuration\nparameter of the service is Bearer), the value of `responseContent` can be used as the value of\n`WWW-Authenticate` header.\n\nThe following is an example response which complies with RFC 6750.\n\n```\nHTTP/1.1 403 Forbidden\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\n**OK**\n\nWhen the value of `action` is `OK`, it means that the access token which the client application\npresented is valid (= exists and has not expired).\n\nThe implementation of the protected resource endpoint is supposed to return the protected resource\nto the client application.\n\nWhen action is `OK`, the value of `responseContent` is `\"Bearer error=\\\"invalid_request\\\"\"`. This\nis the simplest string which can be used as the value of `WWW-Authenticate` header to indicate\n\"400 Bad Request\". The implementation of the protected resource endpoint may use this string to\ntell the client application that the request was bad (e.g. in case necessary request parameters\nfor the protected resource endpoint are missing). However, in such a case, the implementation\nshould generate a more informative error message to help developers of client applications.\n\nThe following is an example error response which complies with RFC 6750.\n\n```\nHTTP/1.1 400 Bad Request\nWWW-Authenticate: {responseContent}\nCache-Control: no-store\nPragma: no-cache\n```\n\nBasically, The value of `responseContent` is a string which describes the error in the format of\n[RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750) (OAuth 2.0 Bearer Token Usage). So, if\nthe service has selected `Bearer` as the value of `accessTokenType` configuration parameter, the\nvalue of `responseContent` can be used directly as the value of `WWW-Authenticate` header. However,\nif the service has selected another different token type, the service has to generate error messages\nfor itself.\n\n_**JWT-based access token**_\n\nSince version 2.1, Authlete provides a feature to issue access tokens in JWT format. This feature\ncan be enabled by setting a non-null value to the `accessTokenSignAlg` property of the service\n(see the description of the Service class for details). `/api/auth/introspection` API can accept\naccess tokens in JWT format. However, note that the API does not return information contained in\na given JWT-based access token but returns information stored in the database record which corresponds\nto the given JWT-based access token. Because attributes of the database record can be modified\nafter the access token is issued (for example, by using `/api/auth/token/update` API), information\nreturned by `/api/auth/introspection` API and information the given JWT-based access token holds\nmay be different.\n\n</details>\n",
         "security": [
           {
             "ServiceCredentials": []
@@ -21092,7 +21104,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -21252,7 +21264,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/introspection, TLS must be used."
                 }
               }
             }
@@ -21276,7 +21288,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/introspection, Authorization header is missing."
                 }
               }
             }
@@ -21300,7 +21312,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/introspection, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -21324,7 +21336,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/introspection, Authlete Server error."
                 }
               }
             }
@@ -21487,7 +21499,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/introspection/standard, TLS must be used."
                 }
               }
             }
@@ -21511,7 +21523,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/introspection/standard, Authorization header is missing."
                 }
               }
             }
@@ -21535,7 +21547,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/introspection/standard, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -21559,7 +21571,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/introspection/standard, Authlete Server error."
                 }
               }
             }
@@ -21640,14 +21652,6 @@
                   "clientSecret": {
                     "type": "string",
                     "description": "The client secret extracted from `Authorization` header of the revocation request from the client application.\n\nIf the revocation endpoint of the authorization server implementation supports basic authentication as a means of\nclient authentication, and the request from the client application contained its client secret in `Authorization` header,\nthe value should be extracted and set to this parameter.\n"
-                  },
-                  "clientCertificate": {
-                    "type": "string",
-                    "description": "The client certificate used in the TLS connection between the client application and the revocation endpoint.\n"
-                  },
-                  "clientCertificatePath": {
-                    "type": "string",
-                    "description": "The certificate path presented by the client during client authentication.\n"
                   }
                 }
               },
@@ -21675,14 +21679,6 @@
                   "clientSecret": {
                     "type": "string",
                     "description": "The client secret extracted from `Authorization` header of the revocation request from the client application.\n\nIf the revocation endpoint of the authorization server implementation supports basic authentication as a means of\nclient authentication, and the request from the client application contained its client secret in `Authorization` header,\nthe value should be extracted and set to this parameter.\n"
-                  },
-                  "clientCertificate": {
-                    "type": "string",
-                    "description": "The client certificate used in the TLS connection between the client application and the revocation endpoint.\n"
-                  },
-                  "clientCertificatePath": {
-                    "type": "string",
-                    "description": "The certificate path presented by the client during client authentication.\n"
                   }
                 }
               }
@@ -21748,7 +21744,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/revocation, TLS must be used."
                 }
               }
             }
@@ -21772,7 +21768,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/revocation, Authorization header is missing."
                 }
               }
             }
@@ -21796,7 +21792,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/revocation, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -21820,7 +21816,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/revocation, Authlete Server error."
                 }
               }
             }
@@ -21983,7 +21979,8 @@
                       "description": "The list of claims that the client application requests to be embedded in the ID token.\n"
                     },
                     "clientId": {
-                      "type": "string",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The ID of the client application which is associated with the access token.\n"
                     },
                     "clientIdAlias": {
@@ -22108,7 +22105,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/userinfo, TLS must be used."
                 }
               }
             }
@@ -22132,7 +22129,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/userinfo, Authorization header is missing."
                 }
               }
             }
@@ -22156,7 +22153,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/userinfo, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -22180,7 +22177,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/userinfo, Authlete Server error."
                 }
               }
             }
@@ -22298,12 +22295,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "",
-                  "content": {
-                    "application/json": {
-                      "schema": null
-                    }
-                  },
                   "type": "object",
                   "properties": {
                     "resultCode": {
@@ -22360,7 +22351,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/userinfo/issue, TLS must be used."
                 }
               }
             }
@@ -22384,7 +22375,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/userinfo/issue, Authorization header is missing."
                 }
               }
             }
@@ -22408,7 +22399,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/userinfo/issue, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -22432,7 +22423,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/userinfo/issue, Authlete Server error."
                 }
               }
             }
@@ -22586,7 +22577,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/jwks/get, TLS must be used."
                 }
               }
             }
@@ -22610,7 +22601,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/jwks/get, Authorization header is missing."
                 }
               }
             }
@@ -22634,7 +22625,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/jwks/get, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -22658,7 +22649,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/jwks/get, Authlete Server error."
                 }
               }
             }
@@ -23066,7 +23057,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /service/configuration, TLS must be used."
                 }
               }
             }
@@ -23090,7 +23081,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /service/configuration, Authorization header is missing."
                 }
               }
             }
@@ -23114,7 +23105,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /service/configuration, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -23138,7 +23129,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /service/configuration, Authlete Server error."
                 }
               }
             }
@@ -24040,7 +24031,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/registration, TLS must be used."
                 }
               }
             }
@@ -24064,7 +24055,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/registration, Authorization header is missing."
                 }
               }
             }
@@ -24088,7 +24079,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/registration, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -24112,7 +24103,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/registration, Authlete Server error."
                 }
               }
             }
@@ -25010,7 +25001,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/registration/get, TLS must be used."
                 }
               }
             }
@@ -25034,7 +25025,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/registration/get, Authorization header is missing."
                 }
               }
             }
@@ -25058,7 +25049,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/registration/get, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -25082,7 +25073,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/registration/get, Authlete Server error."
                 }
               }
             }
@@ -25991,7 +25982,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/registration/update, TLS must be used."
                 }
               }
             }
@@ -26015,7 +26006,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/registration/update, Authorization header is missing."
                 }
               }
             }
@@ -26039,7 +26030,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/registration/update, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -26063,7 +26054,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/registration/update, Authlete Server error."
                 }
               }
             }
@@ -26229,7 +26220,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /client/registration/delete, TLS must be used."
                 }
               }
             }
@@ -26253,7 +26244,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /client/registration/delete, Authorization header is missing."
                 }
               }
             }
@@ -26277,7 +26268,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /client/registration/delete, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -26301,7 +26292,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /client/registration/delete, Authlete Server error."
                 }
               }
             }
@@ -26652,7 +26643,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -26713,6 +26704,7 @@
                     },
                     "deliveryMode": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -26779,7 +26771,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/backchannel/authentication, TLS must be used."
                 }
               }
             }
@@ -26803,7 +26795,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/backchannel/authentication, Authorization header is missing."
                 }
               }
             }
@@ -26827,7 +26819,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/backchannel/authentication, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -26851,7 +26843,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/backchannel/authentication, Authlete Server error."
                 }
               }
             }
@@ -27023,7 +27015,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/backchannel/authentication/issue, TLS must be used."
                 }
               }
             }
@@ -27047,7 +27039,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/backchannel/authentication/issue, Authorization header is missing."
                 }
               }
             }
@@ -27071,7 +27063,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/backchannel/authentication/issue, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -27095,7 +27087,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/backchannel/authentication/issue, Authlete Server error."
                 }
               }
             }
@@ -27295,7 +27287,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/backchannel/authentication/fail, TLS must be used."
                 }
               }
             }
@@ -27319,7 +27311,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/backchannel/authentication/fail, Authorization header is missing."
                 }
               }
             }
@@ -27343,7 +27335,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/backchannel/authentication/fail, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -27367,7 +27359,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/backchannel/authentication/fail, Authlete Server error."
                 }
               }
             }
@@ -27655,6 +27647,7 @@
                     },
                     "deliveryMode": {
                       "type": "string",
+                      "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
                       "enum": [
                         "PING",
                         "POLL",
@@ -27761,7 +27754,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -27850,7 +27843,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/backchannel/authentication/complete, TLS must be used."
                 }
               }
             }
@@ -27874,7 +27867,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/backchannel/authentication/complete, Authorization header is missing."
                 }
               }
             }
@@ -27898,7 +27891,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/backchannel/authentication/complete, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -27922,7 +27915,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/backchannel/authentication/complete, Authlete Server error."
                 }
               }
             }
@@ -28245,7 +28238,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -28328,7 +28321,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /device/authorization, TLS must be used."
                 }
               }
             }
@@ -28352,7 +28345,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /device/authorization, Authorization header is missing."
                 }
               }
             }
@@ -28376,7 +28369,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /device/authorization, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -28400,7 +28393,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /device/authorization, Authlete Server error."
                 }
               }
             }
@@ -28669,7 +28662,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -28782,7 +28775,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /device/verification, TLS must be used."
                 }
               }
             }
@@ -28806,7 +28799,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /device/verification, Authorization header is missing."
                 }
               }
             }
@@ -28830,7 +28823,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /device/verification, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -28854,7 +28847,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /device/verification, Authlete Server error."
                 }
               }
             }
@@ -29150,7 +29143,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /device/complete, TLS must be used."
                 }
               }
             }
@@ -29174,7 +29167,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /device/complete, Authorization header is missing."
                 }
               }
             }
@@ -29198,7 +29191,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /device/complete, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -29222,7 +29215,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /device/complete, Authlete Server error."
                 }
               }
             }
@@ -30252,30 +30245,6 @@
               }
             }
           },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "resultCode": {
-                      "type": "string",
-                      "description": "The code which represents the result of the API call."
-                    },
-                    "resultMessage": {
-                      "type": "string",
-                      "description": "A short message which explains the result of the API call."
-                    }
-                  }
-                },
-                "example": {
-                  "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
-                }
-              }
-            }
-          },
           "401": {
             "description": "",
             "content": {
@@ -30295,7 +30264,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/token/get/list, Authorization header is missing."
                 }
               }
             }
@@ -30319,7 +30288,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/token/get/list, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -30343,7 +30312,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/token/get/list, Authlete Server error."
                 }
               }
             }
@@ -30548,7 +30517,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -30718,7 +30687,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -30882,7 +30851,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -30931,7 +30900,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/token/create, TLS must be used."
                 }
               }
             }
@@ -30955,7 +30924,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/token/create, Authorization header is missing."
                 }
               }
             }
@@ -30979,7 +30948,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/token/create, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -31003,7 +30972,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/token/create, Authlete Server error."
                 }
               }
             }
@@ -31184,7 +31153,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -31319,7 +31288,7 @@
                             },
                             "otherFields": {
                               "type": "string",
-                              "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                              "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                             }
                           }
                         },
@@ -31446,7 +31415,7 @@
                               },
                               "otherFields": {
                                 "type": "string",
-                                "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                               }
                             }
                           },
@@ -31493,7 +31462,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /auth/token/update, TLS must be used."
                 }
               }
             }
@@ -31517,7 +31486,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /auth/token/update, Authorization header is missing."
                 }
               }
             }
@@ -31541,7 +31510,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /auth/token/update, The service (API Key = 21653835348762) is locked."
                 }
               }
             }
@@ -31565,7 +31534,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /auth/token/update, Authlete Server error."
                 }
               }
             }
@@ -31939,7 +31908,7 @@
                 },
                 "example": {
                   "resultCode": "A001201",
-                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                  "resultMessage": "[A001201] /jose/verify, TLS must be used."
                 }
               }
             }
@@ -31963,7 +31932,7 @@
                 },
                 "example": {
                   "resultCode": "A001202",
-                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                  "resultMessage": "[A001202] /jose/verify, Authorization header is missing."
                 }
               }
             }
@@ -31987,7 +31956,7 @@
                 },
                 "example": {
                   "resultCode": "A001215",
-                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                  "resultMessage": "[A001215] /jose/verify, The service owner (API Key = 9503564192) is locked."
                 }
               }
             }
@@ -32011,7 +31980,7 @@
                 },
                 "example": {
                   "resultCode": "A001101",
-                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                  "resultMessage": "[A001101] /jose/verify, Authlete Server error."
                 }
               }
             }
@@ -32220,7 +32189,7 @@
                 },
                 "otherFields": {
                   "type": "string",
-                  "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+                  "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
                 }
               }
             },
@@ -32272,7 +32241,7 @@
           },
           "otherFields": {
             "type": "string",
-            "description": "St the other fields (than the pre-defined ones such as `type` and `locations`) as a string in the JSON format.\n"
+            "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
           }
         }
       },
@@ -33031,6 +33000,7 @@
       },
       "DeliveryMode": {
         "type": "string",
+        "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
         "enum": [
           "PING",
           "POLL",
@@ -33872,6 +33842,7 @@
             "type": "array",
             "items": {
               "type": "string",
+              "description": "Backchannel token delivery mode defined in the specification of [CIBA (Client Initiated Backchannel\nAuthentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html).\n",
               "enum": [
                 "PING",
                 "POLL",
