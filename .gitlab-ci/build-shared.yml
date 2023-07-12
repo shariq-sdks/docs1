@@ -31,7 +31,7 @@ generate client:
       if [ "${TARGET_BRANCH}" == "${CI_DEFAULT_BRANCH}" ]; then
         git checkout main || true
         git add .
-        git commit -m "Authlete CI - ${CI_COMMIT_SHA}"
+        git commit -m "Authlete CI - ${CI_COMMIT_SHA}" || true
         git push origin main:refs/heads/main
       else
         git checkout -b ${TARGET_BRANCH} || true

@@ -22181,7 +22181,8 @@
                       "description": "The list of claims that the client application requests to be embedded in the ID token.\n"
                     },
                     "clientId": {
-                      "type": "string",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The ID of the client application which is associated with the access token.\n"
                     },
                     "clientIdAlias": {
