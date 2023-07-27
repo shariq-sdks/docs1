@@ -867,6 +867,11 @@ properties:
     description: |
       Verified claims supported by this service. This corresponds to the `claims_in_verified_claims_supported`
       [metadata](https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7).
+  verifiedClaimsValidationSchemaSet:
+    $ref: verified_claims_validation_schema.yaml
+    type: string
+    description: |
+      OIDC4IDA / verifiedClaimsValidationSchemaSet
   attributes:
     type: array
     items:
