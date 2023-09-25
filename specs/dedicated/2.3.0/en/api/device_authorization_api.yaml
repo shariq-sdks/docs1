@@ -120,38 +120,38 @@ post:
         application/json:
           schema:
             $ref: ../model/response/device_authorization_response.yaml
-            example:
-              {
-                "resultCode": "A220001",
-                "resultMessage": "[A220001] The device authorization request was processed successfully.",
-                "action": "OK",
-                "clientId": 26888344961664,
-                "clientIdAliasUsed": false,
-                "clientName": "My Device Flow Client",
-                "deviceCode": "p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I",
-                "expiresIn": 3600,
-                "interval": 0,
-                "responseContent": "{\"user_code\":\"XWWKPBWVXQ\",\"device_code\":\"p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I\",\"verification_uri_complete\":\"https://my-service.com/df/verification?XWWKPBWVXQ\",\"verification_uri\":\"https://my-service.com/df/verification\",\"expires_in\":3600}",
-                "scopes": [
-                  {
-                    "defaultEntry": false,
-                    "name": "history.read"
-                  }
-                ],
-                "serviceAttributes": [
-                  {
-                    "key": "attribute1-key",
-                    "value": "attribute1-value"
-                  },
-                  {
-                    "key": "attribute2-key",
-                    "value": "attribute2-value"
-                  }
-                ],
-                "userCode": "XWWKPBWVXQ",
-                "verificationUri": "https://my-service.com/df/verification",
-                "verificationUriComplete": "https://my-service.com/df/verification?XWWKPBWVXQ"
-              }
+          example:
+            {
+              "resultCode": "A220001",
+              "resultMessage": "[A220001] The device authorization request was processed successfully.",
+              "action": "OK",
+              "clientId": 26888344961664,
+              "clientIdAliasUsed": false,
+              "clientName": "My Device Flow Client",
+              "deviceCode": "p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I",
+              "expiresIn": 3600,
+              "interval": 0,
+              "responseContent": "{\"user_code\":\"XWWKPBWVXQ\",\"device_code\":\"p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I\",\"verification_uri_complete\":\"https://my-service.com/df/verification?XWWKPBWVXQ\",\"verification_uri\":\"https://my-service.com/df/verification\",\"expires_in\":3600}",
+              "scopes": [
+                {
+                  "defaultEntry": false,
+                  "name": "history.read"
+                }
+              ],
+              "serviceAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ],
+              "userCode": "XWWKPBWVXQ",
+              "verificationUri": "https://my-service.com/df/verification",
+              "verificationUriComplete": "https://my-service.com/df/verification?XWWKPBWVXQ"
+            }
     '400':
       $ref: ../model/response/400.yaml
     '401':
