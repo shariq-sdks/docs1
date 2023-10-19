@@ -2,10 +2,19 @@ get:
   summary: /api/client/authorization/get/list/{subject} API
   description: |
     Get a list of client applications that an end-user has authorized.
+    
+    The subject parameter is required and can be provided either in the path or as a query parameter.
   security:
     - ServiceCredentials: []
   parameters:
     - in: path
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID of an end-user.
+    - in: query
       name: subject
       schema:
         type: string
