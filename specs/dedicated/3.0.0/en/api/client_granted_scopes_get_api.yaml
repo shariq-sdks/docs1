@@ -24,6 +24,8 @@ get:
     The user has granted authorization to the client application in the past and some scopes are associated
     with the authorization. These scopes are returned.
     Example: `[ "profile", "email" ]`
+    
+    The subject parameter is required and can be provided either in the path or as a query parameter.
     </details>
   security:
     - ServiceCredentials: []
@@ -42,6 +44,13 @@ get:
       schema:
         type: string
     - in: path
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID of an end-user.
+    - in: query
       name: subject
       schema:
         type: string

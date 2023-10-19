@@ -51,11 +51,15 @@ paths:
     $ref: ./api/client_secret_update_api.yaml
   /api/client/authorization/get/list/{subject}:
     $ref: ./api/client_authorization_get_list_api.yaml
+  /api/client/authorization/get/list:
+    $ref: ./api/client_authorization_get_list_api.yaml
   /api/client/authorization/update/{clientId}:
     $ref: ./api/client_authorization_update_api.yaml
   /api/client/authorization/delete/{clientId}/{subject}:
     $ref: ./api/client_authorization_delete_api.yaml
   /api/client/granted_scopes/get/{clientId}/{subject}:
+    $ref: ./api/client_granted_scopes_get_api.yaml
+  /api/client/granted_scopes/get/{clientId}:
     $ref: ./api/client_granted_scopes_get_api.yaml
   /api/client/granted_scopes/delete/{clientId}/{subject}:
     $ref: ./api/client_granted_scopes_delete_api.yaml
