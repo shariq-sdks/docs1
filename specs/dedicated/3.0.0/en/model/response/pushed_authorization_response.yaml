@@ -39,3 +39,8 @@ properties:
       - PRIVATE_KEY_JWT
       - TLS_CLIENT_AUTH
       - SELF_SIGNED_TLS_CLIENT_AUTH
+  dpopNonce:
+    type: string
+    description: |
+      Get the expected nonce value for DPoP proof JWT, which should be used
+      as the value of the `DPoP-Nonce` HTTP header.

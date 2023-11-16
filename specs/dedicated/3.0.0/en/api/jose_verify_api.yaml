@@ -3,7 +3,7 @@ post:
   description: |
     This API verifies a JOSE object.
   security:
-    - ServiceOwnerCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

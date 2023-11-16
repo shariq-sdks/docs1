@@ -3,7 +3,7 @@ get:
   description: |
     get the server version and enabled features
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   responses:
     '200':
       description: ""

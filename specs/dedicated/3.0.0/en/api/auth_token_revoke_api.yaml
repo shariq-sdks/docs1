@@ -3,7 +3,7 @@ post:
   description: |
     Revoke an access token.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

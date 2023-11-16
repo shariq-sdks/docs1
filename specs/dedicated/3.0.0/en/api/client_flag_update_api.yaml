@@ -3,7 +3,7 @@ post:
   description: |
     Lock and unlock a client
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: clientIdentifier

@@ -3,7 +3,7 @@ delete:
   description: |
     Delete an access token.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

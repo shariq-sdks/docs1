@@ -3,7 +3,7 @@ get:
   description: |
     Get a list of client applications that an end-user has authorized.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

@@ -618,7 +618,7 @@ properties:
     description: |
       The flag indicating whether this client was registered by the
       "explicit" client registration of OIDC Federation.
-  rsResponseSigned:
+  rsRequestSigned:
     type: boolean
     description: |
       The flag indicating whether this service signs responses from the resource server.
@@ -669,3 +669,25 @@ properties:
     format: int64
     description: |
       the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0
+  locked:
+    type: string
+    description: |
+      The flag which indicates whether this client is locked.
+  credentialOfferEndpoint:
+    type: string
+    description: |
+      The URL of the credential offer endpoint at which this client
+      (wallet) receives a credential offer from the credential issuer.
+  fapiModes:
+    type: array
+    items:
+      type: string
+      enum:
+        - INTERNAL_SERVER_ERROR
+        - INVALID_CLIENT
+        - BAD_REQUEST
+        - PASSWORD
+        - OK
+        - TOKEN_EXCHANGE
+        - JWT_BEARER
+    description: Get the FAPI modes for this client.

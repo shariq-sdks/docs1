@@ -20,3 +20,5 @@ properties:
     description: |
       The content that the authorization server implementation is to return to the client application.
       Its format varies depending on the value of `action` parameter.
+  client:
+    $ref: ../client.yaml

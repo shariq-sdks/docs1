@@ -50,19 +50,15 @@ paths:
     $ref: ./api/client_secret_refresh_api.yaml
   /api/{serviceApiKey}/client/secret/update/{clientIdentifier}:
     $ref: ./api/client_secret_update_api.yaml
-  /api/{serviceApiKey}/client/authorization/get/list/{subject}:
-    $ref: ./api/client_authorization_get_list_api.yaml
   /api/{serviceApiKey}/client/authorization/get/list:
     $ref: ./api/client_authorization_get_list_api.yaml
   /api/{serviceApiKey}/client/authorization/update/{clientId}:
     $ref: ./api/client_authorization_update_api.yaml
-  /api/{serviceApiKey}/client/authorization/delete/{clientId}/{subject}:
+  /api/{serviceApiKey}/client/authorization/delete/{clientId}:
     $ref: ./api/client_authorization_delete_api.yaml
-  /api/{serviceApiKey}/client/granted_scopes/get/{clientId}/{subject}:
-    $ref: ./api/client_granted_scopes_get_api.yaml
   /api/{serviceApiKey}/client/granted_scopes/get/{clientId}:
     $ref: ./api/client_granted_scopes_get_api.yaml
-  /api/{serviceApiKey}/client/granted_scopes/delete/{clientId}/{subject}:
+  /api/{serviceApiKey}/client/granted_scopes/delete/{clientId}:
     $ref: ./api/client_granted_scopes_delete_api.yaml
   /api/{serviceApiKey}/auth/authorization:
     $ref: ./api/auth_authorization_api.yaml
@@ -88,6 +84,8 @@ paths:
     $ref: ./api/auth_userinfo_api.yaml
   /api/{serviceApiKey}/auth/userinfo/issue:
     $ref: ./api/auth_userinfo_issue_api.yaml
+  /api/{serviceApiKey}/idtoken/reissue:
+    $ref: ./api/idtoken_reissue.yaml
   /api/{serviceApiKey}/gm:
     $ref: ./api/grant_m_api.yaml
   /api/{serviceApiKey}/service/jwks/get:
@@ -130,19 +128,55 @@ paths:
     $ref: ./api/jose_verify_api.yaml
   /api/{serviceApiKey}/federation/configuration:
     $ref: ./api/federation_configuration_api.yaml
+  /api/{serviceApiKey}/federation/registration:
+    $ref: ./api/federation_registration_api.yaml
   /api/info:
     $ref: ./api/info_api.yaml
+  /api/{serviceApiKey}/client/extension/requestable_scopes/get/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_get_api.yaml
+  /api/{serviceApiKey}/client/extension/requestable_scopes/update/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_update_api.yaml
+  /api/{serviceApiKey}/client/extension/requestable_scopes/delete/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_delete_api.yaml
+  /api/{serviceApiKey}/hsk/create:
+    $ref: ./api/hsk_create_api.yaml
+  /api/{serviceApiKey}/hsk/delete/{handle}:
+    $ref: ./api/hsk_delete_api.yaml
+  /api/{serviceApiKey}/hsk/get/{handle}:
+    $ref: ./api/hsk_get_api.yaml
+  /api/{serviceApiKey}/hsk/get/list:
+    $ref: ./api/hsk_get_list_api.yaml
+  /api/misc/echo:
+    $ref: ./api/misc_echo.yaml
+  /api/{serviceApiKey}/vci/metadata:
+    $ref: ./api/vci_metadata_api.yaml
+  /api/{serviceApiKey}/vci/jwtissuer:
+    $ref: ./api/vci_jwtissuer_api.yaml
+  /api/{serviceApiKey}/vci/jwks:
+    $ref: ./api/vci_jwks_api.yaml
+  /api/{serviceApiKey}/vci/offer/create:
+    $ref: ./api/vci_offer_create_api.yaml
+  /api/{serviceApiKey}/vci/offer/info:
+    $ref: ./api/vci_offer_info_api.yaml
+  /api/{serviceApiKey}/vci/single/parse:
+    $ref: ./api/vci_single_parse_api.yaml
+  /api/{serviceApiKey}/vci/single/issue:
+    $ref: ./api/vci_single_issue_api.yaml
+  /api/{serviceApiKey}/vci/batch/parse:
+    $ref: ./api/vci_batch_parse_api.yaml
+  /api/{serviceApiKey}/vci/batch/issue:
+    $ref: ./api/vci_batch_issue_api.yaml
+  /api/{serviceApiKey}/vci/deferred/parse:
+    $ref: ./api/vci_deferred_parse_api.yaml
+  /api/{serviceApiKey}/vci/deferred/issue:
+    $ref: ./api/vci_deferred_issue_api.yaml
 
 #
 # COMPONENTS
 #
 components:
   securitySchemes:
-    ServiceOwnerCredentials:
-      type: http
-      scheme: bearer
-      description: Set **access token**.
-    ServiceCredentials:
+    AccessToken:
       type: http
       scheme: bearer
       description: Set **access token**.
@@ -203,6 +237,16 @@ components:
       $ref: model/tagged_value.yaml
     UserCodeCharset:
       $ref: model/user_code_charset.yaml
+    Hsk:
+      $ref: model/hsk.yaml
+    CredentialOfferInfo:
+      $ref: model/credential_offer_info.yaml
+    CredentialRequestInfo:
+      $ref: model/credential_request_info.yaml
+    CredentialIssuanceOrder:
+      $ref: model/credential_issuance_order.yaml
+    CredentialIssuerMetadata:
+      $ref: model/credential_issuer_metadata.yaml
     APIResultCode:
       $ref: model/api_result_code.yaml
 

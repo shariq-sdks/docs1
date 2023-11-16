@@ -462,16 +462,16 @@ properties:
       The flag to indicate whether the remaining duration of the used refresh token is taken over to
       the newly issued refresh token.
   refreshTokenDurationReset:
-      type: boolean
-      description: |
-        The flag which indicates whether duration of refresh tokens are reset when they are used even
-        if the `refreshTokenKept` property of this service set to is `true` (= even if "Refresh Token
-        Continuous Use" is "Kept").
-
-        This flag has no effect when the `refreshTokenKept` property is set to `false`. In other words,
-        if this service issues a new refresh token on every refresh token request, the refresh token
-        will have fresh duration (unless `refreshTokenDurationKept` is set to `true`) and this
-        `refreshTokenDurationReset` property is not referenced.
+    type: boolean
+    description: |
+      The flag which indicates whether duration of refresh tokens are reset when they are used even
+      if the `refreshTokenKept` property of this service set to is `true` (= even if "Refresh Token
+      Continuous Use" is "Kept").
+      
+      This flag has no effect when the `refreshTokenKept` property is set to `false`. In other words,
+      if this service issues a new refresh token on every refresh token request, the refresh token
+      will have fresh duration (unless `refreshTokenDurationKept` is set to `true`) and this
+      `refreshTokenDurationReset` property is not referenced.
   refreshTokenKept:
     type: boolean
     description: |
@@ -1218,13 +1218,13 @@ properties:
     type: string
     description: |
       The human-readable name representing the organization that operates
-      this service. This property corresponds to the {@code organization_name}
+      this service. This property corresponds to the `organization_name`
       server metadata that is defined in OpenID Connect Federation 1.0.
   predefinedTransformedClaims:
     type: string
     description: |
       The transformed claims predefined by this service in JSON format.
-      This property corresponds to the {@code transformed_claims_predefined}
+      This property corresponds to the `transformed_claims_predefined`
       server metadata.
   refreshTokenIdempotent:
     type: boolean
@@ -1386,7 +1386,113 @@ properties:
     type: boolean
     description: |
       The flag indicating whether this service signs responses from the resource server.
-  rsSignedRequestKeyId:
+  cNonceDuration:
+    type: int64
+    description: |
+      The duration of `c_nonce`.
+  dpopNonceRequired:
+    type: boolean
+    description: |
+      Whether to require DPoP proof JWTs to include the `nonce` claim
+      whenever they are presented.
+  verifiableCredentialsEnabled:
+    type: boolean
+    description: |
+      Get the flag indicating whether the feature of Verifiable Credentials
+      for this service is enabled or not.
+  credentialJwksUri:
     type: string
     description: |
-      Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server.
+      Get the URL at which the JWK Set document of the credential issuer is
+      exposed.
+  credentialOfferDuration:
+    type: int64
+    description: |
+      The default duration of credential offers in seconds.
+  dpopNonceDuration:
+    type: int64
+    description: |
+      The duration of nonce values for DPoP proof JWTs in seconds.
+  preAuthorizedGrantAnonymousAccessSupported:
+    type: boolean
+    description: |
+      Get the flag indicating whether token requests using the pre-authorized
+      code grant flow by unidentifiable clients are allowed.
+  credentialTransactionDuration:
+    type: int64
+    description: |
+      Get the duration of transaction ID in seconds that may be issued as a
+      result of a credential request or a batch credential request.
+  introspectionSignatureKeyId:
+    type: string
+    description: |
+      Get the key ID of the key for signing introspection responses.
+  resourceSignatureKeyId:
+    type: string
+    description: |
+      Get the key ID of the key for signing introspection responses.
+  supportedIntrospectionEncryptionAlgs:
+    type: array
+    items:
+      $ref: jwe_alg.yaml
+    description: |
+      Supported JWE alg algorithms for encrypting introspection responses.
+      This property corresponds to the `introspection_encryption_alg_values_supported`
+      metadata defined in "7. Authorization Server Metadata" of "JWT Response
+      for OAuth Token Introspection".
+  userPinLength:
+    type: int32
+    description: |
+      Get the default length of user PINs.
+  supportedPromptValues:
+    type: array
+    items:
+      $ref: prompt.yaml
+    description: |
+      Get the supported `prompt` values.
+  idTokenReissuable:
+    type: boolean
+    description: |
+      Get the flag indicating whether to enable the feature of ID token
+      reissuance in the refresh token flow.
+  credentialJwks:
+    type: string
+    description: |
+      Get the JWK Set document containing private keys that are used to sign
+      verifiable credentials.
+  fapiModes:
+    type: array
+    items:
+      type: string
+      enum:
+        - INTERNAL_SERVER_ERROR
+        - INVALID_CLIENT
+        - BAD_REQUEST
+        - PASSWORD
+        - OK
+        - TOKEN_EXCHANGE
+        - JWT_BEARER
+    description: Get the FAPI modes for this client.
+  supportedIntrospectionSignAlgs:
+    type: array
+    items:
+      $ref: jws_alg.yaml
+    description: |
+      Supported JWS alg algorithms for signing introspection responses.
+      This property corresponds to the `introspection_signing_alg_values_supported`
+      metadata defined in "7. Authorization Server Metadata" of "JWT
+      Response for OAuth Token Introspection".
+  credentialDuration:
+    type: int64
+    description: |
+      Get the default duration of verifiable credentials in seconds.
+  credentialIssuerMetadata:
+    $ref: credential_issuer_metadata.yaml
+  supportedIntrospectionEncryptionEncs:
+    type: array
+    items:
+      $ref: jwe_enc.yaml
+  idTokenAudType:
+    type: string
+    description: |
+      Get the type of the `aud` claim in ID tokens.

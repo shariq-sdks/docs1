@@ -1,0 +1,10 @@
+type: object
+properties:
+  accessToken:
+    type: string
+    description: The access token that came along with the credential request.
+  orders:
+    type: array
+    items:
+      $ref: ../credential_issuance_order.yaml
+    description: The instructions for issuance of credentials and/or transaction IDs.

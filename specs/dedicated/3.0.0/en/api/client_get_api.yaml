@@ -3,7 +3,7 @@ get:
   description: |
     Get a client.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: clientId
