@@ -194,7 +194,8 @@ properties:
     description: |
       Flag which indicates whether the entity ID of the client was used when the request for the access token was made.
   cNonceDuration:
-    type: int64
+    type: integer
+    format: int64
     description: |
       Duration of the `c_nonce` in seconds.
   dpopNonce:
@@ -207,7 +208,8 @@ properties:
     description: |
       Get the `c_nonce`.
   cNonceExpiresAt:
-    type: int64
+    type: integer
+    format: int64
     description: |
       Get the time at which the `c_nonce` expires in milliseconds since
       the Unix epoch (1970-01-01).
