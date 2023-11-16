@@ -3,7 +3,7 @@ post:
   description: |
     Create a new service.
   security:
-    - ServiceOwnerCredentials: []
+    - AccessToken: []
   requestBody:
     required: false
     content:

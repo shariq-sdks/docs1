@@ -3,7 +3,7 @@ post:
   description: |
     Update attributes of all existing access tokens given to a client application.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: clientId

@@ -3,7 +3,7 @@ get:
   description: |
     Get a list of clients.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: query
       name: developer

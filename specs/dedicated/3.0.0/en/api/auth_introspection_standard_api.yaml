@@ -98,7 +98,7 @@ post:
     </details>
 
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

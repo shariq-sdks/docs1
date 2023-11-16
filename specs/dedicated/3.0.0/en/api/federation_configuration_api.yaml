@@ -16,10 +16,10 @@ post:
   
     In this case, the implementation of the entity configuration endpoint of the
     authorization server should return an HTTP response to the client application
-    with the HTTP status code "{@code 200 OK}" and the content type
-    "{@code application/entity-statement+jwt}". The message body (= an entity
+    with the HTTP status code "`200 OK`" and the content type
+    "`application/entity-statement+jwt`". The message body (= an entity
     configuration in the JWT format) of the response has been prepared by
-    Authlete's {@code /federation/configuration} API and it is available as the
+    Authlete's `/federation/configuration` API and it is available as the
     <code>responseContent</code> response parameter.
 
     The implementation of the entity configuration endpoint can construct an
@@ -43,10 +43,10 @@ post:
 
     In this case, the implementation of the entity configuration endpoint of the
     authorization server should return an HTTP response to the client application
-    with the HTTP status code "{@code 404 Not Found}" and the content type
-    "{@code application/json}". The message body (= error information in the JSON
+    with the HTTP status code "`404 Not Found`" and the content type
+    "`application/json`". The message body (= error information in the JSON
     format) of the response has been prepared by Authlete's
-    {@code /federation/configuration} API and it is available as the
+    `/federation/configuration` API and it is available as the
     <code>responseContent</code> response parameter.
 
     The implementation of the entity configuration endpoint can construct an
@@ -65,10 +65,10 @@ post:
    
     In this case, the implementation of the entity configuration endpoint of the
     authorization server should return an HTTP response to the client application
-    with the HTTP status code "{@code 200 OK}" and the content type
-    "{@code application/entity-statement+jwt}". The message body (= an entity
+    with the HTTP status code "`200 OK`" and the content type
+    "`application/entity-statement+jwt`". The message body (= an entity
     configuration in the JWT format) of the response has been prepared by
-    Authlete's {@code /federation/configuration} API and it is available as the
+    Authlete's `/federation/configuration` API and it is available as the
     <code>responseContent</code> response parameter.
 
     The implementation of the entity configuration endpoint can construct an
@@ -85,7 +85,7 @@ post:
     </details>
 
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

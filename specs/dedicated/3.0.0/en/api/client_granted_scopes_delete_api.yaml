@@ -10,8 +10,10 @@ delete:
     Even if records about granted scopes are deleted by calling this API, existing access tokens are
     not deleted and scopes of existing access tokens are not changed.
     </details>
+
+    The subject parameter is required and can be provided either in the path or as a query parameter.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: clientId
@@ -27,6 +29,13 @@ delete:
       schema:
         type: string
     - in: path
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID of an end-user.
+    - in: query
       name: subject
       schema:
         type: string

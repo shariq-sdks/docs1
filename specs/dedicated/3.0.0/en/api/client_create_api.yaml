@@ -3,7 +3,7 @@ post:
   description: |
     Create a new client.
   security:
-    - ServiceCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey

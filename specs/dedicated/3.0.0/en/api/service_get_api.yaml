@@ -3,7 +3,7 @@ get:
   description: |
     Get a service.
   security:
-    - ServiceOwnerCredentials: []
+    - AccessToken: []
   parameters:
     - in: path
       name: serviceApiKey
