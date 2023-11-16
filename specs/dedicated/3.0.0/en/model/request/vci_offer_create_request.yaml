@@ -27,13 +27,15 @@ properties:
       `urn:ietf:params:oauth:grant-type:pre-authorized_code` object in
       the `grants` object.
   userPinLength:
-    type: int32
+    type: integer
+    format: int32
     description: The length of the user PIN to generate.
   subject:
     type: string
     description: The subject associated with the credential offer.
   duration:
-    type: int64
+    type: integer
+    format: int64
     description: The duration of the credential offer.
   context:
     type: string

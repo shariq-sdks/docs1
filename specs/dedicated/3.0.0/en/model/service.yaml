@@ -1387,7 +1387,8 @@ properties:
     description: |
       The flag indicating whether this service signs responses from the resource server.
   cNonceDuration:
-    type: int64
+    type: integer
+    format: int64
     description: |
       The duration of `c_nonce`.
   dpopNonceRequired:
@@ -1406,11 +1407,13 @@ properties:
       Get the URL at which the JWK Set document of the credential issuer is
       exposed.
   credentialOfferDuration:
-    type: int64
+    type: integer
+    format: int64
     description: |
       The default duration of credential offers in seconds.
   dpopNonceDuration:
-    type: int64
+    type: integer
+    format: int64
     description: |
       The duration of nonce values for DPoP proof JWTs in seconds.
   preAuthorizedGrantAnonymousAccessSupported:
@@ -1419,7 +1422,8 @@ properties:
       Get the flag indicating whether token requests using the pre-authorized
       code grant flow by unidentifiable clients are allowed.
   credentialTransactionDuration:
-    type: int64
+    type: integer
+    format: int64
     description: |
       Get the duration of transaction ID in seconds that may be issued as a
       result of a credential request or a batch credential request.
@@ -1441,7 +1445,8 @@ properties:
       metadata defined in "7. Authorization Server Metadata" of "JWT Response
       for OAuth Token Introspection".
   userPinLength:
-    type: int32
+    type: integer
+    format: int32
     description: |
       Get the default length of user PINs.
   supportedPromptValues:
@@ -1483,7 +1488,8 @@ properties:
       metadata defined in "7. Authorization Server Metadata" of "JWT
       Response for OAuth Token Introspection".
   credentialDuration:
-    type: int64
+    type: integer
+    format: int64
     description: |
       Get the default duration of verifiable credentials in seconds.
   credentialIssuerMetadata:

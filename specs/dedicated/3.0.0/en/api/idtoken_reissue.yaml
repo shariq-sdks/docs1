@@ -13,7 +13,8 @@ post:
   requestBody:
     content:
       application/json:
-        $ref: ../model/request/idtoken_reissue_request.yaml
+        schema:
+          $ref: ../model/request/idtoken_reissue_request.yaml
   responses:
     '200':
       content:
