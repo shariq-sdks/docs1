@@ -1,0 +1,37 @@
+put:
+  summary: /api/client/extension/requestable_scopes/update/{clientId} API
+  description: |
+    Update requestable scopes of a client
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: clientId
+      schema:
+        type: string
+      required: true
+      description: |
+        A client ID.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/client_extension_requestable_scopes_update_request.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_extension_requestable_scopes_update_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_extension_requestables_scopes_update_api'
+  tags:
+    - Client Extension

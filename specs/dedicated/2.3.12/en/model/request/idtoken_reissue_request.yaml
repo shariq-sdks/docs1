@@ -1,0 +1,85 @@
+type: object
+required: [ accessToken, refreshToken]
+properties:
+  accessToken:
+    type: string
+    description: |
+      <p>
+      The value of this parameter should be (a) the value of the
+      "`jwtAccessToken`" parameter in a response from the
+      `/auth/token` API when the value is available, or (b)
+      the value of the "`accessToken`" parameter in the
+      response from the `/auth/token` API when the value of
+      the "`jwtAccessToken`" parameter is not available.
+      </p>
+  refreshToken:
+    type: string
+    description: |
+      <p>
+      The value of this parameter should be the value of the
+      "`refreshToken`" parameter in a response from the
+      `/auth/token` API.
+      </p>
+  sub:
+    type: string
+    description: |
+      The value that should be used as the value of the "`sub`"
+      claim of the ID token.
+      
+      <p>
+      This parameter is optional. When omitted, the value of the subject
+      associated with the access token is used.
+      </p>
+  claims:
+    type: string
+    description: |
+      Additional claims that should be embedded in the payload part of
+      the ID token. The format is a JSON object.
+      
+      <p>
+      This parameter is optional.
+      </p>
+  idtHeaderParams:
+    type: string
+    description: |
+      Additional parameters that should be embedded in the JWS header of
+      the ID token. The format is a JSON object.
+      
+      <p>
+      This parameter is optional.
+      </p>
+  idTokenAudType:
+    type: string
+    description: |
+      The type of the "`aud`" claim of the ID token being issued.
+      
+      <p>
+      Valid values of this parameter are as follows.
+      </p>
+      
+      <blockquote>
+      <table border="1" cellpadding="5" style="border-collapse: collapse;">
+        <tr bgcolor="orange">
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>"`array`"</td>
+          <td>The type of the `aud` claim becomes an array of strings.</td>
+        </tr>
+        <tr>
+          <td>"`string`"</td>
+          <td>The type of the `aud` claim becomes a single string.</td>
+        </tr>
+      </table>
+      </blockquote>
+      
+      <p>
+      This parameter is optional, and the default value on omission is
+      "`array`".
+      </p>
+      
+      <p>
+      This parameter takes precedence over the `idTokenAudType` property
+      of {@link Service} (cf. {@link Service#getIdTokenAudType()}).
+      </p>

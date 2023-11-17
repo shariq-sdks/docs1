@@ -1,0 +1,154 @@
+get:
+  summary: /api/client/granted_scopes/get/{clientId}/{subject} API
+  description: |
+    Get the set of scopes that a user has granted to a client application.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    Possible values for `requestableScopes` parameter in the response from this API are as follows.
+
+    **null**
+
+    The user has not granted authorization to the client application in the past, or records about the
+    combination of the user and the client application have been deleted from Authlete's DB.
+
+    **An empty set**
+
+    The user has granted authorization to the client application in the past, but no scopes are associated
+    with the authorization.
+
+    **A set with at least one element**
+
+    The user has granted authorization to the client application in the past and some scopes are associated
+    with the authorization. These scopes are returned.
+    Example: `[ "profile", "email" ]`
+    
+    The subject parameter is required and can be provided either in the path or as a query parameter.
+    </details>
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: clientId
+      schema:
+        type: string
+      required: true
+      description: |
+        A client ID.
+    - in: path
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID of an end-user.
+    - in: query
+      name: subject
+      schema:
+        type: string
+      required: true
+      description: |
+        Unique user ID of an end-user.
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_granted_scopes_get_response.yaml
+          example:
+            {
+              "serviceApiKey": 21653835348762,
+              "clientId": 26478243745571,
+              "subject": "john",
+              "latestGrantedScopes": [ "history.read" ],
+              "mergedGrantedScopes": [ "history.read", "timeline.read" ]
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_granted_scopes_get_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://api.authlete.com/api/client/granted_scopes/get/26478243745571/john \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        long clientId  = 26478243745571;
+        String subject = "john";
+
+        api.getGrantedScopes(clientId, subject);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        long clientId  = 26478243745571;
+        string subject = "john";
+
+        await api.GetGrantedScopes(clientId, subject);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $clientId = 26478243745571;
+        $subject = "john";
+
+        $api.getGrantedScopes($clientId, $subject);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        client_id = 26478243745571
+        subject = 'john'
+
+        api.get_granted_scopes(client_id, subject)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        clientId = 26478243745571
+        subject = 'john'
+
+        api.getGrantedScopes(clientId, subject)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        clientId := 26478243745571
+        subject := "john"
+
+        api.GetGrantedScopes(clientId, subject)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Client Management

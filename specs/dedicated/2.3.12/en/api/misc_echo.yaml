@@ -1,0 +1,9 @@
+get:
+  summary: /api/misc/echo API
+  description: |
+    Echo test endpoint. Will return all path parameters in the request
+  security:
+    - ServiceCredentials: []
+  responses:
+    '200':
+  operationId: 'misc_echo_api'
