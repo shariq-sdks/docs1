@@ -2,7 +2,7 @@ get:
   summary: /api/hsk/get/{handle} API
   security:
     - ServiceOwnerCredentials: []
-  requestBody:
+  parameters:
     - in: path
       name: handle
       schema:

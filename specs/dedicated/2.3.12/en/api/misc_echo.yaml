@@ -6,4 +6,6 @@ get:
     - ServiceCredentials: []
   responses:
     '200':
+      description: |
+        Successfully deleted
   operationId: 'misc_echo_api'
