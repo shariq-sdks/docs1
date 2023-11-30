@@ -7,10 +7,12 @@ properties:
     type: string
     description: A short message which explains the result of the API call.
   serviceApiKey:
-    type: int64
+    type: integer
+    format: int64
     description: The API key of the service.
   clientId:
-    type: int64
+    type: integer
+    format: int64
     description: The client ID.
   subject:
     type: string
@@ -41,5 +43,6 @@ properties:
       past authorization processes. Note that revoked scopes are
       not included.
   modifiedAt:
-    type: int64
+    type: integer
+    format: int64
     description: Get the timestamp in milliseconds since Unix epoch at which this record was modified.

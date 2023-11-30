@@ -6,7 +6,8 @@ post:
   requestBody:
     content:
       application/json:
-        $ref: ../model/request/idtoken_reissue_request.yaml
+        schema:
+          $ref: ../model/request/idtoken_reissue_request.yaml
   responses:
     '200':
       content:
@@ -23,4 +24,4 @@ post:
       $ref: ../model/response/500.yaml
   operationId: 'idtoken_reissue_api'
   tags:
-    - Token Endpoint
+    - ID Token Endpoint

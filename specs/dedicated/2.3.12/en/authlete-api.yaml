@@ -220,9 +220,8 @@ components:
       $ref: model/user_code_charset.yaml
     Hsk:
       $ref: model/hsk.yaml
-
-  APIResultCode:
-    $ref: model/api_result_code.yaml
+    APIResultCode:
+      $ref: model/api_result_code.yaml
 
 #
 # TAGS

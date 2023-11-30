@@ -2,7 +2,7 @@ delete:
   summary: /api/hsk/delete/{handle} API
   security:
     - ServiceOwnerCredentials: []
-  requestBody:
+  parameters:
     - in: path
       name: handle
       schema:
