@@ -47,16 +47,12 @@ paths:
     $ref: ./api/client_secret_refresh_api.yaml
   /api/client/secret/update/{clientIdentifier}:
     $ref: ./api/client_secret_update_api.yaml
-  /api/client/authorization/get/list/{subject}:
-    $ref: ./api/client_authorization_get_list_api.yaml
   /api/client/authorization/get/list:
     $ref: ./api/client_authorization_get_list_api.yaml
   /api/client/authorization/update/{clientId}:
     $ref: ./api/client_authorization_update_api.yaml
   /api/client/authorization/delete/{clientId}/{subject}:
     $ref: ./api/client_authorization_delete_api.yaml
-  /api/client/granted_scopes/get/{clientId}/{subject}:
-    $ref: ./api/client_granted_scopes_get_api.yaml
   /api/client/granted_scopes/get/{clientId}:
     $ref: ./api/client_granted_scopes_get_api.yaml
   /api/client/granted_scopes/delete/{clientId}/{subject}:
@@ -192,9 +188,8 @@ components:
       $ref: model/tagged_value.yaml
     UserCodeCharset:
       $ref: model/user_code_charset.yaml
-
-  APIResultCode:
-    $ref: model/api_result_code.yaml
+    APIResultCode:
+      $ref: model/api_result_code.yaml
 
 #
 # TAGS
