@@ -2,7 +2,7 @@ inputSpec: /local/specs/dedicated/3.0.0/en/authlete-api.yaml
 templateDir: /local/openapi-for-go/templates/
 outputDir: /local/openapi-for-go/
 generatorName: go
-validateSpec: false
+validateSpec: true
 gitRepoId: openapi-for-go
 gitUserId: authlete
 additionalProperties:
