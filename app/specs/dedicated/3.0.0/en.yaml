@@ -50,12 +50,6 @@
                       "readOnly": true,
                       "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                     },
-                    "serviceOwnerNumber": {
-                      "type": "integer",
-                      "format": "int32",
-                      "readOnly": true,
-                      "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                    },
                     "serviceName": {
                       "type": "string",
                       "description": "The name of this service."
@@ -73,11 +67,6 @@
                       "format": "int64",
                       "readOnly": true,
                       "description": "The API key. The value of this property is assigned by Authlete."
-                    },
-                    "apiSecret": {
-                      "type": "string",
-                      "readOnly": true,
-                      "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                     },
                     "clientsPerDeveloper": {
                       "type": "integer",
@@ -141,27 +130,6 @@
                       },
                       "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                     },
-                    "snsCredentials": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "sns": {
-                            "type": "string",
-                            "description": "SNS."
-                          },
-                          "apiKey": {
-                            "type": "string",
-                            "description": "API key."
-                          },
-                          "apiSecret": {
-                            "type": "string",
-                            "description": "API secret."
-                          }
-                        }
-                      },
-                      "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                    },
                     "supportedAcrs": {
                       "readOnly": true,
                       "type": "array",
@@ -169,19 +137,6 @@
                         "type": "string"
                       },
                       "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                    },
-                    "developerAuthenticationCallbackEndpoint": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                    },
-                    "developerAuthenticationCallbackApiKey": {
-                      "type": "string",
-                      "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                    },
-                    "developerAuthenticationCallbackApiSecret": {
-                      "type": "string",
-                      "description": "API secret for basic authentication at the developer authentication callback endpoint."
                     },
                     "supportedDeveloperSnses": {
                       "type": "array",
@@ -192,10 +147,6 @@
                         ]
                       },
                       "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                    },
-                    "developerSnsCredentials": {
-                      "type": "string",
-                      "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                     },
                     "supportedGrantTypes": {
                       "type": "array",
@@ -1051,7 +1002,8 @@
                       "description": "The flag indicating whether this service signs responses from the resource server.\n"
                     },
                     "cNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The duration of `c_nonce`.\n"
                     },
                     "dpopNonceRequired": {
@@ -1067,11 +1019,13 @@
                       "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                     },
                     "credentialOfferDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The default duration of credential offers in seconds.\n"
                     },
                     "dpopNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                     },
                     "preAuthorizedGrantAnonymousAccessSupported": {
@@ -1079,7 +1033,8 @@
                       "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                     },
                     "credentialTransactionDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                     },
                     "introspectionSignatureKeyId": {
@@ -1090,35 +1045,9 @@
                       "type": "string",
                       "description": "Get the key ID of the key for signing introspection responses.\n"
                     },
-                    "supportedIntrospectionEncryptionAlgs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                        "enum": [
-                          "RSA1_5",
-                          "RSA_OAEP",
-                          "RSA_OAEP_256",
-                          "A128KW",
-                          "A192KW",
-                          "A256KW",
-                          "DIR",
-                          "ECDH_ES",
-                          "ECDH_ES_A128KW",
-                          "ECDH_ES_A192KW",
-                          "ECDH_ES_A256KW",
-                          "A128GCMKW",
-                          "A192GCMKW",
-                          "A256GCMKW",
-                          "PBES2_HS256_A128KW",
-                          "PBES2_HS384_A192KW",
-                          "PBES2_HS512_A256KW"
-                        ]
-                      },
-                      "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                    },
                     "userPinLength": {
-                      "type": "int32",
+                      "type": "integer",
+                      "format": "int32",
                       "description": "Get the default length of user PINs.\n"
                     },
                     "supportedPromptValues": {
@@ -1159,33 +1088,9 @@
                       },
                       "description": "Get the FAPI modes for this client."
                     },
-                    "supportedIntrospectionSignAlgs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                        "enum": [
-                          "NONE",
-                          "HS256",
-                          "HS384",
-                          "HS512",
-                          "RS256",
-                          "RS384",
-                          "RS512",
-                          "ES256",
-                          "ES384",
-                          "ES512",
-                          "PS256",
-                          "PS384",
-                          "PS512",
-                          "ES256K",
-                          "EdDSA"
-                        ]
-                      },
-                      "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                    },
                     "credentialDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the default duration of verifiable credentials in seconds.\n"
                     },
                     "credentialIssuerMetadata": {
@@ -1204,7 +1109,8 @@
                           "description": "The URL of the credential endpoint of the credential issuer."
                         },
                         "batchCredentialEndpoint": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The URL of the batch credential endpoint of the credential issuer."
                         },
                         "deferredCredentialEndpoint": {
@@ -1215,21 +1121,6 @@
                           "type": "boolean",
                           "description": "A JSON array describing supported credentials."
                         }
-                      }
-                    },
-                    "supportedIntrospectionEncryptionEncs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                        "enum": [
-                          "A128CBC_HS256",
-                          "A192CBC_HS384",
-                          "A256CBC_HS512",
-                          "A128GCM",
-                          "A192GCM",
-                          "A256GCM"
-                        ]
                       }
                     },
                     "idTokenAudType": {
@@ -1561,12 +1452,6 @@
                             "readOnly": true,
                             "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                           },
-                          "serviceOwnerNumber": {
-                            "type": "integer",
-                            "format": "int32",
-                            "readOnly": true,
-                            "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                          },
                           "serviceName": {
                             "type": "string",
                             "description": "The name of this service."
@@ -1584,11 +1469,6 @@
                             "format": "int64",
                             "readOnly": true,
                             "description": "The API key. The value of this property is assigned by Authlete."
-                          },
-                          "apiSecret": {
-                            "type": "string",
-                            "readOnly": true,
-                            "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                           },
                           "clientsPerDeveloper": {
                             "type": "integer",
@@ -1652,27 +1532,6 @@
                             },
                             "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                           },
-                          "snsCredentials": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "sns": {
-                                  "type": "string",
-                                  "description": "SNS."
-                                },
-                                "apiKey": {
-                                  "type": "string",
-                                  "description": "API key."
-                                },
-                                "apiSecret": {
-                                  "type": "string",
-                                  "description": "API secret."
-                                }
-                              }
-                            },
-                            "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                          },
                           "supportedAcrs": {
                             "readOnly": true,
                             "type": "array",
@@ -1680,19 +1539,6 @@
                               "type": "string"
                             },
                             "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                          },
-                          "developerAuthenticationCallbackEndpoint": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                          },
-                          "developerAuthenticationCallbackApiKey": {
-                            "type": "string",
-                            "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                          },
-                          "developerAuthenticationCallbackApiSecret": {
-                            "type": "string",
-                            "description": "API secret for basic authentication at the developer authentication callback endpoint."
                           },
                           "supportedDeveloperSnses": {
                             "type": "array",
@@ -1703,10 +1549,6 @@
                               ]
                             },
                             "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                          },
-                          "developerSnsCredentials": {
-                            "type": "string",
-                            "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                           },
                           "supportedGrantTypes": {
                             "type": "array",
@@ -2562,7 +2404,8 @@
                             "description": "The flag indicating whether this service signs responses from the resource server.\n"
                           },
                           "cNonceDuration": {
-                            "type": "int64",
+                            "type": "integer",
+                            "format": "int64",
                             "description": "The duration of `c_nonce`.\n"
                           },
                           "dpopNonceRequired": {
@@ -2578,11 +2421,13 @@
                             "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                           },
                           "credentialOfferDuration": {
-                            "type": "int64",
+                            "type": "integer",
+                            "format": "int64",
                             "description": "The default duration of credential offers in seconds.\n"
                           },
                           "dpopNonceDuration": {
-                            "type": "int64",
+                            "type": "integer",
+                            "format": "int64",
                             "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                           },
                           "preAuthorizedGrantAnonymousAccessSupported": {
@@ -2590,7 +2435,8 @@
                             "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                           },
                           "credentialTransactionDuration": {
-                            "type": "int64",
+                            "type": "integer",
+                            "format": "int64",
                             "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                           },
                           "introspectionSignatureKeyId": {
@@ -2601,35 +2447,9 @@
                             "type": "string",
                             "description": "Get the key ID of the key for signing introspection responses.\n"
                           },
-                          "supportedIntrospectionEncryptionAlgs": {
-                            "type": "array",
-                            "items": {
-                              "type": "string",
-                              "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                              "enum": [
-                                "RSA1_5",
-                                "RSA_OAEP",
-                                "RSA_OAEP_256",
-                                "A128KW",
-                                "A192KW",
-                                "A256KW",
-                                "DIR",
-                                "ECDH_ES",
-                                "ECDH_ES_A128KW",
-                                "ECDH_ES_A192KW",
-                                "ECDH_ES_A256KW",
-                                "A128GCMKW",
-                                "A192GCMKW",
-                                "A256GCMKW",
-                                "PBES2_HS256_A128KW",
-                                "PBES2_HS384_A192KW",
-                                "PBES2_HS512_A256KW"
-                              ]
-                            },
-                            "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                          },
                           "userPinLength": {
-                            "type": "int32",
+                            "type": "integer",
+                            "format": "int32",
                             "description": "Get the default length of user PINs.\n"
                           },
                           "supportedPromptValues": {
@@ -2670,33 +2490,9 @@
                             },
                             "description": "Get the FAPI modes for this client."
                           },
-                          "supportedIntrospectionSignAlgs": {
-                            "type": "array",
-                            "items": {
-                              "type": "string",
-                              "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                              "enum": [
-                                "NONE",
-                                "HS256",
-                                "HS384",
-                                "HS512",
-                                "RS256",
-                                "RS384",
-                                "RS512",
-                                "ES256",
-                                "ES384",
-                                "ES512",
-                                "PS256",
-                                "PS384",
-                                "PS512",
-                                "ES256K",
-                                "EdDSA"
-                              ]
-                            },
-                            "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                          },
                           "credentialDuration": {
-                            "type": "int64",
+                            "type": "integer",
+                            "format": "int64",
                             "description": "Get the default duration of verifiable credentials in seconds.\n"
                           },
                           "credentialIssuerMetadata": {
@@ -2715,7 +2511,8 @@
                                 "description": "The URL of the credential endpoint of the credential issuer."
                               },
                               "batchCredentialEndpoint": {
-                                "type": "int64",
+                                "type": "integer",
+                                "format": "int64",
                                 "description": "The URL of the batch credential endpoint of the credential issuer."
                               },
                               "deferredCredentialEndpoint": {
@@ -2726,21 +2523,6 @@
                                 "type": "boolean",
                                 "description": "A JSON array describing supported credentials."
                               }
-                            }
-                          },
-                          "supportedIntrospectionEncryptionEncs": {
-                            "type": "array",
-                            "items": {
-                              "type": "string",
-                              "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                              "enum": [
-                                "A128CBC_HS256",
-                                "A192CBC_HS384",
-                                "A256CBC_HS512",
-                                "A128GCM",
-                                "A192GCM",
-                                "A256GCM"
-                              ]
                             }
                           },
                           "idTokenAudType": {
@@ -3040,12 +2822,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                   },
-                  "serviceOwnerNumber": {
-                    "type": "integer",
-                    "format": "int32",
-                    "readOnly": true,
-                    "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                  },
                   "serviceName": {
                     "type": "string",
                     "description": "The name of this service."
@@ -3063,11 +2839,6 @@
                     "format": "int64",
                     "readOnly": true,
                     "description": "The API key. The value of this property is assigned by Authlete."
-                  },
-                  "apiSecret": {
-                    "type": "string",
-                    "readOnly": true,
-                    "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                   },
                   "clientsPerDeveloper": {
                     "type": "integer",
@@ -3131,27 +2902,6 @@
                     },
                     "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                   },
-                  "snsCredentials": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "sns": {
-                          "type": "string",
-                          "description": "SNS."
-                        },
-                        "apiKey": {
-                          "type": "string",
-                          "description": "API key."
-                        },
-                        "apiSecret": {
-                          "type": "string",
-                          "description": "API secret."
-                        }
-                      }
-                    },
-                    "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                  },
                   "supportedAcrs": {
                     "readOnly": true,
                     "type": "array",
@@ -3159,19 +2909,6 @@
                       "type": "string"
                     },
                     "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                  },
-                  "developerAuthenticationCallbackEndpoint": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiKey": {
-                    "type": "string",
-                    "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiSecret": {
-                    "type": "string",
-                    "description": "API secret for basic authentication at the developer authentication callback endpoint."
                   },
                   "supportedDeveloperSnses": {
                     "type": "array",
@@ -3182,10 +2919,6 @@
                       ]
                     },
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                  },
-                  "developerSnsCredentials": {
-                    "type": "string",
-                    "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
                     "type": "array",
@@ -4041,7 +3774,8 @@
                     "description": "The flag indicating whether this service signs responses from the resource server.\n"
                   },
                   "cNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of `c_nonce`.\n"
                   },
                   "dpopNonceRequired": {
@@ -4057,11 +3791,13 @@
                     "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                   },
                   "credentialOfferDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The default duration of credential offers in seconds.\n"
                   },
                   "dpopNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                   },
                   "preAuthorizedGrantAnonymousAccessSupported": {
@@ -4069,7 +3805,8 @@
                     "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                   },
                   "credentialTransactionDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                   },
                   "introspectionSignatureKeyId": {
@@ -4080,35 +3817,9 @@
                     "type": "string",
                     "description": "Get the key ID of the key for signing introspection responses.\n"
                   },
-                  "supportedIntrospectionEncryptionAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                      "enum": [
-                        "RSA1_5",
-                        "RSA_OAEP",
-                        "RSA_OAEP_256",
-                        "A128KW",
-                        "A192KW",
-                        "A256KW",
-                        "DIR",
-                        "ECDH_ES",
-                        "ECDH_ES_A128KW",
-                        "ECDH_ES_A192KW",
-                        "ECDH_ES_A256KW",
-                        "A128GCMKW",
-                        "A192GCMKW",
-                        "A256GCMKW",
-                        "PBES2_HS256_A128KW",
-                        "PBES2_HS384_A192KW",
-                        "PBES2_HS512_A256KW"
-                      ]
-                    },
-                    "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                  },
                   "userPinLength": {
-                    "type": "int32",
+                    "type": "integer",
+                    "format": "int32",
                     "description": "Get the default length of user PINs.\n"
                   },
                   "supportedPromptValues": {
@@ -4149,33 +3860,9 @@
                     },
                     "description": "Get the FAPI modes for this client."
                   },
-                  "supportedIntrospectionSignAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                      "enum": [
-                        "NONE",
-                        "HS256",
-                        "HS384",
-                        "HS512",
-                        "RS256",
-                        "RS384",
-                        "RS512",
-                        "ES256",
-                        "ES384",
-                        "ES512",
-                        "PS256",
-                        "PS384",
-                        "PS512",
-                        "ES256K",
-                        "EdDSA"
-                      ]
-                    },
-                    "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                  },
                   "credentialDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the default duration of verifiable credentials in seconds.\n"
                   },
                   "credentialIssuerMetadata": {
@@ -4194,7 +3881,8 @@
                         "description": "The URL of the credential endpoint of the credential issuer."
                       },
                       "batchCredentialEndpoint": {
-                        "type": "int64",
+                        "type": "integer",
+                        "format": "int64",
                         "description": "The URL of the batch credential endpoint of the credential issuer."
                       },
                       "deferredCredentialEndpoint": {
@@ -4205,21 +3893,6 @@
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
                       }
-                    }
-                  },
-                  "supportedIntrospectionEncryptionEncs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                      "enum": [
-                        "A128CBC_HS256",
-                        "A192CBC_HS384",
-                        "A256CBC_HS512",
-                        "A128GCM",
-                        "A192GCM",
-                        "A256GCM"
-                      ]
                     }
                   },
                   "idTokenAudType": {
@@ -4290,12 +3963,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                   },
-                  "serviceOwnerNumber": {
-                    "type": "integer",
-                    "format": "int32",
-                    "readOnly": true,
-                    "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                  },
                   "serviceName": {
                     "type": "string",
                     "description": "The name of this service."
@@ -4313,11 +3980,6 @@
                     "format": "int64",
                     "readOnly": true,
                     "description": "The API key. The value of this property is assigned by Authlete."
-                  },
-                  "apiSecret": {
-                    "type": "string",
-                    "readOnly": true,
-                    "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                   },
                   "clientsPerDeveloper": {
                     "type": "integer",
@@ -4381,27 +4043,6 @@
                     },
                     "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                   },
-                  "snsCredentials": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "sns": {
-                          "type": "string",
-                          "description": "SNS."
-                        },
-                        "apiKey": {
-                          "type": "string",
-                          "description": "API key."
-                        },
-                        "apiSecret": {
-                          "type": "string",
-                          "description": "API secret."
-                        }
-                      }
-                    },
-                    "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                  },
                   "supportedAcrs": {
                     "readOnly": true,
                     "type": "array",
@@ -4409,19 +4050,6 @@
                       "type": "string"
                     },
                     "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                  },
-                  "developerAuthenticationCallbackEndpoint": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiKey": {
-                    "type": "string",
-                    "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiSecret": {
-                    "type": "string",
-                    "description": "API secret for basic authentication at the developer authentication callback endpoint."
                   },
                   "supportedDeveloperSnses": {
                     "type": "array",
@@ -4432,10 +4060,6 @@
                       ]
                     },
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                  },
-                  "developerSnsCredentials": {
-                    "type": "string",
-                    "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
                     "type": "array",
@@ -5291,7 +4915,8 @@
                     "description": "The flag indicating whether this service signs responses from the resource server.\n"
                   },
                   "cNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of `c_nonce`.\n"
                   },
                   "dpopNonceRequired": {
@@ -5307,11 +4932,13 @@
                     "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                   },
                   "credentialOfferDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The default duration of credential offers in seconds.\n"
                   },
                   "dpopNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                   },
                   "preAuthorizedGrantAnonymousAccessSupported": {
@@ -5319,7 +4946,8 @@
                     "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                   },
                   "credentialTransactionDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                   },
                   "introspectionSignatureKeyId": {
@@ -5330,35 +4958,9 @@
                     "type": "string",
                     "description": "Get the key ID of the key for signing introspection responses.\n"
                   },
-                  "supportedIntrospectionEncryptionAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                      "enum": [
-                        "RSA1_5",
-                        "RSA_OAEP",
-                        "RSA_OAEP_256",
-                        "A128KW",
-                        "A192KW",
-                        "A256KW",
-                        "DIR",
-                        "ECDH_ES",
-                        "ECDH_ES_A128KW",
-                        "ECDH_ES_A192KW",
-                        "ECDH_ES_A256KW",
-                        "A128GCMKW",
-                        "A192GCMKW",
-                        "A256GCMKW",
-                        "PBES2_HS256_A128KW",
-                        "PBES2_HS384_A192KW",
-                        "PBES2_HS512_A256KW"
-                      ]
-                    },
-                    "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                  },
                   "userPinLength": {
-                    "type": "int32",
+                    "type": "integer",
+                    "format": "int32",
                     "description": "Get the default length of user PINs.\n"
                   },
                   "supportedPromptValues": {
@@ -5399,33 +5001,9 @@
                     },
                     "description": "Get the FAPI modes for this client."
                   },
-                  "supportedIntrospectionSignAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                      "enum": [
-                        "NONE",
-                        "HS256",
-                        "HS384",
-                        "HS512",
-                        "RS256",
-                        "RS384",
-                        "RS512",
-                        "ES256",
-                        "ES384",
-                        "ES512",
-                        "PS256",
-                        "PS384",
-                        "PS512",
-                        "ES256K",
-                        "EdDSA"
-                      ]
-                    },
-                    "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                  },
                   "credentialDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the default duration of verifiable credentials in seconds.\n"
                   },
                   "credentialIssuerMetadata": {
@@ -5444,7 +5022,8 @@
                         "description": "The URL of the credential endpoint of the credential issuer."
                       },
                       "batchCredentialEndpoint": {
-                        "type": "int64",
+                        "type": "integer",
+                        "format": "int64",
                         "description": "The URL of the batch credential endpoint of the credential issuer."
                       },
                       "deferredCredentialEndpoint": {
@@ -5455,21 +5034,6 @@
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
                       }
-                    }
-                  },
-                  "supportedIntrospectionEncryptionEncs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                      "enum": [
-                        "A128CBC_HS256",
-                        "A192CBC_HS384",
-                        "A256CBC_HS512",
-                        "A128GCM",
-                        "A192GCM",
-                        "A256GCM"
-                      ]
                     }
                   },
                   "idTokenAudType": {
@@ -5495,12 +5059,6 @@
                       "readOnly": true,
                       "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                     },
-                    "serviceOwnerNumber": {
-                      "type": "integer",
-                      "format": "int32",
-                      "readOnly": true,
-                      "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                    },
                     "serviceName": {
                       "type": "string",
                       "description": "The name of this service."
@@ -5518,11 +5076,6 @@
                       "format": "int64",
                       "readOnly": true,
                       "description": "The API key. The value of this property is assigned by Authlete."
-                    },
-                    "apiSecret": {
-                      "type": "string",
-                      "readOnly": true,
-                      "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                     },
                     "clientsPerDeveloper": {
                       "type": "integer",
@@ -5586,27 +5139,6 @@
                       },
                       "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                     },
-                    "snsCredentials": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "sns": {
-                            "type": "string",
-                            "description": "SNS."
-                          },
-                          "apiKey": {
-                            "type": "string",
-                            "description": "API key."
-                          },
-                          "apiSecret": {
-                            "type": "string",
-                            "description": "API secret."
-                          }
-                        }
-                      },
-                      "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                    },
                     "supportedAcrs": {
                       "readOnly": true,
                       "type": "array",
@@ -5614,19 +5146,6 @@
                         "type": "string"
                       },
                       "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                    },
-                    "developerAuthenticationCallbackEndpoint": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                    },
-                    "developerAuthenticationCallbackApiKey": {
-                      "type": "string",
-                      "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                    },
-                    "developerAuthenticationCallbackApiSecret": {
-                      "type": "string",
-                      "description": "API secret for basic authentication at the developer authentication callback endpoint."
                     },
                     "supportedDeveloperSnses": {
                       "type": "array",
@@ -5637,10 +5156,6 @@
                         ]
                       },
                       "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                    },
-                    "developerSnsCredentials": {
-                      "type": "string",
-                      "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                     },
                     "supportedGrantTypes": {
                       "type": "array",
@@ -6496,7 +6011,8 @@
                       "description": "The flag indicating whether this service signs responses from the resource server.\n"
                     },
                     "cNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The duration of `c_nonce`.\n"
                     },
                     "dpopNonceRequired": {
@@ -6512,11 +6028,13 @@
                       "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                     },
                     "credentialOfferDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The default duration of credential offers in seconds.\n"
                     },
                     "dpopNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                     },
                     "preAuthorizedGrantAnonymousAccessSupported": {
@@ -6524,7 +6042,8 @@
                       "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                     },
                     "credentialTransactionDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                     },
                     "introspectionSignatureKeyId": {
@@ -6535,35 +6054,9 @@
                       "type": "string",
                       "description": "Get the key ID of the key for signing introspection responses.\n"
                     },
-                    "supportedIntrospectionEncryptionAlgs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                        "enum": [
-                          "RSA1_5",
-                          "RSA_OAEP",
-                          "RSA_OAEP_256",
-                          "A128KW",
-                          "A192KW",
-                          "A256KW",
-                          "DIR",
-                          "ECDH_ES",
-                          "ECDH_ES_A128KW",
-                          "ECDH_ES_A192KW",
-                          "ECDH_ES_A256KW",
-                          "A128GCMKW",
-                          "A192GCMKW",
-                          "A256GCMKW",
-                          "PBES2_HS256_A128KW",
-                          "PBES2_HS384_A192KW",
-                          "PBES2_HS512_A256KW"
-                        ]
-                      },
-                      "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                    },
                     "userPinLength": {
-                      "type": "int32",
+                      "type": "integer",
+                      "format": "int32",
                       "description": "Get the default length of user PINs.\n"
                     },
                     "supportedPromptValues": {
@@ -6604,33 +6097,9 @@
                       },
                       "description": "Get the FAPI modes for this client."
                     },
-                    "supportedIntrospectionSignAlgs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                        "enum": [
-                          "NONE",
-                          "HS256",
-                          "HS384",
-                          "HS512",
-                          "RS256",
-                          "RS384",
-                          "RS512",
-                          "ES256",
-                          "ES384",
-                          "ES512",
-                          "PS256",
-                          "PS384",
-                          "PS512",
-                          "ES256K",
-                          "EdDSA"
-                        ]
-                      },
-                      "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                    },
                     "credentialDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the default duration of verifiable credentials in seconds.\n"
                     },
                     "credentialIssuerMetadata": {
@@ -6649,7 +6118,8 @@
                           "description": "The URL of the credential endpoint of the credential issuer."
                         },
                         "batchCredentialEndpoint": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The URL of the batch credential endpoint of the credential issuer."
                         },
                         "deferredCredentialEndpoint": {
@@ -6660,21 +6130,6 @@
                           "type": "boolean",
                           "description": "A JSON array describing supported credentials."
                         }
-                      }
-                    },
-                    "supportedIntrospectionEncryptionEncs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                        "enum": [
-                          "A128CBC_HS256",
-                          "A192CBC_HS384",
-                          "A256CBC_HS512",
-                          "A128GCM",
-                          "A192GCM",
-                          "A256GCM"
-                        ]
                       }
                     },
                     "idTokenAudType": {
@@ -6974,12 +6429,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                   },
-                  "serviceOwnerNumber": {
-                    "type": "integer",
-                    "format": "int32",
-                    "readOnly": true,
-                    "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                  },
                   "serviceName": {
                     "type": "string",
                     "description": "The name of this service."
@@ -6997,11 +6446,6 @@
                     "format": "int64",
                     "readOnly": true,
                     "description": "The API key. The value of this property is assigned by Authlete."
-                  },
-                  "apiSecret": {
-                    "type": "string",
-                    "readOnly": true,
-                    "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                   },
                   "clientsPerDeveloper": {
                     "type": "integer",
@@ -7065,27 +6509,6 @@
                     },
                     "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                   },
-                  "snsCredentials": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "sns": {
-                          "type": "string",
-                          "description": "SNS."
-                        },
-                        "apiKey": {
-                          "type": "string",
-                          "description": "API key."
-                        },
-                        "apiSecret": {
-                          "type": "string",
-                          "description": "API secret."
-                        }
-                      }
-                    },
-                    "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                  },
                   "supportedAcrs": {
                     "readOnly": true,
                     "type": "array",
@@ -7093,19 +6516,6 @@
                       "type": "string"
                     },
                     "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                  },
-                  "developerAuthenticationCallbackEndpoint": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiKey": {
-                    "type": "string",
-                    "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiSecret": {
-                    "type": "string",
-                    "description": "API secret for basic authentication at the developer authentication callback endpoint."
                   },
                   "supportedDeveloperSnses": {
                     "type": "array",
@@ -7116,10 +6526,6 @@
                       ]
                     },
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                  },
-                  "developerSnsCredentials": {
-                    "type": "string",
-                    "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
                     "type": "array",
@@ -7975,7 +7381,8 @@
                     "description": "The flag indicating whether this service signs responses from the resource server.\n"
                   },
                   "cNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of `c_nonce`.\n"
                   },
                   "dpopNonceRequired": {
@@ -7991,11 +7398,13 @@
                     "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                   },
                   "credentialOfferDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The default duration of credential offers in seconds.\n"
                   },
                   "dpopNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                   },
                   "preAuthorizedGrantAnonymousAccessSupported": {
@@ -8003,7 +7412,8 @@
                     "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                   },
                   "credentialTransactionDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                   },
                   "introspectionSignatureKeyId": {
@@ -8014,35 +7424,9 @@
                     "type": "string",
                     "description": "Get the key ID of the key for signing introspection responses.\n"
                   },
-                  "supportedIntrospectionEncryptionAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                      "enum": [
-                        "RSA1_5",
-                        "RSA_OAEP",
-                        "RSA_OAEP_256",
-                        "A128KW",
-                        "A192KW",
-                        "A256KW",
-                        "DIR",
-                        "ECDH_ES",
-                        "ECDH_ES_A128KW",
-                        "ECDH_ES_A192KW",
-                        "ECDH_ES_A256KW",
-                        "A128GCMKW",
-                        "A192GCMKW",
-                        "A256GCMKW",
-                        "PBES2_HS256_A128KW",
-                        "PBES2_HS384_A192KW",
-                        "PBES2_HS512_A256KW"
-                      ]
-                    },
-                    "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                  },
                   "userPinLength": {
-                    "type": "int32",
+                    "type": "integer",
+                    "format": "int32",
                     "description": "Get the default length of user PINs.\n"
                   },
                   "supportedPromptValues": {
@@ -8083,33 +7467,9 @@
                     },
                     "description": "Get the FAPI modes for this client."
                   },
-                  "supportedIntrospectionSignAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                      "enum": [
-                        "NONE",
-                        "HS256",
-                        "HS384",
-                        "HS512",
-                        "RS256",
-                        "RS384",
-                        "RS512",
-                        "ES256",
-                        "ES384",
-                        "ES512",
-                        "PS256",
-                        "PS384",
-                        "PS512",
-                        "ES256K",
-                        "EdDSA"
-                      ]
-                    },
-                    "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                  },
                   "credentialDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the default duration of verifiable credentials in seconds.\n"
                   },
                   "credentialIssuerMetadata": {
@@ -8128,7 +7488,8 @@
                         "description": "The URL of the credential endpoint of the credential issuer."
                       },
                       "batchCredentialEndpoint": {
-                        "type": "int64",
+                        "type": "integer",
+                        "format": "int64",
                         "description": "The URL of the batch credential endpoint of the credential issuer."
                       },
                       "deferredCredentialEndpoint": {
@@ -8139,21 +7500,6 @@
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
                       }
-                    }
-                  },
-                  "supportedIntrospectionEncryptionEncs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                      "enum": [
-                        "A128CBC_HS256",
-                        "A192CBC_HS384",
-                        "A256CBC_HS512",
-                        "A128GCM",
-                        "A192GCM",
-                        "A256GCM"
-                      ]
                     }
                   },
                   "idTokenAudType": {
@@ -8274,12 +7620,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                   },
-                  "serviceOwnerNumber": {
-                    "type": "integer",
-                    "format": "int32",
-                    "readOnly": true,
-                    "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                  },
                   "serviceName": {
                     "type": "string",
                     "description": "The name of this service."
@@ -8297,11 +7637,6 @@
                     "format": "int64",
                     "readOnly": true,
                     "description": "The API key. The value of this property is assigned by Authlete."
-                  },
-                  "apiSecret": {
-                    "type": "string",
-                    "readOnly": true,
-                    "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                   },
                   "clientsPerDeveloper": {
                     "type": "integer",
@@ -8365,27 +7700,6 @@
                     },
                     "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                   },
-                  "snsCredentials": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "sns": {
-                          "type": "string",
-                          "description": "SNS."
-                        },
-                        "apiKey": {
-                          "type": "string",
-                          "description": "API key."
-                        },
-                        "apiSecret": {
-                          "type": "string",
-                          "description": "API secret."
-                        }
-                      }
-                    },
-                    "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                  },
                   "supportedAcrs": {
                     "readOnly": true,
                     "type": "array",
@@ -8393,19 +7707,6 @@
                       "type": "string"
                     },
                     "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                  },
-                  "developerAuthenticationCallbackEndpoint": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiKey": {
-                    "type": "string",
-                    "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                  },
-                  "developerAuthenticationCallbackApiSecret": {
-                    "type": "string",
-                    "description": "API secret for basic authentication at the developer authentication callback endpoint."
                   },
                   "supportedDeveloperSnses": {
                     "type": "array",
@@ -8416,10 +7717,6 @@
                       ]
                     },
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                  },
-                  "developerSnsCredentials": {
-                    "type": "string",
-                    "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
                     "type": "array",
@@ -9275,7 +8572,8 @@
                     "description": "The flag indicating whether this service signs responses from the resource server.\n"
                   },
                   "cNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of `c_nonce`.\n"
                   },
                   "dpopNonceRequired": {
@@ -9291,11 +8589,13 @@
                     "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                   },
                   "credentialOfferDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The default duration of credential offers in seconds.\n"
                   },
                   "dpopNonceDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                   },
                   "preAuthorizedGrantAnonymousAccessSupported": {
@@ -9303,7 +8603,8 @@
                     "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                   },
                   "credentialTransactionDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                   },
                   "introspectionSignatureKeyId": {
@@ -9314,35 +8615,9 @@
                     "type": "string",
                     "description": "Get the key ID of the key for signing introspection responses.\n"
                   },
-                  "supportedIntrospectionEncryptionAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                      "enum": [
-                        "RSA1_5",
-                        "RSA_OAEP",
-                        "RSA_OAEP_256",
-                        "A128KW",
-                        "A192KW",
-                        "A256KW",
-                        "DIR",
-                        "ECDH_ES",
-                        "ECDH_ES_A128KW",
-                        "ECDH_ES_A192KW",
-                        "ECDH_ES_A256KW",
-                        "A128GCMKW",
-                        "A192GCMKW",
-                        "A256GCMKW",
-                        "PBES2_HS256_A128KW",
-                        "PBES2_HS384_A192KW",
-                        "PBES2_HS512_A256KW"
-                      ]
-                    },
-                    "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                  },
                   "userPinLength": {
-                    "type": "int32",
+                    "type": "integer",
+                    "format": "int32",
                     "description": "Get the default length of user PINs.\n"
                   },
                   "supportedPromptValues": {
@@ -9383,33 +8658,9 @@
                     },
                     "description": "Get the FAPI modes for this client."
                   },
-                  "supportedIntrospectionSignAlgs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                      "enum": [
-                        "NONE",
-                        "HS256",
-                        "HS384",
-                        "HS512",
-                        "RS256",
-                        "RS384",
-                        "RS512",
-                        "ES256",
-                        "ES384",
-                        "ES512",
-                        "PS256",
-                        "PS384",
-                        "PS512",
-                        "ES256K",
-                        "EdDSA"
-                      ]
-                    },
-                    "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                  },
                   "credentialDuration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "Get the default duration of verifiable credentials in seconds.\n"
                   },
                   "credentialIssuerMetadata": {
@@ -9428,7 +8679,8 @@
                         "description": "The URL of the credential endpoint of the credential issuer."
                       },
                       "batchCredentialEndpoint": {
-                        "type": "int64",
+                        "type": "integer",
+                        "format": "int64",
                         "description": "The URL of the batch credential endpoint of the credential issuer."
                       },
                       "deferredCredentialEndpoint": {
@@ -9439,21 +8691,6 @@
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
                       }
-                    }
-                  },
-                  "supportedIntrospectionEncryptionEncs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                      "enum": [
-                        "A128CBC_HS256",
-                        "A192CBC_HS384",
-                        "A256CBC_HS512",
-                        "A128GCM",
-                        "A192GCM",
-                        "A256GCM"
-                      ]
                     }
                   },
                   "idTokenAudType": {
@@ -9479,12 +8716,6 @@
                       "readOnly": true,
                       "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                     },
-                    "serviceOwnerNumber": {
-                      "type": "integer",
-                      "format": "int32",
-                      "readOnly": true,
-                      "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                    },
                     "serviceName": {
                       "type": "string",
                       "description": "The name of this service."
@@ -9502,11 +8733,6 @@
                       "format": "int64",
                       "readOnly": true,
                       "description": "The API key. The value of this property is assigned by Authlete."
-                    },
-                    "apiSecret": {
-                      "type": "string",
-                      "readOnly": true,
-                      "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                     },
                     "clientsPerDeveloper": {
                       "type": "integer",
@@ -9570,27 +8796,6 @@
                       },
                       "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                     },
-                    "snsCredentials": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "sns": {
-                            "type": "string",
-                            "description": "SNS."
-                          },
-                          "apiKey": {
-                            "type": "string",
-                            "description": "API key."
-                          },
-                          "apiSecret": {
-                            "type": "string",
-                            "description": "API secret."
-                          }
-                        }
-                      },
-                      "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                    },
                     "supportedAcrs": {
                       "readOnly": true,
                       "type": "array",
@@ -9598,19 +8803,6 @@
                         "type": "string"
                       },
                       "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                    },
-                    "developerAuthenticationCallbackEndpoint": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                    },
-                    "developerAuthenticationCallbackApiKey": {
-                      "type": "string",
-                      "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                    },
-                    "developerAuthenticationCallbackApiSecret": {
-                      "type": "string",
-                      "description": "API secret for basic authentication at the developer authentication callback endpoint."
                     },
                     "supportedDeveloperSnses": {
                       "type": "array",
@@ -9621,10 +8813,6 @@
                         ]
                       },
                       "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                    },
-                    "developerSnsCredentials": {
-                      "type": "string",
-                      "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                     },
                     "supportedGrantTypes": {
                       "type": "array",
@@ -10480,7 +9668,8 @@
                       "description": "The flag indicating whether this service signs responses from the resource server.\n"
                     },
                     "cNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The duration of `c_nonce`.\n"
                     },
                     "dpopNonceRequired": {
@@ -10496,11 +9685,13 @@
                       "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                     },
                     "credentialOfferDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The default duration of credential offers in seconds.\n"
                     },
                     "dpopNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                     },
                     "preAuthorizedGrantAnonymousAccessSupported": {
@@ -10508,7 +9699,8 @@
                       "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                     },
                     "credentialTransactionDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                     },
                     "introspectionSignatureKeyId": {
@@ -10519,35 +9711,9 @@
                       "type": "string",
                       "description": "Get the key ID of the key for signing introspection responses.\n"
                     },
-                    "supportedIntrospectionEncryptionAlgs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                        "enum": [
-                          "RSA1_5",
-                          "RSA_OAEP",
-                          "RSA_OAEP_256",
-                          "A128KW",
-                          "A192KW",
-                          "A256KW",
-                          "DIR",
-                          "ECDH_ES",
-                          "ECDH_ES_A128KW",
-                          "ECDH_ES_A192KW",
-                          "ECDH_ES_A256KW",
-                          "A128GCMKW",
-                          "A192GCMKW",
-                          "A256GCMKW",
-                          "PBES2_HS256_A128KW",
-                          "PBES2_HS384_A192KW",
-                          "PBES2_HS512_A256KW"
-                        ]
-                      },
-                      "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                    },
                     "userPinLength": {
-                      "type": "int32",
+                      "type": "integer",
+                      "format": "int32",
                       "description": "Get the default length of user PINs.\n"
                     },
                     "supportedPromptValues": {
@@ -10588,33 +9754,9 @@
                       },
                       "description": "Get the FAPI modes for this client."
                     },
-                    "supportedIntrospectionSignAlgs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                        "enum": [
-                          "NONE",
-                          "HS256",
-                          "HS384",
-                          "HS512",
-                          "RS256",
-                          "RS384",
-                          "RS512",
-                          "ES256",
-                          "ES384",
-                          "ES512",
-                          "PS256",
-                          "PS384",
-                          "PS512",
-                          "ES256K",
-                          "EdDSA"
-                        ]
-                      },
-                      "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                    },
                     "credentialDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the default duration of verifiable credentials in seconds.\n"
                     },
                     "credentialIssuerMetadata": {
@@ -10633,7 +9775,8 @@
                           "description": "The URL of the credential endpoint of the credential issuer."
                         },
                         "batchCredentialEndpoint": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The URL of the batch credential endpoint of the credential issuer."
                         },
                         "deferredCredentialEndpoint": {
@@ -10644,21 +9787,6 @@
                           "type": "boolean",
                           "description": "A JSON array describing supported credentials."
                         }
-                      }
-                    },
-                    "supportedIntrospectionEncryptionEncs": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                        "enum": [
-                          "A128CBC_HS256",
-                          "A192CBC_HS384",
-                          "A256CBC_HS512",
-                          "A128GCM",
-                          "A192GCM",
-                          "A256GCM"
-                        ]
                       }
                     },
                     "idTokenAudType": {
@@ -11139,10 +10267,6 @@
                       "format": "int32",
                       "readOnly": true,
                       "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-                    },
-                    "developer": {
-                      "type": "string",
-                      "description": "The developer of the client application.\n"
                     },
                     "clientName": {
                       "type": "string",
@@ -12230,10 +11354,6 @@
                             "readOnly": true,
                             "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                           },
-                          "developer": {
-                            "type": "string",
-                            "description": "The developer of the client application.\n"
-                          },
                           "clientName": {
                             "type": "string",
                             "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -13278,10 +12398,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                   },
-                  "developer": {
-                    "type": "string",
-                    "description": "The developer of the client application.\n"
-                  },
                   "clientName": {
                     "type": "string",
                     "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -14133,10 +13249,6 @@
                       "format": "int32",
                       "readOnly": true,
                       "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-                    },
-                    "developer": {
-                      "type": "string",
-                      "description": "The developer of the client application.\n"
                     },
                     "clientName": {
                       "type": "string",
@@ -15179,10 +14291,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                   },
-                  "developer": {
-                    "type": "string",
-                    "description": "The developer of the client application.\n"
-                  },
                   "clientName": {
                     "type": "string",
                     "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -16042,10 +15150,6 @@
                     "readOnly": true,
                     "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                   },
-                  "developer": {
-                    "type": "string",
-                    "description": "The developer of the client application.\n"
-                  },
                   "clientName": {
                     "type": "string",
                     "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -16866,10 +15970,6 @@
                       "format": "int32",
                       "readOnly": true,
                       "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-                    },
-                    "developer": {
-                      "type": "string",
-                      "description": "The developer of the client application.\n"
                     },
                     "clientName": {
                       "type": "string",
@@ -18795,10 +17895,6 @@
                             "readOnly": true,
                             "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                           },
-                          "developer": {
-                            "type": "string",
-                            "description": "The developer of the client application.\n"
-                          },
                           "clientName": {
                             "type": "string",
                             "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -20117,11 +19213,13 @@
                       "description": "A short message which explains the result of the API call."
                     },
                     "serviceApiKey": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "A short message which explains the result of the API call."
                     },
                     "clientId": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the client ID."
                     },
                     "subject": {
@@ -20143,7 +19241,8 @@
                       "description": "Get the scopes granted to the client application by all the\npast authorization processes. Note that revoked scopes are\nnot included.\n"
                     },
                     "modifiedAt": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the timestamp in milliseconds since Unix epoch\nat which this record was modified.\n"
                     }
                   }
@@ -20361,11 +19460,13 @@
                       "description": "A short message which explains the result of the API call."
                     },
                     "serviceApiKey": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "A short message which explains the result of the API call."
                     },
                     "clientId": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the client ID."
                     },
                     "subject": {
@@ -20387,7 +19488,8 @@
                       "description": "Get the scopes granted to the client application by all the\npast authorization processes. Note that revoked scopes are\nnot included.\n"
                     },
                     "modifiedAt": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the timestamp in milliseconds since Unix epoch\nat which this record was modified.\n"
                     }
                   }
@@ -20858,10 +19960,6 @@
                           "format": "int32",
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-                        },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
                         },
                         "clientName": {
                           "type": "string",
@@ -21685,12 +20783,6 @@
                           "readOnly": true,
                           "description": "The sequential number of the service. The value of this property is assigned by Authlete."
                         },
-                        "serviceOwnerNumber": {
-                          "type": "integer",
-                          "format": "int32",
-                          "readOnly": true,
-                          "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-                        },
                         "serviceName": {
                           "type": "string",
                           "description": "The name of this service."
@@ -21708,11 +20800,6 @@
                           "format": "int64",
                           "readOnly": true,
                           "description": "The API key. The value of this property is assigned by Authlete."
-                        },
-                        "apiSecret": {
-                          "type": "string",
-                          "readOnly": true,
-                          "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
                         },
                         "clientsPerDeveloper": {
                           "type": "integer",
@@ -21776,27 +20863,6 @@
                           },
                           "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
                         },
-                        "snsCredentials": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "sns": {
-                                "type": "string",
-                                "description": "SNS."
-                              },
-                              "apiKey": {
-                                "type": "string",
-                                "description": "API key."
-                              },
-                              "apiSecret": {
-                                "type": "string",
-                                "description": "API secret."
-                              }
-                            }
-                          },
-                          "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-                        },
                         "supportedAcrs": {
                           "readOnly": true,
                           "type": "array",
@@ -21804,19 +20870,6 @@
                             "type": "string"
                           },
                           "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-                        },
-                        "developerAuthenticationCallbackEndpoint": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-                        },
-                        "developerAuthenticationCallbackApiKey": {
-                          "type": "string",
-                          "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-                        },
-                        "developerAuthenticationCallbackApiSecret": {
-                          "type": "string",
-                          "description": "API secret for basic authentication at the developer authentication callback endpoint."
                         },
                         "supportedDeveloperSnses": {
                           "type": "array",
@@ -21827,10 +20880,6 @@
                             ]
                           },
                           "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-                        },
-                        "developerSnsCredentials": {
-                          "type": "string",
-                          "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                         },
                         "supportedGrantTypes": {
                           "type": "array",
@@ -22686,7 +21735,8 @@
                           "description": "The flag indicating whether this service signs responses from the resource server.\n"
                         },
                         "cNonceDuration": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The duration of `c_nonce`.\n"
                         },
                         "dpopNonceRequired": {
@@ -22702,11 +21752,13 @@
                           "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
                         },
                         "credentialOfferDuration": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The default duration of credential offers in seconds.\n"
                         },
                         "dpopNonceDuration": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
                         },
                         "preAuthorizedGrantAnonymousAccessSupported": {
@@ -22714,7 +21766,8 @@
                           "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
                         },
                         "credentialTransactionDuration": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
                         },
                         "introspectionSignatureKeyId": {
@@ -22725,35 +21778,9 @@
                           "type": "string",
                           "description": "Get the key ID of the key for signing introspection responses.\n"
                         },
-                        "supportedIntrospectionEncryptionAlgs": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-                            "enum": [
-                              "RSA1_5",
-                              "RSA_OAEP",
-                              "RSA_OAEP_256",
-                              "A128KW",
-                              "A192KW",
-                              "A256KW",
-                              "DIR",
-                              "ECDH_ES",
-                              "ECDH_ES_A128KW",
-                              "ECDH_ES_A192KW",
-                              "ECDH_ES_A256KW",
-                              "A128GCMKW",
-                              "A192GCMKW",
-                              "A256GCMKW",
-                              "PBES2_HS256_A128KW",
-                              "PBES2_HS384_A192KW",
-                              "PBES2_HS512_A256KW"
-                            ]
-                          },
-                          "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-                        },
                         "userPinLength": {
-                          "type": "int32",
+                          "type": "integer",
+                          "format": "int32",
                           "description": "Get the default length of user PINs.\n"
                         },
                         "supportedPromptValues": {
@@ -22794,33 +21821,9 @@
                           },
                           "description": "Get the FAPI modes for this client."
                         },
-                        "supportedIntrospectionSignAlgs": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-                            "enum": [
-                              "NONE",
-                              "HS256",
-                              "HS384",
-                              "HS512",
-                              "RS256",
-                              "RS384",
-                              "RS512",
-                              "ES256",
-                              "ES384",
-                              "ES512",
-                              "PS256",
-                              "PS384",
-                              "PS512",
-                              "ES256K",
-                              "EdDSA"
-                            ]
-                          },
-                          "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-                        },
                         "credentialDuration": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "Get the default duration of verifiable credentials in seconds.\n"
                         },
                         "credentialIssuerMetadata": {
@@ -22839,7 +21842,8 @@
                               "description": "The URL of the credential endpoint of the credential issuer."
                             },
                             "batchCredentialEndpoint": {
-                              "type": "int64",
+                              "type": "integer",
+                              "format": "int64",
                               "description": "The URL of the batch credential endpoint of the credential issuer."
                             },
                             "deferredCredentialEndpoint": {
@@ -22850,21 +21854,6 @@
                               "type": "boolean",
                               "description": "A JSON array describing supported credentials."
                             }
-                          }
-                        },
-                        "supportedIntrospectionEncryptionEncs": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-                            "enum": [
-                              "A128CBC_HS256",
-                              "A192CBC_HS384",
-                              "A256CBC_HS512",
-                              "A128GCM",
-                              "A192GCM",
-                              "A256GCM"
-                            ]
                           }
                         },
                         "idTokenAudType": {
@@ -23291,7 +22280,8 @@
                           "description": "The subject associated with the credential offer."
                         },
                         "expiresAt": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The time at which the credential offer will expire."
                         },
                         "context": {
@@ -25501,7 +24491,8 @@
                       "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
                     },
                     "cNonceDuration": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Duration of the `c_nonce` in seconds.\n"
                     },
                     "dpopNonce": {
@@ -25513,7 +24504,8 @@
                       "description": "Get the `c_nonce`.\n"
                     },
                     "cNonceExpiresAt": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "Get the time at which the `c_nonce` expires in milliseconds since\nthe Unix epoch (1970-01-01).\n"
                     },
                     "requestedIdTokenClaims": {
@@ -27113,7 +26105,8 @@
                       "description": "The c_nonce"
                     },
                     "cNonceExpiresAt": {
-                      "type": "int64",
+                      "type": "integer",
+                      "format": "int64",
                       "description": "The time at which the `c_nonce` expires."
                     },
                     "issuableCredentials": {
@@ -28638,35 +27631,37 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "type": "object",
-              "required": [
-                "accessToken",
-                "refreshToken"
-              ],
-              "properties": {
-                "accessToken": {
-                  "type": "string",
-                  "description": "<p>\nThe value of this parameter should be (a) the value of the\n\"`jwtAccessToken`\" parameter in a response from the\n`/auth/token` API when the value is available, or (b)\nthe value of the \"`accessToken`\" parameter in the\nresponse from the `/auth/token` API when the value of\nthe \"`jwtAccessToken`\" parameter is not available.\n</p>\n"
-                },
-                "refreshToken": {
-                  "type": "string",
-                  "description": "<p>\nThe value of this parameter should be the value of the\n\"`refreshToken`\" parameter in a response from the\n`/auth/token` API.\n</p>\n"
-                },
-                "sub": {
-                  "type": "string",
-                  "description": "The value that should be used as the value of the \"`sub`\"\nclaim of the ID token.\n\n<p>\nThis parameter is optional. When omitted, the value of the subject\nassociated with the access token is used.\n</p>\n"
-                },
-                "claims": {
-                  "type": "string",
-                  "description": "Additional claims that should be embedded in the payload part of\nthe ID token. The format is a JSON object.\n\n<p>\nThis parameter is optional.\n</p>\n"
-                },
-                "idtHeaderParams": {
-                  "type": "string",
-                  "description": "Additional parameters that should be embedded in the JWS header of\nthe ID token. The format is a JSON object.\n\n<p>\nThis parameter is optional.\n</p>\n"
-                },
-                "idTokenAudType": {
-                  "type": "string",
-                  "description": "The type of the \"`aud`\" claim of the ID token being issued.\n\n<p>\nValid values of this parameter are as follows.\n</p>\n\n<blockquote>\n<table border=\"1\" cellpadding=\"5\" style=\"border-collapse: collapse;\">\n  <tr bgcolor=\"orange\">\n    <th>Value</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>\"`array`\"</td>\n    <td>The type of the `aud` claim becomes an array of strings.</td>\n  </tr>\n  <tr>\n    <td>\"`string`\"</td>\n    <td>The type of the `aud` claim becomes a single string.</td>\n  </tr>\n</table>\n</blockquote>\n\n<p>\nThis parameter is optional, and the default value on omission is\n\"`array`\".\n</p>\n\n<p>\nThis parameter takes precedence over the `idTokenAudType` property\nof {@link Service} (cf. {@link Service#getIdTokenAudType()}).\n</p>\n"
+              "schema": {
+                "type": "object",
+                "required": [
+                  "accessToken",
+                  "refreshToken"
+                ],
+                "properties": {
+                  "accessToken": {
+                    "type": "string",
+                    "description": "<p>\nThe value of this parameter should be (a) the value of the\n\"`jwtAccessToken`\" parameter in a response from the\n`/auth/token` API when the value is available, or (b)\nthe value of the \"`accessToken`\" parameter in the\nresponse from the `/auth/token` API when the value of\nthe \"`jwtAccessToken`\" parameter is not available.\n</p>\n"
+                  },
+                  "refreshToken": {
+                    "type": "string",
+                    "description": "<p>\nThe value of this parameter should be the value of the\n\"`refreshToken`\" parameter in a response from the\n`/auth/token` API.\n</p>\n"
+                  },
+                  "sub": {
+                    "type": "string",
+                    "description": "The value that should be used as the value of the \"`sub`\"\nclaim of the ID token.\n\n<p>\nThis parameter is optional. When omitted, the value of the subject\nassociated with the access token is used.\n</p>\n"
+                  },
+                  "claims": {
+                    "type": "string",
+                    "description": "Additional claims that should be embedded in the payload part of\nthe ID token. The format is a JSON object.\n\n<p>\nThis parameter is optional.\n</p>\n"
+                  },
+                  "idtHeaderParams": {
+                    "type": "string",
+                    "description": "Additional parameters that should be embedded in the JWS header of\nthe ID token. The format is a JSON object.\n\n<p>\nThis parameter is optional.\n</p>\n"
+                  },
+                  "idTokenAudType": {
+                    "type": "string",
+                    "description": "The type of the \"`aud`\" claim of the ID token being issued.\n\n<p>\nValid values of this parameter are as follows.\n</p>\n\n<blockquote>\n<table border=\"1\" cellpadding=\"5\" style=\"border-collapse: collapse;\">\n  <tr bgcolor=\"orange\">\n    <th>Value</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>\"`array`\"</td>\n    <td>The type of the `aud` claim becomes an array of strings.</td>\n  </tr>\n  <tr>\n    <td>\"`string`\"</td>\n    <td>The type of the `aud` claim becomes a single string.</td>\n  </tr>\n</table>\n</blockquote>\n\n<p>\nThis parameter is optional, and the default value on omission is\n\"`array`\".\n</p>\n\n<p>\nThis parameter takes precedence over the `idTokenAudType` property\nof {@link Service} (cf. {@link Service#getIdTokenAudType()}).\n</p>\n"
+                  }
                 }
               }
             }
@@ -29891,10 +28886,6 @@
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                         },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
-                        },
                         "clientName": {
                           "type": "string",
                           "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -30987,10 +29978,6 @@
                           "format": "int32",
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-                        },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
                         },
                         "clientName": {
                           "type": "string",
@@ -32091,10 +31078,6 @@
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                         },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
-                        },
                         "clientName": {
                           "type": "string",
                           "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -33182,10 +32165,6 @@
                           "format": "int32",
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-                        },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
                         },
                         "clientName": {
                           "type": "string",
@@ -37639,10 +36618,6 @@
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                         },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
-                        },
                         "clientName": {
                           "type": "string",
                           "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -41128,10 +40103,6 @@
                           "readOnly": true,
                           "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
                         },
-                        "developer": {
-                          "type": "string",
-                          "description": "The developer of the client application.\n"
-                        },
                         "clientName": {
                           "type": "string",
                           "description": "The name of the client application. This property corresponds to `client_name` in\n[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n"
@@ -42905,7 +41876,7 @@
             "AccessToken": []
           }
         ],
-        "requestBody": [
+        "parameters": [
           {
             "in": "path",
             "name": "handle",
@@ -43095,7 +42066,7 @@
             "AccessToken": []
           }
         ],
-        "requestBody": [
+        "parameters": [
           {
             "in": "path",
             "name": "handle",
@@ -43473,7 +42444,9 @@
           }
         ],
         "responses": {
-          "200": null
+          "200": {
+            "description": "Successfully deleted\n"
+          }
         },
         "operationId": "misc_echo_api"
       }
@@ -44096,7 +43069,8 @@
                     "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
                   },
                   "userPinLength": {
-                    "type": "int32",
+                    "type": "integer",
+                    "format": "int32",
                     "description": "The length of the user PIN to generate."
                   },
                   "subject": {
@@ -44104,7 +43078,8 @@
                     "description": "The subject associated with the credential offer."
                   },
                   "duration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of the credential offer."
                   },
                   "context": {
@@ -44172,7 +43147,8 @@
                     "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
                   },
                   "userPinLength": {
-                    "type": "int32",
+                    "type": "integer",
+                    "format": "int32",
                     "description": "The length of the user PIN to generate."
                   },
                   "subject": {
@@ -44180,7 +43156,8 @@
                     "description": "The subject associated with the credential offer."
                   },
                   "duration": {
-                    "type": "int64",
+                    "type": "integer",
+                    "format": "int64",
                     "description": "The duration of the credential offer."
                   },
                   "context": {
@@ -44303,7 +43280,8 @@
                           "description": "The subject associated with the credential offer."
                         },
                         "expiresAt": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The time at which the credential offer will expire."
                         },
                         "context": {
@@ -44579,7 +43557,8 @@
                           "description": "The subject associated with the credential offer."
                         },
                         "expiresAt": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The time at which the credential offer will expire."
                         },
                         "context": {
@@ -44991,7 +43970,8 @@
                         "description": "The flag indicating whether to defer credential issuance."
                       },
                       "credentialDuration": {
-                        "type": "int64",
+                        "type": "integer",
+                        "format": "int64",
                         "description": "The duration of a credential to be issued."
                       },
                       "signingKeyId": {
@@ -45417,7 +44397,8 @@
                           "description": "The flag indicating whether to defer credential issuance."
                         },
                         "credentialDuration": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The duration of a credential to be issued."
                         },
                         "signingKeyId": {
@@ -45831,7 +44812,8 @@
                         "description": "The flag indicating whether to defer credential issuance."
                       },
                       "credentialDuration": {
-                        "type": "int64",
+                        "type": "integer",
+                        "format": "int64",
                         "description": "The duration of a credential to be issued."
                       },
                       "signingKeyId": {
@@ -46259,10 +45241,6 @@
             "format": "int32",
             "readOnly": true,
             "description": "The sequential number of the service of the client application. The value of this property is\nassigned by Authlete.\n"
-          },
-          "developer": {
-            "type": "string",
-            "description": "The developer of the client application.\n"
           },
           "clientName": {
             "type": "string",
@@ -47296,12 +46274,6 @@
             "readOnly": true,
             "description": "The sequential number of the service. The value of this property is assigned by Authlete."
           },
-          "serviceOwnerNumber": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true,
-            "description": "The sequential number of the service owner of the service. The value of this property is assigned by Authlete."
-          },
           "serviceName": {
             "type": "string",
             "description": "The name of this service."
@@ -47319,11 +46291,6 @@
             "format": "int64",
             "readOnly": true,
             "description": "The API key. The value of this property is assigned by Authlete."
-          },
-          "apiSecret": {
-            "type": "string",
-            "readOnly": true,
-            "description": "The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete."
           },
           "clientsPerDeveloper": {
             "type": "integer",
@@ -47387,27 +46354,6 @@
             },
             "description": "SNSes you want to support 'social login' in the UI at the\nauthorization endpoint provided by Authlete.\n\nYou need to register a `client` application in each SNS that is set\nas this parameter and set Authlete server's `/api/sns/redirection`\nas the redirection endpoint of the client application.\n"
           },
-          "snsCredentials": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "sns": {
-                  "type": "string",
-                  "description": "SNS."
-                },
-                "apiKey": {
-                  "type": "string",
-                  "description": "API key."
-                },
-                "apiSecret": {
-                  "type": "string",
-                  "description": "API secret."
-                }
-              }
-            },
-            "description": "`SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.\n"
-          },
           "supportedAcrs": {
             "readOnly": true,
             "type": "array",
@@ -47415,19 +46361,6 @@
               "type": "string"
             },
             "description": "Values of acrs (authentication context class references) that the service supports.\n\nThe value of this property is used as `acr_values_supported`\nproperty in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).\n"
-          },
-          "developerAuthenticationCallbackEndpoint": {
-            "type": "string",
-            "format": "uri",
-            "description": "A Web API endpoint for developer authentication which is to be prepared on the server side.\n\nThe endpoint must be implemented if you use Developer Console.\n\nThe developer authentication at the login page of Developer Console is performed by making a `POST`\nrequest to this endpoint.\n"
-          },
-          "developerAuthenticationCallbackApiKey": {
-            "type": "string",
-            "description": "API key for basic authentication at the developer authentication callback endpoint.\n\nIf the value is not empty, Authlete generates Authorization header for Basic authentication when\nmaking a request to the developer authentication callback endpoint.\n"
-          },
-          "developerAuthenticationCallbackApiSecret": {
-            "type": "string",
-            "description": "API secret for basic authentication at the developer authentication callback endpoint."
           },
           "supportedDeveloperSnses": {
             "type": "array",
@@ -47438,10 +46371,6 @@
               ]
             },
             "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
-          },
-          "developerSnsCredentials": {
-            "type": "string",
-            "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
           },
           "supportedGrantTypes": {
             "type": "array",
@@ -48297,7 +47226,8 @@
             "description": "The flag indicating whether this service signs responses from the resource server.\n"
           },
           "cNonceDuration": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "The duration of `c_nonce`.\n"
           },
           "dpopNonceRequired": {
@@ -48313,11 +47243,13 @@
             "description": "Get the URL at which the JWK Set document of the credential issuer is\nexposed.\n"
           },
           "credentialOfferDuration": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "The default duration of credential offers in seconds.\n"
           },
           "dpopNonceDuration": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "The duration of nonce values for DPoP proof JWTs in seconds.\n"
           },
           "preAuthorizedGrantAnonymousAccessSupported": {
@@ -48325,7 +47257,8 @@
             "description": "Get the flag indicating whether token requests using the pre-authorized\ncode grant flow by unidentifiable clients are allowed.\n"
           },
           "credentialTransactionDuration": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "Get the duration of transaction ID in seconds that may be issued as a\nresult of a credential request or a batch credential request.\n"
           },
           "introspectionSignatureKeyId": {
@@ -48336,35 +47269,9 @@
             "type": "string",
             "description": "Get the key ID of the key for signing introspection responses.\n"
           },
-          "supportedIntrospectionEncryptionAlgs": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "description": "this is the 'alg' header value for encrypted JWT tokens.\nDepending upon the context, this refers to key transport scheme to be used by the client and by the server. For instance:\n- as `authorizationEncryptionAlg` value, it refers to the encoding algorithm used by server for transporting they keys on JARM objects\n- as `requestEncryptionAlg` value, it refers to the expected key transport encoding algorithm that server expect from client when encrypting a Request Object\n- as `idTokenEncryptionAlg` value, it refers to the algorithm used by the server to key transport of id_tokens\n\n**Please note that some of the algorithms are more secure than others, some are not supported very well cross platforms and some (like RSA1_5) is known to be weak**.\n",
-              "enum": [
-                "RSA1_5",
-                "RSA_OAEP",
-                "RSA_OAEP_256",
-                "A128KW",
-                "A192KW",
-                "A256KW",
-                "DIR",
-                "ECDH_ES",
-                "ECDH_ES_A128KW",
-                "ECDH_ES_A192KW",
-                "ECDH_ES_A256KW",
-                "A128GCMKW",
-                "A192GCMKW",
-                "A256GCMKW",
-                "PBES2_HS256_A128KW",
-                "PBES2_HS384_A192KW",
-                "PBES2_HS512_A256KW"
-              ]
-            },
-            "description": "Supported JWE alg algorithms for encrypting introspection responses.\nThis property corresponds to the `introspection_encryption_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT Response\nfor OAuth Token Introspection\".\n"
-          },
           "userPinLength": {
-            "type": "int32",
+            "type": "integer",
+            "format": "int32",
             "description": "Get the default length of user PINs.\n"
           },
           "supportedPromptValues": {
@@ -48405,33 +47312,9 @@
             },
             "description": "Get the FAPI modes for this client."
           },
-          "supportedIntrospectionSignAlgs": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "description": "The signature algorithm for JWT. This value is represented on 'alg' attribute\nof the header of JWT.\n\nit's semantics depends upon where is this defined, for instance:\n  - as service accessTokenSignAlg value, it defines that access token are JWT and the algorithm used to sign it. Check your [KB article](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/jwt-based-access-token).\n  - as client authorizationSignAlg value, it represents the signature algorithm used when [creating a JARM response](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/enabling-jarm).\n  - or as client requestSignAlg value, it specifies which is the expected signature used by [client on a Request Object](https://kb.authlete.com/en/s/oauth-and-openid-connect/a/request-objects).\n",
-              "enum": [
-                "NONE",
-                "HS256",
-                "HS384",
-                "HS512",
-                "RS256",
-                "RS384",
-                "RS512",
-                "ES256",
-                "ES384",
-                "ES512",
-                "PS256",
-                "PS384",
-                "PS512",
-                "ES256K",
-                "EdDSA"
-              ]
-            },
-            "description": "Supported JWS alg algorithms for signing introspection responses.\nThis property corresponds to the `introspection_signing_alg_values_supported`\nmetadata defined in \"7. Authorization Server Metadata\" of \"JWT\nResponse for OAuth Token Introspection\".\n"
-          },
           "credentialDuration": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "Get the default duration of verifiable credentials in seconds.\n"
           },
           "credentialIssuerMetadata": {
@@ -48450,7 +47333,8 @@
                 "description": "The URL of the credential endpoint of the credential issuer."
               },
               "batchCredentialEndpoint": {
-                "type": "int64",
+                "type": "integer",
+                "format": "int64",
                 "description": "The URL of the batch credential endpoint of the credential issuer."
               },
               "deferredCredentialEndpoint": {
@@ -48461,21 +47345,6 @@
                 "type": "boolean",
                 "description": "A JSON array describing supported credentials."
               }
-            }
-          },
-          "supportedIntrospectionEncryptionEncs": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "description": "This is the encryption algorithm to be used when encrypting a JWT on client or server side.\nDepending upon the context, this refers to encryption done by the client or by the server. For instance:\n  - as `authorizationEncryptionEnc` value, it refers to the encryption algorithm used by server when creating a JARM response\n  - as `requestEncryptionEnc` value, it refers to the expected encryption algorithm used by the client when encrypting a Request Object\n  - as `idTokenEncryptionEnc` value, it refers to the algorithm used by the server to encrypt id_tokens\n",
-              "enum": [
-                "A128CBC_HS256",
-                "A192CBC_HS384",
-                "A256CBC_HS512",
-                "A128GCM",
-                "A192GCM",
-                "A256GCM"
-              ]
             }
           },
           "idTokenAudType": {
@@ -48618,7 +47487,8 @@
             "description": "The subject associated with the credential offer."
           },
           "expiresAt": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "The time at which the credential offer will expire."
           },
           "context": {
@@ -48697,7 +47567,8 @@
             "description": "The flag indicating whether to defer credential issuance."
           },
           "credentialDuration": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "The duration of a credential to be issued."
           },
           "signingKeyId": {
@@ -48722,7 +47593,8 @@
             "description": "The URL of the credential endpoint of the credential issuer."
           },
           "batchCredentialEndpoint": {
-            "type": "int64",
+            "type": "integer",
+            "format": "int64",
             "description": "The URL of the batch credential endpoint of the credential issuer."
           },
           "deferredCredentialEndpoint": {
