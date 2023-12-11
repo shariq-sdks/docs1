@@ -13,10 +13,6 @@ properties:
     description: |
       The sequential number of the service of the client application. The value of this property is
       assigned by Authlete.
-  developer:
-    type: string
-    description: |
-      The developer of the client application.
   clientName:
     type: string
     description: |

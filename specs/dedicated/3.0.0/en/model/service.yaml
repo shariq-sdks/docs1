@@ -5,11 +5,6 @@ properties:
     format: int32
     readOnly: true
     description: The sequential number of the service. The value of this property is assigned by Authlete.
-  serviceOwnerNumber:
-    type: integer
-    format: int32
-    readOnly: true
-    description: The sequential number of the service owner of the service. The value of this property is assigned by Authlete.
   serviceName:
     type: string
     description: The name of this service.
@@ -30,10 +25,6 @@ properties:
     format: int64
     readOnly: true
     description: The API key. The value of this property is assigned by Authlete.
-  apiSecret:
-    type: string
-    readOnly: true
-    description: The API secret. A random 256-bit value encoded by base64url (43 letters). The value of this property is assigned by Authlete.
   clientsPerDeveloper:
     type: integer
     format: int32
@@ -101,12 +92,6 @@ properties:
       You need to register a `client` application in each SNS that is set
       as this parameter and set Authlete server's `/api/sns/redirection`
       as the redirection endpoint of the client application.
-  snsCredentials:
-    type: array
-    items:
-      $ref: ../model/sns_credentials.yaml
-    description: |
-      `SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON.
   supportedAcrs:
     readOnly: true
     type: array
@@ -117,26 +102,6 @@ properties:
 
       The value of this property is used as `acr_values_supported`
       property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
-  developerAuthenticationCallbackEndpoint:
-    type: string
-    format: uri
-    description: |
-      A Web API endpoint for developer authentication which is to be prepared on the server side.
-
-      The endpoint must be implemented if you use Developer Console.
-
-      The developer authentication at the login page of Developer Console is performed by making a `POST`
-      request to this endpoint.
-  developerAuthenticationCallbackApiKey:
-    type: string
-    description: |
-      API key for basic authentication at the developer authentication callback endpoint.
-
-      If the value is not empty, Authlete generates Authorization header for Basic authentication when
-      making a request to the developer authentication callback endpoint.
-  developerAuthenticationCallbackApiSecret:
-    type: string
-    description: API secret for basic authentication at the developer authentication callback endpoint.
   supportedDeveloperSnses:
     type: array
     items:
@@ -146,9 +111,6 @@ properties:
 
       You need to register a client application in each SNS checked here and set Authlete server's
       `/api/developer/sns/redirection` as the redirection endpoint of the client application.
-  developerSnsCredentials:
-    type: string
-    description: SNS credentials which Authlete uses to make requests to SNSes. The format is JSON.
   supportedGrantTypes:
     type: array
     items:
@@ -1435,15 +1397,6 @@ properties:
     type: string
     description: |
       Get the key ID of the key for signing introspection responses.
-  supportedIntrospectionEncryptionAlgs:
-    type: array
-    items:
-      $ref: jwe_alg.yaml
-    description: |
-      Supported JWE alg algorithms for encrypting introspection responses.
-      This property corresponds to the `introspection_encryption_alg_values_supported`
-      metadata defined in "7. Authorization Server Metadata" of "JWT Response
-      for OAuth Token Introspection".
   userPinLength:
     type: integer
     format: int32
@@ -1478,15 +1431,6 @@ properties:
         - TOKEN_EXCHANGE
         - JWT_BEARER
     description: Get the FAPI modes for this client.
-  supportedIntrospectionSignAlgs:
-    type: array
-    items:
-      $ref: jws_alg.yaml
-    description: |
-      Supported JWS alg algorithms for signing introspection responses.
-      This property corresponds to the `introspection_signing_alg_values_supported`
-      metadata defined in "7. Authorization Server Metadata" of "JWT
-      Response for OAuth Token Introspection".
   credentialDuration:
     type: integer
     format: int64
@@ -1494,10 +1438,6 @@ properties:
       Get the default duration of verifiable credentials in seconds.
   credentialIssuerMetadata:
     $ref: credential_issuer_metadata.yaml
-  supportedIntrospectionEncryptionEncs:
-    type: array
-    items:
-      $ref: jwe_enc.yaml
   idTokenAudType:
     type: string
     description: |
