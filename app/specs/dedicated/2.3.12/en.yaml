@@ -24390,7 +24390,7 @@
     "/api/idtoken/reissue": {
       "post": {
         "summary": "/api/idtoken/reissue API",
-        "description": null,
+        "description": "The API is expected to be called only when the value of the `action`\nparameter in a response from the `/auth/token` API is {@link\nTokenResponse.Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}. The purpose\nof the `/idtoken/reissue` API is to generate a token response that\nincludes a new ID token together with a new access token and a refresh\ntoken.\n",
         "security": [
           {
             "ServiceCredentials": []
@@ -27090,6 +27090,15 @@
             },
             "required": false,
             "description": "This boolean value indicates whether the JSON in the response should be formatted or not. If `true`, the JSON in the response is pretty-formatted. The default value is `false`."
+          },
+          {
+            "in": "query",
+            "name": "patch",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Get the JSON Patch [RFC 6902 JavaScript Object Notation (JSON) Patch](https://www.rfc-editor.org/rfc/rfc6902) to be applied."
           }
         ],
         "responses": {

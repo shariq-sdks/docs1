@@ -1,6 +1,12 @@
 post:
   summary: /api/idtoken/reissue API
-  description:
+  description: |
+    The API is expected to be called only when the value of the `action`
+    parameter in a response from the `/auth/token` API is {@link
+    TokenResponse.Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}. The purpose
+    of the `/idtoken/reissue` API is to generate a token response that
+    includes a new ID token together with a new access token and a refresh
+    token.
   security:
     - AccessToken: []
   parameters:
