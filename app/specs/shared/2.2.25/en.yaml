@@ -29291,7 +29291,7 @@
             "schema": {
               "type": "string"
             },
-            "required": true,
+            "required": false,
             "description": "Unique user ID.\n"
           },
           {
