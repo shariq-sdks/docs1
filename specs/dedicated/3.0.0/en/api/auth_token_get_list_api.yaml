@@ -22,7 +22,7 @@ get:
       name: subject
       schema:
         type: string
-      required: true
+      required: false
       description: |
         Unique user ID.
     - in: query
