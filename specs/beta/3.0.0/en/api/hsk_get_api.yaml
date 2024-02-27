@@ -1,0 +1,34 @@
+get:
+  summary: /api/{serviceId}/hsk/get/{handle} API
+  security:
+    - AccessToken: []
+  parameters:
+    - in: path
+      name: handle
+      schema:
+        type: string
+      required: true
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/hsk_get_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'hsk_get_api'
+  tags:
+    - Hsk Operations

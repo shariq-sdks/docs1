@@ -4,6 +4,7 @@ serverTypes:
   shared: 共用クラウド
   dedicated: 専用クラウド
   onpremise: オンプレミス
+  beta: Beta クラウド
 errors:
   unauthorized: アクセスが拒否されました。
   not_found: ページが見つかりませんでした。
