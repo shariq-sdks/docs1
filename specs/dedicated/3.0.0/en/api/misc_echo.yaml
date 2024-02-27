@@ -1,0 +1,11 @@
+get:
+  summary: /api/misc/echo API
+  description: |
+    Echo test endpoint. Will return all path parameters in the request
+  security:
+    - AccessToken: []
+  responses:
+    '200':
+      description: |
+        Successfully deleted
+  operationId: 'misc_echo_api'

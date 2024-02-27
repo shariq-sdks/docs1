@@ -1,0 +1,12 @@
+type: object
+properties:
+  scope:
+    type: string
+    description: |
+      Space-delimited scopes.
+  resource:
+    type: array
+    items:
+      type: string
+    description: |
+      List of resource indicators.

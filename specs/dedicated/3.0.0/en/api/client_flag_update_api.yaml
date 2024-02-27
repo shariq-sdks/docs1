@@ -1,0 +1,51 @@
+post:
+  summary: /api/{serviceId}/client/lock_flag/update/{clientIdentifier} API
+  description: |
+    Lock and unlock a client
+  security:
+    - AccessToken: []
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: clientIdentifier
+      schema:
+        type: string
+      required: true
+      description:
+        A client ID.
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/client_flag_update_request.yaml
+        example:
+          {
+            "clientLocked": true
+          }
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/client_flag_update_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_flag_update_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_flag_update_api'
+  tags:
+    - Client Management

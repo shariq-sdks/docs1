@@ -1,0 +1,29 @@
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.
+  action:
+    type: string
+    enum:
+      - OK
+      - NO_CONTENT
+      - UNAUTHORIZED
+      - FORBIDDEN
+      - NOT_FOUND
+      - CALLER_ERROR
+      - AUTHLETE_ERROR
+    description: The next action that the authorization server implementation should take.
+  responseContent:
+    type: string
+    description: |
+      The content that the authorization server implementation is to return to the client application.
+      Its format varies depending on the value of `action` parameter.
+  dpopNonce:
+    type: string
+    description: |
+      Get the expected nonce value for DPoP proof JWT, which should be used
+      as the value of the `DPoP-Nonce` HTTP header.
