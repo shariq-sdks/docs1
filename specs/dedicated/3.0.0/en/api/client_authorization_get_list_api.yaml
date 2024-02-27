@@ -8,6 +8,12 @@ get:
     - AccessToken: []
   parameters:
     - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+    - in: path
       name: subject
       schema:
         type: string
@@ -21,12 +27,6 @@ get:
       required: true
       description: |
         Unique user ID of an end-user.
-    - in: path
-      name: serviceId
-      description: A service ID.
-      required: true
-      schema:
-        type: string
     - in: query
       name: developer
       schema:

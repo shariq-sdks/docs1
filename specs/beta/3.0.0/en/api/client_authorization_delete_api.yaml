@@ -8,18 +8,18 @@ delete:
     - AccessToken: []
   parameters:
     - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+    - in: path
       name: clientId
       schema:
         type: string
       required: true
       description: |
         A client ID.
-    - in: path
-      name: serviceId
-      description: A service ID.
-      required: true
-      schema:
-        type: string
     - in: path
       name: subject
       schema:
