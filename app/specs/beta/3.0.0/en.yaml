@@ -17516,6 +17516,15 @@
         "parameters": [
           {
             "in": "path",
+            "name": "serviceId",
+            "description": "A service ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
             "name": "subject",
             "schema": {
               "type": "string"
@@ -17531,15 +17540,6 @@
             },
             "required": true,
             "description": "Unique user ID of an end-user.\n"
-          },
-          {
-            "in": "path",
-            "name": "serviceId",
-            "description": "A service ID.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           },
           {
             "in": "query",
@@ -18613,21 +18613,21 @@
         "parameters": [
           {
             "in": "path",
-            "name": "clientId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "A client ID.\n"
-          },
-          {
-            "in": "path",
             "name": "serviceId",
             "description": "A service ID.",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "path",
+            "name": "clientId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "A client ID.\n"
           }
         ],
         "requestBody": {
@@ -18839,21 +18839,21 @@
         "parameters": [
           {
             "in": "path",
-            "name": "clientId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "A client ID.\n"
-          },
-          {
-            "in": "path",
             "name": "serviceId",
             "description": "A service ID.",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "path",
+            "name": "clientId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "A client ID.\n"
           },
           {
             "in": "path",
@@ -40761,20 +40761,20 @@
         "parameters": [
           {
             "in": "path",
-            "name": "handle",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "in": "path",
             "name": "serviceId",
             "description": "A service ID.",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "path",
+            "name": "handle",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
         "responses": {
@@ -40951,20 +40951,20 @@
         "parameters": [
           {
             "in": "path",
-            "name": "handle",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "in": "path",
             "name": "serviceId",
             "description": "A service ID.",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "path",
+            "name": "handle",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
         "responses": {

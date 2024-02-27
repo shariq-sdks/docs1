@@ -4,16 +4,16 @@ get:
     - AccessToken: []
   parameters:
     - in: path
-      name: handle
-      schema:
-        type: string
-      required: true
-    - in: path
       name: serviceId
       description: A service ID.
       required: true
       schema:
         type: string
+    - in: path
+      name: handle
+      schema:
+        type: string
+      required: true
   responses:
     '200':
       description: ""
