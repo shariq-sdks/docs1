@@ -1,0 +1,39 @@
+post:
+  summary: /api/{serviceId}/vci/offer/create API
+  description:
+  security:
+    - AccessToken: []
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/vci_offer_create_request.yaml
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/vci_offer_create_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/vci_offer_create_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'vci_offer_create_api'
+  tags:
+    - Vci Endpoint

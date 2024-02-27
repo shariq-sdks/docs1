@@ -4,6 +4,7 @@ serverTypes:
   shared: Shared Cloud
   dedicated: Dedicated Cloud
   onpremise: Onpremise
+  beta: Beta Cloud
 errors:
   unauthorized: Access is denied.
   not_found: Page Not Found.

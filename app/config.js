@@ -5,12 +5,13 @@ const config = {};
 config.supportedLocales = [ 'en' ];
 
 // Supported server types.
-config.supportedServerTypes = [ 'shared', 'dedicated' ];
+config.supportedServerTypes = [ 'shared', 'dedicated', 'beta' ];
 
 // Supported API document versions for each server type.
 config.supportedVersions = {
   shared: [ '2.2.19', '2.2.25', '2.2.30' ],
   dedicated : [ '2.3.0', '2.3.12' ],
+  beta: [ '3.0.0' ]
 };
 
 // The default locale.

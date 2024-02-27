@@ -12,4 +12,8 @@
 <%- include('options-for-server-type',
   { config: config, translations: translations, req: req, serverType: 'onpremise' }) %>
 <% }; -%>
+<% if (config.supportedServerTypes.includes('beta')) { -%>
+<%- include('options-for-server-type',
+  { config: config, translations: translations, req: req, serverType: 'beta' }) %>
+<% }; -%>
 </select>
