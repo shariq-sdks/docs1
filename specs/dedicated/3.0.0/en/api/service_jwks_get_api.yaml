@@ -111,34 +111,34 @@ get:
 
         api.getServiceJwks(pretty, includePrivateKey);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        bool pretty = true;
-        bool includePrivateKey = false;
+    #     bool pretty = true;
+    #     bool includePrivateKey = false;
 
-        await api.GetServiceJwks(pretty, includePrivateKey);
+    #     await api.GetServiceJwks(pretty, includePrivateKey);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $pretty = true;
-        $includePrivateKey = false;
+    #     $pretty = true;
+    #     $includePrivateKey = false;
 
-        $api.getServiceJwks($pretty, $includePrivateKey);
+    #     $api.getServiceJwks($pretty, $includePrivateKey);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        api.get_service_jwks(pretty: true, includePrivateKeys: false)
+    #     api.get_service_jwks(pretty: true, includePrivateKeys: false)
 
     - lang: python
       source: |
@@ -150,25 +150,25 @@ get:
 
         api.getServiceJwks(pretty, includePrivateKey)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        pretty := true
-        includePrivateKey := false
+    #     pretty := true
+    #     includePrivateKey := false
 
-        api.GetServiceJwks(pretty, includePrivateKey)
+    #     api.GetServiceJwks(pretty, includePrivateKey)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const pretty = true;
-        const includePrivateKey = false;
+    #     const pretty = true;
+    #     const includePrivateKey = false;
 
-        await api.getServiceJwks(pretty, includePrivateKey);
+    #     await api.getServiceJwks(pretty, includePrivateKey);
   tags:
     - JWK Set Endpoint

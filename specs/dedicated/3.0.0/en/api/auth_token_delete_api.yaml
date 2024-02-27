@@ -50,34 +50,34 @@ delete:
 
         api.tokenDelete(accessToken);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        string accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+    #     string accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
 
-        await api.TokenDelete(accessToken);
+    #     await api.TokenDelete(accessToken);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
+    #     $accessTokenIdentifier = "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg";
 
-        $api.tokenDelete($accessToken);
+    #     $api.tokenDelete($accessToken);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        access_token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
+    #     access_token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'
 
-        api.token_delete(access_token)
+    #     api.token_delete(access_token)
 
     - lang: python
       source: |
@@ -88,19 +88,19 @@ delete:
 
         api.tokenDelete(accessToken)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        accessTokenIdentifier := "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg"
+    #     accessTokenIdentifier := "Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg"
 
-        api.TokenDelete(accessTokenIdentifier)
+    #     api.TokenDelete(accessTokenIdentifier)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
 
   tags:
     - Token Operations

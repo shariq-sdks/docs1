@@ -177,40 +177,40 @@ post:
 
         api.createService(service);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        Service service = new Service();
-        service.ServiceName = "My Service";
-        ...
+    #     Service service = new Service();
+    #     service.ServiceName = "My Service";
+    #     ...
 
-        await api.CreateService(service);
+    #     await api.CreateService(service);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $service = new Service();
-        $service.setServiceName("My Service");
-        ...
+    #     $service = new Service();
+    #     $service.setServiceName("My Service");
+    #     ...
 
-        $api.createService($service);
+    #     $api.createService($service);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        service = Authlete::Model::Service.new
-        service.service_name = 'My Service'
-        ...
+    #     service = Authlete::Model::Service.new
+    #     service.service_name = 'My Service'
+    #     ...
 
-        api.service_create(service)
+    #     api.service_create(service)
 
     - lang: python
       source: |
@@ -223,27 +223,27 @@ post:
 
         api.createService(service)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        service := dto.Service{}
-        service.ServiceName = "My Service"
-        ...
+    #     service := dto.Service{}
+    #     service.ServiceName = "My Service"
+    #     ...
 
-        api.CreateService(&service)
+    #     api.CreateService(&service)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const service = new Service();
-        service.serviceName = 'My Service';
-        ...
+    #     const service = new Service();
+    #     service.serviceName = 'My Service';
+    #     ...
 
-        await api.createService(service);
+    #     await api.createService(service);
   tags:
     - Service Management

@@ -151,36 +151,36 @@ get:
 
         api.getServiceList(start, end);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        int start = 0;
-        int end = 5;
+    #     int start = 0;
+    #     int end = 5;
 
-        await api.GetServiceList(start, end);
+    #     await api.GetServiceList(start, end);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $start = 0;
-        $end = 5;
+    #     $start = 0;
+    #     $end = 5;
 
-        $api.getServiceList($start, $end);
+    #     $api.getServiceList($start, $end);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = { start: 0, end: 5 }
+    #     req = { start: 0, end: 5 }
 
-        api.service_get_list(req)
+    #     api.service_get_list(req)
 
     - lang: python
       source: |
@@ -192,25 +192,25 @@ get:
 
         api.getServiceList(start, end)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        start := 0
-        end := 5
+    #     start := 0
+    #     end := 5
 
-        api.GetServiceList(start, end)
+    #     api.GetServiceList(start, end)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const start = 0;
-        const end = 5;
+    #     const start = 0;
+    #     const end = 5;
 
-        await api.getServiceList(start, end);
+    #     await api.getServiceList(start, end);
   tags:
     - Service Management

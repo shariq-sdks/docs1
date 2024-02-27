@@ -198,37 +198,37 @@ post:
 
         api.revocation(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        RevocationRequest req = new RevocationRequest();
-        req.Parameters = ...;
+    #     RevocationRequest req = new RevocationRequest();
+    #     req.Parameters = ...;
 
-        await api.Revocation(req);
+    #     await api.Revocation(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new RevocationRequest();
-        $req.setParameters(...);
+    #     $req = new RevocationRequest();
+    #     $req.setParameters(...);
 
-        $api.revocation($req);
+    #     $api.revocation($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::RevocationRequest.new
-        req.parameters = '...'
+    #     req = Authlete::Model::Request::RevocationRequest.new
+    #     req.parameters = '...'
 
-        api.revocation(req)
+    #     api.revocation(req)
 
     - lang: python
       source: |
@@ -240,25 +240,25 @@ post:
 
         api.revocation(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.RevocationRequest{}
-        req.Parameters = ...
+    #     req := dto.RevocationRequest{}
+    #     req.Parameters = ...
 
-        api.Revocation(&req)
+    #     api.Revocation(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new RevocationRequest();
-        req.parameters = ...;
+    #     const req = new RevocationRequest();
+    #     req.parameters = ...;
 
-        await api.revocation(req);
+    #     await api.revocation(req);
   tags:
     - Revocation Endpoint

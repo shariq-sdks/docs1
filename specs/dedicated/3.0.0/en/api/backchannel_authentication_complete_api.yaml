@@ -194,43 +194,43 @@ post:
 
         api.backchannelAuthenticationComplete(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        BackchannelAuthenticationCompleteRequest req = new BackchannelAuthenticationCompleteRequest();
-        req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q";
-        req.Result = BackchannelAuthenticationCompleteResult.AUTHORIZED;
-        req.Subject = "john";
+    #     BackchannelAuthenticationCompleteRequest req = new BackchannelAuthenticationCompleteRequest();
+    #     req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q";
+    #     req.Result = BackchannelAuthenticationCompleteResult.AUTHORIZED;
+    #     req.Subject = "john";
 
-        await api.BackchannelAuthenticationComplete(req);
+    #     await api.BackchannelAuthenticationComplete(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new BackchannelAuthenticationCompleteRequest();
-        $req.setTicket("NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q");
-        $req.setResult(BackchannelAuthenticationCompleteResult.AUTHORIZED);
-        $req.setSubject("john");
+    #     $req = new BackchannelAuthenticationCompleteRequest();
+    #     $req.setTicket("NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q");
+    #     $req.setResult(BackchannelAuthenticationCompleteResult.AUTHORIZED);
+    #     $req.setSubject("john");
 
-        $api.backchannelAuthenticationComplete($req);
+    #     $api.backchannelAuthenticationComplete($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::BackchannelAuthenticationCompleteRequest.new
-        req.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'
-        req.result = 'AUTHORIZED'
-        req.subject = 'john'
+    #     req = Authlete::Model::Request::BackchannelAuthenticationCompleteRequest.new
+    #     req.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'
+    #     req.result = 'AUTHORIZED'
+    #     req.subject = 'john'
 
-        api.backchannel_authentication_complete(req)
+    #     api.backchannel_authentication_complete(req)
 
     - lang: python
       source: |
@@ -244,21 +244,21 @@ post:
 
         api.backchannelAuthenticationComplete(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.BackchannelAuthenticationCompleteRequest{}
-        req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q"
-        req.Result = BackchannelAuthenticationCompleteResult.AUTHORIZED
-        req.Subject = "john"
+    #     req := dto.BackchannelAuthenticationCompleteRequest{}
+    #     req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q"
+    #     req.Result = BackchannelAuthenticationCompleteResult.AUTHORIZED
+    #     req.Subject = "john"
 
-        api.BackchannelAuthenticationComplete(&req)
+    #     api.BackchannelAuthenticationComplete(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - CIBA

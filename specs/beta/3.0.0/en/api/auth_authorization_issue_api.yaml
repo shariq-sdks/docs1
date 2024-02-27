@@ -183,40 +183,40 @@ post:
 
         api.authorizationIssue(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        AuthorizationIssueRequest req = new AuthorizationIssueRequest();
-        req.Ticket  = "FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc";
-        req.Subject = "john";
+    #     AuthorizationIssueRequest req = new AuthorizationIssueRequest();
+    #     req.Ticket  = "FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc";
+    #     req.Subject = "john";
 
-        await api.AuthorizationIssue(req);
+    #     await api.AuthorizationIssue(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new AuthorizationIssueRequest();
-        $req.setTicket("FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc");
-        $req.setSubject("john");
+    #     $req = new AuthorizationIssueRequest();
+    #     $req.setTicket("FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc");
+    #     $req.setSubject("john");
 
-        $api.authorizationIssue($req);
+    #     $api.authorizationIssue($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::AuthorizationIssueRequest.new
-        req.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc'
-        req.subject = 'john'
+    #     req = Authlete::Model::Request::AuthorizationIssueRequest.new
+    #     req.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc'
+    #     req.subject = 'john'
 
-        api.authorization_issue(req)
+    #     api.authorization_issue(req)
 
     - lang: python
       source: |
@@ -229,26 +229,26 @@ post:
 
         api.authorizationIssue(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.AuthorizationIssueRequest{}
-        req.Ticket = "FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc"
-        req.Subject = "john"
+    #     req := dto.AuthorizationIssueRequest{}
+    #     req.Ticket = "FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc"
+    #     req.Subject = "john"
 
-        api.AuthorizationIssue(&req)
+    #     api.AuthorizationIssue(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new AuthorizationIssueRequest();
-        req.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc';
-        req.subjec = 'john';
+    #     const req = new AuthorizationIssueRequest();
+    #     req.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc';
+    #     req.subjec = 'john';
 
-        await api.authorizationIssue(req);
+    #     await api.authorizationIssue(req);
   tags: [ Authorization Endpoint ]

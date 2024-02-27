@@ -72,40 +72,40 @@ post:
 
         api.tokenUpdate(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        TokenUpdateRequest req = new TokenUpdateRequest();
-        req.AccessToken = "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs";
-        req.Scopes = { "history.read" };
+    #     TokenUpdateRequest req = new TokenUpdateRequest();
+    #     req.AccessToken = "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs";
+    #     req.Scopes = { "history.read" };
 
-        await api.TokenUpdate(request);
+    #     await api.TokenUpdate(request);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new TokenUpdateRequest();
-        $req.setAccessToken("JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs");
-        $req.setScopes([ "history.read" ]);
+    #     $req = new TokenUpdateRequest();
+    #     $req.setAccessToken("JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs");
+    #     $req.setScopes([ "history.read" ]);
 
-        $api.tokenUpdate($req);
+    #     $api.tokenUpdate($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::TokenUpdateRequest.new
-        req.access_token = 'JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs'
-        req.scopes = [ 'history.read' ]
+    #     req = Authlete::Model::Request::TokenUpdateRequest.new
+    #     req.access_token = 'JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs'
+    #     req.scopes = [ 'history.read' ]
 
-        api.token_update(req)
+    #     api.token_update(req)
 
     - lang: python
       source: |
@@ -118,21 +118,21 @@ post:
 
         api.tokenUpdate(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.TokenUpdateRequest{}
-        req.AccessToken = "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs"
-        req.Scopes = [1]string{ "history.read" }
+    #     req := dto.TokenUpdateRequest{}
+    #     req.AccessToken = "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs"
+    #     req.Scopes = [1]string{ "history.read" }
 
-        api.TokenUpdate(&req)
+    #     api.TokenUpdate(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
 
   tags:
     - Token Operations

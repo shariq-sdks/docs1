@@ -129,28 +129,28 @@ post:
 
         api.getFederationConfiguration();
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        await api.GetFederationConfiguration(true);
+    #     await api.GetFederationConfiguration(true);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $api.getFederationConfiguration(true);
+    #     $api.getFederationConfiguration(true);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        api.get_federation_configuration(pretty: true)
+    #     api.get_federation_configuration(pretty: true)
 
     - lang: python
       source: |
@@ -159,19 +159,19 @@ post:
 
         api.getFederationConfiguration(True)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        api.GetFederationConfiguration(true)
+    #     api.GetFederationConfiguration(true)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        await api.getFederationConfiguration(true);
+    #     await api.getFederationConfiguration(true);
   tags:
     - Federation Endpoint

@@ -74,43 +74,43 @@ post:
 
         api.token(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        AuthleteConfiguration conf = ...;
-        AuthleteApi api = AuthleteApiFactory.create(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     AuthleteConfiguration conf = ...;
+    #     AuthleteApi api = AuthleteApiFactory.create(conf);
 
-        PushedAuthReqRequest req = new PushedAuthReqRequest();
-        req.setParameters(...);
-        req.setClientId("57297408867");
-        req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
+    #     PushedAuthReqRequest req = new PushedAuthReqRequest();
+    #     req.setParameters(...);
+    #     req.setClientId("57297408867");
+    #     req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
 
-        api.token(req);
+    #     api.token(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new PushedAuthReqRequest();
-        $req.setParameters(...);
-        $req.setClientId("57297408867");
-        $req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
+    #     $req = new PushedAuthReqRequest();
+    #     $req.setParameters(...);
+    #     $req.setClientId("57297408867");
+    #     $req.setClientSecret("J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A");
 
-        $api.token($req);
+    #     $api.token($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::PushedAuthReqRequest.new
-        req.parameters = '...'
-        req.client_id = '57297408867'
-        req.client_secret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'
+    #     req = Authlete::Model::Request::PushedAuthReqRequest.new
+    #     req.parameters = '...'
+    #     req.client_id = '57297408867'
+    #     req.client_secret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'
 
-        api.token(req)
+    #     api.token(req)
 
     - lang: python
       source: |
@@ -124,29 +124,29 @@ post:
 
         api.token(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.PushedAuthReqRequest{}
-        req.Parameters = ...
-        req.ClientId = "57297408867"
-        req.ClientSecret = "J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A"
+    #     req := dto.PushedAuthReqRequest{}
+    #     req.Parameters = ...
+    #     req.ClientId = "57297408867"
+    #     req.ClientSecret = "J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A"
 
-        api.Token(&req)
+    #     api.Token(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new PushedAuthReqRequest();
-        req.parameters = ...;
-        req.clientId = '57297408867';
-        req.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';
+    #     const req = new PushedAuthReqRequest();
+    #     req.parameters = ...;
+    #     req.clientId = '57297408867';
+    #     req.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';
 
-        await api.token(req);
+    #     await api.token(req);
   tags:
     - Pushed Authorization Endpoint

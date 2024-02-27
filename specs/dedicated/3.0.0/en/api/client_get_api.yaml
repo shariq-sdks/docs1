@@ -102,34 +102,34 @@ get:
 
         api.getClient(clientId);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        long clientId = ...;
+    #     long clientId = ...;
 
-        await api.GetClient(clientId);
+    #     await api.GetClient(clientId);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $clientId = ...;
+    #     $clientId = ...;
 
-        $api.getClient($clientId);
+    #     $api.getClient($clientId);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        client_id = ...
+    #     client_id = ...
 
-        api.client_get(client_id)
+    #     api.client_get(client_id)
 
     - lang: python
       source: |
@@ -140,23 +140,23 @@ get:
 
         api.getClient(clientId)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        clientId := ...
+    #     clientId := ...
 
-        api.GetClient(clientId)
+    #     api.GetClient(clientId)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const clientId = ...;
+    #     const clientId = ...;
 
-        await api.getClient(clientId);
+    #     await api.getClient(clientId);
   tags:
     - Client Management

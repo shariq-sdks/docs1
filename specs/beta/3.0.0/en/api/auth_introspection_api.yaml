@@ -266,40 +266,40 @@ post:
 
         api.introspection(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        IntrospectionRequest req = new IntrospectionRequest();
-        req.Token = "VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI";
-        req.Scopes = { "history.read", "timeline.read" };
+    #     IntrospectionRequest req = new IntrospectionRequest();
+    #     req.Token = "VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI";
+    #     req.Scopes = { "history.read", "timeline.read" };
 
-        await api.Introspection(req);
+    #     await api.Introspection(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new IntrospectionRequest();
-        $req.setToken("VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI");
-        $req.setScopes([ "history.read", "timeline.read" ]);
+    #     $req = new IntrospectionRequest();
+    #     $req.setToken("VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI");
+    #     $req.setScopes([ "history.read", "timeline.read" ]);
 
-        $api.introspection($req);
+    #     $api.introspection($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::IntrospectionRequest.new
-        req.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI'
-        req.scopes = [ 'history.read', 'timeline.read' ]
+    #     req = Authlete::Model::Request::IntrospectionRequest.new
+    #     req.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI'
+    #     req.scopes = [ 'history.read', 'timeline.read' ]
 
-        api.introspection(req)
+    #     api.introspection(req)
 
     - lang: python
       source: |
@@ -312,27 +312,27 @@ post:
 
         api.introspection(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.IntrospectionRequest{}
-        req.Token = "VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI"
-        req.Scopes = [1]string{ "history.read", "timeline.read" }
+    #     req := dto.IntrospectionRequest{}
+    #     req.Token = "VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI"
+    #     req.Scopes = [1]string{ "history.read", "timeline.read" }
 
-        api.Introspection(&req)
+    #     api.Introspection(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new IntrospectionRequest();
-        req.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI';
-        req.scopes = [ 'history.read', 'timeline.read' ];
+    #     const req = new IntrospectionRequest();
+    #     req.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI';
+    #     req.scopes = [ 'history.read', 'timeline.read' ];
 
-        await api.introspection(req);
+    #     await api.introspection(req);
   tags:
     - Introspection Endpoint

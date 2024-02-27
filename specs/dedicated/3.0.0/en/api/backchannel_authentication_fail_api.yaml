@@ -100,40 +100,40 @@ post:
 
         api.backchannelAuthenticationFail(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        BackchannelAuthenticationFailRequest req = new BackchannelAuthenticationFailRequest();
-        req.Ticket = "holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0";
-        req.Reason = BackchannelAuthenticationFailReason.ACCESS_DENIED;
+    #     BackchannelAuthenticationFailRequest req = new BackchannelAuthenticationFailRequest();
+    #     req.Ticket = "holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0";
+    #     req.Reason = BackchannelAuthenticationFailReason.ACCESS_DENIED;
 
-        await api.BackchannelAuthenticationFail(req);
+    #     await api.BackchannelAuthenticationFail(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new BackchannelAuthenticationFailRequest();
-        $req.setTicket("holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0");
-        $req.setReason(BackchannelAuthenticationFailReason.ACCESS_DENIED);
+    #     $req = new BackchannelAuthenticationFailRequest();
+    #     $req.setTicket("holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0");
+    #     $req.setReason(BackchannelAuthenticationFailReason.ACCESS_DENIED);
 
-        $api.backchannelAuthenticationFail($req);
+    #     $api.backchannelAuthenticationFail($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::BackchannelAuthenticationFailRequest.new
-        req.ticket = 'holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0'
-        req.reason = 'ACCESS_DENIED'
+    #     req = Authlete::Model::Request::BackchannelAuthenticationFailRequest.new
+    #     req.ticket = 'holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0'
+    #     req.reason = 'ACCESS_DENIED'
 
-        api.backchannel_authentication_fail(req)
+    #     api.backchannel_authentication_fail(req)
 
     - lang: python
       source: |
@@ -146,20 +146,20 @@ post:
 
         api.backchannelAuthenticationFail(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.BackchannelAuthenticationFailRequest{}
-        req.Ticket = "holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0"
-        req.Reason = BackchannelAuthenticationFailReason.ACCESS_DENIED
+    #     req := dto.BackchannelAuthenticationFailRequest{}
+    #     req.Ticket = "holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0"
+    #     req.Reason = BackchannelAuthenticationFailReason.ACCESS_DENIED
 
-        api.backchannelAuthenticationFail(&req)
+    #     api.backchannelAuthenticationFail(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - CIBA

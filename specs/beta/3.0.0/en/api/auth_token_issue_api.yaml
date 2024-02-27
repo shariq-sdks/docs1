@@ -165,37 +165,37 @@ post:
 
         api.tokenIssue(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        TokenIssueRequest req = new TokenIssueRequest();
-        req.Ticket  = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c";
+    #     TokenIssueRequest req = new TokenIssueRequest();
+    #     req.Ticket  = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c";
 
-        await api.TokenIssue(req);
+    #     await api.TokenIssue(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new TokenIssueRequest();
-        $req.setTicket("83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c");
+    #     $req = new TokenIssueRequest();
+    #     $req.setTicket("83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c");
 
-        $api.tokenIssue($req);
+    #     $api.tokenIssue($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::TokenIssueRequest.new
-        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'
+    #     req = Authlete::Model::Request::TokenIssueRequest.new
+    #     req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'
 
-        api.token_issue(req)
+    #     api.token_issue(req)
 
     - lang: python
       source: |
@@ -207,25 +207,25 @@ post:
 
         api.tokenIssue(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.TokenIssueRequest{}
-        req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c"
+    #     req := dto.TokenIssueRequest{}
+    #     req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c"
 
-        api.TokenIssue(&req)
+    #     api.TokenIssue(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new TokenIssueRequest();
-        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';
+    #     const req = new TokenIssueRequest();
+    #     req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';
 
-        await api.tokenIssue(req);
+    #     await api.tokenIssue(req);
   tags:
     - Token Endpoint

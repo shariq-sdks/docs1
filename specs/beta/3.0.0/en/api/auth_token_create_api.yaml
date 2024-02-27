@@ -82,46 +82,46 @@ post:
 
         api.tokenCreate(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        TokenCreateRequest req = new TokenCreateRequest();
-        req.GrantType = GrantType.AUTHORIZATION_CODE;
-        req.ClientId = 26888344961664;
-        req.Subject = "john";
-        req.Scopes = { "history.read", "timeline.read" };
+    #     TokenCreateRequest req = new TokenCreateRequest();
+    #     req.GrantType = GrantType.AUTHORIZATION_CODE;
+    #     req.ClientId = 26888344961664;
+    #     req.Subject = "john";
+    #     req.Scopes = { "history.read", "timeline.read" };
 
-        await api.TokenCreate(request);
+    #     await api.TokenCreate(request);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new TokenCreateRequest();
-        $req.setGrantType(GrantType.$AUTHORIZATION_CODE);
-        $req.setClientId(26888344961664);
-        $req.setSubject("john");
-        $req.setScopes([ "history.read", "timeline.read" ]);
+    #     $req = new TokenCreateRequest();
+    #     $req.setGrantType(GrantType.$AUTHORIZATION_CODE);
+    #     $req.setClientId(26888344961664);
+    #     $req.setSubject("john");
+    #     $req.setScopes([ "history.read", "timeline.read" ]);
 
-        $api.tokenCreate($req);
+    #     $api.tokenCreate($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::TokenCreateRequest.new
-        req.grant_type = 'AUTHORIZATION_CODE'
-        req.client_id = 26888344961664
-        req.subject = 'john'
-        req.scopes = [ 'history.read', 'timeline.read' ]
+    #     req = Authlete::Model::Request::TokenCreateRequest.new
+    #     req.grant_type = 'AUTHORIZATION_CODE'
+    #     req.client_id = 26888344961664
+    #     req.subject = 'john'
+    #     req.scopes = [ 'history.read', 'timeline.read' ]
 
-        api.token_create(req)
+    #     api.token_create(req)
 
     - lang: python
       source: |
@@ -136,23 +136,23 @@ post:
 
         api.tokenCreate(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.TokenCreateRequest{}
-        req.GrantType = types.GrantType_AUTHORIZATION_CODE;
-        req.ClientId = 26888344961664;
-        req.Subject = "john";
-        req.Scopes = [2]string{"history.read", "timeline.read"};
+    #     req := dto.TokenCreateRequest{}
+    #     req.GrantType = types.GrantType_AUTHORIZATION_CODE;
+    #     req.ClientId = 26888344961664;
+    #     req.Subject = "john";
+    #     req.Scopes = [2]string{"history.read", "timeline.read"};
 
-        api.TokenCreate(&req)
+    #     api.TokenCreate(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
 
   tags:
     - Token Operations

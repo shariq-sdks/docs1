@@ -75,46 +75,46 @@ post:
 
         api.updateClientAuthorization(clientId, req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        long clientId = ...;
+    #     long clientId = ...;
 
-        ClientAuthorizationUpdateRequest req = new ClientAuthorizationUpdateRequest();
-        req.Subject = "john";
-        req.Scopes = { "history.read" };
+    #     ClientAuthorizationUpdateRequest req = new ClientAuthorizationUpdateRequest();
+    #     req.Subject = "john";
+    #     req.Scopes = { "history.read" };
 
-        await api.UpdateClientAuthorization(clientId, req);
+    #     await api.UpdateClientAuthorization(clientId, req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $clientId = ...;
+    #     $clientId = ...;
 
-        $req = new ClientAuthorizationUpdateRequest();
-        $req.subject = "john";
-        $req.setScopes([ "history.read" ]);
+    #     $req = new ClientAuthorizationUpdateRequest();
+    #     $req.subject = "john";
+    #     $req.setScopes([ "history.read" ]);
 
-        $api.updateClientAuthorization($clientId, $req);
+    #     $api.updateClientAuthorization($clientId, $req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        client_id = ...
+    #     client_id = ...
 
-        req = Authlete::Model::Request::ClientAuthorizationUpdateRequest.new
-        req.subject = 'john'
-        req.scopes = [ 'history.read' ]
+    #     req = Authlete::Model::Request::ClientAuthorizationUpdateRequest.new
+    #     req.subject = 'john'
+    #     req.scopes = [ 'history.read' ]
 
-        api.update_client_authorization(client_id, req)
+    #     api.update_client_authorization(client_id, req)
 
     - lang: python
       source: |
@@ -129,23 +129,22 @@ post:
 
         api.updateClientAuthorization(clientId, req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        clientId := ...
+    #     clientId := ...
 
-        req := dto.ClientAuthorizationUpdateRequest{}
-        req.Subject = "john"
-        req.Scopes = [1]string{ "history.read" }
+    #     req := dto.ClientAuthorizationUpdateRequest{}
+    #     req.Subject = "john"
+    #     req.Scopes = [1]string{ "history.read" }
 
-        api.UpdateClientAuthorization(clientId, &req)
+    #     api.UpdateClientAuthorization(clientId, &req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
-
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Client Management

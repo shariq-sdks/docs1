@@ -138,43 +138,43 @@ post:
 
         api.deviceComplete(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        DeviceCompleteRequest req = new DeviceCompleteRequest();
-        req.SetUserCode("XWWKPBWVXQ");
-        req.SetResult(DeviceCompleteResult.AUTHORIZED);
-        req.SetSubject("john");
+    #     DeviceCompleteRequest req = new DeviceCompleteRequest();
+    #     req.SetUserCode("XWWKPBWVXQ");
+    #     req.SetResult(DeviceCompleteResult.AUTHORIZED);
+    #     req.SetSubject("john");
 
-        await api.DeviceComplete(req);
+    #     await api.DeviceComplete(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new DeviceCompleteRequest();
-        $req.setUserCode("XWWKPBWVXQ");
-        $req.setResult(DeviceCompleteResult.$AUTHORIZED);
-        $req.setSubject("john");
+    #     $req = new DeviceCompleteRequest();
+    #     $req.setUserCode("XWWKPBWVXQ");
+    #     $req.setResult(DeviceCompleteResult.$AUTHORIZED);
+    #     $req.setSubject("john");
 
-        $api.deviceComplete($req);
+    #     $api.deviceComplete($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::DeviceCompleteRequest.new
-        req.use_code = 'XWWKPBWVXQ'
-        req.result = 'AUTHORIZED'
-        req.subject = 'john'
+    #     req = Authlete::Model::Request::DeviceCompleteRequest.new
+    #     req.use_code = 'XWWKPBWVXQ'
+    #     req.result = 'AUTHORIZED'
+    #     req.subject = 'john'
 
-        api.deviceComplete(req)
+    #     api.deviceComplete(req)
 
     - lang: python
       source: |
@@ -188,21 +188,21 @@ post:
 
         api.deviceComplete(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.DeviceCompleteRequest{}
-        req.UserCode = "XWWKPBWVXQ"
-        req.Result = DeviceCompleteResult.AUTHORIZED
-        req.Subject = "john"
+    #     req := dto.DeviceCompleteRequest{}
+    #     req.UserCode = "XWWKPBWVXQ"
+    #     req.Result = DeviceCompleteResult.AUTHORIZED
+    #     req.Subject = "john"
 
-        api.DeviceComplete(&req)
+    #     api.DeviceComplete(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Device Flow

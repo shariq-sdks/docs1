@@ -172,37 +172,37 @@ post:
 
         api.dynamicClientRegister(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        ClientRegistrationRequest req = new ClientRegistrationRequest();
-        req.Json = "...";
+    #     ClientRegistrationRequest req = new ClientRegistrationRequest();
+    #     req.Json = "...";
 
-        await api.DynamicClientRegister(req);
+    #     await api.DynamicClientRegister(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new ClientRegistrationRequest();
-        $req.json = "...";
+    #     $req = new ClientRegistrationRequest();
+    #     $req.json = "...";
 
-        $api.dynamicClientRegister($req);
+    #     $api.dynamicClientRegister($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::ClientRegistrationRequest.new
-        req.json = '...'
+    #     req = Authlete::Model::ClientRegistrationRequest.new
+    #     req.json = '...'
 
-        api.dynamic_client_register(req)
+    #     api.dynamic_client_register(req)
 
     - lang: python
       source: |
@@ -214,19 +214,19 @@ post:
 
         api.dynamicClientRegister(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.ClientRegistrationRequest{}
-        req.Json = "..."
+    #     req := dto.ClientRegistrationRequest{}
+    #     req.Json = "..."
 
-        api.DynamicClientRegister(&req)
+    #     api.DynamicClientRegister(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Dynamic Client Registration

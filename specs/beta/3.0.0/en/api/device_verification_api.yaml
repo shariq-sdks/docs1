@@ -125,37 +125,37 @@ post:
 
         api.deviceVerification(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        DeviceVerificationRequest req = new DeviceVerificationRequest();
-        req.SetUserCode("XWWKPBWVXQ");
+    #     DeviceVerificationRequest req = new DeviceVerificationRequest();
+    #     req.SetUserCode("XWWKPBWVXQ");
 
-        await api.DeviceVerification(req);
+    #     await api.DeviceVerification(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new DeviceVerificationRequest();
-        $req.setUserCode("XWWKPBWVXQ");
+    #     $req = new DeviceVerificationRequest();
+    #     $req.setUserCode("XWWKPBWVXQ");
 
-        $api.deviceVerification($req);
+    #     $api.deviceVerification($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::DeviceVerificationRequest.new
-        req.user_code = 'XWWKPBWVXQ'
+    #     req = Authlete::Model::Request::DeviceVerificationRequest.new
+    #     req.user_code = 'XWWKPBWVXQ'
 
-        api.deviceVerification(req)
+    #     api.deviceVerification(req)
 
     - lang: python
       source: |
@@ -167,19 +167,19 @@ post:
 
         api.deviceVerification(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.DeviceVerificationRequest{}
-        req.UserCode = "XWWKPBWVXQ"
+    #     req := dto.DeviceVerificationRequest{}
+    #     req.UserCode = "XWWKPBWVXQ"
 
-        api.DeviceVerification(&req)
+    #     api.DeviceVerification(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Device Flow

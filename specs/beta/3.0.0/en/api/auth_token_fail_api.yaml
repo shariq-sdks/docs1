@@ -136,40 +136,40 @@ post:
 
         api.tokenFail(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        TokenFailRequest req = new TokenFailRequest();
-        req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c";
-        req.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS;
+    #     TokenFailRequest req = new TokenFailRequest();
+    #     req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c";
+    #     req.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS;
 
-        await api.TokenFail(req);
+    #     await api.TokenFail(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new TokenFailRequest();
-        $req.setTicket("83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c");
-        $req.setReason(TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS);
+    #     $req = new TokenFailRequest();
+    #     $req.setTicket("83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c");
+    #     $req.setReason(TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS);
 
-        $api.tokenFail($req);
+    #     $api.tokenFail($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::TokenFailRequest.new
-        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'
-        req.reason = 'INVALID_RESOURCE_OWNER_CREDENTIALS'
+    #     req = Authlete::Model::Request::TokenFailRequest.new
+    #     req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'
+    #     req.reason = 'INVALID_RESOURCE_OWNER_CREDENTIALS'
 
-        api.token_fail(req)
+    #     api.token_fail(req)
 
     - lang: python
       source: |
@@ -182,27 +182,27 @@ post:
 
         api.tokenFail(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.TokenFailRequest{}
-        req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c"
-        req.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS
+    #     req := dto.TokenFailRequest{}
+    #     req.Ticket = "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c"
+    #     req.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS
 
-        api.TokenFail(&req)
+    #     api.TokenFail(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new TokenFailRequest();
-        req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';
-        req.reason = TokenFailRequest.Reason.INVALID_RESOURCE_OWNER_CREDENTIALS;
+    #     const req = new TokenFailRequest();
+    #     req.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';
+    #     req.reason = TokenFailRequest.Reason.INVALID_RESOURCE_OWNER_CREDENTIALS;
 
-        await api.tokenFail(req);
+    #     await api.tokenFail(req);
   tags:
     - Token Endpoint
