@@ -1,0 +1,10 @@
+type: object
+properties:
+  pretty:
+    type: boolean
+    description: |
+      Get the flag indicating whether the JSON returned from the API is formatted in a human-friendly way.
+  patch:
+    type: string
+    description: |
+      Get the JSON Patch (RFC 6902 JavaScript Object Notation (JSON) Patch) to be applied.

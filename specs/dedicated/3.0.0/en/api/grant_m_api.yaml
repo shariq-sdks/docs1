@@ -1,0 +1,44 @@
+post:
+  summary: /api/{serviceId}/gm API
+  description: |
+    The API is for the implementation of the grant management endpoint which is
+    defined in "<a href="https://openid.net/specs/fapi-grant-management.html">Grant Management for OAuth 2.0</a>".
+
+  security:
+    - AccessToken: []
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/g_m_request.yaml
+        example:
+          accessToken: eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA
+          subject: "123457884"
+          grantId: "57297408867"
+          gmAction: "REVOKE"
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/g_m_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'grant_m_api'
+  tags:
+    - Grant Management Endpoint

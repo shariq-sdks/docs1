@@ -1,0 +1,10 @@
+type: object
+properties:
+  entityConfiguration:
+    type: string
+    description: |
+      The entity configuration of a relying party.
+  trustChain:
+    type: string
+    description: |
+      The trust chain of a relying party.
