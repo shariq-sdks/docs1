@@ -73,28 +73,28 @@ post:
 
         api.verifyJose(request);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        JoseVerifyRequest req = new JoseVerifyRequest();
-        req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw";
-        req.ClockSkew = 100;
-        req.SinedByClient = true;
-        req.ClientIdentifier = "57297408867";
+    #     JoseVerifyRequest req = new JoseVerifyRequest();
+    #     req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw";
+    #     req.ClockSkew = 100;
+    #     req.SinedByClient = true;
+    #     req.ClientIdentifier = "57297408867";
 
-        await api.VerifyJose(req);
+    #     await api.VerifyJose(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        // This API is not supported yet.
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     // This API is not supported yet.
 
-    - lang: ruby
-      source: |
-        # This API is not supported yet.
+    # - lang: ruby
+    #   source: |
+    #     # This API is not supported yet.
 
     - lang: python
       source: |
@@ -109,23 +109,22 @@ post:
 
         api.verifyJose(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.JoseVerifyRequest{}
-        req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw"
-        req.ClockSkew = 100
-        req.SinedByClient = true
-        req.ClientIdentifier = "57297408867"
+    #     req := dto.JoseVerifyRequest{}
+    #     req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw"
+    #     req.ClockSkew = 100
+    #     req.SinedByClient = true
+    #     req.ClientIdentifier = "57297408867"
 
-        api.VerifyJose(&req)
+    #     api.VerifyJose(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
-
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Jose Object

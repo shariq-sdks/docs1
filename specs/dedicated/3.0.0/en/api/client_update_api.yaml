@@ -163,49 +163,49 @@ post:
 
         api.updateClient(client);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        // Get an existing client.
-        long clientId = ...;
-        Client client = api.GetClient(clientId);
+    #     // Get an existing client.
+    #     long clientId = ...;
+    #     Client client = api.GetClient(clientId);
 
-        // Update "client name".
-        client.ClientName = "My updated client";
+    #     // Update "client name".
+    #     client.ClientName = "My updated client";
 
-        api.UpdateClient(client);
+    #     api.UpdateClient(client);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        // Get an existing client.
-        $clientId = ...;
-        $client = $api.getClient(clientId);
+    #     // Get an existing client.
+    #     $clientId = ...;
+    #     $client = $api.getClient(clientId);
 
-        // Update "client name".
-        $client.setClientName("My updated client");
+    #     // Update "client name".
+    #     $client.setClientName("My updated client");
 
-        $api.updateClient($client);
+    #     $api.updateClient($client);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        # Get an existing client.
-        client_id = ...
-        client = api.client_get(client_id)
+    #     # Get an existing client.
+    #     client_id = ...
+    #     client = api.client_get(client_id)
 
-        # Update "client name".
-        client.client_name = 'My updated client'
+    #     # Update "client name".
+    #     client.client_name = 'My updated client'
 
-        api.client_update(client)
+    #     api.client_update(client)
 
     - lang: python
       source: |
@@ -221,34 +221,33 @@ post:
 
         api.updatedClient(client)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        // Get an existing client.
-        clientId := ...
-        client, _ := api.GetClient(clientId)
+    #     // Get an existing client.
+    #     clientId := ...
+    #     client, _ := api.GetClient(clientId)
 
-        // Update "client name".
-        client.ClientName := "My updated client"
+    #     // Update "client name".
+    #     client.ClientName := "My updated client"
 
-        api.UpdateClient(&client)
+    #     api.UpdateClient(&client)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        // Get an existing client.
-        const clientId = ...;
-        const client = await api.getClient(clientId);
+    #     // Get an existing client.
+    #     const clientId = ...;
+    #     const client = await api.getClient(clientId);
 
-        // Update "client name".
-        client.clientName = 'My updated client';
+    #     // Update "client name".
+    #     client.clientName = 'My updated client';
 
-        await api.updateClient(client);
-
+    #     await api.updateClient(client);
   tags:
     - Client Management

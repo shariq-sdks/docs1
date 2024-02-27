@@ -190,43 +190,43 @@ post:
 
         api.deviceAuthorization(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        DeviceAuthorizationRequest req = new DeviceAuthorizationRequest();
-        req.Parameters = ...;
-        req.ClientId = "26888344961664";
-        req.ClientSecret = "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog";
+    #     DeviceAuthorizationRequest req = new DeviceAuthorizationRequest();
+    #     req.Parameters = ...;
+    #     req.ClientId = "26888344961664";
+    #     req.ClientSecret = "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog";
 
-        await api.DeviceAuthorization(req);
+    #     await api.DeviceAuthorization(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new DeviceAuthorizationRequest();
-        $req.setParameters(...);
-        $req.setClientId("26888344961664");
-        $req.setClientSecret("SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog");
+    #     $req = new DeviceAuthorizationRequest();
+    #     $req.setParameters(...);
+    #     $req.setClientId("26888344961664");
+    #     $req.setClientSecret("SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog");
 
-        $api.deviceAuthorization($req);
+    #     $api.deviceAuthorization($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::DeviceAuthorizationRequest.new
-        req.parameters = '...'
-        req.client_id = '26888344961664'
-        req.client_secret = 'SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog'
+    #     req = Authlete::Model::Request::DeviceAuthorizationRequest.new
+    #     req.parameters = '...'
+    #     req.client_id = '26888344961664'
+    #     req.client_secret = 'SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog'
 
-        api.device_authorization(req)
+    #     api.device_authorization(req)
 
     - lang: python
       source: |
@@ -240,21 +240,21 @@ post:
 
         api.deviceAuthorization(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.DeviceAuthorizationRequest{}
-        req.Parameters = ...
-        req.ClientId = "26888344961664"
-        req.ClientSecret = "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog"
+    #     req := dto.DeviceAuthorizationRequest{}
+    #     req.Parameters = ...
+    #     req.ClientId = "26888344961664"
+    #     req.ClientSecret = "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog"
 
-        api.DeviceAuthorization(&req)
+    #     api.DeviceAuthorization(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Device Flow

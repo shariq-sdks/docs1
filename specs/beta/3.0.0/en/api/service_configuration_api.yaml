@@ -383,28 +383,28 @@ get:
 
         api.getServiceConfiguration(true);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        await api.GetServiceConfiguration(true);
+    #     await api.GetServiceConfiguration(true);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $api.getServiceConfiguration(true);
+    #     $api.getServiceConfiguration(true);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        api.get_service_configuration(pretty: true)
+    #     api.get_service_configuration(pretty: true)
 
     - lang: python
       source: |
@@ -413,19 +413,19 @@ get:
 
         api.getServiceConfiguration(True)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        api.GetServiceConfiguration(true)
+    #     api.GetServiceConfiguration(true)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        await api.getServiceConfiguration(true);
+    #     await api.getServiceConfiguration(true);
   tags:
     - Configuration Endpoint

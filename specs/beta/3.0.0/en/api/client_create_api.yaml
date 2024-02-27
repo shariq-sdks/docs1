@@ -128,43 +128,43 @@ post:
 
         api.createClient(client);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        Client client = new Client();
-        client.Developer = "john";
-        client.ClientName = "My Client";
-        ...
+    #     Client client = new Client();
+    #     client.Developer = "john";
+    #     client.ClientName = "My Client";
+    #     ...
 
-        await api.CreateClient(client);
+    #     await api.CreateClient(client);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $client = new Client();
-        $client.setDeveloper("john");
-        $client.setClientName("My Client");
-        ...
+    #     $client = new Client();
+    #     $client.setDeveloper("john");
+    #     $client.setClientName("My Client");
+    #     ...
 
-        $api.createClient($client);
+    #     $api.createClient($client);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        client = Authlete::Model::Client.new
-        client.developer = 'john'
-        client.client_name = 'My Client'
-        ...
+    #     client = Authlete::Model::Client.new
+    #     client.developer = 'john'
+    #     client.client_name = 'My Client'
+    #     ...
 
-        api.client_create(client)
+    #     api.client_create(client)
 
     - lang: python
       source: |
@@ -178,30 +178,29 @@ post:
 
         api.createClient(client)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        client := dto.Client{}
-        client.Developer = "john"
-        client.ClientName = "My Client"
-        ...
+    #     client := dto.Client{}
+    #     client.Developer = "john"
+    #     client.ClientName = "My Client"
+    #     ...
 
-        api.CreateClient(client)
+    #     api.CreateClient(client)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const client = new Client();
-        client.developer = 'john';
-        client.clientName = 'My Client';
-        ...
+    #     const client = new Client();
+    #     client.developer = 'john';
+    #     client.clientName = 'My Client';
+    #     ...
 
-        await api.createClient(client);
-
+    #     await api.createClient(client);
   tags:
     - Client Management

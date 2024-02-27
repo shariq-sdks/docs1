@@ -257,48 +257,48 @@ post:
 
         api.updateService(service);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        // Get an existing service.
-        long serviceId = ...;
-        Service service = api.GetService(serviceId);
+    #     // Get an existing service.
+    #     long serviceId = ...;
+    #     Service service = api.GetService(serviceId);
 
-        // Update "service name".
-        service.ServiceName = "My updated service";
+    #     // Update "service name".
+    #     service.ServiceName = "My updated service";
 
-        await api.UpdateService(service);
+    #     await api.UpdateService(service);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        // Get an existing service.
-        $serviceId = ...;
-        $api.getService($serviceId);
+    #     // Get an existing service.
+    #     $serviceId = ...;
+    #     $api.getService($serviceId);
 
-        // Update "service name".
-        service.setServiceName("My updated service");
+    #     // Update "service name".
+    #     service.setServiceName("My updated service");
 
-        $api.updateService($service);
+    #     $api.updateService($service);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        service_api_key = ...
-        api.service_get(service_api_key)
+    #     service_id = ...
+    #     api.service_get(service_id)
 
-        # Update "service name".
-        service.serviceName = 'My updated service';
+    #     # Update "service name".
+    #     service.serviceName = 'My updated service';
 
-        api.service_update(service)
+    #     api.service_update(service)
 
     - lang: python
       source: |
@@ -314,33 +314,33 @@ post:
 
         api.updateService(service)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        // Get an existing service.
-        serviceId := ...
-        service, _ := api.GetService(serviceId)
+    #     // Get an existing service.
+    #     serviceId := ...
+    #     service, _ := api.GetService(serviceId)
 
-        // Update "service name".
-        service.ServiceName := "My updated service"
+    #     // Update "service name".
+    #     service.ServiceName := "My updated service"
 
-        api.UpdateService(&service)
+    #     api.UpdateService(&service)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        // Get an existing service.
-        const serviceId = ...;
-        const service = await api.getService(serviceId);
+    #     // Get an existing service.
+    #     const serviceId = ...;
+    #     const service = await api.getService(serviceId);
 
-        // Update "service name".
-        service.serviceName = 'My updated service';
+    #     // Update "service name".
+    #     service.serviceName = 'My updated service';
 
-        await api.updateService(service);
+    #     await api.updateService(service);
   tags:
     - Service Management

@@ -145,43 +145,43 @@ get:
 
         api.getClientAuthorizationList(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        ClientAuthorizationGetListRequest req = new ClientAuthorizationGetListRequest();
-        req.Subject = "john";
-        req.Start = 0;
-        req.End = 5;
+    #     ClientAuthorizationGetListRequest req = new ClientAuthorizationGetListRequest();
+    #     req.Subject = "john";
+    #     req.Start = 0;
+    #     req.End = 5;
 
-        await api.GetClientAuthorizationList(req);
+    #     await api.GetClientAuthorizationList(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new ClientAuthorizationGetListRequest();
-        $req.setSubject("john");
-        $req.setStart(0);
-        $req.setEnd(5);
+    #     $req = new ClientAuthorizationGetListRequest();
+    #     $req.setSubject("john");
+    #     $req.setStart(0);
+    #     $req.setEnd(5);
 
-        $api.getClientAuthorizationList($req);
+    #     $api.getClientAuthorizationList($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::ClientAuthorizationGetListRequest.new
-        req.subject = 'john'
-        req.start = 0
-        req.end = 5
+    #     req = Authlete::Model::Request::ClientAuthorizationGetListRequest.new
+    #     req.subject = 'john'
+    #     req.start = 0
+    #     req.end = 5
 
-        api.get_client_authorization_list(req)
+    #     api.get_client_authorization_list(req)
 
     - lang: python
       source: |
@@ -195,22 +195,21 @@ get:
 
         api.getClientAuthorizationList(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.ClientAuthorizationGetListRequest{}
-        req.Subject = "john"
-        req.Start = 0
-        req.End = 5
+    #     req := dto.ClientAuthorizationGetListRequest{}
+    #     req.Subject = "john"
+    #     req.Start = 0
+    #     req.End = 5
 
-        api.GetClientAuthorizationList(&req)
+    #     api.GetClientAuthorizationList(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
-
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Client Management

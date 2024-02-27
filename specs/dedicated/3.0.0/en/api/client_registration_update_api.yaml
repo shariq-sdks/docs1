@@ -204,43 +204,43 @@ post:
 
         api.dynamicClientUpdate(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        ClientRegistrationRequest req = new ClientRegistrationRequest();
-        req.ClientId = "26837717140341";
-        req.Token = "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA";
-        req.Json = "...";
+    #     ClientRegistrationRequest req = new ClientRegistrationRequest();
+    #     req.ClientId = "26837717140341";
+    #     req.Token = "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA";
+    #     req.Json = "...";
 
-        await api.DynamicClientUpdate(req);
+    #     await api.DynamicClientUpdate(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new ClientRegistrationRequest();
-        $req.clientId = "26837717140341";
-        $req.token = "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA";
-        $req.json = "...";
+    #     $req = new ClientRegistrationRequest();
+    #     $req.clientId = "26837717140341";
+    #     $req.token = "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA";
+    #     $req.json = "...";
 
-        $api.dynamicClientUpdate($req);
+    #     $api.dynamicClientUpdate($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::ClientRegistrationRequest.new
-        req.clientId = '26837717140341'
-        req.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'
-        req.json = '...'
+    #     req = Authlete::Model::ClientRegistrationRequest.new
+    #     req.clientId = '26837717140341'
+    #     req.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'
+    #     req.json = '...'
 
-        api.dynamic_client_update(req)
+    #     api.dynamic_client_update(req)
 
     - lang: python
       source: |
@@ -254,21 +254,21 @@ post:
 
         api.dynamicClientUpdate(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.ClientRegistrationRequest{}
-        req.ClientId = "26837717140341"
-        req.Token = "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA"
-        req.Json = "..."
+    #     req := dto.ClientRegistrationRequest{}
+    #     req.ClientId = "26837717140341"
+    #     req.Token = "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA"
+    #     req.Json = "..."
 
-        api.DynamicClientUpdate(&req)
+    #     api.DynamicClientUpdate(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Dynamic Client Registration

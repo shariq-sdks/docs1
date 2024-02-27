@@ -76,37 +76,37 @@ delete:
 
         api.deleteGrantedScopes(clientId, subject);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        long clientId  = ...;
-        string subject = "john";
+    #     long clientId  = ...;
+    #     string subject = "john";
 
-        await api.DeleteGrantedScopes(clientId, subject);
+    #     await api.DeleteGrantedScopes(clientId, subject);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $clientId = ...;
-        $subject = "john";
+    #     $clientId = ...;
+    #     $subject = "john";
 
-        $api.deleteGrantedScopes($clientId, $subject);
+    #     $api.deleteGrantedScopes($clientId, $subject);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        client_id = ...
-        subject = 'john'
+    #     client_id = ...
+    #     subject = 'john'
 
-        api.delete_granted_scopes(client_id, subject)
+    #     api.delete_granted_scopes(client_id, subject)
 
     - lang: python
       source: |
@@ -118,20 +118,20 @@ delete:
 
         api.deleteGrantedScopes(clientId, subject)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        clientId := ...
-        subject := "john"
+    #     clientId := ...
+    #     subject := "john"
 
-        api.DeleteGrantedScopes(clientId, subject)
+    #     api.DeleteGrantedScopes(clientId, subject)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
 
   tags:
     - Client Management

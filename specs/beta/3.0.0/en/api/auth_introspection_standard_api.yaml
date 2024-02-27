@@ -160,37 +160,37 @@ post:
 
         api.standardIntrospection(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        StandardIntrospectionRequest req = new StandardIntrospectionRequest();
-        req.Parameters = ...;
+    #     StandardIntrospectionRequest req = new StandardIntrospectionRequest();
+    #     req.Parameters = ...;
 
-        await api.StandardIntrospection(req);
+    #     await api.StandardIntrospection(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new StandardIntrospectionRequest();
-        $req.setParameters(...);
+    #     $req = new StandardIntrospectionRequest();
+    #     $req.setParameters(...);
 
-        $api.standardIntrospection($req);
+    #     $api.standardIntrospection($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::StandardIntrospectionRequest.new
-        req.parameters = '...'
+    #     req = Authlete::Model::Request::StandardIntrospectionRequest.new
+    #     req.parameters = '...'
 
-        api.standard_introspection(req)
+    #     api.standard_introspection(req)
 
     - lang: python
       source: |
@@ -202,25 +202,25 @@ post:
 
         api.standardIntrospection(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.StandardIntrospectionRequest{}
-        req.Parameters = ...
+    #     req := dto.StandardIntrospectionRequest{}
+    #     req.Parameters = ...
 
-        api.StandardIntrospection(&req)
+    #     api.StandardIntrospection(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new StandardIntrospectionRequest();
-        req.parameters = ...;
+    #     const req = new StandardIntrospectionRequest();
+    #     req.parameters = ...;
 
-        await api.standardIntrospection(req);
+    #     await api.standardIntrospection(req);
   tags:
     - Introspection Endpoint

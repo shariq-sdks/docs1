@@ -210,37 +210,37 @@ post:
 
         api.userinfo(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        UserInfoRequest req = new UserInfoRequest();
-        req.Token = "Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI";
+    #     UserInfoRequest req = new UserInfoRequest();
+    #     req.Token = "Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI";
 
-        await api.Userinfo(req);
+    #     await api.Userinfo(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new UserInfoRequest();
-        $req.setToken("Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI");
+    #     $req = new UserInfoRequest();
+    #     $req.setToken("Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI");
 
-        $api.userinfo($req);
+    #     $api.userinfo($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::UserInfoRequest.new
-        req.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI'
+    #     req = Authlete::Model::Request::UserInfoRequest.new
+    #     req.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI'
 
-        api.user_info(req)
+    #     api.user_info(req)
 
     - lang: python
       source: |
@@ -252,25 +252,25 @@ post:
 
         api.userinfo(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.UserInfoRequest{}
-        req.Token = "Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI"
+    #     req := dto.UserInfoRequest{}
+    #     req.Token = "Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI"
 
-        api.Userinfo(&req)
+    #     api.Userinfo(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new UserInfoRequest();
-        req.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI';
+    #     const req = new UserInfoRequest();
+    #     req.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI';
 
-        await api.userInfo(req);
+    #     await api.userInfo(req);
   tags:
     - UserInfo Endpoint

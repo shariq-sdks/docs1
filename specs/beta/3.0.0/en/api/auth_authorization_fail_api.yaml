@@ -176,40 +176,40 @@ post:
 
         api.authorizationFail(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        AuthorizationFailRequest req = new AuthorizationFailRequest();
-        req.Ticket = "c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q";
-        req.Reason = AuthorizationFailReason.NOT_AUTHENTICATED;
+    #     AuthorizationFailRequest req = new AuthorizationFailRequest();
+    #     req.Ticket = "c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q";
+    #     req.Reason = AuthorizationFailReason.NOT_AUTHENTICATED;
 
-        await api.AuthorizationFail(req);
+    #     await api.AuthorizationFail(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new AuthorizationFailRequest();
-        $req.setTicket("c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q");
-        $req.setReason(AuthorizationFailReason.$NOT_AUTHENTICATED);
+    #     $req = new AuthorizationFailRequest();
+    #     $req.setTicket("c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q");
+    #     $req.setReason(AuthorizationFailReason.$NOT_AUTHENTICATED);
 
-        $api.authorizationFail($req);
+    #     $api.authorizationFail($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::AuthorizationFailRequest.new
-        req.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q'
-        req.reason = 'NOT_AUTHENTICATED'
+    #     req = Authlete::Model::Request::AuthorizationFailRequest.new
+    #     req.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q'
+    #     req.reason = 'NOT_AUTHENTICATED'
 
-        api.authorization_fail(req)
+    #     api.authorization_fail(req)
 
     - lang: python
       source: |
@@ -222,26 +222,26 @@ post:
 
         api.authorizationFail(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.AuthorizationFailRequest{}
-        req.Ticket = "c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q"
-        req.Reason = AuthorizationFailReason.NOT_AUTHENTICATED
+    #     req := dto.AuthorizationFailRequest{}
+    #     req.Ticket = "c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q"
+    #     req.Reason = AuthorizationFailReason.NOT_AUTHENTICATED
 
-        api.AuthorizationFail(&req)
+    #     api.AuthorizationFail(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new AuthorizationFailRequest();
-        req.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q';
-        req.reason = AuthorizationFailRequest.Reason.NOT_AUTHENTICATED;
+    #     const req = new AuthorizationFailRequest();
+    #     req.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q';
+    #     req.reason = AuthorizationFailRequest.Reason.NOT_AUTHENTICATED;
 
-        await api.authorizationFail(req);
+    #     await api.authorizationFail(req);
   tags: [ Authorization Endpoint ]

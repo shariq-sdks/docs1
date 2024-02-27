@@ -100,37 +100,37 @@ get:
 
         api.getGrantedScopes(clientId, subject);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        long clientId  = 26478243745571;
-        string subject = "john";
+    #     long clientId  = 26478243745571;
+    #     string subject = "john";
 
-        await api.GetGrantedScopes(clientId, subject);
+    #     await api.GetGrantedScopes(clientId, subject);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $clientId = 26478243745571;
-        $subject = "john";
+    #     $clientId = 26478243745571;
+    #     $subject = "john";
 
-        $api.getGrantedScopes($clientId, $subject);
+    #     $api.getGrantedScopes($clientId, $subject);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        client_id = 26478243745571
-        subject = 'john'
+    #     client_id = 26478243745571
+    #     subject = 'john'
 
-        api.get_granted_scopes(client_id, subject)
+    #     api.get_granted_scopes(client_id, subject)
 
     - lang: python
       source: |
@@ -142,20 +142,19 @@ get:
 
         api.getGrantedScopes(clientId, subject)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        clientId := 26478243745571
-        subject := "john"
+    #     clientId := 26478243745571
+    #     subject := "john"
 
-        api.GetGrantedScopes(clientId, subject)
+    #     api.GetGrantedScopes(clientId, subject)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
-
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - Client Management

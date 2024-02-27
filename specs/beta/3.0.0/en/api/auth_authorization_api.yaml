@@ -776,37 +776,37 @@ post:
 
         api.authorization(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        AuthorizationRequest req = new AuthorizationRequest();
-        req.Parameters = ...;
+    #     AuthorizationRequest req = new AuthorizationRequest();
+    #     req.Parameters = ...;
 
-        await api.Authorization(req);
+    #     await api.Authorization(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new AuthorizationRequest();
-        $req.setParameters(...);
+    #     $req = new AuthorizationRequest();
+    #     $req.setParameters(...);
 
-        $api.authorization($req);
+    #     $api.authorization($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::AuthorizationRequest.new
-        req.parameters = '...'
+    #     req = Authlete::Model::Request::AuthorizationRequest.new
+    #     req.parameters = '...'
 
-        api.authorization(req)
+    #     api.authorization(req)
 
     - lang: python
       source: |
@@ -818,25 +818,25 @@ post:
 
         api.authorization(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.AuthorizationRequest{}
-        req.Parameters = ...
+    #     req := dto.AuthorizationRequest{}
+    #     req.Parameters = ...
 
-        api.Authorization(&req)
+    #     api.Authorization(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const req = new AuthorizationRequest();
-        req.parameters = ...;
+    #     const req = new AuthorizationRequest();
+    #     req.parameters = ...;
 
-        await api.authorization(req);
+    #     await api.authorization(req);
   tags:
     - Authorization Endpoint

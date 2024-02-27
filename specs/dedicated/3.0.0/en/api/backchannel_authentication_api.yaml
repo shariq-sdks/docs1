@@ -405,43 +405,43 @@ post:
 
         api.backchannelAuthentication(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        BackchannelAuthenticationRequest req = new BackchannelAuthenticationRequest();
-        req.Parameters = ...;
-        req.ClientId = "26862190133482";
-        req.ClientSecret = "8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A";
+    #     BackchannelAuthenticationRequest req = new BackchannelAuthenticationRequest();
+    #     req.Parameters = ...;
+    #     req.ClientId = "26862190133482";
+    #     req.ClientSecret = "8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A";
 
-        await api.BackchannelAuthentication(req);
+    #     await api.BackchannelAuthentication(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new BackchannelAuthenticationRequest();
-        $req.setParameters(...);
-        $req.setClientId("26862190133482");
-        $req.setClientSecret("8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A");
+    #     $req = new BackchannelAuthenticationRequest();
+    #     $req.setParameters(...);
+    #     $req.setClientId("26862190133482");
+    #     $req.setClientSecret("8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A");
 
-        $api.backchannelAuthentication($req);
+    #     $api.backchannelAuthentication($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::BackchannelAuthenticationRequest.new
-        req.parameters = '...'
-        req.client_id = '26862190133482'
-        req.client_secret = '8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A'
+    #     req = Authlete::Model::Request::BackchannelAuthenticationRequest.new
+    #     req.parameters = '...'
+    #     req.client_id = '26862190133482'
+    #     req.client_secret = '8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A'
 
-        api.backchannel_authentication(req)
+    #     api.backchannel_authentication(req)
 
     - lang: python
       source: |
@@ -455,21 +455,21 @@ post:
 
         api.backchannelAuthentication(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.BackchannelAuthenticationRequest{}
-        req.Parameters = ...
-        req.ClientId = "26862190133482"
-        req.ClientSecret = "8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A"
+    #     req := dto.BackchannelAuthenticationRequest{}
+    #     req.Parameters = ...
+    #     req.ClientId = "26862190133482"
+    #     req.ClientSecret = "8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A"
 
-        api.BackchannelAuthentication(&req)
+    #     api.BackchannelAuthentication(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - CIBA

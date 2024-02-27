@@ -157,37 +157,37 @@ post:
 
         api.backchannelAuthenticationIssue(req);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        BackchannelAuthenticationIssueRequest req = new BackchannelAuthenticationIssueRequest();
-        req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q";
+    #     BackchannelAuthenticationIssueRequest req = new BackchannelAuthenticationIssueRequest();
+    #     req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q";
 
-        await api.BackchannelAuthenticationIssue(req);
+    #     await api.BackchannelAuthenticationIssue(req);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $req = new BackchannelAuthenticationIssueRequest();
-        $req.setTicket("NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q");
+    #     $req = new BackchannelAuthenticationIssueRequest();
+    #     $req.setTicket("NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q");
 
-        $api.backchannelAuthenticationIssue($req);
+    #     $api.backchannelAuthenticationIssue($req);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        req = Authlete::Model::Request::BackchannelAuthenticationIssueRequest.new
-        req.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'
+    #     req = Authlete::Model::Request::BackchannelAuthenticationIssueRequest.new
+    #     req.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'
 
-        api.backchannel_authentication_issue(req)
+    #     api.backchannel_authentication_issue(req)
 
     - lang: python
       source: |
@@ -199,19 +199,19 @@ post:
 
         api.backchannelAuthenticationIssue(req)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        req := dto.BackchannelAuthenticationIssueRequest{}
-        req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q"
+    #     req := dto.BackchannelAuthenticationIssueRequest{}
+    #     req.Ticket = "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q"
 
-        api.BackchannelAuthenticationIssue(&req)
+    #     api.BackchannelAuthenticationIssue(&req)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
   tags:
     - CIBA

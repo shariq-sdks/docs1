@@ -136,34 +136,34 @@ get:
 
         api.getService(serviceId);
 
-    - lang: cs
-      label: C#
-      source: |
-        IAuthleteConfiguration conf = ...;
-        IAuthleteApi api = new AuthleteApi(conf);
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
 
-        long serviceId = ...;
+    #     long serviceId = ...;
 
-        await api.GetService(serviceId);
+    #     await api.GetService(serviceId);
 
-    - lang: php
-      label: PHP
-      source: |
-        $conf = ...;
-        $api = new AuthleteApiImpl($conf);
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
 
-        $serviceId = ...;
+    #     $serviceId = ...;
 
-        $api.getService($serviceId);
+    #     $api.getService($serviceId);
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        service_api_key = ...
+    #     service_id = ...
 
-        api.service_get(service_api_key)
+    #     api.service_get(service_id)
 
     - lang: python
       source: |
@@ -174,23 +174,23 @@ get:
 
         api.getService(serviceId)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        serviceId := ...
+    #     serviceId := ...
 
-        api.GetService(serviceId)
+    #     api.GetService(serviceId)
 
-    - lang: ts
-      label: deno
-      source: |
-        const conf: AuthleteConfiguration = ...;
-        const api: AuthleteApi = new AuthleteApiImpl(conf);
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     const conf: AuthleteConfiguration = ...;
+    #     const api: AuthleteApi = new AuthleteApiImpl(conf);
 
-        const serviceId = ...;
+    #     const serviceId = ...;
 
-        await api.getService(serviceId);
+    #     await api.getService(serviceId);
   tags:
     - Service Management

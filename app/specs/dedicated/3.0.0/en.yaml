@@ -1355,31 +1355,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong serviceId = ...;\n\napi.getService(serviceId);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong serviceId = ...;\n\nawait api.GetService(serviceId);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$serviceId = ...;\n\n$api.getService($serviceId);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nservice_api_key = ...\n\napi.service_get(service_api_key)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nserviceId = ...\n\napi.getService(serviceId)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nserviceId := ...\n\napi.GetService(serviceId)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst serviceId = ...;\n\nawait api.getService(serviceId);\n"
           }
         ],
         "tags": [
@@ -2768,31 +2745,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nint start = 0;\nint end = 5;\n\napi.getServiceList(start, end);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nint start = 0;\nint end = 5;\n\nawait api.GetServiceList(start, end);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$start = 0;\n$end = 5;\n\n$api.getServiceList($start, $end);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = { start: 0, end: 5 }\n\napi.service_get_list(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nstart = 0\nend = 5\n\napi.getServiceList(start, end)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nstart := 0\nend := 5\n\napi.GetServiceList(start, end)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst start = 0;\nconst end = 5;\n\nawait api.getServiceList(start, end);\n"
           }
         ],
         "tags": [
@@ -6364,31 +6318,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nService service = new Service();\nservice.setServiceName(\"My Service\");\n...\n\napi.createService(service);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nService service = new Service();\nservice.ServiceName = \"My Service\";\n...\n\nawait api.CreateService(service);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$service = new Service();\n$service.setServiceName(\"My Service\");\n...\n\n$api.createService($service);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nservice = Authlete::Model::Service.new\nservice.service_name = 'My Service'\n...\n\napi.service_create(service)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nservice = Service()\nservice.serviceName = 'My Service'\n...\n\napi.createService(service)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nservice := dto.Service{}\nservice.ServiceName = \"My Service\"\n...\n\napi.CreateService(&service)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst service = new Service();\nservice.serviceName = 'My Service';\n...\n\nawait api.createService(service);\n"
           }
         ],
         "tags": [
@@ -10021,31 +9952,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\n// Get an existing service.\nlong serviceId = ...;\nService service = api.getService(serviceId);\n\n// Update \"service name\".\nservice.setAServiceName(\"My updated service\");\n\napi.updateService(service);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\n// Get an existing service.\nlong serviceId = ...;\nService service = api.GetService(serviceId);\n\n// Update \"service name\".\nservice.ServiceName = \"My updated service\";\n\nawait api.UpdateService(service);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n// Get an existing service.\n$serviceId = ...;\n$api.getService($serviceId);\n\n// Update \"service name\".\nservice.setServiceName(\"My updated service\");\n\n$api.updateService($service);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nservice_api_key = ...\napi.service_get(service_api_key)\n\n# Update \"service name\".\nservice.serviceName = 'My updated service';\n\napi.service_update(service)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\n# Get an existing service.\nserviceId = ...\nservice = api.getService(serviceId)\n\n# Update \"service name\".\nservice.serviceName = 'My updated service'\n\napi.updateService(service)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\n// Get an existing service.\nserviceId := ...\nservice, _ := api.GetService(serviceId)\n\n// Update \"service name\".\nservice.ServiceName := \"My updated service\"\n\napi.UpdateService(&service)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\n// Get an existing service.\nconst serviceId = ...;\nconst service = await api.getService(serviceId);\n\n// Update \"service name\".\nservice.serviceName = 'My updated service';\n\nawait api.updateService(service);\n"
           }
         ],
         "tags": [
@@ -10187,31 +10095,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong serviceId = ...;\n\napi.deleteService(serviceId);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong serviceId = ...;\n\nawait api.DeleteService(serviceId);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$serviceId = ...;\n\n$api.deleteService($serviceId);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nservice_api_key = ...\n\napi.service_delete(service_api_key)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nserviceId = ...\n\napi.deleteService(serviceId)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nserviceId := ...\n\napi.DeleteService(serviceId)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst serviceId = ...;\n\nawait api.deleteService(serviceId);\n"
           }
         ],
         "tags": [
@@ -11229,31 +11114,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong clientId = ...;\n\napi.getClient(clientId);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong clientId = ...;\n\nawait api.GetClient(clientId);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientId = ...;\n\n$api.getClient($clientId);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_id = ...\n\napi.client_get(client_id)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientId = ...\n\napi.getClient(clientId)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientId := ...\n\napi.GetClient(clientId)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst clientId = ...;\n\nawait api.getClient(clientId);\n"
           }
         ],
         "tags": [
@@ -12327,31 +12189,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nString developer = \"john\";\nint start = 0;\nint end = 5;\n\napi.getClientList(developer, start, end);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nString developer = \"john\";\nint start = 0;\nint end = 5;\n\nawait api.GetClientList(developer, start, end);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$developer = \"john\";\n$start = 0;\n$end = 5;\n\n$api.getClientList($developer, $start, $end);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = { developer: 'john', start: 0, end: 5 }\n\napi.client_list_get(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\ndeveloper = 'john'\nstart = 0\nend = 5\n\napi.getClientList(developer, start, end)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\ndeveloper = \"john\"\nstart := 0\nend := 5\n\napi.GetClientList(developer, start, end)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst developer = 'john';\nconst start = 0;\nconst end = 5;\n\nawait api.getClientList(developer, start, end);\n"
           }
         ],
         "tags": [
@@ -14211,31 +14050,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nClient client = new Client();\nclient.setDeveloper(\"john\");\nclient.setClientName(\"My Client\");\n...\n\napi.createClient(client);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nClient client = new Client();\nclient.Developer = \"john\";\nclient.ClientName = \"My Client\";\n...\n\nawait api.CreateClient(client);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$client = new Client();\n$client.setDeveloper(\"john\");\n$client.setClientName(\"My Client\");\n...\n\n$api.createClient($client);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient = Authlete::Model::Client.new\nclient.developer = 'john'\nclient.client_name = 'My Client'\n...\n\napi.client_create(client)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclient = Client()\nclient.developer = 'john'\nclient.clientName = 'My Client'\n...\n\napi.createClient(client)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclient := dto.Client{}\nclient.Developer = \"john\"\nclient.ClientName = \"My Client\"\n...\n\napi.CreateClient(client)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst client = new Client();\nclient.developer = 'john';\nclient.clientName = 'My Client';\n...\n\nawait api.createClient(client);\n"
           }
         ],
         "tags": [
@@ -16932,31 +16748,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\n// Get an existing client.\nlong clientId = ...;\nClient client = api.getClient(clientId);\n\n// Update \"client name\".\nclient.setClientName(\"My updated client\");\n\napi.updateClient(client);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\n// Get an existing client.\nlong clientId = ...;\nClient client = api.GetClient(clientId);\n\n// Update \"client name\".\nclient.ClientName = \"My updated client\";\n\napi.UpdateClient(client);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n// Get an existing client.\n$clientId = ...;\n$client = $api.getClient(clientId);\n\n// Update \"client name\".\n$client.setClientName(\"My updated client\");\n\n$api.updateClient($client);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\n# Get an existing client.\nclient_id = ...\nclient = api.client_get(client_id)\n\n# Update \"client name\".\nclient.client_name = 'My updated client'\n\napi.client_update(client)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\n# Get an existing client.\nclientId = ...\nclient = api.getClient(clientId)\n\n# Update \"client name\".\nclient.clientName = 'My updated client'\n\napi.updatedClient(client)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\n// Get an existing client.\nclientId := ...\nclient, _ := api.GetClient(clientId)\n\n// Update \"client name\".\nclient.ClientName := \"My updated client\"\n\napi.UpdateClient(&client)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\n// Get an existing client.\nconst clientId = ...;\nconst client = await api.getClient(clientId);\n\n// Update \"client name\".\nclient.clientName = 'My updated client';\n\nawait api.updateClient(client);\n"
           }
         ],
         "tags": [
@@ -17107,31 +16900,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong clientId = ...;\n\napi.deleteClient(clientId);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong clientId = ...;\n\nawait api.DeleteClient(clientId);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientId = ...;\n\n$api.deleteClient($clientId);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_id = ...\n\napi.client_delete(client_id)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientId = ...\n\napi.deleteClient(clientId)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientId := ...\n\napi.DeleteClient(clientId)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst clientId = ...\n\nawait api.deleteClient(clientId);\n"
           }
         ],
         "tags": [
@@ -17506,31 +17276,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nString clientIdentifier = ...;\n\napi.refreshClientSecret(clientIdentifier);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nstring clientIdentifier = ...;\n\nawait api.RefreshClientSecret(clientIdentifier);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientIdentifier = ...;\n\n$api.refreshClientSecret($clientIdentifier);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_identifier = ...\n\napi.refresh_client_secret(client_identifier)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientIdentifier = ...\n\napi.refreshClientSecret(clientIdentifier)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientIdentifier = ...\n\napi.refreshClientSecret(clientIdentifier)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -17748,31 +17495,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nString clientIdentifier = ...;\nString clientSecret = \"my_updated_client_secret\";\n\napi.updateClientSecret(clientIdentifier, clientSecret);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nstring clientIdentifier = ...;\nstring clientSecret = \"my_new_client_secret\";\n\nawait api.UpdateClientSecret(clientIdentifier, clientSecret);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientIdentifier = ...;\n$clientSecret = \"my_new_client_secret\";\n\n$api.updateClientSecret($clientIdentifier, $clientSecret);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_identifier = ...\nclient_secret = 'my_new_client_secret'\n\napi.update_client_secret(client_identifier, client_secret)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientIdentifier = ...\nclientSecret = 'my_new_client_secret'\n\napi.updateClientSecret(clientIdentifier, clientSecret)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientIdentifier := ...\nclientSecret := \"my_new_client_secret\"\n\napi.UpdateClientSecret(clientIdentifier, clientSecret)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -18868,31 +18592,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nClientAuthorizationGetListRequest req = new ClientAuthorizationGetListRequest();\nreq.setSubject(\"john\");\nreq.setStart(0);\nreq.setEnd(5);\n\napi.getClientAuthorizationList(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();\nIAuthleteApi api = new AuthleteApi(conf);\n\nClientAuthorizationGetListRequest req = new ClientAuthorizationGetListRequest();\nreq.Subject = \"john\";\nreq.Start = 0;\nreq.End = 5;\n\nawait api.GetClientAuthorizationList(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new ClientAuthorizationGetListRequest();\n$req.setSubject(\"john\");\n$req.setStart(0);\n$req.setEnd(5);\n\n$api.getClientAuthorizationList($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::ClientAuthorizationGetListRequest.new\nreq.subject = 'john'\nreq.start = 0\nreq.end = 5\n\napi.get_client_authorization_list(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = ClientAuthorizationGetListRequest()\nreq.subject = 'john'\nreq.start = 0\nreq.end = 5\n\napi.getClientAuthorizationList(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.ClientAuthorizationGetListRequest{}\nreq.Subject = \"john\"\nreq.Start = 0\nreq.End = 5\n\napi.GetClientAuthorizationList(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -19117,31 +18818,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong clientId = ...;\n\nClientAuthorizationUpdateRequest req = new ClientAuthorizationUpdateRequest();\nreq.setSubject(\"john\");\nreq.setScopes(new String[]{ \"history.read\" });\n\napi.updateClientAuthorization(clientId, req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong clientId = ...;\n\nClientAuthorizationUpdateRequest req = new ClientAuthorizationUpdateRequest();\nreq.Subject = \"john\";\nreq.Scopes = { \"history.read\" };\n\nawait api.UpdateClientAuthorization(clientId, req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientId = ...;\n\n$req = new ClientAuthorizationUpdateRequest();\n$req.subject = \"john\";\n$req.setScopes([ \"history.read\" ]);\n\n$api.updateClientAuthorization($clientId, $req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_id = ...\n\nreq = Authlete::Model::Request::ClientAuthorizationUpdateRequest.new\nreq.subject = 'john'\nreq.scopes = [ 'history.read' ]\n\napi.update_client_authorization(client_id, req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientId = ...\n\nreq = ClientAuthorizationUpdateRequest()\nreq.subject = 'john'\nreq.scopes = [ 'history.read' ]\n\napi.updateClientAuthorization(clientId, req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientId := ...\n\nreq := dto.ClientAuthorizationUpdateRequest{}\nreq.Subject = \"john\"\nreq.Scopes = [1]string{ \"history.read\" }\n\napi.UpdateClientAuthorization(clientId, &req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -19364,31 +19042,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong clientId = ...;\nString subject = \"john\";\n\napi.deleteClientAuthorization(clientId, subject);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong clientId = ...;\nstring subject = \"john\";\n\nawait api.DeleteClientAuthorization(clientId, subject);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientId = ...;\n$subject = \"john\";\n\n$api.deleteClientAuthorization($clientId, $subject);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_id = ...\nsubject = 'john'\n\napi.delete_client_authorization(client_id, subject)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientId = ...\nsubject = 'john'\n\napi.deleteClientAuthorization(clientId, subject)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientId := ...\nsubject := \"john\"\n\napi.DeleteClientAuthorization(clientId, subject)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -19620,31 +19275,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong clientId  = 26478243745571;\nString subject = \"john\";\n\napi.getGrantedScopes(clientId, subject);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong clientId  = 26478243745571;\nstring subject = \"john\";\n\nawait api.GetGrantedScopes(clientId, subject);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientId = 26478243745571;\n$subject = \"john\";\n\n$api.getGrantedScopes($clientId, $subject);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_id = 26478243745571\nsubject = 'john'\n\napi.get_granted_scopes(client_id, subject)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientId = 26478243745571\nsubject = 'john'\n\napi.getGrantedScopes(clientId, subject)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientId := 26478243745571\nsubject := \"john\"\n\napi.GetGrantedScopes(clientId, subject)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -19830,31 +19462,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nlong clientId  = ...;\nString subject = \"john\";\n\napi.deleteGrantedScopes(clientId, subject);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nlong clientId  = ...;\nstring subject = \"john\";\n\nawait api.DeleteGrantedScopes(clientId, subject);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$clientId = ...;\n$subject = \"john\";\n\n$api.deleteGrantedScopes($clientId, $subject);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nclient_id = ...\nsubject = 'john'\n\napi.delete_granted_scopes(client_id, subject)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientId = ...\nsubject = 'john'\n\napi.deleteGrantedScopes(clientId, subject)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientId := ...\nsubject := \"john\"\n\napi.DeleteGrantedScopes(clientId, subject)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -22627,31 +22236,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nAuthorizationRequest req = new AuthorizationRequest();\nreq.setParameters(...);\n\napi.authorization(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nAuthorizationRequest req = new AuthorizationRequest();\nreq.Parameters = ...;\n\nawait api.Authorization(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new AuthorizationRequest();\n$req.setParameters(...);\n\n$api.authorization($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::AuthorizationRequest.new\nreq.parameters = '...'\n\napi.authorization(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = AuthorizationRequest()\nreq.parameters = ...\n\napi.authorization(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.AuthorizationRequest{}\nreq.Parameters = ...\n\napi.Authorization(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new AuthorizationRequest();\nreq.parameters = ...;\n\nawait api.authorization(req);\n"
           }
         ],
         "tags": [
@@ -22915,31 +22501,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nAuthorizationFailRequest req = new AuthorizationFailRequest();\nreq.setTicket(\"c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q\");\nreq.setReason(AuthorizationFailRequest.Reason.NOT_AUTHENTICATED);\n\napi.authorizationFail(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nAuthorizationFailRequest req = new AuthorizationFailRequest();\nreq.Ticket = \"c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q\";\nreq.Reason = AuthorizationFailReason.NOT_AUTHENTICATED;\n\nawait api.AuthorizationFail(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new AuthorizationFailRequest();\n$req.setTicket(\"c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q\");\n$req.setReason(AuthorizationFailReason.$NOT_AUTHENTICATED);\n\n$api.authorizationFail($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::AuthorizationFailRequest.new\nreq.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q'\nreq.reason = 'NOT_AUTHENTICATED'\n\napi.authorization_fail(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = AuthorizationFailRequest()\nreq.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q'\nreq.reason = AuthorizationFailReason.NOT_AUTHENTICATED\n\napi.authorizationFail(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.AuthorizationFailRequest{}\nreq.Ticket = \"c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q\"\nreq.Reason = AuthorizationFailReason.NOT_AUTHENTICATED\n\napi.AuthorizationFail(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new AuthorizationFailRequest();\nreq.ticket = 'c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q';\nreq.reason = AuthorizationFailRequest.Reason.NOT_AUTHENTICATED;\n\nawait api.authorizationFail(req);\n"
           }
         ],
         "tags": [
@@ -23444,31 +23007,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nAuthorizationIssueRequest req = new AuthorizationIssueRequest();\nreq.setTicket(\"FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc\");\nreq.setSubject(\"john\");\n\napi.authorizationIssue(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();\nIAuthleteApi api = new AuthleteApi(conf);\n\nAuthorizationIssueRequest req = new AuthorizationIssueRequest();\nreq.Ticket  = \"FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc\";\nreq.Subject = \"john\";\n\nawait api.AuthorizationIssue(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new AuthorizationIssueRequest();\n$req.setTicket(\"FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc\");\n$req.setSubject(\"john\");\n\n$api.authorizationIssue($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::AuthorizationIssueRequest.new\nreq.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc'\nreq.subject = 'john'\n\napi.authorization_issue(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = AuthorizationIssueRequest()\nreq.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc'\nreq.subject = 'john'\n\napi.authorizationIssue(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.AuthorizationIssueRequest{}\nreq.Ticket = \"FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc\"\nreq.Subject = \"john\"\n\napi.AuthorizationIssue(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new AuthorizationIssueRequest();\nreq.ticket = 'FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc';\nreq.subjec = 'john';\n\nawait api.authorizationIssue(req);\n"
           }
         ],
         "tags": [
@@ -23770,31 +23310,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nPushedAuthReqRequest req = new PushedAuthReqRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new PushedAuthReqRequest();\n$req.setParameters(...);\n$req.setClientId(\"57297408867\");\n$req.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\n$api.token($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::PushedAuthReqRequest.new\nreq.parameters = '...'\nreq.client_id = '57297408867'\nreq.client_secret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.token(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = PushedAuthReqRequest()\nreq.parameters = ...\nreq.clientId = '57297408867'\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.token(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.PushedAuthReqRequest{}\nreq.Parameters = ...\nreq.ClientId = \"57297408867\"\nreq.ClientSecret = \"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\"\n\napi.Token(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new PushedAuthReqRequest();\nreq.parameters = ...;\nreq.clientId = '57297408867';\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';\n\nawait api.token(req);\n"
           }
         ],
         "tags": [
@@ -24671,31 +24188,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenRequest req = new TokenRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenRequest req = new TokenRequest();\nreq.setParameters(...);\nreq.setClientId(\"57297408867\");\nreq.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\napi.token(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new TokenRequest();\n$req.setParameters(...);\n$req.setClientId(\"57297408867\");\n$req.setClientSecret(\"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\");\n\n$api.token($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::TokenRequest.new\nreq.parameters = '...'\nreq.client_id = '57297408867'\nreq.client_secret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.token(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = TokenRequest()\nreq.parameters = ...\nreq.clientId = '57297408867'\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A'\n\napi.token(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.TokenRequest{}\nreq.Parameters = ...\nreq.ClientId = \"57297408867\"\nreq.ClientSecret = \"J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A\"\n\napi.Token(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new TokenRequest();\nreq.parameters = ...;\nreq.clientId = '57297408867';\nreq.clientSecret = 'J_3C7P0nDTP7CwCg_HyPQh7bTQ1696CC8GWot-EjesZmdBiU5Gsidq5Ve3tMaN2x2_VcKV1UE1U3ZdGKRuTs7A';\n\nawait api.token(req);\n"
           }
         ],
         "tags": [
@@ -24929,31 +24423,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenFailRequest req = new TokenFailRequest();\nreq.setTicket(\"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\");\nreq.setReason(TokenFailRequest.Reason.INVALID_RESOURCE_OWNER_CREDENTIALS);\n\napi.tokenFail(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nTokenFailRequest req = new TokenFailRequest();\nreq.Ticket = \"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\";\nreq.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS;\n\nawait api.TokenFail(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new TokenFailRequest();\n$req.setTicket(\"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\");\n$req.setReason(TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS);\n\n$api.tokenFail($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::TokenFailRequest.new\nreq.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'\nreq.reason = 'INVALID_RESOURCE_OWNER_CREDENTIALS'\n\napi.token_fail(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = TokenFailRequest()\nreq.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'\nreq.reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS\n\napi.tokenFail(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.TokenFailRequest{}\nreq.Ticket = \"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\"\nreq.Reason = TokenFailReason.INVALID_RESOURCE_OWNER_CREDENTIALS\n\napi.TokenFail(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new TokenFailRequest();\nreq.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';\nreq.reason = TokenFailRequest.Reason.INVALID_RESOURCE_OWNER_CREDENTIALS;\n\nawait api.tokenFail(req);\n"
           }
         ],
         "tags": [
@@ -25449,31 +24920,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenIssueRequest req = new TokenIssueRequest()\nreq.setTicket(\"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\");\n\napi.tokenIssue(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nTokenIssueRequest req = new TokenIssueRequest();\nreq.Ticket  = \"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\";\n\nawait api.TokenIssue(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new TokenIssueRequest();\n$req.setTicket(\"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\");\n\n$api.tokenIssue($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::TokenIssueRequest.new\nreq.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'\n\napi.token_issue(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = TokenIssueRequest()\nreq.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c'\n\napi.tokenIssue(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.TokenIssueRequest{}\nreq.Ticket = \"83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c\"\n\napi.TokenIssue(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new TokenIssueRequest();\nreq.ticket = '83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c';\n\nawait api.tokenIssue(req);\n"
           }
         ],
         "tags": [
@@ -26271,31 +25719,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nIntrospectionRequest req = new IntrospectionRequest();\nreq.setToken(\"VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI\");\nreq.setScopes(new String[] { \"history.read\", \"timeline.read\" });\n\napi.introspection(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nIntrospectionRequest req = new IntrospectionRequest();\nreq.Token = \"VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI\";\nreq.Scopes = { \"history.read\", \"timeline.read\" };\n\nawait api.Introspection(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new IntrospectionRequest();\n$req.setToken(\"VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI\");\n$req.setScopes([ \"history.read\", \"timeline.read\" ]);\n\n$api.introspection($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::IntrospectionRequest.new\nreq.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI'\nreq.scopes = [ 'history.read', 'timeline.read' ]\n\napi.introspection(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = IntrospectionRequest()\nreq.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI'\nreq.scopes = [ 'history.read', 'timeline.read' ]\n\napi.introspection(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.IntrospectionRequest{}\nreq.Token = \"VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI\"\nreq.Scopes = [1]string{ \"history.read\", \"timeline.read\" }\n\napi.Introspection(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new IntrospectionRequest();\nreq.token = 'VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI';\nreq.scopes = [ 'history.read', 'timeline.read' ];\n\nawait api.introspection(req);\n"
           }
         ],
         "tags": [
@@ -26517,31 +25942,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nStandardIntrospectionRequest req = new StandardIntrospectionRequest();\nreq.setParameters(...);\n\napi.standardIntrospection(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nStandardIntrospectionRequest req = new StandardIntrospectionRequest();\nreq.Parameters = ...;\n\nawait api.StandardIntrospection(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new StandardIntrospectionRequest();\n$req.setParameters(...);\n\n$api.standardIntrospection($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::StandardIntrospectionRequest.new\nreq.parameters = '...'\n\napi.standard_introspection(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = StandardIntrospectionRequest()\nreq.parameters = ...\n\napi.standardIntrospection(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.StandardIntrospectionRequest{}\nreq.Parameters = ...\n\napi.StandardIntrospection(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new StandardIntrospectionRequest();\nreq.parameters = ...;\n\nawait api.standardIntrospection(req);\n"
           }
         ],
         "tags": [
@@ -26789,31 +26191,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nRevocationRequest req = new RevocationRequest();\nrequest.setParameters(...);\n\napi.revocation(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nRevocationRequest req = new RevocationRequest();\nreq.Parameters = ...;\n\nawait api.Revocation(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new RevocationRequest();\n$req.setParameters(...);\n\n$api.revocation($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::RevocationRequest.new\nreq.parameters = '...'\n\napi.revocation(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = RevocationRequest()\nreq.parameters = ...\n\napi.revocation(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.RevocationRequest{}\nreq.Parameters = ...\n\napi.Revocation(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new RevocationRequest();\nreq.parameters = ...;\n\nawait api.revocation(req);\n"
           }
         ],
         "tags": [
@@ -27251,31 +26630,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nUserInfoRequest req = new UserInfoRequest();\nreq.setToken(\"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\");\n\napi.userinfo(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nUserInfoRequest req = new UserInfoRequest();\nreq.Token = \"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\";\n\nawait api.Userinfo(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new UserInfoRequest();\n$req.setToken(\"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\");\n\n$api.userinfo($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::UserInfoRequest.new\nreq.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI'\n\napi.user_info(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = UserInfoRequest()\nreq.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI'\n\napi.userinfo(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.UserInfoRequest{}\nreq.Token = \"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\"\n\napi.Userinfo(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new UserInfoRequest();\nreq.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI';\n\nawait api.userInfo(req);\n"
           }
         ],
         "tags": [
@@ -27576,31 +26932,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nUserInfoIssueRequest req = new UserInfoIssueRequest();\nreq.setToken(\"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\");\n\napi.userinfoIssue(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nUserInfoIssueRequest req = new UserInfoIssueRequest();\nreq.Token = \"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\";\n\nawait api.UserinfoIssue(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new UserInfoIssueRequest();\n$req.setToken(\"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\");\n\n$api.userinfoIssue($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::UserInfoIssueRequest.new\nreq.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI'\n\napi.user_info_issue(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = UserInfoIssueRequest()\nreq.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI'\n\napi.userinfoIssue(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.UserInfoIssueRequest{}\nreq.Token = \"Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI\"\n\napi.UserinfoIssue(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst req = new UserInfoIssueRequest();\nreq.token = 'Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI';\n\nawait api.userInfoIssue(req);\n"
           }
         ],
         "tags": [
@@ -28249,31 +27582,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nboolean pretty = true;\nboolean includePrivateKey = false;\n\napi.getServiceJwks(pretty, includePrivateKey);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nbool pretty = true;\nbool includePrivateKey = false;\n\nawait api.GetServiceJwks(pretty, includePrivateKey);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$pretty = true;\n$includePrivateKey = false;\n\n$api.getServiceJwks($pretty, $includePrivateKey);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\napi.get_service_jwks(pretty: true, includePrivateKeys: false)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\npretty = True\nincludePrivateKey = False\n\napi.getServiceJwks(pretty, includePrivateKey)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\npretty := true\nincludePrivateKey := false\n\napi.GetServiceJwks(pretty, includePrivateKey)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nconst pretty = true;\nconst includePrivateKey = false;\n\nawait api.getServiceJwks(pretty, includePrivateKey);\n"
           }
         ],
         "tags": [
@@ -28747,31 +28057,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\napi.getServiceConfiguration(true);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nawait api.GetServiceConfiguration(true);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$api.getServiceConfiguration(true);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\napi.get_service_configuration(pretty: true)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\napi.getServiceConfiguration(True)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\napi.GetServiceConfiguration(true)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nawait api.getServiceConfiguration(true);\n"
           }
         ],
         "tags": [
@@ -29839,31 +29126,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.setJson(...);\n\napi.dynamicClientRegister(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.Json = \"...\";\n\nawait api.DynamicClientRegister(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new ClientRegistrationRequest();\n$req.json = \"...\";\n\n$api.dynamicClientRegister($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::ClientRegistrationRequest.new\nreq.json = '...'\n\napi.dynamic_client_register(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = new ClientRegistrationRequest()\nreq.json = '...'\n\napi.dynamicClientRegister(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.ClientRegistrationRequest{}\nreq.Json = \"...\"\n\napi.DynamicClientRegister(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -30932,31 +30196,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.setClientId(\"26837717140341\");\nreq.setToken(\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\");\n\napi.dynamicClientGet(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.ClientId = \"26837717140341\";\nreq.Token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\";\n\nawait api.DynamicClientGet(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new ClientRegistrationRequest();\n$req.clientId = \"26837717140341\";\n$req.token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\";\n\n$api.dynamicClientGet($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::ClientRegistrationRequest.new\nreq.clientId = '26837717140341'\nreq.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'\n\napi.dynamic_client_get(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = new ClientRegistrationRequest()\nreq.clientId = '26837717140341'\nreq.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'\n\napi.dynamicClientGet(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.ClientRegistrationRequest{}\nreq.ClientId = \"26837717140341\"\nreq.Token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\"\n\napi.DynamicClientGet(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -32031,31 +31272,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.setClientId(\"26837717140341\");\nreq.setToken(\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\");\nreq.setJson(\"...\");\n\napi.dynamicClientUpdate(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.ClientId = \"26837717140341\";\nreq.Token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\";\nreq.Json = \"...\";\n\nawait api.DynamicClientUpdate(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new ClientRegistrationRequest();\n$req.clientId = \"26837717140341\";\n$req.token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\";\n$req.json = \"...\";\n\n$api.dynamicClientUpdate($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::ClientRegistrationRequest.new\nreq.clientId = '26837717140341'\nreq.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'\nreq.json = '...'\n\napi.dynamic_client_update(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = new ClientRegistrationRequest()\nreq.clientId = '26837717140341'\nreq.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'\nreq.json = '...'\n\napi.dynamicClientUpdate(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.ClientRegistrationRequest{}\nreq.ClientId = \"26837717140341\"\nreq.Token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\"\nreq.Json = \"...\"\n\napi.DynamicClientUpdate(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -33093,31 +32311,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.setClientId(\"26837717140341\");\nreq.setToken(\"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\");\n\napi.dynamicClientDelete(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nClientRegistrationRequest req = new ClientRegistrationRequest();\nreq.ClientId = \"26837717140341\";\nreq.Token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\";\n\nawait api.DynamicClientDelete(client);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new ClientRegistrationRequest();\n$req.clientId = \"26837717140341\";\n$req.token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\";\n\n$api.dynamicClientDelete($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::ClientRegistrationRequest.new\nreq.clientId = '26837717140341'\nreq.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'\n\napi.dynamic_client_delete(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = new ClientRegistrationRequest()\nreq.clientId = '26837717140341'\nreq.token = 'qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA'\n\napi.DynamicClientDelete(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.ClientRegistrationRequest{}\nreq.ClientId = \"26837717140341\"\nreq.Token = \"qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA\"\n\napi.DynamicClientDelete(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -33770,31 +32965,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nBackchannelAuthenticationRequest req = new BackchannelAuthenticationRequest();\nreq.setParameters(...);\nreq.setClientId(\"26862190133482\");\nreq.setClientSecret(\"8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A\");\n\napi.backchannelAuthentication(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = new AuthletePropertiesConfiguration();\nIAuthleteApi api = new AuthleteApi(conf);\n\nBackchannelAuthenticationRequest req = new BackchannelAuthenticationRequest();\nreq.Parameters = ...;\nreq.ClientId = \"26862190133482\";\nreq.ClientSecret = \"8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A\";\n\nawait api.BackchannelAuthentication(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new BackchannelAuthenticationRequest();\n$req.setParameters(...);\n$req.setClientId(\"26862190133482\");\n$req.setClientSecret(\"8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A\");\n\n$api.backchannelAuthentication($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::BackchannelAuthenticationRequest.new\nreq.parameters = '...'\nreq.client_id = '26862190133482'\nreq.client_secret = '8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A'\n\napi.backchannel_authentication(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = BackchannelAuthenticationRequest()\nreq.parameters = ...\nreq.clientId = '26862190133482'\nreq.clientSecret = '8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A'\n\napi.backchannelAuthentication(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.BackchannelAuthenticationRequest{}\nreq.Parameters = ...\nreq.ClientId = \"26862190133482\"\nreq.ClientSecret = \"8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A\"\n\napi.BackchannelAuthentication(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -34025,31 +33197,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nBackchannelAuthenticationIssueRequest req = new BackchannelAuthenticationIssueRequest();\nreq.setTicket(\"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\");\n\napi.backchannelAuthenticationIssue(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nBackchannelAuthenticationIssueRequest req = new BackchannelAuthenticationIssueRequest();\nreq.Ticket = \"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\";\n\nawait api.BackchannelAuthenticationIssue(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new BackchannelAuthenticationIssueRequest();\n$req.setTicket(\"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\");\n\n$api.backchannelAuthenticationIssue($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::BackchannelAuthenticationIssueRequest.new\nreq.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'\n\napi.backchannel_authentication_issue(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = BackchannelAuthenticationIssueRequest()\nreq.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'\n\napi.backchannelAuthenticationIssue(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.BackchannelAuthenticationIssueRequest{}\nreq.Ticket = \"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\"\n\napi.BackchannelAuthenticationIssue(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -34308,31 +33457,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nBackchannelAuthenticationFailRequest req = new BackchannelAuthenticationFailRequest();\nreq.setTicket(\"holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0\");\nreq.setReason(BackchannelAuthenticationFailRequest.Reason.ACCESS_DENIED);\n\napi.backchannelAuthenticationFail(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nBackchannelAuthenticationFailRequest req = new BackchannelAuthenticationFailRequest();\nreq.Ticket = \"holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0\";\nreq.Reason = BackchannelAuthenticationFailReason.ACCESS_DENIED;\n\nawait api.BackchannelAuthenticationFail(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new BackchannelAuthenticationFailRequest();\n$req.setTicket(\"holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0\");\n$req.setReason(BackchannelAuthenticationFailReason.ACCESS_DENIED);\n\n$api.backchannelAuthenticationFail($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::BackchannelAuthenticationFailRequest.new\nreq.ticket = 'holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0'\nreq.reason = 'ACCESS_DENIED'\n\napi.backchannel_authentication_fail(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = BackchannelAuthenticationFailRequest()\nreq.ticket = 'holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0'\nreq.reason = BackchannelAuthenticationFailReason.ACCESS_DENIED\n\napi.backchannelAuthenticationFail(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.BackchannelAuthenticationFailRequest{}\nreq.Ticket = \"holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0\"\nreq.Reason = BackchannelAuthenticationFailReason.ACCESS_DENIED\n\napi.backchannelAuthenticationFail(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -34916,31 +34042,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nBackchannelAuthenticationCompleteRequest req = new BackchannelAuthenticationCompleteRequest();\nreq.setTicket(\"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\");\nreq.setResult(BackchannelAuthenticationCompleteRequest.Result.AUTHORIZED);\nreq.setSubject(\"john\");\n\napi.backchannelAuthenticationComplete(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nBackchannelAuthenticationCompleteRequest req = new BackchannelAuthenticationCompleteRequest();\nreq.Ticket = \"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\";\nreq.Result = BackchannelAuthenticationCompleteResult.AUTHORIZED;\nreq.Subject = \"john\";\n\nawait api.BackchannelAuthenticationComplete(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new BackchannelAuthenticationCompleteRequest();\n$req.setTicket(\"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\");\n$req.setResult(BackchannelAuthenticationCompleteResult.AUTHORIZED);\n$req.setSubject(\"john\");\n\n$api.backchannelAuthenticationComplete($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::BackchannelAuthenticationCompleteRequest.new\nreq.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'\nreq.result = 'AUTHORIZED'\nreq.subject = 'john'\n\napi.backchannel_authentication_complete(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = BackchannelAuthenticationCompleteRequest()\nreq.ticket = 'NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q'\nreq.result = BackchannelAuthenticationCompleteResult.AUTHORIZED\nreq.subject = 'john'\n\napi.backchannelAuthenticationComplete(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.BackchannelAuthenticationCompleteRequest{}\nreq.Ticket = \"NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q\"\nreq.Result = BackchannelAuthenticationCompleteResult.AUTHORIZED\nreq.Subject = \"john\"\n\napi.BackchannelAuthenticationComplete(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -35521,31 +34624,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nDeviceAuthorizationRequest req = new DeviceAuthorizationRequest();\nreq.setParameters(...);\nreq.setClientId(\"26888344961664\");\nreq.setClientSecret(\"SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog\");\n\napi.deviceAuthorization(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nDeviceAuthorizationRequest req = new DeviceAuthorizationRequest();\nreq.Parameters = ...;\nreq.ClientId = \"26888344961664\";\nreq.ClientSecret = \"SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog\";\n\nawait api.DeviceAuthorization(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new DeviceAuthorizationRequest();\n$req.setParameters(...);\n$req.setClientId(\"26888344961664\");\n$req.setClientSecret(\"SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog\");\n\n$api.deviceAuthorization($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::DeviceAuthorizationRequest.new\nreq.parameters = '...'\nreq.client_id = '26888344961664'\nreq.client_secret = 'SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog'\n\napi.device_authorization(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = DeviceAuthorizationRequest()\nreq.parameters = ...\nreq.clientId = '26888344961664'\nreq.clientSecret = 'SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog'\n\napi.deviceAuthorization(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.DeviceAuthorizationRequest{}\nreq.Parameters = ...\nreq.ClientId = \"26888344961664\"\nreq.ClientSecret = \"SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog\"\n\napi.DeviceAuthorization(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -36098,31 +35178,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nDeviceVerificationRequest req = new DeviceVerificationRequest();\nreq.setUserCode(\"XWWKPBWVXQ\");\n\napi.deviceVerification(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nDeviceVerificationRequest req = new DeviceVerificationRequest();\nreq.SetUserCode(\"XWWKPBWVXQ\");\n\nawait api.DeviceVerification(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new DeviceVerificationRequest();\n$req.setUserCode(\"XWWKPBWVXQ\");\n\n$api.deviceVerification($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::DeviceVerificationRequest.new\nreq.user_code = 'XWWKPBWVXQ'\n\napi.deviceVerification(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = DeviceVerificationRequest()\nreq.setUserCode('XWWKPBWVXQ')\n\napi.deviceVerification(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.DeviceVerificationRequest{}\nreq.UserCode = \"XWWKPBWVXQ\"\n\napi.DeviceVerification(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -36499,31 +35556,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nDeviceCompleteRequest req = new DeviceCompleteRequest();\nreq.setUserCode(\"XWWKPBWVXQ\");\nreq.setResult(DeviceCompleteRequest.Result.AUTHORIZED);\nreq.setSubject(\"john\");\n\napi.deviceComplete(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nDeviceCompleteRequest req = new DeviceCompleteRequest();\nreq.SetUserCode(\"XWWKPBWVXQ\");\nreq.SetResult(DeviceCompleteResult.AUTHORIZED);\nreq.SetSubject(\"john\");\n\nawait api.DeviceComplete(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new DeviceCompleteRequest();\n$req.setUserCode(\"XWWKPBWVXQ\");\n$req.setResult(DeviceCompleteResult.$AUTHORIZED);\n$req.setSubject(\"john\");\n\n$api.deviceComplete($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::DeviceCompleteRequest.new\nreq.use_code = 'XWWKPBWVXQ'\nreq.result = 'AUTHORIZED'\nreq.subject = 'john'\n\napi.deviceComplete(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = DeviceCompleteRequest()\nreq.setUserCode('XWWKPBWVXQ')\nreq.setResult(DeviceCompleteResult.AUTHORIZED)\nreq.setSubject('john')\n\napi.deviceComplete(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.DeviceCompleteRequest{}\nreq.UserCode = \"XWWKPBWVXQ\"\nreq.Result = DeviceCompleteResult.AUTHORIZED\nreq.Subject = \"john\"\n\napi.DeviceComplete(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -37738,31 +36772,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nString clientIdentifier = \"26888344961664\";\nString subject = \"john\";\nint start = 0;\nint end = 3;\n\napi.getTokenList(clientIdentifier, subject, start, end);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "// This API is not supported yet.\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "// This API is not supported yet.\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\napi.get_token_list(\n  client_identifier: '26888344961664',\n  subject: 'john',\n  start: 0,\n  end: 3\n)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nclientIdentifier = '26888344961664'\nsubject = 'john'\nstart = 0\nend = 3\n\napi.getTokenList(clientIdentifier, subject, start, end)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nclientIdentifier = \"26888344961664\"\nsubject = \"john\"\nstart = 0\nend = 3\n\napi.GetTokenList(clientIdentifier, subject, start, end)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -38463,31 +37474,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenCreateRequest req = new TokenCreateRequest();\nreq.setGrantType(GrantType.AUTHORIZATION_CODE)\nreq.setClientId(26888344961664)\nreq.setSubject(\"john\")\nreq.setScopes({ \"history.read\", \"timeline.read\" });\n\napi.tokenCreate(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nTokenCreateRequest req = new TokenCreateRequest();\nreq.GrantType = GrantType.AUTHORIZATION_CODE;\nreq.ClientId = 26888344961664;\nreq.Subject = \"john\";\nreq.Scopes = { \"history.read\", \"timeline.read\" };\n\nawait api.TokenCreate(request);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new TokenCreateRequest();\n$req.setGrantType(GrantType.$AUTHORIZATION_CODE);\n$req.setClientId(26888344961664);\n$req.setSubject(\"john\");\n$req.setScopes([ \"history.read\", \"timeline.read\" ]);\n\n$api.tokenCreate($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::TokenCreateRequest.new\nreq.grant_type = 'AUTHORIZATION_CODE'\nreq.client_id = 26888344961664\nreq.subject = 'john'\nreq.scopes = [ 'history.read', 'timeline.read' ]\n\napi.token_create(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = TokenCreateRequest()\nreq.grantType = GrantType.AUTHORIZATION_CODE\nreq.clientId = 26888344961664\nreq.subject = 'john'\nreq.scopes = [ 'history.read', 'timeline.read' ]\n\napi.tokenCreate(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.TokenCreateRequest{}\nreq.GrantType = types.GrantType_AUTHORIZATION_CODE;\nreq.ClientId = 26888344961664;\nreq.Subject = \"john\";\nreq.Scopes = [2]string{\"history.read\", \"timeline.read\"};\n\napi.TokenCreate(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -39052,31 +38040,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenUpdateRequest req = new TokenUpdateRequest();\nreq.setAccessToken(\"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\");\nreq.setScopes({ \"history.read\" });\n\napi.tokenUpdate(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nTokenUpdateRequest req = new TokenUpdateRequest();\nreq.AccessToken = \"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\";\nreq.Scopes = { \"history.read\" };\n\nawait api.TokenUpdate(request);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new TokenUpdateRequest();\n$req.setAccessToken(\"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\");\n$req.setScopes([ \"history.read\" ]);\n\n$api.tokenUpdate($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::TokenUpdateRequest.new\nreq.access_token = 'JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs'\nreq.scopes = [ 'history.read' ]\n\napi.token_update(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = TokenUpdateRequest()\nreq.accessToken = 'JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs'\nreq.scopes = [ 'history.read' ]\n\napi.tokenUpdate(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.TokenUpdateRequest{}\nreq.AccessToken = \"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\"\nreq.Scopes = [1]string{ \"history.read\" }\n\napi.TokenUpdate(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -39227,31 +38192,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nString accessTokenIdentifier = \"Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg\";\n\napi.tokenDelete(accessToken);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nstring accessTokenIdentifier = \"Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg\";\n\nawait api.TokenDelete(accessToken);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$accessTokenIdentifier = \"Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg\";\n\n$api.tokenDelete($accessToken);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\naccess_token_identifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'\n\napi.token_delete(access_token)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\naccessTokenIdentifier = 'Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg'\n\napi.tokenDelete(accessToken)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\naccessTokenIdentifier := \"Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg\"\n\napi.TokenDelete(accessTokenIdentifier)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -39485,31 +38427,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenUpdateRequest req = new TokenUpdateRequest();\nreq.setAccessToken(\"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\");\nreq.setScopes({ \"history.read\" });\n\napi.tokenUpdate(req);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nTokenUpdateRequest req = new TokenUpdateRequest();\nreq.AccessToken = \"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\";\nreq.Scopes = { \"history.read\" };\n\nawait api.TokenUpdate(request);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$req = new TokenUpdateRequest();\n$req.setAccessToken(\"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\");\n$req.setScopes([ \"history.read\" ]);\n\n$api.tokenUpdate($req);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\nreq = Authlete::Model::Request::TokenUpdateRequest.new\nreq.access_token = 'JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs'\nreq.scopes = [ 'history.read' ]\n\napi.token_update(req)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = TokenUpdateRequest()\nreq.accessToken = 'JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs'\nreq.scopes = [ 'history.read' ]\n\napi.tokenUpdate(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.TokenUpdateRequest{}\nreq.AccessToken = \"JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs\"\nreq.Scopes = [1]string{ \"history.read\" }\n\napi.TokenUpdate(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -39776,31 +38695,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nJoseVerifyRequest req = new JoseVerifyRequest();\nreq.setJose(\"eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw\");\nreq.setClockSkew(100);\nreq.setSinedByClient(true);\nreq.setClientIdentifier(\"57297408867\");\n\napi.verifyJose(request);\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nJoseVerifyRequest req = new JoseVerifyRequest();\nreq.Jose = \"eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw\";\nreq.ClockSkew = 100;\nreq.SinedByClient = true;\nreq.ClientIdentifier = \"57297408867\";\n\nawait api.VerifyJose(req);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "// This API is not supported yet.\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "# This API is not supported yet.\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\nreq = JoseVerifyRequest()\nreq.jose = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw'\nreq.clockSkew = 100\nreq.sinedByClient = True\nreq.clientIdentifier = '57297408867'\n\napi.verifyJose(req)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\nreq := dto.JoseVerifyRequest{}\nreq.Jose = \"eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw\"\nreq.ClockSkew = 100\nreq.SinedByClient = true\nreq.ClientIdentifier = \"57297408867\"\n\napi.VerifyJose(&req)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "// This API is not supported yet.\n"
           }
         ],
         "tags": [
@@ -39981,31 +38877,8 @@
             "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\napi.getFederationConfiguration();\n"
           },
           {
-            "lang": "cs",
-            "label": "C#",
-            "source": "IAuthleteConfiguration conf = ...;\nIAuthleteApi api = new AuthleteApi(conf);\n\nawait api.GetFederationConfiguration(true);\n"
-          },
-          {
-            "lang": "php",
-            "label": "PHP",
-            "source": "$conf = ...;\n$api = new AuthleteApiImpl($conf);\n\n$api.getFederationConfiguration(true);\n"
-          },
-          {
-            "lang": "ruby",
-            "source": "conf = ...\napi = Authlete::Api.new(conf)\n\napi.get_federation_configuration(pretty: true)\n"
-          },
-          {
             "lang": "python",
             "source": "conf = ...\napi = AuthleteApiImpl(conf)\n\napi.getFederationConfiguration(True)\n"
-          },
-          {
-            "lang": "go",
-            "source": "conf := ...\napi := api.New(&conf)\n\napi.GetFederationConfiguration(true)\n"
-          },
-          {
-            "lang": "ts",
-            "label": "deno",
-            "source": "const conf: AuthleteConfiguration = ...;\nconst api: AuthleteApi = new AuthleteApiImpl(conf);\n\nawait api.getFederationConfiguration(true);\n"
           }
         ],
         "tags": [

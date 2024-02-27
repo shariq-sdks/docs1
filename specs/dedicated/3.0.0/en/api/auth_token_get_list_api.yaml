@@ -183,27 +183,27 @@ get:
 
         api.getTokenList(clientIdentifier, subject, start, end);
 
-    - lang: cs
-      label: C#
-      source: |
-        // This API is not supported yet.
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     // This API is not supported yet.
 
-    - lang: php
-      label: PHP
-      source: |
-        // This API is not supported yet.
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     // This API is not supported yet.
 
-    - lang: ruby
-      source: |
-        conf = ...
-        api = Authlete::Api.new(conf)
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
 
-        api.get_token_list(
-          client_identifier: '26888344961664',
-          subject: 'john',
-          start: 0,
-          end: 3
-        )
+    #     api.get_token_list(
+    #       client_identifier: '26888344961664',
+    #       subject: 'john',
+    #       start: 0,
+    #       end: 3
+    #     )
 
     - lang: python
       source: |
@@ -217,22 +217,22 @@ get:
 
         api.getTokenList(clientIdentifier, subject, start, end)
 
-    - lang: go
-      source: |
-        conf := ...
-        api := api.New(&conf)
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
 
-        clientIdentifier = "26888344961664"
-        subject = "john"
-        start = 0
-        end = 3
+    #     clientIdentifier = "26888344961664"
+    #     subject = "john"
+    #     start = 0
+    #     end = 3
 
-        api.GetTokenList(clientIdentifier, subject, start, end)
+    #     api.GetTokenList(clientIdentifier, subject, start, end)
 
-    - lang: ts
-      label: deno
-      source: |
-        // This API is not supported yet.
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
 
   tags:
     - Token Operations
