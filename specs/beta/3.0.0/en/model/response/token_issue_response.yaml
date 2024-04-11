@@ -112,3 +112,9 @@ properties:
     type: boolean
     description: |
       Flag which indicates whether the entity ID of the client was used when the request for the access token was made.
+  refreshTokenScopes:
+    type: array
+    items: 
+      type: string
+    description: |
+      The scopes associated with the refresh token. May be null.

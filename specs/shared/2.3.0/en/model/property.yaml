@@ -1,0 +1,13 @@
+type: object
+properties:
+  key:
+    type: string
+    description: The key part.
+  value:
+    type: string
+    description: The value part.
+  hidden:
+    type: boolean
+    description: |
+      The flag to indicate whether this property hidden from or visible to client applications.
+      If `true`, this property is hidden from client applications. Otherwise, this property is visible to client applications.

@@ -50,3 +50,7 @@ properties:
     description: |
       The newly issued access token in JWT format. If the service is not configured to issue JWT-based access tokens,
       this property is always set to `null`.
+  ticketInfo:
+    type: string
+    description: |
+      The information about the ticket.

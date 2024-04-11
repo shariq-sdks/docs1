@@ -1,0 +1,15 @@
+type: object
+required: [ ticket, reason ]
+properties:
+  ticket:
+    type: string
+    description: |
+      The ticket issued from Authlete `/auth/token` API.
+  reason:
+    type: string
+    enum:
+      - UNKNOWN
+      - INVALID_RESOURCE_OWNER_CREDENTIALS
+      - INVALID_TARGET
+    description: |
+      The reason of the failure of the token request.

@@ -145,10 +145,6 @@ properties:
       $ref: ../pair.yaml
     description: |
       The attributes of the client.
-  clientAuthMethod:
-    type: string
-    description: |
-      The client authentication method that was performed at the token endpoint.
   grantId:
     type: string
     description: |
