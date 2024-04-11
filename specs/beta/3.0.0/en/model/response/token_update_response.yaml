@@ -50,3 +50,9 @@ properties:
     type: string
     description: |
       Set the unique token identifier.
+  refreshTokenExpiresAt:
+    type: integer
+    format: int64
+    description: |
+      The datetime at which the newly issued refresh token will expire.
+      The value is represented in milliseconds since the Unix epoch (1970-01-01).

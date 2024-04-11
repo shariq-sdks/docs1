@@ -1,0 +1,145 @@
+post:
+  summary: /api/client/authorization/update/{clientId} API
+  description: |
+    Update attributes of all existing access tokens given to a client application.
+  security:
+    - ServiceCredentials: []
+  parameters:
+    - in: path
+      name: clientId
+      schema:
+        type: string
+      required: true
+      description: |
+        A client ID.
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/client_authorization_update_request.yaml
+        example:
+          subject: john
+          scopes: [ 'history.read' ]
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/client_authorization_update_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/client_authorization_update_response.yaml
+          example:
+            {
+              "resultCode": "A138001",
+              "resultMessage": "[A138001] Updated 1 access token(s) issued to the client (ID = 26478243745571) of the service (API Key = 21653835348762)."
+            }
+
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'client_authorization_update_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://api.authlete.com/api/client/authorization/update/26478243745571 \
+        -H 'Content-Type:application/json' \
+        -u '21653835348762:uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls' \
+        -d '{ "subject": "john", "scopes": [ "history.read" ] }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        long clientId = ...;
+
+        ClientAuthorizationUpdateRequest req = new ClientAuthorizationUpdateRequest();
+        req.setSubject("john");
+        req.setScopes(new String[]{ "history.read" });
+
+        api.updateClientAuthorization(clientId, req);
+
+    - lang: cs
+      label: C#
+      source: |
+        IAuthleteConfiguration conf = ...;
+        IAuthleteApi api = new AuthleteApi(conf);
+
+        long clientId = ...;
+
+        ClientAuthorizationUpdateRequest req = new ClientAuthorizationUpdateRequest();
+        req.Subject = "john";
+        req.Scopes = { "history.read" };
+
+        await api.UpdateClientAuthorization(clientId, req);
+
+    - lang: php
+      label: PHP
+      source: |
+        $conf = ...;
+        $api = new AuthleteApiImpl($conf);
+
+        $clientId = ...;
+
+        $req = new ClientAuthorizationUpdateRequest();
+        $req.subject = "john";
+        $req.setScopes([ "history.read" ]);
+
+        $api.updateClientAuthorization($clientId, $req);
+
+    - lang: ruby
+      source: |
+        conf = ...
+        api = Authlete::Api.new(conf)
+
+        client_id = ...
+
+        req = Authlete::Model::Request::ClientAuthorizationUpdateRequest.new
+        req.subject = 'john'
+        req.scopes = [ 'history.read' ]
+
+        api.update_client_authorization(client_id, req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        clientId = ...
+
+        req = ClientAuthorizationUpdateRequest()
+        req.subject = 'john'
+        req.scopes = [ 'history.read' ]
+
+        api.updateClientAuthorization(clientId, req)
+
+    - lang: go
+      source: |
+        conf := ...
+        api := api.New(&conf)
+
+        clientId := ...
+
+        req := dto.ClientAuthorizationUpdateRequest{}
+        req.Subject = "john"
+        req.Scopes = [1]string{ "history.read" }
+
+        api.UpdateClientAuthorization(clientId, &req)
+
+    - lang: ts
+      label: deno
+      source: |
+        // This API is not supported yet.
+
+  tags:
+    - Client Management

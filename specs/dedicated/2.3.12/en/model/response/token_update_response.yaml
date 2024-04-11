@@ -46,3 +46,8 @@ properties:
     description: |
       the flag which indicates whether the access token is for an external
       attachment.
+  refreshTokenExpiresAt:
+    type: integer
+    format: int64
+    description: |
+      The date at which the refresh token will expire.

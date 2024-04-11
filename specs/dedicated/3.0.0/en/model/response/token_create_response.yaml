@@ -78,3 +78,9 @@ properties:
     type: string
     description: |
       Set the unique token identifier.
+  refreshTokenScopes:
+    type: array
+    items: 
+      type: string
+    description: |
+      The scopes associated with the refresh token. May be null.

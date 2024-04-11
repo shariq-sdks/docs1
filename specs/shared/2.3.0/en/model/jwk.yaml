@@ -1,0 +1,49 @@
+type: object
+properties:
+  kty:
+    type: string
+    description: |
+      This parameter identifies the cryptographic algorithm family used with the key, such as `"RSA"` or `"EC"`.
+  use:
+    type: string
+    description: |
+      This parameter identifies the intended use of the public key.
+  key_ops:
+    type: array
+    items:
+      type: string
+    description: |
+      This parameter identifies the operation(s) for which the key is intended to be used.
+  alg:
+    type: string
+    description: |
+      The "alg" (algorithm) parameter identifies the algorithm intended for use with the key.
+  kid:
+    type: any
+    description: |
+      The "kid" (key ID) parameter is used to match a specific key. This is used, for instance,
+      to choose among a set of keys within a JWK Set during key rollover.
+  x5u:
+    type: string
+    description: |
+      The "x5u" (X.509 URL) parameter is a URI [RFC3986] that refers to a resource for an X.509 public key certificate
+      or certificate chain.
+  x5c:
+    type: array
+    items:
+      type: string
+    description: |
+      The "x5c" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates.
+  x5t:
+    type: string
+    description: |
+      The "x5t" (X.509 certificate SHA-1 thumbprint) parameter is a base64url-encoded SHA-1 thumbprint (a.k.a. digest)
+      of the DER encoding of an X.509 certificate
+  x5t#S256:
+    type: string
+    description: |
+      The "x5t#S256" (X.509 certificate SHA-256 thumbprint) parameter is a base64url-encoded SHA-256 thumbprint (a.k.a. digest)
+      of the DER encoding of an X.509 certificate
+additionalProperties:
+  type: any
+  description: An additional parameter.

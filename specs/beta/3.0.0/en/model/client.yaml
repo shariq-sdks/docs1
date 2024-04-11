@@ -687,3 +687,19 @@ properties:
         - TOKEN_EXCHANGE
         - JWT_BEARER
     description: Get the FAPI modes for this client.
+  responseModes:
+    type: array
+    items: 
+      type: string
+      enum: 
+        - QUERY
+        - FRAGMENT
+        - FORM_POST
+        - JWT
+        - QUERY_JWT
+        - FRAGMENT_JWT
+        - FORM_POST_JWT
+    description: The response modes that this client may use.
+  credentialResponseEncryptionRequired: 
+    type: boolean
+    description: True if credential responses to this client must be always encrypted.

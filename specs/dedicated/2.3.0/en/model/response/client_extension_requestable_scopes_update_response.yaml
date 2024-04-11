@@ -1,0 +1,6 @@
+type: object
+properties:
+  requestableScopes:
+    type: array
+    items:
+      type: string

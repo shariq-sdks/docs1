@@ -168,10 +168,10 @@ properties:
   forCredentialIssuance:
     type: boolean
     description: The flag indicating whether the token is for credential issuance.
-  cNonce:
+  cnonce:
     type: string
     description: The c_nonce
-  cNonceExpiresAt:
+  cnonceExpiresAt:
     type: integer
     format: int64
     description: The time at which the `c_nonce` expires.
