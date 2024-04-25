@@ -429,7 +429,7 @@ properties:
       The flag which indicates whether duration of refresh tokens are reset when they are used even
       if the `refreshTokenKept` property of this service set to is `true` (= even if "Refresh Token
       Continuous Use" is "Kept").
-      
+
       This flag has no effect when the `refreshTokenKept` property is set to `false`. In other words,
       if this service issues a new refresh token on every refresh token request, the refresh token
       will have fresh duration (unless `refreshTokenDurationKept` is set to `true`) and this
@@ -1333,8 +1333,8 @@ properties:
   openidDroppedOnRefreshWithoutOfflineAccess:
     type: boolean
     description: |
-      The flag indicating whether the openid scope should be dropped from 
-      scopes list assigned to access token issued when a refresh token grant 
+      The flag indicating whether the openid scope should be dropped from
+      scopes list assigned to access token issued when a refresh token grant
       is used.
   supportedDocumentsCheckMethods:
     type: array
@@ -1366,7 +1366,7 @@ properties:
   credentialJwksUri:
     type: string
     description: |
-      Get the URL at which the JWK Set document of the credential issuer is
+      The URL at which the JWK Set document of the credential issuer is
       exposed.
   credentialOfferDuration:
     type: integer
@@ -1381,64 +1381,65 @@ properties:
   preAuthorizedGrantAnonymousAccessSupported:
     type: boolean
     description: |
-      Get the flag indicating whether token requests using the pre-authorized
+      The flag indicating whether token requests using the pre-authorized
       code grant flow by unidentifiable clients are allowed.
   credentialTransactionDuration:
     type: integer
     format: int64
     description: |
-      Get the duration of transaction ID in seconds that may be issued as a
+      The duration of transaction ID in seconds that may be issued as a
       result of a credential request or a batch credential request.
   introspectionSignatureKeyId:
     type: string
     description: |
-      Get the key ID of the key for signing introspection responses.
+      The key ID of the key for signing introspection responses.
   resourceSignatureKeyId:
     type: string
     description: |
-      Get the key ID of the key for signing introspection responses.
+      The key ID of the key for signing introspection responses.
   userPinLength:
     type: integer
     format: int32
     description: |
-      Get the default length of user PINs.
+      The default length of user PINs.
   supportedPromptValues:
     type: array
     items:
       $ref: prompt.yaml
     description: |
-      Get the supported `prompt` values.
+      The supported `prompt` values.
   idTokenReissuable:
     type: boolean
     description: |
-      Get the flag indicating whether to enable the feature of ID token
+      The flag indicating whether to enable the feature of ID token
       reissuance in the refresh token flow.
   credentialJwks:
     type: string
     description: |
-      Get the JWK Set document containing private keys that are used to sign
+      The JWK Set document containing private keys that are used to sign
       verifiable credentials.
   fapiModes:
     type: array
     items:
-      type: string
-      enum:
-        - INTERNAL_SERVER_ERROR
-        - INVALID_CLIENT
-        - BAD_REQUEST
-        - PASSWORD
-        - OK
-        - TOKEN_EXCHANGE
-        - JWT_BEARER
-    description: Get the FAPI modes for this client.
+      $ref: fapi_mode.yaml
+    description: |
+      FAPI modes for this service.
+
+      When the value of this property is not `null`, Authlete always processes requests to this service based
+      on the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported
+      by this service.
+
+      For instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always
+      processes requests to this service based on " Financial-grade API Security Profile 1.0 - Part 2:
+      Advanced" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.
   credentialDuration:
     type: integer
     format: int64
     description: |
-      Get the default duration of verifiable credentials in seconds.
+      The default duration of verifiable credentials in seconds.
   credentialIssuerMetadata:
     $ref: credential_issuer_metadata.yaml
   idTokenAudType:
     type: string
     description: |
-      Get the type of the `aud` claim in ID tokens.
+      The type of the `aud` claim in ID tokens.
