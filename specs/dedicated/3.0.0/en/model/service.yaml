@@ -1430,7 +1430,7 @@ properties:
       by this service.
 
       For instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always
-      processes requests to this service based on " Financial-grade API Security Profile 1.0 - Part 2:
+      processes requests to this service based on "Financial-grade API Security Profile 1.0 - Part 2:
       Advanced" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.
   credentialDuration:
     type: integer

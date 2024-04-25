@@ -1085,7 +1085,7 @@
                           "FAPI2_SECURITY"
                         ]
                       },
-                      "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                      "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                     },
                     "credentialDuration": {
                       "type": "integer",
@@ -2463,7 +2463,7 @@
                                 "FAPI2_SECURITY"
                               ]
                             },
-                            "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                            "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                           },
                           "credentialDuration": {
                             "type": "integer",
@@ -3809,7 +3809,7 @@
                         "FAPI2_SECURITY"
                       ]
                     },
-                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                   },
                   "credentialDuration": {
                     "type": "integer",
@@ -4949,7 +4949,7 @@
                         "FAPI2_SECURITY"
                       ]
                     },
-                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                   },
                   "credentialDuration": {
                     "type": "integer",
@@ -6044,7 +6044,7 @@
                           "FAPI2_SECURITY"
                         ]
                       },
-                      "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                      "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                     },
                     "credentialDuration": {
                       "type": "integer",
@@ -7390,7 +7390,7 @@
                         "FAPI2_SECURITY"
                       ]
                     },
-                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                   },
                   "credentialDuration": {
                     "type": "integer",
@@ -8580,7 +8580,7 @@
                         "FAPI2_SECURITY"
                       ]
                     },
-                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                    "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                   },
                   "credentialDuration": {
                     "type": "integer",
@@ -9675,7 +9675,7 @@
                           "FAPI2_SECURITY"
                         ]
                       },
-                      "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                      "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                     },
                     "credentialDuration": {
                       "type": "integer",
@@ -21590,7 +21590,7 @@
                               "FAPI2_SECURITY"
                             ]
                           },
-                          "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+                          "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
                         },
                         "credentialDuration": {
                           "type": "integer",
@@ -46893,7 +46893,7 @@
                 "FAPI2_SECURITY"
               ]
             },
-            "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \" Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
+            "description": "FAPI modes for this service.\n\nWhen the value of this property is not `null`, Authlete always processes requests to this service based\non the specified FAPI modes if the FAPI feature is enabled in Authlete and the FAPI profile is supported\nby this service.\n\nFor instance, when this property is set to an array containing `FAPI1_ADVANCED` only, Authlete always\nprocesses requests to this service based on \"Financial-grade API Security Profile 1.0 - Part 2:\nAdvanced\" if the FAPI feature is enabled in Authlete and the FAPI profile is supported by this service.\n"
           },
           "credentialDuration": {
             "type": "integer",
