@@ -46,7 +46,7 @@ properties:
   scopes:
     type: array
     items:
-      type: string
+      $ref: ../scope.yaml
     description: |
       The scopes requested by the device authorization request.
 
@@ -125,7 +125,7 @@ properties:
       The resources specified by the `resource` request parameters. See "Resource Indicators
       for OAuth 2.0" for details.
   authorizationDetails:
-    $ref: ../authorization_details.yaml
+    $ref: ../authz_details.yaml
   serviceAttributes:
     type: array
     items:

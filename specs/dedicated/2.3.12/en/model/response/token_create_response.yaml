@@ -68,7 +68,7 @@ properties:
       is set to a `non-null` value), a JWT-based access token is issued along with the original
       random-string one.
   authorizationDetails:
-    $ref: ../authorization_details.yaml
+    $ref: ../authz_details.yaml
   forExternalAttachment:
     type: boolean
     description: |

@@ -93,7 +93,7 @@ properties:
   supportedSnses:
     type: array
     items:
-      $ref: ../model/sns.yaml
+      $ref: ./sns.yaml
     description: |
       SNSes you want to support 'social login' in the UI at the
       authorization endpoint provided by Authlete.
@@ -147,7 +147,9 @@ properties:
       You need to register a client application in each SNS checked here and set Authlete server's
       `/api/developer/sns/redirection` as the redirection endpoint of the client application.
   developerSnsCredentials:
-    type: string
+    type: array
+    items:
+      $ref: ../model/sns_credentials.yaml
     description: SNS credentials which Authlete uses to make requests to SNSes. The format is JSON.
   supportedGrantTypes:
     type: array
@@ -280,7 +282,7 @@ properties:
   supportedTokenAuthMethods:
     type: array
     items:
-      $ref: ./client_authentication_method.yaml
+      $ref: ./client_auth_method.yaml
     description: |
       Client authentication methods supported by the token endpoint of the service.
 
@@ -305,7 +307,7 @@ properties:
   supportedRevocationAuthMethods:
     type: array
     items:
-      $ref: ./client_authentication_method.yaml
+      $ref: ./client_auth_method.yaml
     description: |
       Client authentication methods supported at the revocation endpoint.
   introspectionEndpoint:
@@ -320,7 +322,7 @@ properties:
     description: |
       Client authentication methods supported at the introspection endpoint.
     items:
-      $ref: ./client_authentication_method.yaml
+      $ref: ./client_auth_method.yaml
   pushedAuthReqEndpoint:
     type: string
     description: |
@@ -1044,7 +1046,7 @@ properties:
   hsks:
     type: array
     items:
-      $ref: ./pair.yaml
+      $ref: ./hsk.yaml
     description: |
       The information about keys managed on HSMs (Hardware Security Modules).
 
@@ -1395,6 +1397,6 @@ properties:
     description: |
       The type of the `aud` claim in ID tokens.
   idTokenReissuable:
-    type: string
+    type: boolean
     description: |
       The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.

@@ -91,7 +91,7 @@ properties:
     description: |
       The target resources of the access token being issued. See "Resource Indicators for OAuth 2.0" for details.
   authorizationDetails:
-    $ref: ../authorization_details.yaml
+    $ref: ../authz_details.yaml
   serviceAttributes:
     type: array
     items:

@@ -194,7 +194,24 @@
                       "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                     },
                     "developerSnsCredentials": {
-                      "type": "string",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "sns": {
+                            "type": "string",
+                            "description": "SNS."
+                          },
+                          "apiKey": {
+                            "type": "string",
+                            "description": "API key."
+                          },
+                          "apiSecret": {
+                            "type": "string",
+                            "description": "API secret."
+                          }
+                        }
+                      },
                       "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                     },
                     "supportedGrantTypes": {
@@ -828,14 +845,31 @@
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                         "properties": {
-                          "key": {
+                          "kty": {
                             "type": "string",
-                            "description": "The key part."
+                            "description": "The key type (EC or RSA)\n"
                           },
-                          "value": {
+                          "use": {
                             "type": "string",
-                            "description": "The value part."
+                            "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                          },
+                          "kid": {
+                            "type": "string",
+                            "description": "Key ID for the key on the HSM.\n"
+                          },
+                          "hsmName": {
+                            "type": "string",
+                            "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                          },
+                          "handle": {
+                            "type": "string",
+                            "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                          },
+                          "publicKey": {
+                            "type": "string",
+                            "description": "The public key that corresponds to the key on the HSM.\n"
                           }
                         }
                       },
@@ -1059,7 +1093,7 @@
                       "description": "The type of the `aud` claim in ID tokens.\n"
                     },
                     "idTokenReissuable": {
-                      "type": "string",
+                      "type": "boolean",
                       "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                     }
                   }
@@ -1531,7 +1565,24 @@
                             "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                           },
                           "developerSnsCredentials": {
-                            "type": "string",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "sns": {
+                                  "type": "string",
+                                  "description": "SNS."
+                                },
+                                "apiKey": {
+                                  "type": "string",
+                                  "description": "API key."
+                                },
+                                "apiSecret": {
+                                  "type": "string",
+                                  "description": "API secret."
+                                }
+                              }
+                            },
                             "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                           },
                           "supportedGrantTypes": {
@@ -2165,14 +2216,31 @@
                             "type": "array",
                             "items": {
                               "type": "object",
+                              "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                               "properties": {
-                                "key": {
+                                "kty": {
                                   "type": "string",
-                                  "description": "The key part."
+                                  "description": "The key type (EC or RSA)\n"
                                 },
-                                "value": {
+                                "use": {
                                   "type": "string",
-                                  "description": "The value part."
+                                  "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                                },
+                                "kid": {
+                                  "type": "string",
+                                  "description": "Key ID for the key on the HSM.\n"
+                                },
+                                "hsmName": {
+                                  "type": "string",
+                                  "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                                },
+                                "handle": {
+                                  "type": "string",
+                                  "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                                },
+                                "publicKey": {
+                                  "type": "string",
+                                  "description": "The public key that corresponds to the key on the HSM.\n"
                                 }
                               }
                             },
@@ -2396,7 +2464,7 @@
                             "description": "The type of the `aud` claim in ID tokens.\n"
                           },
                           "idTokenReissuable": {
-                            "type": "string",
+                            "type": "boolean",
                             "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                           }
                         }
@@ -2836,7 +2904,24 @@
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                   },
                   "developerSnsCredentials": {
-                    "type": "string",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "sns": {
+                          "type": "string",
+                          "description": "SNS."
+                        },
+                        "apiKey": {
+                          "type": "string",
+                          "description": "API key."
+                        },
+                        "apiSecret": {
+                          "type": "string",
+                          "description": "API secret."
+                        }
+                      }
+                    },
                     "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
@@ -3470,14 +3555,31 @@
                     "type": "array",
                     "items": {
                       "type": "object",
+                      "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                       "properties": {
-                        "key": {
+                        "kty": {
                           "type": "string",
-                          "description": "The key part."
+                          "description": "The key type (EC or RSA)\n"
                         },
-                        "value": {
+                        "use": {
                           "type": "string",
-                          "description": "The value part."
+                          "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                        },
+                        "kid": {
+                          "type": "string",
+                          "description": "Key ID for the key on the HSM.\n"
+                        },
+                        "hsmName": {
+                          "type": "string",
+                          "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                        },
+                        "handle": {
+                          "type": "string",
+                          "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                        },
+                        "publicKey": {
+                          "type": "string",
+                          "description": "The public key that corresponds to the key on the HSM.\n"
                         }
                       }
                     },
@@ -3701,7 +3803,7 @@
                     "description": "The type of the `aud` claim in ID tokens.\n"
                   },
                   "idTokenReissuable": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                   }
                 }
@@ -3912,7 +4014,24 @@
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                   },
                   "developerSnsCredentials": {
-                    "type": "string",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "sns": {
+                          "type": "string",
+                          "description": "SNS."
+                        },
+                        "apiKey": {
+                          "type": "string",
+                          "description": "API key."
+                        },
+                        "apiSecret": {
+                          "type": "string",
+                          "description": "API secret."
+                        }
+                      }
+                    },
                     "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
@@ -4546,14 +4665,31 @@
                     "type": "array",
                     "items": {
                       "type": "object",
+                      "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                       "properties": {
-                        "key": {
+                        "kty": {
                           "type": "string",
-                          "description": "The key part."
+                          "description": "The key type (EC or RSA)\n"
                         },
-                        "value": {
+                        "use": {
                           "type": "string",
-                          "description": "The value part."
+                          "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                        },
+                        "kid": {
+                          "type": "string",
+                          "description": "Key ID for the key on the HSM.\n"
+                        },
+                        "hsmName": {
+                          "type": "string",
+                          "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                        },
+                        "handle": {
+                          "type": "string",
+                          "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                        },
+                        "publicKey": {
+                          "type": "string",
+                          "description": "The public key that corresponds to the key on the HSM.\n"
                         }
                       }
                     },
@@ -4777,7 +4913,7 @@
                     "description": "The type of the `aud` claim in ID tokens.\n"
                   },
                   "idTokenReissuable": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                   }
                 }
@@ -4943,7 +5079,24 @@
                       "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                     },
                     "developerSnsCredentials": {
-                      "type": "string",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "sns": {
+                            "type": "string",
+                            "description": "SNS."
+                          },
+                          "apiKey": {
+                            "type": "string",
+                            "description": "API key."
+                          },
+                          "apiSecret": {
+                            "type": "string",
+                            "description": "API secret."
+                          }
+                        }
+                      },
                       "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                     },
                     "supportedGrantTypes": {
@@ -5577,14 +5730,31 @@
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                         "properties": {
-                          "key": {
+                          "kty": {
                             "type": "string",
-                            "description": "The key part."
+                            "description": "The key type (EC or RSA)\n"
                           },
-                          "value": {
+                          "use": {
                             "type": "string",
-                            "description": "The value part."
+                            "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                          },
+                          "kid": {
+                            "type": "string",
+                            "description": "Key ID for the key on the HSM.\n"
+                          },
+                          "hsmName": {
+                            "type": "string",
+                            "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                          },
+                          "handle": {
+                            "type": "string",
+                            "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                          },
+                          "publicKey": {
+                            "type": "string",
+                            "description": "The public key that corresponds to the key on the HSM.\n"
                           }
                         }
                       },
@@ -5808,7 +5978,7 @@
                       "description": "The type of the `aud` claim in ID tokens.\n"
                     },
                     "idTokenReissuable": {
-                      "type": "string",
+                      "type": "boolean",
                       "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                     }
                   }
@@ -6248,7 +6418,24 @@
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                   },
                   "developerSnsCredentials": {
-                    "type": "string",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "sns": {
+                          "type": "string",
+                          "description": "SNS."
+                        },
+                        "apiKey": {
+                          "type": "string",
+                          "description": "API key."
+                        },
+                        "apiSecret": {
+                          "type": "string",
+                          "description": "API secret."
+                        }
+                      }
+                    },
                     "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
@@ -6882,14 +7069,31 @@
                     "type": "array",
                     "items": {
                       "type": "object",
+                      "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                       "properties": {
-                        "key": {
+                        "kty": {
                           "type": "string",
-                          "description": "The key part."
+                          "description": "The key type (EC or RSA)\n"
                         },
-                        "value": {
+                        "use": {
                           "type": "string",
-                          "description": "The value part."
+                          "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                        },
+                        "kid": {
+                          "type": "string",
+                          "description": "Key ID for the key on the HSM.\n"
+                        },
+                        "hsmName": {
+                          "type": "string",
+                          "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                        },
+                        "handle": {
+                          "type": "string",
+                          "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                        },
+                        "publicKey": {
+                          "type": "string",
+                          "description": "The public key that corresponds to the key on the HSM.\n"
                         }
                       }
                     },
@@ -7113,7 +7317,7 @@
                     "description": "The type of the `aud` claim in ID tokens.\n"
                   },
                   "idTokenReissuable": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                   }
                 }
@@ -7374,7 +7578,24 @@
                     "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                   },
                   "developerSnsCredentials": {
-                    "type": "string",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "sns": {
+                          "type": "string",
+                          "description": "SNS."
+                        },
+                        "apiKey": {
+                          "type": "string",
+                          "description": "API key."
+                        },
+                        "apiSecret": {
+                          "type": "string",
+                          "description": "API secret."
+                        }
+                      }
+                    },
                     "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                   },
                   "supportedGrantTypes": {
@@ -8008,14 +8229,31 @@
                     "type": "array",
                     "items": {
                       "type": "object",
+                      "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                       "properties": {
-                        "key": {
+                        "kty": {
                           "type": "string",
-                          "description": "The key part."
+                          "description": "The key type (EC or RSA)\n"
                         },
-                        "value": {
+                        "use": {
                           "type": "string",
-                          "description": "The value part."
+                          "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                        },
+                        "kid": {
+                          "type": "string",
+                          "description": "Key ID for the key on the HSM.\n"
+                        },
+                        "hsmName": {
+                          "type": "string",
+                          "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                        },
+                        "handle": {
+                          "type": "string",
+                          "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                        },
+                        "publicKey": {
+                          "type": "string",
+                          "description": "The public key that corresponds to the key on the HSM.\n"
                         }
                       }
                     },
@@ -8239,7 +8477,7 @@
                     "description": "The type of the `aud` claim in ID tokens.\n"
                   },
                   "idTokenReissuable": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                   }
                 }
@@ -8405,7 +8643,24 @@
                       "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                     },
                     "developerSnsCredentials": {
-                      "type": "string",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "sns": {
+                            "type": "string",
+                            "description": "SNS."
+                          },
+                          "apiKey": {
+                            "type": "string",
+                            "description": "API key."
+                          },
+                          "apiSecret": {
+                            "type": "string",
+                            "description": "API secret."
+                          }
+                        }
+                      },
                       "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                     },
                     "supportedGrantTypes": {
@@ -9039,14 +9294,31 @@
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                         "properties": {
-                          "key": {
+                          "kty": {
                             "type": "string",
-                            "description": "The key part."
+                            "description": "The key type (EC or RSA)\n"
                           },
-                          "value": {
+                          "use": {
                             "type": "string",
-                            "description": "The value part."
+                            "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                          },
+                          "kid": {
+                            "type": "string",
+                            "description": "Key ID for the key on the HSM.\n"
+                          },
+                          "hsmName": {
+                            "type": "string",
+                            "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                          },
+                          "handle": {
+                            "type": "string",
+                            "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                          },
+                          "publicKey": {
+                            "type": "string",
+                            "description": "The public key that corresponds to the key on the HSM.\n"
                           }
                         }
                       },
@@ -9270,7 +9542,7 @@
                       "description": "The type of the `aud` claim in ID tokens.\n"
                     },
                     "idTokenReissuable": {
-                      "type": "string",
+                      "type": "boolean",
                       "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                     }
                   }
@@ -10516,7 +10788,7 @@
                       "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     },
                     "locked": {
-                      "type": "string",
+                      "type": "boolean",
                       "description": "The flag which indicates whether this client is locked.\n"
                     }
                   }
@@ -11577,7 +11849,7 @@
                             "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                           },
                           "locked": {
-                            "type": "string",
+                            "type": "boolean",
                             "description": "The flag which indicates whether this client is locked.\n"
                           }
                         }
@@ -12594,7 +12866,7 @@
                     "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   },
                   "locked": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag which indicates whether this client is locked.\n"
                   }
                 }
@@ -13430,7 +13702,7 @@
                       "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     },
                     "locked": {
-                      "type": "string",
+                      "type": "boolean",
                       "description": "The flag which indicates whether this client is locked.\n"
                     }
                   }
@@ -14446,7 +14718,7 @@
                     "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   },
                   "locked": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag which indicates whether this client is locked.\n"
                   }
                 }
@@ -15289,7 +15561,7 @@
                     "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                   },
                   "locked": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "The flag which indicates whether this client is locked.\n"
                   }
                 }
@@ -16094,7 +16366,7 @@
                       "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                     },
                     "locked": {
-                      "type": "string",
+                      "type": "boolean",
                       "description": "The flag which indicates whether this client is locked.\n"
                     }
                   }
@@ -17957,7 +18229,7 @@
                             "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                           },
                           "locked": {
-                            "type": "string",
+                            "type": "boolean",
                             "description": "The flag which indicates whether this client is locked.\n"
                           }
                         }
@@ -19926,7 +20198,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -20099,7 +20371,24 @@
                           "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
                         },
                         "developerSnsCredentials": {
-                          "type": "string",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "sns": {
+                                "type": "string",
+                                "description": "SNS."
+                              },
+                              "apiKey": {
+                                "type": "string",
+                                "description": "API key."
+                              },
+                              "apiSecret": {
+                                "type": "string",
+                                "description": "API secret."
+                              }
+                            }
+                          },
                           "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
                         },
                         "supportedGrantTypes": {
@@ -20733,14 +21022,31 @@
                           "type": "array",
                           "items": {
                             "type": "object",
+                            "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
                             "properties": {
-                              "key": {
+                              "kty": {
                                 "type": "string",
-                                "description": "The key part."
+                                "description": "The key type (EC or RSA)\n"
                               },
-                              "value": {
+                              "use": {
                                 "type": "string",
-                                "description": "The value part."
+                                "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                              },
+                              "kid": {
+                                "type": "string",
+                                "description": "Key ID for the key on the HSM.\n"
+                              },
+                              "hsmName": {
+                                "type": "string",
+                                "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                              },
+                              "handle": {
+                                "type": "string",
+                                "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                              },
+                              "publicKey": {
+                                "type": "string",
+                                "description": "The public key that corresponds to the key on the HSM.\n"
                               }
                             }
                           },
@@ -20964,7 +21270,7 @@
                           "description": "The type of the `aud` claim in ID tokens.\n"
                         },
                         "idTokenReissuable": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
                         }
                       }
@@ -21105,7 +21411,10 @@
                       "description": "The value of the `userinfo` property in the `claims` request parameter or in the `claims` property in a request object.\n\nA client application may request certain claims be embedded in an ID token or in a response from the userInfo endpoint.\nThere are several ways. Including the `claims` request parameter and including the `claims` property in a request object are such examples.\nIn both the cases, the value of the `claims` parameter/property is JSON. Its format is described in [5.5. Requesting Claims using the \"claims\"\nRequest Parameter](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter).\n\nThe following is an excerpt from the specification. You can find `userinfo` and `id_token` are top-level properties.\n\n```json\n{\n  \"userinfo\":\n  {\n    \"given_name\": { \"essential\": true },\n    \"nickname\": null,\n    \"email\": { \"essential\": true },\n    \"email_verified\": { \"essential\": true },\n    \"picture\": null,\n    \"http://example.info/claims/groups\": null\n  },\n  \"id_token\":\n  {\n    \"auth_time\": { \"essential\": true },\n    \"acr\": { \"values\": [ \"urn:mace:incommon:iap:silver\" ] }\n  }\n}\n````\n\nThe value of this property is the value of the `userinfo` property in JSON format.\nFor example, if the JSON above is included in an authorization request, this property holds JSON equivalent to the following.\n\n```json\n{\n  \"given_name\": { \"essential\": true },\n  \"nickname\": null,\n  \"email\": { \"essential\": true },\n  \"email_verified\": { \"essential\": true },\n  \"picture\": null,\n  \"http://example.info/claims/groups\": null\n}\n```\n\nNote that if a request object is given and it contains the `claims` property and if the `claims` request parameter is also given,\nthe value of this property holds the former value.\n"
                     },
                     "resources": {
-                      "type": "string",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
                       "description": "The resources specified by the `resource` request parameters or by the `resource` property in the request object.\nIf both are given, the values in the request object should be set. See \"Resource Indicators for OAuth 2.0\" for details.\n"
                     },
                     "authorizationDetails": {
@@ -28428,7 +28737,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -29489,7 +29798,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -30561,7 +30870,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -31622,7 +31931,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -34117,7 +34426,55 @@
                     "scopes": {
                       "type": "array",
                       "items": {
-                        "type": "string"
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the scope."
+                          },
+                          "defaultEntry": {
+                            "type": "boolean",
+                            "description": "`true` to mark the scope as default. Scopes marked as default are regarded as requested when an authorization request from a client application does not contain scope request parameter. "
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "The description about the scope."
+                          },
+                          "descriptions": {
+                            "type": "array",
+                            "description": "The descriptions about this scope in multiple languages.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "tag": {
+                                  "type": "string",
+                                  "description": "The language tag part."
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "description": "The value part."
+                                }
+                              }
+                            }
+                          },
+                          "attributes": {
+                            "type": "array",
+                            "description": "The attributes of the scope.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string",
+                                  "description": "The key part."
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "description": "The value part."
+                                }
+                              }
+                            }
+                          }
+                        }
                       },
                       "description": "The scopes requested by the device authorization request.\n\nBasically, this property holds the value of the scope request parameter in the device\nauthorization request. However, because unregistered scopes are dropped on Authlete\nside, if the `scope` request parameter contains unknown scopes, the list returned by\nthis property becomes different from the value of the `scope` request parameter.\n\nNote that `description` property and `descriptions` property of each scope object in the\narray contained in this property is always `null` even if descriptions of the scopes\nare registered.\n"
                     },
@@ -36400,7 +36757,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -39791,7 +40148,7 @@
                           "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
                         },
                         "locked": {
-                          "type": "string",
+                          "type": "boolean",
                           "description": "The flag which indicates whether this client is locked.\n"
                         }
                       }
@@ -41910,7 +42267,7 @@
             "description": "the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0\n"
           },
           "locked": {
-            "type": "string",
+            "type": "boolean",
             "description": "The flag which indicates whether this client is locked.\n"
           }
         }
@@ -42293,7 +42650,24 @@
             "description": "SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.\n\nYou need to register a client application in each SNS checked here and set Authlete server's\n`/api/developer/sns/redirection` as the redirection endpoint of the client application.\n"
           },
           "developerSnsCredentials": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sns": {
+                  "type": "string",
+                  "description": "SNS."
+                },
+                "apiKey": {
+                  "type": "string",
+                  "description": "API key."
+                },
+                "apiSecret": {
+                  "type": "string",
+                  "description": "API secret."
+                }
+              }
+            },
             "description": "SNS credentials which Authlete uses to make requests to SNSes. The format is JSON."
           },
           "supportedGrantTypes": {
@@ -42927,14 +43301,31 @@
             "type": "array",
             "items": {
               "type": "object",
+              "description": "Holds information about a key managed in an HSM (Hardware Security Module)\n",
               "properties": {
-                "key": {
+                "kty": {
                   "type": "string",
-                  "description": "The key part."
+                  "description": "The key type (EC or RSA)\n"
                 },
-                "value": {
+                "use": {
                   "type": "string",
-                  "description": "The value part."
+                  "description": "Get the use of the key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                },
+                "kid": {
+                  "type": "string",
+                  "description": "Key ID for the key on the HSM.\n"
+                },
+                "hsmName": {
+                  "type": "string",
+                  "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
+                },
+                "handle": {
+                  "type": "string",
+                  "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
+                },
+                "publicKey": {
+                  "type": "string",
+                  "description": "The public key that corresponds to the key on the HSM.\n"
                 }
               }
             },
@@ -43158,7 +43549,7 @@
             "description": "The type of the `aud` claim in ID tokens.\n"
           },
           "idTokenReissuable": {
-            "type": "string",
+            "type": "boolean",
             "description": "The flag indicating whether to enable the feature of ID token reissuance in the refresh token flow.\n"
           }
         }

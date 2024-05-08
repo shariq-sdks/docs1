@@ -211,7 +211,7 @@ properties:
   authorizationEncryptionEnc:
     $ref: jwe_enc.yaml
   tokenAuthMethod:
-    $ref: ./client_authentication_method.yaml
+    $ref: ./client_auth_method.yaml
   tokenAuthSignAlg:
     $ref: jws_alg.yaml
   selfSignedCertificateKeyId:
@@ -670,6 +670,6 @@ properties:
     description: |
       the time at which the trust chain was updated by the mechanism defined in OpenID Connect Federation 1.0
   locked:
-    type: string
+    type: boolean
     description: |
       The flag which indicates whether this client is locked.

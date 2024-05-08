@@ -56,7 +56,7 @@ properties:
       the claims that the user has consented for the client application
       to know.
   authorizationDetails:
-    $ref: ../authorization_details.yaml
+    $ref: ../authz_details.yaml
   jwtAtClaims:
     type: string
     description: |

@@ -211,7 +211,7 @@ properties:
   authorizationEncryptionEnc:
     $ref: jwe_enc.yaml
   tokenAuthMethod:
-    $ref: ./client_authentication_method.yaml
+    $ref: ./client_auth_method.yaml
   tokenAuthSignAlg:
     $ref: jws_alg.yaml
   selfSignedCertificateKeyId:

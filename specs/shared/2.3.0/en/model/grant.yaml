@@ -11,4 +11,4 @@ properties:
     description: |
       The claims associated with the Grant.
   authorizationDetails:
-    $ref: ./authorization_details.yaml
+    $ref: ./authz_details.yaml

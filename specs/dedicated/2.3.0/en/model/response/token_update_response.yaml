@@ -41,7 +41,7 @@ properties:
     description: |
       The scopes associated with the access token.
   authorizationDetails:
-    $ref: ../authorization_details.yaml
+    $ref: ../authz_details.yaml
   tokenType:
     type: string
     description: |
