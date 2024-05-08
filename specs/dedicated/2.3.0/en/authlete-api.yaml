@@ -165,13 +165,13 @@ components:
     ApplicationType:
       $ref: model/application_type.yaml
     AuthorizationDetails:
-      $ref: model/authorization_details.yaml
+      $ref: model/authz_details.yaml
     AuthorizationDetailsElement:
       $ref: model/authorization_details_element.yaml
     ClaimType:
       $ref: model/claim_type.yaml
     ClientAuthenticationMethod:
-      $ref: model/client_authentication_method.yaml
+      $ref: model/client_auth_method.yaml
     ClientExtension:
       $ref: model/client_extension.yaml
     Client:

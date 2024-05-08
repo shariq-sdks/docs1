@@ -70,7 +70,7 @@ properties:
       set, a DPoP proof signed with the corresponding private key MUST be presented with the access
       token when it is used by a client. Additionally, the token's `token_type` will be set to 'DPoP'.
   authorizationDetails:
-    $ref: ../authorization_details.yaml
+    $ref: ../authz_details.yaml
   forExternalAttachment:
     type: boolean
     description: |
