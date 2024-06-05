@@ -1,0 +1,79 @@
+post:
+  summary: /api/{serviceId}/auth/token/create/batch/status/{requestId} API
+  description: |
+    Retrieves the status of a batch token creation process specified by the given request Id.
+  security:
+    - AccessToken: []
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: requestId
+      description: A request ID.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/token_create_batch_status_response.yaml
+          example:
+            {
+              "status": {
+                "batchKind": "CREATE",
+                "requestId": "AJFrtca4XR1rb4NUSoKfGQ",
+                "result": "SUCCEEDED",
+                "tokenCount": 3,
+                "errorCode": null,
+                "errorDescription": null,
+                "createdAt": 1715689814000,
+                "modifiedAt": 1715689815000
+              },
+              "resultCode": "A447001",
+              "resultMessage": "Successfully obtained the status."
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '404':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/result.yaml
+          example:
+            resultCode: A481302
+            resultMessage: '[A481302] /api/{serviceId}/auth/token/create/batch/status/{requestId}, The request ID was not found.'
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'auth_token_update_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/token/create/batch/status/AJFrtca4XR1rb4NUSoKfGQ \
+        -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+        
+        // Get the request ID for the batch operation.
+        String requestId = ...;
+
+        api.getTokenCreateBatchStatus(requestId);
+
+  tags:
+    - Token Operations
