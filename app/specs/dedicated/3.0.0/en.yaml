@@ -39383,7 +39383,8 @@
                           ]
                         },
                         "tokenCount": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The number of access tokens processed by the batch."
                         },
                         "errorCode": {
@@ -39395,11 +39396,13 @@
                           "description": "The error description for the batch operation"
                         },
                         "createdAt": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The time when this status was created"
                         },
                         "modifiedAt": {
-                          "type": "int64",
+                          "type": "integer",
+                          "format": "int64",
                           "description": "The time when this status was modified"
                         }
                       }
@@ -39544,7 +39547,7 @@
             }
           }
         },
-        "operationId": "auth_token_update_api",
+        "operationId": "auth_token_create_batch_status_api",
         "x-code-samples": [
           {
             "lang": "shell",
