@@ -56,7 +56,7 @@ post:
             resultMessage: '[A481302] /api/{serviceId}/auth/token/create/batch/status/{requestId}, The request ID was not found.'
     '500':
       $ref: ../model/response/500.yaml
-  operationId: 'auth_token_update_api'
+  operationId: 'auth_token_create_batch_status_api'
   x-code-samples:
     - lang: shell
       label: curl
