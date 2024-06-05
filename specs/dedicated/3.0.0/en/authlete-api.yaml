@@ -123,6 +123,10 @@ paths:
     $ref: ./api/auth_token_delete_api.yaml
   /api/{serviceId}/auth/token/revoke:
     $ref: ./api/auth_token_revoke_api.yaml
+  /api/{serviceId}/auth/token/create/batch:
+    $ref: ./api/auth_token_create_batch_api.yaml
+  /api/{serviceId}/auth/token/create/batch/status/{requestId}:
+    $ref: ./api/auth_token_create_batch_status_api.yaml
   /api/{serviceId}/jose/verify:
     $ref: ./api/jose_verify_api.yaml
   /api/{serviceId}/federation/configuration:

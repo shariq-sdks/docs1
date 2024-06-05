@@ -38934,6 +38934,634 @@
         ]
       }
     },
+    "/api/{serviceId}/auth/token/create/batch": {
+      "post": {
+        "summary": "/api/{serviceId}/auth/token/create/batch API",
+        "description": "Start a batch process to create multiple tokens.\n",
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serviceId",
+            "description": "A service ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "grantType",
+                    "clientId",
+                    "accessToken"
+                  ],
+                  "properties": {
+                    "grantType": {
+                      "type": "string",
+                      "description": "The grant type of the access token when the access token was created.\n",
+                      "enum": [
+                        "AUTHORIZATION_CODE",
+                        "IMPLICIT",
+                        "PASSWORD",
+                        "CLIENT_CREDENTIALS",
+                        "REFRESH_TOKEN",
+                        "CIBA",
+                        "DEVICE_CODE",
+                        "TOKEN_EXCHANGE",
+                        "JWT_BEARER"
+                      ]
+                    },
+                    "clientId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The ID of the client application which will be associated with a newly created access token.\n"
+                    },
+                    "subject": {
+                      "type": "string",
+                      "description": "The subject (= unique identifier) of the user who will be associated with a newly created access\ntoken. This parameter is required unless the grant type is `CLIENT_CREDENTIALS`. The value must\nconsist of only ASCII characters and its length must not exceed 100.\n"
+                    },
+                    "scopes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The scopes which will be associated with a newly created access token. Scopes that are not supported\nby the service cannot be specified and requesting them will cause an error.\n"
+                    },
+                    "accessTokenDuration": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The duration of a newly created access token in seconds. If the value is 0, the duration is determined\naccording to the settings of the service.\n"
+                    },
+                    "refreshTokenDuration": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The duration of a newly created refresh token in seconds. If the value is 0, the duration is\ndetermined according to the settings of the service.\n\nA refresh token is not created (1) if the service does not support `REFRESH_TOKEN`, or (2) if the\nspecified grant type is either `IMPLICIT`or `CLIENT_CREDENTIALS`.\n"
+                    },
+                    "properties": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "description": "The key part."
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value part."
+                          },
+                          "hidden": {
+                            "type": "boolean",
+                            "description": "The flag to indicate whether this property hidden from or visible to client applications.\nIf `true`, this property is hidden from client applications. Otherwise, this property is visible to client applications.\n"
+                          }
+                        }
+                      },
+                      "description": "Extra properties to associate with a newly created access token. Note that properties parameter\nis accepted only when the HTTP method of the request is POST and Content-Type of the request is\n`application/json`, so don't use `GET` method or `application/x-www-form-urlencoded` if you want\nto specify properties.\n"
+                    },
+                    "clientIdAliasUsed": {
+                      "type": "boolean",
+                      "description": "A boolean request parameter which indicates whether to emulate that the client ID alias is used\ninstead of the original numeric client ID when a new access token is created.\n\nThis has an effect only on the value of the aud claim in a response from [UserInfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo).\nWhen you access the UserInfo endpoint (which is expected to be implemented using Authlete's\n`/api/auth/userinfo` API and `/api/auth/userinfo/issue` API) with an access token which has been\ncreated using Authlete's `/api/auth/token/create/batch` API with this property (`clientIdAliasUsed`)\n`true`, the client ID alias is used as the value of the aud claim in a response from the UserInfo\nendpoint.\n\nNote that if a client ID alias is not assigned to the client when Authlete's `/api/auth/token/create/batch`\nAPI is called, this property (`clientIdAliasUsed`) has no effect (it is always regarded as `false`).\n"
+                    },
+                    "accessToken": {
+                      "type": "string",
+                      "description": "The value of the new access token. you must specify the value of a newly created access token by \npassing a non-null value as the value of accessToken request parameter.\n"
+                    },
+                    "refreshToken": {
+                      "type": "string",
+                      "description": "The value of the new refresh token. This is required under some conditions such as when the service \nsupports the refresh token flow.\n"
+                    },
+                    "accessTokenPersistent": {
+                      "type": "boolean",
+                      "description": "Get whether the access token expires or not. By default, all access tokens expire after a period\nof time determined by their service.\n\nIf this request parameter is `true`, then the access token will not automatically expire and must\nbe revoked or deleted manually at the service. If this request parameter is true, the `accessTokenDuration`\nrequest parameter is ignored.\n"
+                    },
+                    "certificateThumbprint": {
+                      "type": "string",
+                      "description": "The thumbprint of the MTLS certificate bound to this token. If this property is set, a certificate\nwith the corresponding value MUST be presented with the access token when it is used by a client.\nThe value of this property must be a SHA256 certificate thumbprint, base64url encoded.\n"
+                    },
+                    "dpopKeyThumbprint": {
+                      "type": "string",
+                      "description": "The thumbprint of the public key used for DPoP presentation of this token. If this property is\nset, a DPoP proof signed with the corresponding private key MUST be presented with the access\ntoken when it is used by a client. Additionally, the token's `token_type` will be set to 'DPoP'.\n"
+                    },
+                    "authorizationDetails": {
+                      "type": "object",
+                      "description": "The authorization details. This represents the value of the `authorization_details`\nrequest parameter in the preceding device authorization request which is defined in\n\"OAuth 2.0 Rich Authorization Requests\".\n",
+                      "properties": {
+                        "elements": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "type"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "The type of this element.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"The type of authorization data as a string.\nThis field MAY define which other elements are allowed in the request. This element is REQUIRED.\"_\n\nThis property is always NOT `null`.\n"
+                              },
+                              "locations": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The resources and/or resource servers. This property may be `null`.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the location of\nthe resource or resource server. This is typically composed of URIs.\"_\n\nThis property may be `null`.\n"
+                              },
+                              "actions": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The actions.\n\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the kinds of actions\nto be taken at the resource. The values of the strings are determined by the API being protected.\"_\n\nThis property may be `null`.\n"
+                              },
+                              "dataTypes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "From _\"OAuth 2.0 Rich Authorization Requests\"_: _\"An array of strings representing the kinds of data being requested\nfrom the resource.\"_\n\nThis property may be `null`.\n"
+                              },
+                              "identifier": {
+                                "type": "string",
+                                "description": "The identifier of a specific resource.\nFrom _\"OAuth 2.0 Rich Authorization Requests\"_: _\"A string identifier indicating a specific resource available at the API.\"_\n\nThis property may be `null`.\n"
+                              },
+                              "privileges": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The types or levels of privilege.\nFrom \"OAuth 2.0 Rich Authorization Requests\": _\"An array of strings representing the types or\nlevels of privilege being requested at the resource.\"_\n\nThis property may be `null`.\n"
+                              },
+                              "otherFields": {
+                                "type": "string",
+                                "description": "The RAR request in the JSON format excluding the pre-defined attributes such as `type` and `locations`.\nThe content and semantics are specific to the deployment and the use case implemented.\n"
+                              }
+                            }
+                          },
+                          "description": "Elements of this authorization details.\n"
+                        }
+                      }
+                    },
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "description": "The value of the resources to associate with the token. This property represents the value of\none or more `resource` request parameters which is defined in \"RFC8707 Resource Indicators for\nOAuth 2.0\".\n"
+                    },
+                    "forExternalAttachment": {
+                      "type": "boolean",
+                      "description": "the flag which indicates whether the access token is for an external\nattachment.\n"
+                    },
+                    "jwtAtClaims": {
+                      "type": "string",
+                      "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                    },
+                    "acr": {
+                      "type": "string",
+                      "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                    },
+                    "authTime": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The time when the user authentication was performed during the course of issuing the access token.\n"
+                    },
+                    "clientEntityIdUsed": {
+                      "type": "boolean",
+                      "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
+                    }
+                  }
+                }
+              },
+              "example": [
+                {
+                  "subject": "john",
+                  "grantType": "AUTHORIZATION_CODE",
+                  "clientId": 4284413807,
+                  "accessToken": "5ce31f34fa9d91fcb7a037c30dda3c2c",
+                  "refreshToken": "7d627a538f29fcf1645aaa185b4567c7",
+                  "accessTokenDuration": 3600
+                },
+                {
+                  "subject": "john",
+                  "grantType": "AUTHORIZATION_CODE",
+                  "clientId": 4284413807,
+                  "accessToken": "fee98be7aec1ab5c97c1e734be36615d",
+                  "refreshToken": "1f039e64412a0988097e7a945f712381",
+                  "accessTokenDuration": 3600
+                },
+                {
+                  "subject": "john",
+                  "grantType": "AUTHORIZATION_CODE",
+                  "clientId": 4284413807,
+                  "accessToken": "7fdeff1ddece61c0e7ef59c8ca0236fa",
+                  "refreshToken": "f6315f15ee41073bd6753d6582e2a076",
+                  "accessTokenDuration": 3600
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "description": "The ID for the requested batch operation."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A482001",
+                  "resultMessage": "[A482001] Successfully issued a request ID.",
+                  "requestId": "Z5a40U6dWvw2gMoCOAFbZcM85q4HC0Z--0YKD9-Nf6Q"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001201",
+                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001202",
+                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001215",
+                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001101",
+                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "auth_token_create_batch_api",
+        "x-code-samples": [
+          {
+            "lang": "shell",
+            "label": "curl",
+            "source": "curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/token/create/batch \\\n-H 'Content-Type:application/json' \\\n-u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \\\n-d @tokens.json\n"
+          },
+          {
+            "lang": "java",
+            "label": "java",
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nTokenCreateRequest req1 = new TokenCreateRequest()\n    .setSubject(\"john\")\n    .setAccessToken(\"sample-at1\")\n    .setRefreshToken(\"sample-rt1\")\n    .setGrantType(GrantType.AUTHORIZATION_CODE)\n    .setClientId(4284413807L)\n    .setAccessTokenDuration(3600)\n    ;\n\nTokenCreateRequest req2 = new TokenCreateRequest()\n    .setSubject(\"john\")\n    .setAccessToken(\"sample-at2\")\n    .setRefreshToken(\"sample-rt2\")\n    .setGrantType(GrantType.AUTHORIZATION_CODE)\n    .setClientId(4284413807L)\n    .setAccessTokenDuration(3600)\n    ;\n\nTokenCreateRequest req3 = new TokenCreateRequest()\n    .setSubject(\"john\")\n    .setAccessToken(\"sample-at3\")\n    .setRefreshToken(\"sample-rt3\")\n    .setGrantType(GrantType.AUTHORIZATION_CODE)\n    .setClientId(4284413807L)\n    .setAccessTokenDuration(3600)\n    ;\n\napi.tokenCreateBatch(new TokenCreateRequest[]{ req1, req2, req3 }, false);\n"
+          }
+        ],
+        "tags": [
+          "Token Operations"
+        ]
+      }
+    },
+    "/api/{serviceId}/auth/token/create/batch/status/{requestId}": {
+      "post": {
+        "summary": "/api/{serviceId}/auth/token/create/batch/status/{requestId} API",
+        "description": "Retrieves the status of a batch token creation process specified by the given request Id.\n",
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serviceId",
+            "description": "A service ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "requestId",
+            "description": "A request ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "batchKind": {
+                          "type": "string",
+                          "description": "The kind of the batch."
+                        },
+                        "requestId": {
+                          "type": "string",
+                          "description": "The request ID associated with the status."
+                        },
+                        "result": {
+                          "description": "The result of the token batch.",
+                          "type": "string",
+                          "enum": [
+                            "FAILED",
+                            "SUCCEED"
+                          ]
+                        },
+                        "tokenCount": {
+                          "type": "int64",
+                          "description": "The number of access tokens processed by the batch."
+                        },
+                        "errorCode": {
+                          "type": "string",
+                          "description": "The error code for the batch operation"
+                        },
+                        "errorDescription": {
+                          "type": "string",
+                          "description": "The error description for the batch operation"
+                        },
+                        "createdAt": {
+                          "type": "int64",
+                          "description": "The time when this status was created"
+                        },
+                        "modifiedAt": {
+                          "type": "int64",
+                          "description": "The time when this status was modified"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": {
+                    "batchKind": "CREATE",
+                    "requestId": "AJFrtca4XR1rb4NUSoKfGQ",
+                    "result": "SUCCEEDED",
+                    "tokenCount": 3,
+                    "errorCode": null,
+                    "errorDescription": null,
+                    "createdAt": 1715689814000,
+                    "modifiedAt": 1715689815000
+                  },
+                  "resultCode": "A447001",
+                  "resultMessage": "Successfully obtained the status."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001201",
+                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001202",
+                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001215",
+                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A481302",
+                  "resultMessage": "[A481302] /api/{serviceId}/auth/token/create/batch/status/{requestId}, The request ID was not found."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001101",
+                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "auth_token_update_api",
+        "x-code-samples": [
+          {
+            "lang": "shell",
+            "label": "curl",
+            "source": "curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/token/create/batch/status/AJFrtca4XR1rb4NUSoKfGQ \\\n-u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'\n"
+          },
+          {
+            "lang": "java",
+            "label": "java",
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\n// Get the request ID for the batch operation.\nString requestId = ...;\n\napi.getTokenCreateBatchStatus(requestId);\n"
+          }
+        ],
+        "tags": [
+          "Token Operations"
+        ]
+      }
+    },
     "/api/{serviceId}/jose/verify": {
       "post": {
         "summary": "/api/{serviceId}/jose/verify API",

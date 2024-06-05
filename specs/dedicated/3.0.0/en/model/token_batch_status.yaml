@@ -1,0 +1,26 @@
+type: object
+properties:
+  "batchKind":
+    type: string
+    description: "The kind of the batch."
+  "requestId":
+    type: string
+    description: "The request ID associated with the status."
+  "result":
+    $ref: ./token_batch_status_result.yaml
+    description: "The result of the token batch."
+  "tokenCount":
+    type: int64
+    description: "The number of access tokens processed by the batch."
+  "errorCode":
+    type: string
+    description: "The error code for the batch operation"
+  "errorDescription":
+    type: string
+    description: "The error description for the batch operation"
+  "createdAt":
+    type: int64
+    description: "The time when this status was created"
+  "modifiedAt":
+    type: int64
+    description: "The time when this status was modified"

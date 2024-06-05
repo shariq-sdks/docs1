@@ -1,7 +1,7 @@
 
 .prepare_github_step:
   before_script:
-    - mkdir ~/.ssh/
+    - mkdir ~/.ssh/ || true
     - echo "${CI_KNOWN_HOSTS}" > ~/.ssh/known_hosts
     - echo "${GITHUB_SSH_PUSH_KEY}" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
