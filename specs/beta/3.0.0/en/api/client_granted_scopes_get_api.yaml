@@ -28,7 +28,7 @@ get:
     The subject parameter is required and can be provided either in the path or as a query parameter.
     </details>
   security:
-    - AccessToken: []
+    - ViewClient: []
   parameters:
     - in: path
       name: serviceId

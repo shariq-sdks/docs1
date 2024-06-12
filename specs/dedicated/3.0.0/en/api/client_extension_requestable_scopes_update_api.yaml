@@ -3,7 +3,7 @@ put:
   description: |
     Update requestable scopes of a client
   security:
-    - AccessToken: []
+    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId

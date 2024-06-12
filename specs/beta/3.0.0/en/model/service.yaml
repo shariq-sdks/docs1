@@ -24,17 +24,10 @@ properties:
     type: integer
     format: int64
     readOnly: true
-    description: The API key. The value of this property is assigned by Authlete.
-  clientsPerDeveloper:
-    type: integer
-    format: int32
-    readOnly: true
-    description: The maximum number of client applications that a developer is allowed to create. `0` means no limit.
+    description: The service ID used in Authlete API calls. The value of this property is assigned by Authlete.
   clientIdAliasEnabled:
     type: boolean
-    description: |
-      The flag to indicate whether the 'Client ID Alias' feature is enabled or not.
-      When a new client is created, Authlete generates a numeric value and assigns it as a client ID to the newly created client. In addition to the client ID, each client can have a client ID alias. The client ID alias is, however, recognized only when this property (`clientIdAliasEnabled`) is set to `true`.
+    description: Deprecated. Always `true`.
   metadata:
     type: array
     items:
@@ -81,17 +74,6 @@ properties:
   authenticationCallbackApiSecret:
     type: string
     description: API secret for `basic` authentication at the authentication callback endpoint.
-  supportedSnses:
-    type: array
-    items:
-      $ref: ./sns.yaml
-    description: |
-      SNSes you want to support 'social login' in the UI at the
-      authorization endpoint provided by Authlete.
-
-      You need to register a `client` application in each SNS that is set
-      as this parameter and set Authlete server's `/api/sns/redirection`
-      as the redirection endpoint of the client application.
   supportedAcrs:
     readOnly: true
     type: array
@@ -102,15 +84,6 @@ properties:
 
       The value of this property is used as `acr_values_supported`
       property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
-  supportedDeveloperSnses:
-    type: array
-    items:
-      $ref: ./sns.yaml
-    description: |
-      SNSes you want to support 'social login' in the login page of Developer Console provided by Authlete.
-
-      You need to register a client application in each SNS checked here and set Authlete server's
-      `/api/developer/sns/redirection` as the redirection endpoint of the client application.
   supportedGrantTypes:
     type: array
     items:

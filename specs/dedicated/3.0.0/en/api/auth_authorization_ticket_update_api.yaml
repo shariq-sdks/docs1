@@ -1,7 +1,7 @@
 post:
   summary: /api/{serviceId}/auth/authorization/ticket/update API
   security:
-    - AccessToken: []
+    - UseService: []
   requestBody:
     required: true
     content:

@@ -1,7 +1,7 @@
 get:
   summary: /api/{serviceId}/hsk/get/{handle} API
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId

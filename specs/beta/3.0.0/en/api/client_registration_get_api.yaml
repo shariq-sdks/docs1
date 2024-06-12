@@ -113,7 +113,7 @@ post:
     </details>
 
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId

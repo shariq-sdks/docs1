@@ -1,7 +1,7 @@
 get:
   summary: /api/{serviceId}/auth/authorization/ticket/info API
   security:
-    - AccessToken: []
+    - UseService: []
   requestBody:
     required: true
     content:

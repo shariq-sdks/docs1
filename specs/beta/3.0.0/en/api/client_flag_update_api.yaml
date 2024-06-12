@@ -3,7 +3,7 @@ post:
   description: |
     Lock and unlock a client
   security:
-    - AccessToken: []
+    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId

@@ -17,7 +17,7 @@ properties:
       - INTERACTION
     description: The next action that the authorization server implementation should take.
   client:
-    $ref: ../client.yaml
+    $ref: ../client_limited_authorization.yaml
   display:
     $ref: ../display.yaml
   maxAge:

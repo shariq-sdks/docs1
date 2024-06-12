@@ -8,7 +8,7 @@ post:
     includes a new ID token together with a new access token and a refresh
     token.
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId

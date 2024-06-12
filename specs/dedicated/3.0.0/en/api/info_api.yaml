@@ -2,8 +2,6 @@ get:
   summary: /api/info API
   description: |
     get the server version and enabled features
-  security:
-    - AccessToken: []
   responses:
     '200':
       description: ""

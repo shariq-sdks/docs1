@@ -38,7 +38,7 @@ post:
      `trustChain` request parameter.
      </p>
   security:
-    - AccessToken: [ ]
+    - UseService: [ ]
   parameters:
     - in: path
       name: serviceId

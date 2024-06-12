@@ -2,7 +2,7 @@ post:
   summary: /api/{serviceId}/vci/single/parse API
   description:
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId

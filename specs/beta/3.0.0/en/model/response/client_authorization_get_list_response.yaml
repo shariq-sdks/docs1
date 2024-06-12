@@ -26,6 +26,6 @@ properties:
   clients:
     type: array
     items:
-      $ref: ../client.yaml
+      $ref: ../client_limited.yaml
     description: |
       An array of clients.

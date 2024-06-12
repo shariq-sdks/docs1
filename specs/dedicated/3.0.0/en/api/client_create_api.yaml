@@ -3,7 +3,7 @@ post:
   description: |
     Create a new client.
   security:
-    - AccessToken: []
+    - CreateClient: []
   parameters:
     - in: path
       name: serviceId

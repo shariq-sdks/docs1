@@ -3,7 +3,7 @@ post:
   description: |
     Update a client.
   security:
-    - AccessToken: []
+    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId

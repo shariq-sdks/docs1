@@ -1,0 +1,21 @@
+type: object
+properties:
+  number:
+    type: integer
+    format: int32
+    readOnly: true
+    description: The sequential number of the service. The value of this property is assigned by Authlete.
+  serviceName:
+    type: string
+    description: The name of this service.
+  description:
+    type: string
+    description: The description about the service.
+  apiKey:
+    type: integer
+    format: int64
+    readOnly: true
+    description: The service ID used in Authlete API calls. The value of this property is assigned by Authlete.
+  clientIdAliasEnabled:
+    type: boolean
+    description: Deprecated. Always `true`.

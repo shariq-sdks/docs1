@@ -1,10 +1,5 @@
 type: object
 properties:
-  developer:
-    type: string
-    description: |
-      The developer of the client applications. If the request did not contain `developer` request
-      parameter, this property is set to `null`.
   start:
     type: integer
     format: int32
