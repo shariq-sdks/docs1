@@ -1,7 +1,7 @@
 post:
   summary: /api/{serviceId}/hsk/create API
   security:
-    - AccessToken: []
+    - ModifyService: []
   parameters:
     - in: path
       name: serviceId

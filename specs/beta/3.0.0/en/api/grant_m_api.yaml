@@ -5,7 +5,7 @@ post:
     defined in "<a href="https://openid.net/specs/fapi-grant-management.html">Grant Management for OAuth 2.0</a>".
 
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId

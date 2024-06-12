@@ -2,8 +2,11 @@ get:
   summary: /api/{serviceId}/service/get API
   description: |
     Get a service.
+    
+    If the access token can only view or modify clients underneath this service, but does not
+    have access to view this service directly, a limited view of the service will be returned.
   security:
-    - AccessToken: []
+    - ViewService: []
   parameters:
     - in: path
       name: serviceId
@@ -17,99 +20,110 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../model/service.yaml
-          example:
-            accessTokenDuration: 3600
-            accessTokenType: Bearer
-            allowableClockSkew: 0
-            apiKey: 21653835348762
-            apiSecret: uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls
-            attributes:
-              - key: attribute1-key
-                value: attribute1-value
-              - key: attribute2-key
-                value: attribute2-value
-            authorizationEndpoint: https://my-service.example.com/authz
-            authorizationResponseDuration: 0
-            backchannelAuthReqIdDuration: 0
-            backchannelBindingMessageRequiredInFapi: false
-            backchannelPollingInterval: 0
-            backchannelUserCodeParameterSupported: false
-            claimShortcutRestrictive: false
-            clientIdAliasEnabled: true
-            clientsPerDeveloper: 0
-            createdAt: 1639373421000
-            dcrScopeUsedAsRequestable: false
-            deviceFlowCodeDuration: 0
-            deviceFlowPollingInterval: 0
-            directAuthorizationEndpointEnabled: false
-            directIntrospectionEndpointEnabled: false
-            directJwksEndpointEnabled: false
-            directRevocationEndpointEnabled: false
-            directTokenEndpointEnabled: false
-            directUserInfoEndpointEnabled: false
-            dynamicRegistrationSupported: false
-            errorDescriptionOmitted: false
-            errorUriOmitted: false
-            frontChannelRequestObjectEncryptionRequired: false
-            grantManagementActionRequired: false
-            hsmEnabled: false
-            idTokenDuration: 0
-            introspectionEndpoint: https://my-service.example.com/introspection
-            issSuppressed: false
-            issuer: https://my-service.example.com
-            metadata:
-              - key: clientCount
-                value: '1'
-            missingClientIdAllowed: false
-            modifiedAt: 1639373421000
-            mutualTlsValidatePkiCertChain: false
-            nbfOptional: false
-            number: 5041
-            parRequired: false
-            pkceRequired: true
-            pkceS256Required: false
-            pushedAuthReqDuration: 0
-            refreshTokenDuration: 3600
-            refreshTokenDurationKept: false
-            refreshTokenDurationReset: false
-            refreshTokenKept: false
-            requestObjectEncryptionAlgMatchRequired: false
-            requestObjectEncryptionEncMatchRequired: false
-            requestObjectRequired: false
-            revocationEndpoint: https://my-service.example.com/revocation
-            scopeRequired: false
-            serviceName: My service
-            serviceOwnerNumber: 2
-            singleAccessTokenPerSubject: false
-            supportedClaimTypes:
-              - NORMAL
-            supportedDisplays:
-              - PAGE
-            supportedGrantTypes:
-              - AUTHORIZATION_CODE
-              - REFRESH_TOKEN
-            supportedIntrospectionAuthMethods:
-              - CLIENT_SECRET_BASIC
-            supportedResponseTypes:
-              - CODE
-            supportedRevocationAuthMethods:
-              - CLIENT_SECRET_BASIC
-            supportedScopes:
-              - defaultEntry: false
-                description: A permission to read your history.
-                name: history.read
-              - defaultEntry: false
-                description: A permission to read your timeline.
-                name: timeline.read
-            supportedTokenAuthMethods:
-              - CLIENT_SECRET_BASIC
-            tlsClientCertificateBoundAccessTokens: false
-            tokenEndpoint: https://my-service.example.com/token
-            tokenExpirationLinked: false
-            traditionalRequestObjectProcessingApplied: false
-            unauthorizedOnClientConfigSupported: false
-            userCodeLength: 0
+            oneOf:
+              - $ref: ../model/service.yaml
+              - $ref: ../model/service_limited.yaml
+          examples:
+            full:
+              summary: Example showing the full service object.
+              value:
+                accessTokenDuration: 3600
+                accessTokenType: Bearer
+                allowableClockSkew: 0
+                apiKey: 21653835348762
+                attributes:
+                  - key: attribute1-key
+                    value: attribute1-value
+                  - key: attribute2-key
+                    value: attribute2-value
+                authorizationEndpoint: https://my-service.example.com/authz
+                authorizationResponseDuration: 0
+                backchannelAuthReqIdDuration: 0
+                backchannelBindingMessageRequiredInFapi: false
+                backchannelPollingInterval: 0
+                backchannelUserCodeParameterSupported: false
+                claimShortcutRestrictive: false
+                clientIdAliasEnabled: true
+                clientsPerDeveloper: 0
+                createdAt: 1639373421000
+                dcrScopeUsedAsRequestable: false
+                deviceFlowCodeDuration: 0
+                deviceFlowPollingInterval: 0
+                directAuthorizationEndpointEnabled: false
+                directIntrospectionEndpointEnabled: false
+                directJwksEndpointEnabled: false
+                directRevocationEndpointEnabled: false
+                directTokenEndpointEnabled: false
+                directUserInfoEndpointEnabled: false
+                dynamicRegistrationSupported: false
+                errorDescriptionOmitted: false
+                errorUriOmitted: false
+                frontChannelRequestObjectEncryptionRequired: false
+                grantManagementActionRequired: false
+                hsmEnabled: false
+                idTokenDuration: 0
+                introspectionEndpoint: https://my-service.example.com/introspection
+                issSuppressed: false
+                issuer: https://my-service.example.com
+                metadata:
+                  - key: clientCount
+                    value: '1'
+                missingClientIdAllowed: false
+                modifiedAt: 1639373421000
+                mutualTlsValidatePkiCertChain: false
+                nbfOptional: false
+                number: 5041
+                parRequired: false
+                pkceRequired: true
+                pkceS256Required: false
+                pushedAuthReqDuration: 0
+                refreshTokenDuration: 3600
+                refreshTokenDurationKept: false
+                refreshTokenDurationReset: false
+                refreshTokenKept: false
+                requestObjectEncryptionAlgMatchRequired: false
+                requestObjectEncryptionEncMatchRequired: false
+                requestObjectRequired: false
+                revocationEndpoint: https://my-service.example.com/revocation
+                scopeRequired: false
+                serviceName: My service
+                serviceOwnerNumber: 2
+                singleAccessTokenPerSubject: false
+                supportedClaimTypes:
+                  - NORMAL
+                supportedDisplays:
+                  - PAGE
+                supportedGrantTypes:
+                  - AUTHORIZATION_CODE
+                  - REFRESH_TOKEN
+                supportedIntrospectionAuthMethods:
+                  - CLIENT_SECRET_BASIC
+                supportedResponseTypes:
+                  - CODE
+                supportedRevocationAuthMethods:
+                  - CLIENT_SECRET_BASIC
+                supportedScopes:
+                  - defaultEntry: false
+                    description: A permission to read your history.
+                    name: history.read
+                  - defaultEntry: false
+                    description: A permission to read your timeline.
+                    name: timeline.read
+                supportedTokenAuthMethods:
+                  - CLIENT_SECRET_BASIC
+                tlsClientCertificateBoundAccessTokens: false
+                tokenEndpoint: https://my-service.example.com/token
+                tokenExpirationLinked: false
+                traditionalRequestObjectProcessingApplied: false
+                unauthorizedOnClientConfigSupported: false
+                userCodeLength: 0
+            limited:
+              summary: Example showing the limited service object.
+              value:
+                apiKey: 21653835348762
+                description: This Service.
+                number: 5041
+                serviceName: My service
     '400':
       $ref: ../model/response/400.yaml
     '401':

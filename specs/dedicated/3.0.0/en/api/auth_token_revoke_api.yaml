@@ -3,7 +3,7 @@ post:
   description: |
     Revoke an access token.
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId

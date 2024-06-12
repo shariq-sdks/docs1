@@ -183,10 +183,46 @@ paths:
 #
 components:
   securitySchemes:
-    AccessToken:
+    Admin:
       type: http
       scheme: bearer
-      description: Set **access token**.
+      description: Set **access token**. A token with the `ADMIN` access right for this Authlete instance.
+    DeleteService:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `DELETE_SERVICE` access right for this Authlete instance. Can also be a token with `ADMIN` access.
+    CreateService:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `CREATE_SERVICE` access right for this Authlete instance. Can also be a token with `ADMIN` access.
+    ViewDefaultService:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `VIEW_DEFAULT_SERVICE` access right for this Authlete instance. Can also be a token with `CREATE_SERVICE` or `ADMIN` access.
+    ModifyService:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `MODIFY_SERVICE` access right for the service indicated by `serviceId`. Can also be a token with `ADMIN` access for this Authlete instance.
+    CreateClient:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `CREATE_CLIENT` access right for the service indicated by `serviceId`. Can also be a token with `MODIFY_SERVICE` for the service indicated by `serviceId` or `ADMIN` access for this Authlete instance.
+    ViewService:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `VIEW_SERVICE` access right for the service indicated by `serviceId`. Can also be a token with `USE_SERVICE`, `CREATE_CLIENT`, or `MODIFY_SERVICE` for the service indicated by `serviceId` or `ADMIN` access for this Authlete instance.
+    ModifyClient:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `MODIFY_CLIENT` access right for the client indicated by `clientId` of the service indicated by `serviceId`. Can also be a token with `CREATE_CLIENT` or `MODIFY_SERVICE` for the service indicated by `serviceId` or `ADMIN` access for this Authlete instance.
+    ViewClient:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least the `VIEW_CLIENT` access right for the client indicated by `clientId` of the service indicated by `serviceId`. Can also be a token with `MODIFY_CLIENT` for the client indicated by `clientId` of the service indicated by `serviceId`; `VIEW_SERVICE`, `USE_SERVICE`, `CREATE_CLIENT` or `MODIFY_SERVICE` for the service indicated by `serviceId`; or `ADMIN` access for this Authlete instance.
+    UseService:
+      type: http
+      scheme: bearer
+      description: Set **access token**. A token with at least `USE_SERVICE` access rights for this service. A **service access token** from the console will have sufficient access.
   schemas:
     AccessToken:
       $ref: model/access_token.yaml

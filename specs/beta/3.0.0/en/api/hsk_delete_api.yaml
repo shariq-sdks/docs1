@@ -1,7 +1,7 @@
 delete:
   summary: /api/{serviceId}/hsk/delete/{handle} API
   security:
-    - AccessToken: []
+    - ModifyService: []
   parameters:
     - in: path
       name: serviceId

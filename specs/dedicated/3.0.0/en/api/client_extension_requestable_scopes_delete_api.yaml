@@ -3,7 +3,7 @@ delete:
   description: |
     Delete a requestable scopes of a client
   security:
-    - AccessToken: []
+    - ModifyService: []
   parameters:
     - in: path
       name: serviceId

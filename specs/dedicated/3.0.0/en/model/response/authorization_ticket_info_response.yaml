@@ -10,7 +10,7 @@ properties:
       - NOT_FOUND
       - CALLER_ERROR
       - AUTHLETE_ERROR
-    description: The result of the /auth/authorization/ticket/info API call.
+    description: The result of the `/auth/authorization/ticket/info` API call.
   resultCode:
     type: string
     description: The code which represents the result of the API call.

@@ -3,7 +3,7 @@ get:
   description: |
     Get a list of client applications that an end-user has authorized.
   security:
-    - AccessToken: []
+    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -97,57 +97,11 @@ get:
                 }
               ],
               "client": {
-                "authTimeRequired": false,
-                "bcUserCodeRequired": false,
                 "clientId": 26888344961664,
                 "clientIdAliasEnabled": false,
                 "clientName": "My Device Flow Client",
-                "clientSecret": "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog",
                 "clientType": "CONFIDENTIAL",
-                "createdAt": 1641996927000,
-                "defaultMaxAge": 0,
-                "derivedSectorIdentifier": "beta.authlete.com",
-                "developer": "authlete_21653835348762",
-                "dynamicallyRegistered": false,
-                "extension": {
-                  "accessTokenDuration": 0,
-                  "refreshTokenDuration": 0,
-                  "requestableScopesEnabled": false
-                },
-                "frontChannelRequestObjectEncryptionRequired": false,
-                "grantTypes": [
-                  "AUTHORIZATION_CODE",
-                  "IMPLICIT",
-                  "PASSWORD",
-                  "CLIENT_CREDENTIALS",
-                  "REFRESH_TOKEN",
-                  "CIBA",
-                  "DEVICE_CODE"
-                ],
-                "idTokenSignAlg": "HS256",
-                "modifiedAt": 1641996927000,
-                "number": 6260,
-                "parRequired": false,
-                "redirectUris": [
-                  "https://beta.authlete.com/api/mock/redirection/21653835348762"
-                ],
-                "requestObjectEncryptionAlgMatchRequired": false,
-                "requestObjectEncryptionEncMatchRequired": false,
-                "requestObjectRequired": false,
-                "responseTypes": [
-                  "NONE",
-                  "CODE",
-                  "TOKEN",
-                  "ID_TOKEN",
-                  "CODE_TOKEN",
-                  "CODE_ID_TOKEN",
-                  "ID_TOKEN_TOKEN",
-                  "CODE_ID_TOKEN_TOKEN"
-                ],
-                "serviceNumber": 5041,
-                "subjectType": "PUBLIC",
-                "tlsClientCertificateBoundAccessTokens": false,
-                "tokenAuthMethod": "CLIENT_SECRET_BASIC"
+                "number": 6260
               },
               "end": 3,
               "start": 0,

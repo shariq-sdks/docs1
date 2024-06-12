@@ -16,7 +16,7 @@ properties:
     description: |
       Unique ID of a client developer.
   client:
-    $ref: ../client.yaml
+    $ref: ../client_limited.yaml
   subject:
     type: string
     description: |

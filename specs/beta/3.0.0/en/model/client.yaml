@@ -39,7 +39,7 @@ properties:
     type: integer
     format: int64
     readOnly: true
-    description: The client ID. The value of this property is assigned by Authlete.
+    description: The client identifier used in Authlete API calls. The value of this property is assigned by Authlete.
   clientSecret:
     type: string
     readOnly: true
@@ -59,18 +59,11 @@ properties:
   clientIdAlias:
     type: string
     description: |
-      The alias of the client ID.
-
-      Note that the client ID alias is recognized only when this client's `clientIdAliasEnabled` property
-      is set to `true` AND the service's `clientIdAliasEnabled` property is also set to `true`.
+      The value of the client's `client_id` property used in OAuth and OpenID Connect calls. By
+      default, this is a string version of the `clientId` property.
   clientIdAliasEnabled:
     type: boolean
-    description: |
-       The flag to indicate whether the client ID alias is enabled or not.
-
-       Note that a service also has `clientIdAliasEnabled` property. If the service's `clientIdAliasEnabled`
-       property is set to `false`, the client ID alias of this client is not recognized even if this
-       client's `clientIdAliasEnabled` property is set to `true`.
+    description: Deprecated. Always set to `true`.
   clientType:
     $ref: ./client_type.yaml
   applicationType:
