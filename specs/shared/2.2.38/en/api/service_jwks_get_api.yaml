@@ -78,6 +78,8 @@ get:
                 }
               ]
             }
+    '204':
+      description: "No JWK Set nor JwkUri was found."
     '400':
       description: ""
       content:
