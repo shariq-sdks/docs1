@@ -1,5 +1,5 @@
 get:
-  summary: /api/{serviceId}/service/configuration API
+  summary: Get Service Configuration
   description: |
     This API gathers configuration information about a service.
 
@@ -14,9 +14,6 @@ get:
     in OpenID Connect Discovery 1.0.
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -372,7 +369,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/service/configuration?pretty=true \
+        curl -v https://us.authlete.com/api/21653835348762/service/configuration?pretty=true \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java
@@ -428,4 +425,4 @@ get:
 
     #     await api.getServiceConfiguration(true);
   tags:
-    - Configuration Endpoint
+    - Service Management

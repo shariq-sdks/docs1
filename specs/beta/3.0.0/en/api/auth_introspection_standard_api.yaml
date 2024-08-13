@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/introspection/standard API
+  summary: Process OAuth 2.0 Introspection Request
   description: |
     This API exists to help your authorization server provide its own introspection API which complies
     with [RFC 7662](https://tools.ietf.org/html/rfc7662) (OAuth 2.0 Token Introspection).
@@ -96,9 +96,6 @@ post:
     request does not satisfy authorization requirements imposed by your introspection endpoint.
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -144,7 +141,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/introspection/standard \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/introspection/standard \
         -H "Content-Type:application/json" \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "parameters":"token=VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI&token_type_hint=access_token" }'

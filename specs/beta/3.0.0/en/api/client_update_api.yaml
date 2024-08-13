@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/client/update/{clientId} API
+  summary: Update Client
   description: |
     Update a client.
-  security:
-    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId
@@ -143,7 +141,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/client/update/26478243745571 \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/client/update/26478243745571 \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "clientName": "My updated client", ... }'

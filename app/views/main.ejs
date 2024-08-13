@@ -6,11 +6,14 @@
     <script type="text/javascript" src="/js/api-doc.js"></script>
   </head>
   <body>
+    <% if (typeof oauthCallback !== 'undefined' && oauthCallback) { %>
+      <oauth-receiver> </oauth-receiver>
+    <% } else { %>
     <rapi-doc
       id="apiDoc"
       spec-url="<%- `/${req.params.locale}/${req.params.serverType}/${req.versionInfo.version}/spec` %>"
       allow-try="<%- allowTry %>"
-      allow-spec-file-download="true"
+      allow-spec-file-download="false"
       schema-expand-level=1
       schema-style="tree"
       schema-description-expanded="true"
@@ -19,12 +22,15 @@
       theme="light"
       primary-color="#1472aa"
       nav-accent-color="#dee5ec"
-      use-path-in-nav-bar="true"
+      use-path-in-nav-bar="false"
+      oauth-receiver="3.0.0/oauth-callback"
       render-style="focused">
       <div slot="nav-logo">
 <%- include('partials/locale-switcher', { config: config, req: req }) %>
 <%- include('partials/document-switcher', { config: config, translations: translations, req: req }) %>
+<%- include('partials/toggle-theme', { config: config, translations: translations, req: req }) %>
       </div>
     </rapi-doc>
+    <% } %>
   </body>
 </html>

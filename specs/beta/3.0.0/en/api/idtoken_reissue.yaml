@@ -1,14 +1,11 @@
 post:
-  summary: /api/{serviceId}/idtoken/reissue API
+  summary: Reissue ID Token
   description: |
     The API is expected to be called only when the value of the `action`
-    parameter in a response from the `/auth/token` API is {@link
-    TokenResponse.Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}. The purpose
+    parameter in a response from the `/auth/token` API is [ID_TOKEN_REISSUABLE](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/TokenResponse.Action.html#ID_TOKEN_REISSUABLE). The purpose
     of the `/idtoken/reissue` API is to generate a token response that
     includes a new ID token together with a new access token and a refresh
     token.
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId

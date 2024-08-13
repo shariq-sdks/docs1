@@ -1,13 +1,11 @@
 get:
-  summary: /api/{serviceId}/client/get/list API
+  summary: List Clients
   description: |
     Get a list of clients on a service.
     
     If the access token can view a full service (including an admin), all clients within the
     service are returned. Otherwise, only clients that the access token can view within the
     service are returned.
-  security:
-    - ViewService: []
     - ViewClient: []
   parameters:
     - in: path
@@ -141,7 +139,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/client/get/list?developer=john\&start=0\&end=5 \
+        curl -v https://us.authlete.com/api/21653835348762/client/get/list?developer=john\&start=0\&end=5 \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

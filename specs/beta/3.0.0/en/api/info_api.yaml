@@ -1,5 +1,5 @@
 get:
-  summary: /api/info API
+  summary: Get Server Metadata
   description: |
     get the server version and enabled features
   responses:
@@ -34,4 +34,4 @@ get:
       $ref: ../model/response/500.yaml
   operationId: 'info_api'
   tags:
-    - Server Metadata
+    - Utility Endpoints

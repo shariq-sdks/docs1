@@ -1,5 +1,8 @@
 post:
-  summary: /api/{serviceId}/auth/authorization API
+  summary: Process Authorization Request
+  x-badges:
+    - color: red
+      label: 'Core API'
   description: |
     This API parses request parameters of an authorization request and returns necessary data for the authorization server
     implementation to process the authorization request further.
@@ -534,9 +537,6 @@ post:
     tokens can be performed by calling Authlete's `/auth/authorization/issue` API. Read [ISSUE] written
     above in the description for the case of `action=NO_INTERACTION`.
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -612,7 +612,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/authorization \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/authorization \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "parameters": "response_type=code&client_id=26478243745571&redirect_uri=https%3A%2F%2Fmy-client.example.com%2Fcb1&scope=timeline.read+history.read&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256" }'

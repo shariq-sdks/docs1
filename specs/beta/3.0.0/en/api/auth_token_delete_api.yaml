@@ -1,9 +1,7 @@
 delete:
-  summary: /api/{serviceId}/auth/token/delete API
+  summary: Delete Access Token
   description: |
     Delete an access token.
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -36,7 +34,7 @@ delete:
     - lang: shell
       label: curl
       source: |
-        curl -v -X DELETE https://beta.authlete.com/api/21653835348762/auth/token/delete/Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg \
+        curl -v -X DELETE https://us.authlete.com/api/21653835348762/auth/token/delete/Bk1QneTxkoLKw_RRB8ToVL25Plt075RvPK68N9cWWtg \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 

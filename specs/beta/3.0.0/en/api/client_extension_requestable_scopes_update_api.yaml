@@ -1,9 +1,7 @@
 put:
-  summary: /api/{serviceId}/client/extension/requestable_scopes/update/{clientId} API
+  summary: Update Requestable Scopes
   description: |
     Update requestable scopes of a client
-  security:
-    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId
@@ -40,4 +38,4 @@ put:
       $ref: ../model/response/500.yaml
   operationId: 'client_extension_requestables_scopes_update_api'
   tags:
-    - Client Extension
+    - Client Management

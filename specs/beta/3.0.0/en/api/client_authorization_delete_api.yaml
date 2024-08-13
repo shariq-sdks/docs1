@@ -1,11 +1,9 @@
 delete:
-  summary: /api/{serviceId}/client/authorization/delete/{clientId}/{subject} API
+  summary: Delete Client Tokens
   description: |
     Delete all existing access tokens issued to a client application by an end-user.
 
     The subject parameter is required and can be provided either in the path or as a query parameter.
-  security:
-    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId
@@ -59,7 +57,7 @@ delete:
     - lang: shell
       label: curl
       source: |
-        curl -v -X DELETE https://beta.authlete.com/api/21653835348762/client/authorization/delete/26478243745571/john \
+        curl -v -X DELETE https://us.authlete.com/api/21653835348762/client/authorization/delete/26478243745571/john \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

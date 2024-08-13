@@ -1,9 +1,7 @@
 get:
-  summary: /api/{serviceId}/client/get/{clientId} API
+  summary: Get Client
   description: |
     Get a client.
-  security:
-    - ViewClient: []
   parameters:
     - in: path
       name: serviceId
@@ -89,7 +87,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/client/get/26478243745571 \
+        curl -v https://us.authlete.com/api/21653835348762/client/get/26478243745571 \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

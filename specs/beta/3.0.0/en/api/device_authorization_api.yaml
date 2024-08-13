@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/device/authorization API
+  summary: Process Device Authorization Request
   description: |
     This API parses request parameters of a [device authorization request](https://datatracker.ietf.org/doc/html/rfc8628#section-3.1)
     and returns necessary data for the authorization server implementation to process the device authorization
@@ -97,9 +97,6 @@ post:
     The following illustrates the response which the authorization server implementation should generate
     and return to the client application.
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -172,7 +169,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/device/authorization \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/device/authorization \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "parameters": "client_id=26888344961664&scope=history.read", "clientId": "26888344961664", "clientSecret":"SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog" }'

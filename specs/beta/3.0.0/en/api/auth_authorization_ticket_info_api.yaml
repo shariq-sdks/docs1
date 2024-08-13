@@ -1,7 +1,5 @@
 get:
-  summary: /api/{serviceId}/auth/authorization/ticket/info API
-  security:
-    - UseService: []
+  summary: Get Authorization Transaction Information
   requestBody:
     required: true
     content:

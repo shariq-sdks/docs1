@@ -1,9 +1,7 @@
 post:
-  summary: /api/service/create API
+  summary: Create Service
   description: |
     Create a new service.
-  security:
-    - CreateService: []
   requestBody:
     required: false
     content:
@@ -160,7 +158,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/service/create \
+        curl -v -X POST https://us.authlete.com/api/service/create \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "serviceName": "My Service", ... }'

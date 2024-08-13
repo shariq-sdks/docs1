@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/userinfo API
+  summary: Process UserInfo Request
   description: |
     This API gathers information about a user.
 
@@ -142,9 +142,6 @@ post:
     Pragma: no-cache
     ```
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -194,7 +191,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/userinfo \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/userinfo \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "token": "Ntm9MDb8WXQAevqrBkd84KTTHbYHVQrTjgUZCOWqEUI" }'

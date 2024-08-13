@@ -1,5 +1,8 @@
 post:
-  summary: /api/{serviceId}/auth/authorization/fail API
+  summary: Fail Authorization Request
+  x-badges:
+    - color: red
+      label: 'Core API'
   description: |
     This API generates a content of an error authorization response that the authorization server implementation
     returns to the client application.
@@ -111,8 +114,6 @@ post:
     {responseContent}
     ```
     </details>
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -159,7 +160,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/authorization/fail \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/authorization/fail \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "c4iy3TWGn74UMO7ihRl0ZS8OEUzV9axBlBbJbqxH-9Q", "reason": "NOT_AUTHENTICATED" }'

@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/client/create API
+  summary: Create Client
   description: |
     Create a new client.
-  security:
-    - CreateClient: []
   parameters:
     - in: path
       name: serviceId
@@ -110,7 +108,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/client/create \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/client/create \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "developer": "john", "clientName": "My Client", ... }'

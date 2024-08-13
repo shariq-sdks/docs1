@@ -1,7 +1,8 @@
 get:
-  summary: /api/{serviceId}/hsk/get/list API
-  security:
-    - UseService: []
+  summary: List Security Keys
+  x-badges:
+    - color: primary-color
+      label: '🏢 Dedicated Cloud Required'
   parameters:
     - in: path
       name: serviceId
@@ -25,4 +26,4 @@ get:
       $ref: ../model/response/500.yaml
   operationId: 'hsk_get_list_api'
   tags:
-    - Hsk Operations
+    - Hardware Security Key

@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/device/verification API
+  summary: Process Device Verification Request
   description: |
     The API returns information associated with a user code.
 
@@ -42,9 +42,6 @@ post:
     belongs to the service. The authorization server implementation should interact with the end-user
     to ask whether she approves or rejects the authorization request from the device.
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -109,7 +106,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/device/verification \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/device/verification \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "userCode": "XWWKPBWVXQ" }'
