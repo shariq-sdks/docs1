@@ -1,5 +1,5 @@
 get:
-  summary: /api/{serviceId}/client/granted_scopes/get/{clientId}/{subject} API
+  summary: Get Granted Scopes
   description: |
     Get the set of scopes that a user has granted to a client application.
 
@@ -27,8 +27,6 @@ get:
 
     The subject parameter is required and can be provided either in the path or as a query parameter.
     </details>
-  security:
-    - ViewClient: []
   parameters:
     - in: path
       name: serviceId
@@ -86,7 +84,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/client/granted_scopes/get/26478243745571/john \
+        curl -v https://us.authlete.com/api/21653835348762/client/granted_scopes/get/26478243745571/john \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

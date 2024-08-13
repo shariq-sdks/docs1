@@ -1,11 +1,8 @@
 post:
-  summary: /api/{serviceId}/gm API
+  summary: Process Grant Management Request
   description: |
     The API is for the implementation of the grant management endpoint which is
     defined in "<a href="https://openid.net/specs/fapi-grant-management.html">Grant Management for OAuth 2.0</a>".
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId

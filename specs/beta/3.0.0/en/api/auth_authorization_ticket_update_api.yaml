@@ -1,7 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/authorization/ticket/update API
-  security:
-    - UseService: []
+  summary: Set Authorization Transaction Information
   requestBody:
     required: true
     content:

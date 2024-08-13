@@ -1,9 +1,7 @@
 delete:
-  summary: /api/{serviceId}/service/delete API
+  summary: Delete Service ⚡
   description: |
     Delete a service.
-  security:
-    - DeleteService: []
   parameters:
     - in: path
       name: serviceId
@@ -27,7 +25,7 @@ delete:
     - lang: shell
       label: curl
       source: |
-        curl -v -X DELETE https://beta.authlete.com/api/9503564192/service/delete/21653835348762 \
+        curl -v -X DELETE https://us.authlete.com/api/9503564192/service/delete/21653835348762 \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

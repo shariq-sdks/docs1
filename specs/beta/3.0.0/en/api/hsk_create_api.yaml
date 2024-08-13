@@ -1,7 +1,8 @@
 post:
-  summary: /api/{serviceId}/hsk/create API
-  security:
-    - ModifyService: []
+  summary: Create Security Key
+  x-badges:
+    - color: primary-color
+      label: '🏢 Dedicated Cloud Required'
   parameters:
     - in: path
       name: serviceId
@@ -35,4 +36,4 @@ post:
       $ref: ../model/response/500.yaml
   operationId: 'hsk_create_api'
   tags:
-    - Hsk Operations
+    - Hardware Security Key

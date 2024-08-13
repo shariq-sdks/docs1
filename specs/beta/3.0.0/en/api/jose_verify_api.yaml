@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/jose/verify API
+  summary: Verify JOSE
   description: |
     This API verifies a JOSE object.
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -52,7 +50,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/jose/verify \
+        curl -v https://us.authlete.com/api/21653835348762/jose/verify \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d jose=eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA \
         -d clockSkew=100 \

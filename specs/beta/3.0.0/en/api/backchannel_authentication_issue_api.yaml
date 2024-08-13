@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/backchannel/authentication/issue API
+  summary: Issue Backchannel Authentication Response
   description: |
     This API prepares JSON that contains an `auth_req_id`. The JSON should be used as the response body
     of the response which is returned to the client from the [backchannel authentication endpoint](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_backchannel_endpoint)
@@ -90,9 +90,6 @@ post:
     {responseContent}
     ```
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -141,7 +138,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/backchannel/authentication/issue \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/backchannel/authentication/issue \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q" }'

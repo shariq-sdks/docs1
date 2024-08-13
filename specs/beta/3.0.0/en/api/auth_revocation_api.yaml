@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/revocation API
+  summary: Process Revocation Request
   description: |
     This API revokes access tokens and refresh tokens.
 
@@ -133,9 +133,6 @@ post:
     {responseContent}
     ```
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -182,7 +179,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/revocation \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/revocation \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "parameters": "token=VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI&token_type_hint=access_token", "clientId": "26478243745571", "clientSecret": "gXz97ISgLs4HuXwOZWch8GEmgL4YMvUJwu3er_kDVVGcA0UOhA9avLPbEmoeZdagi9yC_-tEiT2BdRyH9dbrQQ" }'

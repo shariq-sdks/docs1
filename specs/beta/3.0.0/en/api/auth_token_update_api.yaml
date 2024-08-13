@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/auth/token/update API
+  summary: Update Access Token
   description: |
     Update an access token.
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -55,7 +53,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/token/update \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/token/update \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "accessToken": "Z5a40U6dWvw2gMoCOAFbZcM85q4HC0Z--0YKD9-Nf6Q", "scopes": [ "history.read" ] }'

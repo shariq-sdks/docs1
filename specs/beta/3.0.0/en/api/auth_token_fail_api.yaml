@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/token/fail API
+  summary: Fail Token Request
   description: |
     This API generates a content of an error token response that the authorization server implementation
     returns to the client application.
@@ -70,9 +70,6 @@ post:
     ```
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -119,7 +116,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/token/fail \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/token/fail \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "83BNqKIhGMyrkvop_7jQjv2Z1612LNdGSQKkvkrf47c", "reason": "INVALID_RESOURCE_OWNER_CREDENTIALS" }'

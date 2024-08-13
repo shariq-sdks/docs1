@@ -1,8 +1,6 @@
 post:
   summary: /api/{serviceId}/vci/batch/parse API
   description:
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -36,4 +34,4 @@ post:
       $ref: ../model/response/500.yaml
   operationId: 'vci_batch_parse_api'
   tags:
-    - Vci Endpoint
+    - Verifiable Credential Issuer

@@ -1,5 +1,5 @@
 get:
-  summary: /api/service/get/list API
+  summary: List Services
   description: |
     Get a list of services.
     
@@ -9,9 +9,6 @@ get:
     
     If the access token is an administrative token, this returns a list of all services on the Authlete instance.
     Otherwise, all services that the access token can view, even in a limited fashion, are returned.
-  security:
-    - Admin: []
-    - ViewService: []
   parameters:
     - in: query
       name: start
@@ -160,7 +157,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/9503564192/service/get/list?start=0\&end=5 \
+        curl -v https://us.authlete.com/api/9503564192/service/get/list?start=0\&end=5 \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

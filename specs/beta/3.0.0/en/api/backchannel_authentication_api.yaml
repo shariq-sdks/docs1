@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/backchannel/authentication API
+  summary: Process Backchannel Authentication Request
   description: |
     This API parses request parameters of a [backchannel authentication request](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_request)
     and returns necessary data for the authorization server implementation to process the backchannel
@@ -311,9 +311,6 @@ post:
     grant type automatically and behaves properly, so the existing token endpoint implementation does
     not have to be changed to support CIBA.
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -387,7 +384,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/backchannel/authentication \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/backchannel/authentication \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "parameters": "login_hint=john&scope=openid&client_notification_token=my-client-notification-token&user_code=my-user-code", "clientId": "26862190133482", "clientSecret":"8J9pAEX6IQw7lYtYGsc_s9N4jlEz_DfkoCHIswJjFjfgKZX-nC4EvKtaHXcP9mHBfS7IU4jytjSZZpaK9UJ77A" }'

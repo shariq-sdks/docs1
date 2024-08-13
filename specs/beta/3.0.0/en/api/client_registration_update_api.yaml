@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/client/registration/update API
+  summary: Update Client
   description: |
     Update a dynamically registered client. This API is supposed to be used to implement a client
     registration management endpoint that complies with [RFC 7592](https://datatracker.ietf.org/doc/html/rfc7592)
@@ -111,9 +111,6 @@ post:
     {responseContent}
     ```
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -186,7 +183,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/client/registration/update \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/client/registration/update \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "clientId": "26837717140341", "token": "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA", "json": "..." }'

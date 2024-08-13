@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/pushed_auth_req API
+  summary: Process Pushed Authorization Request
   description: |
     This API creates a pushed request authorization. It authenticates the client and creates a authorization_uri to be returned by the authorization server.
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -56,7 +54,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/pushed_auth_req \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/pushed_auth_req \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "parameters": "response_type=code%20id_token&client_id=5921531358155430&redirect_uri=https%3A%2F%2Fserver.example.com%2Fcb&state=SOME_VALUE_ABLE_TO_PREVENT_CSRF&scope=openid&nonce=SOME_VALUE_ABLE_TO_PREVENT_REPLAY_ATTACK&code_challenge=5ZWDQJiryK3eaLtSeFV8y1XySMCWtyITxICLaTwvK8g&code_challenge_method=S256", "clientId": "5921531358155430", "clientSecret" : "P_FouxWlI7zcOep_9vBwR9qMAVJQiCiUiK1HrAP4GziOyezHQpqY0f5dHXK4JT4tnvI51OkbWVoEM9GnOyJViA"}'

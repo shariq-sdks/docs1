@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/client/lock_flag/update/{clientIdentifier} API
+  summary: Update Client Lock
   description: |
     Lock and unlock a client
-  security:
-    - ModifyClient: []
   parameters:
     - in: path
       name: serviceId

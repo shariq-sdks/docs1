@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/device/complete API
+  summary: Complete Device Authorization
   description: |
     This API returns information about what action the authorization server should take after it receives
     the result of end-user's decision about whether the end-user has approved or rejected a client
@@ -71,9 +71,6 @@ post:
     The authorization server should return a successful response to the web browser the end-user is
     using.
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -120,7 +117,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/device/complete \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/device/complete \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "userCode": "XWWKPBWVXQ", "result": "AUTHORIZED", "subject": "john" }'

@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/introspection API
+  summary: Process Introspection Request
   description: |
     This API gathers information about an access token.
 
@@ -166,9 +166,6 @@ post:
     may be different.
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -249,7 +246,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/introspection \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/introspection \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "token": "VFGsNK-5sXiqterdaR7b5QbRX9VTwVCQB87jbr2_xAI", "scopes": [ "history.read", "timeline.read" ] }'

@@ -1,9 +1,7 @@
 get:
-  summary: /api/{serviceId}/auth/token/get/list API
+  summary: List Issued Tokens
   description: |
     Get a list of client applications that an end-user has authorized.
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -121,7 +119,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/auth/token/get/list/?clientIdentifier=26888344961664\&subject=john\&start=0\&end=3 \
+        curl -v https://us.authlete.com/api/21653835348762/auth/token/get/list/?clientIdentifier=26888344961664\&subject=john\&start=0\&end=3 \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

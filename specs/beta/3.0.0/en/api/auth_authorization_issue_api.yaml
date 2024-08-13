@@ -1,5 +1,8 @@
 post:
-  summary: /api/{serviceId}/auth/authorization/issue API
+  summary: Issue Authorization Response
+  x-badges:
+    - color: red
+      label: 'Core API'
   description: |
     This API parses request parameters of an authorization request and returns necessary data for the
     authorization server implementation to process the authorization request further.
@@ -114,8 +117,6 @@ post:
     {responseContent}
     ```
     </details>
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -166,7 +167,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/authorization/issue \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/authorization/issue \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "FFgB9gwb_WXh6g1u-UQ8ZI-d_k4B-o-cm7RkVzI8Vnc", "subject": "john" }'

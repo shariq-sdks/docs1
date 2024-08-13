@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/auth/token/issue API
+  summary: Issue Token Response 
   description: |
     This API generates a content of a successful token response that the authorization server implementation
     returns to the client application.
@@ -70,9 +70,6 @@ post:
     ```
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -149,7 +146,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/auth/token/issue \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/auth/token/issue \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "p7SXQ9JFjng7KFOZdCMBKcoR3ift7B54l1LGIgQXqEM", "subject": "john" }'

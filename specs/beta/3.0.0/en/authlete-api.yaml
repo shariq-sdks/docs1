@@ -4,9 +4,97 @@ openapi: 3.0.3
 # INFO
 #
 info:
-  title: Authlete API
+  title: Authlete API Explorer
   description: |
-    Authlete API Document.
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
+      <div class="flex justify-end mb-4">
+        <label for="theme-toggle" class="flex items-center cursor-pointer">
+          <div class="relative">Dark mode:
+            <input type="checkbox" id="theme-toggle" class="sr-only" onchange="toggleTheme()">
+            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+          </div>
+        </label>
+      </div>
+      <header class="bg-green-500 dark:bg-green-700 p-4 rounded-lg text-white text-center">
+        <p>
+          Welcome to the <strong>Authlete API documentation</strong>. Authlete is an <strong>API-first service</strong>
+          where every aspect of the platform is configurable via API. This explorer provides a convenient way to
+          authenticate and interact with the API, allowing you to see Authlete in action quickly. 🚀
+        </p>
+        <p>
+          At a high level, the Authlete API is grouped into two categories:
+        </p>
+        <ul class="list-disc list-inside">
+          <li><strong>Management APIs</strong>: Enable you to manage services and clients. 🔧</li>
+          <li><strong>Runtime APIs</strong>: Allow you to build your own Authorization Servers or Verifiable Credential (VC)
+            issuers. 🔐</li>
+        </ul>
+        <p>All API endpoints are secured using access tokens issued by Authlete's Identity Provider (IdP). If you already
+          have an Authlete account, simply use the <em>Get Token</em> option on the Authentication page to log in and obtain
+          an access token for API usage. If you don't have an account yet, <a href="https://login.authlete.com/">sign up
+            here</a> to get started.</p>
+      </header>
+      <main>
+        <section id="api-servers" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🌐 API Servers</h2>
+          <p>Authlete is a global service with clusters available in multiple regions across the world.</p>
+          <p>Currently, our service is available in the following regions:</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇺🇸 US</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇯🇵 JP</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇪🇺 EU</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇧🇷 Brazil</p>
+            </div>
+          </div>
+          <p>Our customers can host their data in the region that best meets their requirements.</p>
+          <a href="#servers" class="block mt-4 text-green-500 dark:text-green-300 hover:underline text-center">Select your
+            preferred server</a>
+        </section>
+        <section id="authentication" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🔑 Authentication</h2>
+          <p>The API Explorer requires an access token to call the API.</p>
+          <p>You can create the access token from the Authlete console and set it in the HTTP Bearer section of Authentication page.</p>
+          <p>Alternatively, if you have an Authlete account, the API console can log you in with your Authlete account and
+            automatically acquire the required access token.</p>
+          <div class="theme-admonition theme-admonition-warning admonition_o5H7 alert alert--warning">
+            <div class="admonitionContent_Knsx">
+              <p>⚠️ <strong>Important Note:</strong> When the API explorer acquires the token after login, the access tokens
+                will have the same permissions as the user who logs in as part of this flow.</p>
+            </div>
+          </div>
+          <a href="#auth" class="block mt-4 text-green-500 dark:text-green-300 hover:underline text-center">Setup your
+            access token</a>
+        </section>
+        <section id="tutorials" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🎓 Tutorials</h2>
+          <p>If you have successfully tested the API from the API Console and want to take the next step of integrating the
+            API into your application, or if you want to see a sample using Authlete APIs, follow the links below. These
+            resources will help you understand key concepts and how to integrate Authlete API into your applications.</p>
+          <div class="mt-4">
+            <a href="https://www.authlete.com/developers/getting_started/"
+              class="block text-green-500 dark:text-green-300 font-bold hover:underline mb-2">🚀 Getting Started with
+              Authlete</a>
+            <a href="https://www.authlete.com/developers/tutorial/signup/"
+              class="block text-green-500 dark:text-green-300 font-bold hover:underline">🔑 From Sign-Up to the First API
+              Request</a>
+          </div>
+        </section>
+        <section id="support" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🛠 Contact Us</h2>
+          <p>If you have any questions or need assistance, our team is here to help.</p>
+          <a href="https://www.authlete.com/contact/"
+            class="block mt-4 text-green-500 dark:text-green-300 font-bold hover:underline">Contact Page</a>
+        </section>
+      </main>
+    </div>
   version: '3.0.0'
   license:
     name: Apache 2.0
@@ -16,8 +104,18 @@ info:
 # SERVERS
 #
 servers:
-  - url: 'https://beta.authlete.com'
-    description: Beta Shared server.
+  - description: 🇺🇸 US Cluster
+    url: https://us.authlete.com
+  - description: 🇯🇵 Japan Cluster
+    url: https://jp.authlete.com
+  - description: 🇪🇺 Europe Cluster
+    url: https://eu.authlete.com
+  - description: 🇧🇷 Brazil Cluster
+    url: https://br.authlete.com
+
+security:
+  - authlete: []
+  - bearer: []
 
 #
 # API PATH
@@ -179,46 +277,23 @@ paths:
 #
 components:
   securitySchemes:
-    Admin:
+    authlete:
+      type: oauth2
+      description: Click the <strong>Get Token</strong> button below to log in with your Authlete account and retrieve an access token for API access.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.authlete.com/authorize
+          tokenUrl: https://login.authlete.com/token
+          scopes:
+            authlete: Inherit Authlete Account Permissions
+          x-client-id: api-explorer
+          x-default-scopes: authlete
+          x-pkce-only: true
+    bearer:
       type: http
       scheme: bearer
-      description: Set **access token**. A token with the `ADMIN` access right for this Authlete instance.
-    DeleteService:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `DELETE_SERVICE` access right for this Authlete instance. Can also be a token with `ADMIN` access.
-    CreateService:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `CREATE_SERVICE` access right for this Authlete instance. Can also be a token with `ADMIN` access.
-    ViewDefaultService:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `VIEW_DEFAULT_SERVICE` access right for this Authlete instance. Can also be a token with `CREATE_SERVICE` or `ADMIN` access.
-    ModifyService:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `MODIFY_SERVICE` access right for the service indicated by `serviceId`. Can also be a token with `ADMIN` access for this Authlete instance.
-    CreateClient:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `CREATE_CLIENT` access right for the service indicated by `serviceId`. Can also be a token with `MODIFY_SERVICE` for the service indicated by `serviceId` or `ADMIN` access for this Authlete instance.
-    ViewService:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `VIEW_SERVICE` access right for the service indicated by `serviceId`. Can also be a token with `USE_SERVICE`, `CREATE_CLIENT`, or `MODIFY_SERVICE` for the service indicated by `serviceId` or `ADMIN` access for this Authlete instance.
-    ModifyClient:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `MODIFY_CLIENT` access right for the client indicated by `clientId` of the service indicated by `serviceId`. Can also be a token with `CREATE_CLIENT` or `MODIFY_SERVICE` for the service indicated by `serviceId` or `ADMIN` access for this Authlete instance.
-    ViewClient:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least the `VIEW_CLIENT` access right for the client indicated by `clientId` of the service indicated by `serviceId`. Can also be a token with `MODIFY_CLIENT` for the client indicated by `clientId` of the service indicated by `serviceId`; `VIEW_SERVICE`, `USE_SERVICE`, `CREATE_CLIENT` or `MODIFY_SERVICE` for the service indicated by `serviceId`; or `ADMIN` access for this Authlete instance.
-    UseService:
-      type: http
-      scheme: bearer
-      description: Set **access token**. A token with at least `USE_SERVICE` access rights for this service. A **service access token** from the console will have sufficient access.
+      description: Obtain an **access token** and set it in the following textbox.
+
   schemas:
     AccessToken:
       $ref: model/access_token.yaml
@@ -294,38 +369,65 @@ components:
 #
 tags:
   - name: Service Management
-    description: desc1
+    description: API endpoints for managing services, including creation, update, and deletion of services.
+    x-tag-expanded: false
   - name: Client Management
-    description: desc1
+    description: API endpoints for managing OAuth clients, including creation, update, and deletion of clients.
+    x-tag-expanded: false
   - name: Authorization Endpoint
-    description: desc1
+    description: API endpoints for implementing OAuth 2.0 Authorization Endpoint.
+    x-tag-expanded: false
   - name: Pushed Authorization Endpoint
-    description: desc1
+    description: API endpoints for implementing OAuth 2.0 Pushed Authorization Requests (PAR).
+    x-tag-expanded: false
   - name: Token Endpoint
-    description: desc1
-  - name: Introspection Endpoint
-    description: desc1
-  - name: Revocation Endpoint
-    description: desc1
-  - name: UserInfo Endpoint
-    description: desc1
-  - name: JWK Set Endpoint
-    description: desc1
-  - name: Discovery Endpoint
-    description: desc1
-  - name: Configuration Endpoint
-    description: desc1
-  - name: Dynamic Client Registration
-    description: desc1
-  - name: CIBA
-    description: desc1
-  - name: Grant Management Endpoint
-    description: desc1
+    description: API endpoints for implementing OAuth 2.0 Token Endpoint.
+    x-tag-expanded: false
   - name: Token Operations
-    description: desc1
+    description: API endpoints for various token related operations, including creating, revoking and deleting access_tokens with specified scopes. 
+    x-tag-expanded: false
+  - name: Introspection Endpoint
+    description: API endpoints for implementing OAuth 2.0 Introspection Endpoint.
+    x-tag-expanded: false
+  - name: Revocation Endpoint
+    description: API endpoint for implementing OAuth 2.0 Revocation Endpoint.
+    x-tag-expanded: false
+  - name: UserInfo Endpoint
+    description: API endpoints for implementing OpenID Connect UserInfo Endpoint.
+    x-tag-expanded: false
+  - name: JWK Set Endpoint
+    description: API endpoints for to generate JSON Web Key Set (JWKS) for a service.
+    x-tag-expanded: false
+  - name: Discovery Endpoint
+    description: API endpoints for implementing OpenID Connect Discovery.
+    x-tag-expanded: false
+  - name: Configuration Endpoint
+    description: API endpoint for accessing configuration settings for a service.
+    x-tag-expanded: false
+  - name: Dynamic Client Registration
+    description: API endpoints for implementing OAuth 2.0 Dynamic Client Registration.
+    x-tag-expanded: false
+  - name: CIBA
+    description: API endpoints for implementing Client-Initiated Backchannel Authentication (CIBA).
+    x-tag-expanded: false
+  - name: Grant Management Endpoint
+    description: API endpoint for implementing OAuth 2.0 grants, including grant management actions like updating and revoking grants.
+    x-tag-expanded: false
   - name: Jose Object
-    description: desc1
+    description: API endpoints for JOSE objects.
+    x-tag-expanded: false
   - name: Device Flow
-    description: desc1
+    description: API endpoints for implementing OAuth 2.0 Device Flow
+    x-tag-expanded: false
   - name: Federation Endpoint
-    description: desc1
+    description: API endpoints for implementing OpenID Federation using Authlete. 
+    x-tag-expanded: false
+  - name: Verifiable Credential Issuer
+    description: API endpoints for implementing and running a Verifiable Credential Issuer (VCI). 
+    x-tag-expanded: false
+  - name: Hardware Security Key
+    description: API endpoints for managing hardware security keys (HSK).
+    x-tag-expanded: false
+  - name: Utility Endpoints
+    description: API endpoints for various utility operations.
+    x-tag-expanded: false

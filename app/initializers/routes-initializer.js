@@ -1,14 +1,13 @@
-const authenticateUser  = require('../handlers/authenticate-user');
-const handleUnknown     = require('../handlers/handle-unknown');
-const healthcheck       = require('../handlers/healthcheck');
-const processVersion    = require('../handlers/process-version');
-const processLocale     = require('../handlers/process-locale');
+const authenticateUser = require('../handlers/authenticate-user');
+const handleUnknown = require('../handlers/handle-unknown');
+const healthcheck = require('../handlers/healthcheck');
+const processVersion = require('../handlers/process-version');
+const processLocale = require('../handlers/process-locale');
 const processServerType = require('../handlers/process-server-type');
 const redirectToDefault = require('../handlers/redirect-to-default');
-const renderDoc         = require('../handlers/render-doc');
-const renderSpec        = require('../handlers/render-spec');
+const renderHandler = require('../handlers/render');
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Set up routing based on the following link.
   //
   //   https://github.com/expressjs/express/blob/master/examples/route-middleware/index.js
@@ -21,15 +20,8 @@ module.exports = function(app) {
   // Healthcheck endpoint.
   app.get('/__healthz', healthcheck);
 
-  // The path to get the API doc for a version, a server type and a
-  // locale.
-  app.get('/:locale/:serverType/:version',
-    processLocale, processServerType, processVersion, authenticateUser, renderDoc);
-
-  // The path to get the API spec for a version, a server type and a
-  // locale.
-  app.get('/:locale/:serverType/:version/spec',
-    processLocale, processServerType, processVersion, authenticateUser, renderSpec);
+  app.get('/:locale/:serverType/:version/:handler?',
+    processLocale, processServerType, processVersion, authenticateUser, renderHandler);
 
   // Unknown paths with a locale. This setup is just for rendering
   // error in the locale.

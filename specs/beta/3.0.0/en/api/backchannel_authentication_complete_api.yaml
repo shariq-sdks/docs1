@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/backchannel/authentication/complete API
+  summary: Complete Backchannel Authentication
   description: |
     This API returns information about what action the authorization server should take after it receives
     the result of end-user's decision about whether the end-user has approved or rejected a client application's
@@ -109,9 +109,6 @@ post:
     {responseContent}
     ```
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -176,7 +173,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/backchannel/authentication/complete \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/backchannel/authentication/complete \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "NFIHGx_btVrWmtAD093D-87JxvT4DAtuijEkLVHbS4Q", "result": "AUTHORIZED", "subject": "john" }'

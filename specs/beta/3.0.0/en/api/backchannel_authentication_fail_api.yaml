@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/backchannel/authentication/fail API
+  summary: Fail Backchannel Authentication Request
   description: |
     The API prepares JSON that contains an error. The JSON should be used as the response body of the
     response which is returned to the client from the [backchannel authentication endpoint](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html#auth_backchannel_endpoint).
@@ -37,9 +37,6 @@ post:
     server implementation should return a "403 Forbidden" response to the client application.
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -83,7 +80,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/backchannel/authentication/fail \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/backchannel/authentication/fail \
         -H 'Content-Type: application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "ticket": "holsZhINBhum6j6MYE4yZefHuQN_kd609veKCst31p0", "reason": "ACCESS_DENIED" }'

@@ -1,7 +1,8 @@
 delete:
-  summary: /api/{serviceId}/hsk/delete/{handle} API
-  security:
-    - ModifyService: []
+  summary: Delete Security Key
+  x-badges:
+    - color: primary-color
+      label: '🏢 Dedicated Cloud Required'
   parameters:
     - in: path
       name: serviceId
@@ -30,4 +31,4 @@ delete:
       $ref: ../model/response/500.yaml
   operationId: 'hsk_delete_api'
   tags:
-    - Hsk Operations
+    - Hardware Security Key

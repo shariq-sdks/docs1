@@ -1,9 +1,7 @@
 post:
-  summary: /api/{serviceId}/service/update API
+  summary: Update Service
   description: |
     Update a service.
-  security:
-    - ModifyService: []
   parameters:
     - in: path
       name: serviceId
@@ -237,7 +235,7 @@ post:
     - lang: shell
       label: curl
       source: |
-        curl -v -X POST https://beta.authlete.com/api/21653835348762/service/update \
+        curl -v -X POST https://us.authlete.com/api/21653835348762/service/update \
         -H 'Content-Type:application/json' \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
         -d '{ "serviceName": "My updated service", ... }'

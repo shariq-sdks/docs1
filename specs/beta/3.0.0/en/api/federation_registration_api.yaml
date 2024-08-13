@@ -1,5 +1,5 @@
 post:
-  summary: /api/{serviceId}/federation/registration API
+  summary: Process Federation Registration Request
   description: |
      The Authlete API is for implementations of the <b>federation registration
      endpoint</b> that accepts "explicit client registration". Its details are
@@ -37,8 +37,6 @@ post:
      `/federation/registration` API with the trust chain set to the
      `trustChain` request parameter.
      </p>
-  security:
-    - UseService: [ ]
   parameters:
     - in: path
       name: serviceId

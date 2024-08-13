@@ -1,5 +1,5 @@
 get:
-  summary: /api/{serviceId}/service/jwks/get API
+  summary: Get JWK Set
   description: |
     This API gathers JWK Set information for a service so that its client applications can verify
     signatures by the service and encrypt their requests to the service.
@@ -15,9 +15,6 @@ get:
     if the service supports [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html).
 
     </details>
-
-  security:
-    - UseService: []
   parameters:
     - in: path
       name: serviceId
@@ -97,7 +94,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/service/jwks/get?pretty=true \
+        curl -v https://us.authlete.com/api/21653835348762/service/jwks/get?pretty=true \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java

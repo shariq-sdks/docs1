@@ -1,0 +1,14 @@
+<script>
+  function getRapiDoc() {
+    return document.getElementById("apiDoc");
+  }
+  function toggleTheme() {
+    const button = document.getElementById('theme-toggle-button');
+    const theme = getRapiDoc().getAttribute('theme');
+    if (theme === 'light') {
+      getRapiDoc().setAttribute('theme', "dark");
+    } else {
+      getRapiDoc().setAttribute('theme', "light");
+    }
+  }
+  </script>

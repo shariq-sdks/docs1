@@ -1,12 +1,10 @@
 get:
-  summary: /api/{serviceId}/service/get API
+  summary: Get Service
   description: |
     Get a service.
     
     If the access token can only view or modify clients underneath this service, but does not
     have access to view this service directly, a limited view of the service will be returned.
-  security:
-    - ViewService: []
   parameters:
     - in: path
       name: serviceId
@@ -137,7 +135,7 @@ get:
     - lang: shell
       label: curl
       source: |
-        curl -v https://beta.authlete.com/api/21653835348762/service/get \
+        curl -v https://us.authlete.com/api/21653835348762/service/get \
         -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F'
 
     - lang: java
