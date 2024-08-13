@@ -11,6 +11,10 @@
   },
   "servers": [
     {
+      "description": "Beta Cluster",
+      "url": "https://beta.authlete.com"
+    },
+    {
       "description": "🇺🇸 US Cluster",
       "url": "https://us.authlete.com"
     },
@@ -41634,7 +41638,7 @@
     },
     "/api/{serviceId}/auth/authorization/ticket/info": {
       "get": {
-        "summary": "Get Authorization Transaction Information",
+        "summary": "Get Ticket Information",
         "requestBody": {
           "required": true,
           "content": {
@@ -41807,7 +41811,7 @@
     },
     "/api/{serviceId}/auth/authorization/ticket/update": {
       "post": {
-        "summary": "Set Authorization Transaction Information",
+        "summary": "Update Ticket Information",
         "requestBody": {
           "required": true,
           "content": {

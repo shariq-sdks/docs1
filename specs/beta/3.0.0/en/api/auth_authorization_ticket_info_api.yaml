@@ -1,5 +1,5 @@
 get:
-  summary: Get Authorization Transaction Information
+  summary: Get Ticket Information
   requestBody:
     required: true
     content:
