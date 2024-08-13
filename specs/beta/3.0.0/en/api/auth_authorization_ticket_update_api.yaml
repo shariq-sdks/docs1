@@ -1,5 +1,5 @@
 post:
-  summary: Set Authorization Transaction Information
+  summary: Update Ticket Information
   requestBody:
     required: true
     content:
