@@ -1,5 +1,5 @@
 post:
-  summary: /api/auth/intraspection/standard API
+  summary: /api/auth/introspection/standard API
   description: |
     This API exists to help your authorization server provide its own introspection API which complies
     with [RFC 7662](https://tools.ietf.org/html/rfc7662) (OAuth 2.0 Token Introspection).

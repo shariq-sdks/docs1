@@ -36081,9 +36081,6 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accessTokenIdentifier"
-                ],
                 "properties": {
                   "accessTokenIdentifier": {
                     "type": "string",
@@ -36110,9 +36107,6 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "accessTokenIdentifier"
-                ],
                 "properties": {
                   "accessTokenIdentifier": {
                     "type": "string",
