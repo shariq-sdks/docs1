@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
     <script type="module" src="/js/rapidoc-min.js"></script>
-    <script type="text/javascript" src="/js/api-doc.js"></script>
+    <% if (typeof oauthCallback === 'undefined') { %> 
+    <!-- Don't load this for callback handler. -->
+      <script type="text/javascript" src="/js/api-doc.js"></script>
+    <% } %>
   </head>
   <body>
     <% if (typeof oauthCallback !== 'undefined' && oauthCallback) { %>
