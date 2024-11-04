@@ -104,8 +104,6 @@ info:
 # SERVERS
 #
 servers:
-  - description: Beta Cluster
-    url: https://beta.authlete.com
   - description: 🇺🇸 US Cluster 
     url: https://us.authlete.com
   - description: 🇯🇵 Japan Cluster
