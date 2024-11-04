@@ -1,8 +1,8 @@
 <select id="documentSwitcher">
 <option disabled selected value><%- `${translations.documentSwitcher.select}` %></option>
 <% if (config.supportedServerTypes.includes('shared')) { -%>
-<%- include('option.ejs',
-  { value: 'shared/latest', label: `${translations.serverTypes['shared']}`, selected: (req.params.serverType === 'shared' && req.versionInfo.latest) }); %>
+<%- include('options-for-server-type',
+  { config: config, translations: translations, req: req, serverType: 'shared' }) %>
 <% }; -%>
 <% if (config.supportedServerTypes.includes('dedicated')) { -%>
 <%- include('options-for-server-type',
@@ -11,9 +11,5 @@
 <% if (config.supportedServerTypes.includes('onpremise')) { -%>
 <%- include('options-for-server-type',
   { config: config, translations: translations, req: req, serverType: 'onpremise' }) %>
-<% }; -%>
-<% if (config.supportedServerTypes.includes('beta')) { -%>
-<%- include('options-for-server-type',
-  { config: config, translations: translations, req: req, serverType: 'beta' }) %>
 <% }; -%>
 </select>
