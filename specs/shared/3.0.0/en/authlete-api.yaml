@@ -32,7 +32,7 @@ info:
         </ul>
         <p>All API endpoints are secured using access tokens issued by Authlete's Identity Provider (IdP). If you already
           have an Authlete account, simply use the <em>Get Token</em> option on the Authentication page to log in and obtain
-          an access token for API usage. If you don't have an account yet, <a href="https://login.authlete.com/">sign up
+          an access token for API usage. If you don't have an account yet, <a href="https://console.authlete.com/register">sign up
             here</a> to get started.</p>
       </header>
       <main>
@@ -61,12 +61,12 @@ info:
         <section id="authentication" class="mb-10">
           <h2 class="text-2xl font-semibold mb-4">🔑 Authentication</h2>
           <p>The API Explorer requires an access token to call the API.</p>
-          <p>You can create the access token from the Authlete console and set it in the HTTP Bearer section of Authentication page.</p>
-          <p>Alternatively, if you have an Authlete account, the API console can log you in with your Authlete account and
+          <p>You can create the access token from the <a href="https://console.authlete.com">Authlete Management Console</a> and set it in the HTTP Bearer section of Authentication page.</p>
+          <p>Alternatively, if you have an Authlete account, the API Explorer can log you in with your Authlete account and
             automatically acquire the required access token.</p>
           <div class="theme-admonition theme-admonition-warning admonition_o5H7 alert alert--warning">
             <div class="admonitionContent_Knsx">
-              <p>⚠️ <strong>Important Note:</strong> When the API explorer acquires the token after login, the access tokens
+              <p>⚠️ <strong>Important Note:</strong> When the API Explorer acquires the token after login, the access tokens
                 will have the same permissions as the user who logs in as part of this flow.</p>
             </div>
           </div>
@@ -82,6 +82,7 @@ info:
             <a href="https://www.authlete.com/developers/getting_started/"
               class="block text-green-500 dark:text-green-300 font-bold hover:underline mb-2">🚀 Getting Started with
               Authlete</a>
+              </br>
             <a href="https://www.authlete.com/developers/tutorial/signup/"
               class="block text-green-500 dark:text-green-300 font-bold hover:underline">🔑 From Sign-Up to the First API
               Request</a>
@@ -286,7 +287,7 @@ components:
           tokenUrl: https://login.authlete.com/token
           scopes:
             authlete: Inherit Authlete Account Permissions
-          x-client-id: api-explorer
+          x-client-id: 1466450095
           x-default-scopes: authlete
           x-pkce-only: true
     bearer:
