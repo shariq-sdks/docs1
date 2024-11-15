@@ -7,6 +7,7 @@
     <!-- Don't load this for callback handler. -->
       <script type="text/javascript" src="/js/api-doc.js"></script>
     <% } %>
+    <%- include('partials/openreplay') %>
   </head>
   <body>
     <% if (typeof oauthCallback !== 'undefined' && oauthCallback) { %>
