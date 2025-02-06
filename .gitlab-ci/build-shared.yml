@@ -16,8 +16,8 @@ generate client:
     - git clone git@github.com:authlete/${CLIENT_REPO}.git
     - for i in ${GIT_CLEAN_MASK}; do echo "$i"; find ${CLIENT_REPO} -iname $i -delete;  done
     - docker run --rm -v ${PWD}:/local ${GENERATOR_IMAGE} batch /local/${GENERATOR_CONFIG}
-    - go install golang.org/x/tools/cmd/goimports@latest
     - cd ${CLIENT_REPO}
+    - go install golang.org/x/tools/cmd/goimports@latest
     - goimports -w *.go
     - go test -v -cover ./...
     - git config user.email "ci@authlete.com"
