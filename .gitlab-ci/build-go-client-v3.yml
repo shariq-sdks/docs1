@@ -5,7 +5,7 @@ stages:
 include: '.gitlab-ci/build-shared.yml'
 
 variables:
-  GENERATOR_IMAGE: openapitools/openapi-generator-cli:v6.2.1
+  GENERATOR_IMAGE: openapitools/openapi-generator-cli:v7.11.0
   GENERATOR_CONFIG: go-client-codegen-v3.yml
   TARGET_BRANCH: v3
   CLIENT_REPO: openapi-for-go

@@ -1,5 +1,4 @@
-inputSpec: /local/specs/dedicated/3.0.0/en/authlete-api.yaml
-templateDir: /local/openapi-for-go/templates/
+inputSpec: /local/specs/shared/3.0.0/en/authlete-api.yaml
 outputDir: /local/openapi-for-go/
 generatorName: go
 validateSpec: true

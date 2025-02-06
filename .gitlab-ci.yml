@@ -37,16 +37,10 @@ build go client:
         - go-client-codegen.yml
 
 build go client v3:
-  needs: [build go client]
   stage: build clients
   trigger:
     include: .gitlab-ci/build-go-client-v3.yml
     strategy: depend
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      changes:
-        - specs/**/*
-        - go-client-codegen-v3.yml
 
 build typescript client:
   stage: build clients
