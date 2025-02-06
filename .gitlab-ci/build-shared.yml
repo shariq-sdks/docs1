@@ -10,14 +10,6 @@
 
 generate client:
   stage: generate client
-  environment:
-    name: review/$ENV_PREFIX-$CI_COMMIT_REF_SLUG
-    on_stop: delete review client
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      changes:
-        - specs/**/*
-        - "*.yml"
   extends:
     - .prepare_github_step
   script:
@@ -38,17 +30,3 @@ generate client:
       
 
 
-delete review client:
-  when: manual
-  stage: delete review client
-  variables:
-    GIT_STRATEGY: none
-  environment:
-    name: review/$ENV_PREFIX-$CI_COMMIT_REF_SLUG
-    action: stop
-  extends:
-    - .prepare_github_step
-  script:
-    - git clone git@github.com:authlete/${CLIENT_REPO}.git
-    - cd ${CLIENT_REPO}
-    - git push origin -d $CI_COMMIT_REF_SLUG
