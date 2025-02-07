@@ -13,9 +13,8 @@ generate client:
   extends:
     - .prepare_github_step
   script:
-    - git clone git@github.com:authlete/${CLIENT_REPO}.git
+    - git clone -b ${TARGET_BRANCH} git@github.com:authlete/${CLIENT_REPO}.git
     - cd openapi-for-go
-    - git checkout -b ${TARGET_BRANCH}
     - rm -Rf *.go go.* docs api .openapi-generator*
     - cd -
     - go version
