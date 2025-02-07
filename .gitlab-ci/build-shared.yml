@@ -18,7 +18,7 @@ generate client:
     - docker run --rm -v ${PWD}:/local ${GENERATOR_IMAGE} batch /local/${GENERATOR_CONFIG}
     - cd ${CLIENT_REPO}
     - go install golang.org/x/tools/cmd/goimports@latest
-    - goimports -w *.go
+    - $HOME/go/bin/goimports -w *.go
     - go test -v -cover ./...
     - git config user.email "ci@authlete.com"
     - git config user.name "CI"
