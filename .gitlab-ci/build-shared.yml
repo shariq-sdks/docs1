@@ -19,6 +19,7 @@ generate client:
     - cd ${CLIENT_REPO}
     - go install golang.org/x/tools/cmd/goimports@latest
     - $HOME/go/bin/goimports -w *.go
+    - go mod download
     - go test -v -cover ./...
     - git config user.email "ci@authlete.com"
     - git config user.name "CI"
