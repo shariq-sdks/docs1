@@ -2,7 +2,7 @@ inputSpec: /local/specs/shared/3.0.0/en/authlete-api.yaml
 outputDir: /local/openapi-for-go/
 generatorName: go
 validateSpec: true
-gitRepoId: openapi-for-go
+gitRepoId: openapi-for-go/v3
 gitUserId: authlete
 additionalProperties:
   enumClassPrefix: true
