@@ -17,6 +17,7 @@ generate client:
     - cd ${CLIENT_REPO}
     - rm -Rf *.go go.* docs api .openapi-generator*
     - cd -
+    - go version
     - docker run --rm -v ${PWD}:/local ${GENERATOR_IMAGE} batch /local/${GENERATOR_CONFIG}
     - cd ${CLIENT_REPO}
     - go install golang.org/x/tools/cmd/goimports@latest
