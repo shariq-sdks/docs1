@@ -116,6 +116,6 @@ specs/shared/3.0.0/en/authlete-api.yaml
 
 4. Test locally.
 
-5. Commit the changes and push them to the master branch.
+5. Commit the changes and push them to the repository.
 
 NOTE: Pushing commits to the master branch automatically triggers application deployment.
