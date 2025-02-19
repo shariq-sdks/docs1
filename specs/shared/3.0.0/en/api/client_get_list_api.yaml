@@ -45,9 +45,7 @@ get:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: ../model/response/client_get_list_response.yaml
-              - $ref: ../model/response/client_get_list_limited_response.yaml
+            $ref: ../model/response/client_get_list_response.yaml
           examples:
             full:
               summary: Example showing full client view.

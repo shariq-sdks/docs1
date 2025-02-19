@@ -18,9 +18,7 @@ get:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: ../model/service.yaml
-              - $ref: ../model/service_limited.yaml
+            $ref: ../model/service.yaml
           examples:
             full:
               summary: Example showing the full service object.
