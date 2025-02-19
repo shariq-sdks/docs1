@@ -41,10 +41,10 @@ build go client v3:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
 
-build typescript client:
-  stage: build clients
-  trigger:
-    include: .gitlab-ci/build-typescript-client.yml
-    strategy: depend
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "master"'
+#build typescript client:
+#  stage: build clients
+#  trigger:
+#    include: .gitlab-ci/build-typescript-client.yml
+#    strategy: depend
+#  rules:
+#    - if: '$CI_COMMIT_REF_NAME == "master"'
