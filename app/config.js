@@ -5,7 +5,7 @@ const config = {};
 config.supportedLocales = [ 'en' ];
 
 // Supported server types.
-config.supportedServerTypes = [ 'shared', 'dedicated'];
+config.supportedServerTypes = [ 'shared', 'dedicated' ];
 
 // Supported API document versions for each server type.
 config.supportedVersions = {
@@ -29,6 +29,7 @@ config.credentials = {
   onpremise: { username: process.env.USERNAME_ONPREMISE || 'onp', password: process.env.PASSWORD_ONPREMISE || 'onp' }
 };
 
+// Whether or not the application runs in a production environment.
 config.isProduction = process.env.NODE_ENV === 'production'
 
 // Log level.
