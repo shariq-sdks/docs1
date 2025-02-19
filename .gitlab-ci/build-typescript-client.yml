@@ -10,7 +10,7 @@ variables:
   GENERATOR_IMAGE: openapitools/openapi-generator-cli:v6.2.1
   GENERATOR_CONFIG: typescript-client-codegen.yml
   GITHUB_SSH_PUSH_KEY: ${TS_SSH_PUSH_KEY}
-  TARGET_BRANCH: $CI_COMMIT_BRANCH
+  TARGET_BRANCH: main
   ENV_PREFIX: ts
   GIT_CLEAN_MASK: "*/*.ts */apis */models */openapi-generator* */*.json"
 
