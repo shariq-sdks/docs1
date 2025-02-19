@@ -3,8 +3,6 @@ stages:
   - delete review client
   - push client
 
-include: '.gitlab-ci/build-shared.yml'
-
 variables:
   CLIENT_REPO: openapi-for-typescript
   GENERATOR_IMAGE: openapitools/openapi-generator-cli:v6.2.1
