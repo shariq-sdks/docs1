@@ -1,7 +1,7 @@
 get:
   summary: List Issued Tokens
   description: |
-    Get a list of client applications that an end-user has authorized.
+    Get the list of access tokens that are associated with the service.
   parameters:
     - in: path
       name: serviceId

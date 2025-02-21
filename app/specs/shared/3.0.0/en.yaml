@@ -34215,7 +34215,7 @@
     "/api/{serviceId}/auth/token/get/list": {
       "get": {
         "summary": "List Issued Tokens",
-        "description": "Get a list of client applications that an end-user has authorized.\n",
+        "description": "Get the list of access tokens that are associated with the service.\n",
         "parameters": [
           {
             "in": "path",
@@ -41306,7 +41306,6 @@
                       "description": "The content of the response to the request sender."
                     },
                     "info": {
-                      "description": "Information about the credential request bound to the transaction ID.",
                       "type": "object",
                       "properties": {
                         "identifier": {
@@ -41325,7 +41324,8 @@
                           "type": "string",
                           "description": "The details about the credential request."
                         }
-                      }
+                      },
+                      "description": "Information about the credential request bound to the transaction ID."
                     }
                   }
                 }

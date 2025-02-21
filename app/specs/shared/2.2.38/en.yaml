@@ -28336,8 +28336,8 @@
                       "description": "The name of the client application which has made the device authorization request.\n"
                     },
                     "clientAuthMethod": {
-                      "description": "The client authentication method that should be performed at the device authorization endpoint.\n",
                       "type": "string",
+                      "description": "The client authentication method that the client application declares that it uses at the token\nendpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic\nClient Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n",
                       "enum": [
                         "NONE",
                         "CLIENT_SECRET_BASIC",
@@ -29523,7 +29523,7 @@
     "/api/auth/token/get/list": {
       "get": {
         "summary": "/api/auth/token/get/list API",
-        "description": "Get a list of client applications that an end-user has authorized.\n",
+        "description": "Get the list of access tokens that are associated with the service.\n",
         "security": [
           {
             "ServiceCredentials": []
