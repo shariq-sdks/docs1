@@ -9,7 +9,7 @@ config.supportedServerTypes = [ 'shared', 'dedicated' ];
 
 // Supported API document versions for each server type.
 config.supportedVersions = {
-  shared: ['2.3.0', '3.0.0'],
+  shared: [ '2.3.0', '3.0.0' ],
   dedicated: [ '2.3.0', '2.3.12' ]
 };
 
