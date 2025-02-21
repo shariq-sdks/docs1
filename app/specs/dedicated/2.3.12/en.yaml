@@ -35899,7 +35899,7 @@
     "/api/auth/token/get/list": {
       "get": {
         "summary": "/api/auth/token/get/list API",
-        "description": "Get a list of client applications that an end-user has authorized.\n",
+        "description": "Get the list of access tokens that are associated with the service.\n",
         "security": [
           {
             "ServiceCredentials": []

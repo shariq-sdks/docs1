@@ -6860,119 +6860,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "example": {
-                    "accessTokenDuration": 3600,
-                    "accessTokenType": "Bearer",
-                    "allowableClockSkew": 0,
-                    "apiKey": 21653835348762,
-                    "apiSecret": "uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls",
-                    "attributes": [
-                      {
-                        "key": "attribute1-key",
-                        "value": "attribute1-value"
-                      },
-                      {
-                        "key": "attribute2-key",
-                        "value": "attribute2-value"
-                      }
-                    ],
-                    "authorizationEndpoint": "https://my-service.example.com/authz",
-                    "authorizationResponseDuration": 0,
-                    "backchannelAuthReqIdDuration": 0,
-                    "backchannelBindingMessageRequiredInFapi": false,
-                    "backchannelPollingInterval": 0,
-                    "backchannelUserCodeParameterSupported": false,
-                    "claimShortcutRestrictive": false,
-                    "clientIdAliasEnabled": true,
-                    "clientsPerDeveloper": 0,
-                    "createdAt": 1639373421000,
-                    "dcrScopeUsedAsRequestable": false,
-                    "deviceFlowCodeDuration": 0,
-                    "deviceFlowPollingInterval": 0,
-                    "directAuthorizationEndpointEnabled": false,
-                    "directIntrospectionEndpointEnabled": false,
-                    "directJwksEndpointEnabled": false,
-                    "directRevocationEndpointEnabled": false,
-                    "directTokenEndpointEnabled": false,
-                    "directUserInfoEndpointEnabled": false,
-                    "dynamicRegistrationSupported": false,
-                    "errorDescriptionOmitted": false,
-                    "errorUriOmitted": false,
-                    "frontChannelRequestObjectEncryptionRequired": false,
-                    "grantManagementActionRequired": false,
-                    "hsmEnabled": false,
-                    "idTokenDuration": 0,
-                    "introspectionEndpoint": "https://my-service.example.com/introspection",
-                    "issSuppressed": false,
-                    "issuer": "https://my-service.example.com",
-                    "metadata": [
-                      {
-                        "key": "clientCount",
-                        "value": "1"
-                      }
-                    ],
-                    "missingClientIdAllowed": false,
-                    "modifiedAt": 1639373420725,
-                    "mutualTlsValidatePkiCertChain": false,
-                    "nbfOptional": false,
-                    "number": 5041,
-                    "parRequired": false,
-                    "pkceRequired": true,
-                    "pkceS256Required": false,
-                    "pushedAuthReqDuration": 0,
-                    "refreshTokenDuration": 3600,
-                    "refreshTokenDurationKept": false,
-                    "refreshTokenDurationReset": false,
-                    "refreshTokenKept": false,
-                    "requestObjectEncryptionAlgMatchRequired": false,
-                    "requestObjectEncryptionEncMatchRequired": false,
-                    "requestObjectRequired": false,
-                    "revocationEndpoint": "https://my-service.example.com/revocation",
-                    "scopeRequired": false,
-                    "serviceName": "My updated service",
-                    "serviceOwnerNumber": 2,
-                    "singleAccessTokenPerSubject": false,
-                    "supportedClaimTypes": [
-                      "NORMAL"
-                    ],
-                    "supportedDisplays": [
-                      "PAGE"
-                    ],
-                    "supportedGrantTypes": [
-                      "AUTHORIZATION_CODE",
-                      "REFRESH_TOKEN"
-                    ],
-                    "supportedIntrospectionAuthMethods": [
-                      "CLIENT_SECRET_BASIC"
-                    ],
-                    "supportedResponseTypes": [
-                      "CODE"
-                    ],
-                    "supportedRevocationAuthMethods": [
-                      "CLIENT_SECRET_BASIC"
-                    ],
-                    "supportedScopes": [
-                      {
-                        "defaultEntry": false,
-                        "description": "A permission to read your history.",
-                        "name": "history.read"
-                      },
-                      {
-                        "defaultEntry": false,
-                        "description": "A permission to read your timeline.",
-                        "name": "timeline.read"
-                      }
-                    ],
-                    "supportedTokenAuthMethods": [
-                      "CLIENT_SECRET_BASIC"
-                    ],
-                    "tlsClientCertificateBoundAccessTokens": false,
-                    "tokenEndpoint": "https://my-service.example.com/token",
-                    "tokenExpirationLinked": false,
-                    "traditionalRequestObjectProcessingApplied": false,
-                    "unauthorizedOnClientConfigSupported": false,
-                    "userCodeLength": 0
-                  },
                   "type": "object",
                   "properties": {
                     "number": {
@@ -7794,6 +7681,119 @@
                       "type": "boolean",
                       "description": "The flag indicating whether to block DCR (Dynamic Client Registration)\nrequests whose \"software_id\" has already been used previously.\n"
                     }
+                  },
+                  "example": {
+                    "accessTokenDuration": 3600,
+                    "accessTokenType": "Bearer",
+                    "allowableClockSkew": 0,
+                    "apiKey": 21653835348762,
+                    "apiSecret": "uE4NgqeIpuSV_XejQ7Ds3jsgA1yXhjR1MXJ1LbPuyls",
+                    "attributes": [
+                      {
+                        "key": "attribute1-key",
+                        "value": "attribute1-value"
+                      },
+                      {
+                        "key": "attribute2-key",
+                        "value": "attribute2-value"
+                      }
+                    ],
+                    "authorizationEndpoint": "https://my-service.example.com/authz",
+                    "authorizationResponseDuration": 0,
+                    "backchannelAuthReqIdDuration": 0,
+                    "backchannelBindingMessageRequiredInFapi": false,
+                    "backchannelPollingInterval": 0,
+                    "backchannelUserCodeParameterSupported": false,
+                    "claimShortcutRestrictive": false,
+                    "clientIdAliasEnabled": true,
+                    "clientsPerDeveloper": 0,
+                    "createdAt": 1639373421000,
+                    "dcrScopeUsedAsRequestable": false,
+                    "deviceFlowCodeDuration": 0,
+                    "deviceFlowPollingInterval": 0,
+                    "directAuthorizationEndpointEnabled": false,
+                    "directIntrospectionEndpointEnabled": false,
+                    "directJwksEndpointEnabled": false,
+                    "directRevocationEndpointEnabled": false,
+                    "directTokenEndpointEnabled": false,
+                    "directUserInfoEndpointEnabled": false,
+                    "dynamicRegistrationSupported": false,
+                    "errorDescriptionOmitted": false,
+                    "errorUriOmitted": false,
+                    "frontChannelRequestObjectEncryptionRequired": false,
+                    "grantManagementActionRequired": false,
+                    "hsmEnabled": false,
+                    "idTokenDuration": 0,
+                    "introspectionEndpoint": "https://my-service.example.com/introspection",
+                    "issSuppressed": false,
+                    "issuer": "https://my-service.example.com",
+                    "metadata": [
+                      {
+                        "key": "clientCount",
+                        "value": "1"
+                      }
+                    ],
+                    "missingClientIdAllowed": false,
+                    "modifiedAt": 1639373420725,
+                    "mutualTlsValidatePkiCertChain": false,
+                    "nbfOptional": false,
+                    "number": 5041,
+                    "parRequired": false,
+                    "pkceRequired": true,
+                    "pkceS256Required": false,
+                    "pushedAuthReqDuration": 0,
+                    "refreshTokenDuration": 3600,
+                    "refreshTokenDurationKept": false,
+                    "refreshTokenDurationReset": false,
+                    "refreshTokenKept": false,
+                    "requestObjectEncryptionAlgMatchRequired": false,
+                    "requestObjectEncryptionEncMatchRequired": false,
+                    "requestObjectRequired": false,
+                    "revocationEndpoint": "https://my-service.example.com/revocation",
+                    "scopeRequired": false,
+                    "serviceName": "My updated service",
+                    "serviceOwnerNumber": 2,
+                    "singleAccessTokenPerSubject": false,
+                    "supportedClaimTypes": [
+                      "NORMAL"
+                    ],
+                    "supportedDisplays": [
+                      "PAGE"
+                    ],
+                    "supportedGrantTypes": [
+                      "AUTHORIZATION_CODE",
+                      "REFRESH_TOKEN"
+                    ],
+                    "supportedIntrospectionAuthMethods": [
+                      "CLIENT_SECRET_BASIC"
+                    ],
+                    "supportedResponseTypes": [
+                      "CODE"
+                    ],
+                    "supportedRevocationAuthMethods": [
+                      "CLIENT_SECRET_BASIC"
+                    ],
+                    "supportedScopes": [
+                      {
+                        "defaultEntry": false,
+                        "description": "A permission to read your history.",
+                        "name": "history.read"
+                      },
+                      {
+                        "defaultEntry": false,
+                        "description": "A permission to read your timeline.",
+                        "name": "timeline.read"
+                      }
+                    ],
+                    "supportedTokenAuthMethods": [
+                      "CLIENT_SECRET_BASIC"
+                    ],
+                    "tlsClientCertificateBoundAccessTokens": false,
+                    "tokenEndpoint": "https://my-service.example.com/token",
+                    "tokenExpirationLinked": false,
+                    "traditionalRequestObjectProcessingApplied": false,
+                    "unauthorizedOnClientConfigSupported": false,
+                    "userCodeLength": 0
                   }
                 }
               }
@@ -28297,8 +28297,8 @@
                       "description": "The name of the client application which has made the device authorization request.\n"
                     },
                     "clientAuthMethod": {
-                      "description": "The client authentication method that should be performed at the device authorization endpoint.\n",
                       "type": "string",
+                      "description": "The client authentication method that the client application declares that it uses at the token\nendpoint. This property corresponds to `token_endpoint_auth_method` in [OpenID Connect Dynamic\nClient Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).\n",
                       "enum": [
                         "NONE",
                         "CLIENT_SECRET_BASIC",
@@ -29484,7 +29484,7 @@
     "/api/auth/token/get/list": {
       "get": {
         "summary": "/api/auth/token/get/list API",
-        "description": "Get a list of client applications that an end-user has authorized.\n",
+        "description": "Get the list of access tokens that are associated with the service.\n",
         "security": [
           {
             "ServiceCredentials": []
