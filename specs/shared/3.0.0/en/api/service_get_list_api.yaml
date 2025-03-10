@@ -32,9 +32,7 @@ get:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: ../model/response/service_get_list_response.yaml
-              - $ref: ../model/response/service_get_list_limited_response.yaml
+            $ref: ../model/response/service_get_list_response.yaml
           examples:
             full:
               summary: Example showing the full service view.
