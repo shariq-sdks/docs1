@@ -96,7 +96,7 @@ info:
         </section>
       </main>
     </div>
-  version: '3.0.0'
+  version: "3.0.0"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -105,7 +105,7 @@ info:
 # SERVERS
 #
 servers:
-  - description: 🇺🇸 US Cluster 
+  - description: 🇺🇸 US Cluster
     url: https://us.authlete.com
   - description: 🇯🇵 Japan Cluster
     url: https://jp.authlete.com
@@ -362,8 +362,10 @@ components:
       $ref: model/credential_issuance_order.yaml
     CredentialIssuerMetadata:
       $ref: model/credential_issuer_metadata.yaml
-    APIResultCode:
-      $ref: model/api_result_code.yaml
+
+  # *** DO NOT INCLUDE "APIResultCode" in "schemas". ***
+  APIResultCode:
+    $ref: model/api_result_code.yaml
 
 #
 # TAGS
@@ -385,7 +387,7 @@ tags:
     description: API endpoints for implementing OAuth 2.0 Token Endpoint.
     x-tag-expanded: false
   - name: Token Operations
-    description: API endpoints for various token related operations, including creating, revoking and deleting access_tokens with specified scopes. 
+    description: API endpoints for various token related operations, including creating, revoking and deleting access_tokens with specified scopes.
     x-tag-expanded: false
   - name: Introspection Endpoint
     description: API endpoints for implementing OAuth 2.0 Introspection Endpoint.
@@ -421,10 +423,10 @@ tags:
     description: API endpoints for implementing OAuth 2.0 Device Flow
     x-tag-expanded: false
   - name: Federation Endpoint
-    description: API endpoints for implementing OpenID Federation using Authlete. 
+    description: API endpoints for implementing OpenID Federation using Authlete.
     x-tag-expanded: false
   - name: Verifiable Credential Issuer
-    description: API endpoints for implementing and running a Verifiable Credential Issuer (VCI). 
+    description: API endpoints for implementing and running a Verifiable Credential Issuer (VCI).
     x-tag-expanded: false
   - name: Hardware Security Key
     description: API endpoints for managing hardware security keys (HSK).

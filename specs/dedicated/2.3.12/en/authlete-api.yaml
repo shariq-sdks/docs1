@@ -7,7 +7,7 @@ info:
   title: Authlete API
   description: |
     Authlete API Document.
-  version: '2.3.12'
+  version: "2.3.12"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -16,7 +16,7 @@ info:
 # SERVERS
 #
 servers:
-  - url: 'https://api.authlete.com'
+  - url: "https://api.authlete.com"
     description: Shared production server.
 
 #
@@ -220,8 +220,10 @@ components:
       $ref: model/user_code_charset.yaml
     Hsk:
       $ref: model/hsk.yaml
-    APIResultCode:
-      $ref: model/api_result_code.yaml
+
+  # *** DO NOT INCLUDE "APIResultCode" in "schemas". ***
+  APIResultCode:
+    $ref: model/api_result_code.yaml
 
 #
 # TAGS
