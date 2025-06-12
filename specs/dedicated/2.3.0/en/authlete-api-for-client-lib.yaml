@@ -1,0 +1,263 @@
+# NOTE: This file is used for automatic generation of client libraries.
+# The original authlete-api.yaml includes APIResultCode information,
+# but that section is omitted here to avoid validation errors during code
+# generation.
+openapi: 3.0.3
+
+#
+# INFO
+#
+info:
+  title: Authlete API
+  description: |
+    Authlete API Document.
+  version: "2.3.0"
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+#
+# SERVERS
+#
+servers:
+  - url: "https://api.authlete.com"
+    description: Shared production server.
+
+#
+# API PATH
+#
+paths:
+  /api/service/get/{serviceApiKey}:
+    $ref: ./api/service_get_api.yaml
+  /api/service/get/list:
+    $ref: ./api/service_get_list_api.yaml
+  /api/service/create:
+    $ref: ./api/service_create_api.yaml
+  /api/service/update/{serviceApiKey}:
+    $ref: ./api/service_update_api.yaml
+  /api/service/delete/{serviceApiKey}:
+    $ref: ./api/service_delete_api.yaml
+  /api/client/get/{clientId}:
+    $ref: ./api/client_get_api.yaml
+  /api/client/get/list:
+    $ref: ./api/client_get_list_api.yaml
+  /api/client/create:
+    $ref: ./api/client_create_api.yaml
+  /api/client/update/{clientId}:
+    $ref: ./api/client_update_api.yaml
+  /api/client/delete/{clientId}:
+    $ref: ./api/client_delete_api.yaml
+  /api/client/lock_flag/update/{clientIdentifier}:
+    $ref: ./api/client_flag_update_api.yaml
+  /api/client/secret/refresh/{clientIdentifier}:
+    $ref: ./api/client_secret_refresh_api.yaml
+  /api/client/secret/update/{clientIdentifier}:
+    $ref: ./api/client_secret_update_api.yaml
+  /api/client/authorization/get/list:
+    $ref: ./api/client_authorization_get_list_api.yaml
+  /api/client/authorization/update/{clientId}:
+    $ref: ./api/client_authorization_update_api.yaml
+  /api/client/authorization/delete/{clientId}:
+    $ref: ./api/client_authorization_delete_api.yaml
+  /api/client/granted_scopes/get/{clientId}:
+    $ref: ./api/client_granted_scopes_get_api.yaml
+  /api/client/granted_scopes/delete/{clientId}:
+    $ref: ./api/client_granted_scopes_delete_api.yaml
+  /api/auth/authorization:
+    $ref: ./api/auth_authorization_api.yaml
+  /api/auth/authorization/fail:
+    $ref: ./api/auth_authorization_fail_api.yaml
+  /api/auth/authorization/issue:
+    $ref: ./api/auth_authorization_issue_api.yaml
+  /api/pushed_auth_req:
+    $ref: ./api/pushed_auth_req_api.yaml
+  /api/auth/token:
+    $ref: ./api/auth_token_api.yaml
+  /api/auth/token/fail:
+    $ref: ./api/auth_token_fail_api.yaml
+  /api/auth/token/issue:
+    $ref: ./api/auth_token_issue_api.yaml
+  /api/auth/introspection:
+    $ref: ./api/auth_introspection_api.yaml
+  /api/auth/introspection/standard:
+    $ref: ./api/auth_introspection_standard_api.yaml
+  /api/auth/revocation:
+    $ref: ./api/auth_revocation_api.yaml
+  /api/auth/userinfo:
+    $ref: ./api/auth_userinfo_api.yaml
+  /api/auth/userinfo/issue:
+    $ref: ./api/auth_userinfo_issue_api.yaml
+  /api/gm:
+    $ref: ./api/grant_m_api.yaml
+  /api/service/jwks/get:
+    $ref: ./api/service_jwks_get_api.yaml
+  /api/service/configuration:
+    $ref: ./api/service_configuration_api.yaml
+  /api/client/registration:
+    $ref: ./api/client_registration_api.yaml
+  /api/client/registration/get:
+    $ref: ./api/client_registration_get_api.yaml
+  /api/client/registration/update:
+    $ref: ./api/client_registration_update_api.yaml
+  /api/client/registration/delete:
+    $ref: ./api/client_registration_delete_api.yaml
+  /api/backchannel/authentication:
+    $ref: ./api/backchannel_authentication_api.yaml
+  /api/backchannel/authentication/issue:
+    $ref: ./api/backchannel_authentication_issue_api.yaml
+  /api/backchannel/authentication/fail:
+    $ref: ./api/backchannel_authentication_fail_api.yaml
+  /api/backchannel/authentication/complete:
+    $ref: ./api/backchannel_authentication_complete_api.yaml
+  /api/device/authorization:
+    $ref: ./api/device_authorization_api.yaml
+  /api/device/verification:
+    $ref: ./api/device_verification_api.yaml
+  /api/device/complete:
+    $ref: ./api/device_complete_api.yaml
+  /api/auth/token/get/list:
+    $ref: ./api/auth_token_get_list_api.yaml
+  /api/auth/token/create:
+    $ref: ./api/auth_token_create_api.yaml
+  /api/auth/token/update:
+    $ref: ./api/auth_token_update_api.yaml
+  /api/auth/token/delete/{accessTokenIdentifier}:
+    $ref: ./api/auth_token_delete_api.yaml
+  /api/auth/token/revoke:
+    $ref: ./api/auth_token_revoke_api.yaml
+  /api/jose/verify:
+    $ref: ./api/jose_verify_api.yaml
+  /api/federation/configuration:
+    $ref: ./api/federation_configuration_api.yaml
+  /api/info:
+    $ref: ./api/info_api.yaml
+  /api/hsk/create:
+    $ref: ./api/hsk_create_api.yaml
+  /api/hsk/delete/{handle}:
+    $ref: ./api/hsk_delete_api.yaml
+  /api/hsk/get/{handle}:
+    $ref: ./api/hsk_get_api.yaml
+  /api/hsk/get/list:
+    $ref: ./api/hsk_get_list_api.yaml
+  /api/misc/echo:
+    $ref: ./api/misc_echo.yaml
+  /api/client/extension/requestable_scopes/get/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_get_api.yaml
+  /api/client/extension/requestable_scopes/update/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_update_api.yaml
+  /api/client/extension/requestable_scopes/delete/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_delete_api.yaml
+  /api/federation/registration:
+    $ref: ./api/federation_registration_api.yaml
+
+#
+# COMPONENTS
+#
+components:
+  securitySchemes:
+    ServiceOwnerCredentials:
+      type: http
+      scheme: basic
+      description: Set **Service Owner API Key** as **Username** and **Service Owner API Secret** as **Password**.
+    ServiceCredentials:
+      type: http
+      scheme: basic
+      description: Set **Service API Key** as **Username** and **Service API Secret** as **Password**.
+  schemas:
+    AccessToken:
+      $ref: model/access_token.yaml
+    ApplicationType:
+      $ref: model/application_type.yaml
+    AuthorizationDetails:
+      $ref: model/authz_details.yaml
+    AuthorizationDetailsElement:
+      $ref: model/authorization_details_element.yaml
+    ClaimType:
+      $ref: model/claim_type.yaml
+    ClientAuthenticationMethod:
+      $ref: model/client_auth_method.yaml
+    ClientExtension:
+      $ref: model/client_extension.yaml
+    Client:
+      $ref: model/client.yaml
+    DeliveryMode:
+      $ref: model/delivery_mode.yaml
+    Display:
+      $ref: model/display.yaml
+    DynamicScope:
+      $ref: model/dynamic_scope.yaml
+    GrantType:
+      $ref: model/grant_type.yaml
+    JweAlg:
+      $ref: model/jwe_alg.yaml
+    JweEnc:
+      $ref: model/jwe_enc.yaml
+    JwsAlg:
+      $ref: model/jws_alg.yaml
+    NamedUri:
+      $ref: model/named_uri.yaml
+    Pair:
+      $ref: model/pair.yaml
+    Prompt:
+      $ref: model/prompt.yaml
+    Property:
+      $ref: model/property.yaml
+    ResponseType:
+      $ref: model/response_type.yaml
+    Scope:
+      $ref: model/scope.yaml
+    ServiceProfile:
+      $ref: model/service_profile.yaml
+    Service:
+      $ref: model/service.yaml
+    SnsCredentials:
+      $ref: model/sns_credentials.yaml
+    Sns:
+      $ref: model/sns.yaml
+    SubjectType:
+      $ref: model/subject_type.yaml
+    TaggedValue:
+      $ref: model/tagged_value.yaml
+    UserCodeCharset:
+      $ref: model/user_code_charset.yaml
+
+#
+# TAGS
+#
+tags:
+  - name: Service Management
+    description: desc1
+  - name: Client Management
+    description: desc1
+  - name: Authorization Endpoint
+    description: desc1
+  - name: Pushed Authorization Endpoint
+    description: desc1
+  - name: Token Endpoint
+    description: desc1
+  - name: Introspection Endpoint
+    description: desc1
+  - name: Revocation Endpoint
+    description: desc1
+  - name: UserInfo Endpoint
+    description: desc1
+  - name: JWK Set Endpoint
+    description: desc1
+  - name: Discovery Endpoint
+    description: desc1
+  - name: Configuration Endpoint
+    description: desc1
+  - name: Dynamic Client Registration
+    description: desc1
+  - name: CIBA
+    description: desc1
+  - name: Grant Management Endpoint
+    description: desc1
+  - name: Token Operations
+    description: desc1
+  - name: Jose Object
+    description: desc1
+  - name: Device Flow
+    description: desc1
+  - name: Federation Endpoint
+    description: desc1

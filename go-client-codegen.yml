@@ -1,4 +1,4 @@
-inputSpec: /local/specs/dedicated/2.3.12/en/authlete-api.yaml
+inputSpec: /local/specs/dedicated/2.3.12/en/authlete-api-for-client-lib.yaml
 templateDir: /local/openapi-for-go/templates/
 outputDir: /local/openapi-for-go/
 generatorName: go
