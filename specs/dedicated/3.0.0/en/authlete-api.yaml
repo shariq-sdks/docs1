@@ -7,7 +7,7 @@ info:
   title: Authlete API
   description: |
     Authlete API Document.
-  version: '3.0.0'
+  version: "3.0.0"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -16,7 +16,7 @@ info:
 # SERVERS
 #
 servers:
-  - url: 'https://beta.authlete.com'
+  - url: "https://beta.authlete.com"
     description: Beta Shared server.
 
 #
@@ -290,8 +290,10 @@ components:
       $ref: model/credential_issuance_order.yaml
     CredentialIssuerMetadata:
       $ref: model/credential_issuer_metadata.yaml
-    APIResultCode:
-      $ref: model/api_result_code.yaml
+
+  # *** DO NOT INCLUDE "APIResultCode" in "schemas". ***
+  APIResultCode:
+    $ref: model/api_result_code.yaml
 
 #
 # TAGS

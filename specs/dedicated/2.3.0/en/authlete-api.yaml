@@ -216,8 +216,10 @@ components:
       $ref: model/tagged_value.yaml
     UserCodeCharset:
       $ref: model/user_code_charset.yaml
-    APIResultCode:
-      $ref: model/api_result_code.yaml
+
+  # *** DO NOT INCLUDE "APIResultCode" in "schemas". ***
+  APIResultCode:
+    $ref: model/api_result_code.yaml
 
 #
 # TAGS
