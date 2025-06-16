@@ -47,6 +47,18 @@ properties:
 
       Note that the duration of refresh tokens can be controlled by the scope attribute `refresh_token.duration`,
       too. Authlete chooses the minimum value among the candidates.
+  idTokenDuration:
+    type: integer
+    format: int64
+    description: |
+      The value of the duration of ID tokens per client in seconds. In normal cases, the value
+      of the service's `idTokenDuration` property is used as the duration of ID tokens issued
+      by the service. However, if this `idTokenDuration` property holds a non-zero positive number
+      and its value is less than the duration configured by the service, the value is used as the duration
+      of ID tokens issued to the client application.
+
+      Note that the duration of refresh tokens can be controlled by the scope attribute `id_token.duration`,
+      too. Authlete chooses the minimum value among the candidates.
   tokenExchangePermitted:
     type: boolean
     description: |
