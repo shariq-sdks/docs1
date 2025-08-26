@@ -1,0 +1,11 @@
+type: object
+properties:
+  entityId:
+    type: string
+    description: |
+      the entity ID of the trust anchor
+  jwks:
+    type: string
+    description: |
+      the JWK Set document containing public keys of the trust anchor
+  

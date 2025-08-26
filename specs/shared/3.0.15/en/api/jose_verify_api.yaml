@@ -1,0 +1,128 @@
+post:
+  summary: Verify JOSE
+  description: |
+    This API verifies a JOSE object.
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/jose_verify_request.yaml
+        example:
+          jose: eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA
+          clockSkew: 100
+          signedByClient: true
+          clientIdentifier: "57297408867"
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/jose_verify_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/jose_verify_response.yaml
+          example:
+            {
+              "resultCode": "A160001",
+              "resultMessage": "[A160001] The JOSE is valid.",
+              "signatureValid": true,
+              "valid": true
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'jose_verify_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v https://us.authlete.com/api/21653835348762/jose/verify \
+        -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
+        -d jose=eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtwyxBgMXQqEPD5q5k9FaEWNk37K8uAtSwrA \
+        -d clockSkew=100 \
+        -d signedByClient=true \
+        -d clientIdentifier=57297408867
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        JoseVerifyRequest req = new JoseVerifyRequest();
+        req.setJose("eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw");
+        req.setClockSkew(100);
+        req.setSinedByClient(true);
+        req.setClientIdentifier("57297408867");
+
+        api.verifyJose(request);
+
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
+
+    #     JoseVerifyRequest req = new JoseVerifyRequest();
+    #     req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw";
+    #     req.ClockSkew = 100;
+    #     req.SinedByClient = true;
+    #     req.ClientIdentifier = "57297408867";
+
+    #     await api.VerifyJose(req);
+
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     // This API is not supported yet.
+
+    # - lang: ruby
+    #   source: |
+    #     # This API is not supported yet.
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = JoseVerifyRequest()
+        req.jose = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw'
+        req.clockSkew = 100
+        req.sinedByClient = True
+        req.clientIdentifier = '57297408867'
+
+        api.verifyJose(req)
+
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
+
+    #     req := dto.JoseVerifyRequest{}
+    #     req.Jose = "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE1NTk4MTE3NTAsImlzcyI6IjU3Mjk3NDA4ODY3In0K.csmdholMVcmjqHe59YWgLGNvm7I5Whp4phQCoGxyrlRGMnTgsfxtw"
+    #     req.ClockSkew = 100
+    #     req.SinedByClient = true
+    #     req.ClientIdentifier = "57297408867"
+
+    #     api.VerifyJose(&req)
+
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
+  tags:
+    - Jose Object

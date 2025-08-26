@@ -1,0 +1,58 @@
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.
+  action:
+    type: string
+    enum:
+      - INTERNAL_SERVER_ERROR
+      - BAD_REQUEST
+      - FORBIDDEN
+      - NOT_FOUND
+      - OK
+    description: The next action that the authorization server implementation should take.
+  accessToken:
+    type: string
+    description: The access token which has been specified by the request.
+  accessTokenExpiresAt:
+    type: integer
+    format: int64
+    description: |
+      The date at which the access token will expire.
+  properties:
+    type: array
+    items:
+      $ref: ../property.yaml
+    description: |
+      The extra properties associated with the access token.
+  scopes:
+    type: array
+    items:
+      type: string
+    description: |
+      The scopes associated with the access token.
+  authorizationDetails:
+    $ref: ../authz_details.yaml
+  tokenType:
+    type: string
+    description: |
+      The token type associated with the access token.
+  forExternalAttachment:
+    type: boolean
+    description: |
+      the flag which indicates whether the access token is for an external
+      attachment.
+  tokenId:
+    type: string
+    description: |
+      Set the unique token identifier.
+  refreshTokenExpiresAt:
+    type: integer
+    format: int64
+    description: |
+      The datetime at which the newly issued refresh token will expire.
+      The value is represented in milliseconds since the Unix epoch (1970-01-01).

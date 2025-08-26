@@ -1,0 +1,4 @@
+type: object
+properties:
+  order:
+    $ref: ../credential_issuance_order.yaml

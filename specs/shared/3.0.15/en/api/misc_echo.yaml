@@ -1,0 +1,11 @@
+get:
+  summary: Echo
+  description: |
+    Echo test endpoint. Will return all path parameters in the request
+  responses:
+    '200':
+      description: |
+        Successfully echoed the request parameters
+  operationId: 'misc_echo_api'
+  tags:
+    - Utility Endpoints

@@ -1,0 +1,56 @@
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.
+  action:
+    type: string
+    enum:
+      - INTERNAL_SERVER_ERROR
+      - BAD_REQUEST
+      - LOCATION
+      - FORM
+    description: The next action that the authorization server implementation should take.
+  responseContent:
+    type: string
+    description: |
+      The content that the authorization server implementation is to return to the client application.
+      Its format varies depending on the value of `action` parameter.
+  accessToken:
+    type: string
+    description: |
+      The newly issued access token. Note that an access token is issued from an authorization endpoint only
+      when `response_type` contains token.
+  accessTokenExpiresAt:
+    type: integer
+    format: int64
+    description: |
+      The datetime at which the newly issued access token will expire. The value is represented in milliseconds
+      since the Unix epoch (1970-01-01).
+  accessTokenDuration:
+    type: integer
+    format: int64
+    description: |
+      The duration of the newly issued access token in seconds.
+  idToken:
+    type: string
+    description: |
+      The newly issued ID token. Note that an ID token is issued from an authorization endpoint only
+      when `response_type` contains `id_token`.
+  authorizationCode:
+    type: string
+    description: |
+      The newly issued authorization code. Note that an authorization code is issued only
+      when `response_type` contains code.
+  jwtAccessToken:
+    type: string
+    description: |
+      The newly issued access token in JWT format. If the service is not configured to issue JWT-based access tokens,
+      this property is always set to `null`.
+  ticketInfo:
+    type: string
+    description: |
+      The information about the ticket.

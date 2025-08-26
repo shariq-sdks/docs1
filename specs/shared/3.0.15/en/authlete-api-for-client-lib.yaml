@@ -1,0 +1,436 @@
+# NOTE: This file is used for automatic generation of client libraries.
+# The original authlete-api.yaml includes APIResultCode information,
+# but that section is omitted here to avoid validation errors during code
+# generation.
+openapi: 3.0.3
+
+#
+# INFO
+#
+info:
+  title: Authlete API Explorer
+  description: |
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
+      <div class="flex justify-end mb-4">
+        <label for="theme-toggle" class="flex items-center cursor-pointer">
+          <div class="relative">Dark mode:
+            <input type="checkbox" id="theme-toggle" class="sr-only" onchange="toggleTheme()">
+            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+          </div>
+        </label>
+      </div>
+      <header class="bg-green-500 dark:bg-green-700 p-4 rounded-lg text-white text-center">
+        <p>
+          Welcome to the <strong>Authlete API documentation</strong>. Authlete is an <strong>API-first service</strong>
+          where every aspect of the platform is configurable via API. This explorer provides a convenient way to
+          authenticate and interact with the API, allowing you to see Authlete in action quickly. 🚀
+        </p>
+        <p>
+          At a high level, the Authlete API is grouped into two categories:
+        </p>
+        <ul class="list-disc list-inside">
+          <li><strong>Management APIs</strong>: Enable you to manage services and clients. 🔧</li>
+          <li><strong>Runtime APIs</strong>: Allow you to build your own Authorization Servers or Verifiable Credential (VC)
+            issuers. 🔐</li>
+        </ul>
+        <p>All API endpoints are secured using access tokens issued by Authlete's Identity Provider (IdP). If you already
+          have an Authlete account, simply use the <em>Get Token</em> option on the Authentication page to log in and obtain
+          an access token for API usage. If you don't have an account yet, <a href="https://console.authlete.com/register">sign up
+            here</a> to get started.</p>
+      </header>
+      <main>
+        <section id="api-servers" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🌐 API Servers</h2>
+          <p>Authlete is a global service with clusters available in multiple regions across the world.</p>
+          <p>Currently, our service is available in the following regions:</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇺🇸 US</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇯🇵 JP</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇪🇺 EU</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <p class="text-center font-semibold">🇧🇷 Brazil</p>
+            </div>
+          </div>
+          <p>Our customers can host their data in the region that best meets their requirements.</p>
+          <a href="#servers" class="block mt-4 text-green-500 dark:text-green-300 hover:underline text-center">Select your
+            preferred server</a>
+        </section>
+        <section id="authentication" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🔑 Authentication</h2>
+          <p>The API Explorer requires an access token to call the API.</p>
+          <p>You can create the access token from the <a href="https://console.authlete.com">Authlete Management Console</a> and set it in the HTTP Bearer section of Authentication page.</p>
+          <p>Alternatively, if you have an Authlete account, the API Explorer can log you in with your Authlete account and
+            automatically acquire the required access token.</p>
+          <div class="theme-admonition theme-admonition-warning admonition_o5H7 alert alert--warning">
+            <div class="admonitionContent_Knsx">
+              <p>⚠️ <strong>Important Note:</strong> When the API Explorer acquires the token after login, the access tokens
+                will have the same permissions as the user who logs in as part of this flow.</p>
+            </div>
+          </div>
+          <a href="#auth" class="block mt-4 text-green-500 dark:text-green-300 hover:underline text-center">Setup your
+            access token</a>
+        </section>
+        <section id="tutorials" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🎓 Tutorials</h2>
+          <p>If you have successfully tested the API from the API Console and want to take the next step of integrating the
+            API into your application, or if you want to see a sample using Authlete APIs, follow the links below. These
+            resources will help you understand key concepts and how to integrate Authlete API into your applications.</p>
+          <div class="mt-4">
+            <a href="https://www.authlete.com/developers/getting_started/"
+              class="block text-green-500 dark:text-green-300 font-bold hover:underline mb-2">🚀 Getting Started with
+              Authlete</a>
+              </br>
+            <a href="https://www.authlete.com/developers/tutorial/signup/"
+              class="block text-green-500 dark:text-green-300 font-bold hover:underline">🔑 From Sign-Up to the First API
+              Request</a>
+          </div>
+        </section>
+        <section id="support" class="mb-10">
+          <h2 class="text-2xl font-semibold mb-4">🛠 Contact Us</h2>
+          <p>If you have any questions or need assistance, our team is here to help.</p>
+          <a href="https://www.authlete.com/contact/"
+            class="block mt-4 text-green-500 dark:text-green-300 font-bold hover:underline">Contact Page</a>
+        </section>
+      </main>
+    </div>
+  version: "3.0.0"
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+#
+# SERVERS
+#
+servers:
+  - description: 🇺🇸 US Cluster
+    url: https://us.authlete.com
+  - description: 🇯🇵 Japan Cluster
+    url: https://jp.authlete.com
+  - description: 🇪🇺 Europe Cluster
+    url: https://eu.authlete.com
+  - description: 🇧🇷 Brazil Cluster
+    url: https://br.authlete.com
+
+security:
+  - authlete: []
+  - bearer: []
+
+#
+# API PATH
+#
+paths:
+  /api/{serviceId}/service/get:
+    $ref: ./api/service_get_api.yaml
+  /api/service/get/list:
+    $ref: ./api/service_get_list_api.yaml
+  /api/service/create:
+    $ref: ./api/service_create_api.yaml
+  /api/{serviceId}/service/update:
+    $ref: ./api/service_update_api.yaml
+  /api/{serviceId}/service/delete:
+    $ref: ./api/service_delete_api.yaml
+  /api/{serviceId}/client/get/{clientId}:
+    $ref: ./api/client_get_api.yaml
+  /api/{serviceId}/client/get/list:
+    $ref: ./api/client_get_list_api.yaml
+  /api/{serviceId}/client/create:
+    $ref: ./api/client_create_api.yaml
+  /api/{serviceId}/client/update/{clientId}:
+    $ref: ./api/client_update_api.yaml
+  /api/{serviceId}/client/delete/{clientId}:
+    $ref: ./api/client_delete_api.yaml
+  /api/{serviceId}/client/lock_flag/update/{clientIdentifier}:
+    $ref: ./api/client_flag_update_api.yaml
+  /api/{serviceId}/client/secret/refresh/{clientIdentifier}:
+    $ref: ./api/client_secret_refresh_api.yaml
+  /api/{serviceId}/client/secret/update/{clientIdentifier}:
+    $ref: ./api/client_secret_update_api.yaml
+  /api/{serviceId}/client/authorization/get/list:
+    $ref: ./api/client_authorization_get_list_api.yaml
+  /api/{serviceId}/client/authorization/update/{clientId}:
+    $ref: ./api/client_authorization_update_api.yaml
+  /api/{serviceId}/client/authorization/delete/{clientId}:
+    $ref: ./api/client_authorization_delete_api.yaml
+  /api/{serviceId}/client/granted_scopes/get/{clientId}:
+    $ref: ./api/client_granted_scopes_get_api.yaml
+  /api/{serviceId}/client/granted_scopes/delete/{clientId}:
+    $ref: ./api/client_granted_scopes_delete_api.yaml
+  /api/{serviceId}/auth/authorization:
+    $ref: ./api/auth_authorization_api.yaml
+  /api/{serviceId}/auth/authorization/fail:
+    $ref: ./api/auth_authorization_fail_api.yaml
+  /api/{serviceId}/auth/authorization/issue:
+    $ref: ./api/auth_authorization_issue_api.yaml
+  /api/{serviceId}/pushed_auth_req:
+    $ref: ./api/pushed_auth_req_api.yaml
+  /api/{serviceId}/auth/token:
+    $ref: ./api/auth_token_api.yaml
+  /api/{serviceId}/auth/token/fail:
+    $ref: ./api/auth_token_fail_api.yaml
+  /api/{serviceId}/auth/token/issue:
+    $ref: ./api/auth_token_issue_api.yaml
+  /api/{serviceId}/auth/introspection:
+    $ref: ./api/auth_introspection_api.yaml
+  /api/{serviceId}/auth/introspection/standard:
+    $ref: ./api/auth_introspection_standard_api.yaml
+  /api/{serviceId}/auth/revocation:
+    $ref: ./api/auth_revocation_api.yaml
+  /api/{serviceId}/auth/userinfo:
+    $ref: ./api/auth_userinfo_api.yaml
+  /api/{serviceId}/auth/userinfo/issue:
+    $ref: ./api/auth_userinfo_issue_api.yaml
+  /api/{serviceId}/idtoken/reissue:
+    $ref: ./api/idtoken_reissue.yaml
+  /api/{serviceId}/gm:
+    $ref: ./api/grant_m_api.yaml
+  /api/{serviceId}/service/jwks/get:
+    $ref: ./api/service_jwks_get_api.yaml
+  /api/{serviceId}/service/configuration:
+    $ref: ./api/service_configuration_api.yaml
+  /api/{serviceId}/client/registration:
+    $ref: ./api/client_registration_api.yaml
+  /api/{serviceId}/client/registration/get:
+    $ref: ./api/client_registration_get_api.yaml
+  /api/{serviceId}/client/registration/update:
+    $ref: ./api/client_registration_update_api.yaml
+  /api/{serviceId}/client/registration/delete:
+    $ref: ./api/client_registration_delete_api.yaml
+  /api/{serviceId}/backchannel/authentication:
+    $ref: ./api/backchannel_authentication_api.yaml
+  /api/{serviceId}/backchannel/authentication/issue:
+    $ref: ./api/backchannel_authentication_issue_api.yaml
+  /api/{serviceId}/backchannel/authentication/fail:
+    $ref: ./api/backchannel_authentication_fail_api.yaml
+  /api/{serviceId}/backchannel/authentication/complete:
+    $ref: ./api/backchannel_authentication_complete_api.yaml
+  /api/{serviceId}/device/authorization:
+    $ref: ./api/device_authorization_api.yaml
+  /api/{serviceId}/device/verification:
+    $ref: ./api/device_verification_api.yaml
+  /api/{serviceId}/device/complete:
+    $ref: ./api/device_complete_api.yaml
+  /api/{serviceId}/auth/token/get/list:
+    $ref: ./api/auth_token_get_list_api.yaml
+  /api/{serviceId}/auth/token/create:
+    $ref: ./api/auth_token_create_api.yaml
+  /api/{serviceId}/auth/token/update:
+    $ref: ./api/auth_token_update_api.yaml
+  /api/{serviceId}/auth/token/delete/{accessTokenIdentifier}:
+    $ref: ./api/auth_token_delete_api.yaml
+  /api/{serviceId}/auth/token/revoke:
+    $ref: ./api/auth_token_revoke_api.yaml
+  /api/{serviceId}/jose/verify:
+    $ref: ./api/jose_verify_api.yaml
+  /api/{serviceId}/federation/configuration:
+    $ref: ./api/federation_configuration_api.yaml
+  /api/{serviceId}/federation/registration:
+    $ref: ./api/federation_registration_api.yaml
+  /api/info:
+    $ref: ./api/info_api.yaml
+  /api/{serviceId}/client/extension/requestable_scopes/get/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_get_api.yaml
+  /api/{serviceId}/client/extension/requestable_scopes/update/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_update_api.yaml
+  /api/{serviceId}/client/extension/requestable_scopes/delete/{clientId}:
+    $ref: ./api/client_extension_requestable_scopes_delete_api.yaml
+  /api/{serviceId}/hsk/create:
+    $ref: ./api/hsk_create_api.yaml
+  /api/{serviceId}/hsk/delete/{handle}:
+    $ref: ./api/hsk_delete_api.yaml
+  /api/{serviceId}/hsk/get/{handle}:
+    $ref: ./api/hsk_get_api.yaml
+  /api/{serviceId}/hsk/get/list:
+    $ref: ./api/hsk_get_list_api.yaml
+  /api/misc/echo:
+    $ref: ./api/misc_echo.yaml
+  /api/{serviceId}/vci/metadata:
+    $ref: ./api/vci_metadata_api.yaml
+  /api/{serviceId}/vci/jwtissuer:
+    $ref: ./api/vci_jwtissuer_api.yaml
+  /api/{serviceId}/vci/jwks:
+    $ref: ./api/vci_jwks_api.yaml
+  /api/{serviceId}/vci/offer/create:
+    $ref: ./api/vci_offer_create_api.yaml
+  /api/{serviceId}/vci/offer/info:
+    $ref: ./api/vci_offer_info_api.yaml
+  /api/{serviceId}/vci/single/parse:
+    $ref: ./api/vci_single_parse_api.yaml
+  /api/{serviceId}/vci/single/issue:
+    $ref: ./api/vci_single_issue_api.yaml
+  /api/{serviceId}/vci/batch/parse:
+    $ref: ./api/vci_batch_parse_api.yaml
+  /api/{serviceId}/vci/batch/issue:
+    $ref: ./api/vci_batch_issue_api.yaml
+  /api/{serviceId}/vci/deferred/parse:
+    $ref: ./api/vci_deferred_parse_api.yaml
+  /api/{serviceId}/vci/deferred/issue:
+    $ref: ./api/vci_deferred_issue_api.yaml
+  /api/{serviceId}/auth/authorization/ticket/info:
+    $ref: ./api/auth_authorization_ticket_info_api.yaml
+  /api/{serviceId}/auth/authorization/ticket/update:
+    $ref: ./api/auth_authorization_ticket_update_api.yaml
+
+#
+# COMPONENTS
+#
+components:
+  securitySchemes:
+    authlete:
+      type: oauth2
+      description: Click the <strong>Get Token</strong> button below to log in with your Authlete account and retrieve an access token for API access.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.authlete.com/authorize
+          tokenUrl: https://login.authlete.com/token
+          scopes:
+            authlete: Inherit Authlete Account Permissions
+          x-client-id: 1466450095
+          x-default-scopes: authlete
+          x-pkce-only: true
+    bearer:
+      type: http
+      scheme: bearer
+      description: Obtain an **access token** and set it in the following textbox.
+
+  schemas:
+    AccessToken:
+      $ref: model/access_token.yaml
+    ApplicationType:
+      $ref: model/application_type.yaml
+    AuthorizationDetails:
+      $ref: model/authz_details.yaml
+    AuthorizationDetailsElement:
+      $ref: model/authorization_details_element.yaml
+    ClaimType:
+      $ref: model/claim_type.yaml
+    ClientAuthenticationMethod:
+      $ref: model/client_auth_method.yaml
+    ClientExtension:
+      $ref: model/client_extension.yaml
+    Client:
+      $ref: model/client.yaml
+    DeliveryMode:
+      $ref: model/delivery_mode.yaml
+    Display:
+      $ref: model/display.yaml
+    DynamicScope:
+      $ref: model/dynamic_scope.yaml
+    GrantType:
+      $ref: model/grant_type.yaml
+    JweAlg:
+      $ref: model/jwe_alg.yaml
+    JweEnc:
+      $ref: model/jwe_enc.yaml
+    JwsAlg:
+      $ref: model/jws_alg.yaml
+    NamedUri:
+      $ref: model/named_uri.yaml
+    Pair:
+      $ref: model/pair.yaml
+    Prompt:
+      $ref: model/prompt.yaml
+    Property:
+      $ref: model/property.yaml
+    ResponseType:
+      $ref: model/response_type.yaml
+    Scope:
+      $ref: model/scope.yaml
+    ServiceProfile:
+      $ref: model/service_profile.yaml
+    Service:
+      $ref: model/service.yaml
+    SnsCredentials:
+      $ref: model/sns_credentials.yaml
+    Sns:
+      $ref: model/sns.yaml
+    SubjectType:
+      $ref: model/subject_type.yaml
+    TaggedValue:
+      $ref: model/tagged_value.yaml
+    UserCodeCharset:
+      $ref: model/user_code_charset.yaml
+    Hsk:
+      $ref: model/hsk.yaml
+    CredentialOfferInfo:
+      $ref: model/credential_offer_info.yaml
+    CredentialRequestInfo:
+      $ref: model/credential_request_info.yaml
+    CredentialIssuanceOrder:
+      $ref: model/credential_issuance_order.yaml
+    CredentialIssuerMetadata:
+      $ref: model/credential_issuer_metadata.yaml
+
+#
+# TAGS
+#
+tags:
+  - name: Service Management
+    description: API endpoints for managing services, including creation, update, and deletion of services.
+    x-tag-expanded: false
+  - name: Client Management
+    description: API endpoints for managing OAuth clients, including creation, update, and deletion of clients.
+    x-tag-expanded: false
+  - name: Authorization Endpoint
+    description: API endpoints for implementing OAuth 2.0 Authorization Endpoint.
+    x-tag-expanded: false
+  - name: Pushed Authorization Endpoint
+    description: API endpoints for implementing OAuth 2.0 Pushed Authorization Requests (PAR).
+    x-tag-expanded: false
+  - name: Token Endpoint
+    description: API endpoints for implementing OAuth 2.0 Token Endpoint.
+    x-tag-expanded: false
+  - name: Token Operations
+    description: API endpoints for various token related operations, including creating, revoking and deleting access_tokens with specified scopes.
+    x-tag-expanded: false
+  - name: Introspection Endpoint
+    description: API endpoints for implementing OAuth 2.0 Introspection Endpoint.
+    x-tag-expanded: false
+  - name: Revocation Endpoint
+    description: API endpoint for implementing OAuth 2.0 Revocation Endpoint.
+    x-tag-expanded: false
+  - name: UserInfo Endpoint
+    description: API endpoints for implementing OpenID Connect UserInfo Endpoint.
+    x-tag-expanded: false
+  - name: JWK Set Endpoint
+    description: API endpoints for to generate JSON Web Key Set (JWKS) for a service.
+    x-tag-expanded: false
+  - name: Discovery Endpoint
+    description: API endpoints for implementing OpenID Connect Discovery.
+    x-tag-expanded: false
+  - name: Configuration Endpoint
+    description: API endpoint for accessing configuration settings for a service.
+    x-tag-expanded: false
+  - name: Dynamic Client Registration
+    description: API endpoints for implementing OAuth 2.0 Dynamic Client Registration.
+    x-tag-expanded: false
+  - name: CIBA
+    description: API endpoints for implementing Client-Initiated Backchannel Authentication (CIBA).
+    x-tag-expanded: false
+  - name: Grant Management Endpoint
+    description: API endpoint for implementing OAuth 2.0 grants, including grant management actions like updating and revoking grants.
+    x-tag-expanded: false
+  - name: Jose Object
+    description: API endpoints for JOSE objects.
+    x-tag-expanded: false
+  - name: Device Flow
+    description: API endpoints for implementing OAuth 2.0 Device Flow
+    x-tag-expanded: false
+  - name: Federation Endpoint
+    description: API endpoints for implementing OpenID Federation using Authlete.
+    x-tag-expanded: false
+  - name: Verifiable Credential Issuer
+    description: API endpoints for implementing and running a Verifiable Credential Issuer (VCI).
+    x-tag-expanded: false
+  - name: Hardware Security Key
+    description: API endpoints for managing hardware security keys (HSK).
+    x-tag-expanded: false
+  - name: Utility Endpoints
+    description: API endpoints for various utility operations.
+    x-tag-expanded: false
