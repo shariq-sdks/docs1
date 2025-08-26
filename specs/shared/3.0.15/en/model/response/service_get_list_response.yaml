@@ -1,0 +1,26 @@
+type: object
+properties:
+  start:
+    type: integer
+    format: int32
+    description: |
+      Start index (inclusive) of the result set. The default value is 0. Must not be a negative
+      number.
+  end:
+    type: integer
+    format: int32
+    description: |
+      Start index (inclusive) of the result set. The default value is 0. Must not be a negative
+      number.
+  totalCount:
+    type: integer
+    format: int32
+    description: |
+      Total number of services owned by the service owner. This doesn't mean the number of services
+      contained in the response.
+  services:
+    type: array
+    items:
+      $ref: ../service.yaml
+    description: |
+      An array of services.

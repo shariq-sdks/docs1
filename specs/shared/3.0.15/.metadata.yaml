@@ -1,0 +1,59 @@
+ajcVersion: 4.20
+skipRule:
+  packages:
+    - com.authlete.common.annotationprocessor
+    - com.authlete.common.api
+    - com.authlete.common.assurance
+    - com.authlete.common.assurance.constraint
+    - com.authlete.common.conf
+    - com.authlete.common.ida
+    - com.authlete.common.types
+    - com.authlete.common.util
+    - com.authlete.common.web
+  models:
+    - com.authlete.common.dto.ApiResponse
+    - com.authlete.common.dto.AuthorizationTicketInfo
+    - com.authlete.common.dto.Address
+    - com.authlete.common.dto.ClaimRule
+    - com.authlete.common.dto.StringArray
+    - com.authlete.common.dto.TokenBatchStatus
+    - com.authlete.common.dto.ServiceOwner
+    - com.authlete.common.dto.AssertionProcessor
+    - com.authlete.common.dto.AuthzDetailsElementDeserializer
+    - com.authlete.common.dto.AuthzDetailsElementSerializer
+    - com.authlete.common.dto.AuthzDetailsSerializer
+    - com.authlete.common.dto.AuthzDetailsDeserializer
+    - com.authlete.common.dto.GrantDeserializer
+    - com.authlete.common.dto.GrantSerializer
+    - com.authlete.common.dto.ServiceListResponse
+    - com.authlete.common.dto.ClientListResponse
+    - com.authlete.common.dto.AuthorizedClientListResponse
+    - com.authlete.common.dto.ClientAuthorizationDeleteRequest
+    - com.authlete.common.dto.ClientAuthorizationGetListRequest
+    - com.authlete.common.dto.GrantedScopesGetResponse
+    - com.authlete.common.dto.GrantedScopesDeleteRequest
+    - com.authlete.common.dto.FederationConfigurationRequest
+    - com.authlete.common.dto.TokenCreateBatchResponse
+    - com.authlete.common.dto.TokenCreateBatchStatusRequest
+    - com.authlete.common.dto.TokenCreateBatchStatusResponse
+    - com.authlete.common.dto.AuthorizationAuthenticateRequest
+    - com.authlete.common.dto.AuthorizationAuthenticateResponse
+    - com.authlete.common.dto.ServiceCreatableResponse
+    - com.authlete.common.dto.AuthenticationCallbackRequest
+    - com.authlete.common.dto.AuthenticationCallbackResponse
+    - com.authlete.common.dto.DeveloperAuthenticationCallbackRequest
+    - com.authlete.common.dto.DeveloperAuthenticationCallbackResponse
+  properties:
+    com.authlete.common.dto.Service:
+      - serviceOwnerNumber
+      - apiSecret
+      - supportedSnses
+      - snsCredentials
+      - developerAuthenticationCallbackEndpoint
+      - developerAuthenticationCallbackApiKey
+      - developerAuthenticationCallbackApiSecret
+      - supportedDeveloperSnses
+      - developerSnsCredentials
+      - clientsPerDeveloper
+      - tokenBatchNotificationEndpoint
+      - clientAssertionAudRestrictedToIssuer

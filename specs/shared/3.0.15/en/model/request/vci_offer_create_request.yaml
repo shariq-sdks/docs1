@@ -1,0 +1,63 @@
+type: object
+properties:
+  credentials:
+    type: string
+    description: The value of the `credentials` object in the JSON format.
+  authorizationCodeGrantIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the `authorization_code` object is
+      included in the `grants` object.
+  issuerStateIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the `issuer_state` property is
+      included in the `authorization_code` object in the `grants`
+      object.
+  preAuthorizedCodeGrantIncluded:
+    type: boolean
+    description: |
+      The flag to include the
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object
+      in the `grants` object.
+  userPinRequired:
+    type: boolean
+    description: |
+      The value of the `user_pin_required` property in the
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object in
+      the `grants` object.
+  userPinLength:
+    type: integer
+    format: int32
+    description: The length of the user PIN to generate.
+  subject:
+    type: string
+    description: The subject associated with the credential offer.
+  duration:
+    type: integer
+    format: int64
+    description: The duration of the credential offer.
+  context:
+    type: string
+    description: The general-purpose arbitrary string.
+  properties:
+    type: array
+    items:
+      $ref: ../property.yaml
+    description: Extra properties to associate with the credential offer.
+  jwtAtClaims:
+    type: string
+    description: |
+      Additional claims that are added to the payload part of the JWT
+      access token.
+  authTime:
+    type: integer
+    format: int64
+    description: |
+      The time at which the user authentication was performed during
+      the course of issuing the credential offer.
+  acr:
+    type: string
+    description: |
+      The Authentication Context Class Reference of the user authentication
+      performed during the course of issuing the credential offer.

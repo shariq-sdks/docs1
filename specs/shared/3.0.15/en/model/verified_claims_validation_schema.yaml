@@ -1,0 +1,6 @@
+type: string
+description: |
+  The verified claims validation schema set.
+enum:
+  - standard
+  - standard+id_document

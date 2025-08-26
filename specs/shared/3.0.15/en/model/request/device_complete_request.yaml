@@ -1,0 +1,77 @@
+type: object
+required: [ userCode, result, subject ]
+properties:
+  userCode:
+    type: string
+    description: |
+      A user code.
+  result:
+    type: string
+    enum:
+      - TRANSACTION_FAILED
+      - ACCESS_DENIED
+      - AUTHORIZED
+    description: |
+      The result of the end-user authentication and authorization. One of the following. Details are
+      described in the description.
+  subject:
+    type: string
+    description: |
+      The subject (= unique identifier) of the end-user.
+  sub:
+    type: string
+    description: |
+      The value of the sub claim that should be used in the ID token.
+  authTime:
+    type: integer
+    format: int64
+    description: |
+      The time at which the end-user was authenticated. Its value is the number of seconds from `1970-01-01`.
+  acr:
+    type: string
+    description: |
+      The reference of the authentication context class which the end-user authentication satisfied.
+  claims:
+    type: string
+    description: |
+      Additional claims which will be embedded in the ID token.
+  properties:
+    type: array
+    items:
+      $ref: ../property.yaml
+    description: |
+      The extra properties associated with the access token.
+  scopes:
+    type: array
+    items:
+      type: string
+    description: |
+      Scopes to replace the scopes specified in the original device authorization request with.
+      When nothing is specified for this parameter, replacement is not performed.
+  errorDescription:
+    type: string
+    description: |
+      The description of the error. If this optional request parameter is given, its value is used as
+      the value of the `error_description` property, but it is used only when the result is not `AUTHORIZED`.
+      To comply with the specification strictly, the description must not include characters outside
+      the set `%x20-21 / %x23-5B / %x5D-7E`.
+  errorUri:
+    type: string
+    description: |
+      The URI of a document which describes the error in detail. This corresponds to the `error_uri`
+      property in the response to the client.
+  idtHeaderParams:
+    type: string
+    description: |
+      JSON that represents additional JWS header parameters for ID tokens.
+  consentedClaims:
+    type: array
+    items:
+      type: string
+    description: |
+      the claims that the user has consented for the client application
+      to know.
+  jwtAtClaims:
+    type: string
+    description: |
+      Additional claims that are added to the payload part of the JWT access token.
