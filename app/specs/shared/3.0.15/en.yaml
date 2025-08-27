@@ -21143,6 +21143,10 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "sessionId": {
+                    "type": "string",
+                    "description": "The session ID of the user's authentication session. The specified value will be embedded in the\nID token as the value of the `sid` claim. This parameter needs to be provided only if you want\nto support the [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)\nspecification (a.k.a. \"Native SSO\"). To enable support for the Native SSO specification, the\n`nativeSsoSupported` property of your service must be set to `true`.\n\nNOTE: When the response from the `/auth/authorization` API contains the `nativeSsoRequested`\nproperty with a value of `true`, the `sessionId` request parameter must be provided to the\n`/auth/authorization/issue` API.\n"
                   }
                 }
               },
@@ -21292,6 +21296,10 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "sessionId": {
+                    "type": "string",
+                    "description": "The session ID of the user's authentication session. The specified value will be embedded in the\nID token as the value of the `sid` claim. This parameter needs to be provided only if you want\nto support the [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)\nspecification (a.k.a. \"Native SSO\"). To enable support for the Native SSO specification, the\n`nativeSsoSupported` property of your service must be set to `true`.\n\nNOTE: When the response from the `/auth/authorization` API contains the `nativeSsoRequested`\nproperty with a value of `true`, the `sessionId` request parameter must be provided to the\n`/auth/authorization/issue` API.\n"
                   }
                 }
               }

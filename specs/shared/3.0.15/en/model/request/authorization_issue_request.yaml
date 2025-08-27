@@ -1,5 +1,5 @@
 type: object
-required: [ ticket, subject ]
+required: [ticket, subject]
 properties:
   ticket:
     type: string
@@ -65,3 +65,15 @@ properties:
     type: string
     description: |
       The representation of an access token that may be issued as a result of the Authlete API call.
+  sessionId:
+    type: string
+    description: |
+      The session ID of the user's authentication session. The specified value will be embedded in the
+      ID token as the value of the `sid` claim. This parameter needs to be provided only if you want
+      to support the [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
+      specification (a.k.a. "Native SSO"). To enable support for the Native SSO specification, the
+      `nativeSsoSupported` property of your service must be set to `true`.
+
+      NOTE: When the response from the `/auth/authorization` API contains the `nativeSsoRequested`
+      property with a value of `true`, the `sessionId` request parameter must be provided to the
+      `/auth/authorization/issue` API.
