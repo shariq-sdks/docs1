@@ -131,7 +131,7 @@ properties:
     type: array
     items:
       $ref: ../prompt.yaml
-    description:  The list of values of prompt request parameter. See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), prompt" for prompt request parameter.
+    description: The list of values of prompt request parameter. See "[OpenID Connect Core 1.0, 3.1.2.1. Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest), prompt" for prompt request parameter.
   lowestPrompt:
     $ref: ../prompt.yaml
   requestObjectPayload:
@@ -303,7 +303,7 @@ properties:
     items:
       type: string
     description: |
-      Get names of claims that are requested indirectly by <i>"transformed
+      Names of claims that are requested indirectly by <i>"transformed
       claims"</i>.
 
       <p>
@@ -395,7 +395,7 @@ properties:
     items:
       type: string
     description: |
-      Get the list of claims that the client application requests to be
+      The list of claims that the client application requests to be
       embedded in userinfo responses. The value comes from the `"scope"`
       and `"claims"` request parameters of the original authorization
       request.
@@ -404,6 +404,20 @@ properties:
   issuableCredentials:
     type: string
     description: |
-      Get the information about the <b>issuable credentials</b> that can
+      The information about the <b>issuable credentials</b> that can
       be obtained by presenting the access token that will be issued as a
       result of the authorization request.
+  nativeSsoRequested:
+    type: boolean
+    description: |
+      Flag which indicates whether [Native SSO](https://openid.net/specs/openid-connect-native-sso-1_0.html)
+      is requested. This property should be set to `true` when all the following conditions are satisfied:
+
+      - The service supports Native SSO (see `nativeSsoSupported` property of Service).
+      - The service supports the `openid` and `device_sso` scopes.
+      - The client is allowed to request the `openid` and `device_sso` scopes.
+      - The authorization request includes the `openid` and `device_sso` scopes.
+      - The authorization request's `response_type` includes `code`.
+
+      NOTE: If this property is set to `true`, the `sessionId` request parameter must be provided
+      to the `/auth/authorization/issue` API.
