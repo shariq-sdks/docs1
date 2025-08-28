@@ -24730,7 +24730,19 @@
                         }
                       }
                     },
-                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                  },
+                  "targetUrl": {
+                    "type": "string",
+                    "description": "The target URI of the userinfo request, including the query part, if any.\n\nThis parameter is used as the value of the `@target-uri` derived component for HTTP message signatures\n([RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the userinfo endpoint, which usually serves as the target URI of the userinfo request.\nThe only exception is when the access token is specified as a query parameter, as defined in\n[RFC 6750 Section 2.3](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3). However, RFC 6750\nstates that this method \"SHOULD NOT be used\" unless other methods are not viable.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the `userInfoEndpoint`\nproperty of the service is used as a fallback.\n"
+                  },
+                  "dpopNonceRequired": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to check if the DPoP proof JWT includes the expected `nonce` value.\n\nIf this request parameter is set to `true` or if the service's `dpopNonceRequired` property is\nset to `true`, the `/auth/userinfo` API checks if the DPoP proof JWT includes the expected `nonce`\nvalue. In this case, the response from the `/auth/userinfo` API will include the `dpopNonce` response\nparameter, which should be used as the value of the DPoP-Nonce HTTP header.\n"
+                  },
+                  "requestBodyContained": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the userinfo request contains a request body.\n\nWhen the userinfo request must comply with the HTTP message signing requirements defined in the\nFAPI 2.0 Message Signing specification, the `\"content-digest\"` component identifier must be included\nin the signature base of the HTTP message signature (see [RFC 9421 HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))\nif the userinfo request contains a request body.\n\nWhen this `requestBodyContained` parameter is set to `true`, Authlete checks whether `\"content-digest\"`\nis included in the signature base, if the FAPI profile applies to the userinfo request.\n\nNOTE: The FAPI 2.0 Message Signing specification is not applied to the userinfo endpoint until\nits necessity is agreed upon by the industry (cf. [FAPI Issue 723](https://bitbucket.org/openid/fapi/issues/723)).\n"
                   }
                 }
               },
@@ -24788,7 +24800,19 @@
                         }
                       }
                     },
-                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                  },
+                  "targetUrl": {
+                    "type": "string",
+                    "description": "The target URI of the userinfo request, including the query part, if any.\n\nThis parameter is used as the value of the `@target-uri` derived component for HTTP message signatures\n([RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the userinfo endpoint, which usually serves as the target URI of the userinfo request.\nThe only exception is when the access token is specified as a query parameter, as defined in\n[RFC 6750 Section 2.3](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3). However, RFC 6750\nstates that this method \"SHOULD NOT be used\" unless other methods are not viable.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the `userInfoEndpoint`\nproperty of the service is used as a fallback.\n"
+                  },
+                  "dpopNonceRequired": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to check if the DPoP proof JWT includes the expected `nonce` value.\n\nIf this request parameter is set to `true` or if the service's `dpopNonceRequired` property is\nset to `true`, the `/auth/userinfo` API checks if the DPoP proof JWT includes the expected `nonce`\nvalue. In this case, the response from the `/auth/userinfo` API will include the `dpopNonce` response\nparameter, which should be used as the value of the DPoP-Nonce HTTP header.\n"
+                  },
+                  "requestBodyContained": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the userinfo request contains a request body.\n\nWhen the userinfo request must comply with the HTTP message signing requirements defined in the\nFAPI 2.0 Message Signing specification, the `\"content-digest\"` component identifier must be included\nin the signature base of the HTTP message signature (see [RFC 9421 HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))\nif the userinfo request contains a request body.\n\nWhen this `requestBodyContained` parameter is set to `true`, Authlete checks whether `\"content-digest\"`\nis included in the signature base, if the FAPI profile applies to the userinfo request.\n\nNOTE: The FAPI 2.0 Message Signing specification is not applied to the userinfo endpoint until\nits necessity is agreed upon by the industry (cf. [FAPI Issue 723](https://bitbucket.org/openid/fapi/issues/723)).\n"
                   }
                 }
               }
