@@ -23474,12 +23474,12 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "Authentication Context Class Reference values one of which the user authentication performed during the course \nof issuing the access token must satisfy.\n"
+                    "description": "Authentication Context Class Reference values one of which the user authentication performed during the course\nof issuing the access token must satisfy.\n"
                   },
                   "maxAge": {
                     "type": "integer",
                     "format": "int64",
-                    "description": "The maximum authentication age which is the maximum allowable elapsed time since the user authentication \nwas performed during the course of issuing the access token.\n"
+                    "description": "The maximum authentication age which is the maximum allowable elapsed time since the user authentication\nwas performed during the course of issuing the access token.\n"
                   },
                   "requiredComponents": {
                     "type": "array",
@@ -23511,7 +23511,19 @@
                         }
                       }
                     },
-                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                  },
+                  "targetUrl": {
+                    "type": "string",
+                    "description": "The target URI of the resource request, including the query part, if any.\n\nThis parameter is used as the value of the @target-uri derived component for HTTP message signatures\n[RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the resource endpoint, which is identical to the target URI of the resource\nrequest as long as the request does not include a query component. Conversely, if the resource\nrequest includes a query component, the value of the `htu` parameter will not match the target\nURI, and in that case, the HTTP message signature verification will fail.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the target URI is\nconsidered unavailable. If HTTP message signing requires the target-uri derived component or\nother derived components computed based on the target URI, the HTTP message signature verification\nwill fail.\n"
+                  },
+                  "dpopNonceRequired": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to check if the DPoP proof JWT includes the expected `nonce` value.\n\nIf this request parameter is set to `true` or if the service's `dpopNonceRequired` property is\nset to `true`, the `/auth/introspection` API checks if the DPoP proof JWT includes the expected\n`nonce` value. In this case, the response from the `/auth/introspection` API will include the\n`dpopNonce` response parameter, which should be used as the value of the DPoP-Nonce HTTP header.\n"
+                  },
+                  "requestBodyContained": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the resource request contains a request body.\n\nWhen the resource request must comply with the HTTP message signing requirements defined in the\nFAPI 2.0 Message Signing specification, the `\"content-digest\"` component identifier must be included\nin the signature base of the HTTP message signature (see [RFC 9421 HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))\nif the resource request contains a request body.\n\nWhen this `requestBodyContained` parameter is set to `true`, Authlete checks whether `\"content-digest\"`\nis included in the signature base, if the FAPI profile applies to the resource request.\n"
                   }
                 }
               },
@@ -23574,12 +23586,12 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "Authentication Context Class Reference values one of which the user authentication performed during the course \nof issuing the access token must satisfy.\n"
+                    "description": "Authentication Context Class Reference values one of which the user authentication performed during the course\nof issuing the access token must satisfy.\n"
                   },
                   "maxAge": {
                     "type": "integer",
                     "format": "int64",
-                    "description": "The maximum authentication age which is the maximum allowable elapsed time since the user authentication \nwas performed during the course of issuing the access token.\n"
+                    "description": "The maximum authentication age which is the maximum allowable elapsed time since the user authentication\nwas performed during the course of issuing the access token.\n"
                   },
                   "requiredComponents": {
                     "type": "array",
@@ -23611,7 +23623,19 @@
                         }
                       }
                     },
-                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the \nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                    "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
+                  },
+                  "targetUrl": {
+                    "type": "string",
+                    "description": "The target URI of the resource request, including the query part, if any.\n\nThis parameter is used as the value of the @target-uri derived component for HTTP message signatures\n[RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the resource endpoint, which is identical to the target URI of the resource\nrequest as long as the request does not include a query component. Conversely, if the resource\nrequest includes a query component, the value of the `htu` parameter will not match the target\nURI, and in that case, the HTTP message signature verification will fail.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the target URI is\nconsidered unavailable. If HTTP message signing requires the target-uri derived component or\nother derived components computed based on the target URI, the HTTP message signature verification\nwill fail.\n"
+                  },
+                  "dpopNonceRequired": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether to check if the DPoP proof JWT includes the expected `nonce` value.\n\nIf this request parameter is set to `true` or if the service's `dpopNonceRequired` property is\nset to `true`, the `/auth/introspection` API checks if the DPoP proof JWT includes the expected\n`nonce` value. In this case, the response from the `/auth/introspection` API will include the\n`dpopNonce` response parameter, which should be used as the value of the DPoP-Nonce HTTP header.\n"
+                  },
+                  "requestBodyContained": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the resource request contains a request body.\n\nWhen the resource request must comply with the HTTP message signing requirements defined in the\nFAPI 2.0 Message Signing specification, the `\"content-digest\"` component identifier must be included\nin the signature base of the HTTP message signature (see [RFC 9421 HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))\nif the resource request contains a request body.\n\nWhen this `requestBodyContained` parameter is set to `true`, Authlete checks whether `\"content-digest\"`\nis included in the signature base, if the FAPI profile applies to the resource request.\n"
                   }
                 }
               }
