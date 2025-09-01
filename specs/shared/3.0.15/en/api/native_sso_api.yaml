@@ -1,0 +1,121 @@
+post:
+  summary: Native SSO Processing
+  description: |
+    This API should be called by the implementation of a token endpoint to generate the ID token and
+    token response that comply with [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
+    (Native SSO) when Authlete’s `/auth/token` response indicates `action = NATIVE_SSO` (after you validate
+    the session id and verify or generate the device secret as required by the flow). The token endpoint
+    implementation should retrieve the value of `action` from the response and take the following steps
+    according to the value.
+
+    **OK**
+
+    When the action is `OK`, it indicates that the `/nativesso` API processing has successfully completed.
+    In this case, the token endpoint implementation should return a successful response (`200 OK`) to
+    the client. The value of the responseContent property in the `/nativesso` API response can be used
+    directly as the message body of the token response. Therefore, the success response can be constructed
+    as follows:
+
+    ```
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Cache-Control: no-store
+
+    (Embed the value of responseContent here.)
+    ```
+
+    **INTERNAL_SERVER_ERROR**
+
+    When the action is `INTERNAL_SERVER_ERROR`, it indicates that something has gone wrong on the Authlete
+    side. For example, an issue such as a database error might have occurred when retrieving the access
+    token specified by the accessToken parameter from the database.
+
+    In such cases, the token endpoint implementation should return an error response to the client.
+    The simplest implementation would be to return a `500 Internal Server Error`.
+
+    ```
+    HTTP/1.1 500 Internal Server Error
+    Content-Type: application/json
+    Cache-Control: no-store
+
+    (Embed the value of responseContent here.)
+    ```
+
+    However, in a production environment, it may be better to return a more abstract error (one that
+    does not directly describe the nature of the issue), rather than a `500` error.
+
+    **CALLER_ERROR**
+
+    When the action is `CALLER_ERROR`, it indicates that the issue lies with the caller of the API
+    (i.e., the implementation of the OpenID Provider). For example, this could be due to missing a
+    required parameter such as accessToken.
+
+    If `CALLER_ERROR` is returned, please review the implementation of your OpenID Provider.
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/native_sso_request.yaml
+        example:
+          {
+            "accessToken": "_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq",
+            "refreshToken": "kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw",
+            "deviceSecret": "my-ds",
+            "claims": "{\"given_name\":\"John\",\"family_name\":\"Brown\",\"email\":\"test@example.com\"}",
+          }
+  responses:
+    "200":
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/native_sso_response.yaml
+          example:
+            {
+              "resultCode": "A501001",
+              "resultMessage": "[A501001] A Native SSO-compliant ID token and a token response were generated successfully.",
+              "action": "OK",
+              "responseContent": "{\\\"access_token\\\":\\\"_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq\\\",\\\"token_type\\\":\\\"Bearer\\\",\\\"expires_in\\\":86400,\\\"scope\\\":\\\"openid device_sso\\\",\\\"refresh_token\\\":\\\"kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw\\\",\\\"id_token\\\":\\\"eyJraWQiOiItc1RSWDc5YnEyOEhyYkxBV0w2N3k4T1VJdXdrTms2ZFFkbzItSExZMkxvIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGhsZXRlLmNvbSIsInN1YiI6ImpvaG4iLCJhdWQiOlsibmF0aXZlX2FwcF8xIl0sImV4cCI6MTc1NjcxNzY3MywiaWF0IjoxNzU2NzE3MzczLCJkc19oYXNoIjoic0luWlNhY1luRkR1Y1dwckRqZmtYeENRZl9mWGhsVDY1ZDduS0VYNzc2OCIsInNpZCI6Im15LXNpZCIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJCcm93biIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSJ9.RASuwd4KYPe8b3vNNwIYJgoXzUadDFFHO1wYWD70Z3EsZd8qcxxkPmJKs3dRitvYTX8DDqf5zvAm1jlIeEuvRQ\\\",\\\"device_secret\\\":\\\"my-ds\\\"}",
+              "idToken": "eyJraWQiOiItc1RSWDc5YnEyOEhyYkxBV0w2N3k4T1VJdXdrTms2ZFFkbzItSExZMkxvIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGhsZXRlLmNvbSIsInN1YiI6ImpvaG4iLCJhdWQiOlsibmF0aXZlX2FwcF8xIl0sImV4cCI6MTc1NjcxNzY3MywiaWF0IjoxNzU2NzE3MzczLCJkc19oYXNoIjoic0luWlNhY1luRkR1Y1dwckRqZmtYeENRZl9mWGhsVDY1ZDduS0VYNzc2OCIsInNpZCI6Im15LXNpZCIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJCcm93biIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSJ9.RASuwd4KYPe8b3vNNwIYJgoXzUadDFFHO1wYWD70Z3EsZd8qcxxkPmJKs3dRitvYTX8DDqf5zvAm1jlIeEuvRQ",
+            }
+    "400":
+      $ref: ../model/response/400.yaml
+    "401":
+      $ref: ../model/response/401.yaml
+    "403":
+      $ref: ../model/response/403.yaml
+    "500":
+      $ref: ../model/response/500.yaml
+  operationId: "native_sso_api"
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://us.authlete.com/api/21653835348762/nativesso \
+        -H 'Content-Type:application/json' \
+        -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
+        -d '{ "accessToken": "_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq", "refreshToken": "kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw", "deviceSecret": "my-ds", "claims": "{\"given_name\":\"John\",\"family_name\":\"Brown\",\"email\":\"test@example.com\"}" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        NativeSsoRequest req = new NativeSsoRequest();
+        req.setAccessToken("_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq");
+        req.setRefreshToken("kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw");
+        req.setDeviceSecret("my-ds");
+        req.setClaims("{\"given_name\":\"John\",\"family_name\":\"Brown\",\"email\":\"test@example.com\"}")
+
+        api.nativeSso(req);
+  tags:
+    - Native SSO Endpoint
