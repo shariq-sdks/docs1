@@ -272,6 +272,8 @@ paths:
     $ref: ./api/auth_authorization_ticket_info_api.yaml
   /api/{serviceId}/auth/authorization/ticket/update:
     $ref: ./api/auth_authorization_ticket_update_api.yaml
+  /api/{serviceId}/nativesso:
+    $ref: ./api/native_sso_api.yaml
 
 #
 # COMPONENTS

@@ -41902,6 +41902,235 @@
           "Authorization Endpoint"
         ]
       }
+    },
+    "/api/{serviceId}/nativesso": {
+      "post": {
+        "summary": "Native SSO Processing",
+        "description": "This API should be called by the implementation of a token endpoint to generate the ID token and\ntoken response that comply with [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)\n(Native SSO) when Authlete’s `/auth/token` response indicates `action = NATIVE_SSO` (after you validate\nthe session id and verify or generate the device secret as required by the flow). The token endpoint\nimplementation should retrieve the value of `action` from the response and take the following steps\naccording to the value.\n\n**OK**\n\nWhen the action is `OK`, it indicates that the `/nativesso` API processing has successfully completed.\nIn this case, the token endpoint implementation should return a successful response (`200 OK`) to\nthe client. The value of the responseContent property in the `/nativesso` API response can be used\ndirectly as the message body of the token response. Therefore, the success response can be constructed\nas follows:\n\n```\nHTTP/1.1 200 OK\nContent-Type: application/json\nCache-Control: no-store\n\n(Embed the value of responseContent here.)\n```\n\n**INTERNAL_SERVER_ERROR**\n\nWhen the action is `INTERNAL_SERVER_ERROR`, it indicates that something has gone wrong on the Authlete\nside. For example, an issue such as a database error might have occurred when retrieving the access\ntoken specified by the accessToken parameter from the database.\n\nIn such cases, the token endpoint implementation should return an error response to the client.\nThe simplest implementation would be to return a `500 Internal Server Error`.\n\n```\nHTTP/1.1 500 Internal Server Error\nContent-Type: application/json\nCache-Control: no-store\n\n(Embed the value of responseContent here.)\n```\n\nHowever, in a production environment, it may be better to return a more abstract error (one that\ndoes not directly describe the nature of the issue), rather than a `500` error.\n\n**CALLER_ERROR**\n\nWhen the action is `CALLER_ERROR`, it indicates that the issue lies with the caller of the API\n(i.e., the implementation of the OpenID Provider). For example, this could be due to missing a\nrequired parameter such as accessToken.\n\nIf `CALLER_ERROR` is returned, please review the implementation of your OpenID Provider.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serviceId",
+            "description": "A service ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "accessToken",
+                  "deviceSecret"
+                ],
+                "properties": {
+                  "accessToken": {
+                    "type": "string",
+                    "description": "The value of this parameter should be: (a) the value of the `jwtAccessToken` parameter in a response\nfrom the `/auth/token` API when the value is available, or (b) the value of the `accessToken`\nparameter in the response from the `/auth/token` API when the `jwtAccessToken` parameter is not\navailable.\n"
+                  },
+                  "refreshToken": {
+                    "type": "string",
+                    "description": "The value of this parameter should be the value of the `refreshToken` parameter in a response\nfrom the `/auth/token` API.\n"
+                  },
+                  "sub": {
+                    "type": "string",
+                    "description": "The value that should be used as the value of the `sub` claim of the ID token. This parameter\nis optional. When omitted, the value of the subject associated with the access token is used.\n"
+                  },
+                  "claims": {
+                    "type": "string",
+                    "description": "Additional claims that should be embedded in the payload part of the ID token. The format is a\nJSON object. This parameter is optional.\n"
+                  },
+                  "idtHeaderParams": {
+                    "type": "string",
+                    "description": "Additional parameters that should be embedded in the JWS header of the ID token. The format is\na JSON object. This parameter is optional.\n"
+                  },
+                  "idTokenAudType": {
+                    "type": "string",
+                    "description": "The type of the `aud` claim of the ID token being issued. Valid values of this parameter are\nas follows:\n\n- `\"array\"`\n  The type of the `aud` claim becomes an array of strings.\n\n- `\"string\"`\n  The type of the `aud` claim becomes a single string.\n\nThis parameter is optional, and the default value when omitted is `\"array\"`. This parameter takes\nprecedence over the `idTokenAudType` property of `Service`.\n"
+                  },
+                  "deviceSecret": {
+                    "type": "string",
+                    "description": "The device secret. The value of this parameter should be the value of the `deviceSecret` parameter\nin the response from the `/auth/token` API, if the parameter is present. Otherwise, the authorization\nserver should generate a new device secret and specify it as the value of this parameter.\n\nThe specified device secret is included as the value of the `device_secret` property in the token\nresponse prepared by the `/nativesso` API.\n\nAdditionally, if the `deviceSecretHash` request parameter is omitted, the device secret is used\nto compute the value of the `ds_hash` claim. In this case, the `ds_hash` claim will be the\nbase64url-encoded SHA-256 hash of the device secret.\n"
+                  },
+                  "deviceSecretHash": {
+                    "type": "string",
+                    "description": "The device secret hash. The specified device secret hash is included as the value of the `ds_hash`\nclaim in the ID token generated by the `/nativesso` API. If the `deviceSecretHash` request parameter\nis omitted, the value of the `deviceSecret` request parameter is used to compute the hash.\n"
+                  }
+                }
+              },
+              "example": {
+                "accessToken": "_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq",
+                "refreshToken": "kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw",
+                "deviceSecret": "my-ds",
+                "claims": "{\"given_name\":\"John\",\"family_name\":\"Brown\",\"email\":\"test@example.com\"}"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    },
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "OK",
+                        "INTERNAL_SERVER_ERROR",
+                        "CALLER_ERROR"
+                      ],
+                      "description": "The next action that the authorization server implementation should take.\n"
+                    },
+                    "responseContent": {
+                      "type": "string",
+                      "description": "The response content that can be used as the message body of the token response that should be\nreturned from the token endpoint.\n"
+                    },
+                    "idToken": {
+                      "type": "string",
+                      "description": "The issued ID token.\n"
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A501001",
+                  "resultMessage": "[A501001] A Native SSO-compliant ID token and a token response were generated successfully.",
+                  "action": "OK",
+                  "responseContent": "{\\\"access_token\\\":\\\"_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq\\\",\\\"token_type\\\":\\\"Bearer\\\",\\\"expires_in\\\":86400,\\\"scope\\\":\\\"openid device_sso\\\",\\\"refresh_token\\\":\\\"kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw\\\",\\\"id_token\\\":\\\"eyJraWQiOiItc1RSWDc5YnEyOEhyYkxBV0w2N3k4T1VJdXdrTms2ZFFkbzItSExZMkxvIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGhsZXRlLmNvbSIsInN1YiI6ImpvaG4iLCJhdWQiOlsibmF0aXZlX2FwcF8xIl0sImV4cCI6MTc1NjcxNzY3MywiaWF0IjoxNzU2NzE3MzczLCJkc19oYXNoIjoic0luWlNhY1luRkR1Y1dwckRqZmtYeENRZl9mWGhsVDY1ZDduS0VYNzc2OCIsInNpZCI6Im15LXNpZCIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJCcm93biIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSJ9.RASuwd4KYPe8b3vNNwIYJgoXzUadDFFHO1wYWD70Z3EsZd8qcxxkPmJKs3dRitvYTX8DDqf5zvAm1jlIeEuvRQ\\\",\\\"device_secret\\\":\\\"my-ds\\\"}",
+                  "idToken": "eyJraWQiOiItc1RSWDc5YnEyOEhyYkxBV0w2N3k4T1VJdXdrTms2ZFFkbzItSExZMkxvIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGhsZXRlLmNvbSIsInN1YiI6ImpvaG4iLCJhdWQiOlsibmF0aXZlX2FwcF8xIl0sImV4cCI6MTc1NjcxNzY3MywiaWF0IjoxNzU2NzE3MzczLCJkc19oYXNoIjoic0luWlNhY1luRkR1Y1dwckRqZmtYeENRZl9mWGhsVDY1ZDduS0VYNzc2OCIsInNpZCI6Im15LXNpZCIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJCcm93biIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSJ9.RASuwd4KYPe8b3vNNwIYJgoXzUadDFFHO1wYWD70Z3EsZd8qcxxkPmJKs3dRitvYTX8DDqf5zvAm1jlIeEuvRQ"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001201",
+                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001202",
+                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001215",
+                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001101",
+                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "native_sso_api",
+        "x-code-samples": [
+          {
+            "lang": "shell",
+            "label": "curl",
+            "source": "curl -v -X POST https://us.authlete.com/api/21653835348762/nativesso \\\n-H 'Content-Type:application/json' \\\n-u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \\\n-d '{ \"accessToken\": \"_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq\", \"refreshToken\": \"kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw\", \"deviceSecret\": \"my-ds\", \"claims\": \"{\\\"given_name\\\":\\\"John\\\",\\\"family_name\\\":\\\"Brown\\\",\\\"email\\\":\\\"test@example.com\\\"}\" }'\n"
+          },
+          {
+            "lang": "java",
+            "label": "java",
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nNativeSsoRequest req = new NativeSsoRequest();\nreq.setAccessToken(\"_kh1aygxZ5NKLYKCJRM8M_AYvDg2wCWoprQDjfO87ZWq\");\nreq.setRefreshToken(\"kHUGSt_d3LSgiCQzH7wa5TpwIHWgjAZGw14zZV7hRqw\");\nreq.setDeviceSecret(\"my-ds\");\nreq.setClaims(\"{\\\"given_name\\\":\\\"John\\\",\\\"family_name\\\":\\\"Brown\\\",\\\"email\\\":\\\"test@example.com\\\"}\")\n\napi.nativeSso(req);\n"
+          }
+        ],
+        "tags": [
+          "Native SSO Endpoint"
+        ]
+      }
     }
   },
   "components": {
