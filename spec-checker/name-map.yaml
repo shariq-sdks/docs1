@@ -1,0 +1,82 @@
+com.authlete.common.dto.AuthzDetailsElement:
+  - /model/authorization_details_element
+com.authlete.common.dto.GMRequest:
+  - /model/request/g_m_request
+com.authlete.common.dto.GMResponse:
+  - /model/response/g_m_response
+com.authlete.common.dto.UserInfoRequest:
+  - /model/request/userinfo_request
+com.authlete.common.dto.UserInfoResponse:
+  - /model/response/userinfo_response
+com.authlete.common.dto.HskListResponse:
+  - /model/response/hsk_get_list_response
+com.authlete.common.dto.HskResponse:
+  - /model/response/hsk_get_response
+  - /model/response/hsk_create_response
+  - /model/response/hsk_delete_response
+com.authlete.common.dto.CredentialBatchIssueRequest:
+  - /model/request/vci_batch_issue_request
+com.authlete.common.dto.CredentialBatchIssueResponse:
+  - /model/response/vci_batch_issue_response
+com.authlete.common.dto.CredentialBatchParseRequest:
+  - /model/request/vci_batch_parse_request
+com.authlete.common.dto.CredentialBatchParseResponse:
+  - /model/response/vci_batch_parse_response
+com.authlete.common.dto.CredentialDeferredIssueRequest:
+  - /model/request/vci_deferred_issue_request
+com.authlete.common.dto.CredentialDeferredIssueResponse:
+  - /model/response/vci_deferred_issue_response
+com.authlete.common.dto.CredentialDeferredParseRequest:
+  - /model/request/vci_deferred_parse_request
+com.authlete.common.dto.CredentialDeferredParseResponse:
+  - /model/response/vci_deferred_parse_response
+com.authlete.common.dto.CredentialIssuerJwksRequest:
+  - /model/request/vci_jwks_request
+com.authlete.common.dto.CredentialIssuerJwksResponse:
+  - /model/response/vci_jwks_response
+com.authlete.common.dto.CredentialIssuerMetadataRequest:
+  - /model/request/vci_metadata_request
+com.authlete.common.dto.CredentialIssuerMetadataResponse:
+  - /model/response/vci_metadata_response
+com.authlete.common.dto.CredentialJwtIssuerMetadataRequest:
+  - /model/request/vci_jwtissuer_request
+com.authlete.common.dto.CredentialJwtIssuerMetadataResponse:
+  - /model/response/vci_jwtissuer_response
+com.authlete.common.dto.CredentialOfferCreateRequest:
+  - /model/request/vci_offer_create_request
+com.authlete.common.dto.CredentialOfferCreateResponse:
+  - /model/response/vci_offer_create_response
+com.authlete.common.dto.CredentialOfferInfoRequest:
+  - /model/request/vci_offer_info_request
+com.authlete.common.dto.CredentialOfferInfoResponse:
+  - /model/response/vci_offer_info_response
+com.authlete.common.dto.CredentialSingleIssueRequest:
+  - /model/request/vci_single_issue_request
+com.authlete.common.dto.CredentialSingleIssueResponse:
+  - /model/response/vci_single_issue_response
+com.authlete.common.dto.CredentialSingleParseRequest:
+  - /model/request/vci_single_parse_request
+com.authlete.common.dto.CredentialSingleParseResponse:
+  - /model/response/vci_single_parse_response
+com.authlete.common.dto.PushedAuthReqRequest:
+  - /model/request/pushed_authorization_request
+com.authlete.common.dto.PushedAuthReqResponse:
+  - /model/response/pushed_authorization_response
+com.authlete.common.dto.TokenListResponse:
+  - /model/response/token_get_list_response
+com.authlete.common.dto.UserInfoIssueRequest:
+  - /model/request/userinfo_issue_request
+com.authlete.common.dto.UserInfoIssueResponse:
+  - /model/response/userinfo_issue_response
+com.authlete.common.dto.ClientLockFlagUpdateRequest:
+  - /model/request/client_flag_update_request
+com.authlete.common.dto.ClientRegistrationRequest:
+  - /model/request/client_registration_request
+  - /model/request/client_registration_get_request
+  - /model/request/client_registration_update_request
+  - /model/request/client_registration_delete_request
+com.authlete.common.dto.ClientRegistrationResponse:
+  - /model/response/client_registration_response
+  - /model/response/client_registration_get_response
+  - /model/response/client_registration_update_response
+  - /model/response/client_registration_delete_response
