@@ -118,4 +118,4 @@ post:
 
         api.nativeSso(req);
   tags:
-    - Native SSO Endpoint
+    - Native SSO

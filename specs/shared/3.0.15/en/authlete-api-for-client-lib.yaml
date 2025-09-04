@@ -276,6 +276,10 @@ paths:
     $ref: ./api/auth_authorization_ticket_info_api.yaml
   /api/{serviceId}/auth/authorization/ticket/update:
     $ref: ./api/auth_authorization_ticket_update_api.yaml
+  /api/{serviceId}/nativesso:
+    $ref: ./api/native_sso_api.yaml
+  /api/{serviceId}/nativesso/logout:
+    $ref: ./api/native_sso_logout_api.yaml
 
 #
 # COMPONENTS
@@ -433,4 +437,7 @@ tags:
     x-tag-expanded: false
   - name: Utility Endpoints
     description: API endpoints for various utility operations.
+    x-tag-expanded: false
+  - name: Native SSO
+    description: API endpoints for Native SSO
     x-tag-expanded: false

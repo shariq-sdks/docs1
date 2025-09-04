@@ -1,0 +1,85 @@
+post:
+  summary: Native SSO Logout Processing
+  description: |
+    The `/nativesso/logout` API is supposed to be used to support the concept of "logout from all applications"
+    in the context of [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
+    (Native SSO). This is accomplished by deleting access/refresh token records associated with the
+    specified session ID. In Authlete's implementation, access/refresh token records can be associated
+    with a session ID only through the mechanism introduced by Native SSO.
+
+    A response from the `/nativesso/logout` API contains `action` response parameter. The possible values
+    are:
+
+    **OK**
+
+    When the action is `OK`, it indicates that the `/nativesso/logout` API call completed successfully.
+
+    **SERVER_ERROR**
+
+    When the action is `SERVER_ERROR`, it indicates that something has gone wrong on the Authlete side.
+
+    **CALLER_ERROR**
+
+    When the action is `CALLER_ERROR`, it indicates that the `/nativesso/logout` API call contained a
+    problem. For example, the call may have been missing the required request parameter `sessionId`.
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/native_sso_logout_request.yaml
+        example:
+          {
+            "sessionId": "my-sid"
+          }
+  responses:
+    "200":
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/native_sso_logout_response.yaml
+          example:
+            {
+              "action": "OK",
+              "count": 2,
+              "resultCode": "A503001",
+              "resultMessage": "[A503001] The /nativesso/logout API call successfully deleted 2 access/refresh token record(s)."
+            }
+    "400":
+      $ref: ../model/response/400.yaml
+    "401":
+      $ref: ../model/response/401.yaml
+    "403":
+      $ref: ../model/response/403.yaml
+    "500":
+      $ref: ../model/response/500.yaml
+  operationId: "native_sso_api"
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://us.authlete.com/api/21653835348762/nativesso/logout \
+        -H 'Content-Type:application/json' \
+        -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
+        -d '{ "sessionId": "my-sid" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        NativeSsoLogoutRequest req = new NativeSsoLogoutRequest();
+        req.setSessionId("my-sid");
+
+        api.nativeSsoLogout(req);
+  tags:
+    - Native SSO

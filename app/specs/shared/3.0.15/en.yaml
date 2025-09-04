@@ -41995,7 +41995,7 @@
                         "INTERNAL_SERVER_ERROR",
                         "CALLER_ERROR"
                       ],
-                      "description": "The next action that the authorization server implementation should take.\n"
+                      "description": "The next action that the implementation of the token endpoint should take.\n"
                     },
                     "responseContent": {
                       "type": "string",
@@ -42128,7 +42128,199 @@
           }
         ],
         "tags": [
-          "Native SSO Endpoint"
+          "Native SSO"
+        ]
+      }
+    },
+    "/api/{serviceId}/nativesso/logout": {
+      "post": {
+        "summary": "Native SSO Logout Processing",
+        "description": "The `/nativesso/logout` API is supposed to be used to support the concept of \"logout from all applications\"\nin the context of [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)\n(Native SSO). This is accomplished by deleting access/refresh token records associated with the\nspecified session ID. In Authlete's implementation, access/refresh token records can be associated\nwith a session ID only through the mechanism introduced by Native SSO.\n\nA response from the `/nativesso/logout` API contains `action` response parameter. The possible values\nare:\n\n**OK**\n\nWhen the action is `OK`, it indicates that the `/nativesso/logout` API call completed successfully.\n\n**SERVER_ERROR**\n\nWhen the action is `SERVER_ERROR`, it indicates that something has gone wrong on the Authlete side.\n\n**CALLER_ERROR**\n\nWhen the action is `CALLER_ERROR`, it indicates that the `/nativesso/logout` API call contained a\nproblem. For example, the call may have been missing the required request parameter `sessionId`.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serviceId",
+            "description": "A service ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sessionId"
+                ],
+                "properties": {
+                  "sessionId": {
+                    "type": "string",
+                    "description": "The session ID of a user's authentication session.\n"
+                  }
+                }
+              },
+              "example": {
+                "sessionId": "my-sid"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    },
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "OK",
+                        "SERVER_ERROR",
+                        "CALLER_ERROR"
+                      ],
+                      "description": "The next action that the API caller should take.\n"
+                    },
+                    "count": {
+                      "type": "int",
+                      "description": "The number of deleted access/refresh token records.\n"
+                    }
+                  }
+                },
+                "example": {
+                  "action": "OK",
+                  "count": 2,
+                  "resultCode": "A503001",
+                  "resultMessage": "[A503001] The /nativesso/logout API call successfully deleted 2 access/refresh token record(s)."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001201",
+                  "resultMessage": "[A001201] /auth/authorization, TLS must be used."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001202",
+                  "resultMessage": "[A001202] /auth/authorization, Authorization header is missing."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001215",
+                  "resultMessage": "[A001215] /auth/authorization, The client (ID = 26837717140341) is locked."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "description": "The code which represents the result of the API call."
+                    },
+                    "resultMessage": {
+                      "type": "string",
+                      "description": "A short message which explains the result of the API call."
+                    }
+                  }
+                },
+                "example": {
+                  "resultCode": "A001101",
+                  "resultMessage": "[A001101] /auth/authorization, Authlete Server error."
+                }
+              }
+            }
+          }
+        },
+        "operationId": "native_sso_api",
+        "x-code-samples": [
+          {
+            "lang": "shell",
+            "label": "curl",
+            "source": "curl -v -X POST https://us.authlete.com/api/21653835348762/nativesso/logout \\\n-H 'Content-Type:application/json' \\\n-u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \\\n-d '{ \"sessionId\": \"my-sid\" }'\n"
+          },
+          {
+            "lang": "java",
+            "label": "java",
+            "source": "AuthleteConfiguration conf = ...;\nAuthleteApi api = AuthleteApiFactory.create(conf);\n\nNativeSsoLogoutRequest req = new NativeSsoLogoutRequest();\nreq.setSessionId(\"my-sid\");\n\napi.nativeSsoLogout(req);\n"
+          }
+        ],
+        "tags": [
+          "Native SSO"
         ]
       }
     }
@@ -51868,6 +52060,11 @@
     {
       "name": "Utility Endpoints",
       "description": "API endpoints for various utility operations.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Native SSO",
+      "description": "API endpoints for Native SSO",
       "x-tag-expanded": false
     }
   ]
