@@ -13,7 +13,7 @@ properties:
       - INTERNAL_SERVER_ERROR
       - CALLER_ERROR
     description: |
-      The next action that the authorization server implementation should take.
+      The next action that the implementation of the token endpoint should take.
   responseContent:
     type: string
     description: |
