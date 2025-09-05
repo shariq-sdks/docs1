@@ -21555,6 +21555,14 @@
                   "htu": {
                     "type": "string",
                     "description": "HTTP URL base (for DPoP validation).\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               },
@@ -21602,6 +21610,14 @@
                   "htu": {
                     "type": "string",
                     "description": "HTTP URL base (for DPoP validation).\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               },
@@ -21865,6 +21881,14 @@
                   "jwtAtClaims": {
                     "type": "string",
                     "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               },
@@ -21924,6 +21948,14 @@
                   "jwtAtClaims": {
                     "type": "string",
                     "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               }
@@ -24486,6 +24518,14 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The certificate path presented by the client during client authentication.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               },
@@ -24521,6 +24561,14 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The certificate path presented by the client during client authentication.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               }
@@ -30912,6 +30960,14 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The client certificate path presented by the client during client authentication. Each element\nis a string in PEM format.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               },
@@ -30947,6 +31003,14 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The client certificate path presented by the client during client authentication. Each element\nis a string in PEM format.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               }
@@ -32625,6 +32689,14 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The client certificate path presented by the client during client authentication. Each element\nis a string in PEM format.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               },
@@ -32660,6 +32732,14 @@
                   "clientCertificatePath": {
                     "type": "string",
                     "description": "The client certificate path presented by the client during client authentication. Each element\nis a string in PEM format.\n"
+                  },
+                  "oauthClientAttestation": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "oauthClientAttestationPop": {
+                    "type": "string",
+                    "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
                   }
                 }
               }
