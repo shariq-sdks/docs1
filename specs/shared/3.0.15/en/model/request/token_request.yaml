@@ -69,3 +69,13 @@ properties:
     type: string
     description: |
       Additional claims that are added to the payload part of the JWT access token.
+  oauthClientAttestation:
+    type: string
+    description: |
+      The value of the `OAuth-Client-Attestation` HTTP header, which is defined in the specification
+      of [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).
+  oauthClientAttestationPop:
+    type: string
+    description: |
+      The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification
+      of [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).
