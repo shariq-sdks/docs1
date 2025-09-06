@@ -23545,7 +23545,7 @@
                     },
                     "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   },
-                  "targetUrl": {
+                  "targetUri": {
                     "type": "string",
                     "description": "The target URI of the resource request, including the query part, if any.\n\nThis parameter is used as the value of the @target-uri derived component for HTTP message signatures\n[RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the resource endpoint, which is identical to the target URI of the resource\nrequest as long as the request does not include a query component. Conversely, if the resource\nrequest includes a query component, the value of the `htu` parameter will not match the target\nURI, and in that case, the HTTP message signature verification will fail.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the target URI is\nconsidered unavailable. If HTTP message signing requires the target-uri derived component or\nother derived components computed based on the target URI, the HTTP message signature verification\nwill fail.\n"
                   },
@@ -23657,7 +23657,7 @@
                     },
                     "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   },
-                  "targetUrl": {
+                  "targetUri": {
                     "type": "string",
                     "description": "The target URI of the resource request, including the query part, if any.\n\nThis parameter is used as the value of the @target-uri derived component for HTTP message signatures\n[RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the resource endpoint, which is identical to the target URI of the resource\nrequest as long as the request does not include a query component. Conversely, if the resource\nrequest includes a query component, the value of the `htu` parameter will not match the target\nURI, and in that case, the HTTP message signature verification will fail.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the target URI is\nconsidered unavailable. If HTTP message signing requires the target-uri derived component or\nother derived components computed based on the target URI, the HTTP message signature verification\nwill fail.\n"
                   },
@@ -24804,7 +24804,7 @@
                     },
                     "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   },
-                  "targetUrl": {
+                  "targetUri": {
                     "type": "string",
                     "description": "The target URI of the userinfo request, including the query part, if any.\n\nThis parameter is used as the value of the `@target-uri` derived component for HTTP message signatures\n([RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the userinfo endpoint, which usually serves as the target URI of the userinfo request.\nThe only exception is when the access token is specified as a query parameter, as defined in\n[RFC 6750 Section 2.3](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3). However, RFC 6750\nstates that this method \"SHOULD NOT be used\" unless other methods are not viable.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the `userInfoEndpoint`\nproperty of the service is used as a fallback.\n"
                   },
@@ -24874,7 +24874,7 @@
                     },
                     "description": "HTTP headers to be included in processing the signature. If this is a signed request, this must include the\nSignature and Signature-Input headers, as well as any additional headers covered by the signature.\n"
                   },
-                  "targetUrl": {
+                  "targetUri": {
                     "type": "string",
                     "description": "The target URI of the userinfo request, including the query part, if any.\n\nThis parameter is used as the value of the `@target-uri` derived component for HTTP message signatures\n([RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).\nAdditionally, other derived components such as `@authority`, `@scheme`, `@path`, `@query` and\n`@query-param` are computed from this parameter.\n\nWhen this parameter is omitted, the value of the `htu` parameter is used. The `htu` parameter\nrepresents the URL of the userinfo endpoint, which usually serves as the target URI of the userinfo request.\nThe only exception is when the access token is specified as a query parameter, as defined in\n[RFC 6750 Section 2.3](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3). However, RFC 6750\nstates that this method \"SHOULD NOT be used\" unless other methods are not viable.\n\nIf neither this `targetUri` parameter nor the `htu` parameter is specified, the `userInfoEndpoint`\nproperty of the service is used as a fallback.\n"
                   },

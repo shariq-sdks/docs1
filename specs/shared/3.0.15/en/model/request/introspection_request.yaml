@@ -91,7 +91,7 @@ properties:
     description: |
       HTTP headers to be included in processing the signature. If this is a signed request, this must include the
       Signature and Signature-Input headers, as well as any additional headers covered by the signature.
-  targetUrl:
+  targetUri:
     type: string
     description: |
       The target URI of the resource request, including the query part, if any.
