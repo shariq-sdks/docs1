@@ -21889,6 +21889,16 @@
                   "oauthClientAttestationPop": {
                     "type": "string",
                     "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               },
@@ -21956,6 +21966,16 @@
                   "oauthClientAttestationPop": {
                     "type": "string",
                     "description": "The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification\nof [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               }
@@ -23001,6 +23021,16 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               },
@@ -23053,6 +23083,16 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               }
@@ -32242,6 +32282,16 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               },
@@ -32348,6 +32398,16 @@
                   "accessToken": {
                     "type": "string",
                     "description": "The representation of an access token that may be issued as a result of the Authlete API call.\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               }
@@ -34010,6 +34070,16 @@
                   "jwtAtClaims": {
                     "type": "string",
                     "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               },
@@ -34112,6 +34182,16 @@
                   "jwtAtClaims": {
                     "type": "string",
                     "description": "Additional claims that are added to the payload part of the JWT access token.\n"
+                  },
+                  "accessTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the access token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the access\ntoken in. In other cases, this request parameter is ignored.\n"
+                  },
+                  "refreshTokenDuration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The duration (in seconds) of the refresh token that may be issued as a result of the Authlete\nAPI call.\n\nWhen this request parameter holds a positive integer, it is used as the duration of the refresh\ntoken in. In other cases, this request parameter is ignored.\n"
                   }
                 }
               }
