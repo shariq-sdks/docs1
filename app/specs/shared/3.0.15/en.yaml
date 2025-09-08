@@ -24288,6 +24288,38 @@
                   "withHiddenProperties": {
                     "type": "string",
                     "description": "Flag indicating whether to include hidden properties in the output.\n\nAuthlete has a mechanism whereby to associate arbitrary key-value pairs with an access token.\nEach key-value pair has a hidden attribute. By default, key-value pairs whose hidden attribute\nis set to `true` are not embedded in the standard introspection output.\n\nIf the `withHiddenProperties` request parameter is given and its value is `true`, `/api/auth/introspection/standard\nAPI includes all the associated key-value pairs into the output regardless of the value of the\nhidden attribute.\n"
+                  },
+                  "rsUri": {
+                    "type": "string",
+                    "description": "The URI of the resource server making the introspection request.\n\nIf the `rsUri` request parameter is given and the token has audience values, Authlete checks if\nthe value of the `rsUri` request parameter is contained in the audience values. If not contained,\nAuthlete generates an introspection response with the `active` property set to `false`.\n\nThe `rsUri` request parameter is required when the resource server requests a JWT introspection\nresponse, i.e., when the value of the `httpAcceptHeader` request parameter is set to `\"application/token-introspection+jwt\"`.\n"
+                  },
+                  "httpAcceptHeader": {
+                    "type": "string",
+                    "description": "The value of the `HTTP Accept` header in the introspection request.\n\nIf the value of the `httpAcceptHeader` request parameter is `\"application/token-introspection+jwt\"`,\nAuthlete generates a JWT introspection response. See \"[4. Requesting a JWT Response](https://www.rfc-editor.org/rfc/rfc9701.html#section-4)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\"\nfor more details.\n"
+                  },
+                  "introspectionSignAlg": {
+                    "type": "string",
+                    "description": "The JWS `alg` algorithm for signing the introspection response. This parameter corresponds to\n`introspection_signed_response_alg` defined in \"[6. Client Metadata](https://www.rfc-editor.org/rfc/rfc9701.html#section-6)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\".\n\nThe default value is `RS256`.\n"
+                  },
+                  "introspectionEncryptionAlg": {
+                    "type": "string",
+                    "description": "The JWE `alg` algorithm for encrypting the introspection response. This parameter corresponds\nto `introspection_encrypted_response_alg` defined in \"[6. Client Metadata](https://www.rfc-editor.org/rfc/rfc9701.html#section-6)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\".\n\nIf the `introspectionEncryptionAlg` request parameter is specified, Authlete generates a JWT\nintrospection response encrypted with the algorithm by this property and the algorithm specified by\nthe `introspectionEncryptionEnc` request parameter.\n"
+                  },
+                  "introspectionEncryptionEnc": {
+                    "type": "string",
+                    "description": "The JWE `enc` algorithm for encrypting the introspection response. This parameter corresponds\nto `introspection_encrypted_response_enc` defined in \"[6. Client Metadata](https://www.rfc-editor.org/rfc/rfc9701.html#section-6)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\".\n\nThe default value is `A128CBC_HS256`.\n"
+                  },
+                  "sharedKeyForSign": {
+                    "type": "string",
+                    "description": "The shared key for signing the introspection response with a symmetric algorithm.\n\nThe `sharedKeyForSign` request parameter is required when the introspection response is requested\nto be signed with a symmetric algorithm.\n"
+                  },
+                  "sharedKeyForEncryption": {
+                    "type": "string",
+                    "description": "The shared key for encrypting the introspection response with a symmetric algorithm.\n\nThe `sharedKeyForEncryption` request parameter is required when the introspection response is\nrequested to be encrypted with a symmetric algorithm.\n"
+                  },
+                  "publicKeyForEncryption": {
+                    "type": "string",
+                    "description": "The public key for signing the introspection response with an asymmetric algorithm.\n\nThe `publicKeyForEncryption` request parameter is required when the introspection response is\nrequested to be encrypted with an asymmetric algorithm.\n"
                   }
                 }
               },
@@ -24309,6 +24341,38 @@
                   "withHiddenProperties": {
                     "type": "string",
                     "description": "Flag indicating whether to include hidden properties in the output.\n\nAuthlete has a mechanism whereby to associate arbitrary key-value pairs with an access token.\nEach key-value pair has a hidden attribute. By default, key-value pairs whose hidden attribute\nis set to `true` are not embedded in the standard introspection output.\n\nIf the `withHiddenProperties` request parameter is given and its value is `true`, `/api/auth/introspection/standard\nAPI includes all the associated key-value pairs into the output regardless of the value of the\nhidden attribute.\n"
+                  },
+                  "rsUri": {
+                    "type": "string",
+                    "description": "The URI of the resource server making the introspection request.\n\nIf the `rsUri` request parameter is given and the token has audience values, Authlete checks if\nthe value of the `rsUri` request parameter is contained in the audience values. If not contained,\nAuthlete generates an introspection response with the `active` property set to `false`.\n\nThe `rsUri` request parameter is required when the resource server requests a JWT introspection\nresponse, i.e., when the value of the `httpAcceptHeader` request parameter is set to `\"application/token-introspection+jwt\"`.\n"
+                  },
+                  "httpAcceptHeader": {
+                    "type": "string",
+                    "description": "The value of the `HTTP Accept` header in the introspection request.\n\nIf the value of the `httpAcceptHeader` request parameter is `\"application/token-introspection+jwt\"`,\nAuthlete generates a JWT introspection response. See \"[4. Requesting a JWT Response](https://www.rfc-editor.org/rfc/rfc9701.html#section-4)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\"\nfor more details.\n"
+                  },
+                  "introspectionSignAlg": {
+                    "type": "string",
+                    "description": "The JWS `alg` algorithm for signing the introspection response. This parameter corresponds to\n`introspection_signed_response_alg` defined in \"[6. Client Metadata](https://www.rfc-editor.org/rfc/rfc9701.html#section-6)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\".\n\nThe default value is `RS256`.\n"
+                  },
+                  "introspectionEncryptionAlg": {
+                    "type": "string",
+                    "description": "The JWE `alg` algorithm for encrypting the introspection response. This parameter corresponds\nto `introspection_encrypted_response_alg` defined in \"[6. Client Metadata](https://www.rfc-editor.org/rfc/rfc9701.html#section-6)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\".\n\nIf the `introspectionEncryptionAlg` request parameter is specified, Authlete generates a JWT\nintrospection response encrypted with the algorithm by this property and the algorithm specified by\nthe `introspectionEncryptionEnc` request parameter.\n"
+                  },
+                  "introspectionEncryptionEnc": {
+                    "type": "string",
+                    "description": "The JWE `enc` algorithm for encrypting the introspection response. This parameter corresponds\nto `introspection_encrypted_response_enc` defined in \"[6. Client Metadata](https://www.rfc-editor.org/rfc/rfc9701.html#section-6)\"\nof \"[RFC 9701: JWT Response for OAuth Token Introspection](https://www.rfc-editor.org/rfc/rfc9701.html)\".\n\nThe default value is `A128CBC_HS256`.\n"
+                  },
+                  "sharedKeyForSign": {
+                    "type": "string",
+                    "description": "The shared key for signing the introspection response with a symmetric algorithm.\n\nThe `sharedKeyForSign` request parameter is required when the introspection response is requested\nto be signed with a symmetric algorithm.\n"
+                  },
+                  "sharedKeyForEncryption": {
+                    "type": "string",
+                    "description": "The shared key for encrypting the introspection response with a symmetric algorithm.\n\nThe `sharedKeyForEncryption` request parameter is required when the introspection response is\nrequested to be encrypted with a symmetric algorithm.\n"
+                  },
+                  "publicKeyForEncryption": {
+                    "type": "string",
+                    "description": "The public key for signing the introspection response with an asymmetric algorithm.\n\nThe `publicKeyForEncryption` request parameter is required when the introspection response is\nrequested to be encrypted with an asymmetric algorithm.\n"
                   }
                 }
               }
