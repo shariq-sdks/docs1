@@ -79,3 +79,21 @@ properties:
     description: |
       The value of the `OAuth-Client-Attestation-PoP` HTTP header, which is defined in the specification
       of [OAuth 2.0 Attestation-Based Client Authentication](https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/).
+  accessTokenDuration:
+    type: integer
+    format: int64
+    description: |
+      The duration (in seconds) of the access token that may be issued as a result of the Authlete
+      API call.
+
+      When this request parameter holds a positive integer, it is used as the duration of the access
+      token in. In other cases, this request parameter is ignored.
+  refreshTokenDuration:
+    type: integer
+    format: int64
+    description: |
+      The duration (in seconds) of the refresh token that may be issued as a result of the Authlete
+      API call.
+
+      When this request parameter holds a positive integer, it is used as the duration of the refresh
+      token in. In other cases, this request parameter is ignored.

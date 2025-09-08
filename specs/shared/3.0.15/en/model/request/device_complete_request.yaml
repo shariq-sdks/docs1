@@ -75,3 +75,21 @@ properties:
     type: string
     description: |
       Additional claims that are added to the payload part of the JWT access token.
+  accessTokenDuration:
+    type: integer
+    format: int64
+    description: |
+      The duration (in seconds) of the access token that may be issued as a result of the Authlete
+      API call.
+
+      When this request parameter holds a positive integer, it is used as the duration of the access
+      token in. In other cases, this request parameter is ignored.
+  refreshTokenDuration:
+    type: integer
+    format: int64
+    description: |
+      The duration (in seconds) of the refresh token that may be issued as a result of the Authlete
+      API call.
+
+      When this request parameter holds a positive integer, it is used as the duration of the refresh
+      token in. In other cases, this request parameter is ignored.
