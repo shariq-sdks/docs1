@@ -67,3 +67,10 @@ properties:
       The `grant_id` request parameter is defined in
       [Grant Management for OAuth 2.0](https://openid.net/specs/fapi-grant-management.html)
       , which is supported by Authlete 2.3 and newer versions.
+  dpopNonceRequired:
+    type: boolean
+    description: |
+      The flag indicating whether to require the DPoP proof JWT to include the `nonce` claim. Even if
+      the service's `dpopNonceRequired` property is `false`, calling the `/auth/gm` API with this
+      `dpopNonceRequired` parameter `true` will force the Authlete API to check whether the DPoP proof
+      JWT includes the expected `nonce` value.

@@ -97,3 +97,10 @@ properties:
 
       When this request parameter holds a positive integer, it is used as the duration of the refresh
       token in. In other cases, this request parameter is ignored.
+  dpopNonceRequired:
+    type: boolean
+    description: |
+      The flag indicating whether to require the DPoP proof JWT to include the `nonce` claim. Even if
+      the service's `dpopNonceRequired` property is `false`, calling the `/auth/token` API with this
+      `dpopNonceRequired` parameter `true` will force the Authlete API to check whether the DPoP proof
+      JWT includes the expected `nonce` value.
