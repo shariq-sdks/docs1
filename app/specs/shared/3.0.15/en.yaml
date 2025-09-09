@@ -20463,10 +20463,6 @@
                           "type": "string",
                           "description": "The identifier of the credential issuer."
                         },
-                        "credentials": {
-                          "type": "string",
-                          "description": "The value of the `credentials` object in the JSON format."
-                        },
                         "authorizationCodeGrantIncluded": {
                           "type": "boolean",
                           "description": "The flag indicating whether the `authorization_code` object is\nincluded in the `grants` object.\n"
@@ -20486,14 +20482,6 @@
                         "preAuthorizedCode": {
                           "type": "string",
                           "description": "The value of the `pre-authorized_code` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                        },
-                        "userPinRequired": {
-                          "type": "boolean",
-                          "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                        },
-                        "userPin": {
-                          "type": "string",
-                          "description": "The value of the user PIN associated with the credential offer."
                         },
                         "subject": {
                           "type": "string",
@@ -20541,6 +20529,25 @@
                         "acr": {
                           "type": "string",
                           "description": "The Authentication Context Class Reference of the user authentication\nperformed during the course of issuing the credential offer.\n"
+                        },
+                        "credentialConfigurationIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+                        },
+                        "txCode": {
+                          "type": "string",
+                          "description": "The transaction code.\n"
+                        },
+                        "txCodeInputMode": {
+                          "type": "string",
+                          "description": "The input mode of the transaction code.\n"
+                        },
+                        "txCodeDescription": {
+                          "type": "string",
+                          "description": "The description of the transaction code.\n"
                         }
                       }
                     },
@@ -40102,10 +40109,6 @@
                           "type": "string",
                           "description": "The identifier of the credential issuer."
                         },
-                        "credentials": {
-                          "type": "string",
-                          "description": "The value of the `credentials` object in the JSON format."
-                        },
                         "authorizationCodeGrantIncluded": {
                           "type": "boolean",
                           "description": "The flag indicating whether the `authorization_code` object is\nincluded in the `grants` object.\n"
@@ -40125,14 +40128,6 @@
                         "preAuthorizedCode": {
                           "type": "string",
                           "description": "The value of the `pre-authorized_code` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                        },
-                        "userPinRequired": {
-                          "type": "boolean",
-                          "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                        },
-                        "userPin": {
-                          "type": "string",
-                          "description": "The value of the user PIN associated with the credential offer."
                         },
                         "subject": {
                           "type": "string",
@@ -40180,6 +40175,25 @@
                         "acr": {
                           "type": "string",
                           "description": "The Authentication Context Class Reference of the user authentication\nperformed during the course of issuing the credential offer.\n"
+                        },
+                        "credentialConfigurationIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+                        },
+                        "txCode": {
+                          "type": "string",
+                          "description": "The transaction code.\n"
+                        },
+                        "txCodeInputMode": {
+                          "type": "string",
+                          "description": "The input mode of the transaction code.\n"
+                        },
+                        "txCodeDescription": {
+                          "type": "string",
+                          "description": "The description of the transaction code.\n"
                         }
                       }
                     }
@@ -40375,10 +40389,6 @@
                           "type": "string",
                           "description": "The identifier of the credential issuer."
                         },
-                        "credentials": {
-                          "type": "string",
-                          "description": "The value of the `credentials` object in the JSON format."
-                        },
                         "authorizationCodeGrantIncluded": {
                           "type": "boolean",
                           "description": "The flag indicating whether the `authorization_code` object is\nincluded in the `grants` object.\n"
@@ -40398,14 +40408,6 @@
                         "preAuthorizedCode": {
                           "type": "string",
                           "description": "The value of the `pre-authorized_code` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                        },
-                        "userPinRequired": {
-                          "type": "boolean",
-                          "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                        },
-                        "userPin": {
-                          "type": "string",
-                          "description": "The value of the user PIN associated with the credential offer."
                         },
                         "subject": {
                           "type": "string",
@@ -40453,6 +40455,25 @@
                         "acr": {
                           "type": "string",
                           "description": "The Authentication Context Class Reference of the user authentication\nperformed during the course of issuing the credential offer.\n"
+                        },
+                        "credentialConfigurationIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+                        },
+                        "txCode": {
+                          "type": "string",
+                          "description": "The transaction code.\n"
+                        },
+                        "txCodeInputMode": {
+                          "type": "string",
+                          "description": "The input mode of the transaction code.\n"
+                        },
+                        "txCodeDescription": {
+                          "type": "string",
+                          "description": "The description of the transaction code.\n"
                         }
                       }
                     }
@@ -45086,10 +45107,6 @@
             "type": "string",
             "description": "The identifier of the credential issuer."
           },
-          "credentials": {
-            "type": "string",
-            "description": "The value of the `credentials` object in the JSON format."
-          },
           "authorizationCodeGrantIncluded": {
             "type": "boolean",
             "description": "The flag indicating whether the `authorization_code` object is\nincluded in the `grants` object.\n"
@@ -45109,14 +45126,6 @@
           "preAuthorizedCode": {
             "type": "string",
             "description": "The value of the `pre-authorized_code` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-          },
-          "userPinRequired": {
-            "type": "boolean",
-            "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-          },
-          "userPin": {
-            "type": "string",
-            "description": "The value of the user PIN associated with the credential offer."
           },
           "subject": {
             "type": "string",
@@ -45164,6 +45173,25 @@
           "acr": {
             "type": "string",
             "description": "The Authentication Context Class Reference of the user authentication\nperformed during the course of issuing the credential offer.\n"
+          },
+          "credentialConfigurationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+          },
+          "txCode": {
+            "type": "string",
+            "description": "The transaction code.\n"
+          },
+          "txCodeInputMode": {
+            "type": "string",
+            "description": "The input mode of the transaction code.\n"
+          },
+          "txCodeDescription": {
+            "type": "string",
+            "description": "The description of the transaction code.\n"
           }
         }
       },
