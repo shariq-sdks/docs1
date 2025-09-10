@@ -20535,7 +20535,7 @@
                           "items": {
                             "type": "string"
                           },
-                          "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+                          "description": "The value of the `credential_configuration_ids` property of the credential offer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
                         },
                         "txCode": {
                           "type": "string",
@@ -39912,10 +39912,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "credentials": {
-                    "type": "string",
-                    "description": "The value of the `credentials` object in the JSON format."
-                  },
                   "authorizationCodeGrantIncluded": {
                     "type": "boolean",
                     "description": "The flag indicating whether the `authorization_code` object is\nincluded in the `grants` object.\n"
@@ -39927,15 +39923,6 @@
                   "preAuthorizedCodeGrantIncluded": {
                     "type": "boolean",
                     "description": "The flag to include the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object\nin the `grants` object.\n"
-                  },
-                  "userPinRequired": {
-                    "type": "boolean",
-                    "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                  },
-                  "userPinLength": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The length of the user PIN to generate."
                   },
                   "subject": {
                     "type": "string",
@@ -39983,6 +39970,25 @@
                   "acr": {
                     "type": "string",
                     "description": "The Authentication Context Class Reference of the user authentication\nperformed during the course of issuing the credential offer.\n"
+                  },
+                  "credentialConfigurationIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The value of the `credential_configuration_ids` array.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n\nThis property is mandatory.\n"
+                  },
+                  "txCode": {
+                    "type": "string",
+                    "description": "The transaction code that should be associated with the credential offer.\n\nIf this parameter is not empty and the `preAuthorizedCodeGrantIncluded` parameter is `true`, the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object will include the `tx_code` object.\n\nThe length of the value of this parameter will be used as the value of the `length` property in\nthe `tx_code` object.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": {\n    \"urn:ietf:params:oauth:grant-type:pre-authorized_code\": {\n      \"pre-authorized_code\": \"...\",\n      \"tx_code\": {\n        \"length\": length\n      }\n    }\n  }\n}\n```\n"
+                  },
+                  "txCodeInputMode": {
+                    "type": "string",
+                    "description": "The input mode of the transaction code.\n\nThe value of this property will be used as the value of the `input_mode` property in the `tx_code`\nobject.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": {\n    \"urn:ietf:params:oauth:grant-type:pre-authorized_code\": {\n      \"pre-authorized_code\": \"...\",\n      \"tx_code\": {\n        \"length\": length,\n        \"input_mode\": \"...\"\n      }\n    }\n  }\n}\n```\n"
+                  },
+                  "txCodeDescription": {
+                    "type": "string",
+                    "description": "The description of the transaction code.\n\nThe value of this property will be used as the value of the `description` property in the `tx_code`\nobject.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": {\n    \"urn:ietf:params:oauth:grant-type:pre-authorized_code\": {\n      \"pre-authorized_code\": \"...\",\n      \"tx_code\": {\n        \"length\": length,\n        \"description\": \"...\"\n      }\n    }\n  }\n}\n```\n"
                   }
                 }
               }
@@ -39991,10 +39997,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "credentials": {
-                    "type": "string",
-                    "description": "The value of the `credentials` object in the JSON format."
-                  },
                   "authorizationCodeGrantIncluded": {
                     "type": "boolean",
                     "description": "The flag indicating whether the `authorization_code` object is\nincluded in the `grants` object.\n"
@@ -40006,15 +40008,6 @@
                   "preAuthorizedCodeGrantIncluded": {
                     "type": "boolean",
                     "description": "The flag to include the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object\nin the `grants` object.\n"
-                  },
-                  "userPinRequired": {
-                    "type": "boolean",
-                    "description": "The value of the `user_pin_required` property in the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object in\nthe `grants` object.\n"
-                  },
-                  "userPinLength": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The length of the user PIN to generate."
                   },
                   "subject": {
                     "type": "string",
@@ -40062,6 +40055,25 @@
                   "acr": {
                     "type": "string",
                     "description": "The Authentication Context Class Reference of the user authentication\nperformed during the course of issuing the credential offer.\n"
+                  },
+                  "credentialConfigurationIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The value of the `credential_configuration_ids` array.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n\nThis property is mandatory.\n"
+                  },
+                  "txCode": {
+                    "type": "string",
+                    "description": "The transaction code that should be associated with the credential offer.\n\nIf this parameter is not empty and the `preAuthorizedCodeGrantIncluded` parameter is `true`, the\n`urn:ietf:params:oauth:grant-type:pre-authorized_code` object will include the `tx_code` object.\n\nThe length of the value of this parameter will be used as the value of the `length` property in\nthe `tx_code` object.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": {\n    \"urn:ietf:params:oauth:grant-type:pre-authorized_code\": {\n      \"pre-authorized_code\": \"...\",\n      \"tx_code\": {\n        \"length\": length\n      }\n    }\n  }\n}\n```\n"
+                  },
+                  "txCodeInputMode": {
+                    "type": "string",
+                    "description": "The input mode of the transaction code.\n\nThe value of this property will be used as the value of the `input_mode` property in the `tx_code`\nobject.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": {\n    \"urn:ietf:params:oauth:grant-type:pre-authorized_code\": {\n      \"pre-authorized_code\": \"...\",\n      \"tx_code\": {\n        \"length\": length,\n        \"input_mode\": \"...\"\n      }\n    }\n  }\n}\n```\n"
+                  },
+                  "txCodeDescription": {
+                    "type": "string",
+                    "description": "The description of the transaction code.\n\nThe value of this property will be used as the value of the `description` property in the `tx_code`\nobject.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": {\n    \"urn:ietf:params:oauth:grant-type:pre-authorized_code\": {\n      \"pre-authorized_code\": \"...\",\n      \"tx_code\": {\n        \"length\": length,\n        \"description\": \"...\"\n      }\n    }\n  }\n}\n```\n"
                   }
                 }
               }
@@ -40181,7 +40193,7 @@
                           "items": {
                             "type": "string"
                           },
-                          "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+                          "description": "The value of the `credential_configuration_ids` property of the credential offer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
                         },
                         "txCode": {
                           "type": "string",
@@ -40461,7 +40473,7 @@
                           "items": {
                             "type": "string"
                           },
-                          "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+                          "description": "The value of the `credential_configuration_ids` property of the credential offer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
                         },
                         "txCode": {
                           "type": "string",
@@ -45179,7 +45191,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The value of the credential_configuration_ids property of the credential\noffer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
+            "description": "The value of the `credential_configuration_ids` property of the credential offer.\n\n```\n{\n  \"credential_issuer\": \"...\",\n  \"credential_configuration_ids\": [ ... ],\n  \"grants\": { ... }\n}\n```\n"
           },
           "txCode": {
             "type": "string",
