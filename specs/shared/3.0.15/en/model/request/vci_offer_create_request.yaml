@@ -1,8 +1,5 @@
 type: object
 properties:
-  credentials:
-    type: string
-    description: The value of the `credentials` object in the JSON format.
   authorizationCodeGrantIncluded:
     type: boolean
     description: |
@@ -20,16 +17,6 @@ properties:
       The flag to include the
       `urn:ietf:params:oauth:grant-type:pre-authorized_code` object
       in the `grants` object.
-  userPinRequired:
-    type: boolean
-    description: |
-      The value of the `user_pin_required` property in the
-      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object in
-      the `grants` object.
-  userPinLength:
-    type: integer
-    format: int32
-    description: The length of the user PIN to generate.
   subject:
     type: string
     description: The subject associated with the credential offer.
@@ -61,3 +48,90 @@ properties:
     description: |
       The Authentication Context Class Reference of the user authentication
       performed during the course of issuing the credential offer.
+  credentialConfigurationIds:
+    type: array
+    items:
+      type: string
+    description: |
+      The value of the `credential_configuration_ids` array.
+
+      ```
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": { ... }
+      }
+      ```
+
+      This property is mandatory.
+  txCode:
+    type: string
+    description: |
+      The transaction code that should be associated with the credential offer.
+
+      If this parameter is not empty and the `preAuthorizedCodeGrantIncluded` parameter is `true`, the
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object will include the `tx_code` object.
+
+      The length of the value of this parameter will be used as the value of the `length` property in
+      the `tx_code` object.
+
+      ```
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": {
+          "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+            "pre-authorized_code": "...",
+            "tx_code": {
+              "length": length
+            }
+          }
+        }
+      }
+      ```
+  txCodeInputMode:
+    type: string
+    description: |
+      The input mode of the transaction code.
+
+      The value of this property will be used as the value of the `input_mode` property in the `tx_code`
+      object.
+
+      ```
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": {
+          "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+            "pre-authorized_code": "...",
+            "tx_code": {
+              "length": length,
+              "input_mode": "..."
+            }
+          }
+        }
+      }
+      ```
+  txCodeDescription:
+    type: string
+    description: |
+      The description of the transaction code.
+
+      The value of this property will be used as the value of the `description` property in the `tx_code`
+      object.
+
+      ```
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": {
+          "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+            "pre-authorized_code": "...",
+            "tx_code": {
+              "length": length,
+              "description": "..."
+            }
+          }
+        }
+      }
+      ```
