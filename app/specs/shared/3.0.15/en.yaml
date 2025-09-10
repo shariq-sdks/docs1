@@ -1099,13 +1099,16 @@
                     "credentialIssuerMetadata": {
                       "type": "object",
                       "properties": {
+                        "authorizationServers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                        },
                         "credentialIssuer": {
                           "type": "string",
                           "description": "The identifier of a credential request."
-                        },
-                        "authorizationServer": {
-                          "type": "string",
-                          "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                         },
                         "credentialEndpoint": {
                           "type": "boolean",
@@ -1123,6 +1126,24 @@
                         "credentialsSupported": {
                           "type": "boolean",
                           "description": "A JSON array describing supported credentials."
+                        },
+                        "credentialResponseEncryptionAlgValuesSupported": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                        },
+                        "credentialResponseEncryptionEncValuesSupported": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                        },
+                        "requireCredentialResponseEncryption": {
+                          "type": "boolean",
+                          "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                         }
                       }
                     },
@@ -2478,13 +2499,16 @@
                           "credentialIssuerMetadata": {
                             "type": "object",
                             "properties": {
+                              "authorizationServers": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                              },
                               "credentialIssuer": {
                                 "type": "string",
                                 "description": "The identifier of a credential request."
-                              },
-                              "authorizationServer": {
-                                "type": "string",
-                                "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                               },
                               "credentialEndpoint": {
                                 "type": "boolean",
@@ -2502,6 +2526,24 @@
                               "credentialsSupported": {
                                 "type": "boolean",
                                 "description": "A JSON array describing supported credentials."
+                              },
+                              "credentialResponseEncryptionAlgValuesSupported": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                              },
+                              "credentialResponseEncryptionEncValuesSupported": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                              },
+                              "requireCredentialResponseEncryption": {
+                                "type": "boolean",
+                                "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                               }
                             }
                           },
@@ -3832,13 +3874,16 @@
                   "credentialIssuerMetadata": {
                     "type": "object",
                     "properties": {
+                      "authorizationServers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                      },
                       "credentialIssuer": {
                         "type": "string",
                         "description": "The identifier of a credential request."
-                      },
-                      "authorizationServer": {
-                        "type": "string",
-                        "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                       },
                       "credentialEndpoint": {
                         "type": "boolean",
@@ -3856,6 +3901,24 @@
                       "credentialsSupported": {
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
+                      },
+                      "credentialResponseEncryptionAlgValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                      },
+                      "credentialResponseEncryptionEncValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                      },
+                      "requireCredentialResponseEncryption": {
+                        "type": "boolean",
+                        "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                       }
                     }
                   },
@@ -4965,13 +5028,16 @@
                   "credentialIssuerMetadata": {
                     "type": "object",
                     "properties": {
+                      "authorizationServers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                      },
                       "credentialIssuer": {
                         "type": "string",
                         "description": "The identifier of a credential request."
-                      },
-                      "authorizationServer": {
-                        "type": "string",
-                        "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                       },
                       "credentialEndpoint": {
                         "type": "boolean",
@@ -4989,6 +5055,24 @@
                       "credentialsSupported": {
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
+                      },
+                      "credentialResponseEncryptionAlgValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                      },
+                      "credentialResponseEncryptionEncValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                      },
+                      "requireCredentialResponseEncryption": {
+                        "type": "boolean",
+                        "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                       }
                     }
                   },
@@ -6053,13 +6137,16 @@
                     "credentialIssuerMetadata": {
                       "type": "object",
                       "properties": {
+                        "authorizationServers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                        },
                         "credentialIssuer": {
                           "type": "string",
                           "description": "The identifier of a credential request."
-                        },
-                        "authorizationServer": {
-                          "type": "string",
-                          "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                         },
                         "credentialEndpoint": {
                           "type": "boolean",
@@ -6077,6 +6164,24 @@
                         "credentialsSupported": {
                           "type": "boolean",
                           "description": "A JSON array describing supported credentials."
+                        },
+                        "credentialResponseEncryptionAlgValuesSupported": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                        },
+                        "credentialResponseEncryptionEncValuesSupported": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                        },
+                        "requireCredentialResponseEncryption": {
+                          "type": "boolean",
+                          "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                         }
                       }
                     },
@@ -7387,13 +7492,16 @@
                   "credentialIssuerMetadata": {
                     "type": "object",
                     "properties": {
+                      "authorizationServers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                      },
                       "credentialIssuer": {
                         "type": "string",
                         "description": "The identifier of a credential request."
-                      },
-                      "authorizationServer": {
-                        "type": "string",
-                        "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                       },
                       "credentialEndpoint": {
                         "type": "boolean",
@@ -7411,6 +7519,24 @@
                       "credentialsSupported": {
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
+                      },
+                      "credentialResponseEncryptionAlgValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                      },
+                      "credentialResponseEncryptionEncValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                      },
+                      "requireCredentialResponseEncryption": {
+                        "type": "boolean",
+                        "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                       }
                     }
                   },
@@ -8570,13 +8696,16 @@
                   "credentialIssuerMetadata": {
                     "type": "object",
                     "properties": {
+                      "authorizationServers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                      },
                       "credentialIssuer": {
                         "type": "string",
                         "description": "The identifier of a credential request."
-                      },
-                      "authorizationServer": {
-                        "type": "string",
-                        "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                       },
                       "credentialEndpoint": {
                         "type": "boolean",
@@ -8594,6 +8723,24 @@
                       "credentialsSupported": {
                         "type": "boolean",
                         "description": "A JSON array describing supported credentials."
+                      },
+                      "credentialResponseEncryptionAlgValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                      },
+                      "credentialResponseEncryptionEncValuesSupported": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                      },
+                      "requireCredentialResponseEncryption": {
+                        "type": "boolean",
+                        "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                       }
                     }
                   },
@@ -9658,13 +9805,16 @@
                     "credentialIssuerMetadata": {
                       "type": "object",
                       "properties": {
+                        "authorizationServers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                        },
                         "credentialIssuer": {
                           "type": "string",
                           "description": "The identifier of a credential request."
-                        },
-                        "authorizationServer": {
-                          "type": "string",
-                          "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                         },
                         "credentialEndpoint": {
                           "type": "boolean",
@@ -9682,6 +9832,24 @@
                         "credentialsSupported": {
                           "type": "boolean",
                           "description": "A JSON array describing supported credentials."
+                        },
+                        "credentialResponseEncryptionAlgValuesSupported": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                        },
+                        "credentialResponseEncryptionEncValuesSupported": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                        },
+                        "requireCredentialResponseEncryption": {
+                          "type": "boolean",
+                          "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                         }
                       }
                     },
@@ -20042,13 +20210,16 @@
                         "credentialIssuerMetadata": {
                           "type": "object",
                           "properties": {
+                            "authorizationServers": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+                            },
                             "credentialIssuer": {
                               "type": "string",
                               "description": "The identifier of a credential request."
-                            },
-                            "authorizationServer": {
-                              "type": "string",
-                              "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
                             },
                             "credentialEndpoint": {
                               "type": "boolean",
@@ -20066,6 +20237,24 @@
                             "credentialsSupported": {
                               "type": "boolean",
                               "description": "A JSON array describing supported credentials."
+                            },
+                            "credentialResponseEncryptionAlgValuesSupported": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+                            },
+                            "credentialResponseEncryptionEncValuesSupported": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+                            },
+                            "requireCredentialResponseEncryption": {
+                              "type": "boolean",
+                              "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
                             }
                           }
                         },
@@ -45006,13 +45195,16 @@
           "credentialIssuerMetadata": {
             "type": "object",
             "properties": {
+              "authorizationServers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+              },
               "credentialIssuer": {
                 "type": "string",
                 "description": "The identifier of a credential request."
-              },
-              "authorizationServer": {
-                "type": "string",
-                "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
               },
               "credentialEndpoint": {
                 "type": "boolean",
@@ -45030,6 +45222,24 @@
               "credentialsSupported": {
                 "type": "boolean",
                 "description": "A JSON array describing supported credentials."
+              },
+              "credentialResponseEncryptionAlgValuesSupported": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+              },
+              "credentialResponseEncryptionEncValuesSupported": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+              },
+              "requireCredentialResponseEncryption": {
+                "type": "boolean",
+                "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
               }
             }
           },
@@ -45285,13 +45495,16 @@
       "CredentialIssuerMetadata": {
         "type": "object",
         "properties": {
+          "authorizationServers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The identifiers of the authorization servers that the credential issuer relies on for authorization.\nThis property corresponds to the authorization_servers metadata. When the credential issuer works\nas an authorization server for itself, this property should be omitted.\n"
+          },
           "credentialIssuer": {
             "type": "string",
             "description": "The identifier of a credential request."
-          },
-          "authorizationServer": {
-            "type": "string",
-            "description": "The identifier of the authorization server that the credential issuer\nrelies on for authorization.\n"
           },
           "credentialEndpoint": {
             "type": "boolean",
@@ -45309,6 +45522,24 @@
           "credentialsSupported": {
             "type": "boolean",
             "description": "A JSON array describing supported credentials."
+          },
+          "credentialResponseEncryptionAlgValuesSupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The supported JWE `alg` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.alg_values_supported` metadata.\n"
+          },
+          "credentialResponseEncryptionEncValuesSupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The supported JWE `enc` algorithms for credential response encryption. This property corresponds\nto the `credential_response_encryption.enc_values_supported` metadata.\n"
+          },
+          "requireCredentialResponseEncryption": {
+            "type": "boolean",
+            "description": "The boolean flag indicating whether credential response encryption is required. This property\ncorresponds to the `credential_response_encryption.encryption_required metadata`. If this flag\nis `true`, every credential request to the credential issuer must include the `credential_response_encryption`\nproperty.\n"
           }
         }
       }
