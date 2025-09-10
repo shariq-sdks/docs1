@@ -40693,6 +40693,13 @@
                           "type": "string",
                           "description": "The binding key specified by the proof in the credential request."
                         },
+                        "bindingKeys": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The binding keys specified by the proofs in the credential request."
+                        },
                         "details": {
                           "type": "string",
                           "description": "The details about the credential request."
@@ -41106,6 +41113,13 @@
                             "type": "string",
                             "description": "The binding key specified by the proof in the credential request."
                           },
+                          "bindingKeys": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The binding keys specified by the proofs in the credential request."
+                          },
                           "details": {
                             "type": "string",
                             "description": "The details about the credential request."
@@ -41518,6 +41532,13 @@
                         "bindingKey": {
                           "type": "string",
                           "description": "The binding key specified by the proof in the credential request."
+                        },
+                        "bindingKeys": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The binding keys specified by the proofs in the credential request."
                         },
                         "details": {
                           "type": "string",
@@ -45221,6 +45242,13 @@
           "bindingKey": {
             "type": "string",
             "description": "The binding key specified by the proof in the credential request."
+          },
+          "bindingKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The binding keys specified by the proofs in the credential request."
           },
           "details": {
             "type": "string",
