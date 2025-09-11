@@ -123,13 +123,13 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../model/request/client_registration_request.yaml
+          allOf:
+            - $ref: ../model/request/client_registration_request.yaml
+            - type: object
+              required: [ clientId, token ]
         example:
           clientId: "26837717140341"
           token: "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA"
-      application/x-www-form-urlencoded:
-        schema:
-          $ref: ../model/request/client_registration_request.yaml
   responses:
     '200':
       description: ""

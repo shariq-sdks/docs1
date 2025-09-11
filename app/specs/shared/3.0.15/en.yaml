@@ -26950,49 +26950,34 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "json"
-                ],
-                "properties": {
-                  "json": {
-                    "type": "string",
-                    "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "json": {
+                        "type": "string",
+                        "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                      },
+                      "token": {
+                        "type": "string",
+                        "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
+                      }
+                    }
                   },
-                  "token": {
-                    "type": "string",
-                    "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
-                  },
-                  "clientId": {
-                    "type": "string",
-                    "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
+                  {
+                    "type": "object",
+                    "required": [
+                      "json"
+                    ]
                   }
-                }
+                ]
               },
               "example": {
                 "json": "{ \"client_name\": \"My Dynamic Client\" }"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "json"
-                ],
-                "properties": {
-                  "json": {
-                    "type": "string",
-                    "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
-                  },
-                  "token": {
-                    "type": "string",
-                    "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
-                  },
-                  "clientId": {
-                    "type": "string",
-                    "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
-                  }
-                }
               }
             }
           }
@@ -28036,50 +28021,36 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "json"
-                ],
-                "properties": {
-                  "json": {
-                    "type": "string",
-                    "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "json": {
+                        "type": "string",
+                        "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                      },
+                      "token": {
+                        "type": "string",
+                        "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
+                      }
+                    }
                   },
-                  "token": {
-                    "type": "string",
-                    "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
-                  },
-                  "clientId": {
-                    "type": "string",
-                    "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
+                  {
+                    "type": "object",
+                    "required": [
+                      "clientId",
+                      "token"
+                    ]
                   }
-                }
+                ]
               },
               "example": {
                 "clientId": "26837717140341",
                 "token": "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "json"
-                ],
-                "properties": {
-                  "json": {
-                    "type": "string",
-                    "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
-                  },
-                  "token": {
-                    "type": "string",
-                    "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
-                  },
-                  "clientId": {
-                    "type": "string",
-                    "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
-                  }
-                }
               }
             }
           }
@@ -29123,55 +29094,38 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "clientId",
-                  "token",
-                  "json"
-                ],
-                "properties": {
-                  "clientId": {
-                    "type": "string",
-                    "description": "Client ID.\n"
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "json": {
+                        "type": "string",
+                        "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                      },
+                      "token": {
+                        "type": "string",
+                        "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
+                      }
+                    }
                   },
-                  "token": {
-                    "type": "string",
-                    "description": "Client registration access token.\n"
-                  },
-                  "json": {
-                    "type": "string",
-                    "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                  {
+                    "type": "object",
+                    "required": [
+                      "clientId",
+                      "token",
+                      "json"
+                    ]
                   }
-                }
+                ]
               },
               "example": {
                 "clientId": "26837717140341",
                 "token": "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA",
                 "json": "{\"client_name\":\"My Updated Dynamic Client\",\"default_max_age\":0,\"registration_client_uri\":\"https://my-service.example.com/dcr/register/26837717140341\",\"client_id\":\"26837717140341\",\"token_endpoint_auth_method\":\"client_secret_basic\",\"require_pushed_authorization_requests\":false,\"backchannel_user_code_parameter\":false,\"client_secret\":\"bMsjvZm2FE1_mqJgxhmYj_Wr8rA0Pia_A_j-V076qQm6-P1edKB055W579GBe7MSbOdxZ3dJKsKinCtdIFwxpw\",\"tls_client_certificate_bound_access_tokens\":false,\"id_token_signed_response_alg\":\"RS256\",\"subject_type\":\"public\",\"require_signed_request_object\":false}"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "clientId",
-                  "token",
-                  "json"
-                ],
-                "properties": {
-                  "clientId": {
-                    "type": "string",
-                    "description": "Client ID.\n"
-                  },
-                  "token": {
-                    "type": "string",
-                    "description": "Client registration access token.\n"
-                  },
-                  "json": {
-                    "type": "string",
-                    "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
-                  }
-                }
               }
             }
           }
@@ -30216,44 +30170,36 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "clientId",
-                  "token"
-                ],
-                "properties": {
-                  "clientId": {
-                    "type": "string",
-                    "description": "Client ID.\n"
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "json": {
+                        "type": "string",
+                        "description": "Client metadata in JSON format that complies with [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)\n(OAuth 2.0 Dynamic Client Registration Protocol).\n"
+                      },
+                      "token": {
+                        "type": "string",
+                        "description": "The client registration access token. Used only for GET, UPDATE, and DELETE requests.\n"
+                      },
+                      "clientId": {
+                        "type": "string",
+                        "description": "The client's identifier. Used for GET, UPDATE, and DELETE requests\n"
+                      }
+                    }
                   },
-                  "token": {
-                    "type": "string",
-                    "description": "Client registration access token.\n"
+                  {
+                    "type": "object",
+                    "required": [
+                      "clientId",
+                      "token"
+                    ]
                   }
-                }
+                ]
               },
               "example": {
                 "clientId": "26837717140341",
                 "token": "qs4Tu5TV7qqDYT93bFs6ISyhTByMF9o-54GY4JU5vTA"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "clientId",
-                  "token"
-                ],
-                "properties": {
-                  "clientId": {
-                    "type": "string",
-                    "description": "Client ID.\n"
-                  },
-                  "token": {
-                    "type": "string",
-                    "description": "Client registration access token.\n"
-                  }
-                }
               }
             }
           }
