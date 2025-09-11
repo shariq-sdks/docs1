@@ -1,5 +1,4 @@
 type: object
-required: [ json ]
 properties:
   json:
     type: string
