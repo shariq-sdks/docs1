@@ -77,3 +77,15 @@ properties:
       NOTE: When the response from the `/auth/authorization` API contains the `nativeSsoRequested`
       property with a value of `true`, the `sessionId` request parameter must be provided to the
       `/auth/authorization/issue` API.
+  idTokenAudType:
+    type: string
+    description: |
+      The type of the `aud` claim of the ID token being issued. Valid values are as follows.
+
+      | Value | Description |
+      | ----- | ----------- |
+      | "array" | The type of the aud claim is always an array of strings. |
+      | "string" | The type of the aud claim is always a single string. |
+      | null | The type of the aud claim remains the same as before. |
+
+      This request parameter takes precedence over the `idTokenAudType` property of the service.
