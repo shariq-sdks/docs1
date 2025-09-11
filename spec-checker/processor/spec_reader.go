@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// The java file suffix.
+// The yaml file suffix.
 const yamlFileSuffix = ".yaml"
 
 // ReadSpec reads API doc specification yaml files and creates a Spec

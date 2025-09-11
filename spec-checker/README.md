@@ -24,7 +24,7 @@ API doc and reports any mismatches. It helps you quickly spot:
 
 Example:
 ```bash
-go run main.go \
+go run . \
   -ajc-path /path/to/authlete-java-common \
   -api-doc-path /path/to/new-api-doc \
   -server-type shared \
