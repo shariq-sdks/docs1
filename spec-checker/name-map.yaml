@@ -70,13 +70,3 @@ com.authlete.common.dto.UserInfoIssueResponse:
   - /model/response/userinfo_issue_response
 com.authlete.common.dto.ClientLockFlagUpdateRequest:
   - /model/request/client_flag_update_request
-com.authlete.common.dto.ClientRegistrationRequest:
-  - /model/request/client_registration_request
-  - /model/request/client_registration_get_request
-  - /model/request/client_registration_update_request
-  - /model/request/client_registration_delete_request
-com.authlete.common.dto.ClientRegistrationResponse:
-  - /model/response/client_registration_response
-  - /model/response/client_registration_get_response
-  - /model/response/client_registration_update_response
-  - /model/response/client_registration_delete_response
