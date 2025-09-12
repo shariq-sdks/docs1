@@ -131,7 +131,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../model/response/client_registration_delete_response.yaml
+            $ref: ../model/response/client_registration_response.yaml
           example:
             {
               "resultCode": "A216001",
