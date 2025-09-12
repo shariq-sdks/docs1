@@ -150,7 +150,7 @@ properties:
   acr:
     type: string
     description: |
-      The Authentication Context Class Reference of the user authentication that the authorization server performed 
+      The Authentication Context Class Reference of the user authentication that the authorization server performed
       during the course of issuing the access token.
   authTime:
     type: integer
@@ -183,3 +183,12 @@ properties:
     description: |
       The expected nonce value for DPoP proof JWT, which should be used
       as the value of the `DPoP-Nonce` HTTP header.
+  responseSigningRequired:
+    type: boolean
+    description: |
+      The flag indicating whether the HTTP response from the protected resource endpoint must include
+      an HTTP message signature ([RFC 9421 HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))
+      in compliance with [FAPI 2.0 Message Signing](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html).
+
+      When this response parameter is `true`, the HTTP response from the protected resource endpoint
+      must include the `Signature` and `Signature-Input` HTTP fields.

@@ -13,6 +13,6 @@ properties:
       - INVALID_REQUEST
       - NOT_FOUND
       - SERVER_ERROR
-    description: Result of the API call
+    description: Result of the API call.
   hsk:
     $ref: ../hsk.yaml
