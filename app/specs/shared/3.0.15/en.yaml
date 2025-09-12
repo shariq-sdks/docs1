@@ -34801,6 +34801,13 @@
                               }
                             },
                             "description": "The properties associated with the access token.\n"
+                          },
+                          "refreshTokenScopes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "The scopes associated with the refresh token.\n"
                           }
                         }
                       },
@@ -42911,6 +42918,13 @@
               }
             },
             "description": "The properties associated with the access token.\n"
+          },
+          "refreshTokenScopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The scopes associated with the refresh token.\n"
           }
         }
       },
