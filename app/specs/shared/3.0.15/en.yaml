@@ -791,6 +791,10 @@
                           "publicKey": {
                             "type": "string",
                             "description": "The public key that corresponds to the key on the HSM.\n"
+                          },
+                          "alg": {
+                            "type": "string",
+                            "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                           }
                         }
                       },
@@ -2191,6 +2195,10 @@
                                 "publicKey": {
                                   "type": "string",
                                   "description": "The public key that corresponds to the key on the HSM.\n"
+                                },
+                                "alg": {
+                                  "type": "string",
+                                  "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                                 }
                               }
                             },
@@ -3566,6 +3574,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     },
@@ -4720,6 +4732,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     },
@@ -5829,6 +5845,10 @@
                           "publicKey": {
                             "type": "string",
                             "description": "The public key that corresponds to the key on the HSM.\n"
+                          },
+                          "alg": {
+                            "type": "string",
+                            "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                           }
                         }
                       },
@@ -7184,6 +7204,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     },
@@ -8388,6 +8412,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     },
@@ -9497,6 +9525,10 @@
                           "publicKey": {
                             "type": "string",
                             "description": "The public key that corresponds to the key on the HSM.\n"
+                          },
+                          "alg": {
+                            "type": "string",
+                            "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                           }
                         }
                       },
@@ -11097,6 +11129,10 @@
                     "credentialResponseEncryptionRequired": {
                       "type": "boolean",
                       "description": "True if credential responses to this client must be always encrypted."
+                    },
+                    "mtlsEndpointAliasesUsed": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                     }
                   }
                 },
@@ -12173,6 +12209,10 @@
                           "credentialResponseEncryptionRequired": {
                             "type": "boolean",
                             "description": "True if credential responses to this client must be always encrypted."
+                          },
+                          "mtlsEndpointAliasesUsed": {
+                            "type": "boolean",
+                            "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                           }
                         }
                       },
@@ -13232,6 +13272,10 @@
                   "credentialResponseEncryptionRequired": {
                     "type": "boolean",
                     "description": "True if credential responses to this client must be always encrypted."
+                  },
+                  "mtlsEndpointAliasesUsed": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                   }
                 }
               },
@@ -14106,6 +14150,10 @@
                     "credentialResponseEncryptionRequired": {
                       "type": "boolean",
                       "description": "True if credential responses to this client must be always encrypted."
+                    },
+                    "mtlsEndpointAliasesUsed": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                     }
                   }
                 },
@@ -15141,6 +15189,10 @@
                   "credentialResponseEncryptionRequired": {
                     "type": "boolean",
                     "description": "True if credential responses to this client must be always encrypted."
+                  },
+                  "mtlsEndpointAliasesUsed": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                   }
                 }
               },
@@ -16022,6 +16074,10 @@
                   "credentialResponseEncryptionRequired": {
                     "type": "boolean",
                     "description": "True if credential responses to this client must be always encrypted."
+                  },
+                  "mtlsEndpointAliasesUsed": {
+                    "type": "boolean",
+                    "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                   }
                 }
               }
@@ -16865,6 +16921,10 @@
                     "credentialResponseEncryptionRequired": {
                       "type": "boolean",
                       "description": "True if credential responses to this client must be always encrypted."
+                    },
+                    "mtlsEndpointAliasesUsed": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                     }
                   }
                 },
@@ -19910,6 +19970,10 @@
                               "publicKey": {
                                 "type": "string",
                                 "description": "The public key that corresponds to the key on the HSM.\n"
+                              },
+                              "alg": {
+                                "type": "string",
+                                "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                               }
                             }
                           },
@@ -22809,6 +22873,18 @@
                         "type": "string"
                       },
                       "description": "Scopes associated with the refresh token.\n"
+                    },
+                    "sessionId": {
+                      "type": "string",
+                      "description": "The session ID, which is the ID of the user's authentication session, associated with a newly\ncreated access token.\n"
+                    },
+                    "deviceSecret": {
+                      "type": "string",
+                      "description": "If the response from the `/auth/token` API contains the `deviceSecret` parameter, its value should\nbe used as the value of this `deviceSecret` request parameter to the `/nativesso` API. The authorization\nserver may choose to issue a new device secret; in that case, it is free to generate a new device\nsecret and specify the new value.\n\nIf the response from the `/auth/token` API does not contain the `deviceSecret` parameter, or\nif its value is invalid, the authorization server must generate a new device secret and specify\nit in the deviceSecret parameter to the `/nativesso` API.\n\nThe specified value is used as the value of the `device_secret` property in the token response.\n"
+                    },
+                    "deviceSecretHash": {
+                      "type": "string",
+                      "description": "The authorization server should compute the hash value of the device secret based on its own logic\nand specify the computed hash as the value of this `deviceSecretHash` request parameter to the\n`/nativesso` API.\n\nWhen the `deviceSecretHash` parameter is omitted, the implementation of the `/nativesso` API\ngenerates the device secret hash by computing the SHA-256 hash of the device secret and encoding\nit with base64url. Note that this hash computation logic is not a rule defined in the Native SSO\nspecification; rather, it is Authlete-specific fallback logic used when the `deviceSecretHash`\nparameter is omitted.\n"
                     }
                   }
                 },
@@ -24343,7 +24419,7 @@
                     },
                     "acr": {
                       "type": "string",
-                      "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                      "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed\nduring the course of issuing the access token.\n"
                     },
                     "authTime": {
                       "type": "integer",
@@ -24378,6 +24454,10 @@
                     "dpopNonce": {
                       "type": "string",
                       "description": "The expected nonce value for DPoP proof JWT, which should be used\nas the value of the `DPoP-Nonce` HTTP header.\n"
+                    },
+                    "responseSigningRequired": {
+                      "type": "boolean",
+                      "description": "The flag indicating whether the HTTP response from the protected resource endpoint must include\nan HTTP message signature ([RFC 9421 HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))\nin compliance with [FAPI 2.0 Message Signing](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html).\n\nWhen this response parameter is `true`, the HTTP response from the protected resource endpoint\nmust include the `Signature` and `Signature-Input` HTTP fields.\n"
                     }
                   }
                 },
@@ -26070,17 +26150,6 @@
                     "type": "string",
                     "description": "An access token to introspect."
                   },
-                  "scopes": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "A string array listing names of scopes which the caller (= a protected resource endpoint of the\nservice) requires. When the content type of the request from the service is `application/x-www-form-urlencoded`,\nthe format of `scopes` is a space-separated list of scope names.\n\nIf this parameter is a non-empty array and if it contains a scope which is not covered by the\naccess token,`action=FORBIDDEN` with `error=insufficient_scope` is returned from Authlete.\n"
-                  },
-                  "subject": {
-                    "type": "string",
-                    "description": "A subject (= a user account managed by the service) whom the caller (= a protected resource\nendpoint of the service) requires.\n\nIf this parameter is not `null` and if the value does not match the subject who is associated\nwith the access token, `action=FORBIDDEN` with `error=invalid_request` is returned from Authlete.\n"
-                  },
                   "clientCertificate": {
                     "type": "string",
                     "description": "Client certificate in PEM format, used to validate binding against access tokens using the TLS\nclient certificate confirmation method.\n"
@@ -26096,13 +26165,6 @@
                   "htu": {
                     "type": "string",
                     "description": "URL of the protected resource endpoint. This field is used to validate the `DPoP` header.\n\nSee [OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)\nfor details.\n"
-                  },
-                  "resources": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "The resources specified by the `resource` request parameters in the token request. See \"Resource Indicators for OAuth 2.0\" for details.\n"
                   },
                   "gmAction": {
                     "type": "string",
@@ -27873,6 +27935,10 @@
                         "credentialResponseEncryptionRequired": {
                           "type": "boolean",
                           "description": "True if credential responses to this client must be always encrypted."
+                        },
+                        "mtlsEndpointAliasesUsed": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                         }
                       }
                     }
@@ -28950,6 +29016,10 @@
                         "credentialResponseEncryptionRequired": {
                           "type": "boolean",
                           "description": "True if credential responses to this client must be always encrypted."
+                        },
+                        "mtlsEndpointAliasesUsed": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                         }
                       }
                     }
@@ -30029,6 +30099,10 @@
                         "credentialResponseEncryptionRequired": {
                           "type": "boolean",
                           "description": "True if credential responses to this client must be always encrypted."
+                        },
+                        "mtlsEndpointAliasesUsed": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                         }
                       }
                     }
@@ -31106,6 +31180,10 @@
                         "credentialResponseEncryptionRequired": {
                           "type": "boolean",
                           "description": "True if credential responses to this client must be always encrypted."
+                        },
+                        "mtlsEndpointAliasesUsed": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                         }
                       }
                     }
@@ -35210,7 +35288,7 @@
                   },
                   "acr": {
                     "type": "string",
-                    "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                    "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed\nduring the course of issuing the access token.\n"
                   },
                   "authTime": {
                     "type": "integer",
@@ -35220,6 +35298,14 @@
                   "clientEntityIdUsed": {
                     "type": "boolean",
                     "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
+                  },
+                  "clientIdentifier": {
+                    "type": "string",
+                    "description": "The client Identifier associated with the newly issued access token.\n"
+                  },
+                  "sessionId": {
+                    "type": "string",
+                    "description": "The session ID, which is the ID of the user's authentication session, associated with a newly\ncreated access token.\n"
                   }
                 }
               },
@@ -35403,7 +35489,7 @@
                   },
                   "acr": {
                     "type": "string",
-                    "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed \nduring the course of issuing the access token.\n"
+                    "description": "The Authentication Context Class Reference of the user authentication that the authorization server performed\nduring the course of issuing the access token.\n"
                   },
                   "authTime": {
                     "type": "integer",
@@ -35413,6 +35499,14 @@
                   "clientEntityIdUsed": {
                     "type": "boolean",
                     "description": "Flag which indicates whether the entity ID of the client was used when the request for the access token was made.\n"
+                  },
+                  "clientIdentifier": {
+                    "type": "string",
+                    "description": "The client Identifier associated with the newly issued access token.\n"
+                  },
+                  "sessionId": {
+                    "type": "string",
+                    "description": "The session ID, which is the ID of the user's authentication session, associated with a newly\ncreated access token.\n"
                   }
                 }
               }
@@ -35584,6 +35678,14 @@
                         "type": "string"
                       },
                       "description": "The scopes associated with the refresh token. May be null.\n"
+                    },
+                    "clientIdentifier": {
+                      "type": "string",
+                      "description": "The client Identifier that will be associated with a newly created access token.\n"
+                    },
+                    "sessionId": {
+                      "type": "string",
+                      "description": "The session ID associated with a newly created access token.\n\nNOTE: A refresh token must be associated with a session ID, which is the ID of the user's authentication\nsession, in order to be used to obtain a [Native SSO](https://openid.net/specs/openid-connect-native-sso-1_0.html)-compliant\nID token in the refresh token flow.\n"
                     }
                   }
                 },
@@ -35873,6 +35975,19 @@
                   "forExternalAttachment": {
                     "type": "boolean",
                     "description": "the flag which indicates whether the access token is for an external\nattachment.\n"
+                  },
+                  "refreshTokenExpiresAt": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "A new date at which the access token will expire in milliseconds since the Unix epoch (1970-01-01).\nIf the `refreshTokenExpiresAt` request parameter is not included in a request or its value is 0\n(or negative), the expiration date of the refresh token is not changed.\n"
+                  },
+                  "refreshTokenExpiresAtUpdatedOnScopeUpdate": {
+                    "type": "boolean",
+                    "description": "A boolean request parameter which indicates whether the API attempts to update the expiration\ndate of the refresh token when the scopes linked to the refresh token are changed by this request.\n"
+                  },
+                  "tokenId": {
+                    "type": "string",
+                    "description": "The token identifier.\n"
                   }
                 }
               },
@@ -36012,6 +36127,19 @@
                   "forExternalAttachment": {
                     "type": "boolean",
                     "description": "the flag which indicates whether the access token is for an external\nattachment.\n"
+                  },
+                  "refreshTokenExpiresAt": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "A new date at which the access token will expire in milliseconds since the Unix epoch (1970-01-01).\nIf the `refreshTokenExpiresAt` request parameter is not included in a request or its value is 0\n(or negative), the expiration date of the refresh token is not changed.\n"
+                  },
+                  "refreshTokenExpiresAtUpdatedOnScopeUpdate": {
+                    "type": "boolean",
+                    "description": "A boolean request parameter which indicates whether the API attempts to update the expiration\ndate of the refresh token when the scopes linked to the refresh token are changed by this request.\n"
+                  },
+                  "tokenId": {
+                    "type": "string",
+                    "description": "The token identifier.\n"
                   }
                 }
               }
@@ -38014,6 +38142,10 @@
                         "credentialResponseEncryptionRequired": {
                           "type": "boolean",
                           "description": "True if credential responses to this client must be always encrypted."
+                        },
+                        "mtlsEndpointAliasesUsed": {
+                          "type": "boolean",
+                          "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
                         }
                       }
                     }
@@ -38747,7 +38879,7 @@
                   },
                   "use": {
                     "type": "string",
-                    "description": "The key on the HSM. \nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                    "description": "The key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
                   },
                   "kid": {
                     "type": "string",
@@ -38757,13 +38889,9 @@
                     "type": "string",
                     "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
                   },
-                  "handle": {
+                  "alg": {
                     "type": "string",
-                    "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
-                  },
-                  "publicKey": {
-                    "type": "string",
-                    "description": "The public key that corresponds to the key on the HSM.\n"
+                    "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a signing\nalgorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an encryption\nalgorithm such as `\"RSA-OAEP-256\"`.\n\nIt is rare that HSMs support all the algorithms listed in [RFC 7518 JSON Web Algorithms (JWA)](https://www.rfc-editor.org/rfc/rfc7518.html).\nWhen the specified algorithm is not supported by the HSM, the request to the `/hsk/create` API\nfails.\n"
                   }
                 }
               }
@@ -38778,7 +38906,7 @@
                   },
                   "use": {
                     "type": "string",
-                    "description": "The key on the HSM. \nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
+                    "description": "The key on the HSM.\nWhen the key use is \"sig\" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.\nWhen the key use is \"enc\" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key\n"
                   },
                   "kid": {
                     "type": "string",
@@ -38788,13 +38916,9 @@
                     "type": "string",
                     "description": "The name of the HSM.\nThe identifier for the HSM that sits behind the Authlete server. For example, \"google\".\n"
                   },
-                  "handle": {
+                  "alg": {
                     "type": "string",
-                    "description": "The handle for the key on the HSM.\nA handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API\n"
-                  },
-                  "publicKey": {
-                    "type": "string",
-                    "description": "The public key that corresponds to the key on the HSM.\n"
+                    "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a signing\nalgorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an encryption\nalgorithm such as `\"RSA-OAEP-256\"`.\n\nIt is rare that HSMs support all the algorithms listed in [RFC 7518 JSON Web Algorithms (JWA)](https://www.rfc-editor.org/rfc/rfc7518.html).\nWhen the specified algorithm is not supported by the HSM, the request to the `/hsk/create` API\nfails.\n"
                   }
                 }
               }
@@ -38825,7 +38949,7 @@
                         "NOT_FOUND",
                         "SERVER_ERROR"
                       ],
-                      "description": "Result of the API call"
+                      "description": "Result of the API call."
                     },
                     "hsk": {
                       "type": "object",
@@ -38854,6 +38978,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     }
@@ -39045,6 +39173,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     }
@@ -39237,6 +39369,10 @@
                         "publicKey": {
                           "type": "string",
                           "description": "The public key that corresponds to the key on the HSM.\n"
+                        },
+                        "alg": {
+                          "type": "string",
+                          "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                         }
                       }
                     }
@@ -39421,6 +39557,10 @@
                           "publicKey": {
                             "type": "string",
                             "description": "The public key that corresponds to the key on the HSM.\n"
+                          },
+                          "alg": {
+                            "type": "string",
+                            "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                           }
                         }
                       },
@@ -43956,6 +44096,10 @@
           "credentialResponseEncryptionRequired": {
             "type": "boolean",
             "description": "True if credential responses to this client must be always encrypted."
+          },
+          "mtlsEndpointAliasesUsed": {
+            "type": "boolean",
+            "description": "The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.\n\nThis property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in\n[FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).\n"
           }
         }
       },
@@ -44919,6 +45063,10 @@
                 "publicKey": {
                   "type": "string",
                   "description": "The public key that corresponds to the key on the HSM.\n"
+                },
+                "alg": {
+                  "type": "string",
+                  "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
                 }
               }
             },
@@ -45364,6 +45512,10 @@
           "publicKey": {
             "type": "string",
             "description": "The public key that corresponds to the key on the HSM.\n"
+          },
+          "alg": {
+            "type": "string",
+            "description": "The algorithm of the key on the HSM. When the key use is `\"sig\"`, the algorithm represents a\nsigning algorithm such as `\"ES256\"`. When the key use is `\"enc\"`, the algorithm represents an\nencryption algorithm such as `\"RSA-OAEP-256\"`.\n"
           }
         }
       },

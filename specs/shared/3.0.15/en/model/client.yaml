@@ -698,3 +698,10 @@ properties:
   credentialResponseEncryptionRequired:
     type: boolean
     description: True if credential responses to this client must be always encrypted.
+  mtlsEndpointAliasesUsed:
+    type: boolean
+    description: |
+      The flag indicating whether the client intends to prefer mutual TLS endpoints over non-MTLS endpoints.
+
+      This property corresponds to the `use_mtls_endpoint_aliases` client metadata that is defined in
+      [FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).

@@ -30,3 +30,9 @@ properties:
     type: string
     description: |
       The public key that corresponds to the key on the HSM.
+  alg:
+    type: string
+    description: |
+      The algorithm of the key on the HSM. When the key use is `"sig"`, the algorithm represents a
+      signing algorithm such as `"ES256"`. When the key use is `"enc"`, the algorithm represents an
+      encryption algorithm such as `"RSA-OAEP-256"`.

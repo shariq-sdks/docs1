@@ -44,6 +44,8 @@ skipRule:
     - com.authlete.common.dto.DeveloperAuthenticationCallbackRequest
     - com.authlete.common.dto.DeveloperAuthenticationCallbackResponse
   properties:
+    com.authlete.common.dto.Client:
+      - developer
     com.authlete.common.dto.Service:
       - serviceOwnerNumber
       - apiSecret
