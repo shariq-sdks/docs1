@@ -47,3 +47,9 @@ properties:
       $ref: ./property.yaml
     description: |
       The properties associated with the access token.
+  refreshTokenScopes:
+    type: array
+    items:
+      type: string
+    description: |
+      The scopes associated with the refresh token.
