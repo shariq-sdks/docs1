@@ -24,6 +24,7 @@ put:
           $ref: ../model/request/client_extension_requestable_scopes_update_request.yaml
   responses:
     '200':
+      description: ""
       content:
         application/json:
           schema:

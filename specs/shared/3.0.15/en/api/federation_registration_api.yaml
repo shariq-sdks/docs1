@@ -55,6 +55,7 @@ post:
           $ref: ../model/request/federation_registration_request.yaml
   responses:
     '200':
+      description: ""
       content:
         application/json:
           schema:
