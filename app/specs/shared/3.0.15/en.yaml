@@ -14936,7 +14936,7 @@ paths:
           $ref: '#/paths/~1api~1info/get/responses/403'
         '500':
           $ref: '#/paths/~1api~1info/get/responses/500'
-      operationId: native_sso_api
+      operationId: native_sso_logout_api
       x-code-samples:
         - lang: shell
           label: curl

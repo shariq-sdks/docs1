@@ -61,7 +61,7 @@ post:
       $ref: ../model/response/403.yaml
     "500":
       $ref: ../model/response/500.yaml
-  operationId: "native_sso_api"
+  operationId: "native_sso_logout_api"
   x-code-samples:
     - lang: shell
       label: curl
