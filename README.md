@@ -107,7 +107,7 @@ NOTE: The bundled file must be outputted as `./app/spec/{server_type}/{version}/
 ```shell
 # Bundle API specification files in 'specs/shared/3.0.0/en' directory and output
 # it as 'app/specs/shared/3.0.0/en.yaml'.
-$ swagger-cli bundle -f yaml \
+$ swagger-cli bundle --type yaml \
 -o app/specs/shared/3.0.0/en.yaml \
 specs/shared/3.0.0/en/authlete-api.yaml
 ```
