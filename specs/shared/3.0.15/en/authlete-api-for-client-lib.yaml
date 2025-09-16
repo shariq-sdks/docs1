@@ -100,7 +100,7 @@ info:
         </section>
       </main>
     </div>
-  version: "3.0.0"
+  version: "3.0.15"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
