@@ -17,6 +17,7 @@ delete:
       required: true
   responses:
     '204':
+      description: ""
       content:
         application/json:
           schema:

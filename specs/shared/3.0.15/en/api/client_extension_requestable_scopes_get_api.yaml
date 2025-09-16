@@ -18,6 +18,7 @@ get:
         A client ID.
   responses:
     '200':
+      description: ""
       content:
         application/json:
           schema:

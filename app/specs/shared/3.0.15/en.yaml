@@ -7747,10 +7747,6 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                content:
-                  application/json:
-                    schema: null
                 type: object
                 properties:
                   resultCode:
@@ -7938,6 +7934,7 @@ paths:
                     </p>
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -13170,6 +13167,7 @@ paths:
               $ref: '#/paths/~1api~1%7BserviceId%7D~1federation~1registration/post/requestBody/content/application~1json/schema'
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -13310,6 +13308,7 @@ paths:
             A client ID.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -13373,6 +13372,7 @@ paths:
                     to calling `/client/extension/requestable_scopes/delete` API.
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -13533,6 +13533,7 @@ paths:
           required: true
       responses:
         '204':
+          description: ''
           content:
             application/json:
               schema:
@@ -13633,6 +13634,7 @@ paths:
             type: string
       responses:
         '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -14538,6 +14540,13 @@ paths:
   '/api/{serviceId}/auth/authorization/ticket/info':
     get:
       summary: Get Ticket Information
+      parameters:
+        - in: path
+          name: serviceId
+          description: A service ID.
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -14591,6 +14600,13 @@ paths:
   '/api/{serviceId}/auth/authorization/ticket/update':
     post:
       summary: Update Ticket Information
+      parameters:
+        - in: path
+          name: serviceId
+          description: A service ID.
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:

@@ -1,5 +1,12 @@
 get:
   summary: Get Ticket Information
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
   requestBody:
     required: true
     content:
