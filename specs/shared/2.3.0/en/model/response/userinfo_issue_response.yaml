@@ -18,7 +18,7 @@ properties:
       - UNAUTHORIZED
       - FORBIDDEN
       - JSON
-      - OK
+      - JWT
     description: The next action that the authorization server implementation should take.
   responseContent:
     type: string
