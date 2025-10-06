@@ -54,7 +54,7 @@
             "group": "API documentation",
             "pages": [
               "api-reference/introduction",
-              "api-reference/openapi.yaml"
+              "api-reference/openapi"
             ]
           },
           {
