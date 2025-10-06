@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Authlete API Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0057B7",
+    "light": "#4D8FEA",
+    "dark": "#00347A"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -42,9 +42,7 @@
       },
       {
         "tab": "API Reference",
-        "pages": [
-          "api-reference"
-        ]
+        "openapi": "app/specs/shared/3.0.16/en.yaml"
       }
     ],
     "global": {
