@@ -53,12 +53,14 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/introduction",
+              "api-reference/openapi.yaml"
             ]
           },
           {
             "group": "Endpoint examples",
             "pages": [
+              "api-reference/endpoint/get",
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
