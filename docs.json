@@ -1,0 +1,148 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Authlete API Documentation",
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "index",
+              "quickstart",
+              "development"
+            ]
+          },
+          {
+            "group": "Authentication",
+            "pages": [
+              "guides/authentication",
+              "guides/oauth2-flow",
+              "guides/oidc-flow"
+            ]
+          },
+          {
+            "group": "API Concepts",
+            "pages": [
+              "guides/service-management",
+              "guides/client-management",
+              "guides/authorization-flow",
+              "guides/token-management"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Service Management",
+            "pages": [
+              "api-reference/service/get-service",
+              "api-reference/service/create-service",
+              "api-reference/service/update-service",
+              "api-reference/service/delete-service"
+            ]
+          },
+          {
+            "group": "Client Management",
+            "pages": [
+              "api-reference/client/create-client",
+              "api-reference/client/get-client",
+              "api-reference/client/update-client",
+              "api-reference/client/delete-client"
+            ]
+          },
+          {
+            "group": "Authorization Flow",
+            "pages": [
+              "api-reference/auth/authorization-request",
+              "api-reference/auth/authorization-issue",
+              "api-reference/auth/authorization-fail"
+            ]
+          },
+          {
+            "group": "Token Management",
+            "pages": [
+              "api-reference/token/token-request",
+              "api-reference/token/token-response",
+              "api-reference/token/token-revoke"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Authlete Console",
+          "href": "https://console.authlete.com",
+          "icon": "external-link"
+        },
+        {
+          "anchor": "Support",
+          "href": "https://www.authlete.com/contact/",
+          "icon": "headset"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Console",
+        "href": "https://console.authlete.com"
+      },
+      {
+        "label": "Support",
+        "href": "https://www.authlete.com/contact/"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://console.authlete.com/register"
+    }
+  },
+  "api": {
+    "baseUrl": "https://us.authlete.com",
+    "auth": {
+      "method": "bearer"
+    },
+    "playground": {
+      "mode": "show"
+    }
+  },
+  "openapi": "app/specs/shared/3.0.16/en.yaml",
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/authlete",
+      "github": "https://github.com/authlete",
+      "linkedin": "https://linkedin.com/company/authlete"
+    }
+  }
+}

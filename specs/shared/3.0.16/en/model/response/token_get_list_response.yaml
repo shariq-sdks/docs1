@@ -1,0 +1,29 @@
+type: object
+properties:
+  start:
+    type: integer
+    format: int32
+    description: |
+      Start index of search results (inclusive).
+  end:
+    type: integer
+    format: int32
+    description: |
+      End index of search results (exclusive).
+  totalCount:
+    type: integer
+    format: int32
+    description: |
+      Unique ID of a client developer.
+  client:
+    $ref: ../client_limited.yaml
+  subject:
+    type: string
+    description: |
+      Unique user ID of an end-user.
+  accessTokens:
+    type: array
+    items:
+      $ref: ../access_token.yaml
+    description: |
+      An array of access tokens.

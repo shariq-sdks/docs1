@@ -1,0 +1,8 @@
+type: object
+required: [ pretty ]
+properties:
+  pretty:
+    type: boolean
+    description: |
+      The flag indicating whether the metadata is written in the pretty
+      format or not.

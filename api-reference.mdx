@@ -1,0 +1,107 @@
+---
+title: 'API Reference'
+description: 'Complete API reference for Authlete services'
+---
+
+## API Reference
+
+This section contains the complete API reference for Authlete services. All endpoints are automatically generated from our OpenAPI specification.
+
+<Note>
+The API reference below is automatically generated from our OpenAPI 3.1.0 specification. You can interact with the endpoints directly from this documentation.
+</Note>
+
+## Base URL
+
+All API endpoints are available at the following base URLs:
+
+- **US**: `https://us.authlete.com`
+- **Japan**: `https://jp.authlete.com`
+- **Europe**: `https://eu.authlete.com`
+- **Brazil**: `https://br.authlete.com`
+
+## Authentication
+
+All API endpoints require authentication using your service credentials. See our [Authentication Guide](/guides/authentication) for details.
+
+## API Categories
+
+### Service Management
+Manage your authorization server configuration, including service settings, supported grant types, and security policies.
+
+### Client Management
+Register and manage OAuth 2.0 clients, including client credentials, redirect URIs, and scopes.
+
+### Authorization Flow
+Handle OAuth 2.0 authorization requests, including user consent and authorization code generation.
+
+### Token Management
+Issue, validate, and revoke access tokens and refresh tokens.
+
+### User Management
+Manage user accounts, authentication, and profile information.
+
+### Device Flow
+Support for OAuth 2.0 Device Authorization Grant flow for constrained devices.
+
+### Verifiable Credentials
+Issue and verify verifiable credentials using OpenID Connect for Verifiable Presentations.
+
+## Interactive API Explorer
+
+The API reference below is fully interactive. You can:
+
+- **Test endpoints**: Make real API calls directly from the documentation
+- **View examples**: See request/response examples for each endpoint
+- **Download specs**: Download the complete OpenAPI specification
+- **Copy code**: Get code examples in multiple programming languages
+
+<Note>
+To use the interactive features, you'll need to authenticate with your service credentials. Click the "Authorize" button in the API explorer to enter your credentials.
+</Note>
+
+## Error Handling
+
+All API endpoints return consistent error responses with the following structure:
+
+```json
+{
+  "resultCode": "A004001",
+  "resultMessage": "Error description",
+  "resultDescription": "Detailed error information"
+}
+```
+
+Common error codes:
+
+- **A004001**: Invalid request parameters
+- **A004002**: Authentication required
+- **A004003**: Insufficient permissions
+- **A004004**: Resource not found
+- **A004005**: Internal server error
+
+## Rate Limiting
+
+API calls are subject to rate limiting:
+
+- **Service Management**: 1,000 requests/hour
+- **Client Management**: 5,000 requests/hour
+- **Authorization APIs**: 10,000 requests/hour
+- **Token APIs**: 10,000 requests/hour
+
+## SDKs and Libraries
+
+We provide official SDKs for popular programming languages:
+
+- **JavaScript/Node.js**: [@authlete/authlete-js](https://www.npmjs.com/package/@authlete/authlete-js)
+- **Python**: [authlete-python](https://pypi.org/project/authlete-python/)
+- **Java**: [authlete-java-common](https://mvnrepository.com/artifact/com.authlete/authlete-java-common)
+- **PHP**: [authlete-php](https://packagist.org/packages/authlete/authlete-php)
+
+## Support
+
+Need help with the API?
+
+- **Documentation**: Browse our comprehensive guides
+- **Support**: Contact us at [support@authlete.com](mailto:support@authlete.com)
+- **Console**: Manage your services at [console.authlete.com](https://console.authlete.com)

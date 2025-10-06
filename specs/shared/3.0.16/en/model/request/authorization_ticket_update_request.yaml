@@ -1,0 +1,9 @@
+type: object
+required: [ ticket, info ]
+properties:
+  ticket:
+    type: string
+    description: The ticket.
+  info: 
+    type: string
+    description: The information about the ticket.

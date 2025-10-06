@@ -1,0 +1,38 @@
+type: object
+description: |
+  Holds information about a key managed in an HSM (Hardware Security Module)
+properties:
+  kty:
+    type: string
+    description: |
+      The key type (EC or RSA)
+  use:
+    type: string
+    description: |
+      Get the use of the key on the HSM.
+      When the key use is "sig" (signature), the private key on the HSM is used to sign data and the corresponding public key is used to verify the signature.
+      When the key use is "enc" (encryption), the private key on the HSM is used to decrypt encrypted data which have been encrypted with the corresponding public key
+  kid:
+    type: string
+    description: |
+      Key ID for the key on the HSM.
+  hsmName:
+    type: string
+    description: |
+      The name of the HSM.
+      The identifier for the HSM that sits behind the Authlete server. For example, "google".
+  handle:
+    type: string
+    description: |
+      The handle for the key on the HSM.
+      A handle is a base64url-encoded 256-bit random value (43 letters) which is assigned by Authlete on the call of the /api/hsk/create API
+  publicKey:
+    type: string
+    description: |
+      The public key that corresponds to the key on the HSM.
+  alg:
+    type: string
+    description: |
+      The algorithm of the key on the HSM. When the key use is `"sig"`, the algorithm represents a
+      signing algorithm such as `"ES256"`. When the key use is `"enc"`, the algorithm represents an
+      encryption algorithm such as `"RSA-OAEP-256"`.

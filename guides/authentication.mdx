@@ -1,0 +1,197 @@
+---
+title: 'Authentication'
+description: 'Learn how to authenticate with Authlete APIs'
+---
+
+## Authentication
+
+All Authlete API endpoints require authentication using your service credentials. This guide explains the different authentication methods and how to use them securely.
+
+## Authentication Methods
+
+Authlete supports two main authentication methods:
+
+### 1. Service API Secret (Recommended)
+
+Use your service API secret as a Bearer token in the Authorization header:
+
+```http
+Authorization: Bearer YOUR_SERVICE_API_SECRET
+```
+
+<Warning>
+Never expose your service API secret in client-side code or public repositories.
+</Warning>
+
+### 2. Basic Authentication
+
+For some endpoints, you can use basic authentication with your service API key and secret:
+
+```http
+Authorization: Basic BASE64(API_KEY:API_SECRET)
+```
+
+## Getting Your Credentials
+
+You can find your service credentials in the Authlete Console:
+
+1. Log in to [console.authlete.com](https://console.authlete.com)
+2. Select your service
+3. Go to the "API Keys" section
+4. Copy your Service API Key and Service API Secret
+
+## Making Authenticated Requests
+
+Here are examples of making authenticated requests in different languages:
+
+<CodeGroup>
+```bash cURL
+# Using Bearer token
+curl -X GET "https://us.authlete.com/api/service/get" \
+  -H "Authorization: Bearer YOUR_SERVICE_API_SECRET" \
+  -H "Content-Type: application/json"
+
+# Using Basic auth
+curl -X GET "https://us.authlete.com/api/service/get" \
+  -H "Authorization: Basic $(echo -n 'YOUR_API_KEY:YOUR_API_SECRET' | base64)" \
+  -H "Content-Type: application/json"
+```
+
+```javascript JavaScript
+// Using Bearer token
+const response = await fetch('https://us.authlete.com/api/service/get', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
+    'Content-Type': 'application/json'
+  }
+});
+
+// Using Basic auth
+const credentials = btoa('YOUR_API_KEY:YOUR_API_SECRET');
+const response = await fetch('https://us.authlete.com/api/service/get', {
+  method: 'GET',
+  headers: {
+    'Authorization': `Basic ${credentials}`,
+    'Content-Type': 'application/json'
+  }
+});
+```
+
+```python Python
+import requests
+import base64
+
+# Using Bearer token
+headers = {
+    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(
+    'https://us.authlete.com/api/service/get',
+    headers=headers
+)
+
+# Using Basic auth
+credentials = base64.b64encode(
+    'YOUR_API_KEY:YOUR_API_SECRET'.encode()
+).decode()
+
+headers = {
+    'Authorization': f'Basic {credentials}',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(
+    'https://us.authlete.com/api/service/get',
+    headers=headers
+)
+```
+</CodeGroup>
+
+## Security Best Practices
+
+### 1. Store Credentials Securely
+
+- Use environment variables for API secrets
+- Never commit secrets to version control
+- Use a secure secret management system in production
+
+### 2. Rotate Credentials Regularly
+
+- Generate new API secrets periodically
+- Update your applications with new credentials
+- Revoke old credentials immediately
+
+### 3. Use HTTPS Only
+
+- Always use HTTPS for API calls
+- Never send credentials over unencrypted connections
+
+### 4. Monitor API Usage
+
+- Keep track of API calls and usage patterns
+- Set up alerts for unusual activity
+- Monitor for unauthorized access attempts
+
+## Error Handling
+
+When authentication fails, Authlete returns appropriate HTTP status codes:
+
+- **401 Unauthorized**: Invalid or missing credentials
+- **403 Forbidden**: Valid credentials but insufficient permissions
+- **429 Too Many Requests**: Rate limit exceeded
+
+Example error response:
+
+```json
+{
+  "resultCode": "A004001",
+  "resultMessage": "Invalid API key or secret",
+  "resultDescription": "The provided credentials are invalid or expired"
+}
+```
+
+## Rate Limiting
+
+Authlete enforces rate limits on API calls:
+
+- **Service Management APIs**: 1000 requests per hour
+- **Client Management APIs**: 5000 requests per hour
+- **Authorization APIs**: 10000 requests per hour
+
+If you exceed these limits, you'll receive a 429 status code. Implement exponential backoff to handle rate limiting gracefully.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="OAuth 2.0 Flow"
+    icon="shield"
+    href="/guides/oauth2-flow"
+  >
+    Learn about OAuth 2.0 authorization flows
+  </Card>
+  <Card
+    title="Service Management"
+    icon="cog"
+    href="/guides/service-management"
+  >
+    Configure your authorization server
+  </Card>
+  <Card
+    title="Client Management"
+    icon="users"
+    href="/guides/client-management"
+  >
+    Manage OAuth clients
+  </Card>
+  <Card
+    title="API Reference"
+    icon="code"
+    href="/api-reference"
+  >
+    Browse all API endpoints
+  </Card>
+</CardGroup>

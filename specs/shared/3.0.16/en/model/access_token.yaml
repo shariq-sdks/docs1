@@ -1,0 +1,55 @@
+type: object
+properties:
+  accessTokenHash:
+    type: string
+    description: The hash of the access token.
+  accessTokenExpiresAt:
+    type: integer
+    format: int64
+    description: The timestamp at which the access token will expire.
+  refreshTokenHash:
+    type: string
+    description: The hash of the refresh token.
+  refreshTokenExpiresAt:
+    type: integer
+    format: int64
+    description: The timestamp at which the refresh token will expire.
+  createdAt:
+    type: integer
+    format: int64
+    description: |
+      The timestamp at which the access token was first created.
+  lastRefreshedAt:
+    type: integer
+    format: int64
+    description: |
+      The timestamp at which the access token was last refreshed using the refresh token.
+  clientId:
+    type: integer
+    format: int64
+    description: |
+      The ID of the client associated with the access token.
+  subject:
+    type: string
+    description: |
+      The subject (= unique user ID) associated with the access token.
+  grantType:
+    $ref: ./grant_type.yaml
+  scopes:
+    type: array
+    items:
+      type: string
+    description: |
+      The scopes associated with the access token.
+  properties:
+    type: array
+    items:
+      $ref: ./property.yaml
+    description: |
+      The properties associated with the access token.
+  refreshTokenScopes:
+    type: array
+    items:
+      type: string
+    description: |
+      The scopes associated with the refresh token.

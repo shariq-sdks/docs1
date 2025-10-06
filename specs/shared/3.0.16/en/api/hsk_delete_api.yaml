@@ -1,0 +1,35 @@
+delete:
+  summary: Delete Security Key
+  x-badges:
+    - color: primary-color
+      label: '🏢 Dedicated Cloud Required'
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+    - in: path
+      name: handle
+      schema:
+        type: string
+      required: true
+  responses:
+    '204':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/hsk_delete_response.yaml
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'hsk_delete_api'
+  tags:
+    - Hardware Security Key

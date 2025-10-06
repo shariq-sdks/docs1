@@ -1,0 +1,30 @@
+type: object
+description: |
+  A comprehensive mapping of all Authlete API result codes to their corresponding error information.
+  This schema contains over 1700 error codes used throughout the Authlete API.
+additionalProperties:
+  type: object
+  properties:
+    code:
+      type: string
+      description: The error code identifier
+    message:
+      type: string
+      description: The error message
+    description:
+      type: string
+      description: Optional detailed description of the error
+  required:
+    - code
+    - message
+  example:
+    A000101:
+      code: "A000101"
+      message: "Authlete Server error."
+      description: "Sorry, an unexpected error occurred on Authlete's side."
+    A000102:
+      code: "A000102"
+      message: "Server Error: {Error Message}"
+    A000103:
+      code: "A000103"
+      message: "Internal Server Error."

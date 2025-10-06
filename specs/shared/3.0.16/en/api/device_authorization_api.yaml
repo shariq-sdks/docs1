@@ -1,0 +1,257 @@
+post:
+  summary: Process Device Authorization Request
+  description: |
+    This API parses request parameters of a [device authorization request](https://datatracker.ietf.org/doc/html/rfc8628#section-3.1)
+    and returns necessary data for the authorization server implementation to process the device authorization
+    request further.
+
+    <br>
+    <details>
+    <summary>Description</summary>
+
+    This API is supposed to be called from the within the implementation of the device authorization
+    endpoint of the service. The service implementation should retrieve the value of `action` from the
+    response and take the following steps according to the value.
+
+    **INTERNAL_SERVER_ERROR**
+
+    When the value of `action` is `INTERNAL_SERVER_ERROR`, it means that the API call from the authorization
+    server implementation was wrong or that an error occurred in Authlete.
+
+    In either case, from a viewpoint of the client application, it is an error on the server side.
+    Therefore, the authorization server implementation should generate a response to the client application
+    with "500 Internal Server Error"s and `application/json`.
+
+    The value of `responseContent` is a JSON string which describes t he error, so it can be
+    used as the entity body of the response.
+
+    The following illustrates the response which the authorization server implementation should generate
+    and return to the client application.
+
+    ```
+    HTTP/1.1 500 Internal Server Error
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    **BAD_REQUEST**
+
+    When the value of `action` is `BAD_REQUEST`, it means that the request from the client application
+    is wrong.
+
+    The authorization server implementation should generate a response to the client application with
+    "400 Bad Request" and `application/json`.
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used as
+    the entity body of the response.
+
+    The following illustrates the response which the service implementation should generate and return
+    to the client application.
+
+    ```
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    **UNAUTHORIZED**
+
+    When the value of `action` is `UNAUTHORIZED`, it means that client authentication of the device authorization
+    request failed.
+
+    The authorization server implementation should generate a response to the client application with
+    "401 Unauthorized" and `application/json`.
+
+    The value of `responseContent` is a JSON string which describes the error, so it can be used as
+    the entity body of the response.
+
+    The following illustrates the response which the service implementation must generate and return
+    to the client application.
+
+    ```
+    HTTP/1.1 401 Unauthorized
+    WWW-Authenticate: (challenge)
+    Content-Type: application/json
+    Cache-Control: no-store
+    Pragma: no-cache
+
+    {responseContent}
+    ```
+
+    **OK**
+
+    When the value of `action` is `OK`, it means that the device authorization request from the client
+    application is valid.
+
+    The authorization server implementation should generate a response to the client application with
+    "200 OK" and `application/json`.
+
+    The `responseContent` is a JSON string which can be used as the entity body of the response.
+
+    The following illustrates the response which the authorization server implementation should generate
+    and return to the client application.
+    </details>
+  parameters:
+    - in: path
+      name: serviceId
+      description: A service ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../model/request/device_authorization_request.yaml
+        example:
+          parameters: client_id=26888344961664&scope=history.read
+          clientId: "26888344961664"
+          clientSecret: SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog
+      application/x-www-form-urlencoded:
+        schema:
+          $ref: ../model/request/device_authorization_request.yaml
+  responses:
+    '200':
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: ../model/response/device_authorization_response.yaml
+          example:
+            {
+              "resultCode": "A220001",
+              "resultMessage": "[A220001] The device authorization request was processed successfully.",
+              "action": "OK",
+              "clientId": 26888344961664,
+              "clientIdAliasUsed": false,
+              "clientName": "My Device Flow Client",
+              "deviceCode": "p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I",
+              "expiresIn": 3600,
+              "interval": 0,
+              "responseContent": "{\"user_code\":\"XWWKPBWVXQ\",\"device_code\":\"p0qzXeRav8u6lJY9omjzR47KK58VwYN7j8xGUD7sq5I\",\"verification_uri_complete\":\"https://my-service.com/df/verification?XWWKPBWVXQ\",\"verification_uri\":\"https://my-service.com/df/verification\",\"expires_in\":3600}",
+              "scopes": [
+                {
+                  "defaultEntry": false,
+                  "name": "history.read"
+                }
+              ],
+              "serviceAttributes": [
+                {
+                  "key": "attribute1-key",
+                  "value": "attribute1-value"
+                },
+                {
+                  "key": "attribute2-key",
+                  "value": "attribute2-value"
+                }
+              ],
+              "userCode": "XWWKPBWVXQ",
+              "verificationUri": "https://my-service.com/df/verification",
+              "verificationUriComplete": "https://my-service.com/df/verification?XWWKPBWVXQ"
+            }
+    '400':
+      $ref: ../model/response/400.yaml
+    '401':
+      $ref: ../model/response/401.yaml
+    '403':
+      $ref: ../model/response/403.yaml
+    '500':
+      $ref: ../model/response/500.yaml
+  operationId: 'device_authorization_api'
+  x-code-samples:
+    - lang: shell
+      label: curl
+      source: |
+        curl -v -X POST https://us.authlete.com/api/21653835348762/device/authorization \
+        -H 'Content-Type: application/json' \
+        -u 'Authorization: Bearer V5a40R6dWvw2gMkCOBFdZcM95q4HC0Z-T0YKD9-nR6F' \
+        -d '{ "parameters": "client_id=26888344961664&scope=history.read", "clientId": "26888344961664", "clientSecret":"SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog" }'
+
+    - lang: java
+      label: java
+      source: |
+        AuthleteConfiguration conf = ...;
+        AuthleteApi api = AuthleteApiFactory.create(conf);
+
+        DeviceAuthorizationRequest req = new DeviceAuthorizationRequest();
+        req.setParameters(...);
+        req.setClientId("26888344961664");
+        req.setClientSecret("SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog");
+
+        api.deviceAuthorization(req);
+
+    # - lang: cs
+    #   label: C#
+    #   source: |
+    #     IAuthleteConfiguration conf = ...;
+    #     IAuthleteApi api = new AuthleteApi(conf);
+
+    #     DeviceAuthorizationRequest req = new DeviceAuthorizationRequest();
+    #     req.Parameters = ...;
+    #     req.ClientId = "26888344961664";
+    #     req.ClientSecret = "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog";
+
+    #     await api.DeviceAuthorization(req);
+
+    # - lang: php
+    #   label: PHP
+    #   source: |
+    #     $conf = ...;
+    #     $api = new AuthleteApiImpl($conf);
+
+    #     $req = new DeviceAuthorizationRequest();
+    #     $req.setParameters(...);
+    #     $req.setClientId("26888344961664");
+    #     $req.setClientSecret("SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog");
+
+    #     $api.deviceAuthorization($req);
+
+    # - lang: ruby
+    #   source: |
+    #     conf = ...
+    #     api = Authlete::Api.new(conf)
+
+    #     req = Authlete::Model::Request::DeviceAuthorizationRequest.new
+    #     req.parameters = '...'
+    #     req.client_id = '26888344961664'
+    #     req.client_secret = 'SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog'
+
+    #     api.device_authorization(req)
+
+    - lang: python
+      source: |
+        conf = ...
+        api = AuthleteApiImpl(conf)
+
+        req = DeviceAuthorizationRequest()
+        req.parameters = ...
+        req.clientId = '26888344961664'
+        req.clientSecret = 'SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog'
+
+        api.deviceAuthorization(req)
+
+    # - lang: go
+    #   source: |
+    #     conf := ...
+    #     api := api.New(&conf)
+
+    #     req := dto.DeviceAuthorizationRequest{}
+    #     req.Parameters = ...
+    #     req.ClientId = "26888344961664"
+    #     req.ClientSecret = "SfnYOLkJdofrb_66mTd6q03_SDoDEUnpXtvqFaE4k6L6UcpZzbdVJi2GpBj48AvGeDDllwsTruC62WYqQ_LGog"
+
+    #     api.DeviceAuthorization(&req)
+
+    # - lang: ts
+    #   label: deno
+    #   source: |
+    #     // This API is not supported yet.
+  tags:
+    - Device Flow
