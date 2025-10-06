@@ -42,41 +42,8 @@
       },
       {
         "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Service Management",
-            "pages": [
-              "api-reference/service/get-service",
-              "api-reference/service/create-service",
-              "api-reference/service/update-service",
-              "api-reference/service/delete-service"
-            ]
-          },
-          {
-            "group": "Client Management",
-            "pages": [
-              "api-reference/client/create-client",
-              "api-reference/client/get-client",
-              "api-reference/client/update-client",
-              "api-reference/client/delete-client"
-            ]
-          },
-          {
-            "group": "Authorization Flow",
-            "pages": [
-              "api-reference/auth/authorization-request",
-              "api-reference/auth/authorization-issue",
-              "api-reference/auth/authorization-fail"
-            ]
-          },
-          {
-            "group": "Token Management",
-            "pages": [
-              "api-reference/token/token-request",
-              "api-reference/token/token-response",
-              "api-reference/token/token-revoke"
-            ]
-          }
+        "pages": [
+          "api-reference"
         ]
       }
     ],
@@ -125,7 +92,6 @@
       "mode": "show"
     }
   },
-  "openapi": "app/specs/shared/3.0.16/en.yaml",
   "contextual": {
     "options": [
       "copy",
