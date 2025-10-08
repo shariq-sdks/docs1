@@ -292,14 +292,14 @@ token not associated with a specific client application would be issued.
 The following is an example of a token request without client authentication using the pre-authorized code flow, excerpted from the OID4VCI specification.
 ```http
 POST /token HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 grant_type=urn:ietf:params:oauth:grant-type:pre-authorized_code
 &pre-authorized_code=SplxlOBeZQQYbYS6WxSbIA
 &tx_code=493536
 ```The token endpoint will return a response including an access token as usual. The following is an example of token response excerpted from the specification.
 ```http
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 Content-Type: application/json
 Cache-Control: no-store
 
@@ -632,25 +632,25 @@ The following table lists the claims that must or may appear in the payload part
 - The `aud` claim represents the identifier of the credential issuer and is always required.
 - The `iat` claim represents the issuance time of the key proof JWT, as defined in [RFC 7519, 4.1.6. “iat” (Issued At) Claim](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.6). This claim is always required.
 - The `nonce` claim corresponds to the `c_nonce` included in the token response and/or the credential response. It is required when the token response contains the `c_nonce` parameter. Additionally, the credential issuer may mandate the `nonce` claim, even when the token response doesn’t contain the `c_nonce` parameter. More information about `c_nonce` will be provided later.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/key_proof_jwt_8.png)](/oid4vci)
-The following table summarizes the requirements for a key proof JWT.
-| Key Proof JWT | Place | Name | Presence | Description |
-| --- | --- | --- | --- | --- |
-| Header | `alg` | REQUIRED | As required by the JWT specification ([RFC 7519](https://www.rfc-editor.org/rfc/rfc7519.html)). |
-| `typ` | REQUIRED | `openid4vci-proof+jwt` |
-| `jwk` | CONDITIONALLY REQUIRED | Exactly one of these header parameters must be included,
-representing a public key or the reference to a public key. |
-| `x5c` |
-| `kid` |
-| Payload | `iss` | CONDITIONALLY REQUIRED | The identifier of the client application (wallet). |
-| `aud` | REQUIRED | The identifier of the credential issuer. |
-| `iat` | REQUIRED | The issuance time. |
-| `nonce` | CONDITIONALLY REQUIRED | The server-provided `c_nonce`. |
-The following is an example of key proof JWT.
-`
-eyJ0eXAiOiJvcGVuaWQ0dmNpLXByb29mK2p3dCIsImFsZyI6IkVTMjU2IiwiandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJraWQiOiJHVURvZFB1SURJYllocmdmMHZsT3RNd1otczNiaVpFT3hWMFRTRjBKN3R3IiwieCI6InJjdU1FT1BYbVBJRlotc0Jvbkxyb1VvaTVYdGZ4NktWeFlFR09YMi1UbGsiLCJ5IjoiNUw1SUZrUFpNT0doTVpsNHRaSk9ISjdtckZQbnJSeV9RSURUOXRWZF9obyIsImFsZyI6IkVTMjU2In19.eyJpc3MiOiJodHRwczovL3dhbGxldC5leGFtcGxlLmNvbSIsImF1ZCI6Imh0dHBzOi8vaXNzdWVyLmV4YW1wbGUuY29tIiwiaWF0IjoxNjk3MjM0NzcwLCJub25jZSI6IjZhMzA3YjU1LWM4ZTEtNDg4YS05NjFlLTI1MzQ4ZmYzZTlkYSJ9.Vvo_X_fZyanUZ-y5X0yYtY7d70bbjMKUKqAoDiCBmP3NT4xNfTEpuYl9eu7vxc2fLf67ZdbSfw4rwEp8qvvWpA`
-The header and payload of the key proof JWT example are decoded into the following JSONs, respectively.
-```json
+  [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/key_proof_jwt_8.png)](/oid4vci)
+  The following table summarizes the requirements for a key proof JWT.
+  | Key Proof JWT | Place | Name | Presence | Description |
+  | --- | --- | --- | --- | --- |
+  | Header | `alg` | REQUIRED | As required by the JWT specification ([RFC 7519](https://www.rfc-editor.org/rfc/rfc7519.html)). |
+  | `typ` | REQUIRED | `openid4vci-proof+jwt` |
+  | `jwk` | CONDITIONALLY REQUIRED | Exactly one of these header parameters must be included,
+  representing a public key or the reference to a public key. |
+  | `x5c` |
+  | `kid` |
+  | Payload | `iss` | CONDITIONALLY REQUIRED | The identifier of the client application (wallet). |
+  | `aud` | REQUIRED | The identifier of the credential issuer. |
+  | `iat` | REQUIRED | The issuance time. |
+  | `nonce` | CONDITIONALLY REQUIRED | The server-provided `c_nonce`. |
+  The following is an example of key proof JWT.
+  `
+  eyJ0eXAiOiJvcGVuaWQ0dmNpLXByb29mK2p3dCIsImFsZyI6IkVTMjU2IiwiandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJraWQiOiJHVURvZFB1SURJYllocmdmMHZsT3RNd1otczNiaVpFT3hWMFRTRjBKN3R3IiwieCI6InJjdU1FT1BYbVBJRlotc0Jvbkxyb1VvaTVYdGZ4NktWeFlFR09YMi1UbGsiLCJ5IjoiNUw1SUZrUFpNT0doTVpsNHRaSk9ISjdtckZQbnJSeV9RSURUOXRWZF9obyIsImFsZyI6IkVTMjU2In19.eyJpc3MiOiJodHRwczovL3dhbGxldC5leGFtcGxlLmNvbSIsImF1ZCI6Imh0dHBzOi8vaXNzdWVyLmV4YW1wbGUuY29tIiwiaWF0IjoxNjk3MjM0NzcwLCJub25jZSI6IjZhMzA3YjU1LWM4ZTEtNDg4YS05NjFlLTI1MzQ4ZmYzZTlkYSJ9.Vvo_X_fZyanUZ-y5X0yYtY7d70bbjMKUKqAoDiCBmP3NT4xNfTEpuYl9eu7vxc2fLf67ZdbSfw4rwEp8qvvWpA`
+  The header and payload of the key proof JWT example are decoded into the following JSONs, respectively.
+  ```json
 
 \`}
 ``````json
@@ -742,7 +742,7 @@ The diagram below is an overview of a credential response with an SD-JWT-based v
 ##### 2.9.4.2. Credential Response with Transaction ID
 When the requested verifiable credential is not ready, the credential endpoint returns a transaction ID instead of a verifiable credential. The transaction ID is included in the credential response as the value of the `"transaction_id"` response parameter. The following is an example from the OID4VCI specification.
 ```http
-HTTP/1.1 202 Accepted
+  HTTP/1.1 202 Accepted
 Content-Type: application/json
 Cache-Control: no-store
 
@@ -750,13 +750,13 @@ Cache-Control: no-store
 ##### 2.9.4.3. Credential Response with Error
 If the credential request cannot be processed successfully, the credential endpoint will return an error response, with the type of error reflected in the value of the `"error"` response parameter. Below is a sample error excerpt from the specification.
 ```http
-HTTP/1.1 400 Bad Request
+  HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
 ```If a required key proof is missing or incorrect due to reasons like the `nonce` claim’s absence or expiration, the error code `"invalid_proof"` is used. Here is an example from the specification in such a case.
 ```http
-HTTP/1.1 400 Bad Request
+  HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
@@ -764,20 +764,20 @@ Cache-Control: no-store
 The wallet can send a request to the deferred credential endpoint using a transaction ID. This request should be an HTTP POST request containing JSON with a `"transaction_id"` property holding the transaction ID.
 ```http
 POST /deferred_credential HTTP/1.1
-Host: issuer.example.com
+  Host: issuer.example.com
 Content-Type: application/json
 Authorization: Bearer czZCaGRSa3F0MzpnWDFmQmF0M2JW
 
 ```#### 2.9.6. Deferred Credential Response
 The deferred credential endpoint will respond with an HTTP response containing JSON. If a verifiable credential has been issued successfully, this JSON includes the `"credential"` response parameter, representing the verifiable credential.
 ```http
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 Content-Type: application/json
 Cache-Control: no-store
 
 ```In the event of an unsuccessful issuance, an error response will be returned with the `"error"` parameter. Particularly, when the requested verifiable credential is not yet ready, the error code `"issuance_pending"` is used.
 ```http
-HTTP/1.1 400 Bad Request
+  HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
@@ -876,324 +876,324 @@ but in return, developers receive the following benefits.
 - Programming language
 - Web framework
 - Cloud service
-2. Full control over user data
+  2. Full control over user data
 - No need to upload user data to the OAuth/OIDC vendor’s server.
 - Manageable compliance with various regulations for the protection of user data.
-3. Full control over end-user facing frontend servers
+  3. Full control over end-user facing frontend servers
 - Corporate brand management across all aspects of UI/UX.
-4. Enforced proper layer separation in system design
+  4. Enforced proper layer separation in system design
 - API authorization is separated from user management and user authentication.
 - OAuth/OIDC protocol processing is separated from API gateway and frontend servers.
-Architects in enterprises have begun to realize that they need full control over
-user identity management and the Web APIs of their services for the success of
-their business and recognize that the "OAuth/OIDC component as a Service"
-approach offered by Authlete is the ideal solution. Please watch
-"[Security Offered as
-Components Empowering Enterprises to Gain Control](https://www.youtube.com/watch?v=hK7ORyfTpvI)", a panel discussion
-on this topic held at EIC 2023.
-### 3.2. Authlete Configuration
-#### 3.2.1. Authlete Version
-The OID4VCI specification is supported from Authlete 3.0, which is scheduled
-to be released around April 2024. Until then, a trial server is available for
-customers and business partners. If you are interested in trying OID4VCI,
-please [contact us](https://www.authlete.com/contact/).
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/authlete_release_history_up_to_3_0.png)](/oid4vci)
-#### 3.2.2. Authlete Server Configuration
-The “Verifiable Credentials” feature must be enabled on the Authlete server.
-If you are using the on-premises version of Authlete, please confirm that the
-configuration file (`authlete-server.properties`) includes the
-following line to enable this feature.
-```java-properties
-feature.verifiable_credentials.enabled=true
-```#### 3.2.3. Authlete Service Configuration
-| Property | Type | Description |
-| --- | --- | --- |
-| `verifiableCredentialsEnabled` | boolean | This flag controls availability of features related to Verifiable Credentials
-such as support of the OID4VCI specification. |
-| `credentialIssuerMetadata` | `credentialIssuer` | string | The identifier of the credential issuer when this service acts
-as a credential issuer. This property corresponds to the
-`credential_issuer` metadata defined in the OID4VCI
-specification.
-The value must be a valid URL with the `https` scheme and without
-the query part and the fragment part. In addition, Authlete limits the value
-to ASCII only and a maximum length of 200 characters.
-To act as a credential issuer, this property must be set. |
-| `authorizationServers` | stringarray | The identifiers of the authorization servers the credential issuer
-relies on for authorization when this service acts as a credential issuer.
-This property corresponds to the `authorization_servers`
-metadata defined in the OID4VCI specification.
-The values must be HTTP-accessible URLs. |
-| `credentialEndpoint` | string | The URL of the credential endpoint when this service acts as a credential
-issuer. This property corresponds to the `credential_endpoint`
-metadata defined in the OID4VCI specification.
-The value must be a valid URL with the `https` scheme and without
-the fragment part. In addition, Authlete limits the value to ASCII only and
-a maximum length of 200 characters.
-To act as a credential issuer, this property must be set. |
-| `batchCredentialEndpoint` | string | The URL of the batch credential endpoint when this service acts as a
-credential issuer. This property corresponds to the
-`batch_credential_endpoint` metadata defined in the
-OID4VCI specification.
-The value must be a valid URL with the `https` scheme and without
-the fragment part. In addition, Authlete limits the value to ASCII only and
-a maximum length of 200 characters.
-It is optional whether to implement the batch credential endpoint. |
-| `deferredCredentialEndpoint` | string | The URL of the deferred credential endpoint when this service acts as
-a credential issuer. This property corresponds to the
-`deferred_credential_endpoint` metadata defined in the
-OID4VCI specification.
-The value must be a valid URL with the `https` scheme and without
-the fragment part. In addition, Authlete limits the value to ASCII only and
-a maximum length of 200 characters.
-If the credential endpoint and/or the batch credential endpoint of your
-credential issuer may issue transaction IDs, you must implement the deferred
-credential endpoint. |
-| `credentialResponseEncryptionAlgValuesSupported` | stringarray | The JWE `alg` algorithms supported for credential response
-encryption. This property corresponds to the
-`credential_response_encryption.alg_values_supported`
-metadata defined in the OID4VCI specification.
-The valid values are the names of [JWEAlg](https://authlete.github.io/authlete-java-common/com/authlete/common/types/JWEAlg.html) enum entries such as `"ECDH_ES"`.
-Only asymmetric algorithms are accepted. |
-| `credentialResponseEncryptionEncValuesSupported` | stringarray | The JWE `enc` algorithms supported for credential response
-encryption. This property corresponds to the
-`credential_response_encryption.enc_values_supported`
-metadata defined in the OID4VCI specification.
-The valid values are the names of [JWEEnc](https://authlete.github.io/authlete-java-common/com/authlete/common/types/JWEEnc.html) enum entries such as `"A256GCM"`. |
-| `requireCredentialEncryptionResponse` | boolean | The flag indicating whether to always encrypt credential responses.
-This property corresponds to the
-`credential_response_encryption.encryption_required`
-metadata defined in the OID4VCI specification.
-If this property is set to true, every credential request is required
-to include the `credential_response_encryption`
-JSON object. |
-| `credentialsSupported` | string | Credentials supported by the credential issuer when this service acts as
-a credential issuer. This property corresponds to the
-`credential_configurations_supported` metadata defined
-in the OID4VCI specification.
-The value must be a JSON object. Non-ASCII characters may be contained,
-but Authlete limits the maximum number of characters to 16383.
-To act as a credential issuer, this property must be set.
-For backward compatibility, the name of this property remains
-`credentialsSupported` and will not be renamed to
-`credentialConfigurationsSupported`. |
-| `credentialOfferDuration` | integer | The default duration of credential offers in seconds.
-When an API to the `/vci/offer/create` API does not contain
-the `duration` request parameter or the value of the parameter
-is 0 or negative, the value of this property is used as the default value.
-If the value of this property is 0 or negative, the default value per
-Authlete server is used as the default value. |
-| `preAuthorizedGrantAnonymousAccessSupported` | boolean | This property indicates whether token requests using the pre-authorized
-code flow by unidentifiable client applications are allowed.
-This property corresponds to the
-`pre-authorized_grant_anonymous_access_supported`
-metadata defined in the OID4VCI specification. |
-| `cnonceDuration` | integer | The duration of `c_nonce` in seconds.
-When the token endpoint of the authorization server issues an access
-token usable for verifiable credential issuance, it also issues a
-`c_nonce` alongside the access token. In addition, the
-credential endpoint and the batch credential endpoint of the credential
-issuer issue a new `c_nonce` when the presented
-`c_nonce` has already expired. This property is used as
-the lifetime of such `c_nonce`s.
-If the value of this property is 0 or negative, the default value per
-Authlete server is used. |
-| `credentialTransactionDuration` | integer | The default duration of transaction IDs in seconds that may be issued
-as a result of a credential request or a batch credential request.
-If the value of this property is 0 or negative, the default value per
-Authlete server is used. |
-| `credentialDuration` | integer | The default duration of verifiable credentials in seconds.
-Some Authlete APIs such as the `/vci/single/issue` API and
-the `/vci/batch/issue` API may issue one or more verifiable
-credentials. The value of this property specifies the default duration
-of such verifiable credentials.
-The value 0 indicates that verifiable credentials will not expire.
-In the case, verifiable credentials will not have a property that
-indicates the expiration time. For example, JWT-based verifiable
-credentials will not contain the `exp` claim
-([RFC 7519](https://www.rfc-editor.org/rfc/rfc7519.html),
-[Section 4.1.4](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.4)).
-Authlete APIs that may issue verifiable credentials recognize a request
-parameter that can override the duration. For example, a request to the
-`/vci/single/issue` API contains an `order` object
-that has a `credentialDuration` parameter that can override
-the default duration. |
-| `credentialJwks` | string | The JWK Set document containing private keys that are used to sign
-verifiable credentials.
-Some Authlete APIs such as the `/vci/single/issue` API and
-the `/vci/batch/issue` API may issue one or more verifiable
-credentials. The content of this property is referred to by such APIs.
-Authlete APIs that may issue verifiable credentials recognize a request
-parameter that can specify the key ID of a private key that should be
-used for signing. For example, a request to the `/vci/single/issue`
-API contains an `order` object that has a
-`signingKeyId` parameter that can specify the key
-ID of a private key to be used for signing. When a key ID is not specified,
-Authlete will select a private key automatically.
-If JWKs in the JWK Set do not contain the `kid` property
-([RFC 7517](https://www.rfc-editor.org/rfc/rfc7517.html),
-[Section 4.5](https://www.rfc-editor.org/rfc/rfc7517.html#section-4.5)) when this `credentialJwks` property
-is updated, Authlete will automatically insert the `kid`
-property into such JWKs. The JWK thumbprint
-([RFC 7638](https://www.rfc-editor.org/rfc/rfc7638.html))
-computed with the SHA-256 hash algorithm is used as the value of the
-`kid` property. |
-| `credentialJwksUri` | string | The URL at which the JWK Set document of the credential issuer is exposed.
-This URL is used as the value of the `jwks_uri` property in the
-JWT issuer metadata. The metadata itself is published at
-`/.well-known/jwt-issuer`. See
-[SD-JWT-based Verifiable Credentials (SD-JWT VC)](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/) for details about the
-JWT issuer metadata. |
-### 3.3. Authlete APIs
-#### 3.3.1. Overall Picture of Authlete APIs for OID4VCI
-The following diagram illustrates the relationship between the endpoints of
-the frontend servers (the credential issuer and the authorization server) and
-Authlete APIs. The details of the Authlete APIs are explained in the following
-sections.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/authlete_apis_for_oid4vci.png)](/oid4vci)
-#### 3.3.2. Authlete API Call
-A significant difference between Authlete 2.x and Authlete 3.0 is how to call
-Authlete APIs.
-In Authlete 2.x and older versions, developers call Authlete APIs using a pair
-of an API key and an API secret (e.g., a service API key and a service API secret).
-In Authlete 3.0, on the other hand, developers call Authlete APIs with an access token.
-which is significantly different from the previous ones. In Authlete 2.x and
-older versions, there are two separate Web consoles: the service owner console
-(for managing services corresponding to authorization servers and OpenID providers)
-and the developer console (for managing client applications). In Authlete 3.0,
-however, a single Web console is provided, and its appearance and functionality
-change based to on the privileges of the presented access token.
-|  | Authlete 2.x | Authlete 3.0 |
-| --- | --- | --- |
-| Protection | API key & API secret | Access token |
-| Web Console | The service owner console and the developer console | A single console |
-Another difference is found in the path component of Authlete APIs. In Authlete 3.0, most Authlete APIs include a service ID as part of the path, such as `/api/````/auth/authorization`, where `` represents the identifier of a service (i.e., the service API key in Authlete 2.x).
-| Authlete Version | API Path Example |
-| --- | --- |
-| Authlete 2.x | `/api/auth/authorization` |
-| Authlete 3.0 | `/api/````/auth/authorization` |
-In this document, as well as in other documents, the prefix `/api/` for API paths is omitted.
-These changes are not insignificant, but their impact on programs can be
-minimized by absorbing the differences at the library layer. For instance,
-developers using the sample authorization server written in Java
-([authlete/java-oauth-server](https://github.com/authlete/java-oauth-server)) and switching from
-Authlete 2.x to Authlete 3.0 only need to modify the content of the
-configuration file (`authlete.properties`) from:
+  Architects in enterprises have begun to realize that they need full control over
+  user identity management and the Web APIs of their services for the success of
+  their business and recognize that the "OAuth/OIDC component as a Service"
+  approach offered by Authlete is the ideal solution. Please watch
+  "[Security Offered as
+  Components Empowering Enterprises to Gain Control](https://www.youtube.com/watch?v=hK7ORyfTpvI)", a panel discussion
+  on this topic held at EIC 2023.
+  ### 3.2. Authlete Configuration
+  #### 3.2.1. Authlete Version
+  The OID4VCI specification is supported from Authlete 3.0, which is scheduled
+  to be released around April 2024. Until then, a trial server is available for
+  customers and business partners. If you are interested in trying OID4VCI,
+  please [contact us](https://www.authlete.com/contact/).
+  [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/authlete_release_history_up_to_3_0.png)](/oid4vci)
+  #### 3.2.2. Authlete Server Configuration
+  The “Verifiable Credentials” feature must be enabled on the Authlete server.
+  If you are using the on-premises version of Authlete, please confirm that the
+  configuration file (`authlete-server.properties`) includes the
+  following line to enable this feature.
   ```java-properties
-# For Authlete 2.x
-1. [Home](https://www.authlete.com/)
-3. For Authlete 2.x
-base_url = ...
-service.api_key = ..
-service.api_secret = ...
-```to:
+  feature.verifiable_credentials.enabled=true
+  ```#### 3.2.3. Authlete Service Configuration
+  | Property | Type | Description |
+  | --- | --- | --- |
+  | `verifiableCredentialsEnabled` | boolean | This flag controls availability of features related to Verifiable Credentials
+  such as support of the OID4VCI specification. |
+  | `credentialIssuerMetadata` | `credentialIssuer` | string | The identifier of the credential issuer when this service acts
+  as a credential issuer. This property corresponds to the
+  `credential_issuer` metadata defined in the OID4VCI
+  specification.
+  The value must be a valid URL with the `https` scheme and without
+  the query part and the fragment part. In addition, Authlete limits the value
+  to ASCII only and a maximum length of 200 characters.
+  To act as a credential issuer, this property must be set. |
+  | `authorizationServers` | stringarray | The identifiers of the authorization servers the credential issuer
+  relies on for authorization when this service acts as a credential issuer.
+  This property corresponds to the `authorization_servers`
+  metadata defined in the OID4VCI specification.
+  The values must be HTTP-accessible URLs. |
+  | `credentialEndpoint` | string | The URL of the credential endpoint when this service acts as a credential
+  issuer. This property corresponds to the `credential_endpoint`
+  metadata defined in the OID4VCI specification.
+  The value must be a valid URL with the `https` scheme and without
+  the fragment part. In addition, Authlete limits the value to ASCII only and
+  a maximum length of 200 characters.
+  To act as a credential issuer, this property must be set. |
+  | `batchCredentialEndpoint` | string | The URL of the batch credential endpoint when this service acts as a
+  credential issuer. This property corresponds to the
+  `batch_credential_endpoint` metadata defined in the
+  OID4VCI specification.
+  The value must be a valid URL with the `https` scheme and without
+  the fragment part. In addition, Authlete limits the value to ASCII only and
+  a maximum length of 200 characters.
+  It is optional whether to implement the batch credential endpoint. |
+  | `deferredCredentialEndpoint` | string | The URL of the deferred credential endpoint when this service acts as
+  a credential issuer. This property corresponds to the
+  `deferred_credential_endpoint` metadata defined in the
+  OID4VCI specification.
+  The value must be a valid URL with the `https` scheme and without
+  the fragment part. In addition, Authlete limits the value to ASCII only and
+  a maximum length of 200 characters.
+  If the credential endpoint and/or the batch credential endpoint of your
+  credential issuer may issue transaction IDs, you must implement the deferred
+  credential endpoint. |
+  | `credentialResponseEncryptionAlgValuesSupported` | stringarray | The JWE `alg` algorithms supported for credential response
+  encryption. This property corresponds to the
+  `credential_response_encryption.alg_values_supported`
+  metadata defined in the OID4VCI specification.
+  The valid values are the names of [JWEAlg](https://authlete.github.io/authlete-java-common/com/authlete/common/types/JWEAlg.html) enum entries such as `"ECDH_ES"`.
+  Only asymmetric algorithms are accepted. |
+  | `credentialResponseEncryptionEncValuesSupported` | stringarray | The JWE `enc` algorithms supported for credential response
+  encryption. This property corresponds to the
+  `credential_response_encryption.enc_values_supported`
+  metadata defined in the OID4VCI specification.
+  The valid values are the names of [JWEEnc](https://authlete.github.io/authlete-java-common/com/authlete/common/types/JWEEnc.html) enum entries such as `"A256GCM"`. |
+  | `requireCredentialEncryptionResponse` | boolean | The flag indicating whether to always encrypt credential responses.
+  This property corresponds to the
+  `credential_response_encryption.encryption_required`
+  metadata defined in the OID4VCI specification.
+  If this property is set to true, every credential request is required
+  to include the `credential_response_encryption`
+  JSON object. |
+  | `credentialsSupported` | string | Credentials supported by the credential issuer when this service acts as
+  a credential issuer. This property corresponds to the
+  `credential_configurations_supported` metadata defined
+  in the OID4VCI specification.
+  The value must be a JSON object. Non-ASCII characters may be contained,
+  but Authlete limits the maximum number of characters to 16383.
+  To act as a credential issuer, this property must be set.
+  For backward compatibility, the name of this property remains
+  `credentialsSupported` and will not be renamed to
+  `credentialConfigurationsSupported`. |
+  | `credentialOfferDuration` | integer | The default duration of credential offers in seconds.
+  When an API to the `/vci/offer/create` API does not contain
+  the `duration` request parameter or the value of the parameter
+  is 0 or negative, the value of this property is used as the default value.
+  If the value of this property is 0 or negative, the default value per
+  Authlete server is used as the default value. |
+  | `preAuthorizedGrantAnonymousAccessSupported` | boolean | This property indicates whether token requests using the pre-authorized
+  code flow by unidentifiable client applications are allowed.
+  This property corresponds to the
+  `pre-authorized_grant_anonymous_access_supported`
+  metadata defined in the OID4VCI specification. |
+  | `cnonceDuration` | integer | The duration of `c_nonce` in seconds.
+  When the token endpoint of the authorization server issues an access
+  token usable for verifiable credential issuance, it also issues a
+  `c_nonce` alongside the access token. In addition, the
+  credential endpoint and the batch credential endpoint of the credential
+  issuer issue a new `c_nonce` when the presented
+  `c_nonce` has already expired. This property is used as
+  the lifetime of such `c_nonce`s.
+  If the value of this property is 0 or negative, the default value per
+  Authlete server is used. |
+  | `credentialTransactionDuration` | integer | The default duration of transaction IDs in seconds that may be issued
+  as a result of a credential request or a batch credential request.
+  If the value of this property is 0 or negative, the default value per
+  Authlete server is used. |
+  | `credentialDuration` | integer | The default duration of verifiable credentials in seconds.
+  Some Authlete APIs such as the `/vci/single/issue` API and
+  the `/vci/batch/issue` API may issue one or more verifiable
+  credentials. The value of this property specifies the default duration
+  of such verifiable credentials.
+  The value 0 indicates that verifiable credentials will not expire.
+  In the case, verifiable credentials will not have a property that
+  indicates the expiration time. For example, JWT-based verifiable
+  credentials will not contain the `exp` claim
+  ([RFC 7519](https://www.rfc-editor.org/rfc/rfc7519.html),
+  [Section 4.1.4](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.4)).
+  Authlete APIs that may issue verifiable credentials recognize a request
+  parameter that can override the duration. For example, a request to the
+  `/vci/single/issue` API contains an `order` object
+  that has a `credentialDuration` parameter that can override
+  the default duration. |
+  | `credentialJwks` | string | The JWK Set document containing private keys that are used to sign
+  verifiable credentials.
+  Some Authlete APIs such as the `/vci/single/issue` API and
+  the `/vci/batch/issue` API may issue one or more verifiable
+  credentials. The content of this property is referred to by such APIs.
+  Authlete APIs that may issue verifiable credentials recognize a request
+  parameter that can specify the key ID of a private key that should be
+  used for signing. For example, a request to the `/vci/single/issue`
+  API contains an `order` object that has a
+  `signingKeyId` parameter that can specify the key
+  ID of a private key to be used for signing. When a key ID is not specified,
+  Authlete will select a private key automatically.
+  If JWKs in the JWK Set do not contain the `kid` property
+  ([RFC 7517](https://www.rfc-editor.org/rfc/rfc7517.html),
+  [Section 4.5](https://www.rfc-editor.org/rfc/rfc7517.html#section-4.5)) when this `credentialJwks` property
+  is updated, Authlete will automatically insert the `kid`
+  property into such JWKs. The JWK thumbprint
+  ([RFC 7638](https://www.rfc-editor.org/rfc/rfc7638.html))
+  computed with the SHA-256 hash algorithm is used as the value of the
+  `kid` property. |
+  | `credentialJwksUri` | string | The URL at which the JWK Set document of the credential issuer is exposed.
+  This URL is used as the value of the `jwks_uri` property in the
+  JWT issuer metadata. The metadata itself is published at
+  `/.well-known/jwt-issuer`. See
+  [SD-JWT-based Verifiable Credentials (SD-JWT VC)](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/) for details about the
+  JWT issuer metadata. |
+  ### 3.3. Authlete APIs
+  #### 3.3.1. Overall Picture of Authlete APIs for OID4VCI
+  The following diagram illustrates the relationship between the endpoints of
+  the frontend servers (the credential issuer and the authorization server) and
+  Authlete APIs. The details of the Authlete APIs are explained in the following
+  sections.
+  [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/authlete_apis_for_oid4vci.png)](/oid4vci)
+  #### 3.3.2. Authlete API Call
+  A significant difference between Authlete 2.x and Authlete 3.0 is how to call
+  Authlete APIs.
+  In Authlete 2.x and older versions, developers call Authlete APIs using a pair
+  of an API key and an API secret (e.g., a service API key and a service API secret).
+  In Authlete 3.0, on the other hand, developers call Authlete APIs with an access token.
+  which is significantly different from the previous ones. In Authlete 2.x and
+  older versions, there are two separate Web consoles: the service owner console
+  (for managing services corresponding to authorization servers and OpenID providers)
+  and the developer console (for managing client applications). In Authlete 3.0,
+  however, a single Web console is provided, and its appearance and functionality
+  change based to on the privileges of the presented access token.
+  |  | Authlete 2.x | Authlete 3.0 |
+  | --- | --- | --- |
+  | Protection | API key & API secret | Access token |
+  | Web Console | The service owner console and the developer console | A single console |
+  Another difference is found in the path component of Authlete APIs. In Authlete 3.0, most Authlete APIs include a service ID as part of the path, such as `/api/````/auth/authorization`, where `` represents the identifier of a service (i.e., the service API key in Authlete 2.x).
+  | Authlete Version | API Path Example |
+  | --- | --- |
+  | Authlete 2.x | `/api/auth/authorization` |
+  | Authlete 3.0 | `/api/````/auth/authorization` |
+  In this document, as well as in other documents, the prefix `/api/` for API paths is omitted.
+  These changes are not insignificant, but their impact on programs can be
+  minimized by absorbing the differences at the library layer. For instance,
+  developers using the sample authorization server written in Java
+  ([authlete/java-oauth-server](https://github.com/authlete/java-oauth-server)) and switching from
+  Authlete 2.x to Authlete 3.0 only need to modify the content of the
+  configuration file (`authlete.properties`) from:
   ```java-properties
-# For Authlete 3.0
-1. [Home](https://www.authlete.com/)
-3. For Authlete 2.x
-api_version = V3
-base_url = ...
-service.api_key = ...
-service.access_token = ...
-```
-### 3.4. Credential Offer Issuance
-As mentioned before, the process of issuing credential offers varies among
-credential issuers.
-For example, after interacting with a user via a web browser, the credential
-issuer may display a QR code like below:
+  # For Authlete 2.x
+  1. [Home](https://www.authlete.com/)
+  3. For Authlete 2.x
+  base_url = ...
+  service.api_key = ..
+  service.api_secret = ...
+  ```to:
+  ```java-properties
+  # For Authlete 3.0
+  1. [Home](https://www.authlete.com/)
+  3. For Authlete 2.x
+  api_version = V3
+  base_url = ...
+  service.api_key = ...
+  service.access_token = ...
+  ```
+  ### 3.4. Credential Offer Issuance
+  As mentioned before, the process of issuing credential offers varies among
+  credential issuers.
+  For example, after interacting with a user via a web browser, the credential
+  issuer may display a QR code like below:
   [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/credential_offer_qr.png)](/oid4vci)
-that represents “`openid-credential-offer://?credential_offer=`”
-where `` holds the following credential offer.
-```json
+  that represents “`openid-credential-offer://?credential_offer=`”
+  where `` holds the following credential offer.
+  ```json
 
 }
 }
 ```The credential issuer may instead show a hyperlink like below:
   - `openid-credential-offer://?credential_offer_uri=```
-where `` holds a URL-encoded URL like
-`https%3A%2F%2Ftrial.authlete.net%2Fapi%2Foffer%2FTctoiNm9lYASTBT6XRGb8RQsrClKczCxDtqLY1jLvpk`.
-#### 3.4.1. The `/vci/offer/create` API
-Regardless, credential issuers supporting credential offers must be able to
-create them. For the functionality, Authlete provides the `/vci/offer/create`
-API. The following table summarizes the API.
-| Request to the /vci/offer/create API |
-| --- |
-| HTTP Method andContent-Type | GET | (query parameters) |
-| POST | `application/json` |
-| POST | `application/x-www-form-urlencoded` |
-| Request Parameters | `credentialConfigurationIds` | A string array, which will be used as the value of
-the `"credential_configuration_ids"` property of a credential offer.
-This request parameter is mandatory. |
-| `authorizationCodeGrantIncluded` | A boolean value (`true` or `false`) indicating
-whether to include the `"authorization_code"` object in the
-`"grants"` object. |
-| `issuerStateIncluded` | A boolean value (`true` or `false`) indicating
-whether to include the `"issuer_state"` property in the
-`"authorization_code"` object in the `"grants"`
-object.
-When this parameter is `true`, Authlete generates an issuer
-state and puts it in the `"authorization_code"` object as
-the value of the `"issuer_state"` property. |
-| `preAuthorizedCodeGrantIncluded` | A boolean value (`true` or `false`) indicating
-whether to include the
-`"urn:ietf:params:oauth:grant-type:pre-authorized_code"`
-object in the `"grants"` object.
-When this parameter is `true`, Authlete generates a
-pre-authorized code and puts it in the
-`"urn:ietf:params:oauth:grant-type:pre-authorized_code"`
-object as the value of the `"pre-authorized_code"` property. |
-| `txCode` | A transaction code that should be associated with the pre-authorized code.
-If this parameter is not empty, a `tx_code` object will be
-embedded in the
-`"urn:ietf:params:oauth:grant-type:pre-authorized_code"`
-object. Consequently, the token request using the pre-authorized code
-will have to include the `tx_code` request parameter with
-the value specified by this parameter. |
-| `txCodeInputMode` | The input mode of the transaction code. The value specified by this
-parameter will be used as the value of the `input_mode`
-property in the `tx_code` object.
-The predefined values listed in the OID4VCI specification are
-`"numeric"` and `"text"` only, but the
-`/vci/offer/create` API accepts other values
-for the future extension in addition to the predefined ones. |
-| `txCodeDescription` | The description of the transaction code. The value specified by this
-parameter will be used as the value of the `description`
-property in the `tx_code` object. |
-| `subject` | The subject (the unique identifier) of the user associated with
-the credential offer.
-This parameter is mandatory. |
-| `duration` | The duration of the credential offer in seconds.
-If this parameter holds a positive integer, the value is used as the
-duration of the credential offer being issued. Otherwise, the value
-of the `credentialOfferDuration` property of the
-service is used. |
-| `context` | The general-purpose arbitrary string associated with the credential
-offer.
-care about the content of this parameter. |
-| `properties` | The extra properties associated with the credential offer, which are
-general-purpose key-value pairs.
-The extra properties will be eventually associated with an access token
-which will be created based on the credential offer. |
-| `jwtAtClaims` | The additional claims in JSON object format that are added to the payload
-part of the JWT access token.
-This parameter has a meaning only when the format of access tokens issued
-by the service is JWT. In other words, it has a meaning only when the
-`accessTokenSignAlg` property of the service
-holds a non-null value.
-The additional claims will be eventually associated with an access token
-which will be created based on the credential offer. |
-| `authTime` | The time when the user authentication was performed during the course
-of issuing the credential offer.
-The time is represented as seconds since the Unix epoch. |
-| `acr` | The Authentication Context Class Reference of the user authentication
-performed during the course of issuing the credential offer. |
-For example, the following command lines create a credential offer.
-```shell
-$ BASE_URL=https://nextdev-api.authlete.net
-$ SERVICE_ID=986126671
-$ ACCESS_TOKEN=$
-$ curl -s $/api/$/vci/offer/create \
--H "Authorization: Bearer $" \
--H "Content-Type: application/json" \
+    where `` holds a URL-encoded URL like
+    `https%3A%2F%2Ftrial.authlete.net%2Fapi%2Foffer%2FTctoiNm9lYASTBT6XRGb8RQsrClKczCxDtqLY1jLvpk`.
+    #### 3.4.1. The `/vci/offer/create` API
+    Regardless, credential issuers supporting credential offers must be able to
+    create them. For the functionality, Authlete provides the `/vci/offer/create`
+    API. The following table summarizes the API.
+    | Request to the /vci/offer/create API |
+    | --- |
+    | HTTP Method andContent-Type | GET | (query parameters) |
+    | POST | `application/json` |
+    | POST | `application/x-www-form-urlencoded` |
+    | Request Parameters | `credentialConfigurationIds` | A string array, which will be used as the value of
+    the `"credential_configuration_ids"` property of a credential offer.
+    This request parameter is mandatory. |
+    | `authorizationCodeGrantIncluded` | A boolean value (`true` or `false`) indicating
+    whether to include the `"authorization_code"` object in the
+    `"grants"` object. |
+    | `issuerStateIncluded` | A boolean value (`true` or `false`) indicating
+    whether to include the `"issuer_state"` property in the
+    `"authorization_code"` object in the `"grants"`
+    object.
+    When this parameter is `true`, Authlete generates an issuer
+    state and puts it in the `"authorization_code"` object as
+    the value of the `"issuer_state"` property. |
+    | `preAuthorizedCodeGrantIncluded` | A boolean value (`true` or `false`) indicating
+    whether to include the
+    `"urn:ietf:params:oauth:grant-type:pre-authorized_code"`
+    object in the `"grants"` object.
+    When this parameter is `true`, Authlete generates a
+    pre-authorized code and puts it in the
+    `"urn:ietf:params:oauth:grant-type:pre-authorized_code"`
+    object as the value of the `"pre-authorized_code"` property. |
+    | `txCode` | A transaction code that should be associated with the pre-authorized code.
+    If this parameter is not empty, a `tx_code` object will be
+    embedded in the
+    `"urn:ietf:params:oauth:grant-type:pre-authorized_code"`
+    object. Consequently, the token request using the pre-authorized code
+    will have to include the `tx_code` request parameter with
+    the value specified by this parameter. |
+    | `txCodeInputMode` | The input mode of the transaction code. The value specified by this
+    parameter will be used as the value of the `input_mode`
+    property in the `tx_code` object.
+    The predefined values listed in the OID4VCI specification are
+    `"numeric"` and `"text"` only, but the
+    `/vci/offer/create` API accepts other values
+    for the future extension in addition to the predefined ones. |
+    | `txCodeDescription` | The description of the transaction code. The value specified by this
+    parameter will be used as the value of the `description`
+    property in the `tx_code` object. |
+    | `subject` | The subject (the unique identifier) of the user associated with
+    the credential offer.
+    This parameter is mandatory. |
+    | `duration` | The duration of the credential offer in seconds.
+    If this parameter holds a positive integer, the value is used as the
+    duration of the credential offer being issued. Otherwise, the value
+    of the `credentialOfferDuration` property of the
+    service is used. |
+    | `context` | The general-purpose arbitrary string associated with the credential
+    offer.
+    care about the content of this parameter. |
+    | `properties` | The extra properties associated with the credential offer, which are
+    general-purpose key-value pairs.
+    The extra properties will be eventually associated with an access token
+    which will be created based on the credential offer. |
+    | `jwtAtClaims` | The additional claims in JSON object format that are added to the payload
+    part of the JWT access token.
+    This parameter has a meaning only when the format of access tokens issued
+    by the service is JWT. In other words, it has a meaning only when the
+    `accessTokenSignAlg` property of the service
+    holds a non-null value.
+    The additional claims will be eventually associated with an access token
+    which will be created based on the credential offer. |
+    | `authTime` | The time when the user authentication was performed during the course
+    of issuing the credential offer.
+    The time is represented as seconds since the Unix epoch. |
+    | `acr` | The Authentication Context Class Reference of the user authentication
+    performed during the course of issuing the credential offer. |
+    For example, the following command lines create a credential offer.
+    ```shell
+    $ BASE_URL=https://nextdev-api.authlete.net
+    $ SERVICE_ID=986126671
+    $ ACCESS_TOKEN=$
+    $ curl -s $/api/$/vci/offer/create \
+  -H "Authorization: Bearer $" \
+  -H "Content-Type: application/json" \
 --data '
 
 '
@@ -1253,7 +1253,7 @@ created in the previous section.
 ```shell
 $ CREDENTIAL_OFFER_IDENTIFIER=9gjVvas8Q5BkkrkSfZv-DbsBYJvlw6ZPMK-TeCkQDEc
 $ curl -s $/api/$/vci/offer/info/$ \
--H "Authorization: Bearer $"
+  -H "Authorization: Bearer $"
 ```The `/vci/offer/info` API returns JSON like below, which is almost the same
 as the response from the `/vci/offer/create` API.
 ```json
@@ -1450,60 +1450,60 @@ To configure `oid4vci` Credential Issuer Metadata Properties:
 - Deferred Credential Endpoint
 - Supported Credentials
 - Anonymous Access
-3. Click the `Save Changes` button to apply the updates.
-![oid4vci_2](https://storage.googleapis.com/authlete-website/resources/oid4vci/2.png)
-#### 3.7.2. Client Settings
-To configure `oid4vci` in Authlete Client Settings:
+  3. Click the `Save Changes` button to apply the updates.
+  ![oid4vci_2](https://storage.googleapis.com/authlete-website/resources/oid4vci/2.png)
+  #### 3.7.2. Client Settings
+  To configure `oid4vci` in Authlete Client Settings:
   1. Log in to the [Authlete Management Console](https://console.authlete.com/)
-2. Click on your Organization name and choose your Service.
-3. Navigate to Client Settings > Verifiable Credentials > General
-4. Under the `Credential Response Encryption` section, enable `Require` option to turn on support for response encryption.
-5. Click the `Save Changes` button to apply the updates.
-![oid4vci_3](https://storage.googleapis.com/authlete-website/resources/oid4vci/3.png)
-## 4. OID4VCI Demo
-### 4.1. Pre-Authorized Code Flow + Key Proof + SD-JWT VC
-#### 4.1.1. Setup
-Download the resources used in this demo.
-```shell
-git clone git@github.com:authlete/oid4vci-demo.git
-cd oid4vci-demo
-```Set up some shell variables for this demo.
-```shell
-CLIENT_ID=218232426
-TOKEN_ENDPOINT=https://trial.authlete.net/api/token
-CREDENTIAL_ISSUER=https://trial.authlete.net
-CREDENTIAL_ENDPOINT=https://trial.authlete.net/api/credential
-```#### 4.1.2. Pre-Authorized Code
-Access [https://trial.authlete.net/api/offer/issue](https://trial.authlete.net/api/offer/issue) to generate a
-“credential offer” that contains a “pre-authorized code”.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/credential_offer_issue_page.png)](/oid4vci)
-The page displayed at the URL provides a form to create an arbitrary
-credential offer for demo purposes. If “Pre-authorized code grant included”
-in the form is checked, a pre-authorized code will be included in the
-credential offer being issued.
-Input `inga` and `inga` in the “Login ID” field and the “Password” field,
-confirm that “Pre-authorized code grant included” is checked, and press
-the “Submit” button. You will see a result page displayed.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/credential_offer_issue_page_result.png)](/oid4vci)
-The result page will show a QR code which represents a URL including a
-credential offer. The content of the credential offer is shown in the
-JSON placed under the QR code. The value of the `pre-authorized_code`
-property in the JSON is the issued pre-authorized code.
-Set the issued pre-authorized code to shell variable `PRE_AUTHORIZED_CODE`
-to use it in the next step.
-```shell
-PRE_AUTHORIZED_CODE=NH9udMon5pTuuvbsNsHUNWf8tpU__9wt-gsO9LeYthc
-```#### 4.1.3. Access Token
-Send a token request using the pre-authorized code flow.
-The client for this demo is a public client, so client authentication is not required.
-That is, it’s not necessary to add request parameters related to client authentication.
-```shell
-curl -s $TOKEN_ENDPOINT \
+  2. Click on your Organization name and choose your Service.
+  3. Navigate to Client Settings > Verifiable Credentials > General
+  4. Under the `Credential Response Encryption` section, enable `Require` option to turn on support for response encryption.
+  5. Click the `Save Changes` button to apply the updates.
+  ![oid4vci_3](https://storage.googleapis.com/authlete-website/resources/oid4vci/3.png)
+  ## 4. OID4VCI Demo
+  ### 4.1. Pre-Authorized Code Flow + Key Proof + SD-JWT VC
+  #### 4.1.1. Setup
+  Download the resources used in this demo.
+  ```shell
+  git clone git@github.com:authlete/oid4vci-demo.git
+  cd oid4vci-demo
+  ```Set up some shell variables for this demo.
+  ```shell
+  CLIENT_ID=218232426
+  TOKEN_ENDPOINT=https://trial.authlete.net/api/token
+  CREDENTIAL_ISSUER=https://trial.authlete.net
+  CREDENTIAL_ENDPOINT=https://trial.authlete.net/api/credential
+  ```#### 4.1.2. Pre-Authorized Code
+  Access [https://trial.authlete.net/api/offer/issue](https://trial.authlete.net/api/offer/issue) to generate a
+  “credential offer” that contains a “pre-authorized code”.
+  [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/credential_offer_issue_page.png)](/oid4vci)
+  The page displayed at the URL provides a form to create an arbitrary
+  credential offer for demo purposes. If “Pre-authorized code grant included”
+  in the form is checked, a pre-authorized code will be included in the
+  credential offer being issued.
+  Input `inga` and `inga` in the “Login ID” field and the “Password” field,
+  confirm that “Pre-authorized code grant included” is checked, and press
+  the “Submit” button. You will see a result page displayed.
+  [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/credential_offer_issue_page_result.png)](/oid4vci)
+  The result page will show a QR code which represents a URL including a
+  credential offer. The content of the credential offer is shown in the
+  JSON placed under the QR code. The value of the `pre-authorized_code`
+  property in the JSON is the issued pre-authorized code.
+  Set the issued pre-authorized code to shell variable `PRE_AUTHORIZED_CODE`
+  to use it in the next step.
+  ```shell
+  PRE_AUTHORIZED_CODE=NH9udMon5pTuuvbsNsHUNWf8tpU__9wt-gsO9LeYthc
+  ```#### 4.1.3. Access Token
+  Send a token request using the pre-authorized code flow.
+  The client for this demo is a public client, so client authentication is not required.
+  That is, it’s not necessary to add request parameters related to client authentication.
+  ```shell
+  curl -s $TOKEN_ENDPOINT \
 -d client_id=$CLIENT_ID \
 -d grant_type=urn:ietf:params:oauth:grant-type:pre-authorized_code \
 -d pre-authorized_code=$PRE_AUTHORIZED_CODE
-```The token endpoint will return a response like below.
-```json
+  ```The token endpoint will return a response like below.
+  ```json
 
 ```The response will contain the `access_token` parameter and the `c_nonce` parameter.
 Set the values of the response parameters to shell variables for later use.
@@ -1537,8 +1537,8 @@ KEY_PROOF_JWT=`./generate-key-proof -i $CREDENTIAL_ISSUER -k holder.jwk -c $CLIE
 Send a “credential request” with the generated key proof JWT to the “credential endpoint”.
 ```shell
 curl -s $CREDENTIAL_ENDPOINT \
--H "Authorization: Bearer $ACCESS_TOKEN" \
--H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
 --data ''"
 }
 }'
@@ -1685,9 +1685,9 @@ show the following JSONs. The payload contains the `ath` claim.
 to the “credential endpoint”.
 ```shell
 curl -s $CREDENTIAL_ENDPOINT \
--H "DPoP: $DPOP_PROOF_JWT" \
--H "Authorization: DPoP $ACCESS_TOKEN" \
--H "Content-Type: application/json" \
+  -H "DPoP: $DPOP_PROOF_JWT" \
+  -H "Authorization: DPoP $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
 --data ',
 "given_name": ,
 "birth_date": ,
@@ -1726,138 +1726,138 @@ Diagnostic Notation ([RFC 8949, 8. Diagnostic Notation](https://www.rfc-editor.o
 > 24(
 >>\`}),
 > 24(
-]
-\`}
+> ]
+> \`}
 >>\`})
 > ]
-},
-"issuerAuth": [
-h'a10126',
-,
-24(
-},
-"docType": "org.iso.18013.5.1.mDL",
-"validityInfo": 
-  \`}
+> },
+> "issuerAuth": [
+> h'a10126',
+> ,
+> 24(
+> },
+> "docType": "org.iso.18013.5.1.mDL",
+> "validityInfo":
+> \`}
 >>\`}),
 > h'f2720d4e61e2d0deb0cb634736f1726efb97e9e9df988ab4a00a423ebb561d1744726c3712a85ff40944b3eb2f5bb9f07b890dbc3203a7357b006e966e005003'
-]
-}
-}
-```
-### 4.3. POTENTIAL Interop Event / Track 1 / Light Profile
-[POTENTIAL](https://www.digital-identity-wallet.eu/) is a European organization dedicated to European Digital Identity.
-The organization has been hosting an interoperability event since spring 2024. The event
-is divided into six tracks. Tracks 1 and 2 are designated for testing the inteoperability
-of credential issuers. In Track 1, mdoc is used as the format for verifiable credentials,
-while SD-JWT VC is used in Track 2.
-Track 1 defines two profiles. One is called the “light” profile. The other is called the
-“full” profile. This section explains the steps for the light profile.
-#### 4.3.1. Settings
-##### 4.3.1.1. Authorization Server Settings
-| Parameter | Value |
-| --- | --- |
-| Issuer Identifier | `https://trial.authlete.net` |
-| Authorization Endpoint | `https://trial.authlete.net/api/authorization` |
-| Token Endpoint | `https://trial.authlete.net/api/token` |
-| Discovery Endpoint | `[https://trial.authlete.net/.well-known/openid-configuration](https://trial.authlete.net/.well-known/openid-configuration)` |
-| Entity Configuration | `[https://trial.authlete.net/.well-known/openid-federation](https://trial.authlete.net/.well-known/openid-federation)` |
-The source code of the authorization server is available at
-[https://github.com/authlete/java-oauth-server](https://github.com/authlete/java-oauth-server). Note that this implementation
-is a sample and is not intended for commercial use.
-##### 4.3.1.2. Credential Issuer Settings
-| Parameter | Value |
-| --- | --- |
-| Issuer Identifier | `https://trial.authlete.net` |
-| Credential Endpoint | `https://trial.authlete.net/api/credential` |
-| Metadata Endpoint | `[https://trial.authlete.net/.well-known/openid-credential-issuer](https://trial.authlete.net/.well-known/openid-credential-issuer)` |
-| Entity Configuration | `[https://trial.authlete.net/.well-known/openid-federation](https://trial.authlete.net/.well-known/openid-federation)` |
-The source code of the credential issuer is the same as that of the
-authorization server.
-##### 4.3.1.3. Client Settings
-| Parameter | Value |
-| --- | --- |
-| Client ID | `track1_light` |
-| Client Type | public (= [client authentication](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4) is not required) |
-| Redirect URIs | `https://nextdev-api.authlete.net/api/mock/redirection``eudi-openid4ci://authorize/` |
-If you need to register additional redirect URIs to this client, or if you need
-an independent client dedicated to your use, please [contact us](https://www.authlete.com/contact/).
-To Authlete members: New clients should be created under
-"Trial" (organization=283415) /
-"NextDev" (server=2704222) /
-"Authlete Trial" (service=986126671).
-#### 4.3.2. Demo Steps
-##### 4.3.2.1. Step 1 : Credential Offer
-The sample implementation of credential issuer provides a web page where
-developers can generate an arbitrary credential offer for testing.
-The URL of the page is [https://trial.authlete.net/api/offer/issue](https://trial.authlete.net/api/offer/issue).
-Accessing the web page, you will find a form to configure the content of
-a credential offer.
-Edit the form as instructed below.
-1. Input `inga` and `inga` into the “Login ID” field and the “Password” field.
-2. Edit the “Credential Configuration IDs”. The value should be a JSON array containing the string `potential.light.profile`.
-3. Check the “include?” checkbox next to “Authorization Code Grant”.
-4. Uncheck the “include?” checkbox next to “Pre-Authorized Code Grant”.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_credential_offer_form.png)](/oid4vci)
-Press the “Submit” button after editing the form, and you will find a QR code
-that represents a URL containing the generated credential offer.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_credential_offer_qr_code.png)](/oid4vci)
-The JSON under the QR code represents the content of the credential offer.
-The value of the `issuer_state` property in the JSON is the issued
-issuer state. In the above example, the value of the issuer state is
-`tXkAkhSu5N9ORSNES9T64Bd9PAiKn9OmEOT5qDL0lkA`.
-The issuer state is to be included in the authorization request you will
-make later.
-##### 4.3.2.2. Step 2 : Code Verifier and Code Challenge
-Generate a code verifier and compute the corresponding code challenge
-(cf. [RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html)) by using the `pkce` command
-```shell
-git clone git@github.com:authlete/oid4vci-demo.git
-cd oid4vci-demo
-./pkce
-```The `pkce` command will print a generated code verifier and the computed code
-challenge like below.
-```shell
-CODE_VERIFIER=gzRNlV7DLS_HyKMQKQMrzgYQ8aY3H2rVJ3iIlYK0cjE
-CODE_CHALLENGE=j_4gpG9Kr3M7ilMO-MRoSROP-W3h2EZem0KSEU-RAhM
-```The computed code challenge is to be included in the authorization request
-in the next step, and the generated code verifier is to be included in the
-token request that will be made after the authorization request.
-##### 4.3.2.3. Step 3 : Authorization Request
-Make an authorization request using the authorization code flow
-(cf. [RFC 6749, 4.1](https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1)) by inputting the following URL in the
-address bar of your web browser. Don’t forget to replace `$` and
-`$` in the URL with the actual values of the issuer state and
-the code challenge you have created in the previous steps.
-```
-https://trial.authlete.net/api/authorization?client_id=track1_light&response_type=code&issuer_state=$&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection&code_challenge=$&code_challenge_method=S256&prompt=login
-```Accessing the URL will show you an authorization page. The page contains
-a login form. Input `inga` and `inga` into the Login ID field and the Password
-field in the login form, and press the “Authorize” button.
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_authorization_page.png)](/oid4vci)
-You will be redirected to the redirection endpoint (cf.
-[RFC 6749, 3.1.2](https://www.rfc-editor.org/rfc/rfc6749.html#section-3.1.2)).
-[![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_redirection_endpoint.png)](/oid4vci)
-This redirection endpoint displays key-value pairs that it has received.
-The value of the `code` parameter displayed there is the issued
-authorization code. In this example, the value of the authorization code is
-`gR43MQf2olvhMt6KekVDkUOdQPrVYgBiKXMwu_UFnB8`.
-The authorization code is to be used in the token request in the next section.
-Note that the authorization code will expire in 10 minutes, so you have to make
-a token request promptly.
-##### 4.3.2.4. Step 4 : Token Request
-Make a token request using the authorization code flow. Don’t forget to
-replace `$` and `$` in the `curl` command
-below with the actual values you have obtained in the previous steps.
-```shell
-curl -s https://trial.authlete.net/api/token \
--d client_id=track1_light \
--d grant_type=authorization_code \
--d code=$ \
--d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
--d code_verifier=$
-```If the token request is valid, the token endpoint returns JSON like below.
-```json
+> ]
+> }
+> }
+> ```
+> ### 4.3. POTENTIAL Interop Event / Track 1 / Light Profile
+> [POTENTIAL](https://www.digital-identity-wallet.eu/) is a European organization dedicated to European Digital Identity.
+> The organization has been hosting an interoperability event since spring 2024. The event
+> is divided into six tracks. Tracks 1 and 2 are designated for testing the inteoperability
+> of credential issuers. In Track 1, mdoc is used as the format for verifiable credentials,
+> while SD-JWT VC is used in Track 2.
+> Track 1 defines two profiles. One is called the “light” profile. The other is called the
+> “full” profile. This section explains the steps for the light profile.
+> #### 4.3.1. Settings
+> ##### 4.3.1.1. Authorization Server Settings
+> | Parameter | Value |
+> | --- | --- |
+> | Issuer Identifier | `https://trial.authlete.net` |
+> | Authorization Endpoint | `https://trial.authlete.net/api/authorization` |
+> | Token Endpoint | `https://trial.authlete.net/api/token` |
+> | Discovery Endpoint | `[https://trial.authlete.net/.well-known/openid-configuration](https://trial.authlete.net/.well-known/openid-configuration)` |
+> | Entity Configuration | `[https://trial.authlete.net/.well-known/openid-federation](https://trial.authlete.net/.well-known/openid-federation)` |
+> The source code of the authorization server is available at
+> [https://github.com/authlete/java-oauth-server](https://github.com/authlete/java-oauth-server). Note that this implementation
+> is a sample and is not intended for commercial use.
+> ##### 4.3.1.2. Credential Issuer Settings
+> | Parameter | Value |
+> | --- | --- |
+> | Issuer Identifier | `https://trial.authlete.net` |
+> | Credential Endpoint | `https://trial.authlete.net/api/credential` |
+> | Metadata Endpoint | `[https://trial.authlete.net/.well-known/openid-credential-issuer](https://trial.authlete.net/.well-known/openid-credential-issuer)` |
+> | Entity Configuration | `[https://trial.authlete.net/.well-known/openid-federation](https://trial.authlete.net/.well-known/openid-federation)` |
+> The source code of the credential issuer is the same as that of the
+> authorization server.
+> ##### 4.3.1.3. Client Settings
+> | Parameter | Value |
+> | --- | --- |
+> | Client ID | `track1_light` |
+> | Client Type | public (= [client authentication](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4) is not required) |
+> | Redirect URIs | `https://nextdev-api.authlete.net/api/mock/redirection``eudi-openid4ci://authorize/` |
+> If you need to register additional redirect URIs to this client, or if you need
+> an independent client dedicated to your use, please [contact us](https://www.authlete.com/contact/).
+> To Authlete members: New clients should be created under
+> "Trial" (organization=283415)
+> "NextDev" (server=2704222)
+> "Authlete Trial" (service=986126671).
+> #### 4.3.2. Demo Steps
+> ##### 4.3.2.1. Step 1 : Credential Offer
+> The sample implementation of credential issuer provides a web page where
+> developers can generate an arbitrary credential offer for testing.
+> The URL of the page is [https://trial.authlete.net/api/offer/issue](https://trial.authlete.net/api/offer/issue).
+> Accessing the web page, you will find a form to configure the content of
+> a credential offer.
+> Edit the form as instructed below.
+> 1. Input `inga` and `inga` into the “Login ID” field and the “Password” field.
+> 2. Edit the “Credential Configuration IDs”. The value should be a JSON array containing the string `potential.light.profile`.
+> 3. Check the “include?” checkbox next to “Authorization Code Grant”.
+> 4. Uncheck the “include?” checkbox next to “Pre-Authorized Code Grant”.
+> [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_credential_offer_form.png)](/oid4vci)
+> Press the “Submit” button after editing the form, and you will find a QR code
+> that represents a URL containing the generated credential offer.
+> [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_credential_offer_qr_code.png)](/oid4vci)
+> The JSON under the QR code represents the content of the credential offer.
+> The value of the `issuer_state` property in the JSON is the issued
+> issuer state. In the above example, the value of the issuer state is
+> `tXkAkhSu5N9ORSNES9T64Bd9PAiKn9OmEOT5qDL0lkA`.
+> The issuer state is to be included in the authorization request you will
+> make later.
+> ##### 4.3.2.2. Step 2 : Code Verifier and Code Challenge
+> Generate a code verifier and compute the corresponding code challenge
+> (cf. [RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html)) by using the `pkce` command
+> ```shell
+> git clone git@github.com:authlete/oid4vci-demo.git
+> cd oid4vci-demo
+> ./pkce
+> ```The `pkce` command will print a generated code verifier and the computed code
+> challenge like below.
+> ```shell
+> CODE_VERIFIER=gzRNlV7DLS_HyKMQKQMrzgYQ8aY3H2rVJ3iIlYK0cjE
+> CODE_CHALLENGE=j_4gpG9Kr3M7ilMO-MRoSROP-W3h2EZem0KSEU-RAhM
+> ```The computed code challenge is to be included in the authorization request
+> in the next step, and the generated code verifier is to be included in the
+> token request that will be made after the authorization request.
+> ##### 4.3.2.3. Step 3 : Authorization Request
+> Make an authorization request using the authorization code flow
+> (cf. [RFC 6749, 4.1](https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1)) by inputting the following URL in the
+> address bar of your web browser. Don’t forget to replace `$` and
+> `$` in the URL with the actual values of the issuer state and
+> the code challenge you have created in the previous steps.
+> ```
+> https://trial.authlete.net/api/authorization?client_id=track1_light&response_type=code&issuer_state=$&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection&code_challenge=$&code_challenge_method=S256&prompt=login
+> ```Accessing the URL will show you an authorization page. The page contains
+> a login form. Input `inga` and `inga` into the Login ID field and the Password
+> field in the login form, and press the “Authorize” button.
+> [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_authorization_page.png)](/oid4vci)
+> You will be redirected to the redirection endpoint (cf.
+> [RFC 6749, 3.1.2](https://www.rfc-editor.org/rfc/rfc6749.html#section-3.1.2)).
+> [![](https://storage.googleapis.com/authlete-website/img/developers/oid4vci/potential_track1_light_redirection_endpoint.png)](/oid4vci)
+> This redirection endpoint displays key-value pairs that it has received.
+> The value of the `code` parameter displayed there is the issued
+> authorization code. In this example, the value of the authorization code is
+> `gR43MQf2olvhMt6KekVDkUOdQPrVYgBiKXMwu_UFnB8`.
+> The authorization code is to be used in the token request in the next section.
+> Note that the authorization code will expire in 10 minutes, so you have to make
+> a token request promptly.
+> ##### 4.3.2.4. Step 4 : Token Request
+> Make a token request using the authorization code flow. Don’t forget to
+> replace `$` and `$` in the `curl` command
+> below with the actual values you have obtained in the previous steps.
+> ```shell
+> curl -s https://trial.authlete.net/api/token \
+> -d client_id=track1_light \
+> -d grant_type=authorization_code \
+> -d code=$ \
+> -d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
+> -d code_verifier=$
+> ```If the token request is valid, the token endpoint returns JSON like below.
+> ```json
 
 ```The value of the `access_token` property in the JSON is the issued
 access token. It needs to be presented when you make a credential request.
@@ -1891,15 +1891,15 @@ mvn compile
 The following is the result of decoding the CWT key proof above using [CBOR Zone](https://cbor.zone/).
 ```
 61(18(/ COSE_Sign1 / [
-/ protected / 
+/ protected 
 >>\`},
 > / unprotected / ,
-h'a4016c747261636b315f6c6967687403781a68747470733a2f2f747269616c2e617574686c6574652e6e6574061a665fdcab0a582b762d31622d6e38326b454a476248524f53656b47736d522d784575616d4378595f5430745874514e2d6459',
-h'd556c03e310f5d02268845385327926098d0f8459ba1c5c222371d384d9edf4aa9506099515bd03236a5de2472049752aa42cff266d94f77df2445bbf3893122'
-]))
-```The value of `COSE_Key` in the protected header is a CBOR byte string, which
-wraps the COSE key. The content of the byte string is decoded as follows:
-  ```
+> h'a4016c747261636b315f6c6967687403781a68747470733a2f2f747269616c2e617574686c6574652e6e6574061a665fdcab0a582b762d31622d6e38326b454a476248524f53656b47736d522d784575616d4378595f5430745874514e2d6459',
+> h'd556c03e310f5d02268845385327926098d0f8459ba1c5c222371d384d9edf4aa9506099515bd03236a5de2472049752aa42cff266d94f77df2445bbf3893122'
+> ]))
+> ```The value of `COSE_Key` in the protected header is a CBOR byte string, which
+> wraps the COSE key. The content of the byte string is decoded as follows:
+> ```
 
 ```
 ##### 4.3.2.6. Step 6 : Credential Request
@@ -1908,8 +1908,8 @@ Don’t forget to replace `$` and `$` in the
 command line with the actual values.
 ```shell
 curl -s https://trial.authlete.net/api/credential \
--H "Authorization: Bearer $" \
--H "Content-Type: application/json" \
+  -H "Authorization: Bearer $" \
+  -H "Content-Type: application/json" \
 --data ',
 "given_name": ,
 "birth_date": ,
@@ -1947,71 +1947,71 @@ the previous section is as follows.
 > 24(
 >>\`}),
 > 24(
-]
-\`}
+> ]
+> \`}
 >>\`})
 > ]
-},
-"issuerAuth": [
-h'a10126',
-,
-h'd8185902ada66776657273696f6e63312e306f646967657374416c676f726974686d675348412d3235366c76616c756544696765737473a1716f72672e69736f2e31383031332e352e31a80158206dc862912db60d0ad5e922a4a2c638b84587176f855fec80e842d6b841f456b0025820956b771416c1c7ea8858bbe72e51dd26a3f18a40f26899c667a840bfc9b41e7e0358209e85e9c4c808b20888afc1e527d2737da94448554b805c66112f52a9222c206d045820fee0ca3df12f2a83c489f11f8f30eee80875b7c1b7427d4f06192d271bb55a870558204f72bc22130bc33ca7bfa6d8ce00e4cc28917377a12f7bb8b9219360088fa191065820f0868f188ffb4e9dab7f67cb844ab4743ce6ef51664d950f735e81749b020e090758200a9d68c96939b0be0ab56289fc70bc0f68f4b5fa53845404a576bc5891e28b7308582045d54d51b12213fd47ae223c51ac7820ff69dc9f85865d0b0f9e38ef1c9118f36d6465766963654b6579496e666fa2696465766963654b6579a6010202582b3165354159394579423031586e557a61364c704a7a6b30326e36595f416d6d6e5362304642654e56567255032620012158203d2c50ac3db3974fe65dc02acf59a0a92781a018679b1db2c41129ac163c176d225820c55f1f6e2d454a8b14ba72deb8b36e2e4262aa663a4ca88c9eeafe1a7db0475d716b6579417574686f72697a6174696f6e73a16a6e616d6553706163657381716f72672e69736f2e31383031332e352e3167646f6354797065756f72672e69736f2e31383031332e352e312e6d444c6c76616c6964697479496e666fa3667369676e6564c074323032342d30362d30355430333a33353a31345a6976616c696446726f6dc074323032342d30362d30355430333a33353a31345a6a76616c6964556e74696cc074323032352d30362d30355430333a33353a31345a',
-h'0b3477430012b71a0356aea1d847c62bd872a8925dd416f4ab46f47a59a31a3fa043df91feff751426fd9f9f7e1667daa6cb4dcd8ea77c746b547e8227fd32d8'
-]
-\`}
-```
-In this example, the verifiable credential represents the `IssuerSigned` structure,
-which is defined in the “8.3.2.1.2.2 Device retrieval mdoc response” section of
-[ISO/IEC 18013-5:2021](https://www.iso.org/standard/69084.html) as below.
-```
-IssuerSigned = 
-```
-Unexpectedly, the OID4VCI specification does not specify which CBOR structure
-the value of the `credential` property represents when the format
-is `mso_mdoc`. This is unlikely to be intentional and is simply a
-specification flaw.
-Due to this ambiguity, in the previous implementation of Authlete, the
-`Document` structure was used instead of the `IssuerSigned`
-structure. Interestingly, it appears that the implementation of EUDI Wallet
-expects neither the `IssuerSigned` structure nor the `Document`
-structure. Instead, it seems to expect the `DeviceResponse` structure.
-The reason for changing the implementation of Authlete to use the
-`IssuerSigned` structure is because the document for POTENTIAL
-Interop Event Track 1 explicitly states that the `IssuerSigned`
-structure should be used.
-And, the `IssuerAuth` structure and some other relevant structures are defined
-as below.
-```
-IssuerAuth = COSE_Sign1 ; The payload is MobileSecurityObjectBytes
-MobileSecurityObjectBytes = #6.24(bstr .cbor MobileSecurityObject)
-MobileSecurityObject = 
-DeviceKeyInfo = 
-DeviceKey = COSE_Key
-```The definitions of `IssuerAuth` and `MobileSecurityObjectBytes`
-give the impression that `MobileSecurityObjectBytes`
-(which starts with a CBOR tag) is directly used as the payload of `COSE_Sign1`.
-However, it is necessary to further convert `MobileSecurityObjectBytes`
-into a byte string.
-Therefore, the third element in the `"issuerAuth"` array, which starts with
-`h'd81859`, represents a byte string containing
-`MobileSecurityObjectBytes`.
-You can see the following CBOR structure by decoding that byte string.
-```
-24(
-},
-"deviceKeyInfo": ,
-"keyAuthorizations": 
-  },
-"docType": "org.iso.18013.5.1.mDL",
-"validityInfo": 
-  \`}
+> },
+> "issuerAuth": [
+> h'a10126',
+> ,
+> h'd8185902ada66776657273696f6e63312e306f646967657374416c676f726974686d675348412d3235366c76616c756544696765737473a1716f72672e69736f2e31383031332e352e31a80158206dc862912db60d0ad5e922a4a2c638b84587176f855fec80e842d6b841f456b0025820956b771416c1c7ea8858bbe72e51dd26a3f18a40f26899c667a840bfc9b41e7e0358209e85e9c4c808b20888afc1e527d2737da94448554b805c66112f52a9222c206d045820fee0ca3df12f2a83c489f11f8f30eee80875b7c1b7427d4f06192d271bb55a870558204f72bc22130bc33ca7bfa6d8ce00e4cc28917377a12f7bb8b9219360088fa191065820f0868f188ffb4e9dab7f67cb844ab4743ce6ef51664d950f735e81749b020e090758200a9d68c96939b0be0ab56289fc70bc0f68f4b5fa53845404a576bc5891e28b7308582045d54d51b12213fd47ae223c51ac7820ff69dc9f85865d0b0f9e38ef1c9118f36d6465766963654b6579496e666fa2696465766963654b6579a6010202582b3165354159394579423031586e557a61364c704a7a6b30326e36595f416d6d6e5362304642654e56567255032620012158203d2c50ac3db3974fe65dc02acf59a0a92781a018679b1db2c41129ac163c176d225820c55f1f6e2d454a8b14ba72deb8b36e2e4262aa663a4ca88c9eeafe1a7db0475d716b6579417574686f72697a6174696f6e73a16a6e616d6553706163657381716f72672e69736f2e31383031332e352e3167646f6354797065756f72672e69736f2e31383031332e352e312e6d444c6c76616c6964697479496e666fa3667369676e6564c074323032342d30362d30355430333a33353a31345a6976616c696446726f6dc074323032342d30362d30355430333a33353a31345a6a76616c6964556e74696cc074323032352d30362d30355430333a33353a31345a',
+> h'0b3477430012b71a0356aea1d847c62bd872a8925dd416f4ab46f47a59a31a3fa043df91feff751426fd9f9f7e1667daa6cb4dcd8ea77c746b547e8227fd32d8'
+> ]
+> \`}
+> ```
+> In this example, the verifiable credential represents the `IssuerSigned` structure,
+> which is defined in the “8.3.2.1.2.2 Device retrieval mdoc response” section of
+> [ISO/IEC 18013-5:2021](https://www.iso.org/standard/69084.html) as below.
+> ```
+> IssuerSigned =
+> ```
+> Unexpectedly, the OID4VCI specification does not specify which CBOR structure
+> the value of the `credential` property represents when the format
+> is `mso_mdoc`. This is unlikely to be intentional and is simply a
+> specification flaw.
+> Due to this ambiguity, in the previous implementation of Authlete, the
+> `Document` structure was used instead of the `IssuerSigned`
+> structure. Interestingly, it appears that the implementation of EUDI Wallet
+> expects neither the `IssuerSigned` structure nor the `Document`
+> structure. Instead, it seems to expect the `DeviceResponse` structure.
+> The reason for changing the implementation of Authlete to use the
+> `IssuerSigned` structure is because the document for POTENTIAL
+> Interop Event Track 1 explicitly states that the `IssuerSigned`
+> structure should be used.
+> And, the `IssuerAuth` structure and some other relevant structures are defined
+> as below.
+> ```
+> IssuerAuth = COSE_Sign1 ; The payload is MobileSecurityObjectBytes
+> MobileSecurityObjectBytes = #6.24(bstr .cbor MobileSecurityObject)
+> MobileSecurityObject =
+> DeviceKeyInfo =
+> DeviceKey = COSE_Key
+> ```The definitions of `IssuerAuth` and `MobileSecurityObjectBytes`
+> give the impression that `MobileSecurityObjectBytes`
+> (which starts with a CBOR tag) is directly used as the payload of `COSE_Sign1`.
+> However, it is necessary to further convert `MobileSecurityObjectBytes`
+> into a byte string.
+> Therefore, the third element in the `"issuerAuth"` array, which starts with
+> `h'd81859`, represents a byte string containing
+> `MobileSecurityObjectBytes`.
+> You can see the following CBOR structure by decoding that byte string.
+> ```
+> 24(
+> },
+> "deviceKeyInfo": ,
+> "keyAuthorizations":
+> },
+> "docType": "org.iso.18013.5.1.mDL",
+> "validityInfo":
+> \`}
 >>\`})
 > ```
-The point to note is that the public key embedded in the CWT key proof
-appears in the verifiable credential as the value of `deviceKey`. Please
-confirm that the value of `COSE_Key` in the CWT key proof is identical
-to the value of `deviceKey` in the VC. Both hold the following COSE Key.
-```
+> The point to note is that the public key embedded in the CWT key proof
+> appears in the verifiable credential as the value of `deviceKey`. Please
+> confirm that the value of `COSE_Key` in the CWT key proof is identical
+> to the value of `deviceKey` in the VC. Both hold the following COSE Key.
+> ```
 
 ```
 Refer to [IANA: CBOR Object Signing and Encryption (COSE)](https://www.iana.org/assignments/cose/cose.xhtml) for the
@@ -2054,8 +2054,8 @@ authorization server.
 If you need to register additional redirect URIs to this client, or if you need
 an independent client dedicated to your use, please [contact us](https://www.authlete.com/contact/).
 To Authlete members: New clients should be created under
-"Trial" (organization=283415) /
-"NextDev" (server=2704222) /
+"Trial" (organization=283415) 
+"NextDev" (server=2704222) 
 "Authlete Trial" (service=986126671).
 #### 4.4.2. Demo Steps
 ##### 4.4.2.1. Step 1 : Code Verifier and Code Challenge
@@ -2101,11 +2101,11 @@ replace `$` and `$` in the `curl` command
 below with the actual values you have obtained in the previous steps.
 ```shell
 curl -s https://trial.authlete.net/api/token \
--d client_id=track2_light \
--d grant_type=authorization_code \
--d code=$ \
--d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
--d code_verifier=$
+  -d client_id=track2_light \
+  -d grant_type=authorization_code \
+  -d code=$ \
+  -d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
+  -d code_verifier=$
 ```If the token request is valid, the token endpoint returns JSON like below.
 ```json
 
@@ -2248,8 +2248,8 @@ authorization server.
 If you need to register additional redirect URIs to this client, or if you need
 an independent client dedicated to your use, please [contact us](https://www.authlete.com/contact/).
 To Authlete members: New clients should be created under
-"Trial" (organization=283415) /
-"NextDev" (server=2704222) /
+"Trial" (organization=283415) 
+"NextDev" (server=2704222) 
 "Authlete Trial" (service=986126671).
 #### 4.5.2. Demo Steps
 ##### 4.5.2.1. Step 1 : Code Verifier and Code Challenge
@@ -2398,15 +2398,15 @@ executing the following command. Please replace `$`,
 the previous steps.
 ```shell
 curl -s https://trial.authlete.net/api/par \
--H "OAuth-Client-Attestation: $" \
--H "OAuth-Client-Attestation-PoP: $" \
--H "DPoP: $" \
--d client_id=track2_full \
--d response_type=code \
--d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
--d scope=potential.track2.full.profile \
--d code_challenge=$ \
--d code_challenge_method=S256
+  -H "OAuth-Client-Attestation: $" \
+  -H "OAuth-Client-Attestation-PoP: $" \
+  -H "DPoP: $" \
+  -d client_id=track2_full \
+  -d response_type=code \
+  -d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
+  -d scope=potential.track2.full.profile \
+  -d code_challenge=$ \
+  -d code_challenge_method=S256
 ```The PAR endpoint will return JSON as a response like below.  In a successful
 case, the JSON contains the `request_uri` property. The value of this property
 is a request URI that represents the pre-registered authorization request.
@@ -2461,21 +2461,21 @@ Now you have the following:
 - DPoP Proof JWT for Token Request (JWT)
 - Authorization Code
 - Code Verifier
-With these, you can make a token request as follows. Don’t forget to replace
-variables in the command line with the actual values you created in the
-previous steps.
-```shell
-curl -s https://trial.authlete.net/api/token \
--H "OAuth-Client-Attestation: $" \
--H "OAuth-Client-Attestation-PoP: $" \
--H "DPoP: $" \
--d client_id=track2_full \
--d grant_type=authorization_code \
--d code=$ \
--d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
--d code_verifier=$
-```The token endpoint will return JSON as a response like below.
-```json
+  With these, you can make a token request as follows. Don’t forget to replace
+  variables in the command line with the actual values you created in the
+  previous steps.
+  ```shell
+  curl -s https://trial.authlete.net/api/token \
+  -H "OAuth-Client-Attestation: $" \
+  -H "OAuth-Client-Attestation-PoP: $" \
+  -H "DPoP: $" \
+  -d client_id=track2_full \
+  -d grant_type=authorization_code \
+  -d code=$ \
+  -d redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection \
+  -d code_verifier=$
+  ```The token endpoint will return JSON as a response like below.
+  ```json
 
 ```The value of the `access_token` property is the issued access token. This needs
 to be included in the credential request you will make later.
@@ -2571,23 +2571,23 @@ Now you have the following:
 - DPoP Proof JWT for Credential Request (JWT)
 - JWT Key Proof 1 (JWT)
 - JWT Key Proof 2 (JWT)
-With these, you can make a credential request as follows.
-```shell
-curl -s https://trial.authlete.net/api/credential \
--H "Authorization: Bearer $" \
--H "DPoP: $" \
--H "Content-Type: application/json" \
+  With these, you can make a credential request as follows.
+  ```shell
+  curl -s https://trial.authlete.net/api/credential \
+  -H "Authorization: Bearer $" \
+  -H "DPoP: $" \
+  -H "Content-Type: application/json" \
 --data ''",
-"'$'"
-]
-\`}
-}'
-```The key point here is that the message body of the credential request contains
-the `proofs` property instead of the `proof` property. The `proofs` property
-is a new addition introduced by [OpenID4VCI PR 293](https://github.com/openid/OpenID4VCI/pull/293), which
-enables the inclusion of multiple key proofs.
-The credential endpoint will return a response like below.
-```json
+  "'$'"
+  ]
+  \`}
+  }'
+  ```The key point here is that the message body of the credential request contains
+  the `proofs` property instead of the `proof` property. The `proofs` property
+  is a new addition introduced by [OpenID4VCI PR 293](https://github.com/openid/OpenID4VCI/pull/293), which
+  enables the inclusion of multiple key proofs.
+  The credential endpoint will return a response like below.
+  ```json
 
 ```In a successful case, the response contains the `credentials` property instead
 of the `credential` property. Elements in the `credentials` array are issued
@@ -2702,92 +2702,92 @@ matches the public key embedded in the second key proof.
 #### On this page
 - [1. Introduction](#1-introduction)
 - [2. OID4VCI Specification](#2-oid4vci-specification)
-[2.1. Core Technical Terms](#21-core-technical-terms)
-[2.1.1. Verifiable Credential](#211-verifiable-credential)
-[2.1.2. Credential Issuer](#212-credential-issuer)
-[2.1.3. Access Token](#213-access-token)
-[2.1.4. Authorization Server](#214-authorization-server)
-[2.1.5. Wallet](#215-wallet)
-[2.1.6. Relationship](#216-relationship)
-[2.2. Access Token Issuance Overview](#22-access-token-issuance-overview)
-[2.2.1. Pre-Authorized Code Flow](#221-pre-authorized-code-flow)
-[2.2.2. Authorization Code Flow](#222-authorization-code-flow)
-[2.2.3. Authorization Code Flow + issuer_state](#223-authorization-code-flow--issuer_state)
-[2.2.4. Authorization Code Flow + authorization_details](#224-authorization-code-flow--authorization_details)
-[2.2.5. Authorization Code Flow + scope](#225-authorization-code-flow--scope)
-[2.3. Credential Issuance Overview](#23-credential-issuance-overview)
-[2.3.1. Deferred Credential Issuance](#231-deferred-credential-issuance)
-[2.3.2. Batch Credential Issuance](#232-batch-credential-issuance)
-[2.4. Access Token Issuance Details](#24-access-token-issuance-details)
-[2.4.1. Credential Offer](#241-credential-offer)
-[2.4.2. Pre-Authorized Code Flow Details](#242-pre-authorized-code-flow-details)
-[2.4.3. Issuable Credentials](#243-issuable-credentials)
-[2.5. Credential Verification](#25-credential-verification)
-[2.5.1. Key Binding](#251-key-binding)
-[2.6. Selective Disclosure](#26-selective-disclosure)
-[2.6.1. SD-JWT](#261-sd-jwt)
-[2.7. Verifiable Credential Formats](#27-verifiable-credential-formats)
-[2.7.1. Confusion Surrounding Verifiable Credential Formats](#271-confusion-surrounding-verifiable-credential-formats)
-[2.7.2. Essential Functions of Verifiable Credential Formats](#272-essential-functions-of-verifiable-credential-formats)
-[2.7.3. SD-JWT VC](#273-sd-jwt-vc)
-[2.7.4. Other Verifiable Credential Formats](#274-other-verifiable-credential-formats)
-[2.8. Credential Information for Access Token](#28-credential-information-for-access-token)
-[2.8.1. Credential Information in RAR Object](#281-credential-information-in-rar-object)
-[2.8.2. Credential Information in Credential Configuration](#282-credential-information-in-credential-configuration)
-[2.9. Credential Issuance Details](#29-credential-issuance-details)
-[2.9.1. Key Proof](#291-key-proof)
-[2.9.2. c_nonce](#292-c_nonce)
-[2.9.3. Credential Request](#293-credential-request)
-[2.9.4. Credential Response](#294-credential-response)
-[2.9.5. Deferred Credential Request](#295-deferred-credential-request)
-[2.9.6. Deferred Credential Response](#296-deferred-credential-response)
-[2.9.7. Batch Credential Request](#297-batch-credential-request)
-[2.9.8. Batch Credential Response](#298-batch-credential-response)
-[2.10. Public Key Distribution](#210-public-key-distribution)
-[2.10.1. Embedding X.509 Certificate](#2101-embedding-x509-certificate)
-[2.10.2. Embedding within Entity Configuration](#2102-embedding-within-entity-configuration)
-[2.10.3. jwt-vc-issuer](#2103-jwt-vc-issuer)
-[2.11. Specification Summary](#211-specification-summary)
+  [2.1. Core Technical Terms](#21-core-technical-terms)
+  [2.1.1. Verifiable Credential](#211-verifiable-credential)
+  [2.1.2. Credential Issuer](#212-credential-issuer)
+  [2.1.3. Access Token](#213-access-token)
+  [2.1.4. Authorization Server](#214-authorization-server)
+  [2.1.5. Wallet](#215-wallet)
+  [2.1.6. Relationship](#216-relationship)
+  [2.2. Access Token Issuance Overview](#22-access-token-issuance-overview)
+  [2.2.1. Pre-Authorized Code Flow](#221-pre-authorized-code-flow)
+  [2.2.2. Authorization Code Flow](#222-authorization-code-flow)
+  [2.2.3. Authorization Code Flow + issuer_state](#223-authorization-code-flow--issuer_state)
+  [2.2.4. Authorization Code Flow + authorization_details](#224-authorization-code-flow--authorization_details)
+  [2.2.5. Authorization Code Flow + scope](#225-authorization-code-flow--scope)
+  [2.3. Credential Issuance Overview](#23-credential-issuance-overview)
+  [2.3.1. Deferred Credential Issuance](#231-deferred-credential-issuance)
+  [2.3.2. Batch Credential Issuance](#232-batch-credential-issuance)
+  [2.4. Access Token Issuance Details](#24-access-token-issuance-details)
+  [2.4.1. Credential Offer](#241-credential-offer)
+  [2.4.2. Pre-Authorized Code Flow Details](#242-pre-authorized-code-flow-details)
+  [2.4.3. Issuable Credentials](#243-issuable-credentials)
+  [2.5. Credential Verification](#25-credential-verification)
+  [2.5.1. Key Binding](#251-key-binding)
+  [2.6. Selective Disclosure](#26-selective-disclosure)
+  [2.6.1. SD-JWT](#261-sd-jwt)
+  [2.7. Verifiable Credential Formats](#27-verifiable-credential-formats)
+  [2.7.1. Confusion Surrounding Verifiable Credential Formats](#271-confusion-surrounding-verifiable-credential-formats)
+  [2.7.2. Essential Functions of Verifiable Credential Formats](#272-essential-functions-of-verifiable-credential-formats)
+  [2.7.3. SD-JWT VC](#273-sd-jwt-vc)
+  [2.7.4. Other Verifiable Credential Formats](#274-other-verifiable-credential-formats)
+  [2.8. Credential Information for Access Token](#28-credential-information-for-access-token)
+  [2.8.1. Credential Information in RAR Object](#281-credential-information-in-rar-object)
+  [2.8.2. Credential Information in Credential Configuration](#282-credential-information-in-credential-configuration)
+  [2.9. Credential Issuance Details](#29-credential-issuance-details)
+  [2.9.1. Key Proof](#291-key-proof)
+  [2.9.2. c_nonce](#292-c_nonce)
+  [2.9.3. Credential Request](#293-credential-request)
+  [2.9.4. Credential Response](#294-credential-response)
+  [2.9.5. Deferred Credential Request](#295-deferred-credential-request)
+  [2.9.6. Deferred Credential Response](#296-deferred-credential-response)
+  [2.9.7. Batch Credential Request](#297-batch-credential-request)
+  [2.9.8. Batch Credential Response](#298-batch-credential-response)
+  [2.10. Public Key Distribution](#210-public-key-distribution)
+  [2.10.1. Embedding X.509 Certificate](#2101-embedding-x509-certificate)
+  [2.10.2. Embedding within Entity Configuration](#2102-embedding-within-entity-configuration)
+  [2.10.3. jwt-vc-issuer](#2103-jwt-vc-issuer)
+  [2.11. Specification Summary](#211-specification-summary)
 - [3. OID4VCI Implementation](#3-oid4vci-implementation)
-[3.1. Authlete Overview](#31-authlete-overview)
-[3.2. Authlete Configuration](#32-authlete-configuration)
-[3.2.1. Authlete Version](#321-authlete-version)
-[3.2.2. Authlete Server Configuration](#322-authlete-server-configuration)
-[3.2.3. Authlete Service Configuration](#323-authlete-service-configuration)
-[3.3. Authlete APIs](#33-authlete-apis)
-[3.3.1. Overall Picture of Authlete APIs for OID4VCI](#331-overall-picture-of-authlete-apis-for-oid4vci)
-[3.3.2. Authlete API Call](#332-authlete-api-call)
-[3.4. Credential Offer Issuance](#34-credential-offer-issuance)
-[3.4.1. The /vci/offer/create API](#341-the-vcioffercreate-api)
-[3.4.2. The /vci/offer/info API](#342-the-vciofferinfo-api)
-[3.4.3. Credential Offer Issuance Example](#343-credential-offer-issuance-example)
-[3.5. Credential Endpoint Implementation](#35-credential-endpoint-implementation)
-[3.5.1. Credential Issuance Order](#351-credential-issuance-order)
-[3.6. Batch Credential Endpoint Implementation](#36-batch-credential-endpoint-implementation)
-[3.7. Configure oid4vci in the Authlete Management Console](#37-configure-oid4vci-in-the-authlete-management-console)
-[3.7.1. Service Settings](#371-service-settings)
-[3.7.2. Client Settings](#372-client-settings)
+  [3.1. Authlete Overview](#31-authlete-overview)
+  [3.2. Authlete Configuration](#32-authlete-configuration)
+  [3.2.1. Authlete Version](#321-authlete-version)
+  [3.2.2. Authlete Server Configuration](#322-authlete-server-configuration)
+  [3.2.3. Authlete Service Configuration](#323-authlete-service-configuration)
+  [3.3. Authlete APIs](#33-authlete-apis)
+  [3.3.1. Overall Picture of Authlete APIs for OID4VCI](#331-overall-picture-of-authlete-apis-for-oid4vci)
+  [3.3.2. Authlete API Call](#332-authlete-api-call)
+  [3.4. Credential Offer Issuance](#34-credential-offer-issuance)
+  [3.4.1. The /vci/offer/create API](#341-the-vcioffercreate-api)
+  [3.4.2. The /vci/offer/info API](#342-the-vciofferinfo-api)
+  [3.4.3. Credential Offer Issuance Example](#343-credential-offer-issuance-example)
+  [3.5. Credential Endpoint Implementation](#35-credential-endpoint-implementation)
+  [3.5.1. Credential Issuance Order](#351-credential-issuance-order)
+  [3.6. Batch Credential Endpoint Implementation](#36-batch-credential-endpoint-implementation)
+  [3.7. Configure oid4vci in the Authlete Management Console](#37-configure-oid4vci-in-the-authlete-management-console)
+  [3.7.1. Service Settings](#371-service-settings)
+  [3.7.2. Client Settings](#372-client-settings)
 - [4. OID4VCI Demo](#4-oid4vci-demo)
-[4.1. Pre-Authorized Code Flow + Key Proof + SD-JWT VC](#41-pre-authorized-code-flow--key-proof--sd-jwt-vc)
-[4.1.1. Setup](#411-setup)
-[4.1.2. Pre-Authorized Code](#412-pre-authorized-code)
-[4.1.3. Access Token](#413-access-token)
-[4.1.4. Key Proof](#414-key-proof)
-[4.1.5. SD-JWT VC](#415-sd-jwt-vc)
-[4.2. Authorization Code Flow + PAR + DPoP + mdoc](#42-authorization-code-flow--par--dpop--mdoc)
-[4.2.1. Setup](#421-setup)
-[4.2.2. Request URI](#422-request-uri)
-[4.2.3. Authorization Code](#423-authorization-code)
-[4.2.4. Access Token](#424-access-token)
-[4.2.5. mdoc](#425-mdoc)
-[4.3. POTENTIAL Interop Event / Track 1 / Light Profile](#43-potential-interop-event--track-1--light-profile)
-[4.3.1. Settings](#431-settings)
-[4.3.2. Demo Steps](#432-demo-steps)
-[4.3.3. Verifiable Credential Format](#433-verifiable-credential-format)
-[4.4. POTENTIAL Interop Event / Track 2 / Light Profile](#44-potential-interop-event--track-2--light-profile)
-[4.4.1. Settings](#441-settings)
-[4.4.2. Demo Steps](#442-demo-steps)
-[4.4.3. Verifiable Credential Format](#443-verifiable-credential-format)
-[4.5. POTENTIAL Interop Event / Track 2 / Full Profile](#45-potential-interop-event--track-2--full-profile)
-[4.5.1. Settings](#451-settings)
-[4.5.2. Demo Steps](#452-demo-steps)
+  [4.1. Pre-Authorized Code Flow + Key Proof + SD-JWT VC](#41-pre-authorized-code-flow--key-proof--sd-jwt-vc)
+  [4.1.1. Setup](#411-setup)
+  [4.1.2. Pre-Authorized Code](#412-pre-authorized-code)
+  [4.1.3. Access Token](#413-access-token)
+  [4.1.4. Key Proof](#414-key-proof)
+  [4.1.5. SD-JWT VC](#415-sd-jwt-vc)
+  [4.2. Authorization Code Flow + PAR + DPoP + mdoc](#42-authorization-code-flow--par--dpop--mdoc)
+  [4.2.1. Setup](#421-setup)
+  [4.2.2. Request URI](#422-request-uri)
+  [4.2.3. Authorization Code](#423-authorization-code)
+  [4.2.4. Access Token](#424-access-token)
+  [4.2.5. mdoc](#425-mdoc)
+  [4.3. POTENTIAL Interop Event / Track 1 / Light Profile](#43-potential-interop-event--track-1--light-profile)
+  [4.3.1. Settings](#431-settings)
+  [4.3.2. Demo Steps](#432-demo-steps)
+  [4.3.3. Verifiable Credential Format](#433-verifiable-credential-format)
+  [4.4. POTENTIAL Interop Event / Track 2 / Light Profile](#44-potential-interop-event--track-2--light-profile)
+  [4.4.1. Settings](#441-settings)
+  [4.4.2. Demo Steps](#442-demo-steps)
+  [4.4.3. Verifiable Credential Format](#443-verifiable-credential-format)
+  [4.5. POTENTIAL Interop Event / Track 2 / Full Profile](#45-potential-interop-event--track-2--full-profile)
+  [4.5.1. Settings](#451-settings)
+  [4.5.2. Demo Steps](#452-demo-steps)

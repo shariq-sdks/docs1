@@ -8,9 +8,9 @@ title: "Getting Started"
 # Getting Started
 1. [Home](https://www.authlete.com/)
 3. Getting Started
-Info>
+<Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/v2).
-</Info>\`}
+</Info>
 ## Getting Started
 This quick introduction will help you create your Authlete account and provide an overview of the Authlete Management Console
 This tutorial contains:
@@ -61,35 +61,35 @@ Important: On our Free Plan, we limit the number of users that can be invited in
 The first page that any user sees within an Organization is the All Services page. This page lists all Services created for your organization.
 - A Service represents the backend of your Authorization Server. It contains all the configurations needed to operate a production-grade authorization server, such as OAuth and OpenID Connect settings, token management, and other security settings.
 - A Client refers to the registration of an OAuth client within your Authorization Server. This client represents an application that will request access tokens from your authorization server.
-Authlete supports running Services across multiple API clusters, allowing you to select clusters based on your data residency requirements or to segregate environments (e.g., development, testing, and production).
-![services-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/13.png)
-Any Services that you have created or you are a member of within this Organization will be displayed here. To switch between Organizations, you can use the navigation label that displays your Organization name and see available options, or go back to the previous page using the back button. You can also filter between Services on different API Clusters by clicking on the “All Clusters” label next to the Organization name.
-#### Creating a New Service
-To create a new Service, click the Create Service button located at the top-right of the screen. A Service is required if you want to run your own authorization server powered by Authlete.
-![service-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/14.png)
-Depending on where you want to run your Service, select the appropriate API Cluster. This is an important decision, as all of your Service data will reside on the selected cluster. Next, enter a Service Name (e.g. “Sample Service” for this tutorial), an optional Service Description, and specify the Issuer Identifier URL. Optionally, you can also select a Supported Service Profile. Once done, click Create to set up your new Service.
-Learn more about Clusters (Coming Soon)
-Learn more about Supported Service Profiles (Coming Soon)
-### All Clients Page
-The first page that any user sees within a Service is the All Clients page. A Client represents an application that interacts with the Authorization Server to request tokens or with the Resource Server to access protected resources. Clients are created and configured within the context of a Service, which represents the backend of the Authorization Server.
-![clients-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/15.png)
-Any Clients that you have created or have access to within this Service will be displayed here. To switch between Services, you can use the back button to view all Services and choose a different Service (if applicable).
-#### Creating a New Client
-For Services that do not contain any Clients, you may want to create a Client. Start by clicking the “Create Client” button at the top-right of the screen.
-![client-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/16.png)
-Enter a Client Name and an optional Client Description. Then, press the “Create” button to create your new Client.
-## Next Steps: Continue Your Journey
-Now that you’ve set up your Authlete account and created a client, it’s time to take your setup further.
+  Authlete supports running Services across multiple API clusters, allowing you to select clusters based on your data residency requirements or to segregate environments (e.g., development, testing, and production).
+  ![services-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/13.png)
+  Any Services that you have created or you are a member of within this Organization will be displayed here. To switch between Organizations, you can use the navigation label that displays your Organization name and see available options, or go back to the previous page using the back button. You can also filter between Services on different API Clusters by clicking on the “All Clusters” label next to the Organization name.
+  #### Creating a New Service
+  To create a new Service, click the Create Service button located at the top-right of the screen. A Service is required if you want to run your own authorization server powered by Authlete.
+  ![service-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/14.png)
+  Depending on where you want to run your Service, select the appropriate API Cluster. This is an important decision, as all of your Service data will reside on the selected cluster. Next, enter a Service Name (e.g. “Sample Service” for this tutorial), an optional Service Description, and specify the Issuer Identifier URL. Optionally, you can also select a Supported Service Profile. Once done, click Create to set up your new Service.
+  Learn more about Clusters (Coming Soon)
+  Learn more about Supported Service Profiles (Coming Soon)
+  ### All Clients Page
+  The first page that any user sees within a Service is the All Clients page. A Client represents an application that interacts with the Authorization Server to request tokens or with the Resource Server to access protected resources. Clients are created and configured within the context of a Service, which represents the backend of the Authorization Server.
+  ![clients-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/15.png)
+  Any Clients that you have created or have access to within this Service will be displayed here. To switch between Services, you can use the back button to view all Services and choose a different Service (if applicable).
+  #### Creating a New Client
+  For Services that do not contain any Clients, you may want to create a Client. Start by clicking the “Create Client” button at the top-right of the screen.
+  ![client-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/16.png)
+  Enter a Client Name and an optional Client Description. Then, press the “Create” button to create your new Client.
+  ## Next Steps: Continue Your Journey
+  Now that you’ve set up your Authlete account and created a client, it’s time to take your setup further.
 - [OAuth 2.0 Basics - API Tutorials](/tutorial/oauth): Call the Authlete APIs directly using the curl command etc. to learn the basics of how Authlete works.
 - [Using Demo Authorization Server](/tutorial/signup): Deploy an authorization server that works as a frontend for the Authlete APIs and test the OAuth and OpenID Connect flows.
-Ready to get started? [Sign Up for an Authlete Account](https://console.authlete.com/register) and unlock all the features of Authlete!
-#### On this page
+  Ready to get started? [Sign Up for an Authlete Account](https://console.authlete.com/register) and unlock all the features of Authlete!
+  #### On this page
 - [Getting Started](#getting-started)
 - [Signing Up to Authlete](#signing-up-to-authlete)
 - [Authlete Console Overview](#authlete-console-overview)
-[All Organizations Page](#all-organizations-page)
-[All Services Page](#all-services-page)
-[Creating a New Service](#creating-a-new-service)
-[All Clients Page](#all-clients-page)
-[Creating a New Client](#creating-a-new-client)
+  [All Organizations Page](#all-organizations-page)
+  [All Services Page](#all-services-page)
+  [Creating a New Service](#creating-a-new-service)
+  [All Clients Page](#all-clients-page)
+  [Creating a New Client](#creating-a-new-client)
 - [Next Steps: Continue Your Journey](#next-steps-continue-your-journey)

@@ -96,15 +96,15 @@ Configure Client Endpoints:
 3. Under the Supported Response Types section, select `CODE`.
 4. Under Redirect URIs, click Add URI. Be sure to adjust the redirect url to match your redirection:
   - `https://client.example.org/cb/example.com`
-5. Click Save Changes to apply the updates.
-![pkce_3](https://storage.googleapis.com/authlete-website/resources/pkce/3.png)
-### 6.2. Authorization Request
-#### 6.2.1. Authorization Endpoint Request
-As explained in [OAuth2 Basic], Authlete’s authorization API can validate authorization requests received by the authorization server on its behalf.
-Use the following `curl` command to make an authorization request from Authorization Server to the Authlete API. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
-```bash
-# Linux/Mac
-curl -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization" \
+    5. Click Save Changes to apply the updates.
+    ![pkce_3](https://storage.googleapis.com/authlete-website/resources/pkce/3.png)
+    ### 6.2. Authorization Request
+    #### 6.2.1. Authorization Endpoint Request
+    As explained in [OAuth2 Basic], Authlete’s authorization API can validate authorization requests received by the authorization server on its behalf.
+    Use the following `curl` command to make an authorization request from Authorization Server to the Authlete API. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
+    ```bash
+    # Linux/Mac
+    curl -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization" \
 -H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}" \
 -d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" \
 -d "subject=john.s@example.com" \
@@ -113,8 +113,8 @@ curl -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/aut
 -d "redirect_uri=https://client.example.org/cb/example.com" \
 -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" \
 -d "code_challenge_method=S256"
-# Windows (PowerShell)
-curl.exe -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization" `
+    # Windows (PowerShell)
+    curl.exe -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization" `
 -H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" `
 -d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" `
 -d "subject=john.s@example.com" `
@@ -123,29 +123,29 @@ curl.exe -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>
 -d "redirect_uri=https://client.example.org/cb/example.com" `
 -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" `
 -d "code_challenge_method=S256"
-```Note that the request contains `code_challenge` parameter and `code_challenge_method` parameter. To implement PKCE, you need  include and test these parameters.
-You can also configure the `code_challenge` and `code_challenge_method` parameters in the [Authlete Management Console](https://console.authlete.com/).
-#### 6.2.2 Authorization Response
-If the request is valid, Authlete returns a response like this:
-  ```json
-,
-"service": ,
-}
-```Assuming that the resource owner has already been authenticated and has obtained consent, the authorization server calls the issue endpoint to obtain an authorization code.
-To make a token request, execute the following `curl` command. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
-```bash
-# Linux/Mac
-curl -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization/issue" \
+    ```Note that the request contains `code_challenge` parameter and `code_challenge_method` parameter. To implement PKCE, you need  include and test these parameters.
+    You can also configure the `code_challenge` and `code_challenge_method` parameters in the [Authlete Management Console](https://console.authlete.com/).
+    #### 6.2.2 Authorization Response
+    If the request is valid, Authlete returns a response like this:
+    ```json
+    ,
+    "service": ,
+    }
+    ```Assuming that the resource owner has already been authenticated and has obtained consent, the authorization server calls the issue endpoint to obtain an authorization code.
+    To make a token request, execute the following `curl` command. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
+    ```bash
+    # Linux/Mac
+    curl -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization/issue" \
 -H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}" \
 -H "Content-Type: application/json" \
 -d 'Ticket e.g. cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE>","subject": "testuser01"}'
-# Windows
-curl.exe -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization/issue" `
+    # Windows
+    curl.exe -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization/issue" `
 -H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" \
 -H "Content-Type: application/json" `
 -d ''
-```If the request is valid, Authlete generates the following response.
-```json
+    ```If the request is valid, Authlete generates the following response.
+    ```json
 
 \`}
 ```### 6.3 Token Request
@@ -194,27 +194,27 @@ Enable `Proof Key for Code Exchange (PKCE)` for better security. It makes the au
 #### On this page
 - [1. Introduction](#1-introduction)
 - [2. PKCE Authorization Request](#2-pkce-authorization-request)
-[2.1 Request Parameters](#21-request-parameters)
-[2.2 Code Challenge Value](#22-code-challenge-value)
-[2.3 Code Verifier Value](#23-code-verifier-value)
-[2.4 Code Challenge Method](#24-code-challenge-method)
+  [2.1 Request Parameters](#21-request-parameters)
+  [2.2 Code Challenge Value](#22-code-challenge-value)
+  [2.3 Code Verifier Value](#23-code-verifier-value)
+  [2.4 Code Challenge Method](#24-code-challenge-method)
 - [3. PKCE Authorization Response](#3-pkce-authorization-response)
 - [4. PCKE Token Request](#4-pcke-token-request)
 - [5. PKCE Token Response](#5-pkce-token-response)
-[5.1 Require Code Verifier](#51-require-code-verifier)
-[5.2 Verify Code Verifier](#52-verify-code-verifier)
-[5.3 Issue Access Token](#53-issue-access-token)
+  [5.1 Require Code Verifier](#51-require-code-verifier)
+  [5.2 Verify Code Verifier](#52-verify-code-verifier)
+  [5.3 Issue Access Token](#53-issue-access-token)
 - [6. Try PKCE With Authlete](#6-try-pkce-with-authlete)
-[6.1 Preparation](#61-preparation)
-[6.1.1 Sign up](#611-sign-up)
-[6.1.2 Service ID  and Client ID](#612-service-id--and-client-id)
-[6.1.3 Service and Client Settings](#613-service-and-client-settings)
-[6.2. Authorization Request](#62-authorization-request)
-[6.2.1. Authorization Endpoint Request](#621-authorization-endpoint-request)
-[6.2.2 Authorization Response](#622-authorization-response)
-[6.3 Token Request](#63-token-request)
-[6.3.1 Token Request with CURL](#631-token-request-with-curl)
-[6.3.2. Token Response](#632-token-response)
-[6.4. PKCE Configuration](#64-pkce-configuration)
-[Service PKCE Settings](#service-pkce-settings)
-[Client PKCE Settings](#client-pkce-settings)
+  [6.1 Preparation](#61-preparation)
+  [6.1.1 Sign up](#611-sign-up)
+  [6.1.2 Service ID  and Client ID](#612-service-id--and-client-id)
+  [6.1.3 Service and Client Settings](#613-service-and-client-settings)
+  [6.2. Authorization Request](#62-authorization-request)
+  [6.2.1. Authorization Endpoint Request](#621-authorization-endpoint-request)
+  [6.2.2 Authorization Response](#622-authorization-response)
+  [6.3 Token Request](#63-token-request)
+  [6.3.1 Token Request with CURL](#631-token-request-with-curl)
+  [6.3.2. Token Response](#632-token-response)
+  [6.4. PKCE Configuration](#64-pkce-configuration)
+  [Service PKCE Settings](#service-pkce-settings)
+  [Client PKCE Settings](#client-pkce-settings)

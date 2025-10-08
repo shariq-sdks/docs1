@@ -68,7 +68,7 @@ Commercially Available
 - [UK Open Banking Security Profile](https://standards.openbanking.org.uk)
 - [Australia Consumer Data Right Security Profile](https://consumerdatastandardsaustralia.github.io/standards/)
 - [Open Banking Brasil Financial-grade API Security Profile](https://github.com/OpenBanking-Brasil/specs-seguranca)
-Available Soon
+  Available Soon
 - [RFC 8693: OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [OpenID Connect Core Error Code unmet_authentication_requirements](https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html)
 - [RFC 9470: OAuth 2.0 Step Up Authentication Challenge Protocol](https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/)
@@ -85,116 +85,116 @@ Available Soon
 - [Selective Disclosure for JWTs](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/)
 - [SD-JWT-based Verifiable Credentials (SD-JWT VC)](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/)
 - [ISO/IEC 18013-5:2021 Personal identification — ISO-compliant driving licence Part 5: Mobile driving licence (mDL) application](https://www.iso.org/standard/69084.html)
-# Unique Functionality
-Authlete offers useful functionalities to deploy, implement and maintain systems that support OAuth and OpenID Connect protocols.
-[Open all tabs](javascript:openTabs('unique_functionality')) | [Close all tabs](javascript:closeTabs('unique_functionality'))
-Detailed Result/Error Message
-Responses from Authlete APIs contain a result code and result message.
-An example is "`[A011308] The host of the redirect URI must be 'localhost' when the client's application type is 'native' and the scheme of the redirect URI is 'http'.`", which will help developers solve issues and reduce time to implement OAuth & OpenID Connect using Authlete.
-ClientID Alias
-![client_id_alias](https://storage.googleapis.com/authlete-website/img/developers/overview/client_id_alias_en.png)
-Authlete allows each client to have a client ID alias in addition to the client ID.
-This function would be useful when you migrate from the existing authorization server to Authlete and keep using the existing client IDs in the new Authlete system.
-Please refer to [this document](/ja/kb/oauth-and-openid-connect/client-id-alias) for more details.
-Extra Properties
-Authlete provides a feature that enables an authorization server to associate arbitrary properties with either an access token or authorization code. The authorization server can easily share the properties with resource servers so that they can consume such information for its authorization enforcement as well as making a response.
-For example, you would like to develop a money transfer API that can process specific transaction like "send $50 to ABC shop." You could implement such function by creating a "send-50dollar-to-abcshop" scope, but it hardly works as you would have to prepare a lot of scopes that are multiplied with recipients and amounts.
-With the properties feature of Authlete, The authorization server can associate the money transfer information (or its handle, if database manages the actual information) with an access token to be issued to a client. The resource server, which hosts the money transfer API, receives an API request with the access token from the client, asks Authlete's introspection API to provide the properties along with details of the token, and then determines if the money transfer request is allowed to proceed.
-Please refer to [this document](/kb/oauth-and-openid-connect/extra-properties) for more details.
-Access/Refresh Token Duration per Scope or Client
-![](https://storage.googleapis.com/authlete-website/img/developers/overview/token_duration_en.png)
-You can shorten the access token and refresh token duration per scope using [the scope attribute functionality](/kb/oauth-and-openid-connect/scope-attributes).
-To activate this feature, set up a scope that has a scope attribute with its key of `access_token.duration` or `refresh_token.duration` and value of a “shorter” token duration in second. The duration of the tokens with the scope will be the duration set in the scope attribute. Please refer to [this document](/kb/oauth-and-openid-connect/token-duration-per-scope) for more details.
-Also, you can shorten the access token and refresh token duration per client by configuring from the client developer console.
-Refresh Token Kept
-Authlete offers an option to choose whether to keep or reissue refresh tokens when refreshing access tokens.
-Forced S256 for Code Challenge Method
-With this option, Authlete only accepts a request with `code_challenge_method` = `S256` when using PKCE protocol.
-You can configure this setting from the “Authorization” tab in the service owner console.
-Single Access Token per Subject
-Authlete revokes issued tokens and issues a new access token every time the same user grants an authorization request from a client.
-Granted Scopes Management
-Authlete enables customers to get a list of (or remove) scopes that are granted end-users.
-This function is only available for Enterprise Plan users.
-PKI Certificate Chain Validation for Mutual TLS Authentication
-Authlete can verify PKI chains based on pre-registered trusted root certificates when authenticating clients with `tls_client_auth` method.
-Allowable Clock Skew
-The allowable clock skew between the server and clients is configurable in seconds.
-Binding Message in FAPI Context
-Authlete can reject requests without `binding_message` request parameter in FAPI-CIBA protocols.
-# OpenID Certification
-Authlete conforms several [OpenID Provider (OP) Profiles](https://openid.net/certification/) of the OpenID Connect protocol. So far, Authlete has received the following certifications.
-| OpenID Certification | Version | Categories |
-| --- | --- | --- |
-| [OpenID Provider](https://openid.net/certification/#OPs) | 1.1 ~ | Basic OP
-Implicit OP
-Hybrid OP
-Config OP |
-| 2.1 ~ | Dynamic OP
-Form Post OP |
-| [FAPI OpenID Provider](https://openid.net/certification/#FAPI_OPs) | 2.1 ~ | Financial-grade API (FAPI) 1.0 Second Implementer’s Draft
-FAPI R/W OP w/ MTLS
-FAPI R/W OP w/ Private Key |
-| 2.2 ~ | Financial-grade API (FAPI) 1.0 Final
-FAPI Adv. OP w/ MTLS
-FAPI Adv. OP w/ MTLS, PAR
-FAPI Adv. OP w/ Private Key
-FAPI Adv. OP w/ Private Key, PAR
-FAPI Adv. OP w/ MTLS, JARM
-FAPI Adv. OP w/ Private Key, JARM
-FAPI Adv. OP w/ MTLS, PAR, JARM
-FAPI Adv. OP w/ Private Key, PAR, JARM
-UK Open Banking (Based on FAPI 1 Advanced Final)
-UK-OB Adv. OP w/ MTLS
-UK-OB Adv. OP w/ Private Key
-Australia CDR (Based on FAPI 1 Advanced Final)
-AU-CDR Adv. OP w/ Private Key
-AU-CDR Adv. OP w/ Private Key, PAR
-Brazil Open Banking (Based on FAPI 1 Advanced Final)
-BR-OB Adv. OP w/ MTLS
-BR-OB Adv. OP w/ Private Key
-BR-OB Adv. OP w/ MTLS, PAR
-BR-OB Adv. OP w/ Private Key, PAR
-BR-OB Adv. OP w/ MTLS, JARM
-BR-OB Adv. OP w/ Private Key, JARM
-BR-OB Adv. OP w/ MTLS, PAR, JARM
-BR-OB Adv. OP w/ Private Key, PAR, JARM
-BR-OB Adv. OP DCR
-Financial-grade API (FAPI) 1.0 Second Implementer’s Draft
-FAPI R/W OP w/ MTLS
-FAPI R/W OP w/ MTLS, PAR
-FAPI R/W OP w/ Private Key
-FAPI R/W OP w/ Private Key, PAR
-UK-OB R/W OP w/ MTLS
-UK-OB R/W OP w/ Private Key
-AU-CDR R/W OP w/ Private Key
-AU-CDR R/W OP w/ Private Key, PAR |
-| 2.3 ~ | Brazil Open Insurance (Based on FAPI 1 Advanced Final)
-BR-OPIN Adv. OP w/ MTLS
-BR-OPIN Adv. OP w/ Private Key
-BR-OPIN Adv. OP w/ MTLS, PAR
-BR-OPIN Adv. OP w/ Private Key, PAR
-BR-OPIN Adv. OP w/ MTLS, JARM
-BR-OPIN Adv. OP w/ Private Key, JARM
-BR-OPIN Adv. OP w/ MTLS, PAR, JARM
-BR-OPIN Adv. OP w/ Private Key, PAR, JARM
-BR-OPIN Adv. OP DCR
-KSA Open Banking (Based on FAPI 1 Advanced Final)
-KSA-OB Adv. OP w/ MTLS, PAR
-KSA-OB Adv. OP w/ Private Key, PAR |
-| [FAPI-CIBA Profile OpenID Provider](https://openid.net/certification/#FAPI-CIBA_OPs) | 2.1 ~ | FAPI-CIBA OP Poll w/ MTLS
-FAPI-CIBA OP Poll w/ Private Key
-FAPI-CIBA OP Ping w/ MTLS
-FAPI-CIBA OP Ping w/ Private Key |
-| [FAPI2 OpenID Provider](https://openid.net/certification/#FAPI2) | 2.3 ~ | FAPI 2.0 Security Profile Second Implementer’s Draft & Message Signing First Implementer’s Draft
-FAPI2SP MTLS + MTLS
-FAPI2SP private key + MTLS
-FAPI2SP OpenID Connect
-FAPI2MS JAR
-FAPI2MS JARM
-Australia FAPI 2.0 ConnectId Implementer’s Draft
-FAPI2MS with ConnectId support |
+  # Unique Functionality
+  Authlete offers useful functionalities to deploy, implement and maintain systems that support OAuth and OpenID Connect protocols.
+  [Open all tabs](javascript:openTabs('unique_functionality')) | [Close all tabs](javascript:closeTabs('unique_functionality'))
+  Detailed Result/Error Message
+  Responses from Authlete APIs contain a result code and result message.
+  An example is "`[A011308] The host of the redirect URI must be 'localhost' when the client's application type is 'native' and the scheme of the redirect URI is 'http'.`", which will help developers solve issues and reduce time to implement OAuth & OpenID Connect using Authlete.
+  ClientID Alias
+  ![client_id_alias](https://storage.googleapis.com/authlete-website/img/developers/overview/client_id_alias_en.png)
+  Authlete allows each client to have a client ID alias in addition to the client ID.
+  This function would be useful when you migrate from the existing authorization server to Authlete and keep using the existing client IDs in the new Authlete system.
+  Please refer to [this document](/ja/kb/oauth-and-openid-connect/client-id-alias) for more details.
+  Extra Properties
+  Authlete provides a feature that enables an authorization server to associate arbitrary properties with either an access token or authorization code. The authorization server can easily share the properties with resource servers so that they can consume such information for its authorization enforcement as well as making a response.
+  For example, you would like to develop a money transfer API that can process specific transaction like "send $50 to ABC shop." You could implement such function by creating a "send-50dollar-to-abcshop" scope, but it hardly works as you would have to prepare a lot of scopes that are multiplied with recipients and amounts.
+  With the properties feature of Authlete, The authorization server can associate the money transfer information (or its handle, if database manages the actual information) with an access token to be issued to a client. The resource server, which hosts the money transfer API, receives an API request with the access token from the client, asks Authlete's introspection API to provide the properties along with details of the token, and then determines if the money transfer request is allowed to proceed.
+  Please refer to [this document](/kb/oauth-and-openid-connect/extra-properties) for more details.
+  Access/Refresh Token Duration per Scope or Client
+  ![](https://storage.googleapis.com/authlete-website/img/developers/overview/token_duration_en.png)
+  You can shorten the access token and refresh token duration per scope using [the scope attribute functionality](/kb/oauth-and-openid-connect/scope-attributes).
+  To activate this feature, set up a scope that has a scope attribute with its key of `access_token.duration` or `refresh_token.duration` and value of a “shorter” token duration in second. The duration of the tokens with the scope will be the duration set in the scope attribute. Please refer to [this document](/kb/oauth-and-openid-connect/token-duration-per-scope) for more details.
+  Also, you can shorten the access token and refresh token duration per client by configuring from the client developer console.
+  Refresh Token Kept
+  Authlete offers an option to choose whether to keep or reissue refresh tokens when refreshing access tokens.
+  Forced S256 for Code Challenge Method
+  With this option, Authlete only accepts a request with `code_challenge_method` = `S256` when using PKCE protocol.
+  You can configure this setting from the “Authorization” tab in the service owner console.
+  Single Access Token per Subject
+  Authlete revokes issued tokens and issues a new access token every time the same user grants an authorization request from a client.
+  Granted Scopes Management
+  Authlete enables customers to get a list of (or remove) scopes that are granted end-users.
+  This function is only available for Enterprise Plan users.
+  PKI Certificate Chain Validation for Mutual TLS Authentication
+  Authlete can verify PKI chains based on pre-registered trusted root certificates when authenticating clients with `tls_client_auth` method.
+  Allowable Clock Skew
+  The allowable clock skew between the server and clients is configurable in seconds.
+  Binding Message in FAPI Context
+  Authlete can reject requests without `binding_message` request parameter in FAPI-CIBA protocols.
+  # OpenID Certification
+  Authlete conforms several [OpenID Provider (OP) Profiles](https://openid.net/certification/) of the OpenID Connect protocol. So far, Authlete has received the following certifications.
+  | OpenID Certification | Version | Categories |
+  | --- | --- | --- |
+  | [OpenID Provider](https://openid.net/certification/#OPs) | 1.1 ~ | Basic OP
+  Implicit OP
+  Hybrid OP
+  Config OP |
+  | 2.1 ~ | Dynamic OP
+  Form Post OP |
+  | [FAPI OpenID Provider](https://openid.net/certification/#FAPI_OPs) | 2.1 ~ | Financial-grade API (FAPI) 1.0 Second Implementer’s Draft
+  FAPI R/W OP w/ MTLS
+  FAPI R/W OP w/ Private Key |
+  | 2.2 ~ | Financial-grade API (FAPI) 1.0 Final
+  FAPI Adv. OP w/ MTLS
+  FAPI Adv. OP w/ MTLS, PAR
+  FAPI Adv. OP w/ Private Key
+  FAPI Adv. OP w/ Private Key, PAR
+  FAPI Adv. OP w/ MTLS, JARM
+  FAPI Adv. OP w/ Private Key, JARM
+  FAPI Adv. OP w/ MTLS, PAR, JARM
+  FAPI Adv. OP w/ Private Key, PAR, JARM
+  UK Open Banking (Based on FAPI 1 Advanced Final)
+  UK-OB Adv. OP w/ MTLS
+  UK-OB Adv. OP w/ Private Key
+  Australia CDR (Based on FAPI 1 Advanced Final)
+  AU-CDR Adv. OP w/ Private Key
+  AU-CDR Adv. OP w/ Private Key, PAR
+  Brazil Open Banking (Based on FAPI 1 Advanced Final)
+  BR-OB Adv. OP w/ MTLS
+  BR-OB Adv. OP w/ Private Key
+  BR-OB Adv. OP w/ MTLS, PAR
+  BR-OB Adv. OP w/ Private Key, PAR
+  BR-OB Adv. OP w/ MTLS, JARM
+  BR-OB Adv. OP w/ Private Key, JARM
+  BR-OB Adv. OP w/ MTLS, PAR, JARM
+  BR-OB Adv. OP w/ Private Key, PAR, JARM
+  BR-OB Adv. OP DCR
+  Financial-grade API (FAPI) 1.0 Second Implementer’s Draft
+  FAPI R/W OP w/ MTLS
+  FAPI R/W OP w/ MTLS, PAR
+  FAPI R/W OP w/ Private Key
+  FAPI R/W OP w/ Private Key, PAR
+  UK-OB R/W OP w/ MTLS
+  UK-OB R/W OP w/ Private Key
+  AU-CDR R/W OP w/ Private Key
+  AU-CDR R/W OP w/ Private Key, PAR |
+  | 2.3 ~ | Brazil Open Insurance (Based on FAPI 1 Advanced Final)
+  BR-OPIN Adv. OP w/ MTLS
+  BR-OPIN Adv. OP w/ Private Key
+  BR-OPIN Adv. OP w/ MTLS, PAR
+  BR-OPIN Adv. OP w/ Private Key, PAR
+  BR-OPIN Adv. OP w/ MTLS, JARM
+  BR-OPIN Adv. OP w/ Private Key, JARM
+  BR-OPIN Adv. OP w/ MTLS, PAR, JARM
+  BR-OPIN Adv. OP w/ Private Key, PAR, JARM
+  BR-OPIN Adv. OP DCR
+  KSA Open Banking (Based on FAPI 1 Advanced Final)
+  KSA-OB Adv. OP w/ MTLS, PAR
+  KSA-OB Adv. OP w/ Private Key, PAR |
+  | [FAPI-CIBA Profile OpenID Provider](https://openid.net/certification/#FAPI-CIBA_OPs) | 2.1 ~ | FAPI-CIBA OP Poll w/ MTLS
+  FAPI-CIBA OP Poll w/ Private Key
+  FAPI-CIBA OP Ping w/ MTLS
+  FAPI-CIBA OP Ping w/ Private Key |
+  | [FAPI2 OpenID Provider](https://openid.net/certification/#FAPI2) | 2.3 ~ | FAPI 2.0 Security Profile Second Implementer’s Draft & Message Signing First Implementer’s Draft
+  FAPI2SP MTLS + MTLS
+  FAPI2SP private key + MTLS
+  FAPI2SP OpenID Connect
+  FAPI2MS JAR
+  FAPI2MS JARM
+  Australia FAPI 2.0 ConnectId Implementer’s Draft
+  FAPI2MS with ConnectId support |
 * : Authlete is the only certified implementation in the world as of Feb 3rd, 2020.
-# Summary
-You can support OAuth 2.0 and OpenID Connect in your Web service if you use Authlete. Sign up and start with [Getting Started](/getting_started) document.
-#### On this page
+  # Summary
+  You can support OAuth 2.0 and OpenID Connect in your Web service if you use Authlete. Sign up and start with [Getting Started](/getting_started) document.
+  #### On this page

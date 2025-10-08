@@ -1,9 +1,7 @@
 ---
-  title: 'Implementing FAPI 2.0 Security Profile with Authlete'
-description: "'Implementing FAPI 2.0 Security Profile with Authlete.'"
+title: 'Implementing FAPI 2.0 Security Profile with Authlete'
+description: "Implementing FAPI 2.0 Security Profile with Authlete."
 ---
-
-
 ## Overview
 
 This article explains how to implement [FAPI 2.0 Security Profile (Final)](https://openid.net/specs/fapi-security-profile-2_0-final.html) using Authlete. Since FAPI 2.0 Security Profile places emphasis on **Authorization Code Flow**, the following sections provide guidance on configuring services and clients for this flow and demonstrate it through actual API calls.
@@ -97,7 +95,7 @@ Include `PRIVATE_KEY_JWT`.
   - MTLS as specified in Section 2 of [RFC8705], or
 - `private_key_jwt` as specified in Section 9 of [OIDC];
 
-“FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
+> “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
 6. shall authenticate clients using one of the following methods:
 
@@ -144,9 +142,9 @@ Select `Kept`.
 
 > “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 > 9. shall not use refresh token rotation except in extraordinary circumstances (see Note 1 below);
-…
-NOTE 1: The use of refresh token rotation does not provide security benefits when used with confidential clients and sender-constrained access tokens. This specification prohibits the use of refresh token rotation for security reasons as it causes user experience degradation and operational issues whenever the client fails to store or receive the new refresh token and has no option to retry.
-However, as refresh token rotation may be required from time to time for infrastructure migration or similar extraordinary circumstances, this specification allows it, provided that authorization servers offer clients the time-limited option to retry with the old refresh token in case of failure. Implementers need to consider a secure mechanism for clients to recover from a loss of a new refresh token on issue. The details of this mechanism are outside the scope of this specification.
+> …
+> NOTE 1: The use of refresh token rotation does not provide security benefits when used with confidential clients and sender-constrained access tokens. This specification prohibits the use of refresh token rotation for security reasons as it causes user experience degradation and operational issues whenever the client fails to store or receive the new refresh token and has no option to retry.
+> However, as refresh token rotation may be required from time to time for infrastructure migration or similar extraordinary circumstances, this specification allows it, provided that authorization servers offer clients the time-limited option to retry with the old refresh token in case of failure. Implementers need to consider a secure mechanism for clients to recover from a loss of a new refresh token on issue. The details of this mechanism are outside the scope of this specification.
 
 “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
@@ -179,8 +177,8 @@ Set an allowable clock skew value that meets the following condition:
 
 > “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 > 13. to accommodate clock offsets, shall accept JWTs with an iat or nbf timestamp between 0 and 10 seconds in the future but shall reject JWTs with an iat or nbf timestamp greater than 60 seconds in the future. See Note 3 for further details and rationale;
-…
-NOTE 3: Clock skew is a cause of many interoperability issues. Even a few hundred milliseconds of clock skew can cause JWTs to be rejected for being “issued in the future”. The DPoP specification [RFC9449] suggests that JWTs are accepted in the reasonably near future (on the order of seconds or minutes). This document goes further by requiring authorization servers to accept JWTs that have timestamps up to 10 seconds in the future. 10 seconds was chosen as a value that does not affect security while greatly increasing interoperability. Implementers are free to accept JWTs with a timestamp of up to 60 seconds in the future. Some ecosystems have found that the value of 30 seconds is needed to fully eliminate clock skew issues. To prevent implementations switching off iat and nbf checks completely this document imposes a maximum timestamp in the future of 60 seconds.
+> …
+> NOTE 3: Clock skew is a cause of many interoperability issues. Even a few hundred milliseconds of clock skew can cause JWTs to be rejected for being “issued in the future”. The DPoP specification [RFC9449] suggests that JWTs are accepted in the reasonably near future (on the order of seconds or minutes). This document goes further by requiring authorization servers to accept JWTs that have timestamps up to 10 seconds in the future. 10 seconds was chosen as a value that does not affect security while greatly increasing interoperability. Implementers are free to accept JWTs with a timestamp of up to 60 seconds in the future. Some ecosystems have found that the value of 30 seconds is needed to fully eliminate clock skew issues. To prevent implementations switching off iat and nbf checks completely this document imposes a maximum timestamp in the future of 60 seconds.
 
 “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
@@ -276,7 +274,7 @@ Include `PRIVATE_KEY_JWT`.
   - MTLS as specified in Section 2 of [RFC8705], or
 - `private_key_jwt` as specified in Section 9 of [OIDC];
 
-“FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
+> “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
 6. shall authenticate clients using one of the following methods:
 
@@ -305,9 +303,9 @@ Disable Refresh Token Rotation.
 
 > “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 > 9. shall not use refresh token rotation except in extraordinary circumstances (see Note 1 below);
-…
-NOTE 1: The use of refresh token rotation does not provide security benefits when used with confidential clients and sender-constrained access tokens. This specification prohibits the use of refresh token rotation for security reasons as it causes user experience degradation and operational issues whenever the client fails to store or receive the new refresh token and has no option to retry.
-However, as refresh token rotation may be required from time to time for infrastructure migration or similar extraordinary circumstances, this specification allows it, provided that authorization servers offer clients the time-limited option to retry with the old refresh token in case of failure. Implementers need to consider a secure mechanism for clients to recover from a loss of a new refresh token on issue. The details of this mechanism are outside the scope of this specification.
+> …
+> NOTE 1: The use of refresh token rotation does not provide security benefits when used with confidential clients and sender-constrained access tokens. This specification prohibits the use of refresh token rotation for security reasons as it causes user experience degradation and operational issues whenever the client fails to store or receive the new refresh token and has no option to retry.
+> However, as refresh token rotation may be required from time to time for infrastructure migration or similar extraordinary circumstances, this specification allows it, provided that authorization servers offer clients the time-limited option to retry with the old refresh token in case of failure. Implementers need to consider a secure mechanism for clients to recover from a loss of a new refresh token on issue. The details of this mechanism are outside the scope of this specification.
 
 “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
@@ -332,8 +330,8 @@ Set an allowable clock skew value that meets the following condition:
 
 > “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 > 13. to accommodate clock offsets, shall accept JWTs with an iat or nbf timestamp between 0 and 10 seconds in the future but shall reject JWTs with an iat or nbf timestamp greater than 60 seconds in the future. See Note 3 for further details and rationale;
-…
-NOTE 3: Clock skew is a cause of many interoperability issues. Even a few hundred milliseconds of clock skew can cause JWTs to be rejected for being “issued in the future”. The DPoP specification [RFC9449] suggests that JWTs are accepted in the reasonably near future (on the order of seconds or minutes). This document goes further by requiring authorization servers to accept JWTs that have timestamps up to 10 seconds in the future. 10 seconds was chosen as a value that does not affect security while greatly increasing interoperability. Implementers are free to accept JWTs with a timestamp of up to 60 seconds in the future. Some ecosystems have found that the value of 30 seconds is needed to fully eliminate clock skew issues. To prevent implementations switching off iat and nbf checks completely this document imposes a maximum timestamp in the future of 60 seconds.
+> …
+> NOTE 3: Clock skew is a cause of many interoperability issues. Even a few hundred milliseconds of clock skew can cause JWTs to be rejected for being “issued in the future”. The DPoP specification [RFC9449] suggests that JWTs are accepted in the reasonably near future (on the order of seconds or minutes). This document goes further by requiring authorization servers to accept JWTs that have timestamps up to 10 seconds in the future. 10 seconds was chosen as a value that does not affect security while greatly increasing interoperability. Implementers are free to accept JWTs with a timestamp of up to 60 seconds in the future. Some ecosystems have found that the value of 30 seconds is needed to fully eliminate clock skew issues. To prevent implementations switching off iat and nbf checks completely this document imposes a maximum timestamp in the future of 60 seconds.
 
 “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
@@ -393,7 +391,7 @@ Select `PRIVATE_KEY_JWT`.
   - MTLS as specified in Section 2 of [RFC8705],
 - `private_key_jwt` as specified in Section 9 of [OIDC];
 
-“FAPI 2.0 Security Profile, 5.3.3. Requirements for clients, 5.3.3.1. General requirements”
+> “FAPI 2.0 Security Profile, 5.3.3. Requirements for clients, 5.3.3.1. General requirements”
 
 2. shall support client authentication using one or both of the following methods:
 
@@ -436,7 +434,7 @@ Set a JWK set. Since we use `private_key_jwt` for client authentication, the JWK
 
 > “FAPI 2.0 Security Profile, 5.4. Cryptography and secrets, 5.4.1. General requirements”
 > 3. RSA keys shall have a minimum length of 2048 bits.
-4. Elliptic curve keys shall have a minimum length of 224 bits.
+> 4. Elliptic curve keys shall have a minimum length of 224 bits.
 
 “FAPI 2.0 Security Profile, 5.4. Cryptography and secrets, 5.4.1. General requirements”
 
@@ -479,7 +477,7 @@ Select `PRIVATE_KEY_JWT`.
   - MTLS as specified in Section 2 of [RFC8705],
 - `private_key_jwt` as specified in Section 9 of [OIDC];
 
-“FAPI 2.0 Security Profile, 5.3.3. Requirements for clients, 5.3.3.1. General requirements”
+> “FAPI 2.0 Security Profile, 5.3.3. Requirements for clients, 5.3.3.1. General requirements”
 
 2. shall support client authentication using one or both of the following methods:
 
@@ -522,7 +520,7 @@ Set a JWK set. Since we use `private_key_jwt` for client authentication, the JWK
 
 > “FAPI 2.0 Security Profile, 5.4. Cryptography and secrets, 5.4.1. General requirements”
 > 3. RSA keys shall have a minimum length of 2048 bits.
-4. Elliptic curve keys shall have a minimum length of 224 bits.
+> 4. Elliptic curve keys shall have a minimum length of 224 bits.
 
 “FAPI 2.0 Security Profile, 5.4. Cryptography and secrets, 5.4.1. General requirements”
 
@@ -576,7 +574,7 @@ The `redirect_uri` request parameter must be set and it must be a URI starting w
 
 > “FAPI2 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.2. Authorization endpoint flows”
 > 6. shall require the `redirect_uri` parameter in pushed authorization requests
-8. shall not transmit authorization responses over unencrypted network connections, and, to this end, shall not allow redirect URIs that use the "http" scheme except for native clients that use loopback interface Redirection as described in Section 7.3 of [RFC8252];
+> 8. shall not transmit authorization responses over unencrypted network connections, and, to this end, shall not allow redirect URIs that use the "http" scheme except for native clients that use loopback interface Redirection as described in Section 7.3 of [RFC8252];
 
 “FAPI2 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.2. Authorization endpoint flows”
 
@@ -588,7 +586,7 @@ Taking all of the requirements above into account, the request sent by the clien
 
 ```
 POST /oauth/par HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 
 client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer
@@ -610,29 +608,29 @@ After the authorization server receives the request from the client, the authori
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
 -u ':' \
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"}'
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
 -u ':' \
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"\`}'
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"\`}'
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//pushed_auth_req \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"\`}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"\`}'
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//pushed_auth_req \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"\`}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa...&code_challenge_method=S256"\`}'
 ```
 
 A successful response from the API contains a request URI. The response would look like below.
@@ -663,13 +661,13 @@ After obtaining a request URI in step 1, the client sends an authorization reque
 
 ```bash
 GET /oauth/authorize?client_id=&request_uri=urn:ietf:params:oauth:request_uri:QbG... HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 
 ```
 
 ```bash
 GET /oauth/authorize?client_id=&request_uri=urn:ietf:params:oauth:request_uri:QbG... HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 
 ```
 
@@ -681,29 +679,29 @@ When the authorization server receives the request from the client, the authoriz
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
 -u ':' \
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
 -u ':' \
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//auth/authorization \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//auth/authorization \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:QbG..."\`}'
 ```
 
 A successful response from the API would be like below.
@@ -732,29 +730,29 @@ After the authorization server receives a successful response from `/auth/author
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//auth/authorization/issue \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//auth/authorization/issue \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 A successful response from the API would be like below.
@@ -777,11 +775,11 @@ After obtaining an authorization code in step 3, the client sends a request, inc
 
 > “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 > 4. shall only issue sender-constrained access tokens,
-5. shall use one of the following methods for sender-constrained access tokens:
+> 5. shall use one of the following methods for sender-constrained access tokens:
   - MTLS as described in [RFC8705],
 - DPoP as described in [RFC9449];
 
-“FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
+> “FAPI 2.0 Security Profile, 5.3.2. Requirements for authorization servers, 5.3.2.1. General requirements”
 
 4. shall only issue sender-constrained access tokens,
 
@@ -796,7 +794,7 @@ After obtaining an authorization code in step 3, the client sends a request, inc
   - MTLS as described in [RFC8705],
 - DPoP as described in [RFC9449];
 
-“FAPI 2.0 Security Profile, 5.3.3. Requirements for clients, 5.3.3.1. General requirements”
+> “FAPI 2.0 Security Profile, 5.3.3. Requirements for clients, 5.3.3.1. General requirements”
 
 1. shall support sender-constrained access tokens using one or both of the following methods:
 
@@ -833,7 +831,7 @@ Taking the requirements above into account, a request to the token endpoint woul
 
 ```
 POST /oauth/token HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 DPoP: eyJ0eXAi...
 
@@ -855,29 +853,29 @@ After the token endpoint receives a request from the client, the authorization s
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
 -u ':' \
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
 -u ':' \
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com//auth/token \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com//auth/token \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 A successful response from the API would be like below.
@@ -902,7 +900,7 @@ After completing all the steps above, the client gets an access token and can ac
 GET /api/sample HTTP/1.1
 Authorization: DPoP 7i9xPkbk...
 DPoP: eyJ0eXAi...
-Host: resource.example.com
+  Host: resource.example.com
 
 ```
 
@@ -916,29 +914,29 @@ When the resource server receives the request from the client, the resource serv
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//auth/introspection \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://us.authlete.com/api//auth/introspection \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 A successful response from the API would be like below.

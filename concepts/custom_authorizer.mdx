@@ -65,11 +65,10 @@ var request = require('request');
 // from event.methodArn.
 function extract_method_and_path(arn)
 regionid>:accountid>\`}:apiid>/stage>\`}/method>/resourcepath>\`}"
-  //
+
   // See 'Enable Amazon API Gateway Custom Authorization' for details.
-  //
+
   //   http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html
-  //
 
   // Check if the value of 'arn' is available just in case.
   if (arn)
@@ -89,7 +88,7 @@ regionid>:accountid>\`}:apiid>/stage>\`}/method>/resourcepath>\`}"
 
 
 // A function to extract an access token from Authorization header.
-//
+
 // This function assumes the value complies with the format described
 // in "RFC 6750, 2.1. Authorization Request Header Field". For example,
 // if "Bearer 123" is given to this function, "123" is returned.
@@ -124,23 +123,23 @@ function get_required_scopes(http_method, resource_path)
 
 
 // A function to call Authlete's introspection API.
-//
+
 // This function is used as a task for 'waterfall' method of 'async' module.
 // See https://github.com/caolan/async#user-content-waterfalltasks-callback
 // for details about 'waterfall' method.
-//
+
 //   * access_token (string) [REQUIRED]
 //       An access token whose information you want to get.
-//
+
 //   * scopes (string array) [OPTIONAL]
 //       Scopes that should be covered by the access token. If the scopes
 //       are not covered by the access token, the value of 'action' in the
 //       response from Authlete's introspection API is 'FORBIDDEN'.
-//
+
 //   * callback
 //       A callback function that 'waterfall' of 'async' module passes to
 //       a task function.
-//
+
 function introspect(access_token, scopes, callback)
 ,
 
@@ -209,11 +208,10 @@ var request = require('request');
 // from event.methodArn.
 function extract_method_and_path(arn)
 regionid>:accountid>\`}:apiid>/stage>\`}/method>/resourcepath>\`}"
-  //
+
   // See 'Enable Amazon API Gateway Custom Authorization' for details.
-  //
+
   //   http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html
-  //
 
   // Check if the value of 'arn' is available just in case.
   if (arn)
@@ -233,7 +231,7 @@ regionid>:accountid>\`}:apiid>/stage>\`}/method>/resourcepath>\`}"
 
 
 // A function to extract an access token from Authorization header.
-//
+
 // This function assumes the value complies with the format described
 // in "RFC 6750, 2.1. Authorization Request Header Field". For example,
 // if "Bearer 123" is given to this function, "123" is returned.
@@ -268,23 +266,23 @@ function get_required_scopes(http_method, resource_path)
 
 
 // A function to call Authlete's introspection API.
-//
+
 // This function is used as a task for 'waterfall' method of 'async' module.
 // See https://github.com/caolan/async#user-content-waterfalltasks-callback
 // for details about 'waterfall' method.
-//
+
 //   * access_token (string) [REQUIRED]
 //       An access token whose information you want to get.
-//
+
 //   * scopes (string array) [OPTIONAL]
 //       Scopes that should be covered by the access token. If the scopes
 //       are not covered by the access token, the value of 'action' in the
 //       response from Authlete's introspection API is 'FORBIDDEN'.
-//
+
 //   * callback
 //       A callback function that 'waterfall' of 'async' module passes to
 //       a task function.
-//
+
 function introspect(access_token, scopes, callback)
 ,
 
@@ -356,8 +354,7 @@ Operations so far have created `index.js` file and `node_modules` directory.
 ```
 $ ls -1F
 index.js
-node_modules/
-
+node_modules
 ```
 
 Finally, create a ZIP file containing these. The ZIP file is a lambda function deployment package. Upload it to AWS Lambda.
@@ -398,8 +395,7 @@ A successful response returns an HTTP status code “200 OK” and a JSON ``.
 Authlete provides the default implementation of an [authorization endpoint](https://tools.ietf.org/html/rfc6749#section-3.1) at the following URL:
 
 ```
-https://api.authlete.com/api/auth/authorization/direct/
-
+https://api.authlete.com/api/auth/authorization/direct
 ```
 
 The default implementation is called a direct endpoint and it is enabled by default. If you utilize the endpoint, you can issue an access token without using [java-oauth-server](https://github.com/authlete/java-oauth-server).

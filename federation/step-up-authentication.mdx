@@ -32,116 +32,116 @@ The authorization server tries to perform user authentication that satisfies at 
 ### The `acr_values` Request Parameter
 There are three ways to specify a list of ACRs. The first way is to use the `acr_values` request parameter. The parameter is defined in [Section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) as follows.
 - `acr_values`: OPTIONAL. Requested Authentication Context Class Reference values. Space-separated string that specifies the `acr` values that the Authorization Server is being requested to use for processing this Authentication Request, with the values appearing in order of preference. The Authentication Context Class satisfied by the authentication performed is returned as the `acr` Claim Value, as specified in Section 2. The `acr` Claim is requested as a Voluntary Claim by this parameter.
-The value of the `acr_values` request parameter is a space-separated list of ACRs. It appears in an authorization request like the following.
-https://as.example.com/authorize?acr_values=acr1+acr2+acr3&...
-### The `claims` Request Parameter
-The second way to specify a list of ACRs is to use the `claims` request parameter. The parameter is defined in [Section 5.5](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html). The parameter takes a JSON object as a value and the syntax of the JSON is complex.
-The following JSON is an example value of the `claims` request parameter excerpted from OpenID Connect Core 1.0.
-```json
-,
-"nickname": null,
-"email": ,
-"email_verified": ,
-"picture": null,
-"http://example.info/claims/groups": null
-\`},
-"id_token":
+  The value of the `acr_values` request parameter is a space-separated list of ACRs. It appears in an authorization request like the following.
+  https://as.example.com/authorize?acr_values=acr1+acr2+acr3&...
+  ### The `claims` Request Parameter
+  The second way to specify a list of ACRs is to use the `claims` request parameter. The parameter is defined in [Section 5.5](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html). The parameter takes a JSON object as a value and the syntax of the JSON is complex.
+  The following JSON is an example value of the `claims` request parameter excerpted from OpenID Connect Core 1.0.
+  ```json
   ,
-"acr": 
+  "nickname": null,
+  "email": ,
+  "email_verified": ,
+  "picture": null,
+  "http://example.info/claims/groups": null
+  \`},
+  "id_token":
+  ,
+  "acr":
   }
-}
-```This example specifies a list of ACRs that has just one element, `urn:mace:incommon:iap:silver`. When an authorization request includes this JSON as the value of the `claims` request parameter, the authorization server tries to perform user authentication that satisfies criteria of `urn:mace:incommon:iap:silver`.
-To make the authorization server return an error when none of the specified ACRs can be satisfied, the client application must request the `acr` as an essential claim. By adding `"essential":true` in the JSON object that follows a claim name, the client application can request the claim as essential. In the example below, the `auth_time` claim and the `acr` claim are requested as essential.
-```json
-,
-"acr": 
   }
-}
-```
-The `acr_values` request parameter cannot request the `acr` claim as essential.
-### The `default_acr_values` Client Metadata
-The last way is to use the `default_acr_values` client metadata. The metadata is defined in [Section 2](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata) of [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html) as follows.
+  ```This example specifies a list of ACRs that has just one element, `urn:mace:incommon:iap:silver`. When an authorization request includes this JSON as the value of the `claims` request parameter, the authorization server tries to perform user authentication that satisfies criteria of `urn:mace:incommon:iap:silver`.
+  To make the authorization server return an error when none of the specified ACRs can be satisfied, the client application must request the `acr` as an essential claim. By adding `"essential":true` in the JSON object that follows a claim name, the client application can request the claim as essential. In the example below, the `auth_time` claim and the `acr` claim are requested as essential.
+  ```json
+  ,
+  "acr":
+  }
+  }
+  ```
+  The `acr_values` request parameter cannot request the `acr` claim as essential.
+  ### The `default_acr_values` Client Metadata
+  The last way is to use the `default_acr_values` client metadata. The metadata is defined in [Section 2](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata) of [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html) as follows.
 - `default_acr_values`: OPTIONAL. Default requested Authentication Context Class Reference values. Array of strings that specifies the default `acr` values that the OP is being requested to use for processing requests from this Client, with the values appearing in order of preference. The Authentication Context Class satisfied by the authentication performed is returned as the `acr` Claim Value in the issued ID Token. The `acr` Claim is requested as a Voluntary Claim by this parameter. The `acr_values_supported` discovery element contains a list of the supported `acr` values supported by this server. Values specified in the `acr_values` request parameter or an individual `acr` Claim request override these default values.
-When an authorization request does not specify a list of ACRs explicitly, the value of the `default_acr_values` is, if set, used as a list of ACRs.
-The `default_acr_values` client metadata cannot request the `acr` claim as essential.
-### Unmet Authentication Requirements
-If the `acr` claim is requested as an essential claim, the authorization server returns an error response when none of specified ACRs can be satisfied. If the authorization server supports “[OpenID Connect Core Error Code unmet_authentication_requirements](https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html)”, `unmet_authentication_requirements` is used as the value of the `error` response parameter.
-[![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/unmet_authentication_requirements.png)](/stepup_authn)
-The following is the description about the error code in the specification.
+  When an authorization request does not specify a list of ACRs explicitly, the value of the `default_acr_values` is, if set, used as a list of ACRs.
+  The `default_acr_values` client metadata cannot request the `acr` claim as essential.
+  ### Unmet Authentication Requirements
+  If the `acr` claim is requested as an essential claim, the authorization server returns an error response when none of specified ACRs can be satisfied. If the authorization server supports “[OpenID Connect Core Error Code unmet_authentication_requirements](https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html)”, `unmet_authentication_requirements` is used as the value of the `error` response parameter.
+  [![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/unmet_authentication_requirements.png)](/stepup_authn)
+  The following is the description about the error code in the specification.
 - `unmet_authentication_requirements`: The Authorization Server is unable to meet the requirements of the Relying Party for the authentication of the End-User. This error code SHALL be used if the Relying Party wants the OP to conform to a certain Authentication Context Class Reference value using an essential claim `acr` claim as specified in Section 5.5.1.1. of OpenID Connect Core [OpenID.Core] and the OP is unable to meet this requirement and MAY be used in other cases, if appropriate.
-If the authorization server does not support the specification, it is up to the authorization server what error code is used.
-### Unmet Authentication Requirements for Step Up Authentication
-In the context of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html), no error is reported even if the authorization server cannot perform such user authentication unless the `acr` claim is requested as essential.
-However, [OAuth 2.0 Step Up Authentication Challenge Protocol](https://www.rfc-editor.org/rfc/rfc9470.html) recommends that an ACR request by the `acr_values` request parameter (which requests the `acr` claim as a voluntary claim) be “treated as required” and the authorization server return the `unmet_authentication_requirements` error in case none of specified ACRs can be satisfied.
-The recommendation slightly conflicts with the following paragraph excerpted from OpenID Connect Core 1.0.
-Note that even if the Claims are not available because the End-User did not authorize their release or they are not present, the Authorization Server MUST NOT generate an error when Claims are not returned, whether they are Essential or Voluntary, unless otherwise specified in the description of the specific claim.
-However, in practice, the slight conflict won’t be a big issue.
-### Actual ACR Values
-OpenID Connect Core 1.0 does not define actual ACR values. Therefore, to utilize ACR, it is necessary to define actual ACR values in a deployment-specific way. The following table shows examples of actual ACR values.
-| Deployment | ACR Values |
-| --- | --- |
-| UK Open Banking | `urn:openbanking:psd2:ca`  `urn:openbanking:psd2:sca` |
-| AU CDR | `urn:cds:au:cdr:2`  `urn:cds:au:cdr:3` |
-| Open Banking Brasil | `urn:brasil:openbanking:loa2`  `urn:brasil:openbanking:loa3` |
-Authorization servers should advertise information about ACR values they support through their discovery documents. [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html) defines the `acr_values_supported` server metadata for the purpose as follows.
+  If the authorization server does not support the specification, it is up to the authorization server what error code is used.
+  ### Unmet Authentication Requirements for Step Up Authentication
+  In the context of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html), no error is reported even if the authorization server cannot perform such user authentication unless the `acr` claim is requested as essential.
+  However, [OAuth 2.0 Step Up Authentication Challenge Protocol](https://www.rfc-editor.org/rfc/rfc9470.html) recommends that an ACR request by the `acr_values` request parameter (which requests the `acr` claim as a voluntary claim) be “treated as required” and the authorization server return the `unmet_authentication_requirements` error in case none of specified ACRs can be satisfied.
+  The recommendation slightly conflicts with the following paragraph excerpted from OpenID Connect Core 1.0.
+  Note that even if the Claims are not available because the End-User did not authorize their release or they are not present, the Authorization Server MUST NOT generate an error when Claims are not returned, whether they are Essential or Voluntary, unless otherwise specified in the description of the specific claim.
+  However, in practice, the slight conflict won’t be a big issue.
+  ### Actual ACR Values
+  OpenID Connect Core 1.0 does not define actual ACR values. Therefore, to utilize ACR, it is necessary to define actual ACR values in a deployment-specific way. The following table shows examples of actual ACR values.
+  | Deployment | ACR Values |
+  | --- | --- |
+  | UK Open Banking | `urn:openbanking:psd2:ca`  `urn:openbanking:psd2:sca` |
+  | AU CDR | `urn:cds:au:cdr:2`  `urn:cds:au:cdr:3` |
+  | Open Banking Brasil | `urn:brasil:openbanking:loa2`  `urn:brasil:openbanking:loa3` |
+  Authorization servers should advertise information about ACR values they support through their discovery documents. [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html) defines the `acr_values_supported` server metadata for the purpose as follows.
 - `acr_values_supported`: OPTIONAL. JSON array containing a list of the Authentication Context Class References that this OP supports.
-[![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/acr_values_supported.png)](/stepup_authn)
-## Maximum Authentication Age (Max Age)
-The previous section states “User authentication is performed somewhere during an authorization flow.” at the beginning. However, in practice, the authorization server may skip the user authentication process if it detects that a user has already been authenticated (= if a user has already logged in). Therefore, the time at which an authorization request was made is not necessarily equal to the time of user authentication that was performed for the authorization request.
-The amount of time that has elapsed since the last user authentication is called “authentication age”. A client application may want to ask the authorization server to redo user authentication during an authorization flow in a case where the authentication age exceeds a particular threshold. The threshold is called “maximum authentication age”.
-### The `max_age` Request Parameter
-[Section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) defines the request parameter `max_age` as follows in order to enable client applications to specify the maximum authentication age.
+  [![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/acr_values_supported.png)](/stepup_authn)
+  ## Maximum Authentication Age (Max Age)
+  The previous section states “User authentication is performed somewhere during an authorization flow.” at the beginning. However, in practice, the authorization server may skip the user authentication process if it detects that a user has already been authenticated (= if a user has already logged in). Therefore, the time at which an authorization request was made is not necessarily equal to the time of user authentication that was performed for the authorization request.
+  The amount of time that has elapsed since the last user authentication is called “authentication age”. A client application may want to ask the authorization server to redo user authentication during an authorization flow in a case where the authentication age exceeds a particular threshold. The threshold is called “maximum authentication age”.
+  ### The `max_age` Request Parameter
+  [Section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) defines the request parameter `max_age` as follows in order to enable client applications to specify the maximum authentication age.
 - `max_age`: OPTIONAL. Maximum Authentication Age. Specifies the allowable elapsed time in seconds since the last time the End-User was actively authenticated by the OP. If the elapsed time is greater than this value, the OP MUST attempt to actively re-authenticate the End-User. (The `max_age` request parameter corresponds to the OpenID 2.0 PAPE [OpenID.PAPE] `max_auth_age` request parameter.) When `max_age` is used, the ID Token returned MUST include an `auth_time` Claim Value.
-The value of the `max_age` is an integer that represents the maximum authentication age in seconds. It appears in an authorization request like the following.
-https://as.example.com/authorize?max_age=600&...
-### The `default_max_age` Client Metadata
-If an authorization request does not contain the `max_age` request parameter but the `default_max_age` client metadata of the client is set, the value of the metadata is used as the maximum authentication age. The metadata is defined in [Section 2](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata) of [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html) as follows.
+  The value of the `max_age` is an integer that represents the maximum authentication age in seconds. It appears in an authorization request like the following.
+  https://as.example.com/authorize?max_age=600&...
+  ### The `default_max_age` Client Metadata
+  If an authorization request does not contain the `max_age` request parameter but the `default_max_age` client metadata of the client is set, the value of the metadata is used as the maximum authentication age. The metadata is defined in [Section 2](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata) of [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html) as follows.
 - `default_max_age`: OPTIONAL. Default Maximum Authentication Age. Specifies that the End-User MUST be actively authenticated if the End-User was authenticated longer ago than the specified number of seconds. The `max_age` request parameter overrides this default value. If omitted, no default Maximum Authentication Age is specified.
-### The `prompt` Request Parameter
-When a client application wants to ask the authorization server to perform user authentication unconditionally (regardless of whether the maximum authentication age has been reached or not) during an authorization flow, it can use the `prompt` request parameter with the `login` value included. Its use will look like the following.
-https://as.example.com/authorize?prompt=login&...
-See [Section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) for details about the `prompt` parameter.
-# Authentication Requirements Challenge
-Protected resource endpoints that utilize the OAuth 2.0 Step Up Authentication Challenge Protocol specification return an error response when the presented access token does not satisfy either or both of the authentication requirements (namely ACR and Max Age).
-The diagram below illustrates the flow from returning an error response to making an authorization request asking for an access token that satisfies authentication requirements.
-[![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/insufficient_user_authentication.png)](/stepup_authn)
-Parameters in the error response are explained in the subsequent sections.
-## The `insufficient_user_authentication` Error Code
-To indicate that the reason of an error response is that authentication requirements are not satisfied, the specification defines an error code `insufficient_user_authentication` as follows.
+  ### The `prompt` Request Parameter
+  When a client application wants to ask the authorization server to perform user authentication unconditionally (regardless of whether the maximum authentication age has been reached or not) during an authorization flow, it can use the `prompt` request parameter with the `login` value included. Its use will look like the following.
+  https://as.example.com/authorize?prompt=login&...
+  See [Section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) for details about the `prompt` parameter.
+  # Authentication Requirements Challenge
+  Protected resource endpoints that utilize the OAuth 2.0 Step Up Authentication Challenge Protocol specification return an error response when the presented access token does not satisfy either or both of the authentication requirements (namely ACR and Max Age).
+  The diagram below illustrates the flow from returning an error response to making an authorization request asking for an access token that satisfies authentication requirements.
+  [![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/insufficient_user_authentication.png)](/stepup_authn)
+  Parameters in the error response are explained in the subsequent sections.
+  ## The `insufficient_user_authentication` Error Code
+  To indicate that the reason of an error response is that authentication requirements are not satisfied, the specification defines an error code `insufficient_user_authentication` as follows.
 - `insufficient_user_authentication`: The authentication event associated with the access token presented with the request doesn’t meet the authentication requirements of the protected resource.
-The error code appears in the `WWW-Authenticate` HTTP header of an error response as shown below.
-WWW-Authenticate: Bearer error="insufficient_user_authentication,...
-## The `acr_values` Parameter
-To list ACRs one of which an access token must satisfy, the specification defines a parameter `acr_values` as follows.
+  The error code appears in the `WWW-Authenticate` HTTP header of an error response as shown below.
+  WWW-Authenticate: Bearer error="insufficient_user_authentication,...
+  ## The `acr_values` Parameter
+  To list ACRs one of which an access token must satisfy, the specification defines a parameter `acr_values` as follows.
 - `acr_values`: A space-separated string listing the authentication context class reference values, in order of preference, one of which the protected resource requires for the authentication event associated with the access token.
-The parameter is used in conjunction with the error code `insufficient_user_authentication` like below (excerpt from the specification):
+  The parameter is used in conjunction with the error code `insufficient_user_authentication` like below (excerpt from the specification):
   HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Bearer error="insufficient_user_authentication",
-error_description="A different authentication level is required,
-acr_values="myACR"
-If a client application receives the error response above, the client application needs to make an authorization request that requests the `acr` claim as an essential with `myACR` included in `values` like below. Line-breaks in the example below are for display purposes only. An actual request does not contain line-breaks.
-https://as.example.com/authorize?claims=
-\`}
-}&...
-If the authorization server treats the `acr_values` request parameter in the way recommended by the OAuth 2.0 Step Up Authentication Challenge Protocol specification, `acr_values=myACR` would be enough.
-## The `max_age` Parameter
-To indicate the maximum authentication age which an access token must satisfy, the specification defines a parameter `max_age` as follows.
+  WWW-Authenticate: Bearer error="insufficient_user_authentication",
+  error_description="A different authentication level is required,
+  acr_values="myACR"
+  If a client application receives the error response above, the client application needs to make an authorization request that requests the `acr` claim as an essential with `myACR` included in `values` like below. Line-breaks in the example below are for display purposes only. An actual request does not contain line-breaks.
+  https://as.example.com/authorize?claims=
+  \`}
+  }&...
+  If the authorization server treats the `acr_values` request parameter in the way recommended by the OAuth 2.0 Step Up Authentication Challenge Protocol specification, `acr_values=myACR` would be enough.
+  ## The `max_age` Parameter
+  To indicate the maximum authentication age which an access token must satisfy, the specification defines a parameter `max_age` as follows.
 - `max_age`: Indicates the allowable elapsed time in seconds since the last active authentication event associated with the access token.
-The parameter is used in conjunction with the error code `insufficient_user_authentication` like below (excerpt from the specification):
+  The parameter is used in conjunction with the error code `insufficient_user_authentication` like below (excerpt from the specification):
   HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Bearer error="insufficient_user_authentication,
-error_description="More recent authentication is required",
-max_age="5
-If a client application receives the error response above, the client application needs to make an authorization request with the `prompt` request parameter with `login` included.
-# Authentication Information Bound To Access Token
-To enable protected resource endpoints to check whether a presented access token satisfies authentication requirements or not, the access token must hold information about the user authentication that was performed during the course of issuing the access token.
-The OAuth 2.0 Step Up Authentication Challenge Protocol specification defines the following two attributes of access token that may appear in the payload part of JWT access tokens and the message body of token introspection responses (cf. [RFC 7662](https://www.rfc-editor.org/rfc/rfc7662.html)).
-| Attribute | Description (excerpted from the specification) |
-| --- | --- |
-| `acr` | Authentication Context Class Reference.  String specifying an Authentication Context Class Reference value that identifies the Authentication Context Class that the user authentication performed satisfied. |
-| `auth_time` | Time when the user authentication occurred.  A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the time of date/time of the authentication event. |
-The JSON below is an example excerpted from the specification that shows how the `acr` and `auth_time` attributes appear in the payload part of JWT access tokens.
-```json
+  WWW-Authenticate: Bearer error="insufficient_user_authentication,
+  error_description="More recent authentication is required",
+  max_age="5
+  If a client application receives the error response above, the client application needs to make an authorization request with the `prompt` request parameter with `login` included.
+  # Authentication Information Bound To Access Token
+  To enable protected resource endpoints to check whether a presented access token satisfies authentication requirements or not, the access token must hold information about the user authentication that was performed during the course of issuing the access token.
+  The OAuth 2.0 Step Up Authentication Challenge Protocol specification defines the following two attributes of access token that may appear in the payload part of JWT access tokens and the message body of token introspection responses (cf. [RFC 7662](https://www.rfc-editor.org/rfc/rfc7662.html)).
+  | Attribute | Description (excerpted from the specification) |
+  | --- | --- |
+  | `acr` | Authentication Context Class Reference.  String specifying an Authentication Context Class Reference value that identifies the Authentication Context Class that the user authentication performed satisfied. |
+  | `auth_time` | Time when the user authentication occurred.  A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the time of date/time of the authentication event. |
+  The JSON below is an example excerpted from the specification that shows how the `acr` and `auth_time` attributes appear in the payload part of JWT access tokens.
+  ```json
 
 ```# Authlete’s Implementation
 Authlete supports the OAuth 2.0 Step Up Authentication Challenge Protocol specification since version 2.3.
@@ -265,16 +265,16 @@ Bearer error="insufficient_user_authentication",error_description="[A340301] The
 We released Authlete 3.0 in November 2024 ([announcement](https://www.authlete.com/news/20241106_authlete3/)). Naturally, it supports the OAuth 2.0 Step Up Authentication Challenge Protocol. Please take full advantage of it!
 #### On this page
 - [Authentication Context Class Reference (ACR)](#authentication-context-class-reference-acr)
-[The acr_values Request Parameter](#the-acr_values-request-parameter)
-[The claims Request Parameter](#the-claims-request-parameter)
-[The default_acr_values Client Metadata](#the-default_acr_values-client-metadata)
-[Unmet Authentication Requirements](#unmet-authentication-requirements)
-[Unmet Authentication Requirements for Step Up Authentication](#unmet-authentication-requirements-for-step-up-authentication)
-[Actual ACR Values](#actual-acr-values)
+  [The acr_values Request Parameter](#the-acr_values-request-parameter)
+  [The claims Request Parameter](#the-claims-request-parameter)
+  [The default_acr_values Client Metadata](#the-default_acr_values-client-metadata)
+  [Unmet Authentication Requirements](#unmet-authentication-requirements)
+  [Unmet Authentication Requirements for Step Up Authentication](#unmet-authentication-requirements-for-step-up-authentication)
+  [Actual ACR Values](#actual-acr-values)
 - [Maximum Authentication Age (Max Age)](#maximum-authentication-age-max-age)
-[The max_age Request Parameter](#the-max_age-request-parameter)
-[The default_max_age Client Metadata](#the-default_max_age-client-metadata)
-[The prompt Request Parameter](#the-prompt-request-parameter)
+  [The max_age Request Parameter](#the-max_age-request-parameter)
+  [The default_max_age Client Metadata](#the-default_max_age-client-metadata)
+  [The prompt Request Parameter](#the-prompt-request-parameter)
 - [The insufficient_user_authentication Error Code](#the-insufficient_user_authentication-error-code)
 - [The acr_values Parameter](#the-acr_values-parameter)
 - [The max_age Parameter](#the-max_age-parameter)
@@ -283,5 +283,5 @@ We released Authlete 3.0 in November 2024 ([announcement](https://www.authlete.c
 - [JWT Access Token](#jwt-access-token)
 - [Token Introspection (Standard)](#token-introspection-standard)
 - [Token Introspection (Authlete)](#token-introspection-authlete)
-[ACR validation](#acr-validation)
-[Max Age Validation](#max-age-validation)
+  [ACR validation](#acr-validation)
+  [Max Age Validation](#max-age-validation)

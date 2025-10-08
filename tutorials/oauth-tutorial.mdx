@@ -8,214 +8,214 @@ title: "OAuth 2.0 Basics"
 # OAuth 2.0 Basics
 1. [Home](https://www.authlete.com/)
 3. OAuth 2.0 Basics
-Info>
+<Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/tutorial/v2).
-</Info>\`}
+</Info>
 # Preface
 This tutorial describes the basic usage of [Authlete APIs](https://docs.authlete.com/) to implement an OAuth 2.0 authorization server that supports the authorization code grant flow. It also shows how Resource Servers can use Authlete APIs to quickly validate the access tokens, providing secure and authorized access to APIs.
 Prerequisites:
   - Basic knowledge of OAuth 2.0.
 - Access to an Authlete account. [Sign up here if needed](https://console.authlete.com/register).
-# Components
-A typical OAuth 2.0 architecture involves multiple components, shown in the flowchart below. In this tutorial, we use the live, public cloud versions of the [Authlete Management Console](https://console.authlete.com) and Authlete API Cluster running in the US region (`https://us.authlete.com`). The Authorization and Resource servers are simulated using `curl` commands, showing how an Authorization Server and Resource Server make API requests to Authlete for authorization, token issuance, and introspection.
-flowchart LR
-subgraph EndUser [End User]
-userAgent["User Agent (N/A)"]
-resourceOwner["Resource Owner (N/A)"]
-end
-subgraph APIClient [API Client]
-client["Client (N/A)"]
-end
-subgraph APIServer [API Server]
-authServer["Authorization Server (curl)"]
-resourceServer["Resource Server (curl)"]
-authAdmin["Authlete Administrator"]
-end
-subgraph Authlete [Authlete]
-mgmtConsole["Authlete Management Console"]
-authAPI["Authlete API"]
-end
-resourceOwner --> userAgent
-userAgent -- "Access to Client" --> client
-userAgent -- "Authorization Request (User Authentication and Consent)" --> authServer
-client -- "Token Request" --> authServer
-client -- "API Request" --> resourceServer
-%% API Server interactions with Authlete
-authAdmin -- "Service/Client Management" --> mgmtConsole
-mgmtConsole -- "API Request" --> authAPI
-authServer -- "API Request" --> authAPI
-resourceServer -- "API Request" --> authAPI
-The FQDNs for each component are listed below. While the Authorization Server and Client are simulated, their FQDNs are used to illustrate the OAuth flow.
-| Component | FQDN |
-| --- | --- |
-| Authlete API - US Cluster | `us.authlete.com` |
-| Authlete Management Console | `console.authlete.com` |
-| Authorization Server | `as.example.com` |
-| Client | `client.example.org` |
-| Resource Server | N/A |
-# Environment Setup
-Follow the [Quick Setup Guide](/tutorial/signup) to create a new Authlete Service and Client. Also, generate a Service Access Token, which is needed to call Authlete APIs. This tutorial assumes you have already created a service in the US cluster and a client as described in the Quick Setup Guide.
-| Item | Value |
-| --- | --- |
-| Authlete API - US Cluster | `https://us.authlete.com` |
-| Service ID | Auto-generated, e.g., `933860280` |
-| Service Access Token | Auto-generated, e.g. `DL7jo1z3-iUIXyI5MnX...` |
-| Client ID | Auto-generated, e.g., `12818600553323` |
-| Client Secret | Auto-generated |
-| Client Type | `CONFIDENTIAL` |
-| Redirect URIs | `https://client.example.org/cb/example.com` |
-| Client Authentication Method | `CLIENT_SECRET_BASIC` |
-# Walk-through
-The sequence diagram below shows the entire OAuth 2.0 flow as used in this tutorial. Refer back to it as you proceed through each step.
-sequenceDiagram
-autonumber
-participant RO as Resource Owner
-participant UA as User Agent
-participant C as Client
-participant AS as Authorization Server
-participant RS as Resource Server
-participant API as Authlete API
-RO ->> UA: Start
-UA ->> C: Make a request
-C -->> UA: Authorization request
-UA ->> AS: Forward the request
-AS ->> API: POST /auth/authorization
-API -->> AS: OK to proceed(including ticket)
-AS -->> UA: User authentication and consent page
-RO  UA: Enter credentials
-UA ->> AS: Login and consent
-AS ->> API: POST /auth/authorization/issue(with ticket)
-API -->> AS: Authorization response content(including authorization code)
-AS -->> UA: Authorization response
-UA ->> C: Forward the response
-C ->> AS: Token request(with authorization code)
-AS ->> API: POST /auth/token
-API -->> AS: Token response content(including access token)
-AS -->> C: Token response
-C ->> RS: Access protected resource(with access token)
-RS ->> API: POST /auth/introspection
-API -->> RS: Introspection response
-RS -->> C: Response to client
-C -->> UA: Content
-UA -->> RO: End
-## Authorization request from the client to the authorization server
-The client makes an authorization request to the authorization server via the user agent (Steps 3 and 4).
-In this tutorial, we’ll assume the following values are specified as parameters in the request.
-| Parameter | Value |
-| --- | --- |
-| client_id | `12818600553323` |
-| response_type | `code` |
-| redirect_uri | `https://client.example.org/cb/example.com` |
-The authorization server is expected to receive the following content (folded for readability) as an HTTP GET query string from the user agent.
-```shell
-redirect_uri=https://client.example.org/cb/example.com
-&response_type=code
-&client_id=12818600553323
-```A typical authorization server should evaluate the following rules before proceeding with the authorization code grant flow.
-- Verify that a client associated with the client ID `12818600553323` is registered with the authorization server.
+  # Components
+  A typical OAuth 2.0 architecture involves multiple components, shown in the flowchart below. In this tutorial, we use the live, public cloud versions of the [Authlete Management Console](https://console.authlete.com) and Authlete API Cluster running in the US region (`https://us.authlete.com`). The Authorization and Resource servers are simulated using `curl` commands, showing how an Authorization Server and Resource Server make API requests to Authlete for authorization, token issuance, and introspection.
+  flowchart LR
+  subgraph EndUser [End User]
+  userAgent["User Agent (N/A)"]
+  resourceOwner["Resource Owner (N/A)"]
+  end
+  subgraph APIClient [API Client]
+  client["Client (N/A)"]
+  end
+  subgraph APIServer [API Server]
+  authServer["Authorization Server (curl)"]
+  resourceServer["Resource Server (curl)"]
+  authAdmin["Authlete Administrator"]
+  end
+  subgraph Authlete [Authlete]
+  mgmtConsole["Authlete Management Console"]
+  authAPI["Authlete API"]
+  end
+  resourceOwner --> userAgent
+  userAgent -- "Access to Client" --> client
+  userAgent -- "Authorization Request (User Authentication and Consent)" --> authServer
+  client -- "Token Request" --> authServer
+  client -- "API Request" --> resourceServer
+  %% API Server interactions with Authlete
+  authAdmin -- "Service/Client Management" --> mgmtConsole
+  mgmtConsole -- "API Request" --> authAPI
+  authServer -- "API Request" --> authAPI
+  resourceServer -- "API Request" --> authAPI
+  The FQDNs for each component are listed below. While the Authorization Server and Client are simulated, their FQDNs are used to illustrate the OAuth flow.
+  | Component | FQDN |
+  | --- | --- |
+  | Authlete API - US Cluster | `us.authlete.com` |
+  | Authlete Management Console | `console.authlete.com` |
+  | Authorization Server | `as.example.com` |
+  | Client | `client.example.org` |
+  | Resource Server | N/A |
+  # Environment Setup
+  Follow the [Quick Setup Guide](/tutorial/signup) to create a new Authlete Service and Client. Also, generate a Service Access Token, which is needed to call Authlete APIs. This tutorial assumes you have already created a service in the US cluster and a client as described in the Quick Setup Guide.
+  | Item | Value |
+  | --- | --- |
+  | Authlete API - US Cluster | `https://us.authlete.com` |
+  | Service ID | Auto-generated, e.g., 933860280 |
+  | Service Access Token | Auto-generated, e.g. `DL7jo1z3-iUIXyI5MnX...` |
+  | Client ID | Auto-generated, e.g., 12818600553323 |
+  | Client Secret | Auto-generated |
+  | Client Type | `CONFIDENTIAL` |
+  | Redirect URIs | `https://client.example.org/cb/example.com` |
+  | Client Authentication Method | `CLIENT_SECRET_BASIC` |
+  # Walk-through
+  The sequence diagram below shows the entire OAuth 2.0 flow as used in this tutorial. Refer back to it as you proceed through each step.
+  sequenceDiagram
+  autonumber
+  participant RO as Resource Owner
+  participant UA as User Agent
+  participant C as Client
+  participant AS as Authorization Server
+  participant RS as Resource Server
+  participant API as Authlete API
+  RO ->> UA: Start
+  UA ->> C: Make a request
+  C -->> UA: Authorization request
+  UA ->> AS: Forward the request
+  AS ->> API: POST /auth/authorization
+  API -->> AS: OK to proceed(including ticket)
+  AS -->> UA: User authentication and consent page
+  RO  UA: Enter credentials
+  UA ->> AS: Login and consent
+  AS ->> API: POST /auth/authorization/issue(with ticket)
+  API -->> AS: Authorization response content(including authorization code)
+  AS -->> UA: Authorization response
+  UA ->> C: Forward the response
+  C ->> AS: Token request(with authorization code)
+  AS ->> API: POST /auth/token
+  API -->> AS: Token response content(including access token)
+  AS -->> C: Token response
+  C ->> RS: Access protected resource(with access token)
+  RS ->> API: POST /auth/introspection
+  API -->> RS: Introspection response
+  RS -->> C: Response to client
+  C -->> UA: Content
+  UA -->> RO: End
+  ## Authorization request from the client to the authorization server
+  The client makes an authorization request to the authorization server via the user agent (Steps 3 and 4).
+  In this tutorial, we’ll assume the following values are specified as parameters in the request.
+  | Parameter | Value |
+  | --- | --- |
+  | client_id | 12818600553323 |
+  | response_type | `code` |
+  | redirect_uri | `https://client.example.org/cb/example.com` |
+  The authorization server is expected to receive the following content (folded for readability) as an HTTP GET query string from the user agent.
+  ```shell
+  redirect_uri=https://client.example.org/cb/example.com
+  &response_type=code
+  &client_id=12818600553323
+  ```A typical authorization server should evaluate the following rules before proceeding with the authorization code grant flow.
+- Verify that a client associated with the client ID 12818600553323 is registered with the authorization server.
 - Check that the redirect URI `https://client.example.org/cb/example.com` matches one of the URIs registered for the client.
 - Confirm that other parameter values, such as `response_type` and `scope`, are permitted for the client to specify in its request.
-Authlete’s [/auth/authorization](https://docs.authlete.com/#auth-authorization-api) API performs the above request validation on behalf of the authorization server.
-Use the following `curl` command to make an authorization request to the Authlete API (Step 5):
+  Authlete’s [/auth/authorization](https://docs.authlete.com/#auth-authorization-api) API performs the above request validation on behalf of the authorization server.
+  Use the following `curl` command to make an authorization request to the Authlete API (Step 5):
   ```bash
-# Linux/Mac
-curl -X POST "https://us.authlete.com/api/933860280/auth/authorization" \
+  # Linux/Mac
+  curl -X POST "https://us.authlete.com/api/933860280/auth/authorization" \
 -H "Authorization: Bearer $sat" \
 -H "Content-Type: application/json" \
 -d ''
-# Windows
-curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization" `
+  # Windows
+  curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization" `
 -H "Authorization: Bearer $env:sat" `
 -H "Content-Type: application/json" `
 -d ''
-```Note:
+  ```Note:
   - Replace `$sat` with your actual bearer token.
 - For Windows, ensure PowerShell is used to handle environment variables (`$env:sat`).
-If the request is valid, Authlete returns a response like this (Step 6).
-```json
-,
-"service": ,
-}
-```- `resultMessage` provides human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
+  If the request is valid, Authlete returns a response like this (Step 6).
+  ```json
+  ,
+  "service": ,
+  }
+  ```- `resultMessage` provides human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
 - `action` indicates what the authorization server should do next.
 - `ticket` is required for the authorization server to make a request to another API in the following step.
-Authlete also provides service and client information in the response. The authorization server utilizes them to ask the resource owner if he or she authorizes access for the client to the service.
-## User authentication and confirmation of granting access
-The actual interaction between the resource owner and the authorization server is out of scope for this tutorial. Typically, the authorization server would authenticate the user with credentials (e.g., ID and password), determine the user’s roles and privileges, and ask if they authorize access (Steps 7, 8 and 9).
-## Issuing an authorization code
-Assume the authorization server reaches the following state after completing the previous process:
+  Authlete also provides service and client information in the response. The authorization server utilizes them to ask the resource owner if he or she authorizes access for the client to the service.
+  ## User authentication and confirmation of granting access
+  The actual interaction between the resource owner and the authorization server is out of scope for this tutorial. Typically, the authorization server would authenticate the user with credentials (e.g., ID and password), determine the user’s roles and privileges, and ask if they authorize access (Steps 7, 8 and 9).
+  ## Issuing an authorization code
+  Assume the authorization server reaches the following state after completing the previous process:
   - The authorization server has authenticated the resource owner and determined that the identifier to be shared with Authlete as the value of the `subject` parameter is `john.s@example.com`.
 - The authorization server has obtained consent from the resource owner.
-The authorization server then makes a request to Authlete’s [/auth/authorization/issue](https://docs.authlete.com/#auth-authorization-issue-api) to issue an authorization code. It includes the values of `subject` and `ticket` from the `/auth/authorization` API response as request parameters (Step 10).
-Use the following `curl` command to issue an authorization request to the Authlete API:
+  The authorization server then makes a request to Authlete’s [/auth/authorization/issue](https://docs.authlete.com/#auth-authorization-issue-api) to issue an authorization code. It includes the values of `subject` and `ticket` from the `/auth/authorization` API response as request parameters (Step 10).
+  Use the following `curl` command to issue an authorization request to the Authlete API:
   ```bash
-# Linux/Mac
-curl -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue" \
+  # Linux/Mac
+  curl -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue" \
 -H "Authorization: Bearer $sat" \
 -H "Content-Type: application/json" \
 -d ''
-# Windows
-curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue" `
+  # Windows
+  curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue" `
 -H "Authorization: Bearer $env:sat" `
 -H "Content-Type: application/json" `
 -d ''
-```If the request is valid, Authlete generates the following response (Step 11).
-```json
+  ```If the request is valid, Authlete generates the following response (Step 11).
+  ```json
 
 \`}
 ```- `resultMessage` provides a human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
 - `action` indicates what the authorization server should do next. The value in this response is `LOCATION`, meaning the authorization server should make a redirection response back to the user agent.
 - `responseContent` represents the content of the response from the authorization server.
-The authorization server is expected to send the following response (folded for readability) to the user agent (Step 12).
-```http
-HTTP/1.1 302 Found
-Location: https://client.example.org/cb/example.com
-?code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI
-```There are cases where the authorization server may decide not to issue tokens to the client due to the result of the previous authentication, user consent confirmation, or other missing context that prohibits token issuance. In these situations, the authorization server must inform the client that the authorization flow has been terminated with an appropriate protocol response.
-Authlete’s  [/auth/authorization/fail](https://docs.authlete.com/#auth-authorization-fail-api) API supports the termination process in terms of messages to be sent to the client, and transfer method for the response.
-To summarize, an authentication server usually makes a request to either `/auth/authorization/issue` or `/auth/authorization/fail` API depending on result of user authentication and consent.
-## Token request
-Here, we assume that the user agent receives the redirection response from the authorization server. It then sends the following request (folded for readability) to the client (Step  13).
-```http
-GET /cb/example.com?code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI HTTP/1.1
-Host: client.example.org
-```The client extracts the value of the `code` parameter, crafts a token request using this value, and sends it to the authorization server as follows (folded for readability). In this tutorial, `https://as.example.com/token` is the token endpoint URI (Step 14).
-```shell
-POST /token HTTP/1.1
-Host: as.example.com
-Authorization: Basic base64(12818600553323:-olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg)
-Content-Type: application/x-www-form-urlencoded
-grant_type=authorization_code
-&code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI
-&redirect_uri=https://client.example.org/cb/example.com
-```The authorization server evaluates the parameters in the request and then sends a token response back to the client.
-In this tutorial, we’ll use Authlete’s [/auth/token](https://docs.authlete.com/#auth-token-api) API to evaluate the request and generate the response.
-Use the following `curl` command to exchange an authorization code for an access token using the Authlete API:
+  The authorization server is expected to send the following response (folded for readability) to the user agent (Step 12).
+  ```http
+  HTTP/1.1 302 Found
+  Location: https://client.example.org/cb/example.com
+  ?code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI
+  ```There are cases where the authorization server may decide not to issue tokens to the client due to the result of the previous authentication, user consent confirmation, or other missing context that prohibits token issuance. In these situations, the authorization server must inform the client that the authorization flow has been terminated with an appropriate protocol response.
+  Authlete’s  [/auth/authorization/fail](https://docs.authlete.com/#auth-authorization-fail-api) API supports the termination process in terms of messages to be sent to the client, and transfer method for the response.
+  To summarize, an authentication server usually makes a request to either `/auth/authorization/issue` or `/auth/authorization/fail` API depending on result of user authentication and consent.
+  ## Token request
+  Here, we assume that the user agent receives the redirection response from the authorization server. It then sends the following request (folded for readability) to the client (Step  13).
+  ```http
+  GET /cb/example.com?code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI HTTP/1.1
+  Host: client.example.org
+  ```The client extracts the value of the `code` parameter, crafts a token request using this value, and sends it to the authorization server as follows (folded for readability). In this tutorial, `https://as.example.com/token` is the token endpoint URI (Step 14).
+  ```shell
+  POST /token HTTP/1.1
+  Host: as.example.com
+  Authorization: Basic base64(12818600553323:-olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg)
+  Content-Type: application/x-www-form-urlencoded
+  grant_type=authorization_code
+  &code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI
+  &redirect_uri=https://client.example.org/cb/example.com
+  ```The authorization server evaluates the parameters in the request and then sends a token response back to the client.
+  In this tutorial, we’ll use Authlete’s [/auth/token](https://docs.authlete.com/#auth-token-api) API to evaluate the request and generate the response.
+  Use the following `curl` command to exchange an authorization code for an access token using the Authlete API:
   ```bash
-# Linux/Mac
-curl -X POST "https://us.authlete.com/api/933860280/auth/token" \
--H "Authorization: Bearer $sat" \
--H "Content-Type: application/json" \
--d ''
-# Windows
-curl.exe -X POST "https://us.authlete.com/api/933860280/auth/token" `
--H "Authorization: Bearer $sat" `
--H "Content-Type: application/json" `
--d ''
-```If the request is valid, Authlete responds as follows (Step 16).
-```json
-",
-"resultCode": "A050001",
-"resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
-"subject": "john.s@example.com",
-\`}
-```- `resultMessage` provides a human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
+  # Linux/Mac
+  curl -X POST "https://us.authlete.com/api/933860280/auth/token" \
+  -H "Authorization: Bearer $sat" \
+  -H "Content-Type: application/json" \
+  -d ''
+  # Windows
+  curl.exe -X POST "https://us.authlete.com/api/933860280/auth/token" `
+  -H "Authorization: Bearer $sat" `
+  -H "Content-Type: application/json" `
+  -d ''
+  ```If the request is valid, Authlete responds as follows (Step 16).
+  ```json
+  ",
+  "resultCode": "A050001",
+  "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
+  "subject": "john.s@example.com",
+  \`}
+  ```- `resultMessage` provides a human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
 - `action` indicates what the authorization server should do next. The value in this response is `OK`, meaning the authorization server should send a token response back to the client.
 - `responseContent` contains the content of the response from the authorization server.
-The authorization server is expected to send the following response to the client (Step 17).
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
+  The authorization server is expected to send the following response to the client (Step 17).
+  ```http
+  HTTP/1.1 200 OK
+  Content-Type: application/json
 
 ```
 The authorization server has now successfully created the tokens and provided them to the client. By leveraging Authlete APIs, the authorization server avoids the need to implement complex logic to evaluate parameters in authorization and token requests and can respond correctly using the appropriate methods.
@@ -245,7 +245,7 @@ Let’s dig deeper into Authlete by exploring the following features.
 - [Authlete API Tutorial - OIDC Basics](/tutorial/oidc)
 - [PKCE (RFC 7636) — OAuth and OpenID Connect — Authlete Knowledge Base](/pkce)
 - [Authorization Server Reference Implementations](https://github.com/authlete/java-oauth-server)
-#### On this page
+  #### On this page
 - [Authorization request from the client to the authorization server](#authorization-request-from-the-client-to-the-authorization-server)
 - [User authentication and confirmation of granting access](#user-authentication-and-confirmation-of-granting-access)
 - [Issuing an authorization code](#issuing-an-authorization-code)

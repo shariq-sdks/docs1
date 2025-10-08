@@ -1,9 +1,7 @@
 ---
-  title: 'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete'
-description: "'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete.'"
+title: 'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete'
+description: "Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete."
 ---
-
-
 ## Overview
 
 This article explains **“FAPI2 Message Signing profile - Signing Authorization Requests”** (hereinafter referred to as FAPI2 MS Auth Req) and how to implement it with Authlete. For a detailed explanation, we illustrate FAPI2 MS Auth Res using Authorization Code Flow depicted below.
@@ -42,7 +40,7 @@ Select **Included**. This is required by [FAPI 2.0 Security Profile, 5.3.1.2. Au
 
 > “FAPI 2.0 Security Profile, 5.3.1.2. Authorization Code Flow”
 > For the Authorization Code flow, Authorization servers
-7. shall return an iss parameter in the authorization response according to [RFC9207]
+> 7. shall return an iss parameter in the authorization response according to [RFC9207]
 
 “FAPI 2.0 Security Profile, 5.3.1.2. Authorization Code Flow”
 
@@ -60,11 +58,11 @@ MTLS or `private_key_jwt` is required as the client authentication method, accor
 
 > “FAPI2 Security profile, 5.3.1.1. General Requirements”
 > Authorization servers
-6. shall authenticate clients using one of the following methods:
+> 6. shall authenticate clients using one of the following methods:
   - MTLS as specified in section 2 of [RFC8705]
 - private_key_jwt as specified in section 9 of [OIDC]
 
-“FAPI2 Security profile, 5.3.1.1. General Requirements”
+> “FAPI2 Security profile, 5.3.1.1. General Requirements”
 
 Authorization servers
 
@@ -82,7 +80,7 @@ Select `PS256`, `ES256` or `EdDSA`, according to [FAPI2 Security Profile, 5.4. C
 
 > FAPI2 Security profile, 5.4. Cryptography and Secrets
 > Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
-2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
+> 2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
 
 FAPI2 Security profile, 5.4. Cryptography and Secrets
 
@@ -144,11 +142,11 @@ MTLS or `private_key_jwt` is required as the client authentication method, accor
 
 > “FAPI2 Security profile, 5.3.2.1. General Requirements”
 > Clients
-2. shall support client authentication using one of the following methods:
+> 2. shall support client authentication using one of the following methods:
   - MTLS as specified in section 2 of [RFC8705]
 - private_key_jwt as specified in section 9 of [OIDC]
 
-“FAPI2 Security profile, 5.3.2.1. General Requirements”
+> “FAPI2 Security profile, 5.3.2.1. General Requirements”
 
 Clients
 
@@ -166,7 +164,7 @@ Select `PS256`, `ES256` or `EdDSA`, according to [FAPI2 Security Profile, 5.4. C
 
 > FAPI2 Security profile, 5.4. Cryptography and Secrets
 > Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
-2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
+> 2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
 
 FAPI2 Security profile, 5.4. Cryptography and Secrets
 
@@ -180,7 +178,7 @@ Select an encryption algorithm other than `NONE`, according to [FAPI2 Security P
 
 > “FAPI2 Security profile, 5.4. Cryptography and Secrets”
 > Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
-not use or accept the none algorithm
+> not use or accept the none algorithm
 
 “FAPI2 Security profile, 5.4. Cryptography and Secrets”
 
@@ -194,7 +192,7 @@ Select an encryption algorithm other than `RSA1_5`. This is required by [FAPI2 S
 
 > “FAPI2 Security profile, 5.4. Cryptography and Secrets”
 > Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
-1. adhere to [RFC8725]
+> 1. adhere to [RFC8725]
 
 “FAPI2 Security profile, 5.4. Cryptography and Secrets”
 
@@ -206,11 +204,11 @@ Note that [RFC8725, 3.2. Use Appropriate Algorithms](https://www.rfc-editor.org/
 
 > “RFC8725, 3.2. Use Appropriate Algorithms”
 > …
-Applications SHOULD follow these algorithm-specific recommendations:
+> Applications SHOULD follow these algorithm-specific recommendations:
   - Avoid all RSA-PKCS1 v1.5 encryption algorithms ([RFC8017], Section 7.2), preferring RSAES-OAEP ([RFC8017], Section 7.1).
-…
+    > …
 
-“RFC8725, 3.2. Use Appropriate Algorithms”
+> “RFC8725, 3.2. Use Appropriate Algorithms”
 
 …
 
@@ -238,11 +236,11 @@ Suppose that a FAPI2 MS Auth Res compliant client sends a valid request to the p
 
 > “FAPI2 Security profile, 5.3.2.1. General Requirements”
 > Clients
-2. shall support client authentication using one of the following methods:
+> 2. shall support client authentication using one of the following methods:
   - MTLS as specified in section 2 of [RFC8705]
 - private_key_jwt as specified in section 9 of [OIDC]
 
-“FAPI2 Security profile, 5.3.2.1. General Requirements”
+> “FAPI2 Security profile, 5.3.2.1. General Requirements”
 
 Clients
 
@@ -266,7 +264,7 @@ The `response_type` parameter must be set to `code`, according to [FAPI2 Securit
 
 > “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
 > For the Authorization Code flow, Clients
-1. shall use the authorization code grant described in [RFC6749]
+> 1. shall use the authorization code grant described in [RFC6749]
 
 “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
 
@@ -280,7 +278,7 @@ The `code_challenge` parameter must be set and the `code_challenge_method` param
 
 > “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
 > For the Authorization Code flow, Clients
-3. shall use PKCE [RFC7636] with S256 as the code challenge method
+> 3. shall use PKCE [RFC7636] with S256 as the code challenge method
 
 “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
 
@@ -294,8 +292,8 @@ The `redirect_uri` parameter must be a URI starting with https, according to [FA
 
 > “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
 > For the Authorization Code flow, Authorization servers
-6. shall require the redirect_uri parameter in pushed authorization requests
-8. shall not transmit authorization responses over unencrypted network connections, and, to this end, shall not allow redirect URIs that use the "http" scheme except for native clients that use Loopback Interface Redirection as described in [RFC8252], Section 7.3,
+> 6. shall require the redirect_uri parameter in pushed authorization requests
+> 8. shall not transmit authorization responses over unencrypted network connections, and, to this end, shall not allow redirect URIs that use the "http" scheme except for native clients that use Loopback Interface Redirection as described in [RFC8252], Section 7.3,
 
 “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
 
@@ -311,7 +309,7 @@ The `response_mode` parameter must be set to `jwt`, according to [FAPI 2.0 Messa
 
 > “FAPI2 Security profile, FAPI 2.0 Message Signing Profile, 5.4.1. Requirements for Authorization Servers”
 > Authorization servers implementing FAPI2 authorization response signing
-1. shall support, require use of, and issue signed authorization responses via JWT Secured Authorization Response Mode for OAuth 2.0 [JARM].
+> 1. shall support, require use of, and issue signed authorization responses via JWT Secured Authorization Response Mode for OAuth 2.0 [JARM].
 
 “FAPI2 Security profile, FAPI 2.0 Message Signing Profile, 5.4.1. Requirements for Authorization Servers”
 
@@ -321,7 +319,7 @@ Authorization servers implementing FAPI2 authorization response signing
 
 > “FAPI 2.0 Message Signing Profile, 5.4.2. Requirements for Clients”
 > Clients implementing FAPI2 authorization response signing
-1. shall set the response_mode to jwt in the authorization request as defined in [JARM];
+> 1. shall set the response_mode to jwt in the authorization request as defined in [JARM];
 
 “FAPI 2.0 Message Signing Profile, 5.4.2. Requirements for Clients”
 
@@ -333,7 +331,7 @@ Taking all of the requirements above into account, the request that the client s
 
 ```
 POST /par HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 
 client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer
@@ -356,29 +354,29 @@ After the authorization server receives the request from the client, the authori
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
 -u ':' \
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
 -u ':' \
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"\`}'
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
 ```
 
 A successful response from the API contains a request URI. The response would look like below.
@@ -407,13 +405,13 @@ After obtaining a request URI in step 1, the client sends an authorization reque
 
 ```bash
 GET /authorization?client_id=&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 
 ```
 
 ```bash
 GET /authorization?client_id=&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 
 ```
 
@@ -425,29 +423,29 @@ When the authorization server receives the request from the client, the authoriz
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
 -u ':' \
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"\`}'
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
 -u ':' \
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"\`}'
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
 ```
 
 A successful response from the API would be like below.
@@ -478,29 +476,29 @@ After the authorization server receives a successful response from `/auth/author
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 A successful response from the API would be like below.
@@ -543,12 +541,12 @@ Additionally, access tokens must be sender-constrained with MTLS or DPoP, accord
 
 > “FAPI2 Security profile, 5.3.1.1. General Requirements”
 > Authorization servers
-4. shall only issue sender-constrained access tokens,
-5. shall use one of the following methods for sender-constrained access tokens:
+> 4. shall only issue sender-constrained access tokens,
+> 5. shall use one of the following methods for sender-constrained access tokens:
   - MTLS as described in [RFC8705]
 - DPoP as described in [I-D.ietf-oauth-dpop]
 
-“FAPI2 Security profile, 5.3.1.1. General Requirements”
+> “FAPI2 Security profile, 5.3.1.1. General Requirements”
 
 Authorization servers
 
@@ -562,11 +560,11 @@ Authorization servers
 
 > “FAPI2 Security profile, 5.3.2.1. General Requirements”
 > For the Authorization Code flow, Clients
-1. shall support sender-constrained access tokens using one of the following methods:
+> 1. shall support sender-constrained access tokens using one of the following methods:
   - MTLS as described in [RFC8705]
 - DPoP as described in [I-D.ietf-oauth-dpop]
 
-“FAPI2 Security profile, 5.3.2.1. General Requirements”
+> “FAPI2 Security profile, 5.3.2.1. General Requirements”
 
 For the Authorization Code flow, Clients
 
@@ -582,7 +580,7 @@ Note that DPoP proof JWT must be signed with `PS256`, `ES256` or `EdDSA`, accord
 
 > FAPI2 Security profile, 5.4. Cryptography and Secrets
 > Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
-2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
+> 2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
 
 FAPI2 Security profile, 5.4. Cryptography and Secrets
 
@@ -594,7 +592,7 @@ Taking the requirements above into account, the token request would look like as
 
 ```
 POST /token HTTP/1.1
-Host: server.example.com
+  Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 DPoP: eyJ0eXAi...
 
@@ -616,29 +614,29 @@ After the token endpoint receives a request from the client, the authorization s
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
 -u ':' \
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
 -u ':' \
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--H 'Bearer '
--H 'Content-type: application/json' \
--d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d '&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
 ```
 
 A successful response from the API would be like below.
@@ -661,7 +659,7 @@ After completing all the steps above, the client gets an access token and can ac
 GET /api/sample HTTP/1.1
 Authorization: DPoP 7i9xPkbk...
 DPoP: eyJ0eXAi...
-Host: resource.example.com
+  Host: resource.example.com
 
 ```
 
@@ -675,29 +673,29 @@ When the resource server receives the request from the client, it calls Authlete
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
 -u ':' \
--H 'Content-type: application/json' \
--d ''
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--H 'Bearer '
--H 'Content-type: application/json' \
--d ''
+  -H 'Bearer '
+  -H 'Content-type: application/json' \
+  -d ''
 ```
 
 A successful response from the API would be like below.

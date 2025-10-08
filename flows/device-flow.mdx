@@ -7,7 +7,7 @@ title: "What is Device Flow?"
 
 # What is Device Flow?
 
-[RFC 8628 (OAuth 2.0 Device Authorization Grant)](https://tools.ietf.org/html/rfc8628) is a Proposed Standard, published by IETF in August 2019.
+[RFC 8628 (OAuth 2.0 Device Authorization Grant)](https://tools.ietf.org/html/rfc8628) is a Proposed Standard, published by IETF in August 2019.
 It defines an authorization flow (Device Flow) to issue access tokens for API clients running on devices with no Web browsers and/or that have limited capability for inputting text,
 with end user consent.
 
@@ -67,15 +67,15 @@ Processing token requests.
 It is enhanced to support `grant_type=urn:ietf:params:oauth:grant-type:device_code` and corresponding `device_code` parameter.
 
 - Processing a device authorization request. After an authorization server receives the request from a client, it forwards the content of the request as a value to this API.
-Authlete inspects the content. If it is valid, Authlete creates another content of a device authorization response and send it back to the authorization server.
-The authorization server passes the device authorization response back to the client.
+  Authlete inspects the content. If it is valid, Authlete creates another content of a device authorization response and send it back to the authorization server.
+  The authorization server passes the device authorization response back to the client.
 
 - Verifying `user_code`.
 
 - Processing approval/denial of the ongoing device flow. The processing result affects a response from `/auth/token` API.
 
 - Processing token requests.
-It is enhanced to support `grant_type=urn:ietf:params:oauth:grant-type:device_code` and corresponding `device_code` parameter.
+  It is enhanced to support `grant_type=urn:ietf:params:oauth:grant-type:device_code` and corresponding `device_code` parameter.
 
 ![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_02_en.png)
 
@@ -113,10 +113,10 @@ It contains a diagram of the device flow using Authlete.
 - Reference to Authlete APIs.
 
 - A reference authorization server implementation using Authlete APIs.
-It is freely available by Authlete under open source license and supports the device flow.
+  It is freely available by Authlete under open source license and supports the device flow.
 
 - For further information about the Authlete APIs above,
-refer to descriptions of Device* classes in the JavaDoc of the [authlete-java-common library](https://github.com/authlete/authlete-java-common).
+  refer to descriptions of Device* classes in the JavaDoc of the [authlete-java-common library](https://github.com/authlete/authlete-java-common).
 
 - A collection of templates to draw your sequence diagrams of OAuth 2.0 / OIDC (OpenID Connect) flows using Authlete.
-It contains a diagram of the device flow using Authlete.
+  It contains a diagram of the device flow using Authlete.

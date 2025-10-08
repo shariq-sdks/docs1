@@ -5,9 +5,9 @@ title: "Introduction"
 
 
 
-Info>
+<Info>
 This page is for Authlete 3.0. For 2.x, refer to this page.
-</Info>\`}
+</Info>
 
 # Introduction
 1. [Home](https://www.authlete.com/)
@@ -193,7 +193,7 @@ redirect_uri=https://client.example.org/cb/example.com
 
 The job of the authorization server is to evaluate these parameters. Here are some typical evaluation rules:
 
-- Whether a client associated with the client ID `12898884596863` has been registered to the authorization server. It must be an OIDC relying party because of `scope=openid`.
+- Whether a client associated with the client ID 12898884596863 has been registered to the authorization server. It must be an OIDC relying party because of `scope=openid`.
 - Whether the value of the redirect URI `https://client.example.org/cb/example.com` matches with one of URIs registered to the client
 - Whether values of other parameters such as `response_type`, `scope` are applicable for the client, i.e. permitted for the client to specify in its request
 
@@ -207,9 +207,9 @@ Execute the `curl` command as follows (message #5). Make sure to replace `&lt;Se
 
 ```
 curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization \
--H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
--H 'Content-Type: application/json' \
--d 'Client ID e.g. 12898884596863>&scope=openid&nonce=n-0S6_WzA2Mj" }'
+  -H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
+  -H 'Content-Type: application/json' \
+  -d 'Client ID e.g. 12898884596863>&scope=openid&nonce=n-0S6_WzA2Mj" }'
 ```
 
 If successful, Authlete will reply with the following response (shortened for brevity) (message #6).
@@ -259,9 +259,9 @@ Execute the following `curl` command (message #10), making sure to replace `&lt;
 
 ```
 curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization/issue \
--H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
--H 'Content-Type: application/json' \
--d 'Ticket e.g. bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU>\`}", "subject": "testuser01" }'
+  -H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+  -H 'Content-Type: application/json' \
+  -d 'Ticket e.g. bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU>\`}", "subject": "testuser01" }'
 ```
 
 If successful, Authlete will reply with the following response (step #11).
@@ -285,14 +285,14 @@ Pay attention to three key/value pairs in the response; `resultMessage`, `action
 The authorization server is expected to make the following response (new line for readability) to the user agent (step #12).
 
 ```http
-HTTP/1.1 302 Found
+  HTTP/1.1 302 Found
 Location: https://client.example.org/cb/example.com
  ?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U
 
 ```
 
 ```http
-HTTP/1.1 302 Found
+  HTTP/1.1 302 Found
 Location: https://client.example.org/cb/example.com
  ?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U
 
@@ -310,13 +310,13 @@ Here we assume that the user agent receives the redirection response form the au
 
 ```http
 GET /cb/example.com?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U HTTP/1.1
-Host: client.example.org
+  Host: client.example.org
 
 ```
 
 ```http
 GET /cb/example.com?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U HTTP/1.1
-Host: client.example.org
+  Host: client.example.org
 
 ```
 
@@ -324,7 +324,7 @@ The client needs to extract the value of the `code` parameter, construct a token
 
 ```http
 POST /token HTTP/1.1
-Host: as.example.com
+  Host: as.example.com
 Authorization: Basic base64(12898884596863:-olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg)
 Content-Type: application/x-www-form-urlencoded
 
@@ -336,7 +336,7 @@ grant_type=authorization_code
 
 ```http
 POST /token HTTP/1.1
-Host: as.example.com
+  Host: as.example.com
 Authorization: Basic base64(12898884596863:-olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg)
 Content-Type: application/x-www-form-urlencoded
 
@@ -354,9 +354,9 @@ Execute the following `curl` command (step #15), again making sure to replace `&
 
 ```
 curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/token \
--H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
--H 'Content-Type: application/json' \
--d 'Client ID e.g. 12898884596863>", "clientSecret": "Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>\`}", "parameters": "grant_type=authorization_code&code=Code e.g. GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U>&redirect_uri=https://client.example.org/cb/example.com" \`}'
+  -H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
+  -H 'Content-Type: application/json' \
+  -d 'Client ID e.g. 12898884596863>", "clientSecret": "Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>\`}", "parameters": "grant_type=authorization_code&code=Code e.g. GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U>&redirect_uri=https://client.example.org/cb/example.com" \`}'
 ```
 
 If successful, Authlete will reply with the following response (message #16).
@@ -400,7 +400,7 @@ Pay attention to three key/value pairs in the response; `resultMessage`, `action
 The authorization server would then pass the following response to the client (message #17).
 
 ```http
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 Content-Type: application/json
 
 
@@ -408,7 +408,7 @@ Content-Type: application/json
 ```
 
 ```http
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 Content-Type: application/json
 
 
@@ -491,9 +491,9 @@ Make sure to replace `&lt;Service ID&gt;`, `&lt;Service Access Token&gt;` and `&
 
 ```
 curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization \
--H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
--H 'Content-Type: application/json' \
--d 'Client ID e.g. 12898884596863>\`}&scope=openid&nonce=n-0S6_WzA2Mj" }'
+  -H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+  -H 'Content-Type: application/json' \
+  -d 'Client ID e.g. 12898884596863>\`}&scope=openid&nonce=n-0S6_WzA2Mj" }'
 ```
 
 You should receive the following response (shortened for brevity).
@@ -524,9 +524,9 @@ You can use the `claims` parameter to add claims. The request will be constructe
 
 ```
 curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization/issue \
--H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
--H 'Content-Type: application/json' \
--d 'Ticket e.g. JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A>", "subject": "testuser01", "claims": "" }'
+  -H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
+  -H 'Content-Type: application/json' \
+  -d 'Ticket e.g. JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A>", "subject": "testuser01", "claims": "" }'
 ```
 
 Then you will receive the following response.
@@ -545,13 +545,13 @@ We assume the authorization server makes a redirection response to the user agen
 
 ```shell
 GET /cb/example.com?code=ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI HTTP/1.1
-Host: client.example.org
+  Host: client.example.org
 
 ```
 
 ```shell
 GET /cb/example.com?code=ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI HTTP/1.1
-Host: client.example.org
+  Host: client.example.org
 
 ```
 
@@ -561,7 +561,7 @@ The client makes a token request (new lines for readability) to the authorizatio
 
 ```http
 POST /token HTTP/1.1
-Host: as.example.com
+  Host: as.example.com
 Authorization: Basic base64(12898884596863:-olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg)
 Content-Type: application/x-www-form-urlencoded
 
@@ -573,7 +573,7 @@ grant_type=authorization_code
 
 ```http
 POST /token HTTP/1.1
-Host: as.example.com
+  Host: as.example.com
 Authorization: Basic base64(12898884596863:-olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg)
 Content-Type: application/x-www-form-urlencoded
 
@@ -587,9 +587,9 @@ The authorization server is supposed to make a request to Authlete’s `/auth/to
 
 ```
 curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/token \
--H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
--H 'Content-Type: application/json' \
--d 'Client ID e.g. 12898884596863>\`}", "clientSecret": "Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code=Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>\`}&redirect_uri=https://client.example.org/cb/example.com" }'
+  -H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+  -H 'Content-Type: application/json' \
+  -d 'Client ID e.g. 12898884596863>\`}", "clientSecret": "Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code=Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>\`}&redirect_uri=https://client.example.org/cb/example.com" }'
 ```
 
 Authlete returns the following response.
@@ -641,7 +641,7 @@ Authlete returns the following response.
 The authorization server is expected to return the following response to the client (message #17).
 
 ```json
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 Content-Type: application/json
 
 
@@ -649,7 +649,7 @@ Content-Type: application/json
 ```
 
 ```json
-HTTP/1.1 200 OK
+  HTTP/1.1 200 OK
 Content-Type: application/json
 
 

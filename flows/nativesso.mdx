@@ -1,9 +1,7 @@
 ---
-  title: 'Native SSO'
-description: "'Native Single Sign-On implementation for mobile applications.'"
+title: 'Native SSO'
+description: "Native Single Sign-On implementation for mobile applications."
 ---
-
-
 ## Concept
 [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
 (hereafter referred to as “Native SSO”) is a standard specification that
@@ -369,7 +367,7 @@ If it is invalid, the implementation should not call the `/nativesso` API.
 Instead, it should generate a token response indicating the `invalid_grant`
 error and return it to the client.
 ```http
-HTTP/1.1 400 Bad Request
+  HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
@@ -419,7 +417,7 @@ to ensure it corresponds to the correct device secret. If it does not match,
 the `/nativesso` API should not be called. Instead, a token response indicating
 the `invalid_grant` error should be generated and returned to the client.
 ```http
-HTTP/1.1 400 Bad Request
+  HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
@@ -474,7 +472,7 @@ Cache-Control: no-store
 (Embed the value of responseContent here.)
 ```However, in a production environment, it may be better to return a more abstract
 error (one that does not directly describe the nature of the issue), rather
-than a `500` error.
+than a 500 error.
 When the `action` is `CALLER_ERROR`, it indicates that the issue lies with the
 caller of the API (i.e., the implementation of the OpenID Provider).
 For example, this could be due to missing a required parameter such as
@@ -525,27 +523,27 @@ Below are some tips for reading through the sample implementation:
 - The check for whether a session ID is valid is done by calling the `isActiveSessionId(String)` method of the [SessionTracker](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/core/SessionTracker.java). SessionTracker implements the HttpSessionListener interface and monitors session creation and deletion. It is registered as a listener in [web.xml](https://github.com/authlete/java-oauth-server/blob/master/src/main/webapp/WEB-INF/web.xml).
 - The relationship between device secret, session ID, device secret hash, and device identifier is represented by the [DeviceSecret](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/nativesso/DeviceSecret.java) class.
 - Instances of DeviceSecret are managed by the [DeviceSecretManager](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/nativesso/DeviceSecretManager.java).
-## Authlete Implementation
-### Authlete Version
-Authlete supports Native SSO starting from version 3.0.
-### Native SSO Version
-The first version of Authlete Native SSO was implemented based on draft 07 of
-[OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
-specification. Therefore, `urn:openid:params:*`
-identifiers are used instead of `urn:openid:params:*`
-identifiers, which were used in earlier drafts.
-### Token Exchange Verification
-If the token exchange request contains the `actor_token_type`
-parameter, and its value is
-`urn:openid:params:token-type:device-secret`,
-Authlete will perform the following validation for the request parameters
-specific to the token exchange request. Only if all validations pass, will
-the `action` in the `/auth/token` API response be
-`NATIVE_SSO`.
-1. The `audience` parameter is specified and its value matches the service’s OpenID Provider identifier (the value set in `Service.issuer`). Note that multiple `audience` values can be specified, and as long as one of them matches, it is sufficient.
-2. The `requested_token_type` parameter is specified, and its value is a known token type.
-3. The `subject_token_type` parameter is specified, and its value is `urn:ietf:params:oauth:token-type:id_token`.
-4. The `subject_token` parameter is specified, and its value (ID token) passes all the following validation checks:
+  ## Authlete Implementation
+  ### Authlete Version
+  Authlete supports Native SSO starting from version 3.0.
+  ### Native SSO Version
+  The first version of Authlete Native SSO was implemented based on draft 07 of
+  [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
+  specification. Therefore, `urn:openid:params:*`
+  identifiers are used instead of `urn:openid:params:*`
+  identifiers, which were used in earlier drafts.
+  ### Token Exchange Verification
+  If the token exchange request contains the `actor_token_type`
+  parameter, and its value is
+  `urn:openid:params:token-type:device-secret`,
+  Authlete will perform the following validation for the request parameters
+  specific to the token exchange request. Only if all validations pass, will
+  the `action` in the `/auth/token` API response be
+  `NATIVE_SSO`.
+  1. The `audience` parameter is specified and its value matches the service’s OpenID Provider identifier (the value set in `Service.issuer`). Note that multiple `audience` values can be specified, and as long as one of them matches, it is sufficient.
+  2. The `requested_token_type` parameter is specified, and its value is a known token type.
+  3. The `subject_token_type` parameter is specified, and its value is `urn:ietf:params:oauth:token-type:id_token`.
+  4. The `subject_token` parameter is specified, and its value (ID token) passes all the following validation checks:
   - It can be parsed as a JWT.
 - It includes the `exp` claim, and its value is numeric. Note: In the context of Native SSO, it is not checked that the `exp` value is in the future relative to the current time. This means that an expired ID token can be specified as a subject token. (see: [id_token usage](https://openid.net/specs/openid-connect-native-sso-1_0.html#name-id_token-usage))
 - It includes the `iat` claim, and its value indicates the current time or a time in the past.
@@ -559,53 +557,53 @@ the `action` in the `/auth/token` API response be
 - It is not a JWE.
 - It is signed.
 - The signature verification is successful.
-5. The `actor_token` parameter is specified.
-In draft 07 of the Native SSO specification, it is stipulated that if the
-`scope` parameter is included in the token exchange request,
-the scope list must include `openid`.
-However, due to the reasons described in [AB/Connect ISSUE 2178:
+  5. The `actor_token` parameter is specified.
+  In draft 07 of the Native SSO specification, it is stipulated that if the
+  `scope` parameter is included in the token exchange request,
+  the scope list must include `openid`.
+  However, due to the reasons described in [AB/Connect ISSUE 2178:
   Native SSO the openid scope on token exchange](https://bitbucket.org/openid/connect/issues/2178), Authlete’s current
-implementation does not check whether `openid` is included.
-## References
+  implementation does not check whether `openid` is included.
+  ## References
 - Specification: [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
 - Specification: [RFC 8693: OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - Native SSO Specification Source Code: [openid-connect-native-sso-1_0.xml](https://bitbucket.org/openid/connect/src/master/openid-connect-native-sso-1_0.xml)
 - Native SSO Specification Issue Tracker: [bitbucket.org/openid/connect/issues](https://bitbucket.org/openid/connect/issues?status=new&status=open&status=submitted&component=Native%20SSO%20for%20Apps)
 - Documentation: [RFC 8693 OAuth 2.0 Token Exchange](https://www.authlete.com/ja/developers/token_exchange/)
-#### On this page
+  #### On this page
 - [Concept](#concept)
 - [Specification Overview](#spec_overview)
-[Device Secret](#device_secret)
+  [Device Secret](#device_secret)
 - [Specification Details](#spec_details)
-[App 1 Authorization Request](#app1_authorization_request)
-[App 1 Token Request](#app1_token_request)
-[App 1 Token Response](#app1_token_response)
-[App 2 Token Request](#app2_token_request)
-[App 2 Token Response](#app2_token_response)
+  [App 1 Authorization Request](#app1_authorization_request)
+  [App 1 Token Request](#app1_token_request)
+  [App 1 Token Response](#app1_token_response)
+  [App 2 Token Request](#app2_token_request)
+  [App 2 Token Response](#app2_token_response)
 - [Settings](#settings)
-[Service Settings](#service_settings)
-[nativeSsoSupported Property](#service_property)
-[device_sso Scope](#service_scope)
-[Service Grant Type](#service_grant_type)
-[Console Configuration](#console-configuration)
-[Client Settings](#client_settings)
-[device_sso Scope](#client_scope)
-[Client Grant Type](#client_grant_type)
-[Console Configuration](#console-configuration-1)
+  [Service Settings](#service_settings)
+  [nativeSsoSupported Property](#service_property)
+  [device_sso Scope](#service_scope)
+  [Service Grant Type](#service_grant_type)
+  [Console Configuration](#console-configuration)
+  [Client Settings](#client_settings)
+  [device_sso Scope](#client_scope)
+  [Client Grant Type](#client_grant_type)
+  [Console Configuration](#console-configuration-1)
 - [OpenID Provider Implementation](#openid_provider_implementation)
-[Authentication Session and Device Secret Management](#token_management)
-[Authorization Endpoint Implementation](#authorization_endpoint)
-[Token Endpoint Implementation (Verification)](#token_endpoint_verification)
-[Session ID Verification](#session_id_verification)
-[Device Secret Verification (in Authorization Code and Refresh Token Flows)](#device_secret_verification_in_code_or_refresh)
-[Device Secret Verification (in Token Exchange Flow)](#device_secret_verification_in_exchange)
-[Token Endpoint Implementation (nativesso API call)](#token_endpoint_nativesso_api_call)
-[nativesso Request](#nativesso_request)
-[nativesso Response](#nativesso_response)
-[Single Logout](#single_logout)
-[Sample Implementation](#sample_implementation)
+  [Authentication Session and Device Secret Management](#token_management)
+  [Authorization Endpoint Implementation](#authorization_endpoint)
+  [Token Endpoint Implementation (Verification)](#token_endpoint_verification)
+  [Session ID Verification](#session_id_verification)
+  [Device Secret Verification (in Authorization Code and Refresh Token Flows)](#device_secret_verification_in_code_or_refresh)
+  [Device Secret Verification (in Token Exchange Flow)](#device_secret_verification_in_exchange)
+  [Token Endpoint Implementation (nativesso API call)](#token_endpoint_nativesso_api_call)
+  [nativesso Request](#nativesso_request)
+  [nativesso Response](#nativesso_response)
+  [Single Logout](#single_logout)
+  [Sample Implementation](#sample_implementation)
 - [Authlete Implementation](#authlete_implementation)
-[Authlete Version](#authlete_version)
-[Native SSO Version](#nativesso_version)
-[Token Exchange Verification](#token_exchange_verification)
+  [Authlete Version](#authlete_version)
+  [Native SSO Version](#nativesso_version)
+  [Token Exchange Verification](#token_exchange_verification)
 - [References](#references)

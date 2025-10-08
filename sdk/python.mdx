@@ -136,7 +136,7 @@ api = AuthleteApi(
 )
 
 @app.route('/authorize')
-def authorize():
+  def authorize():
     auth_request = AuthorizationRequest()
     auth_request.parameters = request.args.to_dict()
     

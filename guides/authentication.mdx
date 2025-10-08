@@ -21,9 +21,9 @@ Use your service API secret as a Bearer token in the Authorization header:
 Authorization: Bearer YOUR_SERVICE_API_SECRET
 ```
 
-Warning>
+<Warning>
 Never expose your service API secret in client-side code or public repositories.
-</Warning>\`}
+</Warning>
 
 ### 2. Basic Authentication
 
@@ -46,7 +46,7 @@ You can find your service credentials in the Authlete Console:
 
 Here are examples of making authenticated requests in different languages:
 
-CodeGroup>
+<CodeGroup>
 ```bash cURL
 # Using Bearer token
 curl -X GET "https://us.authlete.com/api/service/get" \
@@ -98,7 +98,7 @@ response = requests.get(
     headers=headers
 )
 ```
-</CodeGroup>\`}
+</CodeGroup>
 
 ## Security Best Practices
 
@@ -157,23 +157,23 @@ CardGroup cols=>
     icon="shield"
     href="/guides/oauth2-flow
   >\`}
-    Learn about OAuth 2.0 authorization flows
-  Card
-    title="Service Management"
-    icon="cog
-    href="/guides/service-management"
+> Learn about OAuth 2.0 authorization flows
+> Card
+> title="Service Management"
+> icon="cog
+> href="/guides/service-management"
   >\`}
-    Configure your authorization server
-  Card
-    title="Client Management
-    icon="users"
-    href="/guides/client-management
+> Configure your authorization server
+> Card
+> title="Client Management
+> icon="users"
+> href="/guides/client-management
   >\`}
-    Manage OAuth clients
-  Card
-    title="API Reference"
-    icon="code
-    href="/api-reference"
+> Manage OAuth clients
+> Card
+> title="API Reference"
+> icon="code
+> href="/api-reference"
   >\`}
-    Browse all API endpoints
+> Browse all API endpoints
   
