@@ -270,10 +270,8 @@
         "tab": "API References",
         "groups": [
           {
-            "group": "OpenAPI Specification",
-            "pages": [
-              "api-specification"
-            ]
+            "group": "Authlete API",
+            "openapi": "app/specs/shared/3.0.16/en.yaml"
           }
         ]
       },
