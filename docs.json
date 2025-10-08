@@ -14,15 +14,6 @@
         "language": "en",
         "tabs": [
        
-      {
-        "tab": "Home",
-        "pages": [
-          {
-            "page": "index",
-            "layout": "wide"
-          }
-        ]
-      },
         
       {
         "tab": "Developer Platform",
@@ -312,15 +303,6 @@
       {
         "language": "ja",
         "tabs": [
-          {
-            "tab": "ホーム",
-            "pages": [
-              {
-                "page": "ja/index",
-                "layout": "wide"
-              }
-            ]
-          },
           {
             "tab": "開発者プラットフォーム",
             "groups": [
