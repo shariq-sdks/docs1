@@ -1,0 +1,129 @@
+---
+title: 'Go SDK'
+description: 'Official Authlete Go SDK for OAuth 2.0 and OpenID Connect'
+---
+
+# Go SDK
+
+The official Authlete Go SDK provides a comprehensive client library for integrating OAuth 2.0 and OpenID Connect functionality into your Go applications.
+
+## Installation
+
+```bash
+go get github.com/authlete/authlete-go
+```
+
+## Quick Start
+
+```go
+package main
+
+import (
+    "github.com/authlete/authlete-go"
+    "github.com/authlete/authlete-go/dto"
+)
+
+func main() {
+    client := authlete.NewAuthleteClient(
+        "https://api.authlete.com",
+        "your-service-api-key",
+        "your-service-api-secret",
+    )
+
+    // Create a service
+    service := &dto.Service{
+        ServiceName: "My OAuth Service",
+        SupportedGrantTypes: []string{"AUTHORIZATION_CODE", "REFRESH_TOKEN"},
+    }
+
+    createdService, err := client.CreateService(service)
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+## Features
+
+- **Full OAuth 2.0 Support** - All grant types and flows
+- **OpenID Connect** - Complete OIDC implementation
+- **Go Idioms** - Follows Go best practices
+- **Context Support** - Full context.Context integration
+- **Comprehensive** - All Authlete API endpoints covered
+
+## Documentation
+
+- [API Reference](/api-reference)
+- [Getting Started Guide](/getting-started)
+- [OAuth 2.0 Tutorial](/tutorials/oauth-tutorial)
+- [OpenID Connect Tutorial](/tutorials/oidc-tutorial)
+
+## Examples
+
+### Authorization Code Flow
+
+```go
+// Process authorization request
+authRequest := &dto.AuthorizationRequest{
+    Parameters: map[string]string{
+        "response_type": "code",
+        "client_id":     "client123",
+        "redirect_uri":  "https://example.com/callback",
+        "scope":         "read write",
+    },
+}
+
+response, err := client.ProcessAuthorizationRequest(authRequest)
+if err != nil {
+    panic(err)
+}
+
+if response.Action == "INTERACTION" {
+    // Show authorization page
+    // After user consent, call IssueAuthorizationResponse
+    authResponse := &dto.AuthorizationResponse{
+        Ticket: response.Ticket,
+        Subject: "user123",
+    }
+    
+    result, err := client.IssueAuthorizationResponse(authResponse)
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+### Token Management
+
+```go
+// Process token request
+tokenRequest := &dto.TokenRequest{
+    Parameters: map[string]string{
+        "grant_type":   "authorization_code",
+        "code":         "auth_code_here",
+        "client_id":    "client123",
+        "redirect_uri": "https://example.com/callback",
+    },
+}
+
+response, err := client.ProcessTokenRequest(tokenRequest)
+if err != nil {
+    panic(err)
+}
+
+if response.Action == "OK" {
+    fmt.Printf("Access Token: %s\n", response.AccessToken)
+    fmt.Printf("Refresh Token: %s\n", response.RefreshToken)
+}
+```
+
+## GitHub Repository
+
+[View on GitHub](https://github.com/authlete/authlete-go)
+
+## Support
+
+For questions and support:
+- [Documentation](/reference/knowledge-base)
+- [API Explorer](/tools/api-explorer)
+- [Contact Support](https://www.authlete.com/contact/)

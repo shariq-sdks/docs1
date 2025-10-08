@@ -1,0 +1,152 @@
+---
+title: 'Java SDK'
+description: 'Official Authlete Java SDK for OAuth 2.0 and OpenID Connect'
+---
+
+# Java SDK
+
+The official Authlete Java SDK provides a comprehensive client library for integrating OAuth 2.0 and OpenID Connect functionality into your Java applications.
+
+## Installation
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>com.authlete</groupId>
+    <artifactId>authlete-java-common</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
+
+### Gradle
+
+```gradle
+implementation 'com.authlete:authlete-java-common:3.0.0'
+```
+
+## Quick Start
+
+```java
+import com.authlete.common.api.AuthleteApi;
+import com.authlete.common.dto.Service;
+import com.authlete.common.dto.ServiceCreateRequest;
+
+public class Example {
+    public static void main(String[] args) {
+        AuthleteApi api = AuthleteApiFactory.create(
+            "https://api.authlete.com",
+            "your-service-api-key",
+            "your-service-api-secret"
+        );
+
+        // Create a service
+        ServiceCreateRequest request = new ServiceCreateRequest();
+        Service service = new Service();
+        service.setServiceName("My OAuth Service");
+        service.setSupportedGrantTypes(Arrays.asList("AUTHORIZATION_CODE", "REFRESH_TOKEN"));
+        request.setService(service);
+
+        Service createdService = api.createService(request);
+    }
+}
+```
+
+## Features
+
+- **Full OAuth 2.0 Support** - All grant types and flows
+- **OpenID Connect** - Complete OIDC implementation
+- **Spring Integration** - Spring Boot starter available
+- **Enterprise Ready** - Production-grade implementation
+- **Comprehensive** - All Authlete API endpoints covered
+
+## Documentation
+
+- [API Reference](/api-reference)
+- [Getting Started Guide](/getting-started)
+- [OAuth 2.0 Tutorial](/tutorials/oauth-tutorial)
+- [OpenID Connect Tutorial](/tutorials/oidc-tutorial)
+- [Java Getting Started Tutorial](/tutorials/java-getting-started)
+
+## Examples
+
+### Authorization Code Flow
+
+```java
+// Process authorization request
+AuthorizationRequest request = new AuthorizationRequest();
+request.setParameters(Map.of(
+    "response_type", "code",
+    "client_id", "client123",
+    "redirect_uri", "https://example.com/callback",
+    "scope", "read write"
+));
+
+AuthorizationResponse response = api.processAuthorizationRequest(request);
+
+if ("INTERACTION".equals(response.getAction())) {
+    // Show authorization page
+    // After user consent, call issueAuthorizationResponse
+    AuthorizationIssueRequest issueRequest = new AuthorizationIssueRequest();
+    issueRequest.setTicket(response.getTicket());
+    issueRequest.setSubject("user123");
+    
+    AuthorizationIssueResponse issueResponse = api.issueAuthorizationResponse(issueRequest);
+}
+```
+
+### Token Management
+
+```java
+// Process token request
+TokenRequest request = new TokenRequest();
+request.setParameters(Map.of(
+    "grant_type", "authorization_code",
+    "code", "auth_code_here",
+    "client_id", "client123",
+    "redirect_uri", "https://example.com/callback"
+));
+
+TokenResponse response = api.processTokenRequest(request);
+
+if ("OK".equals(response.getAction())) {
+    System.out.println("Access Token: " + response.getAccessToken());
+    System.out.println("Refresh Token: " + response.getRefreshToken());
+}
+```
+
+### Spring Boot Integration
+
+```java
+@RestController
+public class AuthController {
+    
+    @Autowired
+    private AuthleteApi authleteApi;
+    
+    @GetMapping("/authorize")
+    public ResponseEntity<?> authorize(@RequestParam Map<String, String> params) {
+        AuthorizationRequest request = new AuthorizationRequest();
+        request.setParameters(params);
+        
+        AuthorizationResponse response = authleteApi.processAuthorizationRequest(request);
+        
+        if ("INTERACTION".equals(response.getAction())) {
+            return ResponseEntity.ok("Show authorization page");
+        }
+        
+        return ResponseEntity.ok(response);
+    }
+}
+```
+
+## GitHub Repository
+
+[View on GitHub](https://github.com/authlete/authlete-java)
+
+## Support
+
+For questions and support:
+- [Documentation](/reference/knowledge-base)
+- [API Explorer](/tools/api-explorer)
+- [Contact Support](https://www.authlete.com/contact/)

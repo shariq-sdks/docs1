@@ -1,0 +1,102 @@
+---
+title: 'TypeScript SDK'
+description: 'Official Authlete TypeScript/JavaScript SDK for OAuth 2.0 and OpenID Connect'
+---
+
+# TypeScript SDK
+
+The official Authlete TypeScript/JavaScript SDK provides a comprehensive client library for integrating OAuth 2.0 and OpenID Connect functionality into your TypeScript or JavaScript applications.
+
+## Installation
+
+```bash
+npm install @authlete/authlete-ts
+```
+
+## Quick Start
+
+```typescript
+import { AuthleteApi } from '@authlete/authlete-ts';
+
+const authlete = new AuthleteApi({
+  baseUrl: 'https://api.authlete.com',
+  serviceApiKey: 'your-service-api-key',
+  serviceApiSecret: 'your-service-api-secret'
+});
+
+// Create a service
+const service = await authlete.createService({
+  serviceName: 'My OAuth Service',
+  supportedGrantTypes: ['AUTHORIZATION_CODE', 'REFRESH_TOKEN']
+});
+```
+
+## Features
+
+- **Full OAuth 2.0 Support** - All grant types and flows
+- **OpenID Connect** - Complete OIDC implementation
+- **Type Safety** - Full TypeScript support
+- **Modern JavaScript** - ES6+ features and async/await
+- **Comprehensive** - All Authlete API endpoints covered
+
+## Documentation
+
+- [API Reference](/api-reference)
+- [Getting Started Guide](/getting-started)
+- [OAuth 2.0 Tutorial](/tutorials/oauth-tutorial)
+- [OpenID Connect Tutorial](/tutorials/oidc-tutorial)
+
+## Examples
+
+### Authorization Code Flow
+
+```typescript
+// Process authorization request
+const authRequest = await authlete.processAuthorizationRequest({
+  parameters: {
+    response_type: 'code',
+    client_id: 'client123',
+    redirect_uri: 'https://example.com/callback',
+    scope: 'read write'
+  }
+});
+
+if (authRequest.action === 'INTERACTION') {
+  // Show authorization page
+  // After user consent, call issueAuthorizationResponse
+  const authResponse = await authlete.issueAuthorizationResponse({
+    ticket: authRequest.ticket,
+    subject: 'user123'
+  });
+}
+```
+
+### Token Management
+
+```typescript
+// Process token request
+const tokenRequest = await authlete.processTokenRequest({
+  parameters: {
+    grant_type: 'authorization_code',
+    code: 'auth_code_here',
+    client_id: 'client123',
+    redirect_uri: 'https://example.com/callback'
+  }
+});
+
+if (tokenRequest.action === 'OK') {
+  console.log('Access Token:', tokenRequest.accessToken);
+  console.log('Refresh Token:', tokenRequest.refreshToken);
+}
+```
+
+## GitHub Repository
+
+[View on GitHub](https://github.com/authlete/authlete-ts)
+
+## Support
+
+For questions and support:
+- [Documentation](/reference/knowledge-base)
+- [API Explorer](/tools/api-explorer)
+- [Contact Support](https://www.authlete.com/contact/)

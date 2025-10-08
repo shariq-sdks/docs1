@@ -23,9 +23,18 @@
             ]
           },
           {
-            "group": "API References & SDKs",
+            "group": "API Docs",
             "pages": [
-              "api-reference"
+              "api-reference",
+              {
+                "group": "SDKs",
+                "pages": [
+                  "sdk/typescript",
+                  "sdk/go",
+                  "sdk/java",
+                  "sdk/python"
+                ]
+              }
             ]
           },
           {

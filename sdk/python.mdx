@@ -1,0 +1,171 @@
+---
+title: 'Python SDK'
+description: 'Official Authlete Python SDK for OAuth 2.0 and OpenID Connect'
+---
+
+# Python SDK
+
+The official Authlete Python SDK provides a comprehensive client library for integrating OAuth 2.0 and OpenID Connect functionality into your Python applications.
+
+## Installation
+
+```bash
+pip install authlete-python
+```
+
+## Quick Start
+
+```python
+from authlete import AuthleteApi
+from authlete.dto import Service, ServiceCreateRequest
+
+# Initialize the API client
+api = AuthleteApi(
+    base_url="https://api.authlete.com",
+    service_api_key="your-service-api-key",
+    service_api_secret="your-service-api-secret"
+)
+
+# Create a service
+service = Service()
+service.service_name = "My OAuth Service"
+service.supported_grant_types = ["AUTHORIZATION_CODE", "REFRESH_TOKEN"]
+
+request = ServiceCreateRequest()
+request.service = service
+
+created_service = api.create_service(request)
+```
+
+## Features
+
+- **Full OAuth 2.0 Support** - All grant types and flows
+- **OpenID Connect** - Complete OIDC implementation
+- **Pythonic** - Follows Python best practices
+- **Async Support** - Full asyncio support
+- **Comprehensive** - All Authlete API endpoints covered
+
+## Documentation
+
+- [API Reference](/api-reference)
+- [Getting Started Guide](/getting-started)
+- [OAuth 2.0 Tutorial](/tutorials/oauth-tutorial)
+- [OpenID Connect Tutorial](/tutorials/oidc-tutorial)
+
+## Examples
+
+### Authorization Code Flow
+
+```python
+from authlete.dto import AuthorizationRequest, AuthorizationResponse
+
+# Process authorization request
+request = AuthorizationRequest()
+request.parameters = {
+    "response_type": "code",
+    "client_id": "client123",
+    "redirect_uri": "https://example.com/callback",
+    "scope": "read write"
+}
+
+response = api.process_authorization_request(request)
+
+if response.action == "INTERACTION":
+    # Show authorization page
+    # After user consent, call issue_authorization_response
+    from authlete.dto import AuthorizationIssueRequest
+    
+    issue_request = AuthorizationIssueRequest()
+    issue_request.ticket = response.ticket
+    issue_request.subject = "user123"
+    
+    issue_response = api.issue_authorization_response(issue_request)
+```
+
+### Token Management
+
+```python
+from authlete.dto import TokenRequest, TokenResponse
+
+# Process token request
+request = TokenRequest()
+request.parameters = {
+    "grant_type": "authorization_code",
+    "code": "auth_code_here",
+    "client_id": "client123",
+    "redirect_uri": "https://example.com/callback"
+}
+
+response = api.process_token_request(request)
+
+if response.action == "OK":
+    print(f"Access Token: {response.access_token}")
+    print(f"Refresh Token: {response.refresh_token}")
+```
+
+### Async Example
+
+```python
+import asyncio
+from authlete import AsyncAuthleteApi
+
+async def main():
+    api = AsyncAuthleteApi(
+        base_url="https://api.authlete.com",
+        service_api_key="your-service-api-key",
+        service_api_secret="your-service-api-secret"
+    )
+    
+    # Create a service asynchronously
+    service = Service()
+    service.service_name = "My Async OAuth Service"
+    
+    request = ServiceCreateRequest()
+    request.service = service
+    
+    created_service = await api.create_service(request)
+    print(f"Created service: {created_service.service_name}")
+
+# Run the async function
+asyncio.run(main())
+```
+
+### Flask Integration
+
+```python
+from flask import Flask, request, jsonify
+from authlete import AuthleteApi
+
+app = Flask(__name__)
+api = AuthleteApi(
+    base_url="https://api.authlete.com",
+    service_api_key="your-service-api-key",
+    service_api_secret="your-service-api-secret"
+)
+
+@app.route('/authorize')
+def authorize():
+    auth_request = AuthorizationRequest()
+    auth_request.parameters = request.args.to_dict()
+    
+    response = api.process_authorization_request(auth_request)
+    
+    if response.action == "INTERACTION":
+        return jsonify({"message": "Show authorization page"})
+    
+    return jsonify(response.to_dict())
+
+if __name__ == '__main__':
+    app.run()
+```
+
+## GitHub Repository
+
+[View on GitHub](https://github.com/authlete/authlete-python)
+
+## Support
+
+For questions and support:
+- [Documentation](/reference/knowledge-base)
+- [API Explorer](/tools/api-explorer)
+- [Contact Support](https://www.authlete.com/contact/)
