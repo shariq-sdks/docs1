@@ -8,12 +8,13 @@
     "dark": "#00347A"
   },
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
-  "defaultLanguage": "en",
   "navigation": {
     "languages": [
       {
         "language": "en",
         "tabs": [
+       
+        
       {
         "tab": "Developer Platform",
         "groups": [
@@ -21,7 +22,6 @@
             "group": "Getting Started",
             "pages": [
               "index",
-              "welcome",
               "getting-started",
               "quickstart"
             ]
@@ -29,7 +29,7 @@
           {
             "group": "API Docs",
             "pages": [
-              "api-reference",
+              "Authlete API",
               {
                 "group": "SDKs",
                 "pages": [
