@@ -1,148 +1,139 @@
 ---
-description: "1. Introduction"
-title: "Linux/Mac"
+title: "Proof Key for Code Exchange (PKCE)"
 ---
 
-
-
 <Info>
-This page is for Authlete 3.0. For 2.x, refer to [this page](/v2/pkce).
+  This page is for Authlete 3.0. For 2.x, refer to [this page](/v2/pkce).
 </Info>
+
 ## 1. Introduction
-[RFC 7636](http://tools.ietf.org/html/rfc7636) : Proof Key for Code Exchange (PKCE, pronounced “pixy”) is a specification about a countermeasure against the authorization code interception attack.
-![authorization code interception attack](https://storage.googleapis.com/authlete-website/img/developers/pkce/authorization_code_interception_attack.png)
-The specification was released on September, 2015. It has added:
-  1. `code_challenge` parameter and `code_challenge_method` parameter to authorization requests using the authorization code flow, and
-2. `code_verifier` parameter to token requests that correspond to the authorization requests.
-This mechanism enables an authorization server to reject a token request from a malicious application that does not have a code verifier.
+
+[RFC 7636](http://tools.ietf.org/html/rfc7636) : Proof Key for Code Exchange (PKCE, pronounced “pixy”) is a specification about countermeasure against the authorization code interception attack.  The specification was released on September, 2015. It has added:
+
+1. `code_challenge` parameter and `code_challenge_method` parameter to authorization requests using the authorization code flow, and
+2. `code_verifier` parameter to token requests that correspond to the authorization requests. This mechanism enables an authorization server to reject a token request from a malicious application that does not have a code verifier.
+
 ## 2. PKCE Authorization Request
+
 ### 2.1 Request Parameters
+
 An authorization request that uses PKCE goes out with `code_challenge` parameter and optionally with `code_challenge_method` parameter.
+
 ### 2.2 Code Challenge Value
+
 The value of code_challenge parameter is computed by applying a code challenge method (= computation logic) to a code verifier.
+
 ### 2.3 Code Verifier Value
-A code verifier itself is a random string using characters of `[A-Z] / [a-z] / [0-9] / "-" / "." / "_" / "~"`, with a minimum length of 43 characters and a maximum length of 128 characters.
-![pkce authorization request](https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_authorization_request.png)
+
+A code verifier itself is a random string using characters of `[A-Z] / [a-z] / [0-9] / "-" / "." / "_" / "~"`, with a minimum length of 43 characters and a maximum length of 128 characters. 
+
 ### 2.4 Code Challenge Method
+
 The defined code challenge methods are `plain` and `S256`. Respective computation logics to convert a code verifier into a code challenge are as follows.
-| Method | Logic |
-| --- | --- |
-| `plain` | code_challenge = code_verifier |
-| `S256` | code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier))) |
-The `plain` method does not change the input, so the value of `code_verifier` and the resultant value of `code_challenge` are equal.
-The `S256` method computes the SHA-256 hash of the input and then encodes the hash value using Base64-URL. For example, when the value of `code_verifier` is dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk, the value of `code_challenge` becomes E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM.
-When the used code challenge method is `S256`, a client application must tell it by including `code_challenge_method=S256` parameter in an authorization request. When `code_challenge_method` parameter is omitted, an authorization server assumes `plain` as the default value.
+
+<table style="min-width: 50px">
+<colgroup><col style="min-width: 25px"><col style="min-width: 25px"></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Method</p></th><th colspan="1" rowspan="1"><p>Logic</p></th></tr><tr><td colspan="1" rowspan="1"><p><code spellcheck="false">plain</code></p></td><td colspan="1" rowspan="1"><p>code_challenge = code_verifier</p></td></tr><tr><td colspan="1" rowspan="1"><p><code spellcheck="false">S256</code></p></td><td colspan="1" rowspan="1"><p>code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier)))</p></td></tr><tr><td colspan="1" rowspan="1"><p>The <code spellcheck="false">plain</code> method does not change the input, so the value of <code spellcheck="false">code_verifier</code> and the resultant value of <code spellcheck="false">code_challenge</code> are equal.</p></td></tr><tr><td colspan="1" rowspan="1"><p>The <code spellcheck="false">S256</code> method computes the SHA-256 hash of the input and then encodes the hash value using Base64-URL. For example, when the value of <code spellcheck="false">code_verifier</code> is dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk, the value of <code spellcheck="false">code_challenge</code> becomes E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM.</p></td></tr><tr><td colspan="1" rowspan="1"><p>When the used code challenge method is <code spellcheck="false">S256</code>, a client application must tell it by including <code spellcheck="false">code_challenge_method=S256</code> parameter in an authorization request. When <code spellcheck="false">code_challenge_method</code> parameter is omitted, an authorization server assumes <code spellcheck="false">plain</code> as the default value.</p></td></tr></tbody>
+</table>
+
 ## 3. PKCE Authorization Response
-After generating an authorization code, an authorization server saves it into its DB with the code challenge and the code challenge method contained in the authorization request.
-The authorization server will use the saved code challenge and the code challenge method later to verify a token request from the client application.
-A response from the authorization endpoint has nothing special for PKCE. It’s a normal response as usual.
-![pkce authorization response](https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_authorization_response.png)
+
+After generating an authorization code, an authorization server saves it into its DB with the code challenge and the code challenge method contained in the authorization request. The authorization server will use the saved code challenge and the code challenge method later to verify a token request from the client application. A response from the authorization endpoint has nothing special for PKCE. It’s a normal response as usual. <img src="https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_authorization_response.png" alt="pkce authorization response" />
+
 ## 4. PCKE Token Request
-After receiving an authorization code from an authorization server, a client application makes a token request. In addition to the authorization code, the token request must include the code verifier used to compute the code challenge.
-The name of the request parameter to specify a code verifier is `code_verifier`.
-![pkce_token_request](https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_token_request.png)
+
+After receiving an authorization code from an authorization server, a client application makes a token request. In addition to the authorization code, the token request must include the code verifier used to compute the code challenge. The name of the request parameter to specify a code verifier is `code_verifier`. <img src="https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_token_request.png" alt="pkce_token_request" />
+
 ## 5. PKCE Token Response
+
 ### 5.1 Require Code Verifier
-A token endpoint of an authorization server that supports PKCE checks whether a token request contains a valid code verifier.
-Of course, this check is performed only when grant_type is authorization_code and the authorization code contained in the token request is associated with a code challenge.
-If a token request does not contain a valid code verifier although the conditions above meet, the request is regarded as from a malicious application and the authorization server returns an error response.
+
+A token endpoint of an authorization server that supports PKCE checks whether a token request contains a valid code verifier. Of course, this check is performed only when grant_type is authorization_code and the authorization code contained in the token request is associated with a code challenge. If a token request does not contain a valid code verifier although the conditions above meet, the request is regarded as from a malicious application and the authorization server returns an error response.
+
 ### 5.2 Verify Code Verifier
-Verification is performed by comparing two code challenges.
-One is what was contained in the authorization request and is stored in the DB. The other is what an authorization server computes using the code verifier contained in the token request and the code challenge method stored in the DB.
-If the two code challenges are equal, the token request can be regarded as from the legitimate client application that has made the original authorization request. Otherwise, the token request must be regarded from a malicious application.
+
+Verification is performed by comparing two code challenges. One is what was contained in the authorization request and is stored in the DB. The other is what an authorization server computes using the code verifier contained in the token request and the code challenge method stored in the DB. If the two code challenges are equal, the token request can be regarded as from the legitimate client application that has made the original authorization request. Otherwise, the token request must be regarded from a malicious application.
+
 ### 5.3 Issue Access Token
-If a token request is verified, an authorization server issues an access token as usual.
-![pkce_token_response](https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_token_response.png)
+
+If a token request is verified, an authorization server issues an access token as usual. <img src="https://storage.googleapis.com/authlete-website/img/developers/pkce/pkce_token_response.png" alt="pkce_token_response" />
+
 ## 6. Try PKCE With Authlete
+
 ### 6.1 Preparation
+
 #### 6.1.1 Sign up
-If you don’t have an Authlete account yet, you can [sign up here](https://login.authlete.com/signup) for free. It only takes 5  minutes.
-![authlete-signup](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/2.png)
+
+If you don’t have an Authlete account yet, you can [sign up here](https://login.authlete.com/signup) for free. It only takes 5  minutes. <img src="https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/2.png" alt="authlete-signup" />
+
 #### 6.1.2 Service ID  and Client ID
-To make an authorization request, you will need a Service ID and a Client ID.
-If you need a Service ID and a Client ID, follow the [Quick Setup Guide](https://www.authlete.com/developers/tutorial/signup/) to setup your service and client.
-Also, you can find the Service and Client ID the [Authlete Management Console](https://console.authlete.com/).
+
+To make an authorization request, you will need a Service ID and a Client ID. If you need a Service ID and a Client ID, follow the [Quick Setup Guide](https://www.authlete.com/developers/tutorial/signup/) to setup your service and client. Also, you can find the Service and Client ID the [Authlete Management Console](https://console.authlete.com/).
+
 #### 6.1.3 Service and Client Settings
-This section explains how to configure your service and client settings.
-Table. Service Settings
-| Tab | Parameter | Value |
-| --- | --- | --- |
-| Service Settings > Endpoints > Global Settings | Supported Grant Types | Include `AUTHORIZATION_CODE` |
-| Service Settings > Endpoints > Global Settings | Supported Response Types | Include `CODE` |
-Configure Endpoints:
-  1. Navigate to Service Settings > Endpoints > Global Settings
+
+This section explains how to configure your service and client settings. Table. Service Settings
+
+<table style="min-width: 75px">
+<colgroup><col style="min-width: 25px"><col style="min-width: 25px"><col style="min-width: 25px"></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Tab</p></th><th colspan="1" rowspan="1"><p>Parameter</p></th><th colspan="1" rowspan="1"><p>Value</p></th></tr><tr><td colspan="1" rowspan="1"><p>Service Settings &gt; Endpoints &gt; Global Settings</p></td><td colspan="1" rowspan="1"><p>Supported Grant Types</p></td><td colspan="1" rowspan="1"><p>Include <code spellcheck="false">AUTHORIZATION_CODE</code></p></td></tr><tr><td colspan="1" rowspan="1"><p>Service Settings &gt; Endpoints &gt; Global Settings</p></td><td colspan="1" rowspan="1"><p>Supported Response Types</p></td><td colspan="1" rowspan="1"><p>Include <code spellcheck="false">CODE</code></p></td></tr><tr><td colspan="1" rowspan="1"><p>Configure Endpoints:</p></td></tr></tbody>
+</table>
+
+1. Navigate to Service Settings \> Endpoints \> Global Settings
 2. Under the Supported Grant Types section, select `AUTHORIZATION_CODE`.
 3. Under the Supported Response Types section, select `CODE`.
-4. Click Save Changes to apply the updates.
-![pkce_1](https://storage.googleapis.com/authlete-website/resources/pkce/1.png)
-Table. Client Settings
-| Tab | Parameter | Value |
-| --- | --- | --- |
-| Client Settings > Basic Settings > General | Client Type | Select `PUBLIC` |
-| Client Settings > Endpoints > Global Settings | Grant Types | Include `AUTHORIZATION_CODE` |
-| Client Settings > Endpoints > Global Settings | Response Types | Include `CODE` |
-| Client Settings > Endpoints > Global Settings | Redirect URIs | [https://client.example.org/cb/example.com](https://client.example.org/cb/example.com) |
-Configure Client Basic Settings:
-  1. Navigate to Client Settings > Basic Settings > General
+4. Click Save Changes to apply the updates. <img src="https://storage.googleapis.com/authlete-website/resources/pkce/1.png" alt="pkce_1" /> Table. Client Settings \| Tab \| Parameter \| Value \| \| --- \| --- \| --- \| \| Client Settings \> Basic Settings \> General \| Client Type \| Select `PUBLIC` \| \| Client Settings \> Endpoints \> Global Settings \| Grant Types \| Include `AUTHORIZATION_CODE` \| \| Client Settings \> Endpoints \> Global Settings \| Response Types \| Include `CODE` \| \| Client Settings \> Endpoints \> Global Settings \| Redirect URIs \| https://client.example.org/cb/example.com \| Configure Client Basic Settings:
+1. Navigate to Client Settings \> Basic Settings \> General
 2. For Client Type, choose the `PUBLIC` radio button.
-3. Click Save Changes to apply the updates.
-![pkce_2](https://storage.googleapis.com/authlete-website/resources/pkce/2.png)
-Configure Client Endpoints:
-  1. Navigate to Client Settings > Endpoints > Global Settings
+3. Click Save Changes to apply the updates. <img src="https://storage.googleapis.com/authlete-website/resources/pkce/2.png" alt="pkce_2" /> Configure Client Endpoints:
+1. Navigate to Client Settings \> Endpoints \> Global Settings
 2. Under the Supported Grant Types section, select `AUTHORIZATION_CODE`.
 3. Under the Supported Response Types section, select `CODE`.
 4. Under Redirect URIs, click Add URI. Be sure to adjust the redirect url to match your redirection:
-  - `https://client.example.org/cb/example.com`
-    5. Click Save Changes to apply the updates.
-    ![pkce_3](https://storage.googleapis.com/authlete-website/resources/pkce/3.png)
-    ### 6.2. Authorization Request
-    #### 6.2.1. Authorization Endpoint Request
-    As explained in [OAuth2 Basic], Authlete’s authorization API can validate authorization requests received by the authorization server on its behalf.
-    Use the following `curl` command to make an authorization request from Authorization Server to the Authlete API. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
-    ```bash
-    # Linux/Mac
-    curl -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization" \
--H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}" \
--d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" \
--d "subject=john.s@example.com" \
--d "response_type=code" \
--d "client_id=Client ID e.g.26478243745571>" \
--d "redirect_uri=https://client.example.org/cb/example.com" \
--d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" \
--d "code_challenge_method=S256"
-    # Windows (PowerShell)
-    curl.exe -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization" `
--H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" `
--d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" `
--d "subject=john.s@example.com" `
--d "response_type=code" `
--d "client_id=Client ID e.g.26478243745571>\`}" `
--d "redirect_uri=https://client.example.org/cb/example.com" `
--d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" `
--d "code_challenge_method=S256"
-    ```Note that the request contains `code_challenge` parameter and `code_challenge_method` parameter. To implement PKCE, you need  include and test these parameters.
-    You can also configure the `code_challenge` and `code_challenge_method` parameters in the [Authlete Management Console](https://console.authlete.com/).
-    #### 6.2.2 Authorization Response
-    If the request is valid, Authlete returns a response like this:
-    ```json
-    ,
-    "service": ,
-    }
-    ```Assuming that the resource owner has already been authenticated and has obtained consent, the authorization server calls the issue endpoint to obtain an authorization code.
-    To make a token request, execute the following `curl` command. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
-    ```bash
-    # Linux/Mac
-    curl -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization/issue" \
+
+- `https://client.example.org/cb/example.com` 5. Click Save Changes to apply the updates. <img src="https://storage.googleapis.com/authlete-website/resources/pkce/3.png" alt="pkce_3" />
+
+  ### 6.2. Authorization Request
+
+  #### 6.2.1. Authorization Endpoint Request
+
+  As explained in [OAuth2 Basic], Authlete’s authorization API can validate authorization requests received by the authorization server on its behalf. Use the following `curl` command to make an authorization request from Authorization Server to the Authlete API. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID\>`and`Ticket\>\`}\` with your values.
+
+  ```bash
+  # Linux/Mac
+  curl -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization" \
+  ```
+
+-H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ\>\`}" <br />-d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" <br />-d "subject=[john.s@example.com](mailto:john.s@example.com)" <br />-d "response_type=code" <br />-d "client_id=Client ID e.g.26478243745571\>" <br />-d "redirect_uri=https://client.example.org/cb/example.com" <br />-d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" <br />-d "code_challenge_method=S256"
+
+# Windows (PowerShell)
+
+curl.exe -v -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579\>\`}/auth/authorization" `-H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>"` -d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" `-d "subject=john.s@example.com"` -d "response_type=code" `
+-d "client_id=Client ID e.g.26478243745571>\`}" `-d "redirect_uri=https://client.example.org/cb/example.com"` -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" ```` -d "code_challenge_method=S256"
+    ```Note that the request contains ````code_challenge`parameter and`code_challenge_method`parameter. To implement PKCE, you need  include and test these parameters.
+    You can also configure the`code_challenge`and`code_challenge_method\` parameters in the [Authlete Management Console](https://console.authlete.com/).
+
+#### 6.2.2 Authorization Response
+
+If the request is valid, Authlete returns a response like this:
+
+````json
+,
+"service": ,
+}
+```Assuming that the resource owner has already been authenticated and has obtained consent, the authorization server calls the issue endpoint to obtain an authorization code.
+To make a token request, execute the following `curl` command. Make sure to replace `Service ID>`, `Service Access Token>\`}`, `Client ID>` and `Ticket>\`}` with your values.
+```bash
+# Linux/Mac
+curl -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization/issue" \
 -H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}" \
 -H "Content-Type: application/json" \
 -d 'Ticket e.g. cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE>","subject": "testuser01"}'
-    # Windows
-    curl.exe -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization/issue" `
+# Windows
+curl.exe -X POST "https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization/issue" `
 -H "Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" \
 -H "Content-Type: application/json" `
 -d ''
-    ```If the request is valid, Authlete generates the following response.
-    ```json
+```If the request is valid, Authlete generates the following response.
+```json
 
 \`}
 ```### 6.3 Token Request
@@ -176,13 +167,13 @@ If the authorization code and the code verifier you entered are valid, an access
 Authlete provides a configuration item for PKCE. PKCE can be enabled in the Service or Client Service. Login the [Authlete Management Console](https://console.authlete.com/), select a service and click the Authorization tab, and you will be able to find a boolean configuration item labeled “Proof Key for Code Exchange (RFC 7636)”.
 #### Service PKCE Settings
 To enable PKCE in Service Settings:
-  1. Navigate to Service Settings >\`} Endpoints > Authorization > General
+1. Navigate to Service Settings >\`} Endpoints > Authorization > General
 2. Under Proof Key for Code Exchange (PKCE), enable the `Require PKCE` and  `Require S256 for Code Challenge Method` options.
 3. Click Save Changes to apply the updates.
 ![pkce_4](https://storage.googleapis.com/authlete-website/resources/pkce/4.png)
 #### Client PKCE Settings
 To enable PKCE in Client Settings:
-  1. Navigate to Client Settings > Endpoints > Authorization  > General
+1. Navigate to Client Settings > Endpoints > Authorization  > General
 2. Under Proof Key for Code Exchange (PKCE), enable the `Require PKCE` and  `Require S256 for Code Challenge Method` options.
 3. Click Save Changes to apply the updates.
 ![pkce_5](https://storage.googleapis.com/authlete-website/resources/pkce/5.png)
@@ -191,27 +182,28 @@ Enable `Proof Key for Code Exchange (PKCE)` for better security. It makes the au
 #### On this page
 - [1. Introduction](#1-introduction)
 - [2. PKCE Authorization Request](#2-pkce-authorization-request)
-  [2.1 Request Parameters](#21-request-parameters)
-  [2.2 Code Challenge Value](#22-code-challenge-value)
-  [2.3 Code Verifier Value](#23-code-verifier-value)
-  [2.4 Code Challenge Method](#24-code-challenge-method)
+[2.1 Request Parameters](#21-request-parameters)
+[2.2 Code Challenge Value](#22-code-challenge-value)
+[2.3 Code Verifier Value](#23-code-verifier-value)
+[2.4 Code Challenge Method](#24-code-challenge-method)
 - [3. PKCE Authorization Response](#3-pkce-authorization-response)
 - [4. PCKE Token Request](#4-pcke-token-request)
 - [5. PKCE Token Response](#5-pkce-token-response)
-  [5.1 Require Code Verifier](#51-require-code-verifier)
-  [5.2 Verify Code Verifier](#52-verify-code-verifier)
-  [5.3 Issue Access Token](#53-issue-access-token)
+[5.1 Require Code Verifier](#51-require-code-verifier)
+[5.2 Verify Code Verifier](#52-verify-code-verifier)
+[5.3 Issue Access Token](#53-issue-access-token)
 - [6. Try PKCE With Authlete](#6-try-pkce-with-authlete)
-  [6.1 Preparation](#61-preparation)
-  [6.1.1 Sign up](#611-sign-up)
-  [6.1.2 Service ID  and Client ID](#612-service-id--and-client-id)
-  [6.1.3 Service and Client Settings](#613-service-and-client-settings)
-  [6.2. Authorization Request](#62-authorization-request)
-  [6.2.1. Authorization Endpoint Request](#621-authorization-endpoint-request)
-  [6.2.2 Authorization Response](#622-authorization-response)
-  [6.3 Token Request](#63-token-request)
-  [6.3.1 Token Request with CURL](#631-token-request-with-curl)
-  [6.3.2. Token Response](#632-token-response)
-  [6.4. PKCE Configuration](#64-pkce-configuration)
-  [Service PKCE Settings](#service-pkce-settings)
-  [Client PKCE Settings](#client-pkce-settings)
+[6.1 Preparation](#61-preparation)
+[6.1.1 Sign up](#611-sign-up)
+[6.1.2 Service ID  and Client ID](#612-service-id--and-client-id)
+[6.1.3 Service and Client Settings](#613-service-and-client-settings)
+[6.2. Authorization Request](#62-authorization-request)
+[6.2.1. Authorization Endpoint Request](#621-authorization-endpoint-request)
+[6.2.2 Authorization Response](#622-authorization-response)
+[6.3 Token Request](#63-token-request)
+[6.3.1 Token Request with CURL](#631-token-request-with-curl)
+[6.3.2. Token Response](#632-token-response)
+[6.4. PKCE Configuration](#64-pkce-configuration)
+[Service PKCE Settings](#service-pkce-settings)
+[Client PKCE Settings](#client-pkce-settings)
+````

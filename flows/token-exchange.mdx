@@ -1,12 +1,9 @@
 ---
-description: "Introduction"
-title: "Introduction"
+title: "Token Exchange "
 ---
 
-
-
 <Info>
-This page is for Authlete 2.x. For 3.0, refer to this page.
+  This page is for Authlete 2.x. For 3.0, refer to this page.
 </Info>
 
 # Introduction
@@ -33,13 +30,13 @@ There are two kinds of input tokens; a subject token and an actor token.
 
 ### Subject Token
 
-“Subject Token” is a mandatory input token. It *“represents the identity of the party on behalf of whom the request is being made.”* (excerpt from [Section 2.1. Request](https://www.rfc-editor.org/rfc/rfc8693.html#section-2.1) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html))
+“Subject Token” is a mandatory input token. It _“represents the identity of the party on behalf of whom the request is being made.”_ (excerpt from [Section 2.1. Request](https://www.rfc-editor.org/rfc/rfc8693.html#section-2.1) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html))
 
 The specification expects that the subject identified by the subject token is used as the subject of the newly issued token.
 
 ### Actor Token
 
-“Actor Token” is an optional input token. It *“represents the identity of the acting party.”* (excerpt from [Section 2.1. Request](https://www.rfc-editor.org/rfc/rfc8693.html#section-2.1) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html))
+“Actor Token” is an optional input token. It _“represents the identity of the acting party.”_ (excerpt from [Section 2.1. Request](https://www.rfc-editor.org/rfc/rfc8693.html#section-2.1) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html))
 
 If there is a need to distinguish the subject of the newly issued token from the acting party that uses the token, authorization server implementations may utilize the actor token and embed information about the acting party in the token to issue. [Section 4.1](https://www.rfc-editor.org/rfc/rfc8693.html#section-4.1) and [Section 4.4](https://www.rfc-editor.org/rfc/rfc8693.html#section-4.4) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html) define JWT claims related to the acting party.
 
@@ -47,14 +44,14 @@ If there is a need to distinguish the subject of the newly issued token from the
 
 As possible types of the tokens above, the specification lists the following **token types** and assigns token type identifiers to them. The identifiers of token types are registered at [OAuth URI](https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri) of [OAuth Parameters](https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml) of IANA (Internet Assigned Numbers Authority).
 
-| Token Type | Token Type Identifier |
-| --- | --- |
-| JWT | urn:ietf:params:oauth:token-type:jwt |
-| Access Token | urn:ietf:params:oauth:token-type:access_token |
-| Refresh Token | urn:ietf:params:oauth:token-type:refresh_token |
-| ID Token | urn:ietf:params:oauth:token-type:id_token |
-| SAML 1.1 Assertion | urn:ietf:params:oauth:token-type:saml1 |
-| SAML 2.0 Assertion | urn:ietf:params:oauth:token-type:saml2 |
+| Token Type         | Token Type Identifier                          |
+| ------------------ | ---------------------------------------------- |
+| JWT                | urn:ietf:params:oauth:token-type:jwt           |
+| Access Token       | urn:ietf:params:oauth:token-type:access_token  |
+| Refresh Token      | urn:ietf:params:oauth:token-type:refresh_token |
+| ID Token           | urn:ietf:params:oauth:token-type:id_token      |
+| SAML 1.1 Assertion | urn:ietf:params:oauth:token-type:saml1         |
+| SAML 2.0 Assertion | urn:ietf:params:oauth:token-type:saml2         |
 
 ## Token Exchange Request
 
@@ -66,7 +63,7 @@ To distinguish token exchange requests from other token requests, a new grant ty
 
 ### Client Identification and Authentication
 
-The specification does not require **[client authentication](https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4)** and even **client identification** at the token endpoint. [Section 2.1. Request](https://www.rfc-editor.org/rfc/rfc8693.html#section-2.1) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html) states it as follows.
+The specification does not require [**client authentication**](https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4) and even **client identification** at the token endpoint. [Section 2.1. Request](https://www.rfc-editor.org/rfc/rfc8693.html#section-2.1) of [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html) states it as follows.
 
 > The supported methods of client authentication and whether or not to allow **unauthenticated** or **unidentified** clients are deployment decisions that are at the discretion of the authorization server.
 
@@ -80,17 +77,17 @@ Although [Appendix 1.1](https://www.rfc-editor.org/rfc/rfc8693.html#section-a.1.
 
 The following table shows parameters related to token exchange requests.
 
-| Request Parameter | Necessity | Description |
-| --- | --- | --- |
-| grant_type | REQUIRED | The value urn:ietf:params:oauth:grant-type:token-exchange indicates that the token request is a token exchange request. |
-| resource | OPTIONAL | Resources to be tied to the newly issued token. This request parameter may be specified multiple times. See RFC 8707 Resource Indicators for OAuth 2.0 for details. |
-| audience | OPTIONAL | Audience of the newly issued token. This request parameter also may be specified multiple times. |
-| scope | OPTIONAL | A list of space-delimited names of scopes that are to be tied to the newly issued token. |
-| requested_token_type | OPTIONAL | The token type of the newly issued token that the client wishes. One of the registered token type identifiers. |
-| subject_token | REQUIRED | The value of the subject token. |
-| subject_token_type | REQUIRED | The token type of the subject token. One of the registered token type identifiers. |
-| actor_token | OPTIONAL | The value of the actor token. |
-| actor_token_type | OPTIONAL | The token type of the actor token. One of the registered token type identifiers. When the actor_token request parameter is given, this request parameter is REQUIRED. On the contrary, when the actor_token request parameter is not given, this request parameter must not be present. |
+| Request Parameter    | Necessity | Description                                                                                                                                                                                                                                                                             |
+| -------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| grant_type           | REQUIRED  | The value urn:ietf:params:oauth:grant-type:token-exchange indicates that the token request is a token exchange request.                                                                                                                                                                 |
+| resource             | OPTIONAL  | Resources to be tied to the newly issued token. This request parameter may be specified multiple times. See RFC 8707 Resource Indicators for OAuth 2.0 for details.                                                                                                                     |
+| audience             | OPTIONAL  | Audience of the newly issued token. This request parameter also may be specified multiple times.                                                                                                                                                                                        |
+| scope                | OPTIONAL  | A list of space-delimited names of scopes that are to be tied to the newly issued token.                                                                                                                                                                                                |
+| requested_token_type | OPTIONAL  | The token type of the newly issued token that the client wishes. One of the registered token type identifiers.                                                                                                                                                                          |
+| subject_token        | REQUIRED  | The value of the subject token.                                                                                                                                                                                                                                                         |
+| subject_token_type   | REQUIRED  | The token type of the subject token. One of the registered token type identifiers.                                                                                                                                                                                                      |
+| actor_token          | OPTIONAL  | The value of the actor token.                                                                                                                                                                                                                                                           |
+| actor_token_type     | OPTIONAL  | The token type of the actor token. One of the registered token type identifiers. When the actor_token request parameter is given, this request parameter is REQUIRED. On the contrary, when the actor_token request parameter is not given, this request parameter must not be present. |
 
 ## Token Exchange Response
 
@@ -100,14 +97,14 @@ A **token exchange response** is a kind of token responses.
 
 The following table shows parameters related to token exchange responses.
 
-| Response Parameter | Necessity | Description |
-| --- | --- | --- |
-| access_token | REQUIRED | Regardless of the token type, the value of the newly issued token is set to this response parameter. |
-| issued_token_type | REQUIRED | The token type of the newly issued token. One of the registered token type identifier. |
-| token_type | REQUIRED | When the token type of the newly issued token is urn:ietf:params:oauth:token-type:access_token, this response parameter has the same meaning as defined in RFC 6749 The OAuth 2.0 Authorization Framework. In other cases, "N_A" is set. |
-| expires_in | OPTIONAL | The lifetime of the newly issued token in seconds. |
-| scope | OPTIONAL | Scopes tied to the newly issued token. When the actual set of scopes tied to the newly issued token is different from the set requested by the token exchange request, this response parameter is REQUIRED. |
-| refresh_token | OPTIONAL | A refresh token (cf. RFC 6749 Section 6. Refreshing an Access Token). |
+| Response Parameter | Necessity | Description                                                                                                                                                                                                                              |
+| ------------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| access_token       | REQUIRED  | Regardless of the token type, the value of the newly issued token is set to this response parameter.                                                                                                                                     |
+| issued_token_type  | REQUIRED  | The token type of the newly issued token. One of the registered token type identifier.                                                                                                                                                   |
+| token_type         | REQUIRED  | When the token type of the newly issued token is urn:ietf:params:oauth:token-type:access_token, this response parameter has the same meaning as defined in RFC 6749 The OAuth 2.0 Authorization Framework. In other cases, "N_A" is set. |
+| expires_in         | OPTIONAL  | The lifetime of the newly issued token in seconds.                                                                                                                                                                                       |
+| scope              | OPTIONAL  | Scopes tied to the newly issued token. When the actual set of scopes tied to the newly issued token is different from the set requested by the token exchange request, this response parameter is REQUIRED.                              |
+| refresh_token      | OPTIONAL  | A refresh token (cf. RFC 6749 Section 6. Refreshing an Access Token).                                                                                                                                                                    |
 
 # Support in Authlete
 
@@ -126,18 +123,18 @@ On receiving a token request from a client, an authorization server will send th
 
 The following table lists response parameters related to Token Exchange in a response from the `/auth/token` API.
 
-| Response Parameter | Type | Description |
-| --- | --- | --- |
-| resources | string array | The values of the resource request parameters. |
-| audiences | string array | The values of the audience request parameters. |
-| scopes | string array | The scopes listed in the scope request parameter. |
-| requestedTokenType | string | A string representing the requested_token_type request parameter such as "ACCESS_TOKEN". (cf. TokenType.java) |
-| subjectToken | string | The value of the subject_token request parameter. |
-| subjectTokenType | string | A string representing the value of the subject_token_type request parameter such as "ACCESS_TOKEN". (cf. TokenType.java) |
-| subjectTokenInfo | object | Information about the subject token. Available only when the token type is either access token or refresh token. |
-| actorToken | string | The value of the actor_token request parameter. |
-| actorTokenType | string | A string representing the value of the actor_token_type request parameter such as "ACCESS_TOKEN". (cf. TokenType.java) |
-| actorTokenInfo | object | Information about the actor token. Available only when the token type is either access token or refresh token. |
+| Response Parameter | Type         | Description                                                                                                              |
+| ------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| resources          | string array | The values of the resource request parameters.                                                                           |
+| audiences          | string array | The values of the audience request parameters.                                                                           |
+| scopes             | string array | The scopes listed in the scope request parameter.                                                                        |
+| requestedTokenType | string       | A string representing the requested_token_type request parameter such as "ACCESS_TOKEN". (cf. TokenType.java)            |
+| subjectToken       | string       | The value of the subject_token request parameter.                                                                        |
+| subjectTokenType   | string       | A string representing the value of the subject_token_type request parameter such as "ACCESS_TOKEN". (cf. TokenType.java) |
+| subjectTokenInfo   | object       | Information about the subject token. Available only when the token type is either access token or refresh token.         |
+| actorToken         | string       | The value of the actor_token request parameter.                                                                          |
+| actorTokenType     | string       | A string representing the value of the actor_token_type request parameter such as "ACCESS_TOKEN". (cf. TokenType.java)   |
+| actorTokenInfo     | object       | Information about the actor token. Available only when the token type is either access token or refresh token.           |
 
 ## Token Validation
 
@@ -149,71 +146,71 @@ In processing the request, the authorization server MUST perform the appropriate
 
 It means that an authorization server MUST perform an appropriate validation, but the RFC 8693 doesn’t define any details about token validation and leaves them to authorization server implementations. To reduce the burden of authorization servers, Authlete’s `/auth/token` API performs the following validation.
 
-| No. | Validation |
-| --- | --- |
-| 1 | Confirm that the value of the requested_token_type request parameter is one of the registered token type identifiers if the request parameter is given and its value is not empty. |
-| 2 | Confirm that the subject_token request parameter is given and its value is not empty. |
-| 3 | Confirm that the subject_token_type request parameter is given and its value is one of the registered token type identifiers. |
-| 4 | Confirm that the actor_token_type request parameter is given and its value is one of the registered token type identifiers if the actor_token request parameter is given and its value is not empty. |
-| 5 | Confirm that the actor_token_type request parameter is not given or its value is empty when the actor_token request parameter is not given or its value is empty. |
+| No. | Validation                                                                                                                                                                                           |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Confirm that the value of the requested_token_type request parameter is one of the registered token type identifiers if the request parameter is given and its value is not empty.                   |
+| 2   | Confirm that the subject_token request parameter is given and its value is not empty.                                                                                                                |
+| 3   | Confirm that the subject_token_type request parameter is given and its value is one of the registered token type identifiers.                                                                        |
+| 4   | Confirm that the actor_token_type request parameter is given and its value is one of the registered token type identifiers if the actor_token request parameter is given and its value is not empty. |
+| 5   | Confirm that the actor_token_type request parameter is not given or its value is empty when the actor_token request parameter is not given or its value is empty.                                    |
 
 Furthermore, Authlete performs additional validation on the tokens specified by the `subject_token` request parameter and the `actor_token` request parameter according to their respective token types as shown below.
 
 ### Token type: JWT
 
-| No. | Validation |
-| --- | --- |
-| 1 | Confirm that the format conforms to the JWT specification (RFC 7519 JSON Web Token (JWT)). |
-| 2 | Check if the JWT is encrypted and if it is encrypted, then (a) reject the token exchange request when the tokenExchangeEncryptedJwtRejected flag of the service is true or (b) skip remaining validation steps when the flag is false. |
-| 3 | Confirm that the current time has not reached the time indicated by the exp claim if the JWT contains the claim. |
-| 4 | Confirm that the current time is equal to or after the time indicated by the iat claim if the JWT contains the claim. |
-| 5 | Confirm that the current time is equal to or after the time indicated by the nbf claim if the JWT contains the claim. |
-| 6 | Check if the JWT is signed and if it is not signed, then (a) reject the token exchange request when the tokenExchangeUnsignedJwtRejected flag of the service is true or (b) finish validation on the input token. |
-| 7 | (The signature of the JWT is not verified.) |
+| No. | Validation                                                                                                                                                                                                                             |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Confirm that the format conforms to the JWT specification (RFC 7519 JSON Web Token (JWT)).                                                                                                                                             |
+| 2   | Check if the JWT is encrypted and if it is encrypted, then (a) reject the token exchange request when the tokenExchangeEncryptedJwtRejected flag of the service is true or (b) skip remaining validation steps when the flag is false. |
+| 3   | Confirm that the current time has not reached the time indicated by the exp claim if the JWT contains the claim.                                                                                                                       |
+| 4   | Confirm that the current time is equal to or after the time indicated by the iat claim if the JWT contains the claim.                                                                                                                  |
+| 5   | Confirm that the current time is equal to or after the time indicated by the nbf claim if the JWT contains the claim.                                                                                                                  |
+| 6   | Check if the JWT is signed and if it is not signed, then (a) reject the token exchange request when the tokenExchangeUnsignedJwtRejected flag of the service is true or (b) finish validation on the input token.                      |
+| 7   | (The signature of the JWT is not verified.)                                                                                                                                                                                            |
 
 ### Token type: Access Token
 
-| No. | Validation |
-| --- | --- |
-| 1 | Confirm that the token is an access token that has been issued by the Authlete server of your service. |
-| 2 | Confirm that the access token has not expired. |
-| 3 | Confirm that the access token belongs to the service. |
+| No. | Validation                                                                                             |
+| --- | ------------------------------------------------------------------------------------------------------ |
+| 1   | Confirm that the token is an access token that has been issued by the Authlete server of your service. |
+| 2   | Confirm that the access token has not expired.                                                         |
+| 3   | Confirm that the access token belongs to the service.                                                  |
 
 ### Token type: Refresh Token
 
-| No. | Validation |
-| --- | --- |
-| 1 | Confirm that the token is a refresh token that has been issued by the Authlete server of your service. |
-| 2 | Confirm that the refresh token has not expired. |
-| 3 | Confirm that the refresh token belongs to the service. |
+| No. | Validation                                                                                             |
+| --- | ------------------------------------------------------------------------------------------------------ |
+| 1   | Confirm that the token is a refresh token that has been issued by the Authlete server of your service. |
+| 2   | Confirm that the refresh token has not expired.                                                        |
+| 3   | Confirm that the refresh token belongs to the service.                                                 |
 
 ### Token type: ID Token
 
-| No. | Validation |
-| --- | --- |
-| 1 | Confirm that the format conforms to the JWT specification (RFC 7519 JSON Web Token (JWT)). |
-| 2 | Check if the ID Token is encrypted and if it is encrypted, then (a) reject the token exchange request when the tokenExchangeEncryptedJwtRejected flag of the service is true or (b) skip remaining validation steps when the flag is false. |
-| 3 | Confirm that the ID Token contains the exp claim and the current time has not reached the time indicated by the claim. |
-| 4 | Confirm that the ID Token contains the iat claim and the current time is equal to or after the time indicated by the claim. |
-| 5 | Confirm that the current time is equal to or after the time indicated by the nbf claim if the ID Token contains the claim. |
-| 6 | Confirm that the ID Token contains the iss claim and its value is a valid URI. In addition, confirm that the URI has the https scheme, no query component and no fragment component. |
-| 7 | Confirm that the ID Token contains the aud claim and its value is a JSON string or an array of JSON strings. |
-| 8 | Confirm that the value of the nonce claim is a JSON string if the ID Token contains the claim. |
-| 9 | Check if the ID Token is signed and if it is not signed, then (a) reject the token exchange request when the tokenExchangeUnsignedJwtRejected flag of the service is true or (b) finish validation on the input token. |
-| 10 | Confirm that the signature algorithm of the ID Token is asymmetric. |
-| 11 | Verify the signature of the ID Token. |
+| No. | Validation                                                                                                                                                                                                                                  |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Confirm that the format conforms to the JWT specification (RFC 7519 JSON Web Token (JWT)).                                                                                                                                                  |
+| 2   | Check if the ID Token is encrypted and if it is encrypted, then (a) reject the token exchange request when the tokenExchangeEncryptedJwtRejected flag of the service is true or (b) skip remaining validation steps when the flag is false. |
+| 3   | Confirm that the ID Token contains the exp claim and the current time has not reached the time indicated by the claim.                                                                                                                      |
+| 4   | Confirm that the ID Token contains the iat claim and the current time is equal to or after the time indicated by the claim.                                                                                                                 |
+| 5   | Confirm that the current time is equal to or after the time indicated by the nbf claim if the ID Token contains the claim.                                                                                                                  |
+| 6   | Confirm that the ID Token contains the iss claim and its value is a valid URI. In addition, confirm that the URI has the https scheme, no query component and no fragment component.                                                        |
+| 7   | Confirm that the ID Token contains the aud claim and its value is a JSON string or an array of JSON strings.                                                                                                                                |
+| 8   | Confirm that the value of the nonce claim is a JSON string if the ID Token contains the claim.                                                                                                                                              |
+| 9   | Check if the ID Token is signed and if it is not signed, then (a) reject the token exchange request when the tokenExchangeUnsignedJwtRejected flag of the service is true or (b) finish validation on the input token.                      |
+| 10  | Confirm that the signature algorithm of the ID Token is asymmetric.                                                                                                                                                                         |
+| 11  | Verify the signature of the ID Token.                                                                                                                                                                                                       |
 
 ### Token type: SAML 1.1 Assertion
 
-| No. | Validation |
-| --- | --- |
-| 1 | (Authlete does not perform any validation for this token type.) |
+| No. | Validation                                                      |
+| --- | --------------------------------------------------------------- |
+| 1   | (Authlete does not perform any validation for this token type.) |
 
 ### Token type: SAML 2.0 Assertion
 
-| No. | Validation |
-| --- | --- |
-| 1 | (Authlete does not perform any validation for this token type.) |
+| No. | Validation                                                      |
+| --- | --------------------------------------------------------------- |
+| 1   | (Authlete does not perform any validation for this token type.) |
 
 ## Token Exchange Response
 
@@ -229,18 +226,18 @@ As already mentioned, you have to define details that are out of the scope of [R
 
 ### Service Configuration
 
-| Configuration Option | Type | Description |
-| --- | --- | --- |
-| Identifiable Clients Only | boolean | Whether to reject token exchange requests by unidentifiable clients - Service.tokenExchangeByIdentifiableClientsOnly (JavaDoc) |
-| Confidential Clients Only | boolean | Whether to reject token exchange requests by public clients - Service.tokenExchangeByConfidentialClientsOnly (JavaDoc) |
-| Permitted Clients Only | boolean | Whether to reject token exchange requests by clients that have no explicit permission - Service.tokenExchangeByPermittedClientsOnly (JavaDoc) |
-| Encrypted JWT Rejected | boolean | Whether to reject token exchange requests which use encrypted JWTs as input tokens - Service.tokenExchangeEncryptedJwtRejected (JavaDoc) |
-| Unsigned JWT Rejected | boolean | Whether to reject token exchange requests which use unsigned JWTs as input tokens - Service.tokenExchangeUnsignedJwtRejected (JavaDoc) |
+| Configuration Option      | Type    | Description                                                                                                                                   |
+| ------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identifiable Clients Only | boolean | Whether to reject token exchange requests by unidentifiable clients - Service.tokenExchangeByIdentifiableClientsOnly (JavaDoc)                |
+| Confidential Clients Only | boolean | Whether to reject token exchange requests by public clients - Service.tokenExchangeByConfidentialClientsOnly (JavaDoc)                        |
+| Permitted Clients Only    | boolean | Whether to reject token exchange requests by clients that have no explicit permission - Service.tokenExchangeByPermittedClientsOnly (JavaDoc) |
+| Encrypted JWT Rejected    | boolean | Whether to reject token exchange requests which use encrypted JWTs as input tokens - Service.tokenExchangeEncryptedJwtRejected (JavaDoc)      |
+| Unsigned JWT Rejected     | boolean | Whether to reject token exchange requests which use unsigned JWTs as input tokens - Service.tokenExchangeUnsignedJwtRejected (JavaDoc)        |
 
 ### Client Extension Configuration
 
-| Configuration | Type | Description |
-| --- | --- | --- |
+| Configuration                          | Type    | Description                                                                                                  |
+| -------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
 | Explicit Permission for Token Exchange | boolean | Whether to have an explicit permission for token exchange - ClientExtension.tokenExchangePermitted (JavaDoc) |
 
 # Examples
@@ -255,19 +252,17 @@ Authorization server implementations have to process the `TOKEN_EXCHANGE` action
 // Dispatch according to the action.
 switch (action)
 
-
 ```
 
 ```java
 // Dispatch according to the action.
 switch (action)
 
-
 ```
 
 ### Processing token exchange requests
 
-[TokenExchanger.java](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/api/TokenExchanger.java) in **[java-oauth-server](https://github.com/authlete/java-oauth-server)**, an open-source sample implementation of authorization server written in Java, is a sample implementation of processing a token exchange request.
+[TokenExchanger.java](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/api/TokenExchanger.java) in [**java-oauth-server**](https://github.com/authlete/java-oauth-server), an open-source sample implementation of authorization server written in Java, is a sample implementation of processing a token exchange request.
 
 Note that the implementation is just an example, and not intended for production use.
 
@@ -277,34 +272,28 @@ Note that the implementation is just an example, and not intended for production
 
 ```shell
 $ ID_TOKEN=eyJraWQiOiJhdXRobGV0ZS1mYXBpZGV2LWFwaS0yMDE4MDUyNCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJodHRwczovL2ZhcGlkZXYtYXMuYXV0aGxldGUubmV0LyIsInN1YiI6IjEwMDQiLCJhdWQiOlsiNTg5OTQ2MzYxNDQ0ODA2MyJdLCJleHAiOjE2NTg2NzExMzAsImlhdCI6MTY1ODY3MDgzMCwiYXV0aF90aW1lIjoxNjU4NjcwODMwLCJub25jZSI6IjEyMzQ1Njc4OSIsInZlcmlmaWVkX2NsYWltcyI6eyJ2ZXJpZmljYXRpb24iOnsidHJ1c3RfZnJhbWV3b3JrIjoibmlzdF84MDBfNjNBIn0sImNsYWltcyI6eyJnaXZlbl9uYW1lIjoiSW5nYSIsImZhbWlseV9uYW1lIjoiU2lsdmVyc3RvbmUiLCJiaXJ0aGRhdGUiOiIxOTkxLTExLTA2IiwiOmFnZV8xOF9vcl9vdmVyIjpudWxsfX19.mxE8FQaDb0edY_rWasSQ7pEMXbFon7oWr-Ccv1dB15q8eh2MaKRGrgvwPw_XjAdXlMNzkcV6iEUjRUvLGTvzm7_45cdoOxRX1xWzQw-vwvRbM46xd3Yht3EVjyRUUBJ_92J1yBmu7Nn93rygcnCE-fC_bSTSIJWgEnoC7dpxHYnoJ2QHrIOYFMBAA_3ZYCLGpgiWbIZnB2D1ib2eqwJ9zoJqeFNEBhXo9ThYkASHYaG-ZWofy7364lgeV4Rqy1r4XqzchFRW4yzWs_IM72bTtXTUkstlNOxZU12KEz50uVhtcOXv06iI71I9vceRP-ZVICpq7Knt0vEKWTM41E3ziw
-
 ```
 
 ```shell
 $ ID_TOKEN=eyJraWQiOiJhdXRobGV0ZS1mYXBpZGV2LWFwaS0yMDE4MDUyNCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJodHRwczovL2ZhcGlkZXYtYXMuYXV0aGxldGUubmV0LyIsInN1YiI6IjEwMDQiLCJhdWQiOlsiNTg5OTQ2MzYxNDQ0ODA2MyJdLCJleHAiOjE2NTg2NzExMzAsImlhdCI6MTY1ODY3MDgzMCwiYXV0aF90aW1lIjoxNjU4NjcwODMwLCJub25jZSI6IjEyMzQ1Njc4OSIsInZlcmlmaWVkX2NsYWltcyI6eyJ2ZXJpZmljYXRpb24iOnsidHJ1c3RfZnJhbWV3b3JrIjoibmlzdF84MDBfNjNBIn0sImNsYWltcyI6eyJnaXZlbl9uYW1lIjoiSW5nYSIsImZhbWlseV9uYW1lIjoiU2lsdmVyc3RvbmUiLCJiaXJ0aGRhdGUiOiIxOTkxLTExLTA2IiwiOmFnZV8xOF9vcl9vdmVyIjpudWxsfX19.mxE8FQaDb0edY_rWasSQ7pEMXbFon7oWr-Ccv1dB15q8eh2MaKRGrgvwPw_XjAdXlMNzkcV6iEUjRUvLGTvzm7_45cdoOxRX1xWzQw-vwvRbM46xd3Yht3EVjyRUUBJ_92J1yBmu7Nn93rygcnCE-fC_bSTSIJWgEnoC7dpxHYnoJ2QHrIOYFMBAA_3ZYCLGpgiWbIZnB2D1ib2eqwJ9zoJqeFNEBhXo9ThYkASHYaG-ZWofy7364lgeV4Rqy1r4XqzchFRW4yzWs_IM72bTtXTUkstlNOxZU12KEz50uVhtcOXv06iI71I9vceRP-ZVICpq7Knt0vEKWTM41E3ziw
-
 ```
 
 ### 2. Make a token exchange request.
 
 ```shell
 $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant-type:token-exchange -d subject_token=$ID_TOKEN -d subject_token_type=urn:ietf:params:oauth:token-type:id_token -d client_id=5908895171 -d scope=email
-
 ```
 
 ```shell
 $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant-type:token-exchange -d subject_token=$ID_TOKEN -d subject_token_type=urn:ietf:params:oauth:token-type:id_token -d client_id=5908895171 -d scope=email
-
 ```
 
 ### 3. Receive a token exchange response.
 
 ```json
 
-
 ```
 
 ```json
-
 
 ```

@@ -1,15 +1,12 @@
 ---
-description: "Introduction"
-title: "Introduction"
+title: "Grant Management"
 ---
-
-
 
 # Introduction
 
-**[Grant Management for OAuth 2.0](https://openid.net/specs/fapi-grant-management.html)** is a technical specification that enables to manage privileges granted to client applications in a finer-grained way than pre-existing standard specifications.
+[**Grant Management for OAuth 2.0**](https://openid.net/specs/fapi-grant-management.html) is a technical specification that enables to manage privileges granted to client applications in a finer-grained way than pre-existing standard specifications.
 
-A reason to pay attention to the specification is that it is positioned as a part of **Financial-grade API 2.0**, the successor of **Financial-grade API 1.0** which is now the de facto standard for high API security and has been adopted by ecosystems such as **[UK Open Banking](https://www.openbanking.org.uk/)**, **[Australian Consumer Data Right](https://www.cdr.gov.au/)** and **[Open Banking Brasil](https://openbankingbrasil.org.br/)**. Grant Management is mentioned also in the [whitepaper](https://gainforum.org/GAINWhitePaper.pdf) of **GAIN** (**Global Assured Identity Network**), which is a project to build a global high-trust digital identity network over the Internet.
+A reason to pay attention to the specification is that it is positioned as a part of **Financial-grade API 2.0**, the successor of **Financial-grade API 1.0** which is now the de facto standard for high API security and has been adopted by ecosystems such as [**UK Open Banking**](https://www.openbanking.org.uk/), [**Australian Consumer Data Right**](https://www.cdr.gov.au/) and [**Open Banking Brasil**](https://openbankingbrasil.org.br/). Grant Management is mentioned also in the [whitepaper](https://gainforum.org/GAINWhitePaper.pdf) of **GAIN** (**Global Assured Identity Network**), which is a project to build a global high-trust digital identity network over the Internet.
 
 This article explains the specification based on its first Implementer’s Draft which was released in September, 2021 ([announcement](https://openid.net/2021/09/21/implementers-draft-of-fapi-grant-management-approved/)). However, as with others, the first draft is not perfect. Some technical definitions that implementers will need sooner or later are missing and there is room for inviting different interpretations. But, considering that the purpose of the first draft is to urge implementers to start working, it is rather natural.
 
@@ -63,14 +60,14 @@ The Grant Management specification defines a new endpoint called “**grant mana
 
 ### Query
 
-| QUERY |  |  |
-| --- | --- | --- |
-| Request | HTTP Method | GET |
-|  | URL | / |
-|  | Protection | Acccess token having the grant_management_query scope |
-| Response | Status Code | 200 OK |
-|  | Content-Type | application/json |
-|  | Format | See “6.4. Query Status of a Grant”. |
+| QUERY    |              |                                                       |
+| -------- | ------------ | ----------------------------------------------------- |
+| Request  | HTTP Method  | GET                                                   |
+|          | URL          | /                                                     |
+|          | Protection   | Acccess token having the grant_management_query scope |
+| Response | Status Code  | 200 OK                                                |
+|          | Content-Type | application/json                                      |
+|          | Format       | See “6.4. Query Status of a Grant”.                   |
 
 The following is an example response excerpted from “[6.4. Query Status of a Grant](https://openid.net/specs/fapi-grant-management.html#name-query-status-of-a-grant)” of the Grant Management specification.
 
@@ -102,9 +99,9 @@ A client application can request claims by including special scopes (`profile`, 
 
 #### authorization_details
 
-The value of `"authorization_details"` is an array of pieces of detailed information about authorization. The pieces of information are ones specified by the `authorization_details` request parameter which is defined in “**[OAuth 2.0 Rich Authorization Requests](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/)**” (**RAR**).
+The value of `"authorization_details"` is an array of pieces of detailed information about authorization. The pieces of information are ones specified by the `authorization_details` request parameter which is defined in “[**OAuth 2.0 Rich Authorization Requests**](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/)” (**RAR**).
 
-Before RAR was developed, authorization server implementations had to introduce a nonstandard request parameter or use the `scope` request parameter in a nonstandard way in order to attach detailed information to an authorization request. The latter approach is called “parameterized scope” or “dynamic scope” which embeds a dynamic value in a scope string. For example, [Open Banking Brasil Financial-grade API Security Profile 1.0](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html) defines “Dynamic Consent Scope” ([Section 7.1.2](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-dynamic-consent-scope-defin)) whose format is `consent:` where `consent:` is a fixed-string prefix and `` is the dynamic part (e.g. `consent:urn:bancoex:C1DD33123`).
+Before RAR was developed, authorization server implementations had to introduce a nonstandard request parameter or use the `scope` request parameter in a nonstandard way in order to attach detailed information to an authorization request. The latter approach is called “parameterized scope” or “dynamic scope” which embeds a dynamic value in a scope string. For example, [Open Banking Brasil Financial-grade API Security Profile 1.0](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html) defines “Dynamic Consent Scope” ([Section 7.1.2](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-dynamic-consent-scope-defin)) whose format is `consent:` where `consent:` is a fixed-string prefix and \`\` is the dynamic part (e.g. `consent:urn:bancoex:C1DD33123`).
 
 The problem of the dynamic scope approach is that it is not standardized and interoperability among implementations is hopeless due to its intrinsically variant formats. RAR was developed to solve the problem and is positioned as a part of Financial-grade API 2.0.
 
@@ -114,12 +111,12 @@ The problem of the dynamic scope approach is that it is not standardized and int
 
 ### Revoke
 
-| REVOKE |  |  |
-| --- | --- | --- |
-| Request | HTTP Method | DELETE |
-|  | URL | / |
-|  | Protection | Access token having the grant_management_revoke scope |
-| Response | Status Code | 204 No Content |
+| REVOKE   |             |                                                       |
+| -------- | ----------- | ----------------------------------------------------- |
+| Request  | HTTP Method | DELETE                                                |
+|          | URL         | /                                                     |
+|          | Protection  | Access token having the grant_management_revoke scope |
+| Response | Status Code | 204 No Content                                        |
 
 The Grant Management specification states that all refresh tokens associated with the revoked grant must be revoked and all access tokens associated with the revoked grant should be revoked.
 
@@ -127,13 +124,13 @@ The Grant Management specification states that all refresh tokens associated wit
 
 The Grant Management specification adds the following server metadata.
 
-| Metadata | Description |
-| --- | --- |
+| Metadata                           | Description                                                                                                                  |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | grant_management_actions_supported | Grant management actions supported by the authorization server. Possible values are create, query replace, revoke and merge. |
-| grant_management_endpoint | The URL of the grant management endpoint |
-| grant_management_action_required | Boolean flag indicating whether the grant_management_action request parameter is always required. |
+| grant_management_endpoint          | The URL of the grant management endpoint                                                                                     |
+| grant_management_action_required   | Boolean flag indicating whether the grant_management_action request parameter is always required.                            |
 
-Because *“grant management is restricted to confidential only clients due to security reasons”* ([Section 5.1](https://openid.net/specs/fapi-grant-management.html#name-requirements-for-authorizat)), if the discovery document ([OIDC Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html)) includes `"grant_management_action_required":true`, it implies that the authorization endpoint of the authorization server rejects any request from public clients.
+Because _“grant management is restricted to confidential only clients due to security reasons”_ ([Section 5.1](https://openid.net/specs/fapi-grant-management.html#name-requirements-for-authorizat)), if the discovery document ([OIDC Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html)) includes `"grant_management_action_required":true`, it implies that the authorization endpoint of the authorization server rejects any request from public clients.
 
 # Implementation
 
@@ -145,9 +142,9 @@ Implementations of the Grant Management specification will considerably differ f
 1. Whether the content of a grant may change without explicit grant management actions (authorization requests with `grant_management_action` and revocation requests to the grant management endpoint) or it never changes without explicit actions.
 1. Whether privileges of access tokens and refresh tokens may change when the content of their associated grant changes or they never change after issuance.
 1. How refresh tokens are linked to a grant. Linkage is necessary because refresh tokens must be revoked when their associated grant is revoked.
-1. Whether access tokens are revoked or not when an associated grant is revoked. The specification says that access tokens should be revoked. Note that some authorization server implementations cannot revoke access tokens once they are issued. (cf. *"[OAuth Access Token Implementation](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0)"*)
+1. Whether access tokens are revoked or not when an associated grant is revoked. The specification says that access tokens should be revoked. Note that some authorization server implementations cannot revoke access tokens once they are issued. (cf. [_"OAuth Access Token Implementation"_](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0))
 1. How privileges inherited through `grant_management_action=merge` are managed. As a snapshot at the timing of access token issuance (which never changes later) or as a link to something else (whose content may change later), or in other forms.
-1. How a resource server validates an access token which has inherited privileges through `grant_management_action=merge`. Currently, there is no agreed standard formats of introspection response and JWT access token for Grant Management, and the discussion is a bit controversial. (cf. *"[FAPI ISSUE 455: Impact of grant_management_action=update on AT implementation and introspection](https://bitbucket.org/openid/fapi/issues/455)"*)
+1. How a resource server validates an access token which has inherited privileges through `grant_management_action=merge`. Currently, there is no agreed standard formats of introspection response and JWT access token for Grant Management, and the discussion is a bit controversial. (cf. [_"FAPI ISSUE 455: Impact of grant_management_action=update on AT implementation and introspection"_](https://bitbucket.org/openid/fapi/issues/455))
 
 Whether lifecycle of a grant is managed independently of elements of the grant or it completely depends on them.
 
@@ -157,11 +154,11 @@ Whether privileges of access tokens and refresh tokens may change when the conte
 
 How refresh tokens are linked to a grant. Linkage is necessary because refresh tokens must be revoked when their associated grant is revoked.
 
-Whether access tokens are revoked or not when an associated grant is revoked. The specification says that access tokens should be revoked. Note that some authorization server implementations cannot revoke access tokens once they are issued. (cf. *"[OAuth Access Token Implementation](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0)"*)
+Whether access tokens are revoked or not when an associated grant is revoked. The specification says that access tokens should be revoked. Note that some authorization server implementations cannot revoke access tokens once they are issued. (cf. [_"OAuth Access Token Implementation"_](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0))
 
 How privileges inherited through `grant_management_action=merge` are managed. As a snapshot at the timing of access token issuance (which never changes later) or as a link to something else (whose content may change later), or in other forms.
 
-How a resource server validates an access token which has inherited privileges through `grant_management_action=merge`. Currently, there is no agreed standard formats of introspection response and JWT access token for Grant Management, and the discussion is a bit controversial. (cf. *"[FAPI ISSUE 455: Impact of grant_management_action=update on AT implementation and introspection](https://bitbucket.org/openid/fapi/issues/455)"*)
+How a resource server validates an access token which has inherited privileges through `grant_management_action=merge`. Currently, there is no agreed standard formats of introspection response and JWT access token for Grant Management, and the discussion is a bit controversial. (cf. [_"FAPI ISSUE 455: Impact of grant_management_action=update on AT implementation and introspection"_](https://bitbucket.org/openid/fapi/issues/455))
 
 ## Actual Example of Implementation
 
@@ -171,23 +168,23 @@ Grant Management is supported from Authlete 2.3. As feedback to the community, I
 
 The following are prior knowledge about Authlete’s access token implementation necessary to read the subsequent sections.
 
-1. The implementation type of access tokens is “handle”, not “self-contained” (typically JWT). By setting “Access Token Signature Algorithm”, you can make Authlete issue JWT access tokens (cf. *"[Enabling JWT-based access tokens](/kb/oauth-and-openid-connect/jwt-based-access-token)"*). However, for privacy and security reasons, Authlete’s JWT access tokens intentionally do not contain all data associated with them, and some portions of the data are stored only in the database of Authlete without being embedded in access tokens themselves. Read *"[Leakage of Personal Information via JWT Access Token](https://darutk.medium.com/leakage-of-personal-information-via-jwt-access-token-c222a3293898)"* and *"[OAuth Access Token Implementation](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0)"* for details.
+1. The implementation type of access tokens is “handle”, not “self-contained” (typically JWT). By setting “Access Token Signature Algorithm”, you can make Authlete issue JWT access tokens (cf. [_"Enabling JWT-based access tokens"_](/kb/oauth-and-openid-connect/jwt-based-access-token)). However, for privacy and security reasons, Authlete’s JWT access tokens intentionally do not contain all data associated with them, and some portions of the data are stored only in the database of Authlete without being embedded in access tokens themselves. Read [_"Leakage of Personal Information via JWT Access Token"_](https://darutk.medium.com/leakage-of-personal-information-via-jwt-access-token-c222a3293898) and [_"OAuth Access Token Implementation"_](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0) for details.
 1. When a refresh token flow ([RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html) / [Section 6](https://www.rfc-editor.org/rfc/rfc6749.html#section-6)) succeeds, the previous access token tied to the used refresh token is revoked even if it has not expired yet.
-1. It is configurable whether a new refresh token is issued when a refresh token flow succeeds or new one is not issued and the used refresh token remains valid (cf. *"[Refresh tokens after being used](/kb/oauth-and-openid-connect/refreshing-refresh-tokens)"*). When a new refresh token is issued, the used refresh token is revoked even if it has not expired yet.
+1. It is configurable whether a new refresh token is issued when a refresh token flow succeeds or new one is not issued and the used refresh token remains valid (cf. [_"Refresh tokens after being used"_](/kb/oauth-and-openid-connect/refreshing-refresh-tokens)). When a new refresh token is issued, the used refresh token is revoked even if it has not expired yet.
 1. The relationship between refresh token and access token is one-to-one. That is, the number of valid access tokens per refresh token is at most one, and vice versa.
-1. When a refresh token is deleted, the access token coupled with the refresh token is deleted. Likewise, when an access token is deleted, the refresh token coupled with the access token is deleted. Some people may get surprised at the latter behavior, but [Section 2.1](https://www.rfc-editor.org/rfc/rfc7009.html#section-2.1) of [RFC 7009 OAuth 2.0 Token Introspection](https://www.rfc-editor.org/rfc/rfc7009.html) states explicitly as follows: *“If the token passed to the request is an access token, the server MAY revoke the respective refresh token as well.”*
-  1. The behaviors of refresh tokens described above can be explained by the design decision made in the very early phase of Authlete: **a pair of access token and refresh token is managed in one database record in the access token table.**
-  1. An access token record is regarded as live (not expired) when either or both of access token and refresh token in the record have not expired.
+1. When a refresh token is deleted, the access token coupled with the refresh token is deleted. Likewise, when an access token is deleted, the refresh token coupled with the access token is deleted. Some people may get surprised at the latter behavior, but [Section 2.1](https://www.rfc-editor.org/rfc/rfc7009.html#section-2.1) of [RFC 7009 OAuth 2.0 Token Introspection](https://www.rfc-editor.org/rfc/rfc7009.html) states explicitly as follows: _“If the token passed to the request is an access token, the server MAY revoke the respective refresh token as well.”_
+1. The behaviors of refresh tokens described above can be explained by the design decision made in the very early phase of Authlete: **a pair of access token and refresh token is managed in one database record in the access token table.**
+1. An access token record is regarded as live (not expired) when either or both of access token and refresh token in the record have not expired.
 
-The implementation type of access tokens is “handle”, not “self-contained” (typically JWT). By setting “Access Token Signature Algorithm”, you can make Authlete issue JWT access tokens (cf. *"[Enabling JWT-based access tokens](/kb/oauth-and-openid-connect/jwt-based-access-token)"*). However, for privacy and security reasons, Authlete’s JWT access tokens intentionally do not contain all data associated with them, and some portions of the data are stored only in the database of Authlete without being embedded in access tokens themselves. Read *"[Leakage of Personal Information via JWT Access Token](https://darutk.medium.com/leakage-of-personal-information-via-jwt-access-token-c222a3293898)"* and *"[OAuth Access Token Implementation](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0)"* for details.
+The implementation type of access tokens is “handle”, not “self-contained” (typically JWT). By setting “Access Token Signature Algorithm”, you can make Authlete issue JWT access tokens (cf. [_"Enabling JWT-based access tokens"_](/kb/oauth-and-openid-connect/jwt-based-access-token)). However, for privacy and security reasons, Authlete’s JWT access tokens intentionally do not contain all data associated with them, and some portions of the data are stored only in the database of Authlete without being embedded in access tokens themselves. Read [_"Leakage of Personal Information via JWT Access Token"_](https://darutk.medium.com/leakage-of-personal-information-via-jwt-access-token-c222a3293898) and [_"OAuth Access Token Implementation"_](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0) for details.
 
 When a refresh token flow ([RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html) / [Section 6](https://www.rfc-editor.org/rfc/rfc6749.html#section-6)) succeeds, the previous access token tied to the used refresh token is revoked even if it has not expired yet.
 
-It is configurable whether a new refresh token is issued when a refresh token flow succeeds or new one is not issued and the used refresh token remains valid (cf. *"[Refresh tokens after being used](/kb/oauth-and-openid-connect/refreshing-refresh-tokens)"*). When a new refresh token is issued, the used refresh token is revoked even if it has not expired yet.
+It is configurable whether a new refresh token is issued when a refresh token flow succeeds or new one is not issued and the used refresh token remains valid (cf. [_"Refresh tokens after being used"_](/kb/oauth-and-openid-connect/refreshing-refresh-tokens)). When a new refresh token is issued, the used refresh token is revoked even if it has not expired yet.
 
 The relationship between refresh token and access token is one-to-one. That is, the number of valid access tokens per refresh token is at most one, and vice versa.
 
-When a refresh token is deleted, the access token coupled with the refresh token is deleted. Likewise, when an access token is deleted, the refresh token coupled with the access token is deleted. Some people may get surprised at the latter behavior, but [Section 2.1](https://www.rfc-editor.org/rfc/rfc7009.html#section-2.1) of [RFC 7009 OAuth 2.0 Token Introspection](https://www.rfc-editor.org/rfc/rfc7009.html) states explicitly as follows: *“If the token passed to the request is an access token, the server MAY revoke the respective refresh token as well.”*
+When a refresh token is deleted, the access token coupled with the refresh token is deleted. Likewise, when an access token is deleted, the refresh token coupled with the access token is deleted. Some people may get surprised at the latter behavior, but [Section 2.1](https://www.rfc-editor.org/rfc/rfc7009.html#section-2.1) of [RFC 7009 OAuth 2.0 Token Introspection](https://www.rfc-editor.org/rfc/rfc7009.html) states explicitly as follows: _“If the token passed to the request is an access token, the server MAY revoke the respective refresh token as well.”_
 
 The behaviors of refresh tokens described above can be explained by the design decision made in the very early phase of Authlete: **a pair of access token and refresh token is managed in one database record in the access token table.**
 
@@ -207,9 +204,9 @@ Authorization server implementations may choose to create a new database table t
 
 In Authlete, a token response contains a grant ID only when the preceding authorization request (or backchannel authentication request or device authorization request) contains the `grant_management_action` request parameter although [Section 5.4 Token Response](https://openid.net/specs/fapi-grant-management.html#name-token-response) of the first Implementer’s Draft says “The AS will return a `grant_id` if it supports any of the grant management actions”.
 
-The description in the specification results in that it requires the authorization server always issue a grant ID unconditionally once it supports Grant Management. However, it is meaningless to issue a grant ID to public clients which are not allowed to use grant management ([Section 5.1](https://openid.net/specs/fapi-grant-management.html#name-requirements-for-authorizat)). I’m suggesting changing the description in *"[FAPI ISSUE 455: Condition for a token response to include a grant_id](https://bitbucket.org/openid/fapi/issues/445)"*
+The description in the specification results in that it requires the authorization server always issue a grant ID unconditionally once it supports Grant Management. However, it is meaningless to issue a grant ID to public clients which are not allowed to use grant management ([Section 5.1](https://openid.net/specs/fapi-grant-management.html#name-requirements-for-authorizat)). I’m suggesting changing the description in [_"FAPI ISSUE 455: Condition for a token response to include a grant_id"_](https://bitbucket.org/openid/fapi/issues/445)
 
-Authlete does not issue a grant ID from the authorization endpoint even when an authorization request includes the `grant_management_action` request parameter and an access token is issued from the authorization endpoint because it was confirmed that the authors of the specification has intentionally excluded the case from the specification. I’m suggesting mentioning it explicitly in the specification in *"[FAPI ISSUE 453: Grant ID from Authorization Endpoint](https://bitbucket.org/openid/fapi/issues/453)"*.
+Authlete does not issue a grant ID from the authorization endpoint even when an authorization request includes the `grant_management_action` request parameter and an access token is issued from the authorization endpoint because it was confirmed that the authors of the specification has intentionally excluded the case from the specification. I’m suggesting mentioning it explicitly in the specification in [_"FAPI ISSUE 453: Grant ID from Authorization Endpoint"_](https://bitbucket.org/openid/fapi/issues/453).
 
 On the other hand, Authlete includes a grant ID in a CIBA push notification when a backchannel authentication request includes the `grant_management_action` request parameter and the client is configured to use the CIBA PUSH mode. However, I’ve not suggested registering the `grant_id` parameter for CIBA push notifications yet. In any case, because the [FAPI-CIBA Profile](https://openid.net/specs/openid-financial-api-ciba.html) prohibits use of the CIBA PUSH mode, the [FAPI WG](https://openid.net/wg/fapi/) won’t show any interest in this.
 
@@ -227,11 +224,11 @@ The content of the `grant` column is a snapshot of privileges that existed at th
 
 Values of the server metadata related to Grant Management are determined as the table below describes.
 
-| Metadata | Value |
-| --- | --- |
+| Metadata                           | Value                                                                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | grant_management_actions_supported | When the grant management endpoint is set, [create, query, replace, revoke, merge]. Otherwise, [create, replace, merge]. |
-| grant_management_endpoint | Configurable at “Grant Management Endpoint” in the web console. |
-| grant_management_action_required | Configurable at “Grant Management Action Required” in the web console. |
+| grant_management_endpoint          | Configurable at “Grant Management Endpoint” in the web console.                                                          |
+| grant_management_action_required   | Configurable at “Grant Management Action Required” in the web console.                                                   |
 
 ![](https://storage.googleapis.com/authlete-website/img/developers/grant_management/grant-management-configuration.png)
 
@@ -239,7 +236,7 @@ Values of the server metadata related to Grant Management are determined as the 
 
 ### Different User
 
-A user is authenticated (if not yet) in an authorization process. It can happen that the authenticated user is different from the user of the grant specified by the `grant_id` request parameter. The specification does not describe how the authorization server should behave in the case. I created *"[FAPI 452: When the user being authenticated is different from the user of the grant](https://bitbucket.org/openid/fapi/issues/452)"* to discuss it, but the conclusion seems that it should be left to implementations.
+A user is authenticated (if not yet) in an authorization process. It can happen that the authenticated user is different from the user of the grant specified by the `grant_id` request parameter. The specification does not describe how the authorization server should behave in the case. I created [_"FAPI 452: When the user being authenticated is different from the user of the grant"_](https://bitbucket.org/openid/fapi/issues/452) to discuss it, but the conclusion seems that it should be left to implementations.
 
 When the authenticated user is different from the user of the grant, Authlete silently skips steps related to Grant Management without raising any error.
 
@@ -265,31 +262,31 @@ Entries in the `scopes` array are grouped by a set of resources. The entries are
 
 For example, when live access token records of a grant have the following privileges,
 
-| scope | resource |
-| --- | --- |
-| "X23 L23" | ["r2", "r3"] |
-| "X2  K2" | ["r2"        ] |
-| "X3  J3" | ["r3"        ] |
-| "X13 I13" | ["r1", "r3"] |
-| "X12 H12" | ["r1", "r2"] |
-| "X1  G1" | ["r1"        ] |
-| "X3  F3" | ["r3"        ] |
-| "X23 E23" | ["r2", "r3"] |
-| "X13 D13" | ["r1", "r3"] |
-| "X2  C2" | ["r2"        ] |
-| "X1  B1" | ["r1"        ] |
-| "X12 A12" | ["r1", "r2"] |
+| scope     | resource       |
+| --------- | -------------- |
+| "X23 L23" | ["r2", "r3"]   |
+| "X2  K2"  | ["r2"        ] |
+| "X3  J3"  | ["r3"        ] |
+| "X13 I13" | ["r1", "r3"]   |
+| "X12 H12" | ["r1", "r2"]   |
+| "X1  G1"  | ["r1"        ] |
+| "X3  F3"  | ["r3"        ] |
+| "X23 E23" | ["r2", "r3"]   |
+| "X13 D13" | ["r1", "r3"]   |
+| "X2  C2"  | ["r2"        ] |
+| "X1  B1"  | ["r1"        ] |
+| "X12 A12" | ["r1", "r2"]   |
 
 the collection will be compressed to the following.
 
-| scope | resource |
-| --- | --- |
-| "B1  G1  X1" | ["r1"         ] |
-| "A12 H12 X12" | ["r1", "r2" ] |
-| "D13 I13 X13" | ["r1", "r3" ] |
-| "C2  K2  X2" | ["r2"         ] |
-| "E23 L23 X23" | ["r2", "r3" ] |
-| "F3  J3  X3" | ["r3"         ] |
+| scope         | resource        |
+| ------------- | --------------- |
+| "B1  G1  X1"  | ["r1"         ] |
+| "A12 H12 X12" | ["r1", "r2" ]   |
+| "D13 I13 X13" | ["r1", "r3" ]   |
+| "C2  K2  X2"  | ["r2"         ] |
+| "E23 L23 X23" | ["r2", "r3" ]   |
+| "F3  J3  X3"  | ["r3"         ] |
 
 As a result, the `scopes` array in the grant management response will look like below.
 
@@ -302,7 +299,6 @@ As a result, the `scopes` array in the grant management response will look like 
     
   ]
 }
-
 ```
 
 ```json
@@ -314,7 +310,6 @@ As a result, the `scopes` array in the grant management response will look like 
     
   ]
 }
-
 ```
 
 #### claims
@@ -324,26 +319,24 @@ Consented claims of live access token records of a grant are collected, duplicat
 For example, when live access token records of a grant have the following consented claims,
 
 | consented claims |
-| --- |
-| [ c3, c5 ] |
-| [ c1, c3 ] |
-| [ c2, c4, c5 ] |
+| ---------------- |
+| [ c3, c5 ]       |
+| [ c1, c3 ]       |
+| [ c2, c4, c5 ]   |
 
 the collection will be compressed to the following.
 
-| consented claims |
-| --- |
+| consented claims       |
+| ---------------------- |
 | [ c1, c2, c3, c4, c5 ] |
 
 As a result, the `claims` array in the grant management response will look like below.
 
 ```json
 
-
 ```
 
 ```json
-
 
 ```
 
@@ -363,7 +356,6 @@ Duplicates in the `authorization_details` array are removed. Authlete detects du
     \`}
   ]
 }
-
 ```
 
 ```json
@@ -378,7 +370,6 @@ Duplicates in the `authorization_details` array are removed. Authlete detects du
     \`}
   ]
 }
-
 ```
 
 ### Access Token Introspection
@@ -387,7 +378,7 @@ As mentioned previously, in order to prevent scopes from being coupled with unin
 
 An access token inherits such scope-resource clusters through the `merge` operation. If so, it is necessary to extend the formats of introspection response ([RFC 7662](https://www.rfc-editor.org/rfc/rfc7662.html)) and JWT access token ([RFC 9068](https://www.rfc-editor.org/rfc/rfc9068.html)). It is because otherwise protected resource endpoints cannot validate access tokens properly.
 
-To discuss the issue, I created *"[FAPI ISSUE 455: Impact of grant_management_action=update on AT implementation and introspection](https://bitbucket.org/openid/fapi/issues/455)"* and wrote an article *"[Complexity of Access Token Privileges Introduced by Grant Management](https://darutk.medium.com/complexity-of-access-token-privileges-introduced-by-grant-management-ec527b5c6d6a)"* that articulates discussion points.
+To discuss the issue, I created [_"FAPI ISSUE 455: Impact of grant_management_action=update on AT implementation and introspection"_](https://bitbucket.org/openid/fapi/issues/455) and wrote an article [_"Complexity of Access Token Privileges Introduced by Grant Management"_](https://darutk.medium.com/complexity-of-access-token-privileges-introduced-by-grant-management-ec527b5c6d6a) that articulates discussion points.
 
 However, it was much harder to reach a consensus than I expected😅. As of this writing, it seems unrealistic for the community to agree on a solution for the issue in a short period.
 
@@ -395,31 +386,31 @@ Fortunately, Authlete provides developers with its own introspection API (`/api/
 
 1. Developers can make the introspection API perform complex validation for certificate binding ([RFC 8705](https://www.rfc-editor.org/rfc/rfc8705.html)), [DPoP](https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/), resources ([RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)), scopes ([RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html)) and subject of resource owner.
 1. In error cases, the introspection API prepares an error message that conforms to [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750.html) so that protected resource endpoints can conform to the specification easily.
-1. Developers can tie arbitrary key-value pairs to an access token by using Authlete’s “Extra Properties” feature (cf. *"[How to add extra properties to an access token](/kb/oauth-and-openid-connect/extra-properties)"*). A response from the introspection API includes the key-value pairs.
+1. Developers can tie arbitrary key-value pairs to an access token by using Authlete’s “Extra Properties” feature (cf. [_"How to add extra properties to an access token"_](/kb/oauth-and-openid-connect/extra-properties)). A response from the introspection API includes the key-value pairs.
 
 Developers can make the introspection API perform complex validation for certificate binding ([RFC 8705](https://www.rfc-editor.org/rfc/rfc8705.html)), [DPoP](https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/), resources ([RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)), scopes ([RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html)) and subject of resource owner.
 
 In error cases, the introspection API prepares an error message that conforms to [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750.html) so that protected resource endpoints can conform to the specification easily.
 
-Developers can tie arbitrary key-value pairs to an access token by using Authlete’s “Extra Properties” feature (cf. *"[How to add extra properties to an access token](/kb/oauth-and-openid-connect/extra-properties)"*). A response from the introspection API includes the key-value pairs.
+Developers can tie arbitrary key-value pairs to an access token by using Authlete’s “Extra Properties” feature (cf. [_"How to add extra properties to an access token"_](/kb/oauth-and-openid-connect/extra-properties)). A response from the introspection API includes the key-value pairs.
 
 Authlete has enhanced the introspection API for Grant Management.
 
 First, new response parameters, `grantId` and `grant`, have been added.
 
-| Parameter | Description |
-| --- | --- |
-| grantId | The grant ID tied to the access token. The parameter holds a non-null value if the authorization request for the access token included grant_management_action. |
-| grant | The inherited privileges. The parameter holds a non-null value if the authorization request for the access token included grant_management_action=merge. The Grant Java class represents the format of the value. |
+| Parameter | Description                                                                                                                                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| grantId   | The grant ID tied to the access token. The parameter holds a non-null value if the authorization request for the access token included grant_management_action.                                                   |
+| grant     | The inherited privileges. The parameter holds a non-null value if the authorization request for the access token included grant_management_action=merge. The Grant Java class represents the format of the value. |
 
 Second, the introspection API now recognizes a new request parameter, `resources`. And, validation logic for `scopes` and `resources` was rewritten from scratch and now behaves as the following table explains.
 
-| scopes | resources | Behavior |
-| --- | --- | --- |
-| not given | not given | Not perform any validation on scopes and resources. |
-| given | not given | Check whether all the specified scopes are covered by the access token. The inclusion check is performed per scope-resource cluster. For example, if an access token holds two clusters which are "scope":"s1" and "scope":"s2" respectively and the value of the scopes request parameter is [s1, s2], the validation fails. For backward compatibility, resources of scope-resource clusters are not taken into consideration. |
-| not given | given | Check whether all the specified resources are covered by the access token. The inclusion check is performed per scope-resource cluster. For example, if an access token holds two clusters which are "resource":["r1"] and "resource":["r2"] respectively and the value of the resources request parameter is [r1, r2], the validation fails. Scopes of scope-resource clusters are not taken into consideration. |
-| given | given | Check whether all the specified scopes and resources are covered by the access token. The inclusion check is performed per scope-resource cluster. |
+| scopes    | resources | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| not given | not given | Not perform any validation on scopes and resources.                                                                                                                                                                                                                                                                                                                                                                              |
+| given     | not given | Check whether all the specified scopes are covered by the access token. The inclusion check is performed per scope-resource cluster. For example, if an access token holds two clusters which are "scope":"s1" and "scope":"s2" respectively and the value of the scopes request parameter is [s1, s2], the validation fails. For backward compatibility, resources of scope-resource clusters are not taken into consideration. |
+| not given | given     | Check whether all the specified resources are covered by the access token. The inclusion check is performed per scope-resource cluster. For example, if an access token holds two clusters which are "resource":["r1"] and "resource":["r2"] respectively and the value of the resources request parameter is [r1, r2], the validation fails. Scopes of scope-resource clusters are not taken into consideration.                |
+| given     | given     | Check whether all the specified scopes and resources are covered by the access token. The inclusion check is performed per scope-resource cluster.                                                                                                                                                                                                                                                                               |
 
 ### Grant Management Endpoint Implementation
 
@@ -431,19 +422,18 @@ A new API, `/api/gm`, has been added. Developers can implement the grant managem
 
 The table below lists the request parameters of the `/api/gm` API. See the JavaDoc of the `[GMRequest](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/GMRequest.html)` class for details.
 
-| Parameter | Necessity | Description |
-| --- | --- | --- |
-| gmAction | REQUIRED | QUERY or REVOKE |
-| grantId | REQUIRED | Grant ID |
-| accessToken | REQUIRED | Access token |
-| clientCertificate | OPTIONAL | [RFC 8705] Client certificate in the mutual TLS connection |
-| dpop | OPTIONAL | [DPoP] DPoP proof JWT |
-| htm | OPTIONAL | [DPoP] HTTP method (Authlete can compute the default from gmAction) |
-| htu | OPTIONAL | [DPoP] The URL of the endpoint (Authlete can compute the default from Service.grantManagementEndpoint and grantId) |
+| Parameter         | Necessity | Description                                                                                                        |
+| ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------ |
+| gmAction          | REQUIRED  | QUERY or REVOKE                                                                                                    |
+| grantId           | REQUIRED  | Grant ID                                                                                                           |
+| accessToken       | REQUIRED  | Access token                                                                                                       |
+| clientCertificate | OPTIONAL  | [RFC 8705] Client certificate in the mutual TLS connection                                                         |
+| dpop              | OPTIONAL  | [DPoP] DPoP proof JWT                                                                                              |
+| htm               | OPTIONAL  | [DPoP] HTTP method (Authlete can compute the default from gmAction)                                                |
+| htu               | OPTIONAL  | [DPoP] The URL of the endpoint (Authlete can compute the default from Service.grantManagementEndpoint and grantId) |
 
 # Finally
 
 Grant Management for OAuth 2.0 is supported from Authlete 2.3. The version is not deployed on the shared server (`api.authlete.com`) as of this writing. Please [contact us](/contact/) for early access to Authlete 2.3.
 
-*November 9, 2021*
-  *Responsibility for the wording and content of this article: Takahiko Kawasaki*
+_November 9, 2021_ _Responsibility for the wording and content of this article: Takahiko Kawasaki_
