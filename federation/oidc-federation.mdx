@@ -1,328 +1,138 @@
 ---
-title: 'OpenID Federation 1.0'
+title: 'OpenID Federation 1.0 - Authlete'
 description: 'Explanation about OpenID Federation 1.0 and how Authlete supports the specification.'
 ---
 
+# OpenID Federation 1.0
+1. [Home](http://localhost:1314/)
+3. OpenID Federation 1.0
 <Info>
-This page is for Authlete 2.x. For 3.0, refer to this page.
+This page is for Authlete 3.0. For 2.x, refer to [this page](/v2/oidcfed).
 </Info>
-
 # Introduction
-
-This document explains **[OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html)**.
-
+This document explains [OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html).
 | Revision History |
 | --- |
 | Date | Changes |
 | 2023-01-01 | The initial version was published. |
 | 2024-08-03 | Since the specification name was changed from OpenID Connect Federation 1.0
-          to OpenID Federation 1.0, the text and diagrams have been updated accordingly.
-        
-          The "Introduction" section was added to include this "Revision History". |
-
-- The initial version was published.
-
-- Since the specification name was changed from OpenID Connect Federation 1.0
-          to OpenID Federation 1.0, the text and diagrams have been updated accordingly.
-
-          The "Introduction" section was added to include this "Revision History".
-
+to OpenID Federation 1.0, the text and diagrams have been updated accordingly.
+The "Introduction" section was added to include this "Revision History". |
 # Overview
-
-**[OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html)** defines a mechanism where an **identity provider** / **authorization server** and a **relying party** (**client**) that have no direct relationship trust each other based on **trust chains** and the identity provider accepts OAuth/OIDC requests from the relying party without needing prior registration of the relying party.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_01.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_01.png)
-
+[OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html) defines a mechanism where an identity provider / authorization server and a relying party (client) that have no direct relationship trust each other based on trust chains and the identity provider accepts OAuth/OIDC requests from the relying party without needing prior registration of the relying party.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_01.png)](/oidcfed)
 Trust chains are uni-directional. Therefore, two trust chains are built when an identity provider and a relying party trust each other. One is a trust chain for the relying party to trust the identity provider.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_02.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_02.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_02.png)](/oidcfed)
 The other is a trust chain for the identity provider to trust the relying party.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_03.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_03.png)
-
-A trust chain is built by third-party **authorities**. An authority that works as the origin of a trust chain is called “**trust anchor**” and other authorities in between the trust anchor and the target **leaf entity** (an identity provider or a relying party) are called **intermediate authority**. Trust anchors and intermediate authorities are conceptually equivalent to **root certificate authority** (Root CA) and **intermediate certificate authority** (Intermediate CA) in the **[Public Key Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure)** (PKI).
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_04.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_04.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_03.png)](/oidcfed)
+A trust chain is built by third-party authorities. An authority that works as the origin of a trust chain is called “trust anchor” and other authorities in between the trust anchor and the target leaf entity (an identity provider or a relying party) are called intermediate authority. Trust anchors and intermediate authorities are conceptually equivalent to root certificate authority (Root CA) and intermediate certificate authority (Intermediate CA) in the [Public Key Infrastructure](https://en.wikipedia.org/wiki/Public_key_infrastructure) (PKI).
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_04.png)](/oidcfed)
 A relying party trusts one or more trust anchors. If any of the trust anchors has a path to the target identity provider, the relying party can trust the identity provider.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_05.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_05.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_05.png)](/oidcfed)
 Likewise, an identity provider trusts one or more trust anchors. If any of the trust anchors has a path to the target relying party, the identity provider can trust the relying party.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_06.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_06.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_06.png)](/oidcfed)
 The diagram below illustrates an overview of OpenID Federation 1.0 that has been explained in this section.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview.png)](/oidcfed)
 # Trust Chain
-
-Technically speaking, a trust chain is a sequence of **JWT**s ([RFC 7519 JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)) that are issued by a leaf entity, zero or more intermediate authorities, and a trust anchor.
-
+Technically speaking, a trust chain is a sequence of JWTs ([RFC 7519 JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)) that are issued by a leaf entity, zero or more intermediate authorities, and a trust anchor.
 ## JWT Issued by Leaf Entity
-
 A leaf entity issues a JWT that is signed by the leaf entity’s private key.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_01.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_01.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_01.png)](/oidcfed)
 The OpenID Federation specification requires that the payload part of the JWT issued by a leaf entity contain the public key corresponding to the private key which is used to sign the JWT. The `jwks` claim is used to include the public key.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_02.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_02.png)
-
-As a result, the JWT becomes a *self-signed* JWT. Therefore, both the `iss` claim (Issuer; [RFC 7519 Section 4.1.1](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.1)) and the `sub` claim (Subject; [RFC 7519 Section 4.1.2](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.2)) in the payload part of the JWT hold the leaf entity’s identifier.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_03.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_03.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_02.png)](/oidcfed)
+As a result, the JWT becomes a self-signed JWT. Therefore, both the `iss` claim (Issuer; [RFC 7519 Section 4.1.1](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.1)) and the `sub` claim (Subject; [RFC 7519 Section 4.1.2](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.2)) in the payload part of the JWT hold the leaf entity’s identifier.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_03.png)](/oidcfed)
 ## JWT Issued by Intermediate Authority
-
 An intermediate authority (or a trust anchor if no intermediate authority exists in a trust chain) that authorizes the leaf entity issues a JWT that is signed by the intermediate authority’s private key.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_04.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_04.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_04.png)](/oidcfed)
 The purpose of the JWT is to indicate that the intermediate authority authorizes the leaf entity. For the purpose, the `sub` claim holds the leaf entity’s identifier while the `iss` claim holds the intermediate authority’s identifier.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_05.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_05.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_05.png)](/oidcfed)
 In addition, the `jwks` claim holds the public key of the leaf entity.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_06.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_06.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_06.png)](/oidcfed)
 ## JWT Issued by Trust Anchor
-
 A trust chain is terminated by a JWT signed by a trust anchor’s private key.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_07.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_07.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_07.png)](/oidcfed)
 The JWT indicates that the trust anchor authorizes the last intermediate authority. The value of the `sub` claim is the last intermediate authority’s identifier and the value of the `iss` claim is the trust anchor’s identifier. If no intermediate authorities are involved, the trust anchor issues a JWT that directly authorizes the leaf entity. In that case, the `sub` claim holds the leaf entity’s identifier.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_08.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_08.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_08.png)](/oidcfed)
 The JWT issued by the trust anchor contains the public key of the last intermediate authority.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_09.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_09.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_09.png)](/oidcfed)
 A trust chain may optionally have one more JWT that is self-signed by the trust anchor at the end.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_10.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_10.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_10.png)](/oidcfed)
 As it is a self-signed JWT, both the `iss` claim and the `sub` claim hold the trust anchor’s identifier.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_11.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_11.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_11.png)](/oidcfed)
 ## Trust Chain Summary
-
 The following diagram depicts the entire trust chain.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc.png)](/oidcfed)
 # Trust Chain Resolution
-
 ## Entity Configuration
-
 The resolution process of a trust chain starts from getting the self-signed JWT of a leaf entity.
-
 The location of the self-signed JWT is defined in the OpenID Federation specification. It is a URL constructed by concatenating the leaf entity’s identifier and the fixed string `"/.well-known/openid-federation"`.
-
 ```
 Leaf Entity's Identifier + /.well-known/openid-federation
-
-```
-
-If you know the specifications of [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html) and [RFC 8414 OAuth 2.0 Authorization Server Metadata](https://www.rfc-editor.org/rfc/rfc8414.html), you will guess that the leaf entity’s identifier is a URL that starts with `http://` or `https://`. Your guess is correct.
-
-Participants of a federation, i.e., identity providers, relying parties, intermediate authorities and trust anchors, are called “**federation entity**”. Each federation entity has a globally unique identifier. The identifier is called “**entity ID**”. And, entity IDs must be URLs whose scheme part is either `http` or `https`. It is expected that Web servers are running on hosts identified by the URLs so that federation entities can issue JWTs that are necessary to build trust chains.
-
+```If you are familiar with the specifications of [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html) and [RFC 8414 OAuth 2.0 Authorization Server Metadata](https://www.rfc-editor.org/rfc/rfc8414.html), you will guess that the leaf entity’s identifier is a URL that starts with `http://` or `https://`. Your guess is correct.
+Participants of a federation, i.e., identity providers, relying parties, intermediate authorities and trust anchors, are called “federation entity”. Each federation entity has a globally unique identifier. The identifier is called “entity ID”. And, entity IDs must be URLs whose scheme part is either `http` or `https`. It is expected that Web servers are running on hosts identified by the URLs so that federation entities can issue JWTs that are necessary to build trust chains.
 For instance, when the entity ID of a relying party is `https://rp.example.com/123`, the self-signed JWT of the relying party is expected to be published at the following URL.
-
 ```
 https://rp.example.com/123/.well-known/openid-federation
-
-```
-
-In general, self-signed JWTs of federation entities that are published at their respective `/.well-known/openid-federation` are called “**entity configuration**”.
-
+```In general, self-signed JWTs of federation entities that are published at their respective `/.well-known/openid-federation` are called “entity configuration”.
 ## Authority Hints
-
 The payload part of an entity configuration contains the `authority_hints` claim. It is a JSON array listing entity IDs of intermediate authorities and/or trust anchors that can issue a JWT indicating that the authority authorizes the federation entity of the entity configuration.
-
 For example, when a relying party whose entity ID is `https://rp.example.com/123` has a direct intermediate authority whose entity ID is `https://ia.example.com`, the `authority_hints` claim in the entity configuration of the relying party contains `https://ia.example.com`.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_01.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_01.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_01.png)](/oidcfed)
 Likewise, if the intermediate authority has a trust anchor whose entity ID is `https://ta.example.com` as a direct authority, the `authority_hints` claim in the entity configuration of the intermediate authority contains `https://ta.example.com`.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_02.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_02.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_02.png)](/oidcfed)
 On the other hand, because a trust anchor has no upper authority by definition, the entity configuration of a trust anchor does not include the `authority_hints` claim.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_03.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_03.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_ah_03.png)](/oidcfed)
 ## Federation Fetch Endpoint
-
 The next step after getting the entity configuration of a leaf entity is to get a JWT from the direct authority of the leaf entity that indicates that the authority authorizes the leaf entity.
-
-Authorities are supposed to provide an endpoint that issues JWTs for the purpose. The endpoint is called “**federation fetch endpoint**”. The table below is a summary of the specification of the endpoint.
-
+Authorities are supposed to provide an endpoint that issues JWTs for the purpose. The endpoint is called “federation fetch endpoint”. The table below is a summary of the specification of the endpoint.
 | Request |
 | --- |
 | HTTP Method | GET |
-| Parameters | iss | Optional | The entity ID of the issuer. |
-| sub | Optional | The entity ID of the subject. |
+| Parameters | `iss` | Optional | The entity ID of the issuer. |
+| `sub` | Optional | The entity ID of the subject. |
 | Response |
 | HTTP Status Code | 200 |
-| Content-Type | application/entity-statement+jwt |
-
+| Content-Type | `application/entity-statement+jwt` |
 For example, when an intermediate authority `https://ia.example.com` provides its federation fetch endpoint at `https://ia.example.com/fetch`, a JWT that indicates that the intermediate authority authorizes a federation entity `https://rp.example.com/123` can be obtained by making the following HTTP request.
-
 ```
 https://ia.example.com/fetch?sub=https://rp.example.com/123
-
-```
-
-The location of the federation fetch endpoint of an authority is written in its entity configuration. The `federation_fetch_endpoint` claim holds the URL of the endpoint, but the claim is put at a bit deep place. It is placed inside the `federation_entity` JSON object which is inside the `metadata` JSON object.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_fetch_endpoint.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_fetch_endpoint.png)
-
+```The location of the federation fetch endpoint of an authority is written in its entity configuration. The `federation_fetch_endpoint` claim holds the URL of the endpoint, but the claim is put at a bit deep place. It is placed inside the `federation_entity` JSON object which is inside the `metadata` JSON object.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_fetch_endpoint.png)](/oidcfed)
 The process of fetching JWTs from federation fetch endpoints is repeated until a JWT from a trust anchor is obtained. If the trust anchor is one of trusted ones, it means that a trust chain from the leaf entity to the trust anchor can be built. On the other hand, if the trust anchor is unknown, the trust chain cannot be used to trust the leaf entity. In this case, other paths need to be tried. To be concrete, other entries in the `authority_hints` claim need to be tried.
-
 ## Trust Chain Resolution Flow
-
 Let’s review the flow of trust chain resolution.
-
-**(1)** The first step is to get the entity configuration of a leaf entity.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_01.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_01.png)
-
-**(2)** The entity configuration contains the `authority_hints` claim. It is a JSON array listing entity IDs of intermediate authorities or trust anchors. Web servers of authorities can be identified by the entity IDs. In this example, an intermediate authority `https://ia.example.com` is included in the `authority_hints` claim.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_02.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_02.png)
-
-**(3)** The entity configuration of the intermediate authority is needed to know the URL of its federation fetch endpoint.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_03.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_03.png)
-
-**(4)** An HTTP request with the `sub` request parameter is sent to the federation fetch endpoint. In this example, the entity ID of the leaf entity (`https://rp.example.com/123`) is specified as the value of the `sub` request parameter.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_04.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_04.png)
-
-**(5)** The federation fetch endpoint returns a JWT that indicates that the intermediate authority authorizes the leaf entity.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_05.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_05.png)
-
-**(6)** The upper authorities of the intermediate authority are listed in the `authority_hints` claim in the entity configuration of the intermediate authority. In this example, a trust anchor `https://ta.example.com` is included in the `authority_hints` claim.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_06.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_06.png)
-
-**(7)** The entity configuration of the trust anchor is needed to know the URL of its federation fetch endpoint.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_07.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_07.png)
-
-**(8)** An HTTP request with the `sub` request parameter is sent to the federation fetch endpoint. In this example, the entity ID of the intermediate authority (`https://ia.example.com`) is specified as the value of the `sub` request parameter.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_08.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_08.png)
-
-**(9)** The federation fetch endpoint returns a JWT that indicates that the trust anchor authorizes the intermediate authority.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_09.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_09.png)
-
-**(10)** The entity configuration of the leaf entity and the JWTs issued from the federation fetch endpoints consist of a trust chain.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_10.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_10.png)
-
+(1) The first step is to get the entity configuration of a leaf entity.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_01.png)](/oidcfed)
+(2) The entity configuration contains the `authority_hints` claim. It is a JSON array listing entity IDs of intermediate authorities or trust anchors. Web servers of authorities can be identified by the entity IDs. In this example, an intermediate authority `https://ia.example.com` is included in the `authority_hints` claim.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_02.png)](/oidcfed)
+(3) The entity configuration of the intermediate authority is needed to know the URL of its federation fetch endpoint.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_03.png)](/oidcfed)
+(4) An HTTP request with the `sub` request parameter is sent to the federation fetch endpoint. In this example, the entity ID of the leaf entity (`https://rp.example.com/123`) is specified as the value of the `sub` request parameter.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_04.png)](/oidcfed)
+(5) The federation fetch endpoint returns a JWT that indicates that the intermediate authority authorizes the leaf entity.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_05.png)](/oidcfed)
+(6) The upper authorities of the intermediate authority are listed in the `authority_hints` claim in the entity configuration of the intermediate authority. In this example, a trust anchor `https://ta.example.com` is included in the `authority_hints` claim.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_06.png)](/oidcfed)
+(7) The entity configuration of the trust anchor is needed to know the URL of its federation fetch endpoint.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_07.png)](/oidcfed)
+(8) An HTTP request with the `sub` request parameter is sent to the federation fetch endpoint. In this example, the entity ID of the intermediate authority (`https://ia.example.com`) is specified as the value of the `sub` request parameter.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_08.png)](/oidcfed)
+(9) The federation fetch endpoint returns a JWT that indicates that the trust anchor authorizes the intermediate authority.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_09.png)](/oidcfed)
+(10) The entity configuration of the leaf entity and the JWTs issued from the federation fetch endpoints consist of a trust chain.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr_10.png)](/oidcfed)
 ## Trust Chain Resolution Summary
-
 The following diagram depicts the entire flow of trust chain resolution.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr.png)
-
-All the JWTs that appear in trust chain resolution are called “**entity statement**”. An entity configuration is a kind of entity statement.
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr.png)](/oidcfed)
+All the JWTs that appear in trust chain resolution are called “entity statement”. An entity configuration is a kind of entity statement.
 # Metadata
-
-An entity configuration contains **metadata** of the federation entity.
-
+An entity configuration contains metadata of the federation entity.
 ## Identity Provider Metadata
-
 Metadata of an identity provider are put in the `openid_provider` JSON object which is in the `metadata` JSON object.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_idp.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_idp.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_idp.png)](/oidcfed)
 Metadata that are defined in [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html), [RFC 8414 OAuth 2.0 Authorization Sever Metadata](https://www.rfc-editor.org/rfc/rfc8414.html) and other standard specifications may appear in the `openid_provider` JSON object.
-
 In addition, the OpenID Federation specification defines the following server metadata.
-
 - `client_registration_types_supported`
 - `organization_name`
 - `federation_registration_endpoint`
@@ -330,37 +140,19 @@ In addition, the OpenID Federation specification defines the following server me
 - `request_authentication_signing_alg_values_supported`
 - `signed_jwks_uri`
 - `jwks`
-
 ## Relying Party Metadata
-
 Metadata of a relying party are put in the `openid_relying_party` JSON object which is in the `metadata` JSON object.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_rp.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_rp.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_rp.png)](/oidcfed)
 Metadata that are defined in [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html), [RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol](https://www.rfc-editor.org/rfc/rfc7591.html) and other standard specifications may appear in the `openid_relying_party` JSON object.
-
 In addition, the OpenID Federation specification defines the following client metadata.
-
 - `client_registration_types`
 - `organization_name`
 - `signed_jwks_uri`
-
 ## Authority Metadata
-
 Metadata of authorities (intermediate authorities and trust anchors) are put in the `federation_entity` JSON object which is in the `metadata` JSON object.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_ia.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_ia.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_ta.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_ta.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_ia.png)](/oidcfed)
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_md_ta.png)](/oidcfed)
 The OpenID Federation specification defines the following metadata for authorities.
-
 - `federation_fetch_endpoint`
 - `federation_list_endpoint`
 - `federation_resolve_endpoint`
@@ -370,520 +162,280 @@ The OpenID Federation specification defines the following metadata for authoriti
 - `logo_uri`
 - `policy_uri`
 - `homepage_uri`
-
 # Metadata Policy
-
 The entity configuration of the leaf entity in a trust chain includes metadata of the leaf entity. The `metadata` claim is used to hold the metadata.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_01.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_01.png)
-
-On the other hand, other JWTs in the trust chain issued by authorities may include **metadata policies** that are used to adjust the metadata of the leaf entity. The `metadata_policy` claim is used to hold the metadata policy.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_02.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_02.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_01.png)](/oidcfed)
+On the other hand, other JWTs in the trust chain issued by authorities may include metadata policies that are used to adjust the metadata of the leaf entity. The `metadata_policy` claim is used to hold the metadata policy.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_02.png)](/oidcfed)
 The metadata policies are combined before use.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_03.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_03.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_03.png)](/oidcfed)
 Then, the combined metadata policy is applied to the metadata of the leaf entity. Metadata used by a federation is the metadata after the adjustment.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_04.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_04.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_04.png)](/oidcfed)
 The following diagram depicts the flow of metadata policy application.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp.png)](/oidcfed)
 See the OpenID Federation specification for details about metadata policy.
-
 # Client Registration
-
 In a typical implementation of identity provider, identifiers of relying parties (clients) are under the management of the identity provider. The identifiers are unique only in the realm of the identity provider. On the other hand, in the OpenID Federation world, every federation entity has a globally unique identifier.
-
-An interesting characteristic of OpenID Federation is that the globally unique identifiers, i.e., **entity IDs, can be used as a client ID in OAuth/OIDC requests**. For example, an authorization request like below can be made. The point to pay attention to in the example is that the value of the `client_id` request parameter is the entity ID of the relying party.
-
+An interesting characteristic of OpenID Federation is that the globally unique identifiers, i.e., entity IDs, can be used as a client ID in OAuth/OIDC requests. For example, an authorization request like below can be made. The point to pay attention to in the example is that the value of the `client_id` request parameter is the entity ID of the relying party.
 ```
 https://idp.example.com/authorize?request_uri=...&client_id=https://rp.example.com/123
-
-```
-
-## Automatic Client Registration
-
+```## Automatic Client Registration
 When the client ID in an OAuth/OIDC request is unknown but looks like an entity ID, an identity provider that supports OpenID Federation tries to find a trust chain that starts from the entity ID and ends with one of trust anchors that the identity provider trusts.
-
 If such a trust chain is found, the identity provider automatically registers a new client with the entity ID and metadata and continues to process the OAuth/OIDC request.
-
-The discovery document ([OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html)) of an identity provider that supports **automatic client registration** includes `automatic` in the `client_registration_types_supported` server metadata. Note that the OpenID Federation specification defines the `client_registration_types_supported` server metadata as mandatory.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_supported_automatic.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_supported_automatic.png)
-
+The discovery document ([OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html)) of an identity provider that supports automatic client registration includes `automatic` in the `client_registration_types_supported` server metadata. Note that the OpenID Federation specification defines the `client_registration_types_supported` server metadata as mandatory.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_supported_automatic.png)](/oidcfed)
 Also, the `client_registration_types` client metadata of the client being automatically registered must include `automatic`. Note that the OpenID Federation specification defines the `client_registration_types` client metadata as mandatory.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_automatic.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_automatic.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_automatic.png)](/oidcfed)
 ## Request Authentication
-
-When an OAuth/OIDC request triggers automatic client registration, the request needs to be authenticated in some way or other. The OpenID Federation specification requires the requester to prove that it has a private key that is paired with a public key in the request. The specification lists the following as available **request authentication methods**.
-
+When an OAuth/OIDC request triggers automatic client registration, the request needs to be authenticated in some way or other. The OpenID Federation specification requires the requester to prove that it has a private key that is paired with a public key in the request. The specification lists the following as available request authentication methods.
 1. `request_object` - Request object signed with an asymmetric algorithm.
-1. `private_key_jwt` - Client authentication using client assertion.
-1. `tls_client_auth` - Client authentication using X.509 certificate.
-1. `self_signed_tls_client_auth` - Client authentication using X.509 certificate.
-
+2. `private_key_jwt` - Client authentication using client assertion.
+3. `tls_client_auth` - Client authentication using X.509 certificate.
+4. `self_signed_tls_client_auth` - Client authentication using X.509 certificate.
+References:
 - Request Object — [Implementer's note about JAR (JWT-Secured Authorization Request)](https://medium.com/@darutk/implementers-note-about-jar-fff4cbd158fe)
 Client Authentication — [OAuth 2.0 Client Authentication](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4)
 X.509 Certificate — [Illustrated X.509 Certificate](https://medium.com/@darutk/illustrated-x-509-certificate-84aece2c5c2e)
-
 Automatic client registration may happen at various endpoints, but available request authentication methods vary depending on characteristics of respective endpoints.
-
 For example, request authentication methods based on client authentication are not usable at the authorization endpoint because client authentication is not performed at the authorization endpoint. Likewise, the request authentication method using a request object is not usable at the token endpoint because the token endpoint recognizes neither the `request` request parameter nor the `request_uri` request parameter.
-
 The following table shows availability of request authentication methods per endpoint.
-
 | Endpoint | Request Authentication Methods |
 | --- | --- |
-| request_object | private_key_jwt | tls_client_auth | self_signed_tls_client_auth |
+| `request_object` | `private_key_jwt` | `tls_client_auth` | `self_signed_tls_client_auth` |
 | Authorization | ✓ | N/A | N/A | N/A |
 | Token | N/A | ✓ | ✓ | ✓ |
 | PAR | ✓ | ✓ | ✓ | ✓ |
 | Backchannel Authentication | ✓ | ✓ | ✓ | ✓ |
 | Device Authorization | N/A | ✓ | ✓ | ✓ |
-
+References:
 - Authorization Endpoint — [The OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749.html)
 Token Endpoint — [The OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749.html)
 PAR Endpoint — [RFC 9126 OAuth 2.0 Pushed Authorization Requests](https://www.rfc-editor.org/rfc/rfc9126.html)
 Backchannel Authentication Endpoint — [OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html)
 Device Authorization Endpoint — [RFC 8628 OAuth 2.0 Device Authorization Grant](https://www.rfc-editor.org/rfc/rfc8628.html)
-
 The discovery document of an identity provider that supports automatic client registration is supposed to include the `request_authentication_methods_supported` server metadata that indicates which request authentication methods are supported at which endpoints.
-
 The value of the server metadata is a JSON object. Property names that appear in the JSON object are endpoint names such as `authorization_endpoint`. A property value is a JSON array listing request authentication methods available at the corresponding endpoint.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_request_authentication_methods_supported.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_request_authentication_methods_supported.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_request_authentication_methods_supported.png)](/oidcfed)
 ## Explicit Client Registration
-
-In addition to automatic client registration, the OpenID Federation specification defines a way to register a client explicitly. The mechanism is called “**explicit client registration**”. It is similar to **dynamic client registration** defined in [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html) and [RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol](https://www.rfc-editor.org/rfc/rfc7591.html).
-
-An identity provider that supports explicit client registration has the **federation registration endpoint** that accepts explicit client registration requests.
-
+In addition to automatic client registration, the OpenID Federation specification defines a way to register a client explicitly. The mechanism is called “explicit client registration”. It is similar to dynamic client registration defined in [OpenID Connect Dynamic Client Registration 1.0](https://openid.net/specs/openid-connect-registration-1_0.html) and [RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol](https://www.rfc-editor.org/rfc/rfc7591.html).
+An identity provider that supports explicit client registration has the federation registration endpoint that accepts explicit client registration requests.
 Input data to the federation registration endpoint is either of the following.
-
-1. **Entity configuration**. Its Content-Type is `application/entity-statement+jwt`.
-1. **Trust chain**, a JSON array listing entity statements. Its Content-Type is `application/trust-chain+json`.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_explicit_registration_request.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_explicit_registration_request.png)
-
+1. Entity configuration. Its Content-Type is `application/entity-statement+jwt`.
+2. Trust chain, a JSON array listing entity statements. Its Content-Type is `application/trust-chain+json`.
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_explicit_registration_request.png)](/oidcfed)
 When client registration succeeds, the federation registration endpoint returns an entity statement as a response. A distinctive point of the response is the inclusion of the `trust_anchor_id` claim. The value of the claim denotes the entity ID of the trust anchor that has been selected for the client registration.
-
 The value of the `client_id` client metadata in the response is the client ID assigned to the relying party by the identity provider. The value may be different from the entity ID.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_explicit_registration_response.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_explicit_registration_response.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_explicit_registration_response.png)](/oidcfed)
 The discovery document of an identity provider that supports explicit client registration includes `explicit` in the `client_registration_types_supported` server metadata and advertises the URL of the federation registration endpoint by the `federation_registration_endpoint` server metadata.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_server_metadata_for_explicit.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_server_metadata_for_explicit.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_server_metadata_for_explicit.png)](/oidcfed)
 Also, the `client_registration_types` client metadata of the client being explicitly registered must include `explicit`.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_explicit.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_explicit.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_client_registration_types_explicit.png)](/oidcfed)
 ## Automatic Client Update
-
 All entity statements in a trust chain include the `exp` claim (Expiration Time; [RFC 7519 Section 4.1.4](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.4)) as the OpenID Federation specification requires so. The minimum value among the `exp` claims is regarded as the expiration time of the trust chain.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_exp.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_exp.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc_exp.png)](/oidcfed)
 The OpenID Federation specification expects that identity providers treat the expiration time of the trust chain as the expiration time of the client which was registered based on the trust chain.
-
 When an identity provider detects that the trust chain of a client has expired, it tries to refresh the trust chain and update metadata of the client accordingly.
-
-## The trust_chain Request Parameter
-
+Authlete performs the automatic update only for clients whose `client_registration_types` client metadata includes `automatic`.
+## The `trust_chain` Request Parameter
 An OAuth/OIDC request may contain the `trust_chain` request parameter. The identity provider may use the trust chain specified by the request parameter to update metadata of the client or register the client if it has not been registered yet.
-
+Authlete does not reference the `trust_chain` request parameter for registration.
+Authlete references the request parameter only for update.
 # Authlete Implementation
-
 ## Version
-
-OpenID Federation 1.0 is supported by Authlete 2.3 and newer versions.
-
-Because the specification is still being updated actively, new features may be added and breaking changes may be made in the future. Authlete will follow the changes accordingly.
-
+OpenID Federation 1.0 is supported in Authlete 2.3 and later versions.
+As the specification is actively evolving, new features may be introduced, and breaking changes may occur in the future. Authlete will continue to align with these updates as they are released.
 ## Feature Availability
-
 To enable the feature of OpenID Federation 1.0, the following conditions must be satisfied. Otherwise, the Authlete Server would behave as if it didn’t know the specification at all.
-
 1. Authlete Server must be deployed with `feature.oidc_federation.enabled=true`.
-1. The `federationEnabled` flag of `Service` must be `true`. (cf. [Service.setFederationEnabled(boolean)](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setFederationEnabled-boolean-))
-
-Authlete Server must be deployed with `feature.oidc_federation.enabled=true`.
-
-The `federationEnabled` flag of `Service` must be `true`. (cf. [Service.setFederationEnabled(boolean)](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setFederationEnabled-boolean-))
-
+2. The `federationEnabled` flag of `Service` must be `true`. (cf. [Service.setFederationEnabled(boolean)](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setFederationEnabled-boolean-))
 In addition, to make your identity provider function, the following settings must be configured properly.
-
 1. At least one authority (intermediate authority or trust anchor) must be registered. Otherwise, the service cannot generate its entity configuration. (cf. [Service.setAuthorityHints(URI[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setAuthorityHints-java.net.URI:A-))
-1. At least one pair of trust anchor and its JWK Set must be registered. Otherwise, the service cannot trust any trust chain. (cf. [Service.setTrustAnchors(TrustAnchor[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setTrustAnchors-com.authlete.common.dto.TrustAnchor:A-))
-1. At least one private key dedicated to OpenID Federation must be registered. Otherwise, the service cannot sign entity statements. (cf. [Service.setFederationJwks(String)](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setFederationJwks-java.lang.String-))
-1. At least either of automatic client registration or explicit client registration must be supported. Otherwise, the service cannot register federation clients. (cf. [Service.setSupportedClientRegistrationTypes(ClientRegistrationType[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setSupportedClientRegistrationTypes-com.authlete.common.types.ClientRegistrationType:A-))
-
-At least one authority (intermediate authority or trust anchor) must be registered. Otherwise, the service cannot generate its entity configuration. (cf. [Service.setAuthorityHints(URI[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setAuthorityHints-java.net.URI:A-))
-
-At least one pair of trust anchor and its JWK Set must be registered. Otherwise, the service cannot trust any trust chain. (cf. [Service.setTrustAnchors(TrustAnchor[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setTrustAnchors-com.authlete.common.dto.TrustAnchor:A-))
-
-At least one private key dedicated to OpenID Federation must be registered. Otherwise, the service cannot sign entity statements. (cf. [Service.setFederationJwks(String)](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setFederationJwks-java.lang.String-))
-
-At least either of automatic client registration or explicit client registration must be supported. Otherwise, the service cannot register federation clients. (cf. [Service.setSupportedClientRegistrationTypes(ClientRegistrationType[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setSupportedClientRegistrationTypes-com.authlete.common.types.ClientRegistrationType:A-))
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_authlete_service_settings.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_authlete_service_settings.png)
-
+2. At least one pair of trust anchor and its JWK Set must be registered. Otherwise, the service cannot trust any trust chain. (cf. [Service.setTrustAnchors(TrustAnchor[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setTrustAnchors-com.authlete.common.dto.TrustAnchor:A-))
+3. At least one private key dedicated to OpenID Federation must be registered. Otherwise, the service cannot sign entity statements. (cf. [Service.setFederationJwks(String)](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setFederationJwks-java.lang.String-))
+4. At least either of automatic client registration or explicit client registration must be supported. Otherwise, the service cannot register federation clients. (cf. [Service.setSupportedClientRegistrationTypes(ClientRegistrationType[])](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Service.html#setSupportedClientRegistrationTypes-com.authlete.common.types.ClientRegistrationType:A-))
+### Configuring Federation
+To configure federation support:
+1. Log in to the [Authlete Management Console](https://console.authlete.com).
+2. Navigate to Service Settings > Endpoints > Federation.
+3. In the Federation Support section, enable the toggle to activate OpenID Connect Federation 1.0 support.
+4. Under Client Registration Types, select one or both registration methods:
+- Automatic: Enables automatic client registration.
+- Explicit: Enables explicit client registration.
+5. In the Registration Endpoint field, provide the URI for the federation registration endpoint (e.g., `https://idp.example.com/fedreg`).
+6. Click Save Changes to apply the configuration.
+![](https://storage.googleapis.com/authlete-website/resources/oidcfed/1.png)
 ## Authlete API
-
 Authlete Server provides the following APIs for OpenID Federation.
-
-### The /api/federation/configuration API
-
+### The `/api/federation/configuration` API
 This API is used to implement the entity configuration endpoint (`/.well-known/openid-federation`).
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_configuration.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_configuration.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_configuration.png)](/oidcfed)
 | Request |
 | --- |
 | HTTP Method | GET |
 | Response |
 | HTTP Status Code | 200 |
-| Content-Type | application/json |
-| Parameters | action | The next action that the implementation of the entity configuration endpoint
-      (/.well-known/openid-federation) should take after getting a
-      response from the Authlete API.
-      
-
-      In a successful case, the value of the action response parameter
-      is "OK". It means that the entity configuration endpoint should
-      return a response with 200 OK,
-      application/entity-statement+jwt, and the entity configuration
-      prepared by the Authlete API. |
-| responseContent | The content that the implementation of the entity configuration endpoint
-      (/.well-known/openid-federation) should use when it constructs
-      a response.
-      
-
-      In a successful case, the value of the responseContent response
-      parameter is the entity configuration of the identity provider in JWT format. |
-
-The next action that the implementation of the entity configuration endpoint
-      (`/.well-known/openid-federation`) should take after getting a
-      response from the Authlete API.
-
+| Content-Type | `application/json` |
+| Parameters | `action` | The next action that the implementation of the entity configuration endpoint
+(`/.well-known/openid-federation`) should take after getting a
+response from the Authlete API.
 In a successful case, the value of the `action` response parameter
-      is `"OK"`. It means that the entity configuration endpoint should
-      return a response with `200 OK`,
-      `application/entity-statement+jwt`, and the entity configuration
-      prepared by the Authlete API.
-
-The content that the implementation of the entity configuration endpoint
-      (`/.well-known/openid-federation`) should use when it constructs
-      a response.
-
+is `"OK"`. It means that the entity configuration endpoint should
+return a response with `200 OK`,
+`application/entity-statement+jwt`, and the entity configuration
+prepared by the Authlete API. |
+| `responseContent` | The content that the implementation of the entity configuration endpoint
+(`/.well-known/openid-federation`) should use when it constructs
+a response.
 In a successful case, the value of the `responseContent` response
-      parameter is the entity configuration of the identity provider in JWT format.
-
+parameter is the entity configuration of the identity provider in JWT format. |
 The [authlete-java-common](https://github.com/authlete/authlete-java-common) library includes [FederationConfigurationRequest](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/FederationConfigurationRequest.html) class and [FederationConfigurationResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/FederationConfigurationResponse.html) class that can be mapped to the request and the response of the Authlete API. The FederationConfigurationRequest class is empty as of this writing, though. The class exists just for future extensibility.
-
 The [authlete-java-jaxrs](https://github.com/authlete/authlete-java-jaxrs) library contains utility classes for implementations of the entity configuration endpoint ([FederationConfigurationRequestHandler](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/FederationConfigurationRequestHandler.java) and [BaseFederationConfigurationEndpoint](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/BaseFederationConfigurationEndpoint.java)). With the utility classes, the entity configuration endpoint can be implemented like below (excerpt from [FederationConfigurationEndpoint](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/api/FederationConfigurationEndpoint.java) in [java-oauth-server](https://github.com/authlete/java-oauth-server)).
-
 ```java
 @Path("/.well-known/openid-federation")
 public class FederationConfigurationEndpoint extends BaseFederationConfigurationEndpoint
 {
-    /**
-     * Entity configuration endpoint.
-     */
-    @GET
-    public Response get()
-    {
-        // Handle the request to the endpoint.
-        return handle(AuthleteApiFactory.getDefaultApi());
-    }
-}
-
-```
-
-```java
-@Path("/.well-known/openid-federation")
-public class FederationConfigurationEndpoint extends BaseFederationConfigurationEndpoint
+/**
+* Entity configuration endpoint.
+*/
+@GET
+public Response get()
 {
-    /**
-     * Entity configuration endpoint.
-     */
-    @GET
-    public Response get()
-    {
-        // Handle the request to the endpoint.
-        return handle(AuthleteApiFactory.getDefaultApi());
-    }
+// Handle the request to the endpoint.
+return handle(AuthleteApiFactory.getDefaultApi());
 }
-
-```
-
-### The /api/federation/registration API
-
+}
+```### The `/api/federation/registration` API
 This API is used to implement the federation registration endpoint.
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_registration.png)
-
-![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_registration.png)
-
+[![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_registration.png)](/oidcfed)
 | Request |
 | --- |
 | HTTP Method | POST |
-| Content-Type | application/x-www-form-urlencoded
-application/json |
-| Parameters | entityConfiguration | The entity configuration in a federation registration request. |
-| trustChain | The trust chain in a federation registration request. |
+| Content-Type | `application/x-www-form-urlencoded`
+`application/json` |
+| Parameters | `entityConfiguration` | The entity configuration in a federation registration request. |
+| `trustChain` | The trust chain in a federation registration request. |
 | Response |
 | HTTP Status Code | 200 |
-| Content-Type | application/json |
-| Parameters | action | The next action that the implementation of the federation registration endpoint
-      should take after getting a response from the Authlete API.
-      
-
-      In a successful case, the value of the action response parameter
-      is "OK". It means that the federation registration endpoint should
-      return a response with 200 OK,
-      application/entity-statement+jwt, and the entity statement
-      prepared by the Authlete API. |
-| responseContent | The content that the implementation of the federation registration endpoint
-      should use when it constructs a response.
-      
-
-      In a successful case, the value of the responseContent response
-      parameter is the entity statement of the newly registered client in JWT format. |
-| client | Information about the newly registered client in JSON object format.
-      (cf. Client) |
-
-The entity configuration in a federation registration request.
-
-The trust chain in a federation registration request.
-
-The next action that the implementation of the federation registration endpoint
-      should take after getting a response from the Authlete API.
-
+| Content-Type | `application/json` |
+| Parameters | `action` | The next action that the implementation of the federation registration endpoint
+should take after getting a response from the Authlete API.
 In a successful case, the value of the `action` response parameter
-      is `"OK"`. It means that the federation registration endpoint should
-      return a response with `200 OK`,
-      `application/entity-statement+jwt`, and the entity statement
-      prepared by the Authlete API.
-
-The content that the implementation of the federation registration endpoint
-      should use when it constructs a response.
-
+is `"OK"`. It means that the federation registration endpoint should
+return a response with `200 OK`,
+`application/entity-statement+jwt`, and the entity statement
+prepared by the Authlete API. |
+| `responseContent` | The content that the implementation of the federation registration endpoint
+should use when it constructs a response.
 In a successful case, the value of the `responseContent` response
-      parameter is the entity statement of the newly registered client in JWT format.
-
-Information about the newly registered client in JSON object format.
-      (cf. [Client](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Client.html))
-
+parameter is the entity statement of the newly registered client in JWT format. |
+| `client` | Information about the newly registered client in JSON object format.
+(cf. [Client](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/Client.html)) |
 The [authlete-java-common](https://github.com/authlete/authlete-java-common) library includes [FederationRegistrationRequest](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/FederationRegistrationRequest.html) class and [FederationRegistrationResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/FederationRegistrationResponse.html) class that can be mapped to the request and the response of the Authlete API.
-
 The [authlete-java-jaxrs](https://github.com/authlete/authlete-java-jaxrs) library contains utility classes for implementations of the federation registration endpoint ([FederationRegistrationRequestHandler](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/FederationRegistrationRequestHandler.java) and [BaseFederationRegistrationEndpoint](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/BaseFederationRegistrationEndpoint.java)). With the utility classes, the federation registration endpoint can be implemented like below (excerpt from [FederationRegistrationEndpoint](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/api/FederationRegistrationEndpoint.java) in [java-oauth-server](https://github.com/authlete/java-oauth-server)).
-
 ```java
 @Path("/api/federation/register")
 public class FederationRegistrationEndpoint extends BaseFederationRegistrationEndpoint
 {
-    @POST
-    @Consumes("application/entity-statement+jwt")
-    public Response entityConfiguration(String jwt)
-    {
-        // Client registration by a relying party's entity configuration.
-        return handle(
-                AuthleteApiFactory.getDefaultApi(),
-                request().setEntityConfiguration(jwt));
-    }
-
-
-    @POST
-    @Consumes("application/trust-chain+json")
-    public Response trustChain(String json)
-    {
-        // Client registration by a relying party's trust chain.
-        return handle(
-                AuthleteApiFactory.getDefaultApi(),
-                request().setTrustChain(json));
-    }
-
-
-    private static FederationRegistrationRequest request()
-    {
-        return new FederationRegistrationRequest();
-    }
-}
-
-```
-
-```java
-@Path("/api/federation/register")
-public class FederationRegistrationEndpoint extends BaseFederationRegistrationEndpoint
+@POST
+@Consumes("application/entity-statement+jwt")
+public Response entityConfiguration(String jwt)
 {
-    @POST
-    @Consumes("application/entity-statement+jwt")
-    public Response entityConfiguration(String jwt)
-    {
-        // Client registration by a relying party's entity configuration.
-        return handle(
-                AuthleteApiFactory.getDefaultApi(),
-                request().setEntityConfiguration(jwt));
-    }
-
-
-    @POST
-    @Consumes("application/trust-chain+json")
-    public Response trustChain(String json)
-    {
-        // Client registration by a relying party's trust chain.
-        return handle(
-                AuthleteApiFactory.getDefaultApi(),
-                request().setTrustChain(json));
-    }
-
-
-    private static FederationRegistrationRequest request()
-    {
-        return new FederationRegistrationRequest();
-    }
+// Client registration by a relying party's entity configuration.
+return handle(
+AuthleteApiFactory.getDefaultApi(),
+request().setEntityConfiguration(jwt));
 }
-
-```
-
-## Client Registration and Update
-
+@POST
+@Consumes("application/trust-chain+json")
+public Response trustChain(String json)
+{
+// Client registration by a relying party's trust chain.
+return handle(
+AuthleteApiFactory.getDefaultApi(),
+request().setTrustChain(json));
+}
+private static FederationRegistrationRequest request()
+{
+return new FederationRegistrationRequest();
+}
+}
+```## Client Registration and Update
 This section explains Authlete’s behavior on client registration and update in detail.
-
 ### Automatic Client Registration
-
 1. When Authlete processes an OAuth/OIDC request, Authlete tries to identify a client at a relatively early phase. First, Authlete interprets the specified client identifier as an original numeric ID and searches the database for a client having the numeric ID.
-1. If a client having the numeric ID was not found, but if the “[Client ID Alias](/kb/oauth-and-openid-connect/client-id-alias)” feature of the service is enabled, Authlete interprets the specified client identifier as an alias and searches the database for a client having the alias.
-1. If a client having the alias was not found, but if the “OpenID Federation” feature of the service is enabled, Authlete interprets the specified client identifier as an entity ID and searches the database for a client having the entity ID.
-1. If a client having the entity ID was not found, but if the service supports automatic client registration, Authlete tries to resolve a trust chain of the client.
-1. If the trust chain resolution succeeds, Authlete applies the combined metadata policy of the trust chain to the metadata of the client.
-1. Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
-1. Authlete validates the client metadata to ensure that the client can be registered to the service.
-1. Authlete performs request authentication for the OAuth/OIDC request.
-1. Finally, Authlete registers the client and continues to process the OAuth/OIDC request.
-
-When Authlete processes an OAuth/OIDC request, Authlete tries to identify a client at a relatively early phase. First, Authlete interprets the specified client identifier as an original numeric ID and searches the database for a client having the numeric ID.
-
-If a client having the numeric ID was not found, but if the “[Client ID Alias](/kb/oauth-and-openid-connect/client-id-alias)” feature of the service is enabled, Authlete interprets the specified client identifier as an alias and searches the database for a client having the alias.
-
-If a client having the alias was not found, but if the “OpenID Federation” feature of the service is enabled, Authlete interprets the specified client identifier as an entity ID and searches the database for a client having the entity ID.
-
-If a client having the entity ID was not found, but if the service supports automatic client registration, Authlete tries to resolve a trust chain of the client.
-
-If the trust chain resolution succeeds, Authlete applies the combined metadata policy of the trust chain to the metadata of the client.
-
-Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
-
-Authlete validates the client metadata to ensure that the client can be registered to the service.
-
-Authlete performs request authentication for the OAuth/OIDC request.
-
-Finally, Authlete registers the client and continues to process the OAuth/OIDC request.
-
+2. If a client having the numeric ID was not found, but if the “[Client ID Alias](/kb/oauth-and-openid-connect/client-id-alias)” feature of the service is enabled, Authlete interprets the specified client identifier as an alias and searches the database for a client having the alias.
+3. If a client having the alias was not found, but if the “OpenID Federation” feature of the service is enabled, Authlete interprets the specified client identifier as an entity ID and searches the database for a client having the entity ID.
+4. If a client having the entity ID was not found, but if the service supports automatic client registration, Authlete tries to resolve a trust chain of the client.
+5. If the trust chain resolution succeeds, Authlete applies the combined metadata policy of the trust chain to the metadata of the client.
+6. Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
+7. Authlete validates the client metadata to ensure that the client can be registered to the service.
+8. Authlete performs request authentication for the OAuth/OIDC request.
+9. Finally, Authlete registers the client and continues to process the OAuth/OIDC request.
+Authlete does not reference the `trust_chain` request parameter for registration.
+Authlete references the request parameter only for update. When the request parameter is included
+in an OAuth/OIDC request that triggers automatic registration, the trust chain specified by the
+request parameter is referenced for update right after registration.
+The reason for the limitation is that it is difficult, if not impossible, to write a coherent and
+orderly implementation that performs request authentication which depends on client metadata
+in the trust chain specified by the `trust_chain` request parameter.
+Also, when the request parameter is in a request object, implementation complexity jumps up.
+In the case, the key that should be used to verify the signature of the request object is embedded
+in the trust chain inside the request object. In that sense, it can be said that the request object
+is self-signed. In general, in a procedure that utilizes a self-signed object, the content of the
+self-signed object is referenced before the signature of the object is verified. Such procedures
+exist in the world, so the self-signed request object will maybe work. However, processes that
+must be done before signature verification, including the long and complex steps of trust chain
+resolution and verification, are too complex and dependent on unverified data too much.
 ### Trust Chain Update
-
 Case 1: when the `trust_chain` request parameter is given
-
 1. If the “OpenID Federation” feature of the service is not enabled, Authlete does not try to update trust chains.
-1. Authlete checks whether the service supports automatic client registration and whether the client’s `client_registration_types` metadata contains `automatic`. If these conditions are not satisfied, an error is returned.
-1. Authlete validates the trust chain specified by the `trust_chain` request parameter. Especially, the entity ID of the entity configuration in the trust chain must match the entity ID of the existing client.
-1. Authlete applies the combined metadata policy of the trust chain to the client metadata in the trust chain.
-1. Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
-1. Authlete validates the client metadata to ensure that the client can be updated with the metadata.
-1. Authlete updates metadata of the client.
-1. Authlete continues to process the OAuth/OIDC request.
-
-If the “OpenID Federation” feature of the service is not enabled, Authlete does not try to update trust chains.
-
-Authlete checks whether the service supports automatic client registration and whether the client’s `client_registration_types` metadata contains `automatic`. If these conditions are not satisfied, an error is returned.
-
-Authlete validates the trust chain specified by the `trust_chain` request parameter. Especially, the entity ID of the entity configuration in the trust chain must match the entity ID of the existing client.
-
-Authlete applies the combined metadata policy of the trust chain to the client metadata in the trust chain.
-
-Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
-
-Authlete validates the client metadata to ensure that the client can be updated with the metadata.
-
-Authlete updates metadata of the client.
-
-Authlete continues to process the OAuth/OIDC request.
-
+2. Authlete checks whether the service supports automatic client registration and whether the client’s `client_registration_types` metadata contains `automatic`. If these conditions are not satisfied, an error is returned.
+3. Authlete validates the trust chain specified by the `trust_chain` request parameter. Especially, the entity ID of the entity configuration in the trust chain must match the entity ID of the existing client.
+4. Authlete applies the combined metadata policy of the trust chain to the client metadata in the trust chain.
+5. Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
+6. Authlete validates the client metadata to ensure that the client can be updated with the metadata.
+7. Authlete updates metadata of the client.
+8. Authlete continues to process the OAuth/OIDC request.
+When the `trust_chain` request parameter is given, trust chain update is always tried regardless of whether the current trust chain has expired or not. Even when trust chain update fails, the client is NOT deleted.
 Case 2: when the `trust_chain` request parameter is not given
-
 1. If the “OpenID Federation” feature of the service is not enabled, Authlete does not try to update trust chains.
-1. Authlete checks whether the current trust chain of the client has expired. If the trust chain has not expired, Authlete does not try to update the trust chain.
-1. If the current trust chain has expired but the service does not support automatic client registration, the client is **deleted** and the OAuth/OIDC request fails.
-1. If the current trust chain has expired but `automatic` is not included in the `client_registration_types` client metadata, the client is **deleted** and the OAuth/OIDC request fails.
-1. Authlete builds a trust chain from the entity ID of the client from scratch.
-1. Authlete applies the combined metadata policy of the trust chain to the client metadata in the trust chain.
-1. Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
-1. Authlete validates the client metadata to ensure that the client can be updated with the metadata.
-1. Authlete updates metadata of the client.
-1. Authlete continues to process the OAuth/OIDC request.
-
-If the “OpenID Federation” feature of the service is not enabled, Authlete does not try to update trust chains.
-
-Authlete checks whether the current trust chain of the client has expired. If the trust chain has not expired, Authlete does not try to update the trust chain.
-
-If the current trust chain has expired but the service does not support automatic client registration, the client is **deleted** and the OAuth/OIDC request fails.
-
-If the current trust chain has expired but `automatic` is not included in the `client_registration_types` client metadata, the client is **deleted** and the OAuth/OIDC request fails.
-
-Authlete builds a trust chain from the entity ID of the client from scratch.
-
-Authlete applies the combined metadata policy of the trust chain to the client metadata in the trust chain.
-
-Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
-
-Authlete validates the client metadata to ensure that the client can be updated with the metadata.
-
-Authlete updates metadata of the client.
-
-Authlete continues to process the OAuth/OIDC request.
-
+2. Authlete checks whether the current trust chain of the client has expired. If the trust chain has not expired, Authlete does not try to update the trust chain.
+3. If the current trust chain has expired but the service does not support automatic client registration, the client is deleted and the OAuth/OIDC request fails.
+4. If the current trust chain has expired but `automatic` is not included in the `client_registration_types` client metadata, the client is deleted and the OAuth/OIDC request fails.
+5. Authlete builds a trust chain from the entity ID of the client from scratch.
+6. Authlete applies the combined metadata policy of the trust chain to the client metadata in the trust chain.
+7. Authlete checks whether the client metadata contains the `client_registration_types` client metadata and it includes `automatic`.
+8. Authlete validates the client metadata to ensure that the client can be updated with the metadata.
+9. Authlete updates metadata of the client.
+10. Authlete continues to process the OAuth/OIDC request.
+When the `trust_chain` request parameter is not given, trust chain update is tried only when the current trust chain has expired. When trust chain update fails, the client is deleted.
 # Finally
-
 OpenID Federation 1.0 is one of the most complex standard specifications related to OAuth and OpenID Connect and it is difficult to find commercial-quality implementations. Authlete is a rare example.
-
 If you are interested in trying OpenID Federation 1.0, please [contact us](https://www.authlete.com/contact/).
+#### On this page
+- [JWT Issued by Leaf Entity](#jwt-issued-by-leaf-entity)
+- [JWT Issued by Intermediate Authority](#jwt-issued-by-intermediate-authority)
+- [JWT Issued by Trust Anchor](#jwt-issued-by-trust-anchor)
+- [Trust Chain Summary](#trust-chain-summary)
+- [Entity Configuration](#entity-configuration)
+- [Authority Hints](#authority-hints)
+- [Federation Fetch Endpoint](#federation-fetch-endpoint)
+- [Trust Chain Resolution Flow](#trust-chain-resolution-flow)
+- [Trust Chain Resolution Summary](#trust-chain-resolution-summary)
+- [Identity Provider Metadata](#identity-provider-metadata)
+- [Relying Party Metadata](#relying-party-metadata)
+- [Authority Metadata](#authority-metadata)
+- [Automatic Client Registration](#automatic-client-registration)
+- [Request Authentication](#request-authentication)
+- [Explicit Client Registration](#explicit-client-registration)
+- [Automatic Client Update](#automatic-client-update)
+- [The trust_chain Request Parameter](#the-trust_chain-request-parameter)
+- [Version](#version)
+- [Feature Availability](#feature-availability)
+[Configuring Federation](#configuring-federation)
+- [Authlete API](#authlete-api)
+[The /api/federation/configuration API](#the-apifederationconfiguration-api)
+[The /api/federation/registration API](#the-apifederationregistration-api)
+- [Client Registration and Update](#client-registration-and-update)
+[Automatic Client Registration](#automatic-client-registration-1)
+[Trust Chain Update](#trust-chain-update)
