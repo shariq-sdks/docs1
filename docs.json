@@ -11,20 +11,15 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Learn",
+        "tab": "Developer Platform",
         "groups": [
           {
-            "group": "🚀 Start Here",
+            "group": "Getting Started",
             "pages": [
               "index",
               "overview",
               "getting-started",
-              "quickstart"
-            ]
-          },
-          {
-            "group": "📚 Core Concepts",
-            "pages": [
+              "quickstart",
               "concepts/oauth2-basics",
               "concepts/oidc-basics",
               "concepts/authlete-architecture",
@@ -32,36 +27,18 @@
             ]
           },
           {
-            "group": "🔧 Basic Implementation",
+            "group": "Service & Client Management",
             "pages": [
               "implementation/service-management",
               "implementation/client-management",
               "implementation/authentication",
-              "implementation/basic-oauth-flows",
               "implementation/token-management"
             ]
           },
           {
-            "group": "🔒 Advanced Security",
+            "group": "Flows & Protocol Guides",
             "pages": [
-              "security/pkce",
-              "security/token-security",
-              "security/api-protection",
-              "security/security-best-practices"
-            ]
-          },
-          {
-            "group": "🌐 OpenID Connect",
-            "pages": [
-              "oidc/user-authentication",
-              "oidc/userinfo-endpoint",
-              "oidc/id-token-handling",
-              "oidc/oidc-best-practices"
-            ]
-          },
-          {
-            "group": "📱 Modern Flows",
-            "pages": [
+              "implementation/basic-oauth-flows",
               "flows/device-flow",
               "flows/ciba",
               "flows/native-sso",
@@ -70,35 +47,16 @@
             ]
           },
           {
-            "group": "🏦 Financial-Grade Security",
+            "group": "OpenID Connect",
             "pages": [
-              "fapi/fapi2-overview",
-              "fapi/fapi2-implementation",
-              "fapi/high-assurance-security",
-              "fapi/compliance-requirements"
+              "oidc/user-authentication",
+              "oidc/userinfo-endpoint",
+              "oidc/id-token-handling",
+              "oidc/oidc-best-practices"
             ]
           },
           {
-            "group": "🔗 Federation & Credentials",
-            "pages": [
-              "federation/oidc-federation",
-              "federation/verifiable-credentials",
-              "federation/trust-frameworks",
-              "federation/step-up-authentication"
-            ]
-          },
-          {
-            "group": "🛠️ Production & Deployment",
-            "pages": [
-              "production/infrastructure-setup",
-              "production/monitoring-logging",
-              "production/terraform-deployment",
-              "production/troubleshooting",
-              "production/migration-guides"
-            ]
-          },
-          {
-            "group": "📖 Tutorials & Examples",
+            "group": "Tutorials & Examples",
             "pages": [
               "tutorials/signup-to-first-api",
               "tutorials/oauth-tutorial",
@@ -110,24 +68,183 @@
             ]
           },
           {
-            "group": "🛠️ Developer Tools",
+            "group": "Error Handling",
+            "pages": [
+              "reference/error-handling"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Standards & Compliance",
+        "groups": [
+          {
+            "group": "OAuth & OIDC Standards",
+            "pages": [
+              "security/pkce",
+              "reference/client-authentication",
+              "reference/scopes",
+              "reference/introspection",
+              "reference/authorization-requests"
+            ]
+          },
+          {
+            "group": "Token Types",
+            "pages": [
+              "reference/access-tokens",
+              "reference/refresh-tokens",
+              "reference/token-management",
+              "reference/proof-of-possession-tokens"
+            ]
+          },
+          {
+            "group": "Security Practices",
+            "pages": [
+              "security/token-security",
+              "security/api-protection",
+              "security/security-best-practices"
+            ]
+          },
+          {
+            "group": "Financial-grade API (FAPI)",
+            "pages": [
+              "fapi/fapi2-overview",
+              "fapi/fapi2-implementation",
+              "fapi/high-assurance-security",
+              "fapi/compliance-requirements"
+            ]
+          },
+          {
+            "group": "Federation & Credentials",
+            "pages": [
+              "federation/oidc-federation",
+              "federation/verifiable-credentials",
+              "federation/trust-frameworks",
+              "federation/step-up-authentication"
+            ]
+          },
+          {
+            "group": "Standards Compliance Index",
+            "pages": [
+              "reference/definitive-guide",
+              "reference/standards-compliance"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Deployment & Operations",
+        "groups": [
+          {
+            "group": "Infrastructure",
+            "pages": [
+              "production/infrastructure-setup",
+              "reference/kubernetes-deployment",
+              "reference/aws-ecs-deployment",
+              "reference/on-premises-packaging"
+            ]
+          },
+          {
+            "group": "Performance & Monitoring",
+            "pages": [
+              "production/monitoring-logging",
+              "reference/caching-introspection"
+            ]
+          },
+          {
+            "group": "Terraform",
+            "pages": [
+              "production/terraform-deployment",
+              "tools/terraform-provider",
+              "reference/terraform-intro",
+              "reference/terraform-bootstrap"
+            ]
+          },
+          {
+            "group": "Migration & Troubleshooting",
+            "pages": [
+              "production/migration-guides",
+              "production/troubleshooting",
+              "reference/migrate-from-old-version",
+              "reference/migrating-access-tokens"
+            ]
+          },
+          {
+            "group": "Security & Networking",
+            "pages": [
+              "reference/jwk-set-for-service",
+              "reference/jwk-set-for-client",
+              "reference/proxy-server"
+            ]
+          },
+          {
+            "group": "Integration",
+            "pages": [
+              "reference/amazon-api-gateway",
+              "reference/api-gateway-products"
+            ]
+          },
+          {
+            "group": "Operations",
+            "pages": [
+              "reference/service-settings",
+              "reference/developer-console-login"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developer Tools",
+        "groups": [
+          {
+            "group": "Management Consoles",
             "pages": [
               "tools/management-console",
+              "reference/service-owner-console",
+              "reference/developer-console"
+            ]
+          },
+          {
+            "group": "Explorers & Providers",
+            "pages": [
               "tools/api-explorer",
-              "tools/terraform-provider",
+              "tools/terraform-provider"
+            ]
+          },
+          {
+            "group": "Generators",
+            "pages": [
               "tools/mkjwk-generator",
-              "tools/mkjose-generator",
-              "tools/cbor-zone",
+              "tools/mkjose-generator"
+            ]
+          },
+          {
+            "group": "CBOR Zone",
+            "pages": [
+              "tools/cbor-zone"
+            ]
+          },
+          {
+            "group": "Templates & Toolkits",
+            "pages": [
               "tools/templates-toolkits"
             ]
           },
           {
-            "group": "📚 Reference Documentation",
+            "group": "Resources",
             "pages": [
-              "reference/definitive-guide",
-              "reference/knowledge-base",
-              "reference/release-notes",
-              "reference/standards-compliance"
+              "reference/knowledge-base"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Release Notes",
+        "groups": [
+          {
+            "group": "Release Notes",
+            "pages": [
+              "reference/release-notes"
             ]
           }
         ]

@@ -1,0 +1,62 @@
+---
+title: 'Terraform Bootstrap'
+description: 'Bootstrap your Authlete infrastructure with Terraform'
+---
+
+# Terraform Bootstrap
+
+This guide walks you through bootstrapping your Authlete infrastructure using Terraform.
+
+## Prerequisites
+
+- Terraform installed
+- Authlete API credentials
+- Basic understanding of Terraform concepts
+
+## Bootstrap Process
+
+### 1. Initialize Terraform
+
+```bash
+terraform init
+```
+
+### 2. Configure Authlete Provider
+
+```hcl
+provider "authlete" {
+  api_key    = var.authlete_api_key
+  api_secret = var.authlete_api_secret
+}
+```
+
+### 3. Create Initial Resources
+
+```hcl
+resource "authlete_service" "main" {
+  service_name = "My OAuth Service"
+  # ... other configuration
+}
+```
+
+### 4. Apply Configuration
+
+```bash
+terraform plan
+terraform apply
+```
+
+## Best Practices
+
+- Use variables for sensitive data
+- Store state in remote backend
+- Use modules for reusable components
+- Tag resources appropriately
+
+## Troubleshooting
+
+Common issues and solutions:
+
+- **Authentication errors**: Verify API credentials
+- **Resource conflicts**: Check for existing resources
+- **State issues**: Use `terraform refresh`
