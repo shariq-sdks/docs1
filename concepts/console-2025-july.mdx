@@ -1,0 +1,31 @@
+---
+title: 'Authlete Console Release Notes - July 2025'
+description: 'Authlete Console Release Notes - July 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete Management Console.
+This new version was made available on July 29th (Tue).
+
+# Management Console
+
+## HSM support
+
+Implemented UI to add hardware security keys, view them in a paginated table, and remove them.
+
+## Feedback form fix
+
+Fixed an issue where the feedback form would not display correctly on the console UI.
+
+## Client ID import fix
+
+Fixed an issue where client IDs would sometimes be incorrectly imported.
+
+## Other UI improvements
+
+- Removed the `Enable HSM` switch from the UI whenever the environment does not have hardware security modules configured
+- Removed `Customer Organizations` from the admin dashboard (for self-managed customers only)
+- Improved the overall design of the admin dashboard (for self-managed customers only)
+- Improved console UI to limit the number of clients fetched in a single call
+- Fixed an issue where long URIs in then Request URIs field would cause some UI elements to overflow beyond the intended frame

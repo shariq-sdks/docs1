@@ -1,0 +1,34 @@
+---
+title: 'Authlete 2.2.50 Release Notes'
+description: 'Authlete 2.2.50 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.44](../2.2.44).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Configuration Items
+
+N/A
+
+# Added or Updated APIs
+
+## /auth/token/update API
+
+Added The following request parameters to the `/auth/token/update` API.
+
+- `refreshTokenExpiresAt`
+- `refreshTokenExpiresAtUpdatedOnScopeUpdate`
+
+See [JavaDoc of TokenUpdateRequest class](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/TokenUpdateRequest.html) for details.
+
+## locked response parameter
+
+Added the `locked` response parameter to the following APIs. The parameter indicates whether a client is locked.
+
+- `/client/get/{clientId}` API
+- `/client/get/list` API

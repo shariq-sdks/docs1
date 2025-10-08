@@ -1,0 +1,47 @@
+---
+title: 'Authlete 2.3 Release Notes - October 2024'
+description: 'Authlete 2.3 Release Notes - October 2024'
+---
+
+# Overview
+
+This minor update introduces FAPI 2.0 HTTP Signing, as well as a couple of changes for Authlete 2.3.
+This new version was made available on October 28th (Mon).
+
+# New features & Improvements
+
+N/A
+
+# Specs support
+
+## Implemented HTTP Signing through the /auth/introspection API
+
+- Implemented FAPI 2.0 HTTP Signing
+- Deprecated the `uri` request parameter
+- Deprecated the `message` request parameter
+- Deprecated the `requiredComponents` request parameter
+- Added the `targetUri` request parameter
+- Added the `requestBodyContained` request parameter
+- Added the `responseSigningRequired` response parameter
+- Disabled FAPI 2.0 HTTP Signing on the `/auth/userinfo` API
+- Support the case where the access token is not associated with any client application in the `HttpMessageSignatureValidator` class
+- Implemented new `ScopeUtility` class which provides the `filterScopeAttributesListByScopeValues` method to filter a list of `ScopeAttributesEntity` instances by scope values, while aware of dynamic scopes
+
+## Added support for use_mtls_endpoint_aliases client metadata
+
+As per [FAPI 2.0 Security Profile specifications](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).
+
+# Bug fixes
+
+## Fixed NullPointerException issues
+
+- In `pushed_auth_req` API when the `response_type` request parameter is not sent
+- In `/backchannel/authentication/complete` API when `bcAuthEntity` is null
+
+## Fixed missing error for CIBA PUSH mode
+
+An error would not be correctly returned whenever `auth_req_id` is expired on token issuance in CIBA PUSH mode.
+
+# Other
+
+N/A

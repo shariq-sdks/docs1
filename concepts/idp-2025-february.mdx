@@ -1,0 +1,43 @@
+---
+title: 'Authlete IdP Release Notes - February 2025'
+description: 'Authlete IdP Release Notes - February 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete IdP.
+This new version was made available on March 3rd (Mon).
+
+# IdP
+
+### Audit logs GET endpoint update
+
+Updated audit logs GET endpoint to return logs based on organization instead of user.
+
+### User invitation error messaging improvements
+
+Updated error message when trying to invite non-existent user on environment where password login is disabled.
+
+### Audit logs retrieval
+
+Added functionality to retrieve audit logs using organization token.
+
+### JVM crashes fix
+
+Fixed an issue where Java Virtual Machine would crash when running the IdP with an M4 processor.
+
+### User information display fix
+
+Fixed an issue where the user information would not show on `security.login.oidc` event.
+
+### Audit logs events update
+
+Updated list of audit logs events :
+
+- Added the `SECURITY_LOGIN_OIDC` event
+- Added the `SECURITY_MFA_CREATE` event
+- Added the `SECURITY_MFA_DELETE` event
+- Added the `SECURITY_PASSWORD_UPDATE` event
+- Renamed the `SECURITY_MFA_LOGIN` event to `SECURITY_LOGIN_MFA`
+- Renamed the `USER_ACCEPTINVITE` event to `USER_INVITE_ACCEPT`
+- Renamed the `USER_DECLINEINVITE` event to `USER_INVITE_DECLINE`

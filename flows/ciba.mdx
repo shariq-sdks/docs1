@@ -1,19 +1,37 @@
 ---
-title: 'CIBA (Client Initiated Backchannel Authentication)'
-description: 'Learn how to implement CIBA for server-to-server authentication flows'
+title: 'Client Initiated Backchannel Authentication (CIBA)'
+description: 'Technical information about Client Initiated Backchannel Authentication.'
 ---
 
-## CIBA (Client Initiated Backchannel Authentication)
+# What is CIBA?
 
-*This page will be populated with CIBA content from the existing documentation.*
+![ciba use cases](https://storage.googleapis.com/authlete-website/img/news/ciba_pr_english.png)
 
-### Topics to Cover:
-- CIBA overview and use cases
-- Backchannel authentication request
-- Authentication result handling
-- CIBA implementation with Authlete
-- Security considerations
+![ciba use cases](https://storage.googleapis.com/authlete-website/img/news/ciba_pr_english.png)
 
-<Note>
-Content will be ported from the existing Authlete documentation.
-</Note>
+Client Initiated Backchannel Authentication (CIBA) is one of the latest standards from OpenID Foundation. It is to define new authentication and authorization flows, which are categorized as “decoupled flow”, compared to the traditional OAuth / OpenID Connect “redirect flow.” It enables new ways of obtaining an end user’s consent that can significantly improve customer experience.
+
+# How CIBA works
+
+CIBA defines two types of devices; *Consumption Device* and *Authentication Device*. The *Consumption Device* initiates the CIBA flow by interacting with its correspoinding OpenID Connect (OIDC) Relying Party (RP) to determine an OIDC Identity Provider (IdP) and identifier of a target user, and make an OIDC authentication request to the server. The server sends a notification to the target user’s *Autentication Device*. Once the user authenticates with the *Authentication Device* to the server and optionally authorizes the request, the server make a response including tokens such as OAuth Access Token / Refresh Token, OIDC ID Token.
+
+Note that these two devices are *decoupled* each other - these devices don’t have to be in the same place. In addition, a person who kicks off the flow with the consumption device is not necessarily the same as the target user with the authentication device. This architecture brings more flexibility to user authentication and consent.
+
+# Authlete and CIBA
+
+![OIDF Certified Mark](https://storage.googleapis.com/authlete-website/img/news/oidc_certification.png)
+
+![OIDF Certified Mark](https://storage.googleapis.com/authlete-website/img/news/oidc_certification.png)
+
+Authlete is a pioneer of supporting CIBA. We have implemented [CIBA Core 1.0](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html) since February 2019, and been granted certifications for [Financial-grade API Client Initiated Backchannel Authentication Profile (FAPI-CIBA) conformance profiles](https://openid.net/certification/#FAPI-CIBA_OPs).
+
+We are also active to develop the [CIBA Core](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html) and related specifications (e.g. [Financial-grade API: Client Initiated Backchannel Authentication Profile](https://openid.net/specs/openid-financial-api-ciba-ID1.html)) in OpenID Foundation’s [Financial-grade API (FAPI) Working Group](https://openid.net/wg/fapi/).
+
+# How to implement CIBA with Authlete
+
+Please check [this document](/developers/ciba/implement_ciba_with_authlete/).
+
+# Resources
+
+1. [“CIBA”, a new authentication/authorization technology in 2019, explained by an implementer](https://medium.com/@darutk/ciba-a-new-authentication-authorization-technology-in-2019-explained-by-an-implementer-d1e0ac1311b4)
+1. [Authlete API Reference](https://docs.authlete.com/)

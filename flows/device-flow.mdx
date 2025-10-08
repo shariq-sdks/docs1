@@ -1,19 +1,120 @@
 ---
-title: 'Device Flow'
-description: 'Learn how to implement OAuth 2.0 Device Authorization Grant flow for constrained devices'
+title: 'Device Flow (OAuth 2.0 Device Authorization Grant)'
+description: 'Technical information about device flow.'
 ---
 
-## Device Flow
+# What is Device Flow?
 
-*This page will be populated with device flow content from the existing documentation.*
+[RFC 8628 (OAuth 2.0 Device Authorization Grant)](https://tools.ietf.org/html/rfc8628) is a Proposed Standard, published by IETF in August 2019.
+It defines an authorization flow (Device Flow) to issue access tokens for API clients running on devices with no Web browsers and/or that have limited capability for inputting text,
+with end user consent.
 
-### Topics to Cover:
-- Device flow overview and use cases
-- Device authorization request
-- User code and verification
-- Device flow implementation
-- Security considerations
+# How it Works
 
-<Note>
-Content will be ported from the existing Authlete documentation.
-</Note>
+The device flow implies the following preconditions.
+
+- **User** can use devices with Web browsers (e.g. PC, smartphones, tablets)
+- **Client** (e.g. TV, appliances) is a device that can establish an outbound connection to the Internet
+- **Authorization Server** (e.g. streaming service providers) exposes Device Authorization Endpoint to clients
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_01_en.png)
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_01_en.png)
+
+Here is an overview of the flow:
+
+1. **Client (device)** sends a device authorization request to device authorization endpoint in Authorization Server.
+1. **Authorization Server** replies a device authorization response to Client. The response contains the following main parameters:
+
+`user_code`: a value to be submitted from User to Authorization Server.
+`device_code`: a value for Client to send a token request to Authorization Server.
+1. **Client** presents `user_code` to User.
+1. The following processes run simultaneously.
+
+**Client** sends a token request that includes `device_code` to Authorization Server. The same requests are periodically made (i.e. polling) to Authorization Server until an access token (or an error) is returned.
+**User** goes to Authorization Server using an Web browser, authenticates itself, submits `user_code` and grants access to Client.
+1. **Authorization Server** verifies the `user_code`, issues an access token and sends a token response including the token against the token request that contains the `device_code` that corresponds to the `user_code`.
+
+- `user_code`: a value to be submitted from User to Authorization Server.
+- `device_code`: a value for Client to send a token request to Authorization Server.
+
+- **Client** sends a token request that includes `device_code` to Authorization Server. The same requests are periodically made (i.e. polling) to Authorization Server until an access token (or an error) is returned.
+- **User** goes to Authorization Server using an Web browser, authenticates itself, submits `user_code` and grants access to Client.
+
+As a result of the flow above, Client obtains the access token for authorized API requests.
+
+# Authlete and Device Flow
+
+Authlete [version 2.1 and later support the device flow](https://docs.authlete.com/#device-flow).
+Developers can simply implement their authorization servers that support the device flow, using the following newly added or enhanced Authlete APIs.
+
+- `/device/authorization` API (New)
+
+Processing a device authorization request. After an authorization server receives the request from a client, it forwards the content of the request as a value to this API.
+Authlete inspects the content. If it is valid, Authlete creates another content of a device authorization response and send it back to the authorization server.
+The authorization server passes the device authorization response back to the client.
+- `/device/verification` API (New)
+
+Verifying `user_code`.
+- `/device/complete` API (New)
+
+Processing approval/denial of the ongoing device flow. The processing result affects a response from `/auth/token` API.
+- `/auth/token` API (Enhanced)
+
+Processing token requests.
+It is enhanced to support `grant_type=urn:ietf:params:oauth:grant-type:device_code` and corresponding `device_code` parameter.
+
+- Processing a device authorization request. After an authorization server receives the request from a client, it forwards the content of the request as a value to this API.
+Authlete inspects the content. If it is valid, Authlete creates another content of a device authorization response and send it back to the authorization server.
+The authorization server passes the device authorization response back to the client.
+
+- Verifying `user_code`.
+
+- Processing approval/denial of the ongoing device flow. The processing result affects a response from `/auth/token` API.
+
+- Processing token requests.
+It is enhanced to support `grant_type=urn:ietf:params:oauth:grant-type:device_code` and corresponding `device_code` parameter.
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_02_en.png)
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_02_en.png)
+
+You can manage settings for the device flow using Service Owner Console.
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_03_en.png)
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_03_en.png)
+
+# Detailed Information
+
+- [Illustrated Device Flow (RFC 8628)](https://medium.com/@darutk/illustrated-device-flow-rfc-8628-d23d6d311acc)
+
+A detailed explanation of the device flow specification and Authlete’s implementation and its usage.
+- [Authlete API Reference](https://docs.authlete.com/)
+
+Reference to Authlete APIs.
+- [java-oauth-server](https://github.com/authlete/java-oauth-server)
+
+A reference authorization server implementation using Authlete APIs.
+It is freely available by Authlete under open source license and supports the device flow.
+- [JavaDoc of authlete-java-common](https://authlete.github.io/authlete-java-common/)
+
+For further information about the Authlete APIs above,
+refer to descriptions of Device* classes in the JavaDoc of the [authlete-java-common library](https://github.com/authlete/authlete-java-common).
+- [Sequence Diagrams Templates](/resources/templates/sequence-diagrams/)
+
+A collection of templates to draw your sequence diagrams of OAuth 2.0 / OIDC (OpenID Connect) flows using Authlete.
+It contains a diagram of the device flow using Authlete.
+
+- A detailed explanation of the device flow specification and Authlete’s implementation and its usage.
+
+- Reference to Authlete APIs.
+
+- A reference authorization server implementation using Authlete APIs.
+It is freely available by Authlete under open source license and supports the device flow.
+
+- For further information about the Authlete APIs above,
+refer to descriptions of Device* classes in the JavaDoc of the [authlete-java-common library](https://github.com/authlete/authlete-java-common).
+
+- A collection of templates to draw your sequence diagrams of OAuth 2.0 / OIDC (OpenID Connect) flows using Authlete.
+It contains a diagram of the device flow using Authlete.

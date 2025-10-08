@@ -1,0 +1,38 @@
+---
+title: 'Authlete 2.2.38 Release Notes'
+description: 'Authlete 2.2.38 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.30](../2.2.30).
+
+# Newly Supported Standard Specifications
+
+## OAuth 2.0 Rich Authorization Requests (RAR)
+
+Authlete 2.2 supports “OAuth 2.0 Pushed Authorization Requests (PAR).”
+
+This release includes updates to align with [draft-ietf-oauth-rar-19](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-rar-19).
+
+# New Configuration Items
+
+## OpenID on Refresh (Service configuration)
+
+If “Remove unless offline_access” is selected, the `openid` scope is dropped from a new access token issued by the refresh token flow unless the presented refresh token contains the `offline_access` scope. On the other hand, if “No action” is selected, nothing special is performed.
+
+## DPoP Required (Client configuration)
+
+If “Required” is selected, The client is forced to use DPoP. Any access token request or usage that does not use DPoP will be rejected.
+
+# Added or Updated APIs
+
+## /auth/introspection API
+
+Return `grantType` in token introspection response.
+
+## /service/configuration API
+
+Add `patch` request parameter to `/api/service/configuration` API for patching the response content.
+
+See [JavaDoc of ServiceConfigurationRequest class](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/ServiceConfigurationRequest.html) in our [authlete-java-common library](https://github.com/authlete/authlete-java-common/) for details.

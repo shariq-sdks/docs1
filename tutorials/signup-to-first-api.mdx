@@ -1,19 +1,273 @@
 ---
-title: 'From Sign-Up to First API Request'
-description: 'Complete tutorial walking through account setup to making your first API call'
+title: 'Using Demo Authorization Server'
+description: 'Quickly set up an authorization server that works as a frontend for Authlete to test OAuth2 and OpenID Connect flows.'
 ---
 
-## From Sign-Up to First API Request
+<Info>
+This page is for Authlete 3.0. For 2.x, refer to this page.
+</Info>
 
-*This page will be populated with the signup tutorial content from the existing documentation.*
+This guide will help you set up and run your authorization server(AS) that works as a frontend for Authlete. Follow these steps to create and configure your service, set up a demo authorization server, and test it.
 
-### Topics to Cover:
-- Account registration process
-- Service creation and configuration
-- Client registration
-- First API call implementation
-- Testing and validation
+> **Note:** Get an overview of the Authlete Management Console by reading [Getting Started](/developers/getting_started/).
 
-<Note>
-Content will be ported from the existing Authlete documentation.
-</Note>
+**Note:** Get an overview of the Authlete Management Console by reading [Getting Started](/developers/getting_started/).
+
+## Requirements
+
+This quickstart requires either:
+
+- Docker 1.29 or later
+- Java
+
+## Step 1: Register for an Authlete Account
+
+To manage and run authorization services, you need an [Authlete Account](https://console.authlete.com/). An Authlete account is free for up to 30 days. You can use a social login, or login using a traditional email/password.
+
+## Step 2: Create an Organization
+
+1. **Log in** to the [Authlete Console](https://console.authlete.com/).
+1. **Create a new organization** named `acme`.
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/1.png)
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/1.png)
+
+## Step 3: Create a Service
+
+1. **Switch** to your newly created `acme` organization.
+1. **Create a new service** with a name like `Demo AS`, under this organization.
+1. **Keep all settings as default** for now.
+1. Click **Create**. Make sure to **note down the Service ID** for use in Step 5.
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/2.png)
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/2.png)
+
+## Step 4: Generate a Service Access Token
+
+1. Go to **Service Settings** and select **Basic Settings**.
+1. Open the **Advanced** tab.
+1. In the **Access Tokens** section, enter a name like `Demo AS`.
+1. Click **Create** to generate the token. Make sure to **copy the token** for use in Step 5.
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/3.png)
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/3.png)
+
+## Step 5: Set Up Demo AS
+
+1. **Clone** the Authlete Java OAuth Server repository, one of several reference authorization server implementations [available on GitHub](https://github.com/authlete):
+git clone https://github.com/authlete/java-oauth-server.git
+cd java-oauth-server
+1. **Configure** the `authlete.properties` file to connect the authorization server to the Authlete service created in the Step 3.
+
+Replace `&lt;&lt;Service_ID&gt;&gt;` with the Service ID from Step 3.
+Replace `&lt;&lt;SERVICE_ACCESS_TOKEN&gt;&gt;` with the Access Token from Step 4.
+Adjust the `base_url` according to your api cluster region:
+
+`base_url = https://&lt;&lt;api-cluster-region&gt;&gt;.authlete.com`
+
+api_version = V3
+base_url = https://us.authlete.com
+service.api_key = &lt;&lt;Service_ID&gt;&gt;
+service.access_token = &lt;&lt;SERVICE_ACCESS_TOKEN&gt;&gt;
+
+The `authlete.properties` file includes commented values for Authlete properties that will not be processed by default. Be sure to uncomment Authlete property values before running the server.
+1. **Run the server** using either Docker (recommended) or Java:
+
+**Using Docker** (preferred):
+Use the following command to start the server:
+docker compose up
+
+**Using Java**:
+Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
+mvn jetty:run
+
+**Clone** the Authlete Java OAuth Server repository, one of several reference authorization server implementations [available on GitHub](https://github.com/authlete):
+
+```bash
+git clone https://github.com/authlete/java-oauth-server.git
+cd java-oauth-server
+
+```
+
+```bash
+git clone https://github.com/authlete/java-oauth-server.git
+cd java-oauth-server
+
+```
+
+**Configure** the `authlete.properties` file to connect the authorization server to the Authlete service created in the Step 3.
+
+- Replace `&lt;&lt;Service_ID&gt;&gt;` with the Service ID from Step 3.
+- Replace `&lt;&lt;SERVICE_ACCESS_TOKEN&gt;&gt;` with the Access Token from Step 4.
+- Adjust the `base_url` according to your api cluster region:
+
+`base_url = https://&lt;&lt;api-cluster-region&gt;&gt;.authlete.com`
+
+- `base_url = https://&lt;&lt;api-cluster-region&gt;&gt;.authlete.com`
+
+```properties
+api_version = V3
+base_url = https://us.authlete.com
+service.api_key = <<Service_ID>>
+service.access_token = <<SERVICE_ACCESS_TOKEN>>
+
+```
+
+```properties
+api_version = V3
+base_url = https://us.authlete.com
+service.api_key = <<Service_ID>>
+service.access_token = <<SERVICE_ACCESS_TOKEN>>
+
+```
+
+- The `authlete.properties` file includes commented values for Authlete properties that will not be processed by default. Be sure to uncomment Authlete property values before running the server.
+
+**Run the server** using either Docker (recommended) or Java:
+
+- **Using Docker** (preferred):
+Use the following command to start the server:
+docker compose up
+- **Using Java**:
+Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
+mvn jetty:run
+
+**Using Docker** (preferred):
+
+Use the following command to start the server:
+
+```bash
+docker compose up
+
+```
+
+```bash
+docker compose up
+
+```
+
+**Using Java**:
+
+Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
+
+```bash
+mvn jetty:run
+
+```
+
+```bash
+mvn jetty:run
+
+```
+
+## Step 6: Verify the Setup
+
+1. Open your browser and go to `http://localhost:8080`.
+1. You should see the home page of the Demo authorization server.
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/4.png)
+
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/4.png)
+
+## Step 7: Create a Client
+
+1. To test the authorization server, you need to create a client in the Authlete Console.
+1. Navigate to your **Demo AS** within the Authlete Console.
+1. Click **Create Client**, enter a descriptive name for the client, and click **Create**.
+1. Note down the **Client ID** for later use.
+1. Go to **Endpoints -&gt; Global Settings -&gt; Redirect URIs** and click **Add URI**. Add the following Redirect URI:
+
+`https://oidcdebugger.com/debug`
+1. Leave all other settings as default and click **Save Changes**.
+
+To test the authorization server, you need to create a client in the Authlete Console.
+
+Navigate to your **Demo AS** within the Authlete Console.
+
+Click **Create Client**, enter a descriptive name for the client, and click **Create**.
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/5.png)
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/5.png)
+
+Note down the **Client ID** for later use.
+
+Go to **Endpoints -&gt; Global Settings -&gt; Redirect URIs** and click **Add URI**. Add the following Redirect URI:
+
+- `https://oidcdebugger.com/debug`
+
+Leave all other settings as default and click **Save Changes**.
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/6.png)
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/6.png)
+
+## Step 8: Test Your Authorization Server
+
+### OAuth2 Authorization Code Flow
+
+1. Visit [OpenID Connect Debugger](https://oidcdebugger.com/) and provide the following details:
+
+**Authorize URI**: `http://localhost:8080/api/authorization`
+**Client ID**: Enter the Client ID you copied from Step 6.
+1. Set the **Response type** to `code` and **Response mode** to `form_post`.
+1. (Optional) To test PKCE, select the **Use PKCE** checkbox. PKCE is enabled by default on your Authlete Service.
+1. Scroll down and click the **Send Request** button to start the authorization process.
+
+Visit [OpenID Connect Debugger](https://oidcdebugger.com/) and provide the following details:
+
+- **Authorize URI**: `http://localhost:8080/api/authorization`
+- **Client ID**: Enter the Client ID you copied from Step 6.
+
+Set the **Response type** to `code` and **Response mode** to `form_post`.
+
+(Optional) To test PKCE, select the **Use PKCE** checkbox. PKCE is enabled by default on your Authlete Service.
+
+Scroll down and click the **Send Request** button to start the authorization process.
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/7.png)
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/7.png)
+
+This will redirect you to the login page of the Demo AS. Enter the following credentials and click **Authorize**:
+
+- **Login ID**: `max`
+- **Password**: `max`
+
+You will be redirected back to the OIDC Debugger with an Authorization Code issued by Authlete.
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/8.png)
+
+![Create Client Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/8.png)
+
+### Issue an ID Token (Implicit Flow)
+
+1. Click **Start over** to return to the home page.
+1. Set the **Response type** to `id_token`.
+1. Click **Send Request** to initiate a new authorization process.
+1. You will be redirected back to the debugger with a JWT ID Token issued by Authlete.
+
+Click **Start over** to return to the home page.
+
+Set the **Response type** to `id_token`.
+
+Click **Send Request** to initiate a new authorization process.
+
+You will be redirected back to the debugger with a JWT ID Token issued by Authlete.
+
+![ID Token Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/9.png)
+
+![ID Token Screenshot](https://storage.googleapis.com/authlete-website/resources/tutorial/v3/signup/9.png)
+
+> **Security Note:** ⚠️ For this demo setup, the ID Token is signed using the `client_secret` and the `HS256` algorithm. This configuration is intended for demo purposes only. For real-world applications, you should **upload your JSON Web Key (JWK)** and use an asymmetric signing algorithm like `RS256`.
+
+**Security Note:** ⚠️ For this demo setup, the ID Token is signed using the `client_secret` and the `HS256` algorithm. This configuration is intended for demo purposes only. For real-world applications, you should **upload your JSON Web Key (JWK)** and use an asymmetric signing algorithm like `RS256`.
+
+And that’s it! 🎉 You’ve successfully set up and tested your authorization server with Authlete.
+
+Now that your authorization server is up and running, you can explore more advanced features and configurations:
+
+- Explore the **API Reference Documentation** for more details on Authlete APIs used by your authorization server: [Check the API Docs](https://docs.authlete.com)

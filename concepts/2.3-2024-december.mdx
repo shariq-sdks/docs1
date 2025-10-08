@@ -1,0 +1,35 @@
+---
+title: 'Authlete 2.3 Release Notes - December 2024'
+description: 'Authlete 2.3 Release Notes - December 2024'
+---
+
+# Overview
+
+This minor update introduces a couple of changes for Authlete 2.3.
+This new version was made available on December 26th (Thu).
+
+# New features & Improvements
+
+N/A
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## Client ID alias rejection fix
+
+Fixed a bug where client ID alias was not accepted as a valid parameter at `/auth/token/revoke` API.
+
+## Missing responseType parameter fix
+
+Fixed NPE on sending requests that do not include the `responseType` parameter.
+
+## Token exchange permission parameter update fix
+
+Fixed a bug where token exchange permission parameter could not be updated through the `client/update` API.
+
+# Other
+
+N/A

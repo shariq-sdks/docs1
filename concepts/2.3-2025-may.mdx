@@ -1,0 +1,41 @@
+---
+title: 'Authlete 2.3 Release Notes - May 2025'
+description: 'Authlete 2.3 Release Notes - May 2025'
+---
+
+# Overview
+
+This minor update introduces changes for Authlete 2.3.
+This new version was made available on June 11th (Wed).
+
+# New Features & Improvements
+
+## Activity log improvements
+
+Refined activity log logic so that batch cleanup details only appear in `/api/batch/cleanup` logs.
+
+## Client list API performance improvements
+
+Added index to `access_token` table in order to reduce response time when querying the API for the list of clients a subject has granted access to.
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## Trust anchors update fix
+
+Fixed an issue where service update API did not return updated trust anchors in the response when no trust anchors had been owned by the service.
+
+## Client update error fix
+
+Fixed an issue where the accumulation of `request_uri` when using Pushed Authorization Requests (PAR) would result in 400 errors during client updates.
+
+## Access token ID display fix
+
+Fixed an issue where `accessTokenId` would occasionally be shown as `0` in the activity logs.
+
+# Other
+
+N/A

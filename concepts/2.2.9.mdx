@@ -1,0 +1,20 @@
+---
+title: 'Authlete 2.2.9 Release Notes'
+description: 'Authlete 2.2.9 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.8](../2.2.8).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# Added or Updated APIs
+
+## Parameterized Scopes (added)
+
+This release supports parameterized scopes. By specifying a special pair of attributes (`regex` as a key and a regular expression (e.g. `^consent:.+$`) as a value) for a scope (e.g. `consent`), Authlete treats a matched scope value (e.g. `consent:urn:bancoex:C1DD33123`) as valid.
+
+See [JavaDoc of DynamicScope class](http://authlete.github.io/authlete-java-common/com/authlete/common/dto/DynamicScope.html) in our authlete-java-common library for details.

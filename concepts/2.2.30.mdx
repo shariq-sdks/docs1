@@ -1,0 +1,42 @@
+---
+title: 'Authlete 2.2.30 Release Notes'
+description: 'Authlete 2.2.30 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.25](../2.2.25).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Configuration Items
+
+## DCR with Duplicate Software ID
+
+When “Block” is selected, Authlete checks duplication of the value of `software_id` parameter (which is one of client metadata) in a DCR (Dynamic Client Registration) request. If there is already the same value in the database, Authlete rejects the DCR request.
+
+When “Accept” is selected, Authlete does not do the check as described above.
+
+# Added or Updated APIs
+
+## Generating Access Token (added)
+
+`accessToken` is a new request parameter added to the following APIs so that you can specify a value of a new access token by yourself instead of generating the value by the Authlete server.
+
+- `/auth/authorization/issue` API
+- `/auth/token` API
+- `/auth/token/issue` API
+- `/backchannel/authentication/complete` API
+
+## /auth/token/revoke API (added)
+
+`/auth/token/revoke` is a new API to revoke tokens. You can specify the following conditions for target access tokens and/or refresh tokens to be revoked.
+
+- `accessTokenIdentifier`
+- `clientIdentifier`
+- `refreshTokenIdentifier`
+- `subject`
+
+Up to 20 tokens can be revoked in a single request to the API.

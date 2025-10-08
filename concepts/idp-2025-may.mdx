@@ -1,0 +1,23 @@
+---
+title: 'Authlete IdP Release Notes - May 2025'
+description: 'Authlete IdP Release Notes - May 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete IdP.
+This new version was made available on June 11th (Wed).
+
+# IdP
+
+## Authenticator settings UX improvements
+
+Added a new step to the flow to clearly separate recovery codes from the authenticator registration step.
+
+## SMTP configuration fix
+
+Fixed an issue where SMTP configuration properties would not be correctly initialized before caching.
+
+## Started enforcing minimum password strength
+
+As part of this effort, we have also blacklisted a series of unsecure passwords such as `admin`, `password`, etc …

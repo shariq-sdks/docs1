@@ -1,0 +1,31 @@
+---
+title: 'Authlete 2.2.22 Release Notes'
+description: 'Authlete 2.2.22 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.15](../2.2.15).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Configuration Items
+
+## Variability of loopback redirection URIs
+
+When “Variable” is selected, Authlete checks if a host component of a redirection URI specified in an authorization request denotes loopback (`localhost`, `127.0.0.1` or `::1`), and if so, Authlete ignores a port number component of the URI on comparing it with pre-registered URIs.
+This behavior is described in [7.3. Loopback Interface Redirection of BCP 212 (OAuth 2.0 for Native Apps)](https://www.rfc-editor.org/rfc/rfc8252.html#section-7.3).
+
+Note that the port number component of loopback redirection URIs cannot be variable in the context of FAPI even if Variable is selected, as per [FAPI 1.0 Part 1 Section 7.5](https://openid.net/specs/openid-financial-api-part-1-1_0-final.html#native-apps).
+
+## Dynamic Client Registration’s scope Parameter
+
+If “Enabled” is selected, you can use `scope` parameter to Authlete’s `/client/registration` API and `/client/registration/update` API to limit the range of scopes that the client application can request. If “Disabled” is selected, these APIs ignore the `scope` parameter.
+
+# Added or Updated APIs
+
+## Issuing a JWT-based access token (updated)
+
+The `/auth/token/create` API now creates a JWT-based access token when the “Access Token Signature Algorithm” is set.

@@ -1,0 +1,47 @@
+---
+title: 'Authlete Console Release Notes - April 2025'
+description: 'Authlete Console Release Notes - April 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete Management Console.
+This new version was made available on April 10th (Thu).
+
+# Management Console
+
+## Audit logs status filter
+
+Added a feature to filter audit log events by status (`Success` or `Failure`).
+
+## Invitation error message fix
+
+Fixed an issue where error messages would not display correctly when failing to accept an invitation.
+
+## Console search UI improvements
+
+Moved consoled search bar to a more noticeable place in the UI.
+
+## Organization search fix
+
+Fixed an issue where the search function in the organization dropdown would not return the expected results.
+
+## Service search fix
+
+Fixed an issue where the search function in the service and client pages would not return the expected results.
+
+## PageHeader cleanup
+
+Removed redundant information from PageHeader component.
+
+## JWK Set fix
+
+Updated Placeholder for `Authorization Server JWK Set` and fixed JSON formatting.
+
+## Console crash fix
+
+Fixed an issue where the console would crash whenever a user without a last name would try to log in.
+
+## Revoke invitation improvements
+
+Updated console logic to use the newly created revoke API endpoint to revoke sent invitations and log it as separate event in the audit logs.

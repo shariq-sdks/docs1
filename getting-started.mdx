@@ -1,105 +1,185 @@
 ---
 title: 'Getting Started'
-description: 'Learn how to set up your Authlete Account, create services and clients, and navigate the Management Console. This guide covers everything from account registration to configuring your first authorization server.'
+description: 'Learn how to set up your Authlete Account, create services and clients, and navigate the Management Console. This guide covers everything from account registration to configuring your first authorization server, helping you get started quickly with OAuth and OpenID Connect.'
 ---
 
-## Getting Started with Authlete
+<Info>
+This page is for Authlete 3.0. For 2.x, refer to this page.
+</Info>
 
-This comprehensive guide will walk you through setting up your Authlete account, creating your first service, and making your first API call.
+## Getting Started
 
-### Prerequisites
+This quick introduction will help you create your Authlete account and provide an overview of the Authlete Management Console
 
-Before you begin, make sure you have:
+This tutorial contains:
 
-- A valid email address for account registration
-- Basic understanding of OAuth 2.0 concepts (optional but recommended)
-- Your preferred programming language and HTTP client
+1. Signing Up for an Authlete Account
+1. Authlete Management Console Overview
 
-### Step 1: Create Your Account
+## Signing Up to Authlete
 
-1. Go to [console.authlete.com](https://console.authlete.com)
-2. Click "Register" to create a new account
-3. Verify your email address
-4. Complete your profile setup
+Signing up for an Authlete account is a prerequisite for using the Management Console. Once you have created your account, you can leverage all Authlete product features using the new Management Console.
 
-### Step 2: Create Your First Service
+**[Step 1: Sign Up for an Account](https://console.authlete.com/register)**
 
-1. Log in to the Authlete Console
-2. Click "Create Service"
-3. Fill in your service details:
-   - **Service Name**: Your application name
-   - **Description**: Brief description of your service
-   - **Service Profile**: Choose based on your needs
-4. Configure basic settings:
-   - **Supported Grant Types**: Select the OAuth flows you need
-   - **Supported Response Types**: Choose response types
-   - **Supported Scopes**: Define your API scopes
+Start by clicking “Register” on the Authlete website.
 
-### Step 3: Get Your API Credentials
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/1.png)
 
-After creating your service, you'll receive:
+![homepage](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/1.png)
 
-- **Service API Key**: Used to identify your service
-- **Service API Secret**: Used to authenticate API calls
+**Step 2: Enter Your Email or Continue with Social Login**
 
-<Warning>
-Keep your API secret secure and never expose it in client-side code.
-</Warning>
+Enter your email address or choose to proceed with social login via Google or GitHub.
 
-### Step 4: Create Your First Client
+![signup](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/2.png)
 
-1. In the Console, go to "Client Management"
-2. Click "Create Client"
-3. Configure your client:
-   - **Client Type**: Public or Confidential
-   - **Redirect URIs**: Where to redirect after authorization
-   - **Grant Types**: Select appropriate flows
-4. Save your client credentials
+![signup](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/2.png)
 
-### Step 5: Test Your Setup
+**Step 3: Verify Your Email Address (if not using Social Login)**
 
-Let's verify everything works by calling the "Get Service" API:
+*After providing your email, you will arrive at the following page*
 
-<CodeGroup>
-```bash cURL
-curl -X GET "https://us.authlete.com/api/service/get" \
-  -H "Authorization: Bearer YOUR_SERVICE_API_SECRET" \
-  -H "Content-Type: application/json"
-```
+![verification-link-sent](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/3.png)
 
-```javascript JavaScript
-const response = await fetch('https://us.authlete.com/api/service/get', {
-  method: 'GET',
-  headers: {
-    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
-    'Content-Type': 'application/json'
-  }
-});
-const data = await response.json();
-console.log(data);
-```
+![verification-link-sent](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/3.png)
 
-```python Python
-import requests
+Check your inbox for a link to verify your email, and a manual code that you can enter on an alternate link provided within that email.
 
-headers = {
-    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
-    'Content-Type': 'application/json'
-}
+*The email you will receive from Authlete to verify your email address*
 
-response = requests.get('https://us.authlete.com/api/service/get', headers=headers)
-print(response.json())
-```
-</CodeGroup>
+![email-verification](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/4.png)
 
-### Next Steps
+![email-verification](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/4.png)
 
-Now that you have a working service, explore:
+![enter-code](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/5.png)
 
-- [Core Concepts](/concepts/oauth2-basics) - Learn OAuth 2.0 and OpenID Connect fundamentals
-- [Basic Implementation](/implementation/service-management) - Configure your service
-- [API Reference](/api-reference) - Explore all available APIs
+![enter-code](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/5.png)
 
-<Note>
-This guide covers the basics. For production deployment, see our [Production & Deployment](/production/infrastructure-setup) section.
-</Note>
+*You can either enter the code you receive via email using the login link at the bottom, or click Verify Email button in the email to skip to this step*
+
+**Step 4: Enter Your Personal Details**
+
+Provide some initial information about yourself, and set a password for your Authlete account.
+
+![user-info](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/6.png)
+
+![user-info](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/6.png)
+
+*Input form for basic information we require from you to set up your account*
+
+You must read and agree to Authlete’s Privacy Policy in order to register an account, so once you have checked the box, click “Register”.
+
+Congratulations, you have successfully signed up for an Authlete Account and are ready to begin your journey!
+
+## Authlete Console Overview
+
+The Authlete Management Console is the primary dashboard for managing and configuring all aspects of Authlete’s product features. Once you’ve created an account and logged into the console, you will be able to leverage the functionality of the console to create, configure, and use Organizations, Services within those Organizations, and Clients within those Services.
+
+### All Organizations Page
+
+1. **All Organizations Page**
+The first page that any user sees in the console is the All Organizations page. An Organization is a group of users who have access to Service(s) created within the Organization. Any Service within an Organization runs on one or more API Servers (Clusters).
+
+![org-empty](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/7.png)
+
+![org-empty](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/7.png)
+
+*Any Organization that you have created or are a member of will be displayed on this page.*
+
+1. **Create an Organization**
+For new users who are not part of any existing Organizations, it is essential to create a new Organization as a prerequisite to creating Services within it. Start by clicking the “Create Organization” button at the top-right of the screen.
+
+![new-org](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/8.png)
+
+![new-org](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/8.png)
+
+Enter an Organization Name (we are using “Acme Org” for this tutorial), or Import a copy of an Organization from Authlete 2.x to in just a few clicks. Press the “Create” button to create your new Organization.
+
+1. **Organization Settings**
+
+![org-settings](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/9.png)
+
+![org-settings](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/9.png)
+
+*In the “Basic Settings” section of Organization Settings, you can rename the Organization as well as use and create any number of Access Tokens.*
+
+![user-permissions](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/10.png)
+
+![user-permissions](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/10.png)
+
+Since Organizations are groups of users sharing various access-levels to the Services and Clients within those Organizations, you may want to add users to an Organization so that they can use, modify, and configure services and clients within that Organization.
+
+![invites-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/11.png)
+
+![invites-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/11.png)
+
+To add a new user, Navigate to the “User Permissions” sidebar item, and click “Invite New User” on the top-right section of the page. You will be prompted to enter the email address of the user and set access-level permissions for the invited user. By default, access-level permissions for invited users are set to “Viewer”. Once you have set your preferred permissions, press “Send Invite”. Users who have not yet accepted invites to join the Organization will be displayed in the “Invited” tab.
+
+![user-invite-form](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/12.png)
+
+![user-invite-form](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/12.png)
+
+You can change the permissions allocated to users at any time using the table view selectors for Roles. Administrators can also remove users in Organizations by pressing the delete icon.
+
+**Important:** On our **Free Plan**, we limit the number of users that can be invited into an Organization to **3 users**.
+
+### All Services Page
+
+The first page that any user sees within an Organization is the All Services page. This page lists all Services created for your organization.
+
+- A **Service** represents the backend of your Authorization Server. It contains all the configurations needed to operate a production-grade authorization server, such as OAuth and OpenID Connect settings, token management, and other security settings.
+- A **Client** refers to the registration of an OAuth client within your Authorization Server. This client represents an application that will request access tokens from your authorization server.
+
+Authlete supports running Services across multiple API clusters, allowing you to select clusters based on your data residency requirements or to segregate environments (e.g., development, testing, and production).
+
+![services-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/13.png)
+
+![services-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/13.png)
+
+Any Services that you have created or you are a member of within this Organization will be displayed here. To switch between Organizations, you can use the navigation label that displays your Organization name and see available options, or go back to the previous page using the back button. You can also filter between Services on different API Clusters by clicking on the “All Clusters” label next to the Organization name.
+
+#### Creating a New Service
+
+To create a new Service, click the Create Service button located at the top-right of the screen. A Service is required if you want to run your own authorization server powered by Authlete.
+
+![service-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/14.png)
+
+![service-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/14.png)
+
+Depending on where you want to run your Service, select the appropriate **API Cluster**. This is an important decision, as all of your Service data will reside on the selected cluster. Next, enter a **Service Name** (e.g. “Sample Service” for this tutorial), an optional **Service Description**, and specify the **Issuer Identifier URL**. Optionally, you can also select a **Supported Service Profile**. Once done, click **Create** to set up your new Service.
+
+*Learn more about Clusters (Coming Soon)*
+
+*Learn more about Supported Service Profiles (Coming Soon)*
+
+### All Clients Page
+
+The first page that any user sees within a Service is the All Clients page. A **Client** represents an application that interacts with the Authorization Server to request tokens or with the Resource Server to access protected resources. Clients are created and configured within the context of a Service, which represents the backend of the Authorization Server.
+
+![clients-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/15.png)
+
+![clients-list](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/15.png)
+
+*Any Clients that you have created or have access to within this Service will be displayed here. To switch between Services, you can use the back button to view all Services and choose a different Service (if applicable).*
+
+#### Creating a New Client
+
+For Services that do not contain any Clients, you may want to create a Client. Start by clicking the “Create Client” button at the top-right of the screen.
+
+![client-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/16.png)
+
+![client-creation](https://storage.googleapis.com/authlete-website/resources/tutorial-getting-started-images/16.png)
+
+Enter a **Client Name** and an optional **Client Description**. Then, press the **“Create”** button to create your new Client.
+
+## Next Steps: Continue Your Journey
+
+Now that you’ve set up your Authlete account and created a client, it’s time to take your setup further.
+
+- **[OAuth 2.0 Basics - API Tutorials](/developers/tutorial/oauth/)**: Call the Authlete APIs directly using the curl command etc. to learn the basics of how Authlete works.
+- **[Using Demo Authorization Server](/developers/tutorial/signup/)**: Deploy an authorization server that works as a frontend for the Authlete APIs and test the OAuth and OpenID Connect flows.
+
+> **Ready to get started?** **Sign Up for an Authlete Account** and unlock all the features of Authlete!
+
+**Ready to get started?** **Sign Up for an Authlete Account** and unlock all the features of Authlete!

@@ -1,0 +1,39 @@
+---
+title: 'Authlete 2.2.4 Release Notes'
+description: 'Authlete 2.2.4 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.3](../2.2.3).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# Added or Updated APIs
+
+## Service Attributes (added)
+
+The service attributes are key-value pairs that can be associated with a service for any aribitrary purposes. The associated attributes are embedded in responses of some Authlete APIs (e.g. `/auth/introspection` API). In most cases, they are embedded as the value of `serviceAttributes`, but in cases where a response contains `service`, the attributes are embedded as the value of `attributes` in the service JSON object.
+
+The attributes are stored in Authlete’s database after being encrypted.
+
+## Client Attributes (added)
+
+The client attributes are key-value pairs that can be associated with the client for any aribitrary purposes. The associated attributes are embedded in responses of some Authlete APIs (e.g. `/auth/introspection` API). In most cases, they are embedded as the value of `clientAttributes`, but in cases where a response contains `client`, the attributes are embedded as the value of `attributes` in the client JSON object.
+
+The attributes are stored in Authlete’s database after being encrypted.
+
+## /auth/token/delete API (updated)
+
+Prior to this release, values that can be specified to Authlete’s token deletion API (`/auth/token/delete`) were either access tokens or their hashes. The API is enhanced in this release so that you can specify either refresh tokens or their hashes as well as access tokens (and hashes).
+
+In summary, the API of this release can accept either one of the following four types of values as a subject to be deleted.
+
+- Access token
+- Access token hash
+- Refresh token (new)
+- Refresh token hash (new)
+
+Note that if you delete a refresh token, its corresponding access token will also be deleted at the same time, and vice versa.

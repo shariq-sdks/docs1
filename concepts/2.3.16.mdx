@@ -1,0 +1,35 @@
+---
+title: 'Authlete 2.3.16 Release Notes'
+description: 'Authlete 2.3.16 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.3. It includes the following new or enhanced features since [the version 2.3.12](../2.3.12).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Configuration Items
+
+N/A
+
+# Added or Updated APIs
+
+## /auth/token/update API
+
+Added the following request parameters to `/auth/token/update` API.
+
+- `refreshTokenExpiresAt`
+- `refreshTokenExpiresAtUpdatedOnScopeUpdate`
+
+See [JavaDoc of TokenUpdateRequest class](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/TokenUpdateRequest.html) for details.
+
+## clientAuthMethod request parameter
+
+Added the `clientAuthMethod` request parameter to the following APIs.
+
+- `/auth/token` API
+- `/backchannel/authentication` API
+- `/pushed_auth_req` API

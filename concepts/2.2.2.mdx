@@ -1,0 +1,183 @@
+---
+title: 'Authlete 2.2.2 Release Notes'
+description: 'Authlete 2.2.2 Release Notes'
+---
+
+# Overview of This Release
+
+This is the first generally available version of Authlete 2.2. It includes the following new or enhanced features.
+
+# Newly Supported Standard Specifications
+
+## Financial-grade API (FAPI)
+
+Authlete 2.2 supports the final version of the “Financial-grade API (FAPI)” which was approved in January, 2021.
+
+The final version has some differences over the Implementer’s Draft 2 (October, 2018). The following revised provisions may affect to existing FAPI-enabled systems. Please note that configuration and source codes of software you are using may need updating accordingly.
+
+- The Part 2 of the FAPI Final requires that request objects must contain the `nbf` claim, and their duration (diff between `exp` and `nbf`) must be no longer than 60 minutes.
+- The Part 2 of the FAPI Final prohibits use of the JWE algorithm `RSA1_5`.
+
+### Related Configuration
+
+#### nbf Claim
+
+“nbf Claim” is a new configuration item in Authlete 2.2 for smooth migration from the final version to the Implementer’s Draft 2 without breaking live systems. You can choose “Optional” to make the `nbf` claim treated as optional even when an authorization request is regarded as a FAPI-Part2 request. That is, the authorization server does not perform validation on lifetime of the request object.
+
+Note that setting “Optional” makes the authorization server violate the specification partly. This setting is intended to support existing FAPI-compliant client applications during migration, so it is recommended that you revert the setting back to “Required” after confirming that all client application implementations are enabled to embed an `nbf` claim in request objects.
+
+This configuration item corresponds to `Service.nbfOptional` in the [authlete-java-common library](https://github.com/authlete/authlete-java-common/); `true` and `false` mean “Optional” and “Required”, respectively.
+
+## JWT Secured Authorization Request (JAR)
+
+Authlete 2.2 supports “JWT Secured Authorization Request (JAR).”
+
+JAR is a successor of “Request Object” which is defined in OpenID Connect Core 1.0. It introduces some breaking changes as listed below. Please update configuration and source codes of software you are using as necessary.
+
+- Request parameters outside request objects are not used.
+- The `response_type` parameter outside the request object is no longer mandatory.
+- The `scope` parameter outside the request object is no longer mandatory even when the `scope` claim in the request object contains `openid`.
+- Request objects must always be signed.
+
+See the following blog post for technical details of JAR and Authlete’s JAR support.
+
+- [Implementer’s note about JAR (JWT Secured Authorization Request)](https://darutk.medium.com/implementers-note-about-jar-fff4cbd158fe)
+
+### Related Configuration
+
+#### Request Object Processing
+
+“Request Object Processing” is a new configuration item in Authlete 2.2 for smooth migration without breaking live systems.
+
+You can choose “Backward compatible” to have Authlete process request objects in accordance with the rules of OpenID Connect Core 1.0. This configuration item corresponds to `Service.traditionalRequestObjectProcessingApplied` in the  [authlete-java-common library](https://github.com/authlete/authlete-java-common/); `true` and `false` mean “Backward compatible” and “JAR compatible”, respectively.
+
+Once confirming that all client application implementations get ready for JAR, it is recommended to revert the configuration back to “JAR compatible.”
+
+When “Request Object Processing” is set to “JAR compatible” and “Request Object” is set to “Required”, the `require_signed_request_object` metadata in the discovery document of the authorization server is `true`. See the JAR specification for details about the metadata.
+
+NOTE: If `request_uri` in an authorization request is one that has been issued from the “Pushed Authorization Request Endpoint” (which is defined in “OAuth 2.0 Pushed Authorization Requests”), the request object is processed with the JAR rules regardless of the setting of “Request Object Processing.”
+
+## OAuth 2.0 Pushed Authorization Requests (PAR)
+
+Authlete 2.2 supports “OAuth 2.0 Pushed Authorization Requests (PAR).”
+
+PAR is a mechanism that allows a client to register an authorization request into an authorization server before making an authorization request to an authorization endpoint.
+
+See the following blog post for the overview of PAR.
+
+- [Illustrated PAR: OAuth 2.0 Pushed Authorization Requests](https://darutk.medium.com/illustrated-par-oauth-2-0-pushed-authorization-requests-652d71ed5cfb)
+
+### Related Configuration
+
+#### PAR Use
+
+“PAR Use” is a new configuration item in both Service and Client settings.
+
+If “Mandatory” is set in Service configuration, the authorization server accepts authorization request data only via the PAR method. As a result, the authorization server will reject any authorization request without a request URI issued from the PAR endpoint.
+
+If “Mandatory” is set in Client configuration, all authorization requests from the client must use the PAR method.
+
+“PAR Use” in Service and Client correspond to the server metadata `require_pushed_authorization_requests` and the client metadata `require_pushed_authorization_requests`, respectively.
+
+## OAuth 2.0 Rich Authorization Requests (RAR)
+
+Authlete 2.2 supports “OAuth 2.0 Rich Authorization Requests (RAR).”
+
+RAR is a mechanism that allows a client to include detailed information to an authorization request. The specification introduces a new parameter `authorization_details` whose value is an array of JSON objects representing the detailed information. The `authorization_details` parameter can be used where the `scope` parameter can be used, for example, in authorization requests and token responses. In addition, Authlete supports the parameter at the backchannel authentication endpoint (CIBA) and the device authorization endpoint (RFC 8628) as well.
+
+Before RAR is defined, details of an authorization request are represented in many ways. For example, some deployments have used a structured format to values of the `scope` request parameter. The RAR specification standardizes how details of an authorization request is represented in a flexible manner.
+
+### Related Configuration
+
+#### Supported Authorization Data Types
+
+“Supported Authorization Data Types” is a new Service configuration item to list supported values of the `type` field of each element in `authorization_details`. It corresponds to the server metadata `authorization_data_types_supported`.
+
+#### Authorization Data Types
+
+“Authorization Data Types” is a new Client configuration item to list value of the `type` field of each element in `authorization_details` that the client may use. It corresponds to the client metadata `authorization_data_types`.
+
+## OAuth 2.0 Demonstration of Proof-of-Posession at the Application Layer (DPoP)
+
+Authlete 2.2 supports “OAuth 2.0 Demonstration of Proof-of-Posession at the Application Layer (DPoP).”
+
+DPoP is a new “Proof-of-Possession” mechanism for access tokens, and can be used as an alternative when it is difficult to use “certificate binding” (RFC 8705).
+
+See the following blog post for technical details of DPoP and Authlete’s DPoP support.
+
+- [Illustrated DPoP (OAuth Access Token Security Enhancement)](https://darutk.medium.com/illustrated-dpop-oauth-access-token-security-enhancement-801680d761ff)
+
+## OpenID Connect for Identity Assurance 1.0 (IDA)
+
+Authlete 2.2 supports the second Implementer’s Draft of “OpenID Connect for Identity Assurance 1.0 (IDA),” which was released on May 19, 2020.
+
+IDA has been being developed for distribution of KYC results in a verifiable manner.
+See the following blog post for technical details of IDA and Authlete’s IDA support.
+
+- [Identity Assurance — OpenID Connect in the eKYC era](https://darutk.medium.com/identity-assurance-openid-connect-in-the-ekyc-era-3be78384a1d1)
+
+## RFC 8707: Resource Indicators for OAuth 2.0
+
+Authlete 2.2 supports “Resource Indicators for OAuth 2.0.”
+
+“Resource Indicators for OAuth 2.0” is a mechanism that allows a client to specify audiences of access tokens. The specification adds a new request parameter `resource` to authorization requests and token requests. In addition, Authlete’s implementation supports the request parameter at the backchannel authentication endpoint (CIBA) and the device authorization endpoint (RFC 8628) as well.
+
+The `resource`s are set to the value of the `aud` claim in an introspection response. Also, when the format of access token is JWT, they are set to the value of the `aud` claim in the JWT. Note that the format of access tokens generated by Authlete becomes JWT by setting “Access Token Signature Algorithm”.
+
+It is up to resource server implementations how to utilize the audience information of access tokens.
+
+## OAuth 2.0 Authorization Server Issuer Identifier in Authorization Response
+
+Authlete 2.2 supports “OAuth 2.0 Authorization Server Issuer Identifier in Authorization Response.”
+
+“OAuth 2.0 Authorization Server Issuer Identifier in Authorization Response” defines a new authorization response parameter, `iss`, as a countermeasure for a certain type of mix-up attackes.
+
+The specification requires that the `iss` response parameter always be included in authorization responses unless JARM (JWT Secured Authorization Response Mode) is used. A client application can ensure that the mix-up attack has not been made, by confirming that the value of the `iss` parameter in the authorization response matches the identifier of the authorization server.
+
+Note that if a client application communicates with just one authorization server, the client application does not have to worry about the mix-up attack and does not have to verify the `iss` response parameter. See the specification for details.
+
+### Configuration Item
+
+#### iss Response Parameter
+
+“iss Response Parameter” is a new configuration item in Authlete 2.2. When “Suppressed” is selected, the authorization server does not include the `iss` response parameter. This is for experiment purposes only - developers may be able to test the mix-up attack by suppressing the `iss` response parameter.
+
+When “Included” is selected, the `authorization_response_iss_parameter_supported` metadata in the discovery document of the authorization server is `true`. See the specification for details about the metadata.
+
+This configuration item corresponds to `Service.issSuppressed` in the  [authlete-java-common library](https://github.com/authlete/authlete-java-common/); `true` and `false` mean “Suppressed” and “Included”, respectively.
+
+NOTE: Do not set “Suppressed” in production environment unless there are special reasons for it.
+
+# Other New Configuration Items
+
+The following are other new configuration items added since the previous release. The list includes features that have been backported to previous versions.
+
+## “Scope Request”
+
+When a request has no `scope` parameter (or none of the given scopes is valid) and the service’s pre-defined default scope set is empty, the authorization server regards that the request requests no scope. When “Required” is set, such requests are rejected.
+
+## “Claim Shortcut”
+
+If “Restrictive” is selected, claims specified by shortcut scopes (e.g. `profile`) are included in an ID token only when no access token is issued (only when `response_type` is `id_token`). On the other hand, if “Nonrestrictive” is selected, the claims are always included in an ID token regardless of whether an access token is issued or not.
+
+## “Request Object”
+
+If “Mandatory” is selected, all authorization requests are required to utilize a request object.
+
+## “Refresh Token Duration Takeover”
+
+If “Enabled” is selected, the remaining duration of the used refresh token is taken over to the newly issued one. The value of this configuration item does not have any effect when “Refresh Token Continuous Use” is “Enabled”.
+
+# Added or Updated APIs
+
+## idtHeaderParams (added)
+
+This request parameter has been added to APIs that may issue an ID token. Arbitrary claims can be embedded into an ID token by using the request parameter.
+
+## withHiddenProperties (added)
+
+This request parameter has been added to the `/api/auth/introspection/standard` API. If `withHiddenProperties=true` is given, properties whose `hidden` is `true` also are included in introspection responses.
+
+## subject (updated)
+
+Maximum length of `subject` request parameter has been updated from 100 to 255.

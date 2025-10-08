@@ -1,0 +1,34 @@
+---
+title: 'Authlete 2.2.44 Release Notes'
+description: 'Authlete 2.2.44 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.38](../2.2.38).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Configuration Items
+
+N/A
+
+# Added or Updated APIs
+
+## /auth/revocation API
+
+Support client assertion client authentication method and mTLS at `/auth/revocation` API.
+
+## /auth/token/revoke API
+
+Support JWT access tokens at /auth/token/revoke API.
+
+## accessTokenDuration
+
+Add the `accessTokenDuration` request parameter to the following APIs. When this request parameter holds a positive integer, it is used as the duration of the access token. In other cases, this request parameter is ignored.
+
+- `/auth/authorization/issue` API
+- `/auth/token` API
+- `/auth/token/issue` API

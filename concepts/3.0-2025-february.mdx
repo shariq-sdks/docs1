@@ -1,0 +1,33 @@
+---
+title: 'Authlete 3.0 Release Notes - February 2025'
+description: 'Authlete 3.0 Release Notes - February 2025'
+---
+
+# Overview
+
+This minor update introduces changes for Authlete 3.0.
+This new version was made available on March 3rd (Mon).
+
+# Specs support
+
+### SD-JWT VC media type update
+
+Updated media type of SD-JWT VC from `vc+sd-jwt` to `dc+sd-jwt` to comply with [OAuth-SD-JWT VC PR 268](https://github.com/oauth-wg/oauth-sd-jwt-vc/pull/268).
+
+### OID4VCI Key Proof JWT update
+
+Updated our implementation of OID4VCI to support the `did:jwk` method in the `kid` parameter in Key Proof JWT.
+
+# Bug fixes
+
+### Table isolation fix
+
+Fixed an issue where incorrect use of persistence managers would prevent table isolation feature from functioning properly.
+
+### Client identifier extraction fix
+
+Fixed inconsistencies in client identifier extraction and authentication across API endpoints.
+
+# Other
+
+N/A

@@ -1,0 +1,53 @@
+---
+title: 'Authlete 3.0 Release Notes - April 2025'
+description: 'Authlete 3.0 Release Notes - April 2025'
+---
+
+# Overview
+
+This minor update introduces changes for Authlete 3.0.
+This new version was made available on April 10th (Thu).
+
+# New Features & Improvements
+
+## API response improvements
+
+Implemented feature to return request ID in API response.
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## Audience values validation fix
+
+Fixed an issue where strict validation of audience values in client assertion would not behave as expected.
+
+## Audience claim fix
+
+Fixed an issue where specifying the `resources` parameter in a token creation request would not reflect its value in the `aud` claim.
+
+## StringIndexOutOfBoundException handling fix
+
+Fixed an issue where URI processing would not handle `StringIndexOutOfBoundException` correctly.
+
+## Trust anchors update fix
+
+Fixed an issue where updated trust anchors were not showing in the response from the `/service/update` API.
+
+## Missing PosgreSQL changelog fix
+
+Fixed an issue where `DATABASECHANGELOG` table would be missing with PostgreSQL.
+
+## Redirect URI NPE fix
+
+Fixed an NPE that would happen whenever the redirect URI is not provided in incoming fapi 2 requests.
+
+## Service GET endpoint fix
+
+Fixed an issue where the `GET /service/get` endpoint would not correctly return the list of authorization servers
+
+# Other
+
+N/A

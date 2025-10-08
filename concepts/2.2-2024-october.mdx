@@ -1,0 +1,31 @@
+---
+title: 'Authlete 2.2 Release Notes - October 2024'
+description: 'Authlete 2.2 Release Notes - October 2024'
+---
+
+# Overview
+
+This minor update introduces a couple of changes for Authlete 2.2.
+This new version was made available on October 28th (Mon).
+
+# New features & Improvements
+
+N/A
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## Fixed NullPointerException issues
+
+- In `/backchannel/authentication/complete` API when `bcAuthEntity` is null
+
+## Fixed missing error for CIBA PUSH mode
+
+An error would not be correctly returned whenever `auth_req_id` is expired on token issuance in CIBA PUSH mode.
+
+# Other
+
+N/A

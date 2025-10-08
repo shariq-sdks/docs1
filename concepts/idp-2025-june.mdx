@@ -1,0 +1,28 @@
+---
+title: 'Authlete IdP Release Notes - June 2025'
+description: 'Authlete IdP Release Notes - June 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete IdP.
+This new version was made available on July 3rd (Thu).
+
+# IdP
+
+## Audit log fetching improvements
+
+- Improved audit log fetching logic so that logs can now be fetched from multiple API servers asychronously
+- Improved `GET auditlogs` endpoint so that it now includes audit logs from the server
+
+This allows to handle cases where a service was moved from one organization to another
+
+- This allows to handle cases where a service was moved from one organization to another
+
+## Password check improvements
+
+Improved password check feature so that it automatically blocks the submission of blacklisted passwords, instead of only flagging them as unsafe.
+
+## IdP exception handler fix
+
+Fixed an issue where the IdP’s exception handler fails to properly resolve an exception to a returnable error response whenever the HTTP status code value is not set.

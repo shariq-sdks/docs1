@@ -1,0 +1,45 @@
+---
+title: 'Authlete 2.3 Release Notes - July 2025'
+description: 'Authlete 2.3 Release Notes - July 2025'
+---
+
+# Overview
+
+This minor update introduces changes for Authlete 2.3.
+This new version was made available on July 24th (Thu).
+
+# New Features & Improvements
+
+## Client assertion improvements
+
+Improved client assertion audience logic so that validation can be enforced only for FAPI2 modes.
+
+## Request coalescing improvements
+
+Changed request coalescing setting to off by default.
+Request coalescing is a performance tuning feature which should be only enabled when necessary and can cause race conditions if misused.
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## List fetching fix
+
+Implemented limit on the following endpoints to avoid unnecessary server load increases when fetching lists :
+
+- `/api/auth/token/get/list`
+- `/api/client/authorization/get/list`
+- `/api/client/get/list`
+- `/api/hsk/get/list`
+- `/api/service/assertionprocessor/list`
+- `/api/service/get/list`
+
+## Coalesce NPE fix
+
+Fixed NPE thrown by concurrent requests when using the coalesce feature.
+
+# Other
+
+N/A

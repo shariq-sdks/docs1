@@ -1,0 +1,31 @@
+---
+title: 'Authlete 3.0 Release Notes - August 2025'
+description: 'Authlete 3.0 Release Notes - August 2025'
+---
+
+# Overview
+
+This minor update introduces changes for Authlete 3.0.
+This new version was made available on August 28th (Thu).
+
+# New Features & Improvements
+
+N/A
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## Grant Management API timeout fix
+
+Fixed an issue where the Grant Management revocation API would timeout whenever a grant contained numerous access token rows.
+
+## PAR request URI validation fix
+
+Fixed an issue where an expired PAR `request_uri` would sometimes continue to work past its configured lifetime.
+
+# Other
+
+N/A

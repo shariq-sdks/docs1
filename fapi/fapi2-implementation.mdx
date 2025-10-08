@@ -1,19 +1,30 @@
 ---
-title: 'FAPI 2.0 Implementation'
-description: 'Learn how to implement FAPI 2.0 compliant APIs using Authlete'
+title: 'FAPI 2.0'
+description: 'Explanation about FAPI 2.0 and how Authlete supports the specification.'
 ---
 
-## FAPI 2.0 Implementation
+## Overview
 
-*This page will be populated with FAPI 2.0 implementation content from the existing documentation.*
+FAPI 2.0 is a set of specifications designed to enhance the security and interoperability of APIs, primarily in the financial services and banking sectors. It represents a significant evolution from FAPI 1.0, introducing advanced security measures and refined standards to meet the growing challenges across a range of industries.
 
-### Topics to Cover:
-- FAPI 2.0 implementation steps
-- Security profile configuration
-- Client authentication requirements
-- Token security and binding
-- Compliance testing
+## FAPI 2.0 Security Profile
 
-<Note>
-Content will be ported from the existing Authlete documentation.
-</Note>
+[FAPI 2.0 Security Profile (Final)](https://openid.net/specs/fapi-security-profile-2_0-final.html) is an API security profile that builds upon OAuth 2.0, with a focus on providing robust security measures for APIs across various industries. For guidance on implementing the FAPI 2.0 Security Profile with Authlete, see the following article:
+
+- [Implementing FAPI 2.0 Security Profile with Authlete](/developers/fapi2/sp/)
+
+## FAPI 2.0 Message Signing
+
+[FAPI 2.0 Message Signing](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html) (hereinafter referred to as FAPI2 MS) profile is a subset of FAPI 2.0 that extends FAPI 2.0 Security profile as its foundation and deals with message signing. FAPI2 MS profile primarily defines four categories of requirements:
+
+1. [Signing Authorization Requests](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3)
+1. [Signing Authorization Responses](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.4)
+1. [Signing Introspection Responses](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.5)
+1. [Signing HTTP Messages](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.6)
+
+For detailed instructions on how to implement these features with Authlete, please refer to the following articles:
+
+- [Implementing FAPI2 Message Signing profile - Signing Authorization Requests with Authlete](/developers/fapi2/ms/authreq/)
+- [Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete](/developers/fapi2/ms/authres/)
+- Implementing FAPI2 Message Signing profile - Signing Introspection Responses with Authlete (TBW)
+- Implementing FAPI2 Message Signing profile - Signing HTTP Messages with Authlete (TBW)

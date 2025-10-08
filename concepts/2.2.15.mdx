@@ -1,0 +1,72 @@
+---
+title: 'Authlete 2.2.15 Release Notes'
+description: 'Authlete 2.2.15 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.2. It includes the following new or enhanced features since [the version 2.2.9](../2.2.9).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Configuration Items
+
+## Custom Client Metadata
+
+This release supports to add any custom item to the client metadata. You can define supported custom client metadata for each service.
+
+## Encryption In Front Channel
+
+If “Required” is selected, encryption of request object is required when the request object is passed through the front channel.
+
+## Encryption Algorithm Match
+
+If “Required” is selected, the JWE `alg` of encrypted request object must match the `request_object_encryption_alg` client metadata of the client that has sent the request object.
+
+## Encryption Encoding Algorithm Match
+
+If “Required” is selected, the JWE `enc` of encrypted request object must match the `request_object_encryption_enc` client metadata of the client that has sent the request object.
+
+## Refresh Token Duration Reset
+
+This flag indicates whether duration of refresh tokens are reset when they are used even if “Refresh Token Continuous Use” is enabled.
+
+## Token Expiration Link
+
+If “Linked” is selected, the expiration date of the access token never exceeds the expiration date of the corresponding refresh token regardless of the calculated duration based on other settings.
+
+# Added or Updated APIs
+
+## authorizationDetails (added)
+
+Added the `authorizationDetails` request parameter to the following APIs. So you can specify the `authorization_details` defined in OAuth 2.0 Rich Authorization Requests.
+
+- `/auth/authorization/issue` API
+- `/auth/token/create` API
+- `/auth/token/update` API
+
+## HSM (added)
+
+Authlete supports HSMs. For more information, please contact us.
+
+## Dynamic Client Registration (updated)
+
+This release supports to specify Authlete-specific client metadata on Dynamic Client Registration related APIs.
+
+- `authlete:clientIdAlias`
+- `authlete:clientIdAliasEnabled`
+- `authlete:frontChannelRequestObjectEncryptionRequired`
+- `authlete:requestObjectEncryptionAlgMatchRequired`
+- `authlete:requestObjectEncryptionEncMatchRequired`
+
+## tls_client_auth_subject_dn (updated)
+
+The `tls_client_auth_subject_dn` request parameter can accept with the following the AttributeType name strings.
+
+- `businessCategory`
+- `jurisdictionCountryName`
+- `jurisdictionC`
+
+And, the maximum length of `tls_client_auth_subject_dn` request parameter has been updated from 200 to 500.

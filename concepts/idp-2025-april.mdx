@@ -1,0 +1,40 @@
+---
+title: 'Authlete IdP Release Notes - April 2025'
+description: 'Authlete IdP Release Notes - April 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete IdP.
+This new version was made available on April 10th (Thu).
+
+# IdP
+
+## Minor bug fixes
+
+- The incorrect section is highlighted in the UI sidebar
+- The admin dashboard does not return to the login screen when the user is logged out
+- Fixed an issue where the `AuditEventInterceptor` would throw an NPE error whenever the Spring session is `null`.
+- Fixed an issue where failed audit events are not logged if the exception is a generic runtime exception.
+- Fixed an issue where the GitHub social login did not work whenever the user has either no first name or last name.
+- Fixed unhandled error whenever the user tries to attach the same domain to multiple OIDC configurations.
+- Fixed an issue where user agents exceeding the 256 characters limit would prevent audit logs to be saved.
+- Fixed an issue where API servers without service would unexpectedly log out the user.
+- Fixed an NPE that would happen whenever the token update response from the server does not contain an `action` field.
+
+## Audit logs update
+
+- Updated audit logs behavior so that they only return events from current members of the organization.
+- Added audit log events for granting and removing admin privileges from a user.
+
+## Admin dashboard improvements
+
+Improved the overall UI for the admin dashboard.
+
+## Invitation revoke endpoint
+
+Implemented new API endpoint to revoke user invitations.
+
+## Encryption secret behavior improvement
+
+Updated encryption secret behavior so that its initialization is delayed until it is actually needed.

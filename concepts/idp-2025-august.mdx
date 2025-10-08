@@ -1,0 +1,32 @@
+---
+title: 'Authlete IdP Release Notes - August 2025'
+description: 'Authlete IdP Release Notes - August 2025'
+---
+
+# Overview
+
+This minor update introduces changes for the Authlete IdP.
+This new version was made available on August 28th (Thu).
+
+# IdP
+
+## Orphaned services fetch improvements
+
+Improved server logic to retrieve orphaned services faster.
+
+## Audit logs User ID fix
+
+Fixed an issue where the User ID field in the audit logs UI would be displayed as `null` when omitted.
+
+## Legacy IDs storage fix
+
+Fixed an issue where older entity IDs were stored as `int` instead of `long`.
+
+## Token deletion fix
+
+Fixed an issue where organization and service token deletion would fail in some cases.
+
+## Other UI improvements
+
+- Fixed an issue where a user could get stuck in the invitation flow if they closed the session without completing the user creation step
+- Remove user agreement checkboxes from signup flow (for self-hosted environments only)

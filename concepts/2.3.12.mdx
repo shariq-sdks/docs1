@@ -1,0 +1,70 @@
+---
+title: 'Authlete 2.3.12 Release Notes'
+description: 'Authlete 2.3.12 Release Notes'
+---
+
+# Overview of This Release
+
+This is a minor update of Authlete 2.3. It includes the following new or enhanced features since [the version 2.3.1](../2.3.1).
+
+# Newly Supported Standard Specifications
+
+N/A
+
+# New Service Configuration Items
+
+## ID Token / Type of the aud claim
+
+If “array” is selected, the type of the aud claim of ID tokens always becomes array.
+If “string” is selected, the type of the aud claim of ID tokens always becomes string.
+
+## ID Token / Reissuable
+
+If “Enable” is selected, an ID token can be reissued in a refresh token flow.
+
+See [JavaDoc of TokenResponse class](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/TokenResponse.html) for details.
+
+## IDA / Validation Schema Set
+
+Choice of the validation schema set that is used to validate the content of ‘verified_claims’.
+
+Authlete recognizes the following names of validation schema sets.
+
+- “unspecified”: Same as “standard”
+- “standard”: The set of the legitimate JSON schema.
+- “standard+id_document”: A set of customized JSON schema that mostly conform to the standard but additionally accept ‘id_document’ as a valid name of evidence.
+
+# New Client Configuration Items
+
+N/A
+
+# Added or Updated APIs
+
+## /auth/revocation API
+
+Support client assertion client authentication method and mTLS at `/auth/revocation` API.
+
+## /auth/token/revoke API
+
+Support JWT access tokens at /auth/token/revoke API.
+
+## accessTokenDuration request parameter
+
+Added the `accessTokenDuration` request parameter to the following APIs. When this request parameter holds a positive integer, it is used as the duration of the access token. In other cases, this request parameter is ignored.
+
+- `/auth/authorization/issue` API
+- `/auth/token` API
+- `/auth/token/issue` API
+
+## locked response parameter
+
+Added the `locked` response parameter to the following APIs. The parameter indicates whether a client is locked.
+
+- `/client/get/{clientId}` API
+- `/client/get/list` API
+
+## claimsAtUserInfo response parameter
+
+Added the `claimsAtUserInfo` response parameter to the following APIs. This parameter represents the claim that the client application requested to be embedded in the userinfo response.
+
+- `/auth/authorization/` API

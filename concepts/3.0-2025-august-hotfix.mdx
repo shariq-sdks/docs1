@@ -1,0 +1,23 @@
+---
+title: 'Authlete 3.0 Release Notes - HOTFIX (August 2025)'
+description: 'Authlete 3.0 Release Notes - HOTFIX (August 2025)'
+---
+
+# Overview
+
+This hotfix introduces changes for Authlete 3.0.
+This new version was made available on August 12th (Thu).
+
+# New Features & Improvements
+
+## Primary Key support
+
+Added primary key to all DB tables where it was previously missing.
+
+# Bug fixes
+
+## clientIdAlias metadata fix
+
+Fixed an issue where the `clientIdAlias` metadata was treated as mandatory during client update calls, and where updates would attempt to overwrite the existing value with null if no value was passed.
+
+- This fix ensures a missing alias preserves the current value while still allowing callers to supply a new alias

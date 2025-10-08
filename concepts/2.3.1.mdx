@@ -1,0 +1,112 @@
+---
+title: 'Authlete 2.3.1 Release Notes'
+description: 'Authlete 2.3.1 Release Notes'
+---
+
+# Overview of This Release
+
+This is the first generally available version of Authlete 2.3. It includes the following new or enhanced features.
+
+# Newly Supported Standard Specifications
+
+## FAPI 2.0 Security Profile Second Implementer’s Draft & Message Signing First Implementer’s Draft
+
+Authlete 2.3 supports the “FAPI 2.0 Security Profile Second Implementer’s Draft” and the “FAPI 2.0 Message Signing First Implementer’s Draft”.
+
+See the following article for technical details of FAPI 2.0 and Authlete’s FAPI 2.0 support.
+
+[Financial-grade API (FAPI) 2.0](https://www.authlete.com/developers/fapi2/)
+
+## OpenID Connect Federation 1.0 (OIDC Federation)
+
+Authlete 2.3 supports the “OpenID Connect Federation 1.0 (OIDC Federation)”.
+
+See the following article for technical details of OIDC Federation and Authlete’s OIDC Federation support.
+
+[OpenID Connect Federation 1.0](https://www.authlete.com/developers/oidcfed/)
+
+## OpenID Connect for Identity Assurance 1.0 Fourth Implementer’s Draft (OIDC4IDA)
+
+Authlete 2.3 supports the “OpenID Connect for Identity Assurance 1.0 Fourth Implementer’s Draft (OIDC4IDA)”.
+
+See the following article for technical details of OIDC4IDA and Authlete’s OIDC4IDA support.
+
+[OpenID Connect for Identity Assurance, explained by an implementer](https://darutk.medium.com/oidc4ida-93aedffa3058)
+
+## RFC 8693 OAuth 2.0 Token Exchange
+
+Authlete 2.3 supports the “RFC 8693 OAuth 2.0 Token Exchange”.
+
+See the following article for technical details of Token Exchange and Authlete’s Token Exchange support.
+
+[RFC 8693 OAuth 2.0 Token Exchange](https://www.authlete.com/developers/token_exchange/)
+
+## RFC 7523 Section 2.1 / JWT Authorization Grant
+
+Authlete 2.3 supports the “RFC 7523 Section 2.1 / JWT Authorization Grant”.
+
+See the following article for technical details of JWT Authorization Grant and Authlete’s JWT Authorization Grant support.
+
+[JWT Authorization Grant (RFC 7523 2.1)](https://www.authlete.com/developers/jwt_authorization_grant/)
+
+## OAuth 2.0 Step-up Authentication Challenge Protocol
+
+Authlete 2.3 supports the “OAuth 2.0 Step-up Authentication Challenge Protocol”.
+
+See the following article for technical details of OAuth 2.0 Step-up Authentication Challenge Protocol and Authlete’s OAuth 2.0 Step-up Authentication Challenge Protocol support.
+
+[OAuth 2.0 Step-up Authentication Challenge Protocol](https://www.authlete.com/developers/stepup_authn/)
+
+## Grant Management for OAuth 2.0
+
+Authlete 2.3 supports the “Grant Management for OAuth 2.0”.
+
+See the following article for technical details of Grant Management for OAuth 2.0 and Authlete’s Grant Management for OAuth 2.0 support.
+
+[Grant Management for OAuth 2.0](https://www.authlete.com/developers/grant_management/)
+
+## OpenID Connect Advanced Syntax for Claims (ASC) 1.0 / Transformed Claims
+
+Authlete 2.3 supports the “OpenID Connect Advanced Syntax for Claims (ASC) 1.0 / Transformed Claims”.
+
+See the following article for technical details of Transformed Claims and Authlete’s Transformed Claims support.
+
+[OpenID Connect for Identity Assurance, explained by an implementer / Transformed Claims](https://darutk.medium.com/oidc4ida-93aedffa3058#2ba3)
+
+# New Service Configuration Items
+
+## Token / Idempotency
+
+If “Enabled” is selected, refresh token requests with the same refresh token can be made multiple times in quick succession and they can obtain the same renewed refresh token within the short period.
+If “Disabled” is selected, each refresh token request receives a different renewed refresh token even if they are made in a short period.
+
+# New Client Configuration Items
+
+## Authorization / Redirect URIs
+
+Changed the maximum number of characters for Redirect URIs from 200 to 1000.
+
+## Authorization / Proof Key for Code Exchange (RFC 7636)
+
+If “Required” is selected, the `code_challenge` request parameter is required whenever this client makes an authorization request by the authorization code flow.
+
+## Authorization / S256 for Code Challenge Method
+
+If “Required” is selected, `S256` is required as the code challenge method whenever this client uses PKCE ([RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html)).
+
+## Token / Single Access Token Per Subject
+
+If “Enabled” is selected, an attempt to issue a new access token invalidates existing access tokens that are associated with the same combination of subject and client.
+Even if Disabled is selected, single access token per subject is effective if “Single Access Token Per Subject” of the Service this client belongs to is Enabled.
+
+# Added or Updated APIs
+
+## jwtAtClaims request parameter
+
+Added the `jwtAtClaims` request parameter to the following APIs. This parameter allows you to add JSON objects as claims to a JWT access token.
+
+- `/auth/authorization/issue` API
+- `/auth/token/issue` API
+- `/auth/token/create` API
+- `/backchannel/authentication/complete` API
+- `/device/complete` API

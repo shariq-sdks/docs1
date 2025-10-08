@@ -1,0 +1,36 @@
+---
+title: 'Authlete 2.3 Release Notes - January 2025'
+description: 'Authlete 2.3 Release Notes - January 2025'
+---
+
+# Overview
+
+This minor update introduces a couple of changes for Authlete 2.3.
+This new version was made available on January 30th (Thu).
+
+# New features & Improvements
+
+## Updated events list for activity log
+
+- Added `ACCESS_TOKEN_DELETE_SUCCEEDED` event
+- Added `ACCESS_TOKEN_ISSUE_AUTHZ_DIRECT_SUCCEEDED` event
+- Removed `ACCESS_TOKEN_CREATE_SUCCEEDED` event from log when access token can’t be found
+- Added events to activity log to register access token deletion on batch cleanup
+
+# Specs support
+
+N/A
+
+# Bug fixes
+
+## Token cache update fix
+
+Fixed update method for access token and refresh token cache.
+
+## Refresh token flow fix
+
+Fixed an issue where the token creation event within the refresh token flow would not be generated at the correct timing.
+
+# Other
+
+N/A

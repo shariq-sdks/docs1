@@ -1,0 +1,52 @@
+---
+title: 'Authlete 2.3 Release Notes - July 2024'
+description: 'Authlete 2.3 Release Notes - July 2024'
+---
+
+# Overview
+
+This minor update introduces a couple of changes for Authlete 2.3.
+This new version was made available on August 5th (Wed).
+
+# New features & Improvements
+
+## Added access and refresh token duration request parameters to more APIs
+
+- Added `accessTokenDuration` request parameter to the `/backchannel/authentication/complete` API
+- Added `refreshTokenDuration` request parameter to the `/backchannel/authentication/complete` API
+- Added `accessTokenDuration` request parameter to the `/device/complete` API
+- Added `refreshTokenDuration` request parameter to the `/device/complete` API
+- Added `refreshTokenDuration` request parameter to the `/auth/token/issue` API
+- Added `refreshTokenDuration` request parameter to the `/auth/token` API
+
+## Support null responseContent parameter
+
+`responseContent` parameter is now included in API responses even when its value is `null`.
+
+## Introspection endpoint response improvements
+
+Introspection endpoint will now provide detailed error information when the JWT access token validation fails.
+
+# Specs support
+
+## Accept oauth-authz-req+jwt in request object
+
+Updated implementation of `/api/pushed_auth_req` API to accept oauth-authz-req+jwt as value for the typ header parameter in presented request object, as per [JAR/RFC 9101](https://datatracker.ietf.org/doc/rfc9101/).
+
+# Bug fixes
+
+## JWKS parsing fix
+
+Added null-checks for the “keys” array in the JWKSet JSON parsing method to ensure that the “keys” member is present and that all individual keys within the array are not null, preventing potential parsing errors.
+
+## Implemented check for the bit length of the RSA private key in the AbstractJoseGenerator class
+
+If the key length is less than the minimum required length (as defined by the RSA key generator), an exception is thrown.
+
+## Postgres error fixes for onprem
+
+Fixed postgres error in cleanup endpoint (only affects on premise customers).
+
+# Other
+
+N/A
