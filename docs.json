@@ -8,13 +8,12 @@
     "dark": "#00347A"
   },
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
+  "defaultLanguage": "en",
   "navigation": {
     "languages": [
       {
         "language": "en",
         "tabs": [
-       
-        
       {
         "tab": "Developer Platform",
         "groups": [
