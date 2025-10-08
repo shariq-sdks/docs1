@@ -54,7 +54,15 @@
               "flows/ciba",
               "flows/native-sso",
               "flows/grant-management",
-              "flows/token-exchange"
+              "flows/token-exchange",
+              "reference/pushed-authorization-requests",
+              "reference/rich-authorization-requests",
+              "reference/jar",
+              "reference/authorization-requests",
+              "reference/proof-of-possession-tokens",
+              "reference/access-tokens",
+              "reference/refresh-tokens",
+              "reference/token-management"
             ]
           },
           {
