@@ -1,0 +1,294 @@
+---
+title: "UserInfoエンドポイント"
+description: "OpenID Connect UserInfoエンドポイントの実装"
+---
+
+# UserInfoエンドポイント
+
+<Info>
+このページはAuthlete 3.0用です。2.xについては、[このページ](/v2)を参照してください。
+</Info>
+
+## 概要
+
+UserInfoエンドポイントは、OpenID Connectの重要なコンポーネントで、認証されたユーザーの情報を取得するために使用されます。このエンドポイントは、アクセストークンを使用して保護されており、クライアントアプリケーションがユーザーのプロファイル情報にアクセスできるようにします。
+
+## UserInfoエンドポイントの仕様
+
+### エンドポイントURL
+```
+GET {issuer}/oauth/userinfo
+```
+
+### 認証
+- **Authorization**: `Bearer {access_token}`
+- アクセストークンは、`openid`スコープを含む必要があります
+
+### リクエスト例
+
+```http
+GET /oauth/userinfo HTTP/1.1
+Host: authlete.com
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+### レスポンス例
+
+#### 成功レスポンス（200 OK）
+
+```json
+{
+  "sub": "1234567890",
+  "name": "田中太郎",
+  "given_name": "太郎",
+  "family_name": "田中",
+  "middle_name": "一郎",
+  "nickname": "タロちゃん",
+  "preferred_username": "tanaka",
+  "profile": "https://example.com/profile",
+  "picture": "https://example.com/photo.jpg",
+  "website": "https://example.com",
+  "email": "tanaka@example.com",
+  "email_verified": true,
+  "gender": "male",
+  "birthdate": "1990-01-01",
+  "zoneinfo": "Asia/Tokyo",
+  "locale": "ja-JP",
+  "phone_number": "+81-90-1234-5678",
+  "phone_number_verified": true,
+  "address": {
+    "formatted": "東京都渋谷区1-2-3",
+    "street_address": "1-2-3",
+    "locality": "渋谷区",
+    "region": "東京都",
+    "postal_code": "150-0001",
+    "country": "JP"
+  },
+  "updated_at": 1640995200
+}
+```
+
+#### エラーレスポンス
+
+```json
+{
+  "error": "invalid_token",
+  "error_description": "The access token provided is expired, revoked, malformed, or invalid for other reasons."
+}
+```
+
+## 標準クレーム
+
+### 必須クレーム
+
+- `sub` (subject): ユーザーの一意識別子
+
+### 推奨クレーム
+
+- `name`: ユーザーのフルネーム
+- `given_name`: 名
+- `family_name`: 姓
+- `middle_name`: ミドルネーム
+- `nickname`: ニックネーム
+- `preferred_username`: 推奨ユーザー名
+- `profile`: プロファイルページのURL
+- `picture`: プロファイル画像のURL
+- `website`: ウェブサイトのURL
+- `email`: メールアドレス
+- `email_verified`: メールアドレスの検証状態
+- `gender`: 性別
+- `birthdate`: 生年月日
+- `zoneinfo`: タイムゾーン
+- `locale`: ロケール
+- `phone_number`: 電話番号
+- `phone_number_verified`: 電話番号の検証状態
+- `address`: 住所情報
+- `updated_at`: 最終更新日時
+
+## カスタムクレーム
+
+Authleteでは、カスタムクレームを追加できます：
+
+```json
+{
+  "sub": "1234567890",
+  "name": "田中太郎",
+  "email": "tanaka@example.com",
+  "custom_claim_1": "カスタム値1",
+  "custom_claim_2": {
+    "nested": "ネストされた値"
+  }
+}
+```
+
+## スコープとクレームのマッピング
+
+### 基本スコープ
+
+- `openid`: 必須（OIDC認証を有効にする）
+- `profile`: 基本プロファイル情報
+- `email`: メール関連情報
+- `address`: 住所情報
+- `phone`: 電話番号情報
+
+### カスタムスコープ
+
+```yaml
+# サービス設定例
+scopes:
+  - name: "read_profile"
+    description: "プロファイル情報の読み取り"
+    claims:
+      - "name"
+      - "email"
+      - "picture"
+  - name: "write_profile"
+    description: "プロファイル情報の書き込み"
+    claims:
+      - "name"
+      - "email"
+      - "phone_number"
+```
+
+## 実装例
+
+### JavaScript（Node.js）
+
+```javascript
+const axios = require('axios');
+
+async function getUserInfo(accessToken) {
+  try {
+    const response = await axios.get('https://authlete.com/oauth/userinfo', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json'
+      }
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error('UserInfo取得エラー:', error.response.data);
+    throw error;
+  }
+}
+
+// 使用例
+getUserInfo('your_access_token')
+  .then(userInfo => {
+    console.log('ユーザー情報:', userInfo);
+  })
+  .catch(error => {
+    console.error('エラー:', error);
+  });
+```
+
+### Python
+
+```python
+import requests
+
+def get_user_info(access_token):
+    url = 'https://authlete.com/oauth/userinfo'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Accept': 'application/json'
+    }
+    
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f'UserInfo取得エラー: {e}')
+        raise
+
+# 使用例
+user_info = get_user_info('your_access_token')
+print('ユーザー情報:', user_info)
+```
+
+### cURL
+
+```bash
+curl -X GET "https://authlete.com/oauth/userinfo" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Accept: application/json"
+```
+
+## エラーハンドリング
+
+### 一般的なエラー
+
+| エラーコード | 説明 | 対処法 |
+|-------------|------|--------|
+| `invalid_request` | リクエストが無効 | リクエスト形式を確認 |
+| `invalid_token` | アクセストークンが無効 | トークンを再取得 |
+| `insufficient_scope` | スコープが不足 | 必要なスコープを要求 |
+| `server_error` | サーバーエラー | しばらく待って再試行 |
+
+### エラーレスポンス例
+
+```json
+{
+  "error": "invalid_token",
+  "error_description": "The access token provided is expired, revoked, malformed, or invalid for other reasons.",
+  "error_uri": "https://authlete.com/docs/errors#invalid_token"
+}
+```
+
+## セキュリティの考慮事項
+
+### 1. アクセストークンの保護
+- HTTPSでの通信を必須とする
+- トークンを安全に保存
+- 適切な有効期限設定
+
+### 2. スコープの最小化
+- 必要最小限のスコープのみ要求
+- ユーザーに明確な説明を提供
+
+### 3. クレームの検証
+- 受信したクレームの妥当性を確認
+- 期待する形式と一致するかチェック
+
+### 4. レート制限
+- 過度なリクエストを防ぐ
+- 適切なキャッシュ戦略を実装
+
+## Authleteでの設定
+
+### 1. サービス設定
+
+```yaml
+# サービス設定例
+userinfo_endpoint: "https://authlete.com/oauth/userinfo"
+supported_claims:
+  - "sub"
+  - "name"
+  - "email"
+  - "picture"
+  - "phone_number"
+```
+
+### 2. クライアント設定
+
+```yaml
+# クライアント設定例
+redirect_uris:
+  - "https://example.com/callback"
+grant_types:
+  - "authorization_code"
+response_types:
+  - "code"
+scopes:
+  - "openid"
+  - "profile"
+  - "email"
+```
+
+## 次のステップ
+
+- [IDトークンの処理](/ja/oidc/id-token-handling)を学習
+- [OIDCのベストプラクティス](/ja/oidc/oidc-best-practices)を確認
+- [Authlete APIリファレンス](/ja/api-reference)で詳細を確認

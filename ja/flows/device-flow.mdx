@@ -1,0 +1,113 @@
+---
+description: "デバイスフローとは？"
+title: "デバイスフローとは？"
+---
+
+# デバイスフローとは？
+
+[RFC 8628（OAuth 2.0デバイス認可グラント）](https://tools.ietf.org/html/rfc8628)は、2019年8月にIETFによって発行された提案標準です。
+これは、Webブラウザを持たない、またはテキスト入力機能が限られているデバイス上のAPIクライアントに対して、エンドユーザーの同意を得てアクセストークンを発行する認可フロー（デバイスフロー）を定義しています。
+
+# 仕組み
+
+デバイスフローは以下の前提条件を意味します。
+
+- **ユーザー**はWebブラウザを使用できるデバイス（PC、スマートフォン、タブレットなど）を使用できる
+- **クライアント**（TV、家電など）はインターネットへのアウトバウンド接続を確立できるデバイス
+- **認可サーバー**（ストリーミングサービスプロバイダーなど）はクライアントにデバイス認可エンドポイントを公開
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_01_en.png)
+
+フローの概要は以下の通りです：
+
+1. **クライアント（デバイス）**が認可サーバーのデバイス認可エンドポイントにデバイス認可リクエストを送信します。
+1. **認可サーバー**がクライアントにデバイス認可レスポンスを返します。レスポンスには以下の主要パラメータが含まれます：
+
+`user_code`: ユーザーが認可サーバーに送信する値
+`device_code`: クライアントが認可サーバーにトークンリクエストを送信するための値
+1. **クライアント**がユーザーに`user_code`を提示します。
+1. 以下のプロセスが並行して実行されます。
+
+**クライアント**が`device_code`を含むトークンリクエストを認可サーバーに送信します。アクセストークン（またはエラー）が返されるまで、同じリクエストを定期的に（ポーリング）認可サーバーに送信します。
+**ユーザー**がWebブラウザを使用して認可サーバーにアクセスし、自身を認証し、`user_code`を送信してクライアントへのアクセスを許可します。
+1. **認可サーバー**が`user_code`を検証し、アクセストークンを発行し、`user_code`に対応する`device_code`を含むトークンリクエストに対してトークンレスポンス（トークンを含む）を送信します。
+
+- `user_code`: ユーザーが認可サーバーに送信する値
+- `device_code`: クライアントが認可サーバーにトークンリクエストを送信するための値
+
+- **クライアント**が`device_code`を含むトークンリクエストを認可サーバーに送信します。アクセストークン（またはエラー）が返されるまで、同じリクエストを定期的に（ポーリング）認可サーバーに送信します。
+- **ユーザー**がWebブラウザを使用して認可サーバーにアクセスし、自身を認証し、`user_code`を送信してクライアントへのアクセスを許可します。
+
+上記のフローの結果として、クライアントは認可されたAPIリクエスト用のアクセストークンを取得します。
+
+# Authleteとデバイスフロー
+
+Authleteは[バージョン2.1以降でデバイスフローをサポート](https://docs.authlete.com/#device-flow)しています。
+開発者は、新しく追加または強化された以下のAuthlete APIを使用して、デバイスフローをサポートする認可サーバーを簡単に実装できます。
+
+- `/device/authorization` API（新規）
+
+デバイス認可リクエストを処理します。認可サーバーがクライアントからリクエストを受信した後、リクエストの内容をこのAPIに値として転送します。
+Authleteが内容を検査します。有効な場合、Authleteはデバイス認可レスポンスの別の内容を作成し、認可サーバーに送り返します。
+認可サーバーがデバイス認可レスポンスをクライアントに渡します。
+- `/device/verification` API（新規）
+
+`user_code`を検証します。
+- `/device/complete` API（新規）
+
+進行中のデバイスフローの承認/拒否を処理します。処理結果は`/auth/token` APIのレスポンスに影響します。
+- `/auth/token` API（強化）
+
+トークンリクエストを処理します。
+`grant_type=urn:ietf:params:oauth:grant-type:device_code`と対応する`device_code`パラメータをサポートするように強化されています。
+
+- デバイス認可リクエストを処理します。認可サーバーがクライアントからリクエストを受信した後、リクエストの内容をこのAPIに値として転送します。
+  Authleteが内容を検査します。有効な場合、Authleteはデバイス認可レスポンスの別の内容を作成し、認可サーバーに送り返します。
+  認可サーバーがデバイス認可レスポンスをクライアントに渡します。
+
+- `user_code`を検証します。
+
+- 進行中のデバイスフローの承認/拒否を処理します。処理結果は`/auth/token` APIのレスポンスに影響します。
+
+- トークンリクエストを処理します。
+  `grant_type=urn:ietf:params:oauth:grant-type:device_code`と対応する`device_code`パラメータをサポートするように強化されています。
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_02_en.png)
+
+サービスオーナーコンソールを使用してデバイスフローの設定を管理できます。
+
+![](https://storage.googleapis.com/authlete-website/img/developers/device_flow/device_flow_03_en.png)
+
+# 詳細情報
+
+- [図解デバイスフロー（RFC 8628）](https://medium.com/@darutk/illustrated-device-flow-rfc-8628-d23d6d311acc)
+
+デバイスフロー仕様とAuthleteの実装とその使用方法の詳細な説明。
+- [Authlete APIリファレンス](https://docs.authlete.com/)
+
+Authlete APIのリファレンス。
+- [java-oauth-server](https://github.com/authlete/java-oauth-server)
+
+Authlete APIを使用したリファレンス認可サーバー実装。
+Authleteがオープンソースライセンスの下で無料で提供し、デバイスフローをサポートしています。
+- [authlete-java-commonのJavaDoc](https://authlete.github.io/authlete-java-common/)
+
+上記のAuthlete APIの詳細については、
+[authlete-java-commonライブラリ](https://github.com/authlete/authlete-java-common)のJavaDocのDevice*クラスの説明を参照してください。
+- [シーケンス図テンプレート](/resources/templates/sequence-diagrams/)
+
+Authleteを使用してOAuth 2.0 / OIDC（OpenID Connect）フローのシーケンス図を描くためのテンプレートのコレクション。
+Authleteを使用したデバイスフローの図が含まれています。
+
+- デバイスフロー仕様とAuthleteの実装とその使用方法の詳細な説明。
+
+- Authlete APIのリファレンス。
+
+- Authlete APIを使用したリファレンス認可サーバー実装。
+  Authleteがオープンソースライセンスの下で無料で提供し、デバイスフローをサポートしています。
+
+- 上記のAuthlete APIの詳細については、
+  [authlete-java-commonライブラリ](https://github.com/authlete/authlete-java-common)のJavaDocのDevice*クラスの説明を参照してください。
+
+- Authleteを使用してOAuth 2.0 / OIDC（OpenID Connect）フローのシーケンス図を描くためのテンプレートのコレクション。
+  Authleteを使用したデバイスフローの図が含まれています。
