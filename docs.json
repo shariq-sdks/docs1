@@ -29,22 +29,6 @@
               "quickstart"
             ]
           },
-        
-          {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Guides",
-            "pages": [
-              "guides/authentication"
-            ]
-          },
-          {
-            "group": "Authlete API",
-            "openapi": "app/specs/shared/3.0.16/en.yaml"
-          }
-        ]
-      },
           {
             "group": "API Docs",
             "pages": [
@@ -126,6 +110,23 @@
           }
         ]
       },
+      
+      {
+  "tab": "API Reference",
+  "groups": [
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/authentication"
+      ]
+    },
+    {
+      "group": "Authlete API",
+      "openapi": "app/specs/shared/3.0.16/en.yaml"
+    }
+  ]
+},
+      
       {
         "tab": "Standards & Compliance",
         "groups": [
