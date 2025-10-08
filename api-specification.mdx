@@ -1,0 +1,143 @@
+---
+title: 'API Specification'
+description: 'Complete OpenAPI 3.1.0 specification for Authlete services with interactive documentation, request/response examples, and schema definitions.'
+---
+
+# API Specification
+
+Complete OpenAPI 3.1.0 specification for Authlete services. This interactive documentation provides comprehensive details about all available endpoints, request/response schemas, and authentication methods.
+
+## Specification Overview
+
+- **Version**: 3.1.0
+- **Format**: OpenAPI 3.1.0 (YAML)
+- **Base URL**: `https://us.authlete.com`
+- **Authentication**: Bearer Token (Service API Key)
+- **Content Type**: `application/json`
+
+## Interactive Documentation
+
+The specification below is fully interactive. You can:
+
+- **Explore all endpoints** - Browse through all available API endpoints
+- **Test requests** - Make actual API calls directly from the documentation
+- **View schemas** - Examine detailed request/response data models
+- **Download spec** - Get the raw OpenAPI specification file
+
+<OpenApi
+  spec="app/specs/shared/3.0.16/en.yaml"
+/>
+
+## Base URLs
+
+Authlete services are available in multiple regions:
+
+| Region | Base URL | Description |
+|--------|----------|-------------|
+| **US** | `https://us.authlete.com` | United States (Primary) |
+| **Japan** | `https://jp.authlete.com` | Japan |
+| **Europe** | `https://eu.authlete.com` | Europe |
+| **Brazil** | `https://br.authlete.com` | Brazil |
+
+## Authentication
+
+All API endpoints require authentication using your service credentials:
+
+1. **Service API Key** - Your unique service identifier
+2. **Service API Secret** - Your secret key for authentication
+
+### Authentication Header
+
+```http
+Authorization: Bearer YOUR_SERVICE_API_KEY
+```
+
+## API Categories
+
+### Service Management
+- Create and configure authorization servers
+- Manage service settings and policies
+- Configure supported grant types and scopes
+
+### Client Management  
+- Register and manage OAuth 2.0 clients
+- Configure client credentials and redirect URIs
+- Manage client permissions and scopes
+
+### Authorization Flow
+- Handle OAuth 2.0 authorization requests
+- Process user consent and authorization codes
+- Manage authorization tickets
+
+### Token Management
+- Issue and validate access tokens
+- Manage refresh tokens and token lifecycle
+- Handle token revocation and introspection
+
+### User Management
+- Manage user accounts and authentication
+- Handle user profile information
+- Process user authentication requests
+
+### Advanced Features
+- **Device Flow** - OAuth 2.0 Device Authorization Grant
+- **CIBA** - Client Initiated Backchannel Authentication
+- **Native SSO** - Single Sign-On for mobile applications
+- **Verifiable Credentials** - OpenID Connect for Verifiable Presentations
+
+## Error Handling
+
+All API endpoints return consistent error responses:
+
+```json
+{
+  "resultCode": "A004001",
+  "resultMessage": "Error description",
+  "resultDescription": "Detailed error information"
+}
+```
+
+### Common Error Codes
+
+| Code | Description |
+|------|-------------|
+| `A004001` | Invalid request parameters |
+| `A004002` | Authentication required |
+| `A004003` | Insufficient permissions |
+| `A004004` | Resource not found |
+| `A004005` | Internal server error |
+
+## Rate Limiting
+
+API calls are subject to rate limiting based on endpoint category:
+
+| Category | Rate Limit |
+|----------|------------|
+| Service Management | 1,000 requests/hour |
+| Client Management | 5,000 requests/hour |
+| Authorization APIs | 10,000 requests/hour |
+| Token APIs | 10,000 requests/hour |
+
+## SDKs and Libraries
+
+Official SDKs are available for popular programming languages:
+
+- **JavaScript/Node.js**: [@authlete/authlete-js](https://www.npmjs.com/package/@authlete/authlete-js)
+- **Python**: [authlete-python](https://pypi.org/project/authlete-python/)
+- **Java**: [authlete-java-common](https://mvnrepository.com/artifact/com.authlete/authlete-java-common)
+- **PHP**: [authlete-php](https://packagist.org/packages/authlete/authlete-php)
+
+## Download Specification
+
+You can download the complete OpenAPI specification:
+
+- **YAML Format**: [Download OpenAPI 3.1.0 YAML](app/specs/shared/3.0.16/en.yaml)
+- **JSON Format**: Convert using [OpenAPI Converter](https://converter.swagger.io/)
+
+## Support
+
+Need help with the API?
+
+- **Documentation**: Browse our comprehensive guides
+- **Support**: Contact us at [support@authlete.com](mailto:support@authlete.com)
+- **Console**: Manage your services at [console.authlete.com](https://console.authlete.com)

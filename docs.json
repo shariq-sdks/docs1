@@ -267,6 +267,17 @@
         ]
       },
       {
+        "tab": "API Specification",
+        "groups": [
+          {
+            "group": "OpenAPI Specification",
+            "pages": [
+              "api-specification"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Release Notes",
         "groups": [
           {
