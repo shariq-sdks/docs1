@@ -21,6 +21,7 @@
           {
             "group": "Getting Started",
             "pages": [
+              "index",
               "overview",
               "getting-started",
               "quickstart"
