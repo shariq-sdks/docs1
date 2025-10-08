@@ -63,7 +63,7 @@
               "flows/native-sso",
               "flows/grant-management",
               "flows/token-exchange",
-              "security/pkce",
+              "flows/pkce",
               "reference/pushed-authorization-requests",
               "reference/rich-authorization-requests",
               "reference/jar",
