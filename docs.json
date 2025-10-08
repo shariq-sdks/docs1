@@ -23,6 +23,12 @@
             ]
           },
           {
+            "group": "API References & SDKs",
+            "pages": [
+              "api-reference"
+            ]
+          },
+          {
             "group": "Core Concepts",
             "pages": [
               "concepts/oauth2-basics",
@@ -253,10 +259,6 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "openapi": "app/specs/shared/3.0.16/en.yaml"
       }
     ],
     "global": {
