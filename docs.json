@@ -22,7 +22,7 @@
             "group": "Getting Started",
             "pages": [
               "index",
-              "overview",
+              "welcome",
               "getting-started",
               "quickstart"
             ]
