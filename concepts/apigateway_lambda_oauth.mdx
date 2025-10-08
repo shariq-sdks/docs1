@@ -1,0 +1,67 @@
+---
+title: 'Amazon API Gateway + AWS Lambda + OAuth - Authlete'
+description: 'Technical Information about how to protect a Web API implemented using Amazon API Gateway + AWS Lambda with an OAuth 2.0 access token.'
+---
+
+# Overview
+This document describes how to protect a Web API implemented using Amazon API Gateway + AWS Lambda with an OAuth 2.0 access token.
+2016-Apr-6: Amazon API Gateway introduced Custom Authorizer on Feb 11, 2016. It should be utilized. See our new document [Amazon API Gateway Custom Authorizer + OAuth"](/custom_authorizer).
+# Prerequisites
+The following sections assume:
+- You have a lambda function `GetHelloWorld` that returns `{"Hello":"World"}`.
+- You have `/mydemoresource` resource that supports `GET` method on Amazon API Gateway.
+- You have a service in Authlete. A service is created automatically on sign-up and you can use it.
+- You have a client application in Authlete. A client application is created automatically on sign-up and you can use it.
+# Quick Guide
+## Setup
+1. [API Gateway] Complete steps in [Getting Started with Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html)
+2. [Authlete] Complete steps in [Getting Started](/getting_started)
+3. [Lambda] Renew `GetHelloWorld` lambda functionCreate a [Deployment Package](http://docs.aws.amazon.com/lambda/latest/dg/nodejs-create-deployment-pkg.html) and upload it as the implementation of `GetHelloWorld` lambda function.
+```
+$ mkdir gethelloworld
+$ cd gethelloworld
+$ npm install async request
+```Download [index.js](https://www.authlete.com/files/apigateway_lambda_oauth/index.js) and put it
+in this directory.
+```
+$ vi index.js  # Replace api_key and api_secret.
+```Create a ZIP file containing index.js and node_modules directory.
+4. [Lambda] Edit the timeout valueIncrease the timeout value of the lambda function (e.g. to 30 sec).
+5. [API Gateway] [Method Request] Add `access_token` as a query parameter to `GET /mydemoresource`
+6. [API Gateway] [Integration Request] Set a template as is shown below
+```
+{ "access_token": "$input.params('access_token')" }
+```
+7. [Amazon API Gateway] [Method Response] Add 400, 401, 403 and 500 as HTTP status codes
+8. [Amazon API Gateway] [Integration Response] Set mappings as shown below
+| Lambda Error Regex | Method response status |
+| --- | --- |
+| BAD_REQUEST:* | 400 |
+| UNAUTHORIZED:.* | 401 |
+| FORBIDDEN:.* | 403 |
+| INTERNAL_SERVER_ERROR:.* | 500 |
+## Try OAuth 2.0 Flow
+1. Make an authorization request
+Access the URL below with your browser. An authorization page will appear.
+Don’t forget to replace your-service-api-key and your-client-id.
+```
+https://api.authlete.com/api/auth/authorization/direct/your-service-api-key?response_type=token&client_id=your-client-id
+```
+2. Authorize the client app
+In the authorization page, input the API key and the API secret of your Authlete service and press “Authorize” button. You will get an access token. You can see the API key and the API secret of the service at [https://so.authlete.com/services/service-api-key](https://so.authlete.com/services/service-api-key).
+3. Access `/mydemoresource` endpoint with an access token
+Access the URL below with your browser.
+Don’t forget to replace your-api-id, region-id and your-access-token with your own.
+```
+https://your-api-id.execute-api.region-id.amazonaws.com/test/mydemoresource?access_token=your-access-token
+```You will receive a JSON like below with HTTP status code 200 (OK).
+```
+{
+"Hello": "World",
+"clientId": 4326385670,
+"subject": "authlete_5526908833"
+}
+```
+#### On this page
+- [Setup](#setup)
+- [Try OAuth 2.0 Flow](#try-oauth-20-flow)

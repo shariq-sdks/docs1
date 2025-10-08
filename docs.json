@@ -255,18 +255,7 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Authlete Console",
-          "href": "https://console.authlete.com",
-          "icon": "external-link"
-        },
-        {
-          "anchor": "Support",
-          "href": "https://www.authlete.com/contact/",
-          "icon": "headset"
-        }
-      ]
+      "anchors": []
     }
   },
   "logo": {
@@ -274,16 +263,6 @@
     "dark": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Console",
-        "href": "https://console.authlete.com"
-      },
-      {
-        "label": "Support",
-        "href": "https://www.authlete.com/contact/"
-      }
-    ],
     "primary": {
       "type": "button",
       "label": "Get Started",

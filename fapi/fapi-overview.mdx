@@ -1,0 +1,46 @@
+---
+title: 'Financial-grade API (FAPI) - Authlete'
+description: 'Technical information about Financial-grade API (FAPI) and Authlete's implementation.'
+---
+
+<Info>
+This page is for Authlete 2.x. For 3.0, refer to [this page](/tutorial/fapi).
+</Info>
+## What is FAPI?
+[Financial-grade API (FAPI)](https://openid.net/wg/fapi/), being standardized by a working group under [OpenID Foundation (OIDF)](https://openid.net/), aims “to provide specific implementation guidelines for online financial services to adopt by developing a REST / JSON data model protected by a highly secured OAuth profile” (source: OIDF).
+## FAPI Security Profiles
+[The FAPI Security Profiles](https://openid.net/wg/fapi/#status) are intended to be applied to online services in any sectors that requires a higher level of security than provided by standard OAuth or OpenID Connect. There are two types of profiles:
+- [Financial-grade API Security Profile (FAPI) 1.0 – Part 1: Baseline](https://openid.net/specs/openid-financial-api-part-1-1_0.html)
+A baseline security profile of OAuth that is suitable for protecting APIs with a moderate inherent risk
+- [Financial-grade API Security Profile (FAPI) 1.0 – Part 2: Advanced](https://openid.net/specs/openid-financial-api-part-2-1_0.html)
+An advanced security profile of OAuth that is suitable for protecting APIs with high inherent risk, such as those giving access to highly sensitive data, or triggering financial transactions (e.g., payment initiation)
+The latter one, “FAPI Part 2,” provides higher security measures by leveraging advanced features defined in OpenID Connect specifications in addition to OAuth standards.
+Here are some notable enhancements:
+- Prevention of sender impersonation and message tampering in terms of authorization request and response
+Using [request object](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
+Using [hybrid flow](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) or [JARM](https://bitbucket.org/openid/fapi/src/master/Financial_API_JWT_Secured_Authorization_Response_Mode.md)
+- Prevention of leakage and unauthorized use of authorization code
+Strict checking of Redirect URI (`redirect_uri`)
+- Prevention of client impersonation
+Client authentication with [mutual TLS client authentication](https://www.rfc-editor.org/rfc/rfc8705.html#name-mutual-tls-for-oauth-client)
+or [JWT](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication)
+- Prevention of unauthorized use of tokens
+[Certificate-bound access tokens](https://www.rfc-editor.org/rfc/rfc8705.html#name-mutual-tls-client-certifica)
+![](https://storage.googleapis.com/authlete-website/img/developers/fapi/fapi_01.png)
+The following documents and slides might help you understand FAPI.
+1. [A Comprehensive Commentary on Financial-grade API](/resources/brochures/wp_commentary_on_fapi/)
+This white paper describes technical details on Financial-grade API (FAPI) security profiles on a line-by-line basis, and how Authlete implements FAPI to enable flexibile deployment.
+## Authlete and FAPI
+Authlete has supported Financial-grade API since July 2018 and [has been certified since April 2019](https://openid.net/certification/#FAPI_OPs).
+Here is a useful resource that helps you understand how you can build a FAPI-compliant authorization server with Authlete.
+- [Authlete FAPI Enhancements](/resources/videos/20180724/authlete-fapi-enhancements/)
+The session explains comparison of Authlete’s unique semi-hosted approach and traditional approaches for deploying OAuth infrastructure, and how Authlete has extended its client authentication functions and supported mutual TLS to implement Financial-grade API (FAPI).
+- [Authlete API Tutorial: FAPI Basics](/tutorial/fapi)
+A tutorial to configure Authlete to build a Financial-grade API (FAPI) compliant authorization server.
+- [FAPI Basics Supplement: Integration with Reference Implementations](/tutorial/fapi_with_ref_impl)
+A tutorial to integrate Authlete’s reference implementations with an Authlete service, that has been configured with settings described in another tutorial, Financial-grade API (FAPI) Basics.
+![](https://storage.googleapis.com/authlete-website/img/developers/fapi/fapi_02.png)
+#### On this page
+- [What is FAPI?](#what-is-fapi)
+- [FAPI Security Profiles](#fapi-security-profiles)
+- [Authlete and FAPI](#authlete-and-fapi)
