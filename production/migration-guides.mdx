@@ -1,18 +1,349 @@
 ---
-title: 'Terraform Provider - Authlete'
-description: 'Terraform provider allow you to put the Authlete configuration under version control'
+title: "Migration Guides"
+description: "Comprehensive guides for migrating to Authlete from other OAuth 2.0 and OpenID Connect solutions"
 ---
 
-## Terraform Provider for Authlete
-### [Terraform provider for Authlete introduction](https://www.authlete.com/developers/terraform/intro/)
-What the provider supports and starting point.
-### [Creating a project from scratch](https://www.authlete.com/developers/terraform/starting/)
-Creating a Authlete Service using Terraform.
-### [Managing OIDC clients](https://www.authlete.com/developers/terraform/client_management/)
-Creating and Managing OIDC clients on Authlete using Terraform.
-### [Managing Services and Client](https://www.authlete.com/developers/terraform/stack_management/)
-Managing the stack of objects and workflow suggestion.
-### [Handling Crypto Material](https://www.authlete.com/developers/terraform/crypto_handling/)
-Generating and handling RSA and EC keys from Terraform.
-### [Handling Certificates](https://www.authlete.com/developers/terraform/cert_handling/)
-How to handle certificates from Terraform.
+# Migration Guides
+
+This section provides step-by-step migration guides for moving from other OAuth 2.0 and OpenID Connect solutions to Authlete.
+
+## Overview
+
+Migrating to Authlete offers several benefits:
+- **Simplified Implementation** - Reduce development time and complexity
+- **Enhanced Security** - Built-in security best practices
+- **Better Performance** - Optimized for high-scale deployments
+- **Comprehensive Support** - Full OAuth 2.0 and OpenID Connect compliance
+- **Easy Maintenance** - Managed service with automatic updates
+
+## Migration Strategies
+
+### 1. Big Bang Migration
+
+Migrate everything at once during a maintenance window.
+
+**Pros:**
+- Clean cutover
+- No dual-system complexity
+- Immediate benefits
+
+**Cons:**
+- Higher risk
+- Requires extensive testing
+- Longer maintenance window
+
+### 2. Gradual Migration
+
+Migrate components incrementally over time.
+
+**Pros:**
+- Lower risk
+- Easier rollback
+- Continuous operation
+
+**Cons:**
+- Longer timeline
+- Temporary complexity
+- Resource overhead
+
+### 3. Parallel Migration
+
+Run both systems simultaneously during transition.
+
+**Pros:**
+- Zero downtime
+- Easy comparison
+- Safe rollback
+
+**Cons:**
+- Higher costs
+- Data synchronization
+- Complex testing
+
+## Common Migration Scenarios
+
+### From Custom OAuth 2.0 Implementation
+
+**Challenges:**
+- Custom code maintenance
+- Security vulnerabilities
+- Compliance issues
+- Performance bottlenecks
+
+**Migration Steps:**
+1. **Audit Current Implementation**
+   - Document existing flows
+   - Identify custom features
+   - Assess security gaps
+
+2. **Plan Authlete Configuration**
+   - Map existing scopes
+   - Configure grant types
+   - Set up clients
+
+3. **Implement Gradual Migration**
+   - Start with new clients
+   - Migrate existing clients
+   - Update applications
+
+4. **Validate and Test**
+   - Test all OAuth flows
+   - Verify token compatibility
+   - Check client functionality
+
+### From Identity Provider Solutions
+
+**From Auth0:**
+
+```yaml
+# Auth0 Configuration
+AUTH0_DOMAIN: "your-domain.auth0.com"
+AUTH0_CLIENT_ID: "your-client-id"
+AUTH0_CLIENT_SECRET: "your-client-secret"
+
+# Authlete Configuration
+AUTHLETE_SERVICE_API_KEY: "your-service-key"
+AUTHLETE_SERVICE_API_SECRET: "your-service-secret"
+AUTHLETE_BASE_URL: "https://api.authlete.com"
+```
+
+**Migration Checklist:**
+- [ ] Export user data
+- [ ] Map user attributes
+- [ ] Configure scopes
+- [ ] Set up clients
+- [ ] Test authentication flows
+- [ ] Update application code
+
+**From Okta:**
+
+```yaml
+# Okta Configuration
+OKTA_DOMAIN: "your-domain.okta.com"
+OKTA_CLIENT_ID: "your-client-id"
+OKTA_CLIENT_SECRET: "your-client-secret"
+
+# Authlete Configuration
+AUTHLETE_SERVICE_API_KEY: "your-service-key"
+AUTHLETE_SERVICE_API_SECRET: "your-service-secret"
+AUTHLETE_BASE_URL: "https://api.authlete.com"
+```
+
+**Migration Checklist:**
+- [ ] Export user profiles
+- [ ] Map group memberships
+- [ ] Configure custom attributes
+- [ ] Set up authorization servers
+- [ ] Test SSO flows
+- [ ] Update application integrations
+
+### From Open Source Solutions
+
+**From Keycloak:**
+
+```yaml
+# Keycloak Configuration
+KEYCLOAK_URL: "https://keycloak.example.com"
+KEYCLOAK_REALM: "your-realm"
+KEYCLOAK_CLIENT_ID: "your-client-id"
+
+# Authlete Configuration
+AUTHLETE_SERVICE_API_KEY: "your-service-key"
+AUTHLETE_SERVICE_API_SECRET: "your-service-secret"
+AUTHLETE_BASE_URL: "https://api.authlete.com"
+```
+
+**Migration Steps:**
+1. **Export Keycloak Configuration**
+   - Realm settings
+   - Client configurations
+   - User data
+   - Role mappings
+
+2. **Configure Authlete Service**
+   - Set up service settings
+   - Configure endpoints
+   - Import user data
+
+3. **Update Applications**
+   - Change OAuth endpoints
+   - Update client credentials
+   - Test authentication flows
+
+## Data Migration
+
+### User Data Migration
+
+**Export from Source:**
+```json
+{
+  "users": [
+    {
+      "id": "user123",
+      "email": "user@example.com",
+      "name": "John Doe",
+      "attributes": {
+        "department": "Engineering",
+        "role": "Developer"
+      }
+    }
+  ]
+}
+```
+
+**Import to Authlete:**
+```bash
+# Using Authlete API
+curl -X POST "https://api.authlete.com/api/user/import" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d @users.json
+```
+
+### Client Configuration Migration
+
+**Export Client Data:**
+```json
+{
+  "clients": [
+    {
+      "client_id": "app123",
+      "client_secret": "secret456",
+      "redirect_uris": ["https://app.example.com/callback"],
+      "grant_types": ["authorization_code", "refresh_token"],
+      "scopes": ["read", "write", "openid"]
+    }
+  ]
+}
+```
+
+**Import to Authlete:**
+```bash
+# Using Authlete API
+curl -X POST "https://api.authlete.com/api/client/create" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d @clients.json
+```
+
+## Testing and Validation
+
+### Pre-Migration Testing
+
+**Test Environment Setup:**
+1. Create Authlete test service
+2. Configure test clients
+3. Set up test users
+4. Run comprehensive tests
+
+**Test Scenarios:**
+- OAuth 2.0 authorization code flow
+- OpenID Connect authentication
+- Token refresh
+- Token revocation
+- UserInfo endpoint
+- JWKS endpoint
+
+### Post-Migration Validation
+
+**Validation Checklist:**
+- [ ] All OAuth flows working
+- [ ] Token format compatibility
+- [ ] User authentication successful
+- [ ] Client applications functional
+- [ ] Performance meets requirements
+- [ ] Security policies enforced
+
+## Rollback Planning
+
+### Rollback Triggers
+
+**Critical Issues:**
+- Authentication failures
+- Token validation errors
+- Performance degradation
+- Security vulnerabilities
+- Data loss
+
+### Rollback Procedures
+
+**Immediate Rollback:**
+1. Switch DNS/load balancer
+2. Revert application configuration
+3. Monitor system health
+4. Investigate issues
+
+**Gradual Rollback:**
+1. Stop new client migrations
+2. Revert problematic clients
+3. Monitor remaining clients
+4. Plan next migration phase
+
+## Best Practices
+
+### 1. Planning
+
+- **Thorough Assessment** - Understand current implementation
+- **Detailed Testing** - Test all scenarios
+- **Stakeholder Communication** - Keep teams informed
+- **Rollback Plan** - Prepare for issues
+
+### 2. Execution
+
+- **Phased Approach** - Migrate incrementally
+- **Monitoring** - Watch for issues
+- **Documentation** - Record all changes
+- **Support** - Have experts available
+
+### 3. Post-Migration
+
+- **Validation** - Verify all functionality
+- **Optimization** - Tune performance
+- **Training** - Educate teams
+- **Monitoring** - Watch for issues
+
+## Common Challenges
+
+### Technical Challenges
+
+**Token Format Differences:**
+- JWT structure variations
+- Claim naming differences
+- Signature algorithms
+- Key management
+
+**Endpoint Differences:**
+- URL variations
+- Parameter differences
+- Response format changes
+- Error handling
+
+### Business Challenges
+
+**User Experience:**
+- Login flow changes
+- UI/UX updates
+- Error messages
+- Help documentation
+
+**Integration Complexity:**
+- Multiple applications
+- Different client types
+- Legacy systems
+- Third-party integrations
+
+## Support and Resources
+
+### Migration Support
+
+- **Documentation** - Comprehensive guides
+- **Examples** - Code samples and tutorials
+- **Support Team** - Expert assistance
+- **Community** - User forums and discussions
+
+### Additional Resources
+
+- [Infrastructure Setup](/production/infrastructure-setup)
+- [Terraform Deployment](/production/terraform-deployment)
+- [Monitoring and Logging](/production/monitoring-logging)
+- [Troubleshooting Guide](/production/troubleshooting)

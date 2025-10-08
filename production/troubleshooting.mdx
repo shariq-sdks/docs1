@@ -1,18 +1,396 @@
 ---
-title: 'Terraform Provider - Authlete'
-description: 'Terraform provider allow you to put the Authlete configuration under version control'
+title: "Troubleshooting"
+description: "Common issues and solutions for Authlete deployments"
 ---
 
-## Terraform Provider for Authlete
-### [Terraform provider for Authlete introduction](https://www.authlete.com/developers/terraform/intro/)
-What the provider supports and starting point.
-### [Creating a project from scratch](https://www.authlete.com/developers/terraform/starting/)
-Creating a Authlete Service using Terraform.
-### [Managing OIDC clients](https://www.authlete.com/developers/terraform/client_management/)
-Creating and Managing OIDC clients on Authlete using Terraform.
-### [Managing Services and Client](https://www.authlete.com/developers/terraform/stack_management/)
-Managing the stack of objects and workflow suggestion.
-### [Handling Crypto Material](https://www.authlete.com/developers/terraform/crypto_handling/)
-Generating and handling RSA and EC keys from Terraform.
-### [Handling Certificates](https://www.authlete.com/developers/terraform/cert_handling/)
-How to handle certificates from Terraform.
+# Troubleshooting Guide
+
+This guide helps you diagnose and resolve common issues with Authlete deployments.
+
+## Quick Diagnostics
+
+### Health Check Endpoints
+
+**Service Health:**
+```bash
+curl -X GET "https://api.authlete.com/health"
+```
+
+**Service Status:**
+```bash
+curl -X GET "https://api.authlete.com/api/service/status" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+```
+
+### Common Error Codes
+
+| Error Code | Description | Solution |
+|------------|-------------|----------|
+| A004001 | Invalid request parameters | Check request format and required fields |
+| A004002 | Authentication required | Verify API credentials |
+| A004003 | Insufficient permissions | Check API key permissions |
+| A004004 | Resource not found | Verify resource exists |
+| A004005 | Internal server error | Contact support |
+| A050001 | Token request successful | Normal operation |
+| A050002 | Invalid client | Check client credentials |
+| A050003 | Invalid grant | Verify authorization code |
+| A050004 | Unsupported grant type | Check grant type configuration |
+
+## Authentication Issues
+
+### Invalid Client Credentials
+
+**Symptoms:**
+- 401 Unauthorized errors
+- "Invalid client" error messages
+- Authentication failures
+
+**Diagnosis:**
+```bash
+# Check client configuration
+curl -X GET "https://api.authlete.com/api/client/get/$CLIENT_ID" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+```
+
+**Solutions:**
+1. **Verify Client ID**
+   - Check client ID format
+   - Ensure client exists
+   - Verify client is active
+
+2. **Check Client Secret**
+   - Verify secret is correct
+   - Check for encoding issues
+   - Ensure secret is not expired
+
+3. **Client Type Mismatch**
+   - Public clients don't need secrets
+   - Confidential clients require secrets
+   - Check client type configuration
+
+### Invalid Grant Type
+
+**Symptoms:**
+- "Unsupported grant type" errors
+- Token request failures
+- Authorization code issues
+
+**Diagnosis:**
+```bash
+# Check service configuration
+curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+```
+
+**Solutions:**
+1. **Enable Grant Type**
+   - Add grant type to service settings
+   - Check client grant type configuration
+   - Verify grant type is supported
+
+2. **Check Grant Type Format**
+   - Use correct grant type names
+   - Check for typos
+   - Verify case sensitivity
+
+### Invalid Redirect URI
+
+**Symptoms:**
+- "Invalid redirect URI" errors
+- Authorization failures
+- Redirect mismatches
+
+**Solutions:**
+1. **Exact Match Required**
+   - Redirect URI must match exactly
+   - Check for trailing slashes
+   - Verify protocol (http vs https)
+
+2. **Wildcard Support**
+   - Use wildcards for subdomains
+   - Check wildcard configuration
+   - Verify wildcard placement
+
+## Token Issues
+
+### Token Validation Failures
+
+**Symptoms:**
+- "Invalid token" errors
+- Token rejection
+- Authentication failures
+
+**Diagnosis:**
+```bash
+# Validate token
+curl -X POST "https://api.authlete.com/api/auth/introspection" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"token": "$ACCESS_TOKEN"}'
+```
+
+**Solutions:**
+1. **Check Token Format**
+   - Verify JWT structure
+   - Check token encoding
+   - Validate token signature
+
+2. **Token Expiration**
+   - Check token expiration time
+   - Verify system clock
+   - Refresh expired tokens
+
+3. **Token Revocation**
+   - Check if token is revoked
+   - Verify revocation status
+   - Generate new token if needed
+
+### Token Refresh Issues
+
+**Symptoms:**
+- Refresh token failures
+- "Invalid refresh token" errors
+- Token renewal problems
+
+**Solutions:**
+1. **Refresh Token Validity**
+   - Check refresh token expiration
+   - Verify refresh token format
+   - Ensure refresh token is not revoked
+
+2. **Client Configuration**
+   - Enable refresh token grant type
+   - Check client secret
+   - Verify client permissions
+
+## Configuration Issues
+
+### Service Configuration Problems
+
+**Symptoms:**
+- Service not responding
+- Configuration errors
+- Endpoint failures
+
+**Diagnosis:**
+```bash
+# Check service configuration
+curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+```
+
+**Solutions:**
+1. **Verify Service Settings**
+   - Check service configuration
+   - Verify endpoint URLs
+   - Ensure service is active
+
+2. **Check Service Limits**
+   - Verify rate limits
+   - Check quota usage
+   - Monitor service status
+
+### Client Configuration Issues
+
+**Symptoms:**
+- Client authentication failures
+- Scope permission errors
+- Redirect URI mismatches
+
+**Solutions:**
+1. **Client Settings**
+   - Verify client configuration
+   - Check redirect URIs
+   - Ensure client is active
+
+2. **Scope Configuration**
+   - Check scope permissions
+   - Verify scope names
+   - Ensure scopes are enabled
+
+## Performance Issues
+
+### Slow Response Times
+
+**Symptoms:**
+- High latency
+- Timeout errors
+- Slow token issuance
+
+**Diagnosis:**
+```bash
+# Check service metrics
+curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+```
+
+**Solutions:**
+1. **Database Performance**
+   - Check database connections
+   - Monitor query performance
+   - Optimize database queries
+
+2. **Caching Issues**
+   - Check cache configuration
+   - Monitor cache hit rates
+   - Optimize cache settings
+
+3. **Network Issues**
+   - Check network latency
+   - Verify DNS resolution
+   - Monitor bandwidth usage
+
+### High Error Rates
+
+**Symptoms:**
+- Increased error responses
+- Service degradation
+- User complaints
+
+**Solutions:**
+1. **Monitor Error Logs**
+   - Check application logs
+   - Monitor error patterns
+   - Identify root causes
+
+2. **Rate Limiting**
+   - Check rate limit configuration
+   - Monitor request patterns
+   - Adjust rate limits if needed
+
+3. **Resource Limits**
+   - Check resource usage
+   - Monitor memory/CPU
+   - Scale resources if needed
+
+## Security Issues
+
+### Certificate Problems
+
+**Symptoms:**
+- SSL/TLS errors
+- Certificate validation failures
+- HTTPS issues
+
+**Solutions:**
+1. **Certificate Validity**
+   - Check certificate expiration
+   - Verify certificate chain
+   - Update expired certificates
+
+2. **Certificate Configuration**
+   - Check certificate format
+   - Verify private key
+   - Ensure proper key usage
+
+### Security Vulnerabilities
+
+**Symptoms:**
+- Security warnings
+- Vulnerability alerts
+- Compliance issues
+
+**Solutions:**
+1. **Update Dependencies**
+   - Update libraries
+   - Patch vulnerabilities
+   - Monitor security advisories
+
+2. **Security Configuration**
+   - Review security settings
+   - Enable security features
+   - Implement best practices
+
+## Debugging Tools
+
+### Log Analysis
+
+**Enable Debug Logging:**
+```yaml
+logging:
+  level: DEBUG
+  authlete: DEBUG
+  security: INFO
+  performance: INFO
+```
+
+**Log Analysis Commands:**
+```bash
+# Filter error logs
+grep "ERROR" /var/log/authlete/app.log
+
+# Monitor real-time logs
+tail -f /var/log/authlete/app.log | grep "ERROR"
+
+# Analyze performance logs
+grep "duration" /var/log/authlete/app.log | sort -n
+```
+
+### API Testing
+
+**Test Authorization Endpoint:**
+```bash
+curl -X GET "https://auth.example.com/oauth/authorize" \
+  -G -d "response_type=code" \
+  -d "client_id=$CLIENT_ID" \
+  -d "redirect_uri=$REDIRECT_URI" \
+  -d "scope=openid profile" \
+  -d "state=random_state"
+```
+
+**Test Token Endpoint:**
+```bash
+curl -X POST "https://auth.example.com/oauth/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=authorization_code" \
+  -d "code=$AUTHORIZATION_CODE" \
+  -d "redirect_uri=$REDIRECT_URI" \
+  -d "client_id=$CLIENT_ID" \
+  -d "client_secret=$CLIENT_SECRET"
+```
+
+### Monitoring Commands
+
+**Check Service Status:**
+```bash
+# Service health
+curl -X GET "https://api.authlete.com/health"
+
+# Service metrics
+curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+
+# Client status
+curl -X GET "https://api.authlete.com/api/client/get/$CLIENT_ID" \
+  -H "Authorization: Bearer $AUTHLETE_API_KEY"
+```
+
+## Getting Help
+
+### Self-Service Resources
+
+- **Documentation** - Comprehensive guides and references
+- **API Reference** - Complete API documentation
+- **Code Examples** - Sample implementations
+- **Community Forums** - User discussions and solutions
+
+### Support Channels
+
+- **Email Support** - [support@authlete.com](mailto:support@authlete.com)
+- **Priority Support** - For enterprise customers
+- **Emergency Support** - For critical issues
+- **Community Support** - User forums and discussions
+
+### Escalation Process
+
+1. **Level 1** - Self-service resources
+2. **Level 2** - Email support
+3. **Level 3** - Priority support
+4. **Level 4** - Emergency support
+
+## Additional Resources
+
+- [Infrastructure Setup](/production/infrastructure-setup)
+- [Terraform Deployment](/production/terraform-deployment)
+- [Monitoring and Logging](/production/monitoring-logging)
+- [Migration Guides](/production/migration-guides)
