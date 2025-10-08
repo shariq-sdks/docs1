@@ -19,7 +19,12 @@
               "index",
               "overview",
               "getting-started",
-              "quickstart",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
               "concepts/oauth2-basics",
               "concepts/oidc-basics",
               "concepts/authlete-architecture",
