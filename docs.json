@@ -10,22 +10,45 @@
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
   "navigation": {
     "tabs": [
+       
+      {
+        "tab": "Home",
+        "pages": [
+          "index"
+        ]
+      },
+        
       {
         "tab": "Developer Platform",
         "groups": [
           {
             "group": "Getting Started",
             "pages": [
-              "index",
               "overview",
               "getting-started",
               "quickstart"
             ]
           },
+        
+          {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/authentication"
+            ]
+          },
+          {
+            "group": "Authlete API",
+            "openapi": "app/specs/shared/3.0.16/en.yaml"
+          }
+        ]
+      },
           {
             "group": "API Docs",
             "pages": [
-              "Authelte API",
+              "Authlete API",
               {
                 "group": "SDKs",
                 "pages": [
@@ -263,15 +286,6 @@
             "pages": [
               "reference/knowledge-base"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "API References",
-        "groups": [
-          {
-            "group": "Authlete API",
-            "openapi": "app/specs/shared/3.0.16/en.yaml"
           }
         ]
       },
