@@ -11,31 +11,123 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Learn",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "🚀 Start Here",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "overview",
+              "getting-started",
+              "quickstart"
             ]
           },
           {
-            "group": "Authentication",
+            "group": "📚 Core Concepts",
             "pages": [
-              "guides/authentication",
-              "guides/oauth2-flow",
-              "guides/oidc-flow"
+              "concepts/oauth2-basics",
+              "concepts/oidc-basics",
+              "concepts/authlete-architecture",
+              "concepts/security-fundamentals"
             ]
           },
           {
-            "group": "API Concepts",
+            "group": "🔧 Basic Implementation",
             "pages": [
-              "guides/service-management",
-              "guides/client-management",
-              "guides/authorization-flow",
-              "guides/token-management"
+              "implementation/service-management",
+              "implementation/client-management",
+              "implementation/authentication",
+              "implementation/basic-oauth-flows",
+              "implementation/token-management"
+            ]
+          },
+          {
+            "group": "🔒 Advanced Security",
+            "pages": [
+              "security/pkce",
+              "security/token-security",
+              "security/api-protection",
+              "security/security-best-practices"
+            ]
+          },
+          {
+            "group": "🌐 OpenID Connect",
+            "pages": [
+              "oidc/user-authentication",
+              "oidc/userinfo-endpoint",
+              "oidc/id-token-handling",
+              "oidc/oidc-best-practices"
+            ]
+          },
+          {
+            "group": "📱 Modern Flows",
+            "pages": [
+              "flows/device-flow",
+              "flows/ciba",
+              "flows/native-sso",
+              "flows/grant-management",
+              "flows/token-exchange"
+            ]
+          },
+          {
+            "group": "🏦 Financial-Grade Security",
+            "pages": [
+              "fapi/fapi2-overview",
+              "fapi/fapi2-implementation",
+              "fapi/high-assurance-security",
+              "fapi/compliance-requirements"
+            ]
+          },
+          {
+            "group": "🔗 Federation & Credentials",
+            "pages": [
+              "federation/oidc-federation",
+              "federation/verifiable-credentials",
+              "federation/trust-frameworks",
+              "federation/step-up-authentication"
+            ]
+          },
+          {
+            "group": "🛠️ Production & Deployment",
+            "pages": [
+              "production/infrastructure-setup",
+              "production/monitoring-logging",
+              "production/terraform-deployment",
+              "production/troubleshooting",
+              "production/migration-guides"
+            ]
+          },
+          {
+            "group": "📖 Tutorials & Examples",
+            "pages": [
+              "tutorials/signup-to-first-api",
+              "tutorials/oauth-tutorial",
+              "tutorials/oidc-tutorial",
+              "tutorials/fapi-tutorial",
+              "tutorials/java-getting-started",
+              "tutorials/aws-cognito-integration",
+              "tutorials/financial-grade-apigateway"
+            ]
+          },
+          {
+            "group": "🛠️ Developer Tools",
+            "pages": [
+              "tools/management-console",
+              "tools/api-explorer",
+              "tools/terraform-provider",
+              "tools/mkjwk-generator",
+              "tools/mkjose-generator",
+              "tools/cbor-zone",
+              "tools/templates-toolkits"
+            ]
+          },
+          {
+            "group": "📚 Reference Documentation",
+            "pages": [
+              "reference/definitive-guide",
+              "reference/knowledge-base",
+              "reference/release-notes",
+              "reference/standards-compliance"
             ]
           }
         ]

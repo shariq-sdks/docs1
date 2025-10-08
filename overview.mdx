@@ -1,0 +1,52 @@
+---
+title: 'Authlete Overview'
+description: 'Authlete is a BaaS (Backend as a Service) providing set of APIs to be used for implementing OAuth 2.0 authorization servers and/or OpenID Connect identity providers.'
+---
+
+## Authlete Overview
+
+Authlete is a **BaaS (Backend as a Service)** providing a comprehensive set of APIs for implementing OAuth 2.0 authorization servers and OpenID Connect identity providers.
+
+### What is Authlete?
+
+Authlete provides a complete OAuth 2.0 and OpenID Connect (OIDC) authorization server implementation as a service. Instead of building your own authorization server from scratch, you can use Authlete's APIs to handle:
+
+- **OAuth 2.0 Flows**: Authorization Code, Client Credentials, Device Flow, and more
+- **OpenID Connect**: User authentication and identity information
+- **Client Management**: Register and manage OAuth clients
+- **Service Management**: Configure your authorization server
+- **Token Management**: Issue, validate, and revoke access tokens
+
+### Key Benefits
+
+<CardGroup cols={2}>
+  <Card title="🚀 Fast Implementation" icon="rocket">
+    Get up and running in minutes, not months
+  </Card>
+  <Card title="🔒 Enterprise Security" icon="shield">
+    Bank-grade security with FAPI 2.0 compliance
+  </Card>
+  <Card title="🌐 Global Scale" icon="globe">
+    Multi-region deployment with high availability
+  </Card>
+  <Card title="🛠️ Developer Friendly" icon="code">
+    Comprehensive APIs and SDKs
+  </Card>
+</CardGroup>
+
+### Architecture
+
+Authlete follows a **microservices architecture** where every component is exposed as an API:
+
+- **Management APIs**: Configure services and clients
+- **Runtime APIs**: Handle OAuth/OIDC flows
+- **Token APIs**: Manage access and refresh tokens
+- **User APIs**: Handle user authentication and profiles
+
+### Getting Started
+
+Ready to start building with Authlete? Check out our [Getting Started Guide](/getting-started) to set up your first service and make your first API call.
+
+<Note>
+This documentation covers Authlete 3.x features and APIs. For migration from earlier versions, see our [Migration Guides](/production/migration-guides).
+</Note>
