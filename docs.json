@@ -153,8 +153,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
+    "dark": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg"
   },
   "navbar": {
     "links": [
@@ -188,10 +188,8 @@
       "view",
       "chatgpt",
       "claude",
-      "perplexity",
       "mcp",
-      "cursor",
-      "vscode"
+      "cursor"
     ]
   },
   "footer": {
