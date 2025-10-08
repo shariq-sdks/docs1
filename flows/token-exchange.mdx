@@ -1,11 +1,11 @@
 ---
-title: 'RFC 8693 OAuth 2.0 Token Exchange'
-description: 'Explanation about the "RFC 8693 OAuth 2.0 Token Exchange" specification and Authlete's implementation.'
+title: "'Token Exchange'
+description: 'OAuth 2.0 token exchange implementation and best practices.'"
 ---
 
-<Info>
+{\`{\`<\`}Info>
 This page is for Authlete 2.x. For 3.0, refer to this page.
-</Info>
+</Info>\`}
 
 # Introduction
 
@@ -252,7 +252,7 @@ Authorization server implementations have to process the `TOKEN_EXCHANGE` action
 ```java
 // Dispatch according to the action.
 switch (action)
-{
+{\`
     case INVALID_CLIENT:
         // 401 Unauthorized
         return ResponseUtil.unauthorized(content, CHALLENGE);
@@ -325,7 +325,7 @@ switch (action)
     default:
         // This never happens.
         throw getApiCaller().unknownAction("/api/auth/token", action);
-}
+\`}
 
 ```
 
@@ -364,7 +364,7 @@ $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant
 ### 3. Receive a token exchange response.
 
 ```json
-{
+{\`
   "access_token":"NEdL-q9EfOI4S5XzaMeimXAXVqS139Jm9DTYeLUAd5o",
   "issued_token_type":"urn:ietf:params:oauth:token-type:access_token",
   "token_type":"Bearer",
@@ -383,6 +383,6 @@ $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant
   "expires_in":86400,
   "scope":"email",
   "refresh_token":"pK9f5OWIrx58_XWrE_SpCLLN-BM673ljliTSffjqwao"
-}
+\`}
 
 ```

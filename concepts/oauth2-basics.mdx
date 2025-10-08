@@ -1,6 +1,6 @@
 ---
-title: 'OAuth 2.0 Basics'
-description: 'Learn the fundamentals of OAuth 2.0 authorization framework, including authorization flows, grant types, and security concepts.'
+title: "'OAuth 2.0 Basics'
+description: 'Learn the fundamentals of OAuth 2.0 authorization framework, including authorization flows, grant types, and security concepts.'"
 ---
 
 # Overview
@@ -11,7 +11,7 @@ This document describes how to protect a Web API implemented using Amazon API Ga
 
 The following sections assume:
 
-- You have a lambda function `GetHelloWorld` that returns `{"Hello":"World"}`.
+- You have a lambda function `GetHelloWorld` that returns `{\`"Hello":"World"}`.
 - You have `/mydemoresource` resource that supports `GET` method on Amazon API Gateway.
 - You have a service in Authlete. A service is created automatically on sign-up and you can use it.
 - You have a client application in Authlete. A client application is created automatically on sign-up and you can use it.
@@ -33,7 +33,7 @@ in this directory.
 1. [Lambda] Edit the timeout valueIncrease the timeout value of the lambda function (e.g. to 30 sec).
 1. [API Gateway] [Method Request] Add `access_token` as a query parameter to `GET /mydemoresource`
 1. [API Gateway] [Integration Request] Set a template as is shown below
-`{ "access_token": "$input.params('access_token')" }
+`{ "access_token": "$input.params('access_token')" \`}
 `
 1. [Amazon API Gateway] [Method Response] Add 400, 401, 403 and 500 as HTTP status codes
 1. [Amazon API Gateway] [Integration Response] Set mappings as shown below
@@ -83,7 +83,7 @@ Create a ZIP file containing index.js and node_modules directory.
 [API Gateway] [Integration Request] Set a template as is shown below
 
 ```
-{ "access_token": "$input.params('access_token')" }
+{\` "access_token": "$input.params('access_token')" }
 
 ```
 
@@ -116,7 +116,7 @@ Don’t forget to replace your-api-id, region-id and your-access-token with your
 "Hello": "World",
 "clientId": 4326385670,
 "subject": "authlete_5526908833"
-}
+\`}
 `
 
 Make an authorization request

@@ -1,6 +1,6 @@
 ---
-title: 'Authentication'
-description: 'Learn how to authenticate with Authlete APIs'
+title: "'Authentication'
+description: 'Learn how to authenticate with Authlete APIs'"
 ---
 
 ## Authentication
@@ -19,9 +19,9 @@ Use your service API secret as a Bearer token in the Authorization header:
 Authorization: Bearer YOUR_SERVICE_API_SECRET
 ```
 
-<Warning>
+{\`{\`<\`}Warning>
 Never expose your service API secret in client-side code or public repositories.
-</Warning>
+</Warning>\`}
 
 ### 2. Basic Authentication
 
@@ -44,7 +44,7 @@ You can find your service credentials in the Authlete Console:
 
 Here are examples of making authenticated requests in different languages:
 
-<CodeGroup>
+{\`{\`<\`}CodeGroup>
 ```bash cURL
 # Using Bearer token
 curl -X GET "https://us.authlete.com/api/service/get" \
@@ -59,22 +59,22 @@ curl -X GET "https://us.authlete.com/api/service/get" \
 
 ```javascript JavaScript
 // Using Bearer token
-const response = await fetch('https://us.authlete.com/api/service/get', {
+const response = await fetch('https://us.authlete.com/api/service/get', {\`
   method: 'GET',
   headers: {
     'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
     'Content-Type': 'application/json'
   }
-});
+\`});
 
 // Using Basic auth
 const credentials = btoa('YOUR_API_KEY:YOUR_API_SECRET');
-const response = await fetch('https://us.authlete.com/api/service/get', {
+const response = await fetch('https://us.authlete.com/api/service/get', {\`
   method: 'GET',
   headers: {
     'Authorization': `Basic ${credentials}`,
     'Content-Type': 'application/json'
-  }
+  \`}
 });
 ```
 
@@ -83,7 +83,7 @@ import requests
 import base64
 
 # Using Bearer token
-headers = {
+headers = {\`
     'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
     'Content-Type': 'application/json'
 }
@@ -99,7 +99,7 @@ credentials = base64.b64encode(
 ).decode()
 
 headers = {
-    'Authorization': f'Basic {credentials}',
+    'Authorization': f'Basic {credentials\`}',
     'Content-Type': 'application/json'
 }
 
@@ -108,7 +108,7 @@ response = requests.get(
     headers=headers
 )
 ```
-</CodeGroup>
+</CodeGroup>\`}
 
 ## Security Best Practices
 
@@ -146,7 +146,7 @@ When authentication fails, Authlete returns appropriate HTTP status codes:
 Example error response:
 
 ```json
-{
+{\`
   "resultCode": "A004001",
   "resultMessage": "Invalid API key or secret",
   "resultDescription": "The provided credentials are invalid or expired"
@@ -165,33 +165,33 @@ If you exceed these limits, you'll receive a 429 status code. Implement exponent
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card
-    title="OAuth 2.0 Flow"
+{\`{\`<\`}CardGroup cols={2\`}>
+  {\`<\`}Card
+    title="OAuth 2.0 Flow
     icon="shield"
-    href="/guides/oauth2-flow"
-  >
+    href="/guides/oauth2-flow
+  >\`}
     Learn about OAuth 2.0 authorization flows
-  </Card>
-  <Card
+  {\`</Card>
+  {\`<\`}Card
     title="Service Management"
-    icon="cog"
+    icon="cog
     href="/guides/service-management"
-  >
+  >\`}
     Configure your authorization server
-  </Card>
-  <Card
-    title="Client Management"
+  {\`</Card>
+  {\`<\`}Card
+    title="Client Management
     icon="users"
-    href="/guides/client-management"
-  >
+    href="/guides/client-management
+  >\`}
     Manage OAuth clients
-  </Card>
-  <Card
+  {\`</Card>
+  {\`<\`}Card
     title="API Reference"
-    icon="code"
+    icon="code
     href="/api-reference"
-  >
+  >\`}
     Browse all API endpoints
-  </Card>
-</CardGroup>
+  {\`</Card>
+</CardGroup>\`}

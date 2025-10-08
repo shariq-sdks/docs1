@@ -1,6 +1,6 @@
 ---
-title: 'Comprehensive API Protection with Standard Specifications - Authlete'
-description: 'This article introduces how to fully leverage the standards developed since RFC 6749 to protect APIs.'
+title: "'Comprehensive API Protection with Standard Specifications - Authlete'
+description: 'This article introduces how to fully leverage the standards developed since RFC 6749 to protect APIs.'"
 ---
 
 ## Introduction
@@ -400,7 +400,7 @@ For example, if an introspection response includes `https://rs.example.com` in
 the value of its `aud` property, it means that the access token can be used
 only at `https://rs.example.com`.
 ```json
-{
+{\`
 "aud": [
 "https://rs.example.com"
 ]
@@ -587,7 +587,7 @@ representing the DER-encoded ([X.690](https://www.itu.int/rec/T-REC-X.690/)) cli
 To briefly describe the format of a
 [Byte Sequence](https://www.rfc-editor.org/rfc/rfc8941.html#section-3.3.5)
 defined in [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html),
-it is expressed as `:{base64}:`—the original data is
+it is expressed as `:{base64\`}:`—the original data is
 encoded in Base64 ([RFC 4648](https://www.rfc-editor.org/rfc/rfc4648.html))
 and enclosed by colons (`:`) on both sides.
 Summary:
@@ -690,7 +690,7 @@ requires a nonce, a `use_dpop_nonce` error will be returned with a `DPoP-Nonce`
 header.
 `
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: DPoP error="use_dpop_nonce"
+WWW-Authenticate: DPoP error="use_dpop_nonce
 DPoP-Nonce: ZgmFr7UWLrJX0fHB
 `
 Upon receiving this error, the client application extracts the value from the
@@ -834,7 +834,7 @@ Here is an example of a signature base excerpted from [RFC 9421](https://www.rfc
 "content-digest": sha-512=:WZDPaVn/7XgHaAy8pmojAkGWoRx2UFChF41A2svX+TaPm+AbwAgBWnrIiYllu7BNNyealdVLvRwEmTHWXvJwew==:
 "content-length": 18
 "content-type": application/json
-"@signature-params": ("@method" "@authority" "@path" "content-digest" "content-length" "content-type");created=1618884473;keyid="test-key-rsa-pss"
+"@signature-params": ("@method" "@authority" "@path" "content-digest" "content-length" "content-type");created=1618884473;keyid="test-key-rsa-pss
 `
 In this example of a signature base, lines 1 through 3 consist of
 identifier–value pairs of derived components. The component names of derived
@@ -953,9 +953,9 @@ Date: Tue, 20 Apr 2021 02:07:55 GMT
 Content-Type: application/json
 Content-Length: 18
 Content-Digest: sha-512=:WZDPaVn/7XgHaAy8pmojAkGWoRx2UFChF41A2svX+TaPm+AbwAgBWnrIiYllu7BNNyealdVLvRwEmTHWXvJwew==:
-Signature-Input: sig1=("@method" "@authority" "@path" "content-digest" "content-type" "content-length");created=1618884475;keyid="test-key-ecc-p256"
+Signature-Input: sig1=("@method" "@authority" "@path" "content-digest" "content-type" "content-length");created=1618884475;keyid="test-key-ecc-p256
 Signature: sig1=:X5spyd6CFnAG5QnDyHfqoSNICd+BUP4LYMz2Q0JXlb//4Ijpzp+kve2w4NIyqeAuM7jTDX+sNalzA8ESSaHD3A==:
-{"hello": "world"}
+{\`"hello": "world"}
 `
 ## FAPI 2.0 Http Signatures
 As [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421.html) itself states, the specification is designed as a tool,
@@ -1071,7 +1071,7 @@ that specification.
 {
 "type": "openid_credential",
 "credential_configuration_id": "UniversityDegreeCredential"
-}
+\`}
 ]
 ```The RAR specification defines, in addition to the `type` property, the
 following properties. Whether or not to use them is optional:
@@ -1088,7 +1088,7 @@ properties such as `geolocation` and `currency` that are not defined in
 [RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html).
 ```json
 [
-{
+{\`
 "type": "photo-api",
 "actions": [
 "read",
@@ -1110,10 +1110,10 @@ properties such as `geolocation` and `currency` that are not defined in
 {
 "lat": -35.364,
 "lng": 158.207
-}
+\`}
 ]
 },
-{
+{\`
 "type": "financial-transaction",
 "actions": [
 "withdraw"
@@ -1152,19 +1152,19 @@ of an introspection response.
 "instructedAmount": {
 "currency": "EUR",
 "amount": "123.50"
-},
+\`},
 "creditorName": "Merchant123",
-"creditorAccount": {
+"creditorAccount": {\`
 "iban": "DE02100100109307118603"
 },
 "remittanceInformationUnstructured": "Ref Number Merchant"
-}
+\`}
 ],
-"debtorAccount": {
+"debtorAccount": {\`
 "iban": "DE40100100103307118608",
 "user_role": "owner"
 }
-}
+\`}
 ```
 ## Cedar
 [Cedar](https://www.cedarpolicy.com/) is a language for writing authorization policies
@@ -1196,7 +1196,7 @@ principal,
 action == Action::"read",
 resource
 )
-when {
+when {\`
 resource.owner == principal ||
 resource.tag == "public"
 };
@@ -1259,7 +1259,7 @@ respectively, and are set as parent entities of the
 `principal`. If they follow
 [RFC 7643 Section 2.4](https://www.rfc-editor.org/rfc/rfc7643.html#section-2.4), each element is a JSON object that
 includes a `value` property (e.g.,
-`"groups":[{"value":"group1"}]`).
+`"groups":[{"value":"group1"\`}]`).
 The value of this `value` property is treated as the
 unique identifier of the entity. If they do not follow
 [RFC 7643 Section 2.4](https://www.rfc-editor.org/rfc/rfc7643.html#section-2.4), they are assumed to be JSON strings
@@ -1279,7 +1279,7 @@ a Cedar policy using the original Cedar syntax, while the second RAR object
 describes a Cedar policy using the [JSON Policy Format](https://docs.cedarpolicy.com/policies/json-format.html).
 ```json
 [
-{
+{\`
 "type":      "cedar-policy",
 "format":    "cedar",
 "policy_id": "policy-0",
@@ -1291,10 +1291,10 @@ describes a Cedar policy using the [JSON Policy Format](https://docs.cedarpolicy
 "policy_id": "policy-1",
 "policy": {
 "effect":  "permit",
-"principal": { "op": "==", "entity": { "type": "User",   "id": "12UA45" } },
-"action":    { "op": "==", "entity": { "type": "Action", "id": "view"   } },
-"resource":  { "op": "All" }
-}
+"principal": { "op": "==", "entity": { "type": "User",   "id": "12UA45" \`} },
+"action":    {\` "op": "==", "entity": { "type": "Action", "id": "view"   } \`},
+"resource":  {\` "op": "All" }
+\`}
 }
 ]
 ```
@@ -1325,9 +1325,9 @@ can also include information about the requirements by using parameters such
 as `acr_values` and `max_age`.
 Below is an example error response excerpted from [RFC 9470](https://www.rfc-editor.org/rfc/rfc9470.html).
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Bearer error="insufficient_user_authentication",
+WWW-Authenticate: Bearer error="insufficient_user_authentication,
 error_description="A different authentication level is required.",
-acr_values="myACR"
+acr_values="myACR
 For more details on [RFC 9470](https://www.rfc-editor.org/rfc/rfc9470.html), please refer to
 “[RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol](../stepup_authn/).”
 ## Authorization API
@@ -1338,7 +1338,7 @@ provide this API with the necessary information to determine whether access
 should be granted, it returns the evaluation result as a boolean value.
 Below is an example request and response for this API.
 ```json
-{
+{\`
 "subject": {
 "type": "user",
 "id": "alice@acmecorp.com"
@@ -1346,17 +1346,17 @@ Below is an example request and response for this API.
 "resource": {
 "type": "account",
 "id": "123"
-},
-"action": {
+\`},
+"action": {\`
 "name": "can_read",
 "properties": {
 "method": "GET"
 }
-},
-"context": {
+\`},
+"context": {\`
 "time": "1985-10-26T01:22-07:00"
 }
-}
+\`}
 ``````json
 {
 "decision": true

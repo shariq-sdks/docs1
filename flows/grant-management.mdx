@@ -1,6 +1,6 @@
 ---
-title: 'Grant Management for OAuth 2.0'
-description: 'Explanation about the "Grant Management for OAuth 2.0" specification and Authlete's implementation.'
+title: "'Grant Management'
+description: 'Managing OAuth 2.0 grants and authorization lifecycle.'"
 ---
 
 # Introduction
@@ -64,7 +64,7 @@ The Grant Management specification defines a new endpoint called “**grant mana
 | QUERY |  |  |
 | --- | --- | --- |
 | Request | HTTP Method | GET |
-|  | URL | {endpoint}/{grant-id} |
+|  | URL | {\`endpoint}/{grant-id\`} |
 |  | Protection | Acccess token having the grant_management_query scope |
 | Response | Status Code | 200 OK |
 |  | Content-Type | application/json |
@@ -102,7 +102,7 @@ A client application can request claims by including special scopes (`profile`, 
 
 The value of `"authorization_details"` is an array of pieces of detailed information about authorization. The pieces of information are ones specified by the `authorization_details` request parameter which is defined in “**[OAuth 2.0 Rich Authorization Requests](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/)**” (**RAR**).
 
-Before RAR was developed, authorization server implementations had to introduce a nonstandard request parameter or use the `scope` request parameter in a nonstandard way in order to attach detailed information to an authorization request. The latter approach is called “parameterized scope” or “dynamic scope” which embeds a dynamic value in a scope string. For example, [Open Banking Brasil Financial-grade API Security Profile 1.0](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html) defines “Dynamic Consent Scope” ([Section 7.1.2](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-dynamic-consent-scope-defin)) whose format is `consent:{ConsentID}` where `consent:` is a fixed-string prefix and `{ConsentID}` is the dynamic part (e.g. `consent:urn:bancoex:C1DD33123`).
+Before RAR was developed, authorization server implementations had to introduce a nonstandard request parameter or use the `scope` request parameter in a nonstandard way in order to attach detailed information to an authorization request. The latter approach is called “parameterized scope” or “dynamic scope” which embeds a dynamic value in a scope string. For example, [Open Banking Brasil Financial-grade API Security Profile 1.0](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html) defines “Dynamic Consent Scope” ([Section 7.1.2](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-dynamic-consent-scope-defin)) whose format is `consent:{\`ConsentID}` where `consent:` is a fixed-string prefix and `{ConsentID\`}` is the dynamic part (e.g. `consent:urn:bancoex:C1DD33123`).
 
 The problem of the dynamic scope approach is that it is not standardized and interoperability among implementations is hopeless due to its intrinsically variant formats. RAR was developed to solve the problem and is positioned as a part of Financial-grade API 2.0.
 
@@ -115,7 +115,7 @@ The problem of the dynamic scope approach is that it is not standardized and int
 | REVOKE |  |  |
 | --- | --- | --- |
 | Request | HTTP Method | DELETE |
-|  | URL | {endpoint}/{grant-id} |
+|  | URL | {\`endpoint}/{grant-id\`} |
 |  | Protection | Access token having the grant_management_revoke scope |
 | Response | Status Code | 204 No Content |
 
@@ -292,28 +292,28 @@ the collection will be compressed to the following.
 As a result, the `scopes` array in the grant management response will look like below.
 
 ```json
-{
+{\`
   "scopes": [
     { "scope": "B1 G1 X1",    "resource": [ "r1"       ] },
-    { "scope": "A12 H12 X12", "resource": [ "r1", "r2" ] },
-    { "scope": "D13 I13 X13", "resource": [ "r1", "r3" ] },
-    { "scope": "C2 K2 X2",    "resource": [ "r2"       ] },
-    { "scope": "E23 L23 X23", "resource": [ "r2", "r3" ] },
-    { "scope": "F3 J3 X3",    "resource": [ "r3"       ] }
+    { "scope": "A12 H12 X12", "resource": [ "r1", "r2" ] \`},
+    {\` "scope": "D13 I13 X13", "resource": [ "r1", "r3" ] },
+    { "scope": "C2 K2 X2",    "resource": [ "r2"       ] \`},
+    {\` "scope": "E23 L23 X23", "resource": [ "r2", "r3" ] },
+    { "scope": "F3 J3 X3",    "resource": [ "r3"       ] \`}
   ]
 }
 
 ```
 
 ```json
-{
+{\`
   "scopes": [
     { "scope": "B1 G1 X1",    "resource": [ "r1"       ] },
-    { "scope": "A12 H12 X12", "resource": [ "r1", "r2" ] },
-    { "scope": "D13 I13 X13", "resource": [ "r1", "r3" ] },
-    { "scope": "C2 K2 X2",    "resource": [ "r2"       ] },
-    { "scope": "E23 L23 X23", "resource": [ "r2", "r3" ] },
-    { "scope": "F3 J3 X3",    "resource": [ "r3"       ] }
+    { "scope": "A12 H12 X12", "resource": [ "r1", "r2" ] \`},
+    {\` "scope": "D13 I13 X13", "resource": [ "r1", "r3" ] },
+    { "scope": "C2 K2 X2",    "resource": [ "r2"       ] \`},
+    {\` "scope": "E23 L23 X23", "resource": [ "r2", "r3" ] },
+    { "scope": "F3 J3 X3",    "resource": [ "r3"       ] \`}
   ]
 }
 
@@ -340,7 +340,7 @@ the collection will be compressed to the following.
 As a result, the `claims` array in the grant management response will look like below.
 
 ```json
-{
+{\`
   "claims": [
     "c1", "c2", "c3", "c4", "c5"
   ]
@@ -353,7 +353,7 @@ As a result, the `claims` array in the grant management response will look like 
   "claims": [
     "c1", "c2", "c3", "c4", "c5"
   ]
-}
+\`}
 
 ```
 
@@ -362,7 +362,7 @@ As a result, the `claims` array in the grant management response will look like 
 Duplicates in the `authorization_details` array are removed. Authlete detects duplicates by comparing hash values of the array elements. Spaces and newlines in JSON do not affect the result of hash computation. The key order in JSON objects do not affect the result, either. The following two `authorization_details` elements are regarded as identical.
 
 ```json
-{
+{\`
   "authorization_details": [
     {
       "type": "t1",
@@ -371,22 +371,22 @@ Duplicates in the `authorization_details` array are removed. Authlete detects du
         "key1": "value1",
         "key2": "value2"
       }
-    },
-    {
+    \`},
+    {\`
       "my_custom_data": { "key2": "value2", "key1": "value1" },
       "actions": [
         "a1",
         "a2"
       ],
       "type": "t1"
-    }
+    \`}
   ]
 }
 
 ```
 
 ```json
-{
+{\`
   "authorization_details": [
     {
       "type": "t1",
@@ -395,15 +395,15 @@ Duplicates in the `authorization_details` array are removed. Authlete detects du
         "key1": "value1",
         "key2": "value2"
       }
-    },
-    {
+    \`},
+    {\`
       "my_custom_data": { "key2": "value2", "key1": "value1" },
       "actions": [
         "a1",
         "a2"
       ],
       "type": "t1"
-    }
+    \`}
   ]
 }
 

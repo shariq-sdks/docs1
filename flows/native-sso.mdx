@@ -1,6 +1,6 @@
 ---
-title: 'Native SSO'
-description: 'Explanation about "OpenID Connect Native SSO for Mobile Apps 1.0" specification and Authlete's implementation.'
+title: "'Native SSO'
+description: 'Native Single Sign-On implementation for mobile applications.'"
 ---
 
 ## Concept
@@ -138,7 +138,7 @@ that comply with Native SSO. The device secret is returned as the value of
 the `device_secret` property.
 
 ```json
-{
+{\`
   "access_token": "R28TIqhCydVvH2x2a3XsOzJykFEs7yFotO4ip-a2MbY",
   "token_type": "Bearer",
   "expires_in": 86400,
@@ -159,7 +159,7 @@ the `device_secret` property.
   "refresh_token": "lmlNXafSApRDAq7gZvy40ojya9bplgFSHczms46mTms",
   "id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzEiXSwiZXhwIjoxNzQ2NDM3MTE5LCJpYXQiOjE3NDYzNTA3MTksImF1dGhfdGltZSI6MTc0NjM1MDY3MiwiZHNfaGFzaCI6IlhrYmdHQ1JKUTFOQUhuS25NbjhKMFhIS25fOEVNenhCOWFRdUZITk0ycDQiLCJzaWQiOiJub2RlMDM4Y2F0N2ozMDhzZzE4MjhtMXNnMmRleGwzIn0.JAYlCEbGhjJwpgSZ4lUNaXkWD2ICeDs6FCBd3bKRvKPhrrGZKUAZDRij_Bmn_AF7DyTQS5ALHl82cJqjaLCcIw",
   "device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83"
-}
+\`}
 
 ```
 
@@ -171,7 +171,7 @@ The ID token compliant with Native SSO specification includes the `ds_hash`
 claim and the `sid` claim.
 
 ```json
-{
+{\`
   "iss": "https://trial.authlete.net",
   "sub": "1004",
   "aud": [
@@ -198,7 +198,7 @@ claim and the `sid` claim.
   "auth_time": 1746350672,
   "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
   "sid": "node038cat7j308sg1828m1sg2dexl3"
-}
+\`}
 
 ```
 
@@ -257,7 +257,7 @@ of Native SSO, the value of issued_token_type is
 urn:ietf:params:oauth:token-type:access_token.
 
 ```json
-{
+{\`
   "access_token": "rH9115-g83z9zIiCJ1mzIe8mza3bX4NaBTWmGs5qqow",
   "token_type": "Bearer",
   "expires_in": 86400,
@@ -280,7 +280,7 @@ urn:ietf:params:oauth:token-type:access_token.
   "id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzIiXSwiZXhwIjoxNzQ2NDM4MzUxLCJpYXQiOjE3NDYzNTE5NTEsImRzX2hhc2giOiJYa2JnR0NSSlExTkFIbktuTW44SjBYSEtuXzhFTXp4QjlhUXVGSE5NMnA0Iiwic2lkIjoibm9kZTAzOGNhdDdqMzA4c2cxODI4bTFzZzJkZXhsMyJ9.8jNNF5mpeHnbqp1FTK_1adR8FlgPmHK9_rwUzaz-o5P7RMyaelBaSj74IhxHY6wbCJeD0n_N14h8vD8zWYh-8w",
   "device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83",
   "issued_token_type": "urn:ietf:params:oauth:token-type:access_token"
-}
+\`}
 
 ```
 
@@ -289,7 +289,7 @@ Extracting the ID token from the above response example:
 and decoding its payload part using base64url will show this result:
 
 ```json
-{
+{\`
   "iss": "https://trial.authlete.net",
   "sub": "1004",
   "aud": [
@@ -314,7 +314,7 @@ and decoding its payload part using base64url will show this result:
   "iat": 1746351951,
   "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
   "sid": "node038cat7j308sg1828m1sg2dexl3"
-}
+\`}
 
 ```
 
@@ -613,7 +613,7 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
-{
+{\`
     "error": "invalid_grant",
     "error_description": "The session ID is no longer valid."
 }
@@ -628,7 +628,7 @@ Cache-Control: no-store
 {
     "error": "invalid_grant",
     "error_description": "The session ID is no longer valid."
-}
+\`}
 
 ```
 
@@ -704,7 +704,7 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
-{
+{\`
     "error": "invalid_grant",
     "error_description": "The device secret hash in the subject token does not correspond to the device secret."
 }
@@ -719,7 +719,7 @@ Cache-Control: no-store
 {
     "error": "invalid_grant",
     "error_description": "The device secret hash in the subject token does not correspond to the device secret."
-}
+\`}
 
 ```
 
@@ -841,29 +841,29 @@ session ID specified in the `sessionId` parameter, all access tokens and
 refresh tokens associated with that session ID will be deleted.
 
 ```http
-POST https://{{authlete_api_server}}/api/{{service_id}}/nativesso/logout HTTP/1.1
-Authorization: Bearer {{authlete_access_token}}
+POST https://{\`{authlete_api_server}\`}/api/{\`{service_id}\`}/nativesso/logout HTTP/1.1
+Authorization: Bearer {\`{authlete_access_token}\`}
 Content-Type: application/json
 
-{
-    "sessionId": "{{session_id}}"
+{\`
+    "sessionId": "{{session_id}\`}"
 }
 
 ```
 
 ```http
-POST https://{{authlete_api_server}}/api/{{service_id}}/nativesso/logout HTTP/1.1
-Authorization: Bearer {{authlete_access_token}}
+POST https://{\`{authlete_api_server}\`}/api/{\`{service_id}\`}/nativesso/logout HTTP/1.1
+Authorization: Bearer {\`{authlete_access_token}\`}
 Content-Type: application/json
 
-{
-    "sessionId": "{{session_id}}"
+{\`
+    "sessionId": "{{session_id}\`}"
 }
 
 ```
 
 ```json
-{
+{\`
   "action": "OK",
   "count": 2,
   "resultCode": "A503001",
@@ -878,7 +878,7 @@ Content-Type: application/json
   "count": 2,
   "resultCode": "A503001",
   "resultMessage": "[A503001] The /nativesso/logout API call successfully deleted 2 access/refresh token record(s)."
-}
+\`}
 
 ```
 
@@ -887,7 +887,7 @@ specified session ID — and as a result, the number of deleted tokens is
 zero — the /nativesso/logout API does not return an error.
 
 ```json
-{
+{\`
   "action": "OK",
   "count": 0,
   "resultCode": "A503002",
@@ -902,7 +902,7 @@ zero — the /nativesso/logout API does not return an error.
   "count": 0,
   "resultCode": "A503002",
   "resultMessage": "[A503002] The /nativesso/logout API call completed without deleting any access/refresh token records."
-}
+\`}
 
 ```
 

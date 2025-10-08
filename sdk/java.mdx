@@ -1,6 +1,6 @@
 ---
-title: 'Java SDK'
-description: 'Official Authlete Java SDK for OAuth 2.0 and OpenID Connect'
+title: "'Java SDK'
+description: 'Official Authlete Java SDK for OAuth 2.0 and OpenID Connect'"
 ---
 
 # Java SDK
@@ -12,11 +12,11 @@ The official Authlete Java SDK provides a comprehensive client library for integ
 ### Maven
 
 ```xml
-<dependency>
-    <groupId>com.authlete</groupId>
-    <artifactId>authlete-java-common</artifactId>
-    <version>3.0.0</version>
-</dependency>
+{\`{\`<\`}dependency>
+    {\`<\`}groupId>\`}com.authlete{\`</groupId>
+    {\`<\`}artifactId>\`}authlete-java-common{\`</artifactId>
+    {\`<\`}version>\`}3.0.0{\`</version>
+</dependency>\`}
 ```
 
 ### Gradle
@@ -32,7 +32,7 @@ import com.authlete.common.api.AuthleteApi;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceCreateRequest;
 
-public class Example {
+public class Example {\`
     public static void main(String[] args) {
         AuthleteApi api = AuthleteApiFactory.create(
             "https://api.authlete.com",
@@ -49,7 +49,7 @@ public class Example {
 
         Service createdService = api.createService(request);
     }
-}
+\`}
 ```
 
 ## Features
@@ -84,7 +84,7 @@ request.setParameters(Map.of(
 
 AuthorizationResponse response = api.processAuthorizationRequest(request);
 
-if ("INTERACTION".equals(response.getAction())) {
+if ("INTERACTION".equals(response.getAction())) {\`
     // Show authorization page
     // After user consent, call issueAuthorizationResponse
     AuthorizationIssueRequest issueRequest = new AuthorizationIssueRequest();
@@ -112,20 +112,20 @@ TokenResponse response = api.processTokenRequest(request);
 if ("OK".equals(response.getAction())) {
     System.out.println("Access Token: " + response.getAccessToken());
     System.out.println("Refresh Token: " + response.getRefreshToken());
-}
+\`}
 ```
 
 ### Spring Boot Integration
 
 ```java
 @RestController
-public class AuthController {
+public class AuthController {\`
     
     @Autowired
     private AuthleteApi authleteApi;
     
     @GetMapping("/authorize")
-    public ResponseEntity<?> authorize(@RequestParam Map<String, String> params) {
+    public ResponseEntity{\`<?> authorize(@RequestParam Map{\`<\`}String, String>\`} params) {
         AuthorizationRequest request = new AuthorizationRequest();
         request.setParameters(params);
         
@@ -136,7 +136,7 @@ public class AuthController {
         }
         
         return ResponseEntity.ok(response);
-    }
+    \`}
 }
 ```
 

@@ -1,6 +1,6 @@
 ---
-title: 'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete'
-description: 'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete.'
+title: "'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete'
+description: 'Implementing FAPI2 Message Signing profile - Signing Authorization Responses with Authlete.'"
 ---
 
 ## Overview
@@ -94,7 +94,7 @@ Authorization Servers, Clients, and Resource Servers when creating or processing
 Create a scope attribute and set the `key` to `fapi2` and the `value` to `ms-authres`. Then, link it to one of the supported scope. The below is an example of such a scope:
 
 ```json
-{
+{\`
   "name": "myscope",
   "attributes": [
     {
@@ -103,12 +103,12 @@ Create a scope attribute and set the `key` to `fapi2` and the `value` to `ms-aut
     }
   ]
   ...
-}
+\`}
 
 ```
 
 ```json
-{
+{\`
   "name": "myscope",
   "attributes": [
     {
@@ -117,7 +117,7 @@ Create a scope attribute and set the `key` to `fapi2` and the `value` to `ms-aut
     }
   ]
   ...
-}
+\`}
 
 ```
 
@@ -349,7 +349,7 @@ Content-Type: application/x-www-form-urlencoded
 
 client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer
 &client_assertion=eyJraWQi...
-&client_id={Client ID}
+&client_id={\`Client ID}
 &response_type=code
 &redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb
 &scope=myscope
@@ -366,52 +366,52 @@ After the authorization server receives the request from the client, the authori
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--u '{Service API Key}:{Service API Secret}' \
+-u '{Service API Key\`}:{\`Service API Secret}' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+-d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID\`}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+-d '{\`"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+-d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID\`}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
+-d '{"parameters":"client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID\`}&response_type=code&redirect_uri=https%3A%2F%2Fclient.example.com%2Fcb&scope=myscope&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&response_mode=jwt"}'
 ```
 
 A successful response from the API contains a request URI. The response would look like below.
 
 ```json
-{
+{\`
   "resultCode": "A245001",
   "resultMessage": "[A245001] Successfully registered a request object for client ({Client ID}), URI is urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk.",
   "action": "CREATED",
   "requestUri": "urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk",
-  "responseContent": "{\"expires_in\":599,\"request_uri\":\"urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk\"}"
+  "responseContent": "{\"expires_in\":599,\"request_uri\":\"urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk\"\`}"
 }
 
 ```
 
 ```json
-{
+{\`
   "resultCode": "A245001",
   "resultMessage": "[A245001] Successfully registered a request object for client ({Client ID}), URI is urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk.",
   "action": "CREATED",
   "requestUri": "urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk",
-  "responseContent": "{\"expires_in\":599,\"request_uri\":\"urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk\"}"
+  "responseContent": "{\"expires_in\":599,\"request_uri\":\"urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk\"\`}"
 }
 
 ```
@@ -421,13 +421,13 @@ A successful response from the API contains a request URI. The response would lo
 After obtaining a request URI in step 1, the client sends an authorization request, including the request URI, to the authorization endpoint of the authorization server. The request appears as below.
 
 ```bash
-GET /authorization?client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk HTTP/1.1
+GET /authorization?client_id={\`Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk HTTP/1.1
 Host: server.example.com
 
 ```
 
 ```bash
-GET /authorization?client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk HTTP/1.1
+GET /authorization?client_id={Client ID\`}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk HTTP/1.1
 Host: server.example.com
 
 ```
@@ -439,53 +439,53 @@ When the authorization server receives the request from the client, the authoriz
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
+-d '{\`"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
+-d '{\`"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
+-d '{"parameters":"client_id={Client ID\`}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
+-d '{"parameters":"client_id={Client ID\`}&request_uri=urn:ietf:params:oauth:request_uri:6uOtgZjBYPPspJLf630c8iJfi4xql_G3R7MKMjgTxRk"}'
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{
+{\`
   "type": "authorizationResponse",
   "resultCode": "A004001",
   "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 20699248885) for the authorization request from the client (ID = {Client ID}). [response_type=code, openid=false]",
   "ticket": "4rmnZ-mY...",
   ...
-}
+\`}
 
 ```
 
 ```json
-{
+{\`
   "type": "authorizationResponse",
   "resultCode": "A004001",
   "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 20699248885) for the authorization request from the client (ID = {Client ID}). [response_type=code, openid=false]",
   "ticket": "4rmnZ-mY...",
   ...
-}
+\`}
 
 ```
 
@@ -498,36 +498,36 @@ After the authorization server receives a successful response from `/auth/author
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"}'
+-d '{\`"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--u '{Service API Key}:{Service API Secret}' \
+-u '{Service API Key\`}:{\`Service API Secret}' \
 -H 'Content-type: application/json' \
--d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"}'
+-d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"}'
+-d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"}'
+-d '{"ticket":"4rmnZ-mY...","subject":"john","result":"AUTHORIZED"\`}'
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{
+{\`
   "type": "authorizationIssueResponse",
   "resultCode": "A040001",
   "resultMessage": "[A040001] The authorization request was processed successfully.",
@@ -546,29 +546,29 @@ A successful response from the API would be like below.
   "authorizationCode": "smseP17u...",
   "responseContent": "https://client.example.org/cb?response=eyJraWQi...",
   ...
-}
+\`}
 
 ```
 
 You can find the `response` parameter in the `responseContent` and the `response` parameter contains a JWT with a payload as follows:
 
 ```json
-{
+{\`
   "aud": "{Client ID}",
   "code": "smseP17u...",
   "iss": "https://server.example.com",
   "exp": 1702725889
-}
+\`}
 
 ```
 
 ```json
-{
+{\`
   "aud": "{Client ID}",
   "code": "smseP17u...",
   "iss": "https://server.example.com",
   "exp": 1702725889
-}
+\`}
 
 ```
 
@@ -652,36 +652,36 @@ After the token endpoint receives a request from the client, the authorization s
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+-d '{\`"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+-d '{\`"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+-d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID\`}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
+-d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJraWQi...&client_id={Client ID\`}&code=smseP17u...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=ErRt0wrt...","dpop":"eyJ0eXAi..."}'
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{
+{\`
   "resultCode": "A050001",
   "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
   "accessToken": "7i9xPkbk...",
@@ -696,7 +696,7 @@ A successful response from the API would be like below.
   "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
   "accessToken": "7i9xPkbk...",
   ...
-}
+\`}
 
 ```
 
@@ -721,36 +721,36 @@ When the resource server receives the request from the client, it calls Authlete
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--u '{Service API Key}:{Service API Secret}' \
+-u '{\`Service API Key}:{Service API Secret\`}' \
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"}'
+-d '{\`"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--u '{Service API Key}:{Service API Secret}' \
+-u '{Service API Key\`}:{\`Service API Secret}' \
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"}'
+-d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"}'
+-d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--H 'Bearer {Authlete API Access Token}'
+-H 'Bearer {\`Authlete API Access Token}'
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"}'
+-d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"\`}'
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{
+{\`
   "resultCode": "A056001",
   "resultMessage": "[A056001] The access token is valid.",
   "action": "OK",
@@ -765,6 +765,6 @@ A successful response from the API would be like below.
   "resultMessage": "[A056001] The access token is valid.",
   "action": "OK",
   ...
-}
+\`}
 
 ```

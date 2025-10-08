@@ -1,14 +1,14 @@
 ---
-title: 'Proof Key for Code Exchange (RFC 7636) - Authlete'
-description: 'This document describes PKCE, a countermeasure agains the authorization code interception attack, defined in RFC 7636.'
+title: "'Proof Key for Code Exchange (RFC 7636) - Authlete'
+description: 'This document describes PKCE, a countermeasure agains the authorization code interception attack, defined in RFC 7636.'"
 ---
 
 # Proof Key for Code Exchange (RFC 7636)
 1. [Home](https://www.authlete.com/)
 3. Proof Key for Code Exchange (RFC 7636)
-<Info>
+{\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/v2/pkce).
-</Info>
+</Info>\`}
 ## 1. Introduction
 [RFC 7636](http://tools.ietf.org/html/rfc7636) : Proof Key for Code Exchange (PKCE, pronounced “pixy”) is a specification about a countermeasure against the authorization code interception attack.
 ![authorization code interception attack](https://storage.googleapis.com/authlete-website/img/developers/pkce/authorization_code_interception_attack.png)
@@ -99,25 +99,25 @@ Configure Client Endpoints:
 ### 6.2. Authorization Request
 #### 6.2.1. Authorization Endpoint Request
 As explained in [OAuth2 Basic], Authlete’s authorization API can validate authorization requests received by the authorization server on its behalf.
-Use the following `curl` command to make an authorization request from Authorization Server to the Authlete API. Make sure to replace `<Service ID>`, `<Service Access Token>`, `<Client ID>` and `<Ticket>` with your values.
+Use the following `curl` command to make an authorization request from Authorization Server to the Authlete API. Make sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}`, `{\`{\`<\`}Client ID>` and `{\`<\`}Ticket>\`}` with your values.
 ```bash
 # Linux/Mac
-curl -v -X POST "https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization" \
--H "Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" \
+curl -v -X POST "https://us.authlete.com/api/{\`{\`<\`}Service ID e.g. 10738933707579>/auth/authorization" \
+-H "Authorization: Bearer {\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}" \
 -d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" \
 -d "subject=john.s@example.com" \
 -d "response_type=code" \
--d "client_id=<Client ID e.g.26478243745571>" \
+-d "client_id={\`{\`<\`}Client ID e.g.26478243745571>" \
 -d "redirect_uri=https://client.example.org/cb/example.com" \
 -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" \
 -d "code_challenge_method=S256"
 # Windows (PowerShell)
-curl.exe -v -X POST "https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization" `
--H "Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" `
+curl.exe -v -X POST "https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization" `
+-H "Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" `
 -d "ticket=5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc" `
 -d "subject=john.s@example.com" `
 -d "response_type=code" `
--d "client_id=<Client ID e.g.26478243745571>" `
+-d "client_id={\`<\`}Client ID e.g.26478243745571>\`}" `
 -d "redirect_uri=https://client.example.org/cb/example.com" `
 -d "code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" `
 -d "code_challenge_method=S256"
@@ -126,30 +126,30 @@ You can also configure the `code_challenge` and `code_challenge_method` paramete
 #### 6.2.2 Authorization Response
 If the request is valid, Authlete returns a response like this:
 ```json
-{
+{\`
 "action": "INTERACTION",
 "resultCode": "A004001",
 "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 933860280) for the authorization request from the client (ID = 2800496004). [response_type=code, openid=false]",
 "ticket": "cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE",
 "client": {...},
-"service": {...},
+"service": {...\`},
 }
 ```Assuming that the resource owner has already been authenticated and has obtained consent, the authorization server calls the issue endpoint to obtain an authorization code.
-To make a token request, execute the following `curl` command. Make sure to replace `<Service ID>`, `<Service Access Token>`, `<Client ID>` and `<Ticket>` with your values.
+To make a token request, execute the following `curl` command. Make sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}`, `{\`{\`<\`}Client ID>` and `{\`<\`}Ticket>\`}` with your values.
 ```bash
 # Linux/Mac
-curl -X POST "https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization/issue" \
--H "Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" \
+curl -X POST "https://us.authlete.com/api/{\`{\`<\`}Service ID e.g. 10738933707579>/auth/authorization/issue" \
+-H "Authorization: Bearer {\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}" \
 -H "Content-Type: application/json" \
--d '{ "ticket": "<Ticket e.g. cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE>","subject": "testuser01"}'
+-d '{\` "ticket": "{\`{\`<\`}Ticket e.g. cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE>","subject": "testuser01"}'
 # Windows
-curl.exe -X POST "https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization/issue" `
--H "Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" \
+curl.exe -X POST "https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization/issue" `
+-H "Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>" \
 -H "Content-Type: application/json" `
--d '{ "ticket": "Ticket e.g. cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE","subject": "testuser01"}'
+-d '{ "ticket": "Ticket e.g. cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE","subject": "testuser01"\`}'
 ```If the request is valid, Authlete generates the following response.
 ```json
-{
+{\`
 "action": "LOCATION",
 "authorizationCode": "ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
 "idToken": null,
@@ -160,19 +160,19 @@ curl.exe -X POST "https://us.authlete.com/api/<Service ID e.g. 10738933707579>/a
 "ticketInfo": {
 "context": null
 }
-}
+\`}
 ```### 6.3 Token Request
 #### 6.3.1 Token Request with CURL
 We assume the authorization server makes a redirection response to the user agent, and then the user agent makes the following HTTP GET request to the client.
 ```bash
 GET /cb/example.com?code=ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI HTTP/1.1
 Host: client.example.org
-```To make a token request, execute the following `curl` command. Make sure to replace `<Service ID>`, `<Service Access Token>`, `<Client ID>` and `<Code>` with your values.
+```To make a token request, execute the following `curl` command. Make sure to replace `{\`<\`}Service ID>\`}`, `{\`{\`<\`}Service Access Token>`, `{\`<\`}Client ID>\`}` and `{\`{\`<\`}Code>` with your values.
 ```bash
-curl -v -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/token \
+curl -v -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/token \
 -H 'Content-Type: application/json' \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
--d '{ "parameters": "grant_type=authorization_code&code=<Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>&redirect_uri=https%3A%2F%2Fmy-client.example.com%2Fcb1&code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk", "clientId": "<Client ID e.g. 12898884596863>" }'
+-H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+-d '{\` "parameters": "grant_type=authorization_code&code={\`<\`}Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>\`}&redirect_uri=https%3A%2F%2Fmy-client.example.com%2Fcb1&code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk", "clientId": "{\`{\`<\`}Client ID e.g. 12898884596863>" }'
 ```#### 6.3.2. Token Response
 If the authorization code and the code verifier you entered are valid, an access token is returned in the form of JSON like the following.
 ```json
@@ -186,7 +186,7 @@ If the authorization code and the code verifier you entered are valid, an access
 "grantType" : "AUTHORIZATION_CODE",
 "accessToken" : "7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
 "idToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk",
-"responseContent" : "{\"access_token\":\"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY\",\"refresh_token\":\"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk\",\"token_type\":\"Bearer\",\"expires_in\":86400}",
+"responseContent" : "{\"access_token\":\"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY\",\"refresh_token\":\"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk\",\"token_type\":\"Bearer\",\"expires_in\":86400\`}",
 "scopes" : [
 "openid"
 ],
@@ -197,12 +197,12 @@ If the authorization code and the code verifier you entered are valid, an access
 "refreshTokenDuration" : 864000,
 "clientId" : 12898884596863
 }
-```Congratulations! You have succeeded in getting an access token using the authorization code flow secured by PKCE.
+```Congratulations{\`!\`}You have succeeded in getting an access token using the authorization code flow secured by PKCE.
 ### 6.4. PKCE Configuration
 Authlete provides a configuration item for PKCE. PKCE can be enabled in the Service or Client Service. Login the [Authlete Management Console](https://console.authlete.com/), select a service and click the Authorization tab, and you will be able to find a boolean configuration item labeled “Proof Key for Code Exchange (RFC 7636)”.
 #### Service PKCE Settings
 To enable PKCE in Service Settings:
-1. Navigate to Service Settings > Endpoints > Authorization > General
+1. Navigate to Service Settings >\`} Endpoints > Authorization > General
 2. Under Proof Key for Code Exchange (PKCE), enable the `Require PKCE` and  `Require S256 for Code Challenge Method` options.
 3. Click Save Changes to apply the updates.
 ![pkce_4](https://storage.googleapis.com/authlete-website/resources/pkce/4.png)

@@ -1,6 +1,6 @@
 ---
-title: 'RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol - Authlete'
-description: 'Explanation about RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol and how Authlete supports the specification.'
+title: "'RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol - Authlete'
+description: 'Explanation about RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol and how Authlete supports the specification.'"
 ---
 
 # RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol
@@ -37,26 +37,26 @@ https://as.example.com/authorize?acr_values=acr1+acr2+acr3&...
 The second way to specify a list of ACRs is to use the `claims` request parameter. The parameter is defined in [Section 5.5](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html). The parameter takes a JSON object as a value and the syntax of the JSON is complex.
 The following JSON is an example value of the `claims` request parameter excerpted from OpenID Connect Core 1.0.
 ```json
-{
+{\`
 "userinfo":
 {
 "given_name": {"essential": true},
 "nickname": null,
-"email": {"essential": true},
-"email_verified": {"essential": true},
+"email": {"essential": true\`},
+"email_verified": {\`"essential": true},
 "picture": null,
 "http://example.info/claims/groups": null
-},
+\`},
 "id_token":
-{
+{\`
 "auth_time": {"essential": true},
-"acr": {"values": ["urn:mace:incommon:iap:silver"] }
+"acr": {"values": ["urn:mace:incommon:iap:silver"] \`}
 }
 }
 ```This example specifies a list of ACRs that has just one element, `urn:mace:incommon:iap:silver`. When an authorization request includes this JSON as the value of the `claims` request parameter, the authorization server tries to perform user authentication that satisfies criteria of `urn:mace:incommon:iap:silver`.
 To make the authorization server return an error when none of the specified ACRs can be satisfied, the client application must request the `acr` as an essential claim. By adding `"essential":true` in the JSON object that follows a claim name, the client application can request the claim as essential. In the example below, the `auth_time` claim and the `acr` claim are requested as essential.
 ```json
-{
+{\`
 "id_token":
 {
 "auth_time": {
@@ -65,7 +65,7 @@ To make the authorization server return an error when none of the specified ACRs
 "acr": {
 "values": ["urn:mace:incommon:iap:silver"],
 "essential": true
-}
+\`}
 }
 }
 ```
@@ -121,23 +121,23 @@ Parameters in the error response are explained in the subsequent sections.
 To indicate that the reason of an error response is that authentication requirements are not satisfied, the specification defines an error code `insufficient_user_authentication` as follows.
 - `insufficient_user_authentication`: The authentication event associated with the access token presented with the request doesn’t meet the authentication requirements of the protected resource.
 The error code appears in the `WWW-Authenticate` HTTP header of an error response as shown below.
-WWW-Authenticate: Bearer error="insufficient_user_authentication",...
+WWW-Authenticate: Bearer error="insufficient_user_authentication,...
 ## The `acr_values` Parameter
 To list ACRs one of which an access token must satisfy, the specification defines a parameter `acr_values` as follows.
 - `acr_values`: A space-separated string listing the authentication context class reference values, in order of preference, one of which the protected resource requires for the authentication event associated with the access token.
 The parameter is used in conjunction with the error code `insufficient_user_authentication` like below (excerpt from the specification):
 HTTP/1.1 401 Unauthorized
 WWW-Authenticate: Bearer error="insufficient_user_authentication",
-error_description="A different authentication level is required",
+error_description="A different authentication level is required,
 acr_values="myACR"
 If a client application receives the error response above, the client application needs to make an authorization request that requests the `acr` claim as an essential with `myACR` included in `values` like below. Line-breaks in the example below are for display purposes only. An actual request does not contain line-breaks.
-https://as.example.com/authorize?claims={
+https://as.example.com/authorize?claims={\`
 "id_token": {
 "acr": {
 "essential": true,
 "values": [ "myACR" ]
 }
-}
+\`}
 }&...
 If the authorization server treats the `acr_values` request parameter in the way recommended by the OAuth 2.0 Step Up Authentication Challenge Protocol specification, `acr_values=myACR` would be enough.
 ## The `max_age` Parameter
@@ -145,9 +145,9 @@ To indicate the maximum authentication age which an access token must satisfy, t
 - `max_age`: Indicates the allowable elapsed time in seconds since the last active authentication event associated with the access token.
 The parameter is used in conjunction with the error code `insufficient_user_authentication` like below (excerpt from the specification):
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Bearer error="insufficient_user_authentication",
+WWW-Authenticate: Bearer error="insufficient_user_authentication,
 error_description="More recent authentication is required",
-max_age="5"
+max_age="5
 If a client application receives the error response above, the client application needs to make an authorization request with the `prompt` request parameter with `login` included.
 # Authentication Information Bound To Access Token
 To enable protected resource endpoints to check whether a presented access token satisfies authentication requirements or not, the access token must hold information about the user authentication that was performed during the course of issuing the access token.
@@ -158,7 +158,7 @@ The OAuth 2.0 Step Up Authentication Challenge Protocol specification defines th
 | `auth_time` | Time when the user authentication occurred.  A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the time of date/time of the authentication event. |
 The JSON below is an example excerpted from the specification that shows how the `acr` and `auth_time` attributes appear in the payload part of JWT access tokens.
 ```json
-{
+{\`
 "active": true,
 "client_id": "s6BhdRkqt3",
 "scope": "purchase",
@@ -177,37 +177,37 @@ Some Authlete APIs such as the `/auth/authorization/issue` API accept the `acr` 
 The following set of shell commands simulates the authorization code flow ([RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html) [Section 4.1](https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1)) that issues an access token that holds information about ACR (`acr`) and authentication time (`auth_time`).
 (1) Call the `/auth/authorization` API, which receives an authorization request as `parameters` and returns information about the request in JSON format (cf. [AuthorizationResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/AuthorizationResponse.html)).
 ```shell
-curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/authorization \
+curl -v -X POST https://{api-cluster\`}.authlete.com/api/{\`serviceId}/auth/authorization \
 -H 'Content-Type: application/json' \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \ --data-urlencode parameters="response_type=code&scope=openid&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${STATE}&claims={\"id_token\":{\"acr\":{\"essential\":true,\"values\":[\"${ACR}\"]}}}" > authorization_response.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \ --data-urlencode parameters="response_type=code&scope=openid&client_id=${CLIENT_ID\`}&redirect_uri=${\`REDIRECT_URI}&state=${STATE\`}&claims={\`\id_token\":{\"acr\":{\"essential\":true,\"values\":[\"${ACR}\"]\`}}}" >\`} authorization_response.json
 ```
-The value of `${ACR}` in the command line above needs to be registered in advance as one of "Supported Authentication Context Class References" (which corresponds to the `acr_values_supported` server metadata). Otherwise, the specified ACR would be ignored.
+The value of `${\`ACR}` in the command line above needs to be registered in advance as one of "Supported Authentication Context Class References" (which corresponds to the `acr_values_supported` server metadata). Otherwise, the specified ACR would be ignored.
 ACR values of an authorization request are listed in the `acrs` parameter in the response from the `/auth/authorization` API regardless of where the values come from (`acr_values`, `claims` or `default_acr_values`).
 In addition, when the `acr` claim is requested as essential, the boolean parameter `acrEssential` in the response from the `/auth/authorization` API holds `true`.
 (2) Call the `/auth/authorization/issue` API, which receives a ticket issued by the `/auth/authorization` API as `ticket`, generates tokens (an authorization code, an access token, and/or an ID token), prepares an authorization response that conforms to related standard specifications, and returns JSON (cf. [AuthorizationIssueResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/AuthorizationIssueResponse.html)).
 ```shell
 $ TICKET=`jq -r .ticket authorization_response.json`
 $ AUTH_TIME=`date +%s`
-$ curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/authorization/issue \
+$ curl -v -X POST https://{api-cluster\`}.authlete.com/api/{\`serviceId}/auth/authorization/issue \
 -H 'Content-Type: application/json' \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' -d ticket=$TICKET -d subject=$SUBJECT -d authTime=$AUTH_TIME -d acr=$ACR > authorization_issue_response.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' -d ticket=$TICKET -d subject=$SUBJECT -d authTime=$AUTH_TIME -d acr=$ACR >\`} authorization_issue_response.json
 ```(3) Call the `/auth/token` API, which receives a token request as `parameters`, generate tokens (an access token and optionally an ID token), prepares a token response that conforms to related standard specifications, and returns JSON (cf. [TokenResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/TokenResponse.html)).
 ```shell
 $ AUTHORIZATION_CODE=`jq -r .authorizationCode authorization_issue_response.json`
-$ curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/token \
+$ curl -v -X POST https://{api-cluster\`}.authlete.com/api/{\`serviceId}/auth/token \
 -H 'Content-Type: application/json' \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
---data-urlencode parameters="client_id=${CLIENT_ID}&grant_type=authorization_code&code=${AUTHORIZATION_CODE}&redirect_uri=${REDIRECT_URI}" -d clientId=${CLIENT_ID} -d clientSecret=${CLIENT_SECRET} > token_response.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+--data-urlencode parameters="client_id=${CLIENT_ID\`}&grant_type=authorization_code&code=${\`AUTHORIZATION_CODE}&redirect_uri=${REDIRECT_URI\`} -d clientId=${\`CLIENT_ID} -d clientSecret=${CLIENT_SECRET\`} >\`} token_response.json
 ```
 The API call above assumes that the client type of the client is "confidential" and the [client authentication](https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4) method at the token endpoint (`token_endpoint_auth_method`) is `client_secret_basic`, which is implied by use of the `clientId` request parameter and the `clientSecret` parameter of the `/auth/token` API (cf. [TokenRequest](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/TokenRequest.html)).
 ## Unmet Authentication Requirements
 Instead of calling the `/auth/authorization/issue` API, the implementation of the authorization endpoint may call the `/auth/authorization/fail` API to indicate that the authorization request in question failed.
 The `/auth/authorization/fail` API requires the `reason` request parameter that indicates the reason of the error (cf. [AuthorizationFailRequest](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/AuthorizationFailRequest.html)). When `[ACR_NOT_SATISFIED](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/AuthorizationFailRequest.Reason.html#ACR_NOT_SATISFIED)` is specified as the value of the `reason` request parameter, Authlete 2.3 and newer versions prepare an error response whose `error` is `unmet_authentication_requirements` to conform to “[OpenID Connect Core Error Code unmet_authentication_requirements](https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html)”.
 ```shell
-curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/authorization/fail \
+curl -v -X POST https://{\`api-cluster}.authlete.com/api/{serviceId\`}/auth/authorization/fail \
 -H 'Content-Type: application/json' \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
--d ticket=$TICKET -d reason=ACR_NOT_SATISFIED > authorization_fail_response.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+-d ticket=$TICKET -d reason=ACR_NOT_SATISFIED >\`} authorization_fail_response.json
 ```The `responseContent` parameter in the response from the `/auth/authorization/fail` API is a URL that points to the redirection endpoint of the client application with the `error` and other parameters (cf. [AuthorizationFailResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/AuthorizationFailResponse.html)).
 ```shell
 $ jq -r .responseContent authorization_fail_response.json
@@ -225,7 +225,7 @@ $ JWT_AT=`jq -r .jwtAccessToken token_response.json`
 $ echo $JWT_AT | ruby -paF\\. -rbase64 -e '$_=Base64.urlsafe_decode64 $F[1]' | jq .
 ```you will find that the `acr` claim and the `auth_time` claim are embedded there.
 ```json
-{
+{\`
 "sub": "taka",
 "acr": "acr1",
 "scope": "openid",
@@ -241,17 +241,17 @@ Authlete-powered authorization servers can implement a token introspection endpo
 The `/auth/introspection/standard` API receives a token introspection request as `parameters` and returns JSON (cf. [StandardIntrospectionResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/StandardIntrospectionResponse.html)).
 ```shell
 $ AT=`jq -r .accessToken token_response.json`
-$ curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/introspection/standard \
+$ curl -v -X POST https://{api-cluster\`}.authlete.com/api/{\`serviceId}/auth/introspection/standard \
 -H "Content-Type:application/json" \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
---data-urlencode parameters="token=${AT}" > introspection_standard_response.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+--data-urlencode parameters="token=${AT\`} >\`} introspection_standard_response.json
 ```The JSON contains the `responseContent` parameter. The value of the parameter is a JSON string that conforms to [RFC 7662](https://www.rfc-editor.org/rfc/rfc7662.html).
 The following command line extracts the value of `responseContent` and parses it as JSON.
 ```shell
 $ jq -r .responseContent introspection_standard_response.json | jq .
 ```The result of the command line above will look like below. You can find the `acr` property and the `auth_time` property there.
 ```json
-{
+{\`
 "sub": "taka",
 "acr": "acr1",
 "scope": "openid",
@@ -288,26 +288,26 @@ Request parameters except `token` are related to access token validation. Ones t
 If the `acrValues` request parameter is supplied, the `/auth/introspection` API checks whether the ACR bound to the given access token is included in the `acrValues` array. If the ACR is not included, the API prepares an error response that conforms to the OAuth 2.0 Step Up Authentication Challenge Protocol specification.
 The following command line lets the `/auth/introspection` API validate ACR.
 ```shell
-$ curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/introspection \
+$ curl -v -X POST https://{api-cluster\`}.authlete.com/api/{\`serviceId}/auth/introspection \
 -H 'Content-Type:application/json' \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>'  \
--d token=$AT -d acrValues="acrX acrY" > introspection_response-acrValues.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>'  \
+-d token=$AT -d acrValues="acrX acrY >\`} introspection_response-acrValues.json
 ```The `responseContent` parameter in the response from the API (cf. [IntrospectionResponse](https://authlete.github.io/authlete-java-common/com/authlete/common/dto/IntrospectionResponse.html)) holds a string that should be used as the value of the `WWW-Authenticate` HTTP header. You will see that (a) the value of `error` is `insufficient_user_authentication` and (b) `acr_values` is included.
 ```shell
 $ jq -r .responseContent introspection_response-acrValues.json
-Bearer error="insufficient_user_authentication",error_description="[A341302] The authentication context class 'acr1' of the user authentication that the authorization server performed during the course of issuing the access token is insufficient. User authentication of an access token must satisfy one of [acrX acrY] to access the protected resource.",error_uri="https://docs.authlete.com/#A341302",acr_values="acrX acrY"
+Bearer error="insufficient_user_authentication",error_description="[A341302] The authentication context class 'acr1' of the user authentication that the authorization server performed during the course of issuing the access token is insufficient. User authentication of an access token must satisfy one of [acrX acrY] to access the protected resource.,error_uri="https://docs.authlete.com/#A341302",acr_values="acrX acrY
 ```### Max Age Validation
 If the `maxAge` request parameter is supplied, the `/auth/introspection` API checks whether the specified time has elapsed since the user authentication time bound to the given access token. If the time has elapsed, the API prepares an error response that conforms to the OAuth 2.0 Step Up Authentication Challenge Protocol specification.
 The following command line lets the `/auth/introspection` API validate authentication time.
 ```shell
-$ curl -v -X POST https://{api-cluster}.authlete.com/api/{serviceId}/auth/introspection \
+$ curl -v -X POST https://{api-cluster\`}.authlete.com/api/{serviceId}/auth/introspection \
 -H 'Content-Type:application/json' \
--u 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>'  \
--d token=$AT -d maxAge=600 > introspection_response-maxAge.json
+-u 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>'  \
+-d token=$AT -d maxAge=600 >\`} introspection_response-maxAge.json
 ```In this case, the string for the `WWW-Authenticate` HTTP header contains `max_age`.
 ```shell
 $ jq -r .responseContent introspection_response-maxAge.json
-Bearer error="insufficient_user_authentication",error_description="[A340301] The time of the user authentication that the authorization server performed during the course of issuing the access token is too old, so re-authentication is needed. The maximum authentication age (max_age) required by the protected resource is 600.",error_uri="https://docs.authlete.com/#A340301",max_age="600"
+Bearer error="insufficient_user_authentication",error_description="[A340301] The time of the user authentication that the authorization server performed during the course of issuing the access token is too old, so re-authentication is needed. The maximum authentication age (max_age) required by the protected resource is 600.,error_uri="https://docs.authlete.com/#A340301",max_age="600"
 ```# Finally
 We released Authlete 3.0 in November 2024 ([announcement](https://www.authlete.com/news/20241106_authlete3/)). Naturally, it supports the OAuth 2.0 Step Up Authentication Challenge Protocol. Please take full advantage of it!
 #### On this page

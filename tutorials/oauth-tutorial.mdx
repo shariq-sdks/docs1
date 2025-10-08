@@ -1,14 +1,14 @@
 ---
-title: 'OAuth 2.0 Basics - Authlete'
-description: 'A tutorial to understand how OAuth 2.0 authorization server leverages Authlete APIs.'
+title: "'OAuth 2.0 Basics - Authlete'
+description: 'A tutorial to understand how OAuth 2.0 authorization server leverages Authlete APIs.'"
 ---
 
 # OAuth 2.0 Basics
 1. [Home](https://www.authlete.com/)
 3. OAuth 2.0 Basics
-<Info>
+{\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/tutorial/v2).
-</Info>
+</Info>\`}
 # Preface
 This tutorial describes the basic usage of [Authlete APIs](https://docs.authlete.com/) to implement an OAuth 2.0 authorization server that supports the authorization code grant flow. It also shows how Resource Servers can use Authlete APIs to quickly validate the access tokens, providing secure and authorized access to APIs.
 Prerequisites:
@@ -80,7 +80,7 @@ UA ->> AS: Forward the request
 AS ->> API: POST /auth/authorization
 API -->> AS: OK to proceed(including ticket)
 AS -->> UA: User authentication and consent page
-RO <<->> UA: Enter credentials
+RO {\`<<->>\`} UA: Enter credentials
 UA ->> AS: Login and consent
 AS ->> API: POST /auth/authorization/issue(with ticket)
 API -->> AS: Authorization response content(including authorization code)
@@ -120,24 +120,24 @@ Use the following `curl` command to make an authorization request to the Authlet
 curl -X POST "https://us.authlete.com/api/933860280/auth/authorization" \
 -H "Authorization: Bearer $sat" \
 -H "Content-Type: application/json" \
--d '{ "parameters": "response_type=code&client_id=4111796580&redirect_uri=https://client.example.org/cb/example.com"}'
+-d '{\` "parameters": "response_type=code&client_id=4111796580&redirect_uri=https://client.example.org/cb/example.com"}'
 # Windows
 curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization" `
 -H "Authorization: Bearer $env:sat" `
 -H "Content-Type: application/json" `
--d '{ "parameters": "response_type=code&client_id=4111796580&redirect_uri=https://client.example.org/cb/example.com"}'
+-d '{ "parameters": "response_type=code&client_id=4111796580&redirect_uri=https://client.example.org/cb/example.com"\`}'
 ```Note:
 - Replace `$sat` with your actual bearer token.
 - For Windows, ensure PowerShell is used to handle environment variables (`$env:sat`).
 If the request is valid, Authlete returns a response like this (Step 6).
 ```json
-{
+{\`
 "action": "INTERACTION",
 "resultCode": "A004001",
 "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 933860280) for the authorization request from the client (ID = 2800496004). [response_type=code, openid=false]",
 "ticket": "cElOaH9j4mS6AiIGR9oLqHlDn9jpvcNjqSgyRqfcmAE",
 "client": {...},
-"service": {...},
+"service": {...\`},
 }
 ```- `resultMessage` provides human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
 - `action` indicates what the authorization server should do next.
@@ -156,15 +156,15 @@ Use the following `curl` command to issue an authorization request to the Authle
 curl -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue" \
 -H "Authorization: Bearer $sat" \
 -H "Content-Type: application/json" \
--d '{ "ticket": "5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc","subject": "testuser01"}'
+-d '{\` "ticket": "5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc","subject": "testuser01"}'
 # Windows
 curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue" `
 -H "Authorization: Bearer $env:sat" `
 -H "Content-Type: application/json" `
--d '{ "ticket": "5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc","subject": "testuser01"}'
+-d '{ "ticket": "5tqii9i_pUp1iteacZGUtdjikRnqGSrPwW7lqoH1Pcc","subject": "testuser01"\`}'
 ```If the request is valid, Authlete generates the following response (Step 11).
 ```json
-{
+{\`
 "action": "LOCATION",
 "authorizationCode": "tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI",
 "idToken": null,
@@ -175,7 +175,7 @@ curl.exe -X POST "https://us.authlete.com/api/933860280/auth/authorization/issue
 "ticketInfo": {
 "context": null
 }
-}
+\`}
 ```- `resultMessage` provides a human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
 - `action` indicates what the authorization server should do next. The value in this response is `LOCATION`, meaning the authorization server should make a redirection response back to the user agent.
 - `responseContent` represents the content of the response from the authorization server.
@@ -209,15 +209,15 @@ Use the following `curl` command to exchange an authorization code for an access
 curl -X POST "https://us.authlete.com/api/933860280/auth/token" \
 -H "Authorization: Bearer $sat" \
 -H "Content-Type: application/json" \
--d '{ "clientId": "2800496004","clientSecret": "AqZKLbUFfRurwZ0-zN1BwAXfo-odPwrZa6XoSOrm-AKtbaaOAq6uzWM3oVG4w","parameters": "grant_type=authorization_code&code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI&redirect_uri=https://client.example.org/cb/example.com" }'
+-d '{\` "clientId": "2800496004","clientSecret": "AqZKLbUFfRurwZ0-zN1BwAXfo-odPwrZa6XoSOrm-AKtbaaOAq6uzWM3oVG4w","parameters": "grant_type=authorization_code&code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI&redirect_uri=https://client.example.org/cb/example.com" }'
 # Windows
 curl.exe -X POST "https://us.authlete.com/api/933860280/auth/token" `
 -H "Authorization: Bearer $sat" `
 -H "Content-Type: application/json" `
--d '{ "clientId": "2800496004","clientSecret": "AqZKLbUFfRurwZ0-zN1BwAXfo-odPwrZa6XoSOrm-AKtbaaOAq6uzWM3oVG4w","parameters": "grant_type=authorization_code&code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI&redirect_uri=https://client.example.org/cb/example.com" }'
+-d '{ "clientId": "2800496004","clientSecret": "AqZKLbUFfRurwZ0-zN1BwAXfo-odPwrZa6XoSOrm-AKtbaaOAq6uzWM3oVG4w","parameters": "grant_type=authorization_code&code=tJlGEKt8y0DLpjIA_jweywRtJs2fh83ZGNiwFRmIwYI&redirect_uri=https://client.example.org/cb/example.com" \`}'
 ```If the request is valid, Authlete responds as follows (Step 16).
 ```json
-{
+{\`
 "accessToken": "gV5ByjqCVjyinFugV9Wlc0oAxkEP0osifSajXSfJV9g",
 "accessTokenDuration": 86400,
 "accessTokenExpiresAt": 1730203012061,
@@ -232,7 +232,7 @@ curl.exe -X POST "https://us.authlete.com/api/933860280/auth/token" `
 "resultCode": "A050001",
 "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
 "subject": "john.s@example.com",
-}
+\`}
 ```- `resultMessage` provides a human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/error-handling/result-code-in-authlete/))
 - `action` indicates what the authorization server should do next. The value in this response is `OK`, meaning the authorization server should send a token response back to the client.
 - `responseContent` contains the content of the response from the authorization server.
@@ -240,7 +240,7 @@ The authorization server is expected to send the following response to the clien
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-{
+{\`
 "access_token":"gV5ByjqCVjyinFugV9Wlc0oAxkEP0osifSajXSfJV9g",
 "refresh_token":"1mQRm2XRwaBNYRIjxjO0ls9hb4eDKo9I3ChU0yy8lHo",
 "scope":null,
@@ -258,12 +258,12 @@ Use the following `curl` command to introspect a token using the Authlete API:
 curl -X POST "https://us.authlete.com/api/933860280/auth/introspection" \
 -H "Authorization: Bearer $sat" \
 -H "Content-Type: application/json" \
--d '{ "token": "gV5ByjqCVjyinFugV9Wlc0oAxkEP0osifSajXSfJV9g" }'
+-d '{ "token": "gV5ByjqCVjyinFugV9Wlc0oAxkEP0osifSajXSfJV9g" \`}'
 # Windows
 curl.exe -X POST "https://us.authlete.com/api/933860280/auth/introspection" `
 -H "Authorization: Bearer $env:sat" `
 -H "Content-Type: application/json" `
--d '{ "token": "gV5ByjqCVjyinFugV9Wlc0oAxkEP0osifSajXSfJV9g" }'
+-d '{\` "token": "gV5ByjqCVjyinFugV9Wlc0oAxkEP0osifSajXSfJV9g" }'
 ```If the request is valid, Authlete returns the following response (Step 20).
 ```json
 {
@@ -285,7 +285,7 @@ curl.exe -X POST "https://us.authlete.com/api/933860280/auth/introspection" `
 "subject": "john.s@example.com",
 "sufficient": false,
 "usable": true
-}
+\`}
 ```The resource server can retrieve various information, such as the token’s expiration time (`expiresAt`), the identifier of the user who approved access (`subject`), the grant type used to obtain the token, and the client identifier (`clientId`). It then determines how to respond to the API request (Step 21).
 # Recap
 In this tutorial, we covered how to use Authlete APIs to implement the authorization code grant flow in an authorization server.

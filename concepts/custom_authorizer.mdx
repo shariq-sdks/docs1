@@ -1,6 +1,6 @@
 ---
-title: 'Amazon API Gateway + Custom Authorizer + OAuth'
-description: 'Technical Information about how to protect APIs built on Amazon API Gateway by OAuth access tokens by utilizing Custom Authorizer.'
+title: "'Amazon API Gateway + Custom Authorizer + OAuth'
+description: 'Technical Information about how to protect APIs built on Amazon API Gateway by OAuth access tokens by utilizing Custom Authorizer.'"
 ---
 
 # What is Custom Authorizer?
@@ -41,8 +41,8 @@ The introspection API used here is not the one defined in [RFC 7662](https://too
 ```javascript
 // The API credentials of your service issued by Authlete.
 // These are needed to call Authlete's introspection API.
-var API_KEY    = '{Your-Service-API-Key}';
-var API_SECRET = '{Your-Service-API-Secret}';
+var API_KEY    = '{\`Your-Service-API-Key}';
+var API_SECRET = '{Your-Service-API-Secret\`}';
 
 // Regular expression to extract an access token from
 // Authorization header.
@@ -56,10 +56,10 @@ var request = require('request');
 // A function to extract the HTTP method and the resource path
 // from event.methodArn.
 function extract_method_and_path(arn)
-{
+{\`
   // The value of 'arn' follows the format shown below.
   //
-  //   arn:aws:execute-api:<regionid>:<accountid>:<apiid>/<stage>/<method>/<resourcepath>"
+  //   arn:aws:execute-api:{\`{\`<\`}regionid>:{\`<\`}accountid>\`}:{\`{\`<\`}apiid>/{\`<\`}stage>\`}/{\`{\`<\`}method>/{\`<\`}resourcepath>\`}"
   //
   // See 'Enable Amazon API Gateway Custom Authorization' for details.
   //
@@ -67,7 +67,7 @@ function extract_method_and_path(arn)
   //
 
   // Check if the value of 'arn' is available just in case.
-  if (!arn)
+  if ({\`!\`}arn)
   {
     // HTTP method and a resource path are not available.
     return [ null, null ];
@@ -80,7 +80,7 @@ function extract_method_and_path(arn)
 
   // Return the HTTP method and the resource path as a string array.
   return [ http_method, resource_path ];
-}
+\`}
 
 
 // A function to extract an access token from Authorization header.
@@ -89,27 +89,27 @@ function extract_method_and_path(arn)
 // in "RFC 6750, 2.1. Authorization Request Header Field". For example,
 // if "Bearer 123" is given to this function, "123" is returned.
 function extract_access_token(authorization)
-{
+{\`
   // If the value of Authorization header is not available.
-  if (!authorization)
+  if ({\`!\`}authorization)
   {
     // No access token.
     return null;
   }
 
-  // Check if it matches the pattern "Bearer {access-token}".
+  // Check if it matches the pattern "Bearer {access-token\`}".
   var result = BEARER_TOKEN_PATTERN.exec(authorization);
 
   // If the Authorization header does not match the pattern.
-  if (!result)
-  {
+  if ({\`!\`}result)
+  {\`
     // No access token.
     return null;
   }
 
   // Return the access token.
   return result[1];
-}
+\`}
 
 
 // A function to get a list of required scopes as a string array
@@ -120,7 +120,7 @@ function extract_access_token(authorization)
 // access token. When this method returns null, such a check on
 // scopes is not performed.
 function get_required_scopes(http_method, resource_path)
-{
+{\`
   // Customize as necessary.
   return null;
 }
@@ -157,18 +157,18 @@ function introspect(access_token, scopes, callback)
     auth: {
       username: API_KEY,
       pass: API_SECRET
-    },
+    \`},
 
     // Request parameters passed to Authlete's introspection API.
     json: true,
-    body: {
+    body: {\`
       token: access_token,
       scopes: scopes
     },
 
     // Interpret the response from Authlete's introspection API as a UTF-8 string.
     encoding: 'utf8'
-  }, function(error, response, body) {
+  \`}, function(error, response, body) {\`
     if (error) {
       // Failed to call Authlete's introspection API.
       callback(error);
@@ -177,8 +177,8 @@ function introspect(access_token, scopes, callback)
       // The response from Authlete's introspection API indicates something wrong
       // has happened.
       callback(response);
-    }
-    else {
+    \`}
+    else {\`
       // Call the next task of 'waterfall'.
       //
       // 'body' is already a JSON object. This has been done by 'request' module.
@@ -189,13 +189,13 @@ function introspect(access_token, scopes, callback)
       //
       callback(null, body);
     }
-  });
+  \`});
 }
 
 
 // A function to generate a response from Authorizer to API Gateway.
 function generate_policy(principal_id, effect, resource)
-{
+{\`
   return {
     principalId: principal_id,
     policyDocument: {
@@ -205,14 +205,14 @@ function generate_policy(principal_id, effect, resource)
         Effect: effect,
         Resource: resource
       }]
-    }
+    \`}
   };
 }
 
 
 // An authorizer implementation
 exports.handler = function(event, context)
-{
+{\`
   // Get information about the function that is requested to be invoked.
   // Extract the HTTP method and the resource path from event.methodArn.
   var elements = extract_method_and_path(event.methodArn);
@@ -223,7 +223,7 @@ exports.handler = function(event, context)
   var access_token = extract_access_token(event.authorizationToken);
 
   // If the request from the client does not contain an access token.
-  if (!access_token) {
+  if ({\`!\`}access_token) {
     // Write a log message and tell API Gateway to return "401 Unauthorized".
     console.log("[" + http_method + "] " + resource_path + " -> No access token.");
     context.fail("Unauthorized");
@@ -238,8 +238,8 @@ exports.handler = function(event, context)
     function(callback) {
       // Validate the access token by calling Authlete's introspection API.
       introspect(access_token, required_scopes, callback);
-    },
-    function(response, callback) {
+    \`},
+    function(response, callback) {\`
       // Write a log message about the result of the access token validation.
       console.log("[" + http_method + "] " + resource_path + " -> " +
                   response.action + ":" + response.resultMessage);
@@ -280,22 +280,22 @@ exports.handler = function(event, context)
       }
 
       callback(null);
-    }
-  ], function (error) {
+    \`}
+  ], function (error) {\`
     if (error) {
       // Something wrong has happened.
       context.fail(error);
     }
-  });
+  \`});
 };
-  </resourcepath></method></stage></apiid></accountid></regionid>
+  {\`</resourcepath></method>\`}{\`</stage></apiid>\`}{\`</accountid></regionid>\`}
 ```
 
 ```javascript
 // The API credentials of your service issued by Authlete.
 // These are needed to call Authlete's introspection API.
-var API_KEY    = '{Your-Service-API-Key}';
-var API_SECRET = '{Your-Service-API-Secret}';
+var API_KEY    = '{\`Your-Service-API-Key}';
+var API_SECRET = '{Your-Service-API-Secret\`}';
 
 // Regular expression to extract an access token from
 // Authorization header.
@@ -309,10 +309,10 @@ var request = require('request');
 // A function to extract the HTTP method and the resource path
 // from event.methodArn.
 function extract_method_and_path(arn)
-{
+{\`
   // The value of 'arn' follows the format shown below.
   //
-  //   arn:aws:execute-api:<regionid>:<accountid>:<apiid>/<stage>/<method>/<resourcepath>"
+  //   arn:aws:execute-api:{\`{\`<\`}regionid>:{\`<\`}accountid>\`}:{\`{\`<\`}apiid>/{\`<\`}stage>\`}/{\`{\`<\`}method>/{\`<\`}resourcepath>\`}"
   //
   // See 'Enable Amazon API Gateway Custom Authorization' for details.
   //
@@ -320,7 +320,7 @@ function extract_method_and_path(arn)
   //
 
   // Check if the value of 'arn' is available just in case.
-  if (!arn)
+  if ({\`!\`}arn)
   {
     // HTTP method and a resource path are not available.
     return [ null, null ];
@@ -333,7 +333,7 @@ function extract_method_and_path(arn)
 
   // Return the HTTP method and the resource path as a string array.
   return [ http_method, resource_path ];
-}
+\`}
 
 
 // A function to extract an access token from Authorization header.
@@ -342,27 +342,27 @@ function extract_method_and_path(arn)
 // in "RFC 6750, 2.1. Authorization Request Header Field". For example,
 // if "Bearer 123" is given to this function, "123" is returned.
 function extract_access_token(authorization)
-{
+{\`
   // If the value of Authorization header is not available.
-  if (!authorization)
+  if ({\`!\`}authorization)
   {
     // No access token.
     return null;
   }
 
-  // Check if it matches the pattern "Bearer {access-token}".
+  // Check if it matches the pattern "Bearer {access-token\`}".
   var result = BEARER_TOKEN_PATTERN.exec(authorization);
 
   // If the Authorization header does not match the pattern.
-  if (!result)
-  {
+  if ({\`!\`}result)
+  {\`
     // No access token.
     return null;
   }
 
   // Return the access token.
   return result[1];
-}
+\`}
 
 
 // A function to get a list of required scopes as a string array
@@ -373,7 +373,7 @@ function extract_access_token(authorization)
 // access token. When this method returns null, such a check on
 // scopes is not performed.
 function get_required_scopes(http_method, resource_path)
-{
+{\`
   // Customize as necessary.
   return null;
 }
@@ -410,18 +410,18 @@ function introspect(access_token, scopes, callback)
     auth: {
       username: API_KEY,
       pass: API_SECRET
-    },
+    \`},
 
     // Request parameters passed to Authlete's introspection API.
     json: true,
-    body: {
+    body: {\`
       token: access_token,
       scopes: scopes
     },
 
     // Interpret the response from Authlete's introspection API as a UTF-8 string.
     encoding: 'utf8'
-  }, function(error, response, body) {
+  \`}, function(error, response, body) {\`
     if (error) {
       // Failed to call Authlete's introspection API.
       callback(error);
@@ -430,8 +430,8 @@ function introspect(access_token, scopes, callback)
       // The response from Authlete's introspection API indicates something wrong
       // has happened.
       callback(response);
-    }
-    else {
+    \`}
+    else {\`
       // Call the next task of 'waterfall'.
       //
       // 'body' is already a JSON object. This has been done by 'request' module.
@@ -442,13 +442,13 @@ function introspect(access_token, scopes, callback)
       //
       callback(null, body);
     }
-  });
+  \`});
 }
 
 
 // A function to generate a response from Authorizer to API Gateway.
 function generate_policy(principal_id, effect, resource)
-{
+{\`
   return {
     principalId: principal_id,
     policyDocument: {
@@ -458,14 +458,14 @@ function generate_policy(principal_id, effect, resource)
         Effect: effect,
         Resource: resource
       }]
-    }
+    \`}
   };
 }
 
 
 // An authorizer implementation
 exports.handler = function(event, context)
-{
+{\`
   // Get information about the function that is requested to be invoked.
   // Extract the HTTP method and the resource path from event.methodArn.
   var elements = extract_method_and_path(event.methodArn);
@@ -476,7 +476,7 @@ exports.handler = function(event, context)
   var access_token = extract_access_token(event.authorizationToken);
 
   // If the request from the client does not contain an access token.
-  if (!access_token) {
+  if ({\`!\`}access_token) {
     // Write a log message and tell API Gateway to return "401 Unauthorized".
     console.log("[" + http_method + "] " + resource_path + " -> No access token.");
     context.fail("Unauthorized");
@@ -491,8 +491,8 @@ exports.handler = function(event, context)
     function(callback) {
       // Validate the access token by calling Authlete's introspection API.
       introspect(access_token, required_scopes, callback);
-    },
-    function(response, callback) {
+    \`},
+    function(response, callback) {\`
       // Write a log message about the result of the access token validation.
       console.log("[" + http_method + "] " + resource_path + " -> " +
                   response.action + ":" + response.resultMessage);
@@ -533,15 +533,15 @@ exports.handler = function(event, context)
       }
 
       callback(null);
-    }
-  ], function (error) {
+    \`}
+  ], function (error) {\`
     if (error) {
       // Something wrong has happened.
       context.fail(error);
     }
-  });
+  \`});
 };
-  </resourcepath></method></stage></apiid></accountid></regionid>
+  {\`</resourcepath></method>\`}{\`</stage></apiid>\`}{\`</accountid></regionid>\`}
 ```
 
 ## Create a lambda function deployment package
@@ -582,10 +582,10 @@ See [the online document](https://docs.aws.amazon.com/apigateway/latest/develope
 
 Here we assume that GET mydemoresource (which is created by going through the steps described in the Amazon API Gateway online document, “Walkthrough: Create API Gateway API for Lambda Functions”) is protected by the Custom Authorizer.
 
-First, access mydemoresource without an access token. Don’t forget to replace `{your-api-id}` and `{region-id}` with your own.
+First, access mydemoresource without an access token. Don’t forget to replace `{\`your-api-id}` and `{region-id\`}` with your own.
 
 ```
-curl -v -s -k https://{your-api-id}.execute-api.{region-id}.amazonaws.com/test/mydemoresource
+curl -v -s -k https://{\`your-api-id}.execute-api.{region-id\`}.amazonaws.com/test/mydemoresource
 
 ```
 
@@ -594,31 +594,31 @@ You will receive “*401 Unauthorized*” when you execute the above command.
 Next, access the API with an access token. Here we assume that `puql0-wO_vwuxupctHgNem5-__b256tYgFcu_CXvc7w` is a valid access token. (See the next section as to how to issue an access token.)
 
 ```
-curl -v -s -k https://{your-api-id}.execute-api.{region-id}.amazonaws.com/test/mydemoresource \
+curl -v -s -k https://{\`your-api-id}.execute-api.{region-id\`}.amazonaws.com/test/mydemoresource \
      -H 'Authorization: Bearer puql0-wO_vwuxupctHgNem5-__b256tYgFcu_CXvc7w'
 
 ```
 
-A successful response returns an HTTP status code “200 OK” and a JSON `{"Hello":"World"}`.
+A successful response returns an HTTP status code “200 OK” and a JSON `{\`"Hello":"World"}`.
 
 ## How to issue an access token
 
 Authlete provides the default implementation of an [authorization endpoint](https://tools.ietf.org/html/rfc6749#section-3.1) at the following URL:
 
 ```
-https://api.authlete.com/api/auth/authorization/direct/{service-api-key}
+https://api.authlete.com/api/auth/authorization/direct/{service-api-key\`}
 
 ```
 
 The default implementation is called a direct endpoint and it is enabled by default. If you utilize the endpoint, you can issue an access token without using [java-oauth-server](https://github.com/authlete/java-oauth-server).
 
-The following URL is an example to get an access token issued using Implicit Flow. Don’t forget to replace `{service-api-key}` and `{client-id}` with your own.
+The following URL is an example to get an access token issued using Implicit Flow. Don’t forget to replace `{\`service-api-key}` and `{client-id\`}` with your own.
 
 ```
-https://api.authlete.com/api/auth/authorization/direct/{service-api-key}?client_id={client-id}&response_type=token
+https://api.authlete.com/api/auth/authorization/direct/{\`service-api-key}?client_id={client-id\`}&response_type=token
 
 ```
 
 Access the URL above by your browser, and an authorization page is displayed. Input the API key and the API secret of your service in the login form in the authorization page. After successful login, an access token is issued. See “[Getting Started](/developers/getting_started/)” for details.
 
-**Congratulations!** You have succeeded in protecting APIs built on Amazon API Gateway by OAuth access tokens using Amazon API Gateway Custom Authorizer! Congratulations!
+**Congratulations!** You have succeeded in protecting APIs built on Amazon API Gateway by OAuth access tokens using Amazon API Gateway Custom Authorizer{\`!\`}Congratulations!

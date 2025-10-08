@@ -1,6 +1,6 @@
 ---
-title: 'Native SSO - Authlete'
-description: 'Explanation about "OpenID Connect Native SSO for Mobile Apps 1.0" specification and Authlete's implementation.'
+title: "'Native SSO'
+description: 'Native Single Sign-On implementation for mobile applications.'"
 ---
 
 ## Concept
@@ -90,9 +90,9 @@ refer to
 The following is an example of a token request by a public client:
 `POST https://trial.authlete.net/api/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
-client_id=app_1&grant_type=authorization_code&code={{authorization_code}}&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection
+client_id=app_1&grant_type=authorization_code&code={\`{authorization_code}\`}&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection
 `
-If you try this example in practice, replace `{{authorization_code}}`
+If you try this example in practice, replace `{\`{authorization_code}\`}`
 with the actual value (the authorization code obtained as a result of the
 authorization request).
 ### App 1 Token Response
@@ -101,7 +101,7 @@ access token and refresh token (optional), an ID token and a device secret
 that comply with Native SSO. The device secret is returned as the value of
 the `device_secret` property.
 ```json
-{
+{\`
 "access_token": "R28TIqhCydVvH2x2a3XsOzJykFEs7yFotO4ip-a2MbY",
 "token_type": "Bearer",
 "expires_in": 86400,
@@ -129,7 +129,7 @@ claim and the `sid` claim.
 "auth_time": 1746350672,
 "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
 "sid": "node038cat7j308sg1828m1sg2dexl3"
-}
+\`}
 ```The `ds_hash` claim is the hash value of the device secret. How this hash value
 is calculated depends on the implementation, but the `ds_hash` claim allows the
 ID token to be associated with the device secret.
@@ -171,10 +171,10 @@ refer to
 The following is an example of a token exchange request by a public client:
 `POST https://trial.authlete.net/api/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
-client_id=app_2&grant_type=urn:ietf:params:oauth:grant-type:token-exchange&audience=https://trial.authlete.net&subject_token={{id_token}}&subject_token_type=urn:ietf:params:oauth:token-type:id_token&actor_token={{device_secret}}&actor_token_type=urn:openid:params:token-type:device-secret&scope=openid
+client_id=app_2&grant_type=urn:ietf:params:oauth:grant-type:token-exchange&audience=https://trial.authlete.net&subject_token={\`{id_token}\`}&subject_token_type=urn:ietf:params:oauth:token-type:id_token&actor_token={\`{device_secret}\`}&actor_token_type=urn:openid:params:token-type:device-secret&scope=openid
 `
-If you want to try this example in practice, replace `{{id_token}}`
-and `{{device_secret}}` with actual values.
+If you want to try this example in practice, replace `{\`{id_token}\`}`
+and `{\`{device_secret}\`}` with actual values.
 ### App 2 Token Response
 The response to the token exchange request is almost identical to the token
 response of the authorization code flow. The only difference is that it
@@ -182,7 +182,7 @@ includes the `issued_token_type` property. In the case
 of Native SSO, the value of `issued_token_type` is
 `urn:ietf:params:oauth:token-type:access_token`.
 ```json
-{
+{\`
 "access_token": "rH9115-g83z9zIiCJ1mzIe8mza3bX4NaBTWmGs5qqow",
 "token_type": "Bearer",
 "expires_in": 86400,
@@ -207,7 +207,7 @@ and decoding its payload part using base64url will show this result:
 "iat": 1746351951,
 "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
 "sid": "node038cat7j308sg1828m1sg2dexl3"
-}
+\`}
 ```The values of the `ds_hash` and `sid` claims are the same as those in the ID
 token received by App 1, but the value of the `aud` claim is different. In this
 ID token, the identifier of App 2, `app_2`, is included in the `aud` array.
@@ -409,7 +409,7 @@ error and return it to the client.
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
-{
+{\`
 "error": "invalid_grant",
 "error_description": "The session ID is no longer valid."
 }
@@ -465,7 +465,7 @@ Cache-Control: no-store
 {
 "error": "invalid_grant",
 "error_description": "The device secret hash in the subject token does not correspond to the device secret."
-}
+\`}
 ```
 ### Token Endpoint Implementation (nativesso API call)
 After the verification of the session ID and the verification or generation of
@@ -537,14 +537,14 @@ When the `/nativesso/logout` API is called with the target
 session ID specified in the `sessionId` parameter, all access tokens and
 refresh tokens associated with that session ID will be deleted.
 ```http
-POST https://{{authlete_api_server}}/api/{{service_id}}/nativesso/logout HTTP/1.1
-Authorization: Bearer {{authlete_access_token}}
+POST https://{\`{authlete_api_server}\`}/api/{\`{service_id}\`}/nativesso/logout HTTP/1.1
+Authorization: Bearer {\`{authlete_access_token}\`}
 Content-Type: application/json
-{
-"sessionId": "{{session_id}}"
+{\`
+"sessionId": "{{session_id}\`}"
 }
 ``````json
-{
+{\`
 "action": "OK",
 "count": 2,
 "resultCode": "A503001",
@@ -559,7 +559,7 @@ zero — the `/nativesso/logout` API does not return an error.
 "count": 0,
 "resultCode": "A503002",
 "resultMessage": "[A503002] The /nativesso/logout API call completed without deleting any access/refresh token records."
-}
+\`}
 ```
 ### Sample Implementation
 The sample implementation of Native SSO on the OpenID Provider side is included

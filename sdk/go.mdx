@@ -1,6 +1,6 @@
 ---
-title: 'Go SDK'
-description: 'Official Authlete Go SDK for OAuth 2.0 and OpenID Connect'
+title: "'Go SDK'
+description: 'Official Authlete Go SDK for OAuth 2.0 and OpenID Connect'"
 ---
 
 # Go SDK
@@ -23,7 +23,7 @@ import (
     "github.com/authlete/authlete-go/dto"
 )
 
-func main() {
+func main() {\`
     client := authlete.NewAuthleteClient(
         "https://api.authlete.com",
         "your-service-api-key",
@@ -34,13 +34,13 @@ func main() {
     service := &dto.Service{
         ServiceName: "My OAuth Service",
         SupportedGrantTypes: []string{"AUTHORIZATION_CODE", "REFRESH_TOKEN"},
-    }
+    \`}
 
     createdService, err := client.CreateService(service)
-    if err != nil {
+    if err != nil {\`
         panic(err)
     }
-}
+\`}
 ```
 
 ## Features
@@ -64,17 +64,17 @@ func main() {
 
 ```go
 // Process authorization request
-authRequest := &dto.AuthorizationRequest{
+authRequest := &dto.AuthorizationRequest{\`
     Parameters: map[string]string{
         "response_type": "code",
         "client_id":     "client123",
         "redirect_uri":  "https://example.com/callback",
         "scope":         "read write",
     },
-}
+\`}
 
 response, err := client.ProcessAuthorizationRequest(authRequest)
-if err != nil {
+if err != nil {\`
     panic(err)
 }
 
@@ -84,37 +84,37 @@ if response.Action == "INTERACTION" {
     authResponse := &dto.AuthorizationResponse{
         Ticket: response.Ticket,
         Subject: "user123",
-    }
+    \`}
     
     result, err := client.IssueAuthorizationResponse(authResponse)
-    if err != nil {
+    if err != nil {\`
         panic(err)
     }
-}
+\`}
 ```
 
 ### Token Management
 
 ```go
 // Process token request
-tokenRequest := &dto.TokenRequest{
+tokenRequest := &dto.TokenRequest{\`
     Parameters: map[string]string{
         "grant_type":   "authorization_code",
         "code":         "auth_code_here",
         "client_id":    "client123",
         "redirect_uri": "https://example.com/callback",
     },
-}
+\`}
 
 response, err := client.ProcessTokenRequest(tokenRequest)
-if err != nil {
+if err != nil {\`
     panic(err)
 }
 
 if response.Action == "OK" {
     fmt.Printf("Access Token: %s\n", response.AccessToken)
     fmt.Printf("Refresh Token: %s\n", response.RefreshToken)
-}
+\`}
 ```
 
 ## GitHub Repository

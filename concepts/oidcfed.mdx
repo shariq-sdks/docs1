@@ -1,11 +1,11 @@
 ---
-title: 'OpenID Federation 1.0 - Authlete'
-description: 'Explanation about OpenID Federation 1.0 and how Authlete supports the specification.'
+title: "'OpenID Federation 1.0 - Authlete'
+description: 'Explanation about OpenID Federation 1.0 and how Authlete supports the specification.'"
 ---
 
-<Info>
+{\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/v2/oidcfed).
-</Info>
+</Info>\`}
 # Introduction
 This document explains [OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html).
 | Revision History |
@@ -290,7 +290,7 @@ The [authlete-java-jaxrs](https://github.com/authlete/authlete-java-jaxrs) libra
 ```java
 @Path("/.well-known/openid-federation")
 public class FederationConfigurationEndpoint extends BaseFederationConfigurationEndpoint
-{
+{\`
 /**
 * Entity configuration endpoint.
 */
@@ -300,7 +300,7 @@ public Response get()
 // Handle the request to the endpoint.
 return handle(AuthleteApiFactory.getDefaultApi());
 }
-}
+\`}
 ```### The `/api/federation/registration` API
 This API is used to implement the federation registration endpoint.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_api_registration.png)](/oidcfed)
@@ -332,7 +332,7 @@ The [authlete-java-jaxrs](https://github.com/authlete/authlete-java-jaxrs) libra
 ```java
 @Path("/api/federation/register")
 public class FederationRegistrationEndpoint extends BaseFederationRegistrationEndpoint
-{
+{\`
 @POST
 @Consumes("application/entity-statement+jwt")
 public Response entityConfiguration(String jwt)
@@ -350,12 +350,12 @@ public Response trustChain(String json)
 return handle(
 AuthleteApiFactory.getDefaultApi(),
 request().setTrustChain(json));
-}
+\`}
 private static FederationRegistrationRequest request()
-{
+{\`
 return new FederationRegistrationRequest();
 }
-}
+\`}
 ```## Client Registration and Update
 This section explains Authlete’s behavior on client registration and update in detail.
 ### Automatic Client Registration

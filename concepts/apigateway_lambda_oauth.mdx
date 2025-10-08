@@ -1,6 +1,6 @@
 ---
-title: 'Amazon API Gateway + AWS Lambda + OAuth - Authlete'
-description: 'Technical Information about how to protect a Web API implemented using Amazon API Gateway + AWS Lambda with an OAuth 2.0 access token.'
+title: "'Amazon API Gateway + AWS Lambda + OAuth - Authlete'
+description: 'Technical Information about how to protect a Web API implemented using Amazon API Gateway + AWS Lambda with an OAuth 2.0 access token.'"
 ---
 
 # Overview
@@ -8,7 +8,7 @@ This document describes how to protect a Web API implemented using Amazon API Ga
 2016-Apr-6: Amazon API Gateway introduced Custom Authorizer on Feb 11, 2016. It should be utilized. See our new document [Amazon API Gateway Custom Authorizer + OAuth"](/custom_authorizer).
 # Prerequisites
 The following sections assume:
-- You have a lambda function `GetHelloWorld` that returns `{"Hello":"World"}`.
+- You have a lambda function `GetHelloWorld` that returns `{\`"Hello":"World"}`.
 - You have `/mydemoresource` resource that supports `GET` method on Amazon API Gateway.
 - You have a service in Authlete. A service is created automatically on sign-up and you can use it.
 - You have a client application in Authlete. A client application is created automatically on sign-up and you can use it.
@@ -30,7 +30,7 @@ $ vi index.js  # Replace api_key and api_secret.
 5. [API Gateway] [Method Request] Add `access_token` as a query parameter to `GET /mydemoresource`
 6. [API Gateway] [Integration Request] Set a template as is shown below
 ```
-{ "access_token": "$input.params('access_token')" }
+{ "access_token": "$input.params('access_token')" \`}
 ```
 7. [Amazon API Gateway] [Method Response] Add 400, 401, 403 and 500 as HTTP status codes
 8. [Amazon API Gateway] [Integration Response] Set mappings as shown below

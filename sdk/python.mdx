@@ -1,6 +1,6 @@
 ---
-title: 'Python SDK'
-description: 'Official Authlete Python SDK for OAuth 2.0 and OpenID Connect'
+title: "'Python SDK'
+description: 'Official Authlete Python SDK for OAuth 2.0 and OpenID Connect'"
 ---
 
 # Python SDK
@@ -21,9 +21,9 @@ from authlete.dto import Service, ServiceCreateRequest
 
 # Initialize the API client
 api = AuthleteApi(
-    base_url="https://api.authlete.com",
+    base_url="https://api.authlete.com,
     service_api_key="your-service-api-key",
-    service_api_secret="your-service-api-secret"
+    service_api_secret="your-service-api-secret
 )
 
 # Create a service
@@ -61,7 +61,7 @@ from authlete.dto import AuthorizationRequest, AuthorizationResponse
 
 # Process authorization request
 request = AuthorizationRequest()
-request.parameters = {
+request.parameters = {\`
     "response_type": "code",
     "client_id": "client123",
     "redirect_uri": "https://example.com/callback",
@@ -94,13 +94,13 @@ request.parameters = {
     "code": "auth_code_here",
     "client_id": "client123",
     "redirect_uri": "https://example.com/callback"
-}
+\`}
 
 response = api.process_token_request(request)
 
 if response.action == "OK":
-    print(f"Access Token: {response.access_token}")
-    print(f"Refresh Token: {response.refresh_token}")
+    print(f"Access Token: {\`response.access_token}")
+    print(f"Refresh Token: {response.refresh_token\`}")
 ```
 
 ### Async Example
@@ -111,9 +111,9 @@ from authlete import AsyncAuthleteApi
 
 async def main():
     api = AsyncAuthleteApi(
-        base_url="https://api.authlete.com",
+        base_url="https://api.authlete.com,
         service_api_key="your-service-api-key",
-        service_api_secret="your-service-api-secret"
+        service_api_secret="your-service-api-secret
     )
     
     # Create a service asynchronously
@@ -124,7 +124,7 @@ async def main():
     request.service = service
     
     created_service = await api.create_service(request)
-    print(f"Created service: {created_service.service_name}")
+    print(f"Created service: {\`created_service.service_name}")
 
 # Run the async function
 asyncio.run(main())
@@ -138,9 +138,9 @@ from authlete import AuthleteApi
 
 app = Flask(__name__)
 api = AuthleteApi(
-    base_url="https://api.authlete.com",
+    base_url="https://api.authlete.com,
     service_api_key="your-service-api-key",
-    service_api_secret="your-service-api-secret"
+    service_api_secret="your-service-api-secret
 )
 
 @app.route('/authorize')
@@ -151,7 +151,7 @@ def authorize():
     response = api.process_authorization_request(auth_request)
     
     if response.action == "INTERACTION":
-        return jsonify({"message": "Show authorization page"})
+        return jsonify({"message": "Show authorization page"\`})
     
     return jsonify(response.to_dict())
 

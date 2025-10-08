@@ -1,14 +1,14 @@
 ---
-title: 'OIDC Basics - Authlete'
-description: 'A tutorial to understand how OpenID Connect identity provider leverages Authlete APIs.'
+title: "'OIDC Basics - Authlete'
+description: 'A tutorial to understand how OpenID Connect identity provider leverages Authlete APIs.'"
 ---
 
 # OIDC Basics
 1. [Home](https://www.authlete.com/)
 3. OIDC Basics
-<Info>
+{\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/tutorial/v2).
-</Info>
+</Info>\`}
 # Introduction
 This document is a tutorial to describe basic usage of [Authlete APIs](https://docs.authlete.com/) in order to implement OpenID Connect (OIDC) identity provider (IdP) server that supports the [authorization code flow](https://youtu.be/x2qtJZ3Wivc?feature=shared).
 In completing the tutorial, you will
@@ -102,7 +102,7 @@ UA ->> AS: Forward the request
 AS ->> API: POST /auth/authorization
 API -->> AS: OK to proceed(including ticket)
 AS -->> UA: User authentication and consent page
-RO <<->> UA: Enter credentials
+RO {\`<<->>\`} UA: Enter credentials
 UA ->> AS: Login and consent
 AS ->> API: POST /auth/authorization/issue(with ticket)
 API -->> AS: Authorization response content(including authorization code)
@@ -135,28 +135,28 @@ redirect_uri=https://client.example.org/cb/example.com
 After that, the authorization server would process the OIDC authorization code flow since the values of `scope` and `response_type` are `openid` and `code` respectively.
 However, in the Authlete architecture the authorization server is simply a proxy for the actual authorization logic contained in the Authlete API which is surfaced at the [/auth/authorization](https://docs.authlete.com/#auth-authorization-api) endpoint. Once received, the Authlete API does the evaluation process on the authorization server’s behalf.
 You’ll now simulate the authorization server’s request to this API.
-Execute the `curl` command as follows (message #5). Make sure to replace `<Service ID>`, `<Service Access Token>` and `<Client ID>` by your own values generated in the previous step.
+Execute the `curl` command as follows (message #5). Make sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}` and `{\`{\`<\`}Client ID>` by your own values generated in the previous step.
 ```
-curl -s -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization \
+-H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{ "parameters": "redirect_uri=https://client.example.org/cb/example.com&response_type=code&client_id=<Client ID e.g. 12898884596863>&scope=openid&nonce=n-0S6_WzA2Mj" }'
+-d '{\` "parameters": "redirect_uri=https://client.example.org/cb/example.com&response_type=code&client_id={\`<\`}Client ID e.g. 12898884596863>\`}&scope=openid&nonce=n-0S6_WzA2Mj" }'
 ```
 If successful, Authlete will reply with the following response (shortened for brevity) (message #6).
 ```json
 {
 "resultMessage" : "[A004001] Authlete has successfully issued a ticket to the service (API Key = 10738933707579) for the authorization request from the client (ID = 12898884596863). [response_type=code, openid=true]",
 "resultCode" : "A004001",
-"client" : { [...] },
+"client" : { [...] \`},
 "ticket" : "bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU",
 "action" : "INTERACTION",
 [...]
-"service" : {
+"service" : {\`
 [...]
 "supportedClaims" : null,
 "supportedScopes" : null,
 }
-}
+\`}
 ```Pay attention to the three key/value pairs in the response; `resultMessage`, `action` and `ticket` as seen above.
 - `resultMessage` provides a human-readable result of the request processing (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/result-code-in-authlete)). `openid=true` indicates the request is to be processed in accordance with the OIDC protocol.
 - `action` indicates what the authorization server should do next.
@@ -169,12 +169,12 @@ Let’s assume the authorization server reaches the following state after comple
 - The authorization server has authenticated the resource owner, and determined that an identifier for the resource owner, to be shared with Authlete as a value of `subject` parameter,  is `testuser01`.
 - The authorization server has got consent from the resource owner.
 The authorization server makes a request to Authlete’s [/auth/authorization/issue](https://docs.authlete.com/#auth-authorization-issue-api) in order to issue an authorization code. It specifies values of `subject` and `ticket` that were a part of the response from `/auth/authorization` API, as request parameters.
-Execute the following `curl` command (message #10), making sure to replace `<Service ID>`, `<Service Access Token>` and `<Ticket>` by your own values generated in the previous step.
+Execute the following `curl` command (message #10), making sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}` and `{\`{\`<\`}Ticket>` by your own values generated in the previous step.
 ```
-curl -s -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization/issue \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization/issue \
+-H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{ "ticket": "<Ticket e.g. bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU>", "subject": "testuser01" }'
+-d '{\` "ticket": "{\`<\`}Ticket e.g. bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU>\`}", "subject": "testuser01" }'
 ```
 If successful, Authlete will reply with the following response (step #11).
 ```json
@@ -187,7 +187,7 @@ If successful, Authlete will reply with the following response (step #11).
 "responseContent" : "https://client.example.org/cb/example.com?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U",
 "authorizationCode" : "GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U",
 ...
-}
+\`}
 ```Pay attention to three key/value pairs in the response; `resultMessage`, `action` and `responseContent`.
 - `resultMessage` provides a human-readable result of the request processing. (See also [Interpreting Authlete’s result codes](/kb/oauth-and-openid-connect/result-code-in-authlete))
 - `action` indicates what the authorization server should do next. The value in this response is `LOCATION`, which means the authorization server should make a redirection response back to the user agent.
@@ -216,12 +216,12 @@ grant_type=authorization_code
 &redirect_uri=https://client.example.org/cb/example.com
 ```Once again, the authorization server passes the request on to the Authlete API to evaluate parameters in the request and get a token response back to the client.
 Once again, let’s simulate this step using Authlete’s  [/auth/token](https://docs.authlete.com/#auth-token-api) API to evaluate the request and create the response.
-Execute the following `curl` command (step #15), again making sure to replace `<Service ID>`, `<Service Access Token>`, `<Client ID>`, `<Client Secret>` and `<Code>` by your own values generated in the previous step.
+Execute the following `curl` command (step #15), again making sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}`, `{\`{\`<\`}Client ID>`, `{\`<\`}Client Secret>\`}` and `{\`{\`<\`}Code>` by your own values generated in the previous step.
 ```
-curl -s -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/token \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/token \
+-H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{ "clientId": "<Client ID e.g. 12898884596863>", "clientSecret": "<Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code=<Code e.g. GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U>&redirect_uri=https://client.example.org/cb/example.com" }'
+-d '{\` "clientId": "{\`<\`}Client ID e.g. 12898884596863>\`}", "clientSecret": "{\`{\`<\`}Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code={\`<\`}Code e.g. GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U>\`}&redirect_uri=https://client.example.org/cb/example.com" }'
 ```
 If successful, Authlete will reply with the following response (message #16).
 ```json
@@ -235,7 +235,7 @@ If successful, Authlete will reply with the following response (message #16).
 "grantType" : "AUTHORIZATION_CODE",
 "accessToken" : "7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
 "idToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk",
-"responseContent" : "{\"access_token\":\"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY\",\"refresh_token\":\"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk\",\"token_type\":\"Bearer\",\"expires_in\":86400}",
+"responseContent" : "{\"access_token\":\"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY\",\"refresh_token\":\"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk\",\"token_type\":\"Bearer\",\"expires_in\":86400\`}",
 "scopes" : [
 "openid"
 ],
@@ -254,7 +254,7 @@ The authorization server would then pass the following response to the client (m
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-{
+{\`
 "access_token":"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
 "refresh_token":"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE",
 "scope":"openid",
@@ -274,10 +274,10 @@ Header:
 ```json
 {
 "alg": "HS256"
-}
+\`}
 ```Payload:
 ```json
-{
+{\`
 "sub": "testuser01",
 "aud": [
 "12898884596863"
@@ -300,16 +300,16 @@ Note that the default value of Issuer Identifier on the General tab is `https://
 Now that the Token Issuer Identifier `iss` has been fixed.
 ## Authorization Request
 Let’s make the same authorization request as the previous one (using the same `nonce` value for convenience) to Authlete’s [/auth/authorization](https://docs.authlete.com/#auth-authorization-api) API (step #5).
-Make sure to replace `<Service ID>`, `<Service Access Token>` and `<Client ID>` by your own values generated in the previous step.
+Make sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}` and `{\`{\`<\`}Client ID>` by your own values generated in the previous step.
 ```
-curl -s -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization \
+-H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{ "parameters": "redirect_uri=https://client.example.org/cb/example.com&response_type=code&client_id=<Client ID e.g. 12898884596863>&scope=openid&nonce=n-0S6_WzA2Mj" }'
+-d '{ "parameters": "redirect_uri=https://client.example.org/cb/example.com&response_type=code&client_id={\`<\`}Client ID e.g. 12898884596863>\`}&scope=openid&nonce=n-0S6_WzA2Mj" \`}'
 ```
 You should receive the following response (shortened for brevity).
 ```json
-{
+{\`
 [...]
 "action" : "INTERACTION",
 "resultCode" : "A004001",
@@ -317,7 +317,7 @@ You should receive the following response (shortened for brevity).
 "ticket" : "JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A",
 }
 ```## Additional claims
-Let’s make a request to Authlete’s [/auth/authorization/issue](https://docs.authlete.com/#auth-authorization-issue-api) for issuance of an authorization code. Make sure to replace `<Service ID>`, `<Service Access Token>` and `<Ticket>` by your own values generated in the previous step.
+Let’s make a request to Authlete’s [/auth/authorization/issue](https://docs.authlete.com/#auth-authorization-issue-api) for issuance of an authorization code. Make sure to replace `{\`{\`<\`}Service ID>`, `{\`<\`}Service Access Token>\`}` and `{\`{\`<\`}Ticket>` by your own values generated in the previous step.
 This time the following additional claims are included on making the request to the API.
 | Item | Value |
 | --- | --- |
@@ -326,14 +326,14 @@ This time the following additional claims are included on making the request to 
 | `email_verified` | true |
 You can use the `claims` parameter to add claims. The request will be constructed as follows.
 ```
-curl -s -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/authorization/issue \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization/issue \
+-H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{ "ticket": "<Ticket e.g. JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A>", "subject": "testuser01", "claims": "{\"name\": \"Test User\", \"email\": \"testuser01@example.com\", \"email_verified\": true}" }'
+-d '{ "ticket": "{\`<\`}Ticket e.g. JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A>\`}", "subject": "testuser01", "claims": "{\"name\": \"Test User\", \"email\": \"testuser01@example.com\", \"email_verified\": true\`}" }'
 ```
 Then you will receive the following response.
 ```json
-{
+{\`
 "responseContent" : "https://client.example.org/cb/example.com?code=ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
 "accessTokenDuration" : 0,
 "authorizationCode" : "ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
@@ -359,14 +359,14 @@ grant_type=authorization_code
 &redirect_uri=https://client.example.org/cb/example.com
 ```The authorization server is supposed to make a request to Authlete’s [/auth/token](https://docs.authlete.com/#auth-token-api) API.
 ```
-curl -s -X POST https://us.authlete.com/api/<Service ID e.g. 10738933707579>/auth/token \
--H 'Authorization: Bearer <Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/{\`{\`<\`}Service ID e.g. 10738933707579>/auth/token \
+-H 'Authorization: Bearer {\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
 -H 'Content-Type: application/json' \
--d '{ "clientId": "<Client ID e.g. 12898884596863>", "clientSecret": "<Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code=<Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>&redirect_uri=https://client.example.org/cb/example.com" }'
+-d '{ "clientId": "{\`{\`<\`}Client ID e.g. 12898884596863>", "clientSecret": "{\`<\`}Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>\`}", "parameters": "grant_type=authorization_code&code={\`{\`<\`}Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>\`}&redirect_uri=https://client.example.org/cb/example.com" \`}'
 ```
 Authlete returns the following response.
 ```json
-{
+{\`
 "grantType" : "AUTHORIZATION_CODE",
 "responseContent" : "{\"access_token\":\"R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro\",\"refresh_token\":\"k4WqWw2tcDOHxXXo29NxOCwQJyeDOtZ6aw_Y9Ugy-6U\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0\",\"token_type\":\"Bearer\",\"expires_in\":86400}",
 "resultMessage" : "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
@@ -385,12 +385,12 @@ Authlete returns the following response.
 "clientIdAliasUsed" : false,
 "idToken" : "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0",
 "clientId" : 12898884596863
-}
+\`}
 ```The authorization server is expected to return the following response to the client (message #17).
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-{
+{\`
 "access_token":"R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro",
 "refresh_token":"k4WqWw2tcDOHxXXo29NxOCwQJyeDOtZ6aw_Y9Ugy-6U",
 "scope":"openid",
@@ -408,7 +408,7 @@ Header:
 ```json
 {
 "alg": "HS256"
-}
+\`}
 ```Payload:
 ```json
 {

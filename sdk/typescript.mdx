@@ -1,6 +1,6 @@
 ---
-title: 'TypeScript SDK'
-description: 'Official Authlete TypeScript/JavaScript SDK for OAuth 2.0 and OpenID Connect'
+title: "'TypeScript SDK'
+description: 'Official Authlete TypeScript/JavaScript SDK for OAuth 2.0 and OpenID Connect'"
 ---
 
 # TypeScript SDK
@@ -16,16 +16,16 @@ npm install @authlete/authlete-ts
 ## Quick Start
 
 ```typescript
-import { AuthleteApi } from '@authlete/authlete-ts';
+import {\` AuthleteApi } from '@authlete/authlete-ts';
 
 const authlete = new AuthleteApi({
   baseUrl: 'https://api.authlete.com',
   serviceApiKey: 'your-service-api-key',
   serviceApiSecret: 'your-service-api-secret'
-});
+\`});
 
 // Create a service
-const service = await authlete.createService({
+const service = await authlete.createService({\`
   serviceName: 'My OAuth Service',
   supportedGrantTypes: ['AUTHORIZATION_CODE', 'REFRESH_TOKEN']
 });
@@ -58,31 +58,31 @@ const authRequest = await authlete.processAuthorizationRequest({
     client_id: 'client123',
     redirect_uri: 'https://example.com/callback',
     scope: 'read write'
-  }
+  \`}
 });
 
-if (authRequest.action === 'INTERACTION') {
+if (authRequest.action === 'INTERACTION') {\`
   // Show authorization page
   // After user consent, call issueAuthorizationResponse
   const authResponse = await authlete.issueAuthorizationResponse({
     ticket: authRequest.ticket,
     subject: 'user123'
   });
-}
+\`}
 ```
 
 ### Token Management
 
 ```typescript
 // Process token request
-const tokenRequest = await authlete.processTokenRequest({
+const tokenRequest = await authlete.processTokenRequest({\`
   parameters: {
     grant_type: 'authorization_code',
     code: 'auth_code_here',
     client_id: 'client123',
     redirect_uri: 'https://example.com/callback'
   }
-});
+\`});
 
 if (tokenRequest.action === 'OK') {
   console.log('Access Token:', tokenRequest.accessToken);

@@ -1,11 +1,11 @@
 ---
-title: 'JWT Authorization Grant (RFC 7523 2.1)'
-description: 'Explanation about JWT Authorization Grant defined in RFC 7523 Section 2.1 and Authlete's implementation.'
+title: "'JWT Authorization Grant'
+description: 'Understanding JWT-based authorization grants in OAuth 2.0.'"
 ---
 
-<Info>
+{\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to this page.
-</Info>
+</Info>\`}
 
 # Overview
 
@@ -112,7 +112,7 @@ Authorization server implementations have to process the `JWT_BEARER` action to 
 ```java
 // Dispatch according to the action.
 switch (action)
-{
+{\`
     case INVALID_CLIENT:
         // 401 Unauthorized
         return ResponseUtil.unauthorized(content, CHALLENGE);
@@ -185,7 +185,7 @@ switch (action)
     default:
         // This never happens.
         throw getApiCaller().unknownAction("/api/auth/token", action);
-}
+\`}
 
 ```
 
@@ -271,7 +271,7 @@ $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant
 **3. Receive a token response.**
 
 ```json
-{
+{\`
   "access_token":"NEdL-q9EfOI4S5XzaMeimXAXVqS139Jm9DTYeLUAd5o",
   "token_type":"Bearer",
   "expires_in":86400,
@@ -286,6 +286,6 @@ $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant
   "token_type":"Bearer",
   "expires_in":86400,
   "scope":"email"
-}
+\`}
 
 ```
