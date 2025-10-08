@@ -1,13 +1,16 @@
 ---
-title: 'JWT Authorization Grant'
-description: 'Understanding JWT-based authorization grants in OAuth 2.0.'
+description: Overview
+title: Overview
 ---
+
 
 {\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to this page.
 </Info>\`}
 
 # Overview
+1. [Home](https://www.authlete.com/)
+3. Overview
 
 [Section 2.1. Using JWTs as Authorization Grants](https://www.rfc-editor.org/rfc/rfc7523.html#section-2.1) of [RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://www.rfc-editor.org/rfc/rfc7523.html) defines another flow for access token issuance which is different from OAuth 2.0 standard flows defined in [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html). We call it **JWT Authorization Grant** flow.
 
@@ -20,6 +23,8 @@ To obtain an access token, the requester presents a JWT at the **token endpoint*
 ![](https://storage.googleapis.com/authlete-website/img/developers/jwt_authorization_grant/jwt_authorization_grant.png)
 
 # Specification
+1. [Home](https://www.authlete.com/)
+3. Overview
 
 ## Source of JWT
 
@@ -100,6 +105,8 @@ Token responses in the JWT authorization grant flow conform to [RFC 6749](https:
 Only point to note is that `invalid_grant` must be used as the value of the `error` response parameter when the given JWT is invalid.
 
 # Implementation
+1. [Home](https://www.authlete.com/)
+3. Overview
 
 JWT authorization grant flow is supported by Authlete 2.3 onwards.
 
@@ -235,6 +242,8 @@ The following options are available for configuration:
 ![](https://storage.googleapis.com/authlete-website/resources/jwt_authorization_grant/1.png)
 
 # Example
+1. [Home](https://www.authlete.com/)
+3. Overview
 
 ## Authorization Server Implementation Example
 

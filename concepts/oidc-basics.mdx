@@ -1,13 +1,16 @@
 ---
-title: 'OIDC Basics'
-description: 'A tutorial to understand how OpenID Connect identity provider leverages Authlete APIs.'
+description: Introduction
+title: Introduction
 ---
+
 
 {\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to this page.
 </Info>\`}
 
 # Introduction
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 This document is a tutorial to describe basic usage of [Authlete APIs](https://docs.authlete.com/) in order to implement OpenID Connect (OIDC) identity provider (IdP) server that supports the [authorization code flow](https://youtu.be/x2qtJZ3Wivc?feature=shared).
 
@@ -17,6 +20,8 @@ In completing the tutorial, you will
 - Set the issuer identifier in the Authlete Management Console, include additional claims in the authorization request to the Authlete authorize endpoint, and confirm that both the issuer and additional claims are included in the ID Token by decoding it.
 
 # Authorization Code Flow Components
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 In this tutorial, OIDC identity provider and relying party are described as authorization server and client respectively for convenience.
 
@@ -71,6 +76,8 @@ To understand how each piece fits together in this OAuth flow, we’ve provided 
 API endpoints are cluster specific. If using a service in another cluster, you'd substitute in the cluster's two character ISO code for the complete domain name for that API endpoint (e.g. br, eu, jp).
 
 # Environment setup
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 Settings in this section are the same as described in Authlete API Tutorial - [OAuth 2.0 Basics](/concepts/oauth2-basics.mdx). If you've already completed that tutorial, you can skip this section.
 
@@ -115,6 +122,8 @@ The following example properties are generated or specified when you create a cl
 Now, let’s try the OIDC authorization code flow using this environment.
 
 # Walk-through
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 We’ve provided the following sequence diagram to help you understand each of the steps involved in the code flow. You can identify where you are at in the walk-through using the numbers which correspond to specific steps in the diagram.
 
@@ -543,6 +552,8 @@ Note above there are a couple of items that need to be corrected.
 Let’s fix the `iss` value and add other claims in the next section.
 
 # Modifying ID token
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 ## Issuer identifier
 
@@ -848,6 +859,8 @@ The decoded results are as follows.
 Now we can confirm the correct `iss` value exists, and find the additional claims, `name`, `email` and `email_verified` are included as expected.
 
 # Conclusion
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 In this tutorial, you were able to simulate an authorization server acting as an OpenID Connect Provider, issuing ID Tokens using the authorization code flow with the Authlete API. You completed the following high level steps.
 
@@ -857,6 +870,8 @@ In this tutorial, you were able to simulate an authorization server acting as an
 While this walk through cut out some key pieces in the whole process, hopefully you have a deeper understanding of how an authorization server, hosted in your own infrastructure, would make use of Authlete as a back end service. Implementing such an authorization server on your own may contain complex logic and require detailed attention to potential secure treatment of codes and secrets. By using the Authlete API as a backend your own authorization server implementation is greatly simplified.
 
 # Next steps
+1. [Home](https://www.authlete.com/)
+3. Introduction
 
 Let’s dig deeper on Authlete by playing with the following features.
 

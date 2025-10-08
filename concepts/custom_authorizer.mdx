@@ -1,9 +1,12 @@
 ---
-title: 'Amazon API Gateway + Custom Authorizer + OAuth'
-description: 'Technical Information about how to protect APIs built on Amazon API Gateway by OAuth access tokens by utilizing Custom Authorizer.'
+description: What is Custom Authorizer?
+title: What is Custom Authorizer?
 ---
 
+
 # What is Custom Authorizer?
+1. [Home](https://www.authlete.com/)
+3. What is Custom Authorizer?
 
 On Feb 11, 2016, a blog entry of AWS Compute Blog, “[Introducing custom authorizers in Amazon API Gateway](https://aws.amazon.com/blogs/compute/introducing-custom-authorizers-in-amazon-api-gateway)”, announced that **Custom Authorizer** had been introduced into Amazon API Gateway.
 
@@ -14,6 +17,8 @@ Thanks to this mechanism, an API built on Amazon API Gateway can delegate valida
 As the same as before, Amazon API Gateway itself does not provide OAuth server functionalities, but you can protect APIs built on Amazon API Gateway by OAuth access tokens by utilizing Custom Authorizer.
 
 # No example
+1. [Home](https://www.authlete.com/)
+3. What is Custom Authorizer?
 
 The [online document](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html) and the [blog](https://aws.amazon.com/blogs/compute/introducing-custom-authorizers-in-amazon-api-gateway) show implementation examples of an authorizer. However, the example in the online document uses `allow`, `deny` and `unauthorized` as token values in order to simplify the code example, so it is not a practical example. On the other hand, the example in the blog uses JWT ([RFC 7519](https://tools.ietf.org/html/rfc7519)) as a token value, so it is a practical example. But, it does not include any code to make a query to an external server to get information about a token. It is because JWT is a form where information is embedded in a token itself, and so information can be extracted only by decoding the token value.
 
@@ -26,6 +31,8 @@ That is, there is no example to communicate with an authorization server to get 
 So, in the next section, we’ll show you an authorizer example written in node.js which communicates with an authorization server to get information about an access token.
 
 # Authorizer example
+1. [Home](https://www.authlete.com/)
+3. What is Custom Authorizer?
 
 We show an authorizer example written in node.js which communicates with an external authorization server.
 
@@ -579,6 +586,8 @@ Note that it is recommended to set the timeout value of the lambda function long
 See [the online document](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html) and [the blog](https://aws.amazon.com/blogs/compute/introducing-custom-authorizers-in-amazon-api-gateway) about how to use the uploaded lambda function as an implementation of Custom Authoriser.
 
 # Test
+1. [Home](https://www.authlete.com/)
+3. What is Custom Authorizer?
 
 Here we assume that GET mydemoresource (which is created by going through the steps described in the Amazon API Gateway online document, “Walkthrough: Create API Gateway API for Lambda Functions”) is protected by the Custom Authorizer.
 

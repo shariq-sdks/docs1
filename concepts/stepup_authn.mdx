@@ -1,9 +1,12 @@
 ---
-title: 'RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol'
-description: 'Explanation about RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol and how Authlete supports the specification.'
+description: Overview
+title: Overview
 ---
 
+
 # Overview
+1. [Home](https://www.authlete.com/)
+3. Overview
 [RFC 9470: OAuth 2.0 Step Up Authentication Challenge Protocol](https://www.rfc-editor.org/rfc/rfc9470.html) “introduces a mechanism for a resource server to signal to a client that the authentication event associated with the access token of the current request doesn’t meet its authentication requirements and specify how to meet them.” (excerpt from “Abstract”)
 As the first step, a client application (a.k.a. relying party) accesses a protected resource endpoint with an access token.
 [![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/stepup_authn_1.png)](/stepup_authn)
@@ -20,6 +23,8 @@ The diagram below illustrates the flow from making a request with an access toke
 After receiving an error response with authentication requirements, the client application will make an authorization request again. This time, the client application needs to ask the authorization server to issue an access token that satisfies the authentication requirements.
 [![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/stepup_authn_6.png)](/stepup_authn)
 # Authentication Requirements
+1. [Home](https://www.authlete.com/)
+3. Overview
 The OAuth 2.0 Step Up Authentication Challenge Protocol specification presumes two types of authentication requirements.
 One is authentication context class reference (a.k.a. ACR) of user authentication. The other is maximum authentication age (a.k.a. max age) of user authentication.
 ## Authentication Context Class Reference (ACR)
@@ -110,6 +115,8 @@ When a client application wants to ask the authorization server to perform user 
 https://as.example.com/authorize?prompt=login&...
 See [Section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) of [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) for details about the `prompt` parameter.
 # Authentication Requirements Challenge
+1. [Home](https://www.authlete.com/)
+3. Overview
 Protected resource endpoints that utilize the OAuth 2.0 Step Up Authentication Challenge Protocol specification return an error response when the presented access token does not satisfy either or both of the authentication requirements (namely ACR and Max Age).
 The diagram below illustrates the flow from returning an error response to making an authorization request asking for an access token that satisfies authentication requirements.
 [![](https://storage.googleapis.com/authlete-website/img/developers/stepup_authn/insufficient_user_authentication.png)](/stepup_authn)
@@ -147,6 +154,8 @@ error_description="More recent authentication is required",
 max_age="5
 If a client application receives the error response above, the client application needs to make an authorization request with the `prompt` request parameter with `login` included.
 # Authentication Information Bound To Access Token
+1. [Home](https://www.authlete.com/)
+3. Overview
 To enable protected resource endpoints to check whether a presented access token satisfies authentication requirements or not, the access token must hold information about the user authentication that was performed during the course of issuing the access token.
 The OAuth 2.0 Step Up Authentication Challenge Protocol specification defines the following two attributes of access token that may appear in the payload part of JWT access tokens and the message body of token introspection responses (cf. [RFC 7662](https://www.rfc-editor.org/rfc/rfc7662.html)).
 | Attribute | Description (excerpted from the specification) |

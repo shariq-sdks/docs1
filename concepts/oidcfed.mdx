@@ -1,12 +1,15 @@
 ---
-title: 'OpenID Federation 1.0 - Authlete'
-description: 'Explanation about OpenID Federation 1.0 and how Authlete supports the specification.'
+description: Introduction
+title: Introduction
 ---
+
 
 {\`{\`<\`}Info>
 This page is for Authlete 3.0. For 2.x, refer to [this page](/v2/oidcfed).
 </Info>\`}
 # Introduction
+1. [Home](https://www.authlete.com/)
+3. Introduction
 This document explains [OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html).
 | Revision History |
 | --- |
@@ -16,6 +19,8 @@ This document explains [OpenID Federation 1.0](https://openid.net/specs/openid-f
 to OpenID Federation 1.0, the text and diagrams have been updated accordingly.
 The "Introduction" section was added to include this "Revision History". |
 # Overview
+1. [Home](https://www.authlete.com/)
+3. Introduction
 [OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html) defines a mechanism where an identity provider / authorization server and a relying party (client) that have no direct relationship trust each other based on trust chains and the identity provider accepts OAuth/OIDC requests from the relying party without needing prior registration of the relying party.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview_01.png)](/oidcfed)
 Trust chains are uni-directional. Therefore, two trust chains are built when an identity provider and a relying party trust each other. One is a trust chain for the relying party to trust the identity provider.
@@ -31,6 +36,8 @@ Likewise, an identity provider trusts one or more trust anchors. If any of the t
 The diagram below illustrates an overview of OpenID Federation 1.0 that has been explained in this section.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_overview.png)](/oidcfed)
 # Trust Chain
+1. [Home](https://www.authlete.com/)
+3. Introduction
 Technically speaking, a trust chain is a sequence of JWTs ([RFC 7519 JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)) that are issued by a leaf entity, zero or more intermediate authorities, and a trust anchor.
 ## JWT Issued by Leaf Entity
 A leaf entity issues a JWT that is signed by the leaf entity’s private key.
@@ -61,6 +68,8 @@ As it is a self-signed JWT, both the `iss` claim and the `sub` claim hold the tr
 The following diagram depicts the entire trust chain.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tc.png)](/oidcfed)
 # Trust Chain Resolution
+1. [Home](https://www.authlete.com/)
+3. Introduction
 ## Entity Configuration
 The resolution process of a trust chain starts from getting the self-signed JWT of a leaf entity.
 The location of the self-signed JWT is defined in the OpenID Federation specification. It is a URL constructed by concatenating the leaf entity’s identifier and the fixed string `"/.well-known/openid-federation"`.
@@ -124,6 +133,8 @@ The following diagram depicts the entire flow of trust chain resolution.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_tcr.png)](/oidcfed)
 All the JWTs that appear in trust chain resolution are called “entity statement”. An entity configuration is a kind of entity statement.
 # Metadata
+1. [Home](https://www.authlete.com/)
+3. Introduction
 An entity configuration contains metadata of the federation entity.
 ## Identity Provider Metadata
 Metadata of an identity provider are put in the `openid_provider` JSON object which is in the `metadata` JSON object.
@@ -160,6 +171,8 @@ The OpenID Federation specification defines the following metadata for authoriti
 - `policy_uri`
 - `homepage_uri`
 # Metadata Policy
+1. [Home](https://www.authlete.com/)
+3. Introduction
 The entity configuration of the leaf entity in a trust chain includes metadata of the leaf entity. The `metadata` claim is used to hold the metadata.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp_01.png)](/oidcfed)
 On the other hand, other JWTs in the trust chain issued by authorities may include metadata policies that are used to adjust the metadata of the leaf entity. The `metadata_policy` claim is used to hold the metadata policy.
@@ -172,6 +185,8 @@ The following diagram depicts the flow of metadata policy application.
 [![](https://storage.googleapis.com/authlete-website/img/developers/oidcfed/oidcfed_mp.png)](/oidcfed)
 See the OpenID Federation specification for details about metadata policy.
 # Client Registration
+1. [Home](https://www.authlete.com/)
+3. Introduction
 In a typical implementation of identity provider, identifiers of relying parties (clients) are under the management of the identity provider. The identifiers are unique only in the realm of the identity provider. On the other hand, in the OpenID Federation world, every federation entity has a globally unique identifier.
 An interesting characteristic of OpenID Federation is that the globally unique identifiers, i.e., entity IDs, can be used as a client ID in OAuth/OIDC requests. For example, an authorization request like below can be made. The point to pay attention to in the example is that the value of the `client_id` request parameter is the entity ID of the relying party.
 ```
@@ -238,6 +253,8 @@ An OAuth/OIDC request may contain the `trust_chain` request parameter. The ident
 Authlete does not reference the `trust_chain` request parameter for registration.
 Authlete references the request parameter only for update.
 # Authlete Implementation
+1. [Home](https://www.authlete.com/)
+3. Introduction
 ## Version
 OpenID Federation 1.0 is supported in Authlete 2.3 and later versions.
 As the specification is actively evolving, new features may be introduced, and breaking changes may occur in the future. Authlete will continue to align with these updates as they are released.
@@ -407,6 +424,8 @@ Case 2: when the `trust_chain` request parameter is not given
 10. Authlete continues to process the OAuth/OIDC request.
 When the `trust_chain` request parameter is not given, trust chain update is tried only when the current trust chain has expired. When trust chain update fails, the client is deleted.
 # Finally
+1. [Home](https://www.authlete.com/)
+3. Introduction
 OpenID Federation 1.0 is one of the most complex standard specifications related to OAuth and OpenID Connect and it is difficult to find commercial-quality implementations. Authlete is a rare example.
 If you are interested in trying OpenID Federation 1.0, please [contact us](https://www.authlete.com/contact/).
 #### On this page
