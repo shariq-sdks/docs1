@@ -1,0 +1,187 @@
+---
+title: 'クイックスタート'
+description: "数分でAuthlete APIを起動して実行"
+---
+
+## クイックスタートガイド
+
+数分でAuthlete APIを開始できます。このガイドでは、最初のサービスをセットアップし、最初のAPI呼び出しを行う手順を説明します。
+
+## 前提条件
+
+- Authleteアカウント（[こちらでサインアップ](https://console.authlete.com/register)）
+- OAuth 2.0の概念の基本的な理解
+- お好みのプログラミング言語とHTTPクライアント
+
+## ステップ1: サービスを作成
+
+まず、Authleteコンソールでサービスを作成する必要があります：
+
+1. [console.authlete.com](https://console.authlete.com)にアクセス
+2. アカウントにサインアップまたはログイン
+3. 「サービスを作成」をクリック
+4. サービス詳細を入力：
+   - **サービス名**: アプリケーション名
+   - **説明**: サービスの簡単な説明
+   - **サービスプロファイル**: ニーズに基づいて選択
+
+## ステップ2: API認証情報を取得
+
+サービスを作成した後、以下を取得します：
+
+- **サービスAPIキー**: サービスを識別するために使用
+- **サービスAPIシークレット**: API呼び出しの認証に使用
+
+<Warning>
+APIシークレットを安全に保管し、クライアント側のコードで公開しないでください。
+</Warning>
+
+## ステップ3: 最初のAPI呼び出しを行う
+
+「サービス取得」APIを呼び出して接続をテストしましょう：
+
+<CodeGroup>
+```bash cURL
+curl -X GET "https://us.authlete.com/api/service/get" \
+  -H "Authorization: Bearer YOUR_SERVICE_API_SECRET" \
+  -H "Content-Type: application/json"
+```
+
+```javascript JavaScript
+const response = await fetch('https://us.authlete.com/api/service/get', {
+  headers: {
+    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
+    'Content-Type': 'application/json'
+  }
+});
+
+const service = await response.json();
+console.log(service);
+```
+
+```python Python
+import requests
+
+headers = {
+    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(
+    'https://us.authlete.com/api/service/get',
+    headers=headers
+)
+
+service = response.json()
+print(service)
+```
+</CodeGroup>
+
+## ステップ4: 最初のクライアントを作成
+
+OAuthクライアントを作成しましょう：
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://us.authlete.com/api/client/create" \
+  -H "Authorization: Bearer YOUR_SERVICE_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientName": "My Test Client",
+    "clientType": "PUBLIC",
+    "redirectUris": ["https://example.com/callback"]
+  }'
+```
+
+```javascript JavaScript
+const clientData = {
+  clientName: "My Test Client",
+  clientType: "PUBLIC",
+  redirectUris: ["https://example.com/callback"]
+};
+
+const response = await fetch('https://us.authlete.com/api/client/create', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(clientData)
+});
+
+const client = await response.json();
+console.log('Client ID:', client.clientId);
+```
+
+```python Python
+import requests
+
+client_data = {
+    "clientName": "My Test Client",
+    "clientType": "PUBLIC",
+    "redirectUris": ["https://example.com/callback"]
+}
+
+headers = {
+    'Authorization': 'Bearer YOUR_SERVICE_API_SECRET',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(
+    'https://us.authlete.com/api/client/create',
+    headers=headers,
+    json=client_data
+)
+
+client = response.json()
+print(f"Client ID: {client['clientId']}")
+```
+</CodeGroup>
+
+## ステップ5: OAuthフローをテスト
+
+完全なOAuth 2.0認可フローをテストできます：
+
+1. **認可リクエスト**: ユーザーを認可エンドポイントに誘導
+2. **認可レスポンス**: 認可コードでコールバックを処理
+3. **トークンリクエスト**: コードをアクセストークンと交換
+4. **トークンレスポンス**: アクセストークンを使用して保護されたリソースにアクセス
+
+## 次のステップ
+
+<CardGroup cols={2}>
+  <Card
+    title="認証ガイド"
+    icon="key"
+    href="/ja/guides/authentication"
+  >
+    異なる認証方法について学習
+  </Card>
+  <Card
+    title="OAuth 2.0フロー"
+    icon="shield"
+    href="/ja/guides/oauth2-flow"
+  >
+    完全なOAuth 2.0フローを理解
+  </Card>
+  <Card
+    title="APIリファレンス"
+    icon="code"
+    href="/ja/api-reference"
+  >
+    利用可能なすべてのAPIエンドポイントを閲覧
+  </Card>
+  <Card
+    title="サービス管理"
+    icon="cog"
+    href="/ja/guides/service-management"
+  >
+    認可サーバーを設定
+  </Card>
+</CardGroup>
+
+## ヘルプが必要ですか？
+
+- [APIリファレンス](/ja/api-reference)で詳細なエンドポイントドキュメントを確認
+- [認証ガイド](/ja/guides/authentication)でセキュリティのベストプラクティスを訪問
+- [support@authlete.com](mailto:support@authlete.com)でサポートに連絡

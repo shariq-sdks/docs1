@@ -1,0 +1,69 @@
+---
+title: "Authlete API"
+description: "AuthleteサービスのAPIガイド"
+---
+
+# 概要
+
+Authleteは、プラットフォームのあらゆる側面がAPI経由で設定可能なAPIファーストサービスです。
+
+高レベルでは、Authlete APIは2つのカテゴリにグループ化されています：
+
+- 管理API：サービスとクライアントを管理できます。🔧
+- ランタイムAPI：独自の認可サーバーまたは検証可能な認証情報（VC）発行者を構築できます。🔐
+
+すべてのAPIエンドポイントは、Authleteのアイデンティティプロバイダー（IdP）によって発行されたアクセストークンを使用してセキュリティで保護されています。すでにAuthleteアカウントをお持ちの場合は、認証ページの「トークンを取得」オプションを使用してログインし、API使用のためのアクセストークンを取得するだけです。
+
+まだアカウントをお持ちでない場合は、[こちらでサインアップ](https://console.authlete.com/register)して開始してください。
+
+<Note>
+詳細なスキーマと例を含む完全なインタラクティブなOpenAPI仕様については、[APIリファレンス](/ja/api-specification)タブをご覧ください。
+</Note>
+
+<OpenApi spec="app/specs/shared/3.0.16/ja.yaml" />
+
+## エラーハンドリング
+
+すべてのAPIエンドポイントは、以下の構造を持つ一貫したエラーレスポンスを返します：
+
+```json
+{
+  "resultCode": "A004001",
+  "resultMessage": "エラーの説明",
+  "resultDescription": "詳細なエラー情報"
+}
+```
+
+一般的なエラーコード：
+
+- **A004001**: 無効なリクエストパラメータ
+- **A004002**: 認証が必要
+- **A004003**: 権限が不足
+- **A004004**: リソースが見つからない
+- **A004005**: 内部サーバーエラー
+
+## レート制限
+
+API呼び出しはレート制限の対象です：
+
+- **サービス管理**: 1時間あたり1,000リクエスト
+- **クライアント管理**: 1時間あたり5,000リクエスト
+- **認可API**: 1時間あたり10,000リクエスト
+- **トークンAPI**: 1時間あたり10,000リクエスト
+
+## SDKとライブラリ
+
+人気のプログラミング言語向けの公式SDKを提供しています：
+
+- **JavaScript/Node.js**: [@authlete/authlete-js](https://www.npmjs.com/package/@authlete/authlete-js)
+- **Python**: [authlete-python](https://pypi.org/project/authlete-python/)
+- **Java**: [authlete-java-common](https://mvnrepository.com/artifact/com.authlete/authlete-java-common)
+- **PHP**: [authlete-php](https://packagist.org/packages/authlete/authlete-php)
+
+## サポート
+
+APIでヘルプが必要ですか？
+
+- **ドキュメント**: 包括的なガイドを閲覧
+- **サポート**: [support@authlete.com](mailto:support@authlete.com)でお問い合わせ
+- **コンソール**: [console.authlete.com](https://console.authlete.com)でサービスを管理

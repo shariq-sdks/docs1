@@ -1,0 +1,99 @@
+---
+description: "Authleteとは？"
+title: "Authleteとは？"
+---
+
+# Authleteとは？
+
+Authleteは、[OAuth 2.0](https://tools.ietf.org/html/rfc6749)および[OpenID Connect](https://openid.net/)を実装するためのWeb APIを提供するマネージドクラウド/オンプレミスソリューションです。[Web API](/api-specification)を使用することで、OAuth 2.0とOpenID Connectの機能を簡単に取得できます。
+
+# なぜAuthleteなのか？
+
+企業は、サービスのWeb APIを提供するための前提条件としてOAuth 2.0（およびOpenID Connect）を実装する必要があります。しかし、これらの仕様を実装するには膨大な時間と労力が必要です。また、仕様に関連するデータの管理も煩雑です。この障壁は、市場投入時間で競争するサービスプロバイダーや、開発者リソースのみで前提条件を実装する余裕がないサービスプロバイダーにとって致命的となる可能性があります。
+
+Authleteがこの問題を解決します。Authleteは関連する仕様の圧倒的な数に対応し、関連データをホストします。Authleteユーザーは、前提条件に煩わされることなく、サービスのWeb APIの実装を開始できます。
+
+# Authleteの仕組み
+
+Authleteはバックエンドサービスとして機能し、OAuthとOpenID Connectを実装するのに役立つAPIを提供します。AuthleteはWebサービスの背後で動作し、エンドユーザー、OAuthクライアント、または信頼当事者と直接やり取りすることはありません。
+
+![認可におけるAuthleteの役割](https://storage.googleapis.com/authlete-website/img/developers/overview/authletes-role-in-authorization.png)
+
+# Authleteの機能
+
+Authleteの「セミホステッド」アーキテクチャにより、以下が可能になります：
+
+##### お気に入りのプログラミング言語とフレームワークで認可サーバーを構築
+
+![](https://storage.googleapis.com/authlete-website/img/developers/overview/time_to_market_en.png)
+
+Authleteは、OAuth 2.0 & OpenID Connectサーバーを実装するために必要なすべての機能をWeb APIとして設計・実装しています。クライアントアプリケーションと認可サーバーのメタデータを管理する機能に加えて、Authleteは認可エンドポイントやトークンエンドポイントなどのエンドポイントを実装する機能も提供します。
+
+このユニークなアーキテクチャにより、開発者はJava、Ruby、PHP、C#を含む任意のプログラミング言語を使用できます。[OSSライブラリとサンプル実装](https://github.com)により、数日または数週間でOAuth/OIDCサーバーを構築できます。
+
+##### 一つのAuthleteで複数のOAuth/OIDCサーバーとAPIクライアントを管理
+
+![](https://storage.googleapis.com/authlete-website/img/developers/overview/multiple_instances_en.png)
+
+Authleteは、複数のOAuth 2.0 & OpenID Connectサーバーインスタンスを同時に実行・管理でき、コンソールで管理できます。
+
+新しいインスタンスのセットアップは簡単です。そのため、アーキテクトは大きな開発コストなしに、システム内の適切な場所に複数の認可サーバーを配置できます。例えば、アーキテクトは、内部サービスとは別にスマートフォンアプリケーション用の認可サーバーを持つことができます。
+
+##### エンドユーザーの認証情報をサードパーティのOAuth/OIDCサービスと共有することを防ぐ
+
+Authleteは、システムからエンドユーザーのサブジェクトを受け取り、それらをアクセストークンやその他のデータと関連付けます。そのため、エンドユーザーの認証情報を私たちと共有する必要がありません。これは、他のAPI認可ソリューションと比較して非常にユニークです。
+
+##### クライアントIDエイリアス
+
+![client_id_alias](https://storage.googleapis.com/authlete-website/img/developers/overview/client_id_alias_en.png)
+
+Authleteは、各クライアントがクライアントIDに加えてクライアントIDエイリアスを持つことを許可します。
+
+この機能は、既存の認可サーバーからAuthleteに移行し、新しいAuthleteシステムで既存のクライアントIDを引き続き使用する場合に有用です。
+
+詳細については、[このドキュメント](/ja/kb/oauth-and-openid-connect/client-id-alias)を参照してください。
+
+##### スコープまたはクライアントごとのアクセス/リフレッシュトークン期間
+
+![](https://storage.googleapis.com/authlete-website/img/developers/overview/token_duration_en.png)
+
+[スコープ属性機能](/kb/oauth-and-openid-connect/scope-attributes)を使用して、スコープごとにアクセストークンとリフレッシュトークンの期間を短縮できます。
+
+この機能を有効にするには、`access_token.duration`または`refresh_token.duration`のキーと「短い」トークン期間（秒）の値を持つスコープ属性を持つスコープを設定します。そのスコープを持つトークンの期間は、スコープ属性で設定された期間になります。詳細については、[このドキュメント](/kb/oauth-and-openid-connect/token-duration-per-scope)を参照してください。
+
+また、クライアント開発者コンソールから設定することで、クライアントごとにアクセストークンとリフレッシュトークンの期間を短縮できます。
+
+##### コードチャレンジメソッドの強制S256
+
+このオプションにより、PKCEプロトコルを使用する場合、Authleteは`code_challenge_method` = `S256`のリクエストのみを受け入れます。
+
+この設定は、サービスオーナーコンソールの「認可」タブから設定できます。
+
+##### 付与されたスコープ管理
+
+Authleteは、エンドユーザーに付与されたスコープのリストを取得（または削除）することを可能にします。
+
+この機能は、エンタープライズプランユーザーのみが利用できます。
+
+##### 許容可能なクロックスキュー
+
+サーバーとクライアント間の許容可能なクロックスキューは、秒単位で設定可能です。
+
+##### FAPIコンテキストでのバインディングメッセージ
+
+Authleteは、FAPI-CIBAプロトコルで`binding_message`リクエストパラメータなしのリクエストを拒否できます。
+
+# OpenID認証
+
+Authleteは、OpenID Connectプロトコルのいくつかの[OpenID Provider (OP) Profiles](https://openid.net/certification/)に準拠しています。これまでに、Authleteは以下の認証を受けています。
+
+| OpenID認証 | バージョン | カテゴリ |
+| --- | --- | --- |
+| OpenID Provider | 1.1 ~ | Basic OP<br>Implicit OP<br>Hybrid OP<br>Config OP |
+| 2.1 ~ | Dynamic OP<br>Form Post OP |
+| FAPI OpenID Provider | 2.1 ~ | Financial-grade API (FAPI) 1.0 Second Implementer's Draft<br>FAPI R/W OP w/ MTLS<br>FAPI R/W OP w/ Private Key |
+| 2.2 ~ | Financial-grade API (FAPI) 1.0 Final<br>FAPI Adv. OP w/ MTLS<br>FAPI Adv. OP w/ MTLS, PAR<br>FAPI Adv. OP w/ Private Key<br>FAPI Adv. OP w/ Private Key, PAR<br>FAPI Adv. OP w/ MTLS, JARM<br>FAPI Adv. OP w/ Private Key, JARM<br>FAPI Adv. OP w/ MTLS, PAR, JARM<br>FAPI Adv. OP w/ Private Key, PAR, JARM |
+
+# まとめ
+
+Authleteを使用すれば、WebサービスでOAuth 2.0とOpenID Connectをサポートできます。[はじめに](/developers/getting_started/)ドキュメントから始めて、サインアップしてください。
