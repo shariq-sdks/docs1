@@ -14,7 +14,10 @@
       {
         "tab": "Home",
         "pages": [
-          "index"
+          {
+            "page": "index",
+            "layout": "wide"
+          }
         ]
       },
         
