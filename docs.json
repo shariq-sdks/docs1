@@ -10,13 +10,20 @@
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
   "navigation": {
     "tabs": [
+       
+      {
+        "tab": "Home",
+        "pages": [
+          "index"
+        ]
+      },
+        
       {
         "tab": "Developer Platform",
         "groups": [
           {
             "group": "Getting Started",
             "pages": [
-              "index",
               "overview",
               "getting-started",
               "quickstart"
@@ -25,7 +32,7 @@
           {
             "group": "API Docs",
             "pages": [
-              "Authelte API",
+              "Authlete API",
               {
                 "group": "SDKs",
                 "pages": [
