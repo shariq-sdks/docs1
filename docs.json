@@ -20,7 +20,8 @@
           {
             "group": "Getting Started",
             "pages": [
-              "overview",
+              "index",
+              "welcome",
               "getting-started",
               "quickstart"
             ]
@@ -73,15 +74,7 @@
               "reference/token-management"
             ]
           },
-          {
-            "group": "OpenID Connect",
-            "pages": [
-              "oidc/user-authentication",
-              "oidc/userinfo-endpoint",
-              "oidc/id-token-handling",
-              "oidc/oidc-best-practices"
-            ]
-          },
+          
           {
             "group": "Tutorials & Examples",
             "pages": [
@@ -129,6 +122,16 @@
               "reference/scopes",
               "reference/introspection",
               "reference/authorization-requests"
+            ]
+          },
+          
+          {
+            "group": "OpenID Connect",
+            "pages": [
+              "oidc/user-authentication",
+              "oidc/userinfo-endpoint",
+              "oidc/id-token-handling",
+              "oidc/oidc-best-practices"
             ]
           },
           {
