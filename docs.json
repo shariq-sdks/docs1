@@ -47,12 +47,7 @@
               "concepts/oauth2-basics",
               "concepts/oidc-basics",
               "concepts/authlete-architecture",
-              "concepts/security-fundamentals"
-            ]
-          },
-          {
-            "group": "Service & Client Management",
-            "pages": [
+              "concepts/security-fundamentals",
               "implementation/service-management",
               "implementation/client-management",
               "implementation/authentication",
@@ -68,6 +63,7 @@
               "flows/native-sso",
               "flows/grant-management",
               "flows/token-exchange",
+              "security/pkce",
               "reference/pushed-authorization-requests",
               "reference/rich-authorization-requests",
               "reference/jar",
@@ -130,7 +126,6 @@
           {
             "group": "OAuth & OIDC Standards",
             "pages": [
-              "security/pkce",
               "reference/client-authentication",
               "reference/scopes",
               "reference/introspection",
@@ -335,12 +330,7 @@
                   "ja/concepts/oauth2-basics",
                   "ja/concepts/oidc-basics",
                   "ja/concepts/authlete-architecture",
-                  "ja/concepts/security-fundamentals"
-                ]
-              },
-              {
-                "group": "サービス・クライアント管理",
-                "pages": [
+                  "ja/concepts/security-fundamentals",
                   "ja/implementation/service-management",
                   "ja/implementation/client-management",
                   "ja/implementation/authentication",
@@ -355,7 +345,8 @@
                   "ja/flows/ciba",
                   "ja/flows/native-sso",
                   "ja/flows/grant-management",
-                  "ja/flows/token-exchange"
+                  "ja/flows/token-exchange",
+                  "ja/security/pkce"
                 ]
               },
               {
