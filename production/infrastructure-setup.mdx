@@ -1,5 +1,5 @@
 ---
-title: "Infrastructure Setup"
+  title: "Infrastructure Setup"
 description: "Complete guide to setting up Authlete infrastructure for production deployments"
 ---
 
@@ -23,7 +23,7 @@ Before setting up your Authlete infrastructure, ensure you have:
 The authorization server is the core component that handles OAuth 2.0 and OpenID Connect flows.
 
 **Key Requirements:**
-- High availability (99.9% uptime)
+  - High availability (99.9% uptime)
 - Load balancing for traffic distribution
 - SSL/TLS termination
 - Rate limiting and DDoS protection
@@ -33,7 +33,7 @@ The authorization server is the core component that handles OAuth 2.0 and OpenID
 Secure endpoint for token issuance and refresh operations.
 
 **Configuration:**
-```yaml
+  ```yaml
 endpoints:
   token: "https://auth.yourdomain.com/oauth/token"
   introspection: "https://auth.yourdomain.com/oauth/introspect"
@@ -45,7 +45,7 @@ endpoints:
 Provides user information for OpenID Connect implementations.
 
 **Configuration:**
-```yaml
+  ```yaml
 endpoints:
   userinfo: "https://auth.yourdomain.com/oauth/userinfo"
   jwks: "https://auth.yourdomain.com/.well-known/jwks.json"
@@ -56,13 +56,13 @@ endpoints:
 ### Cloud Deployment
 
 **Recommended Cloud Providers:**
-- AWS (Amazon Web Services)
+  - AWS (Amazon Web Services)
 - Google Cloud Platform
 - Microsoft Azure
 - DigitalOcean
 
 **Key Considerations:**
-- Auto-scaling capabilities
+  - Auto-scaling capabilities
 - Global CDN integration
 - Managed database services
 - Security and compliance features
@@ -72,7 +72,7 @@ endpoints:
 For organizations requiring on-premises deployment:
 
 **Requirements:**
-- Container orchestration (Kubernetes/Docker Swarm)
+  - Container orchestration (Kubernetes/Docker Swarm)
 - Load balancer configuration
 - Database setup (PostgreSQL/MySQL)
 - Monitoring and logging infrastructure
@@ -102,13 +102,13 @@ For organizations requiring on-premises deployment:
 ### Primary Database
 
 **Requirements:**
-- High availability setup
+  - High availability setup
 - Automated backups
 - Encryption at rest
 - Connection pooling
 
 **Recommended Setup:**
-```yaml
+  ```yaml
 database:
   type: "postgresql"
   version: "13+"
@@ -147,7 +147,7 @@ cache:
 ### Alerting Configuration
 
 Set up alerts for:
-- High error rates (>5%)
+  - High error rates (>5%)
 - Slow response times (>2s)
 - Database connection issues
 - Certificate expiration (30 days)

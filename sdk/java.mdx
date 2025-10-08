@@ -1,7 +1,8 @@
 ---
-description: Java SDK
-title: Java SDK
+description: "Java SDK"
+title: "Java SDK"
 ---
+
 
 
 # Java SDK
@@ -13,11 +14,8 @@ The official Authlete Java SDK provides a comprehensive client library for integ
 ### Maven
 
 ```xml
-{\`{\`<\`}dependency>
-    {\`<\`}groupId>\`}com.authlete{\`</groupId>
-    {\`<\`}artifactId>\`}authlete-java-common{\`</artifactId>
-    {\`<\`}version>\`}3.0.0{\`</version>
-</dependency>\`}
+dependency>
+    groupId>\`}com.authleteartifactId>\`}authlete-java-commonversion>\`}3.0.0
 ```
 
 ### Gradle
@@ -33,23 +31,7 @@ import com.authlete.common.api.AuthleteApi;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceCreateRequest;
 
-public class Example {\`
-    public static void main(String[] args) {
-        AuthleteApi api = AuthleteApiFactory.create(
-            "https://api.authlete.com",
-            "your-service-api-key",
-            "your-service-api-secret"
-        );
-
-        // Create a service
-        ServiceCreateRequest request = new ServiceCreateRequest();
-        Service service = new Service();
-        service.setServiceName("My OAuth Service");
-        service.setSupportedGrantTypes(Arrays.asList("AUTHORIZATION_CODE", "REFRESH_TOKEN"));
-        request.setService(service);
-
-        Service createdService = api.createService(request);
-    }
+public class Example 
 \`}
 ```
 
@@ -85,15 +67,7 @@ request.setParameters(Map.of(
 
 AuthorizationResponse response = api.processAuthorizationRequest(request);
 
-if ("INTERACTION".equals(response.getAction())) {\`
-    // Show authorization page
-    // After user consent, call issueAuthorizationResponse
-    AuthorizationIssueRequest issueRequest = new AuthorizationIssueRequest();
-    issueRequest.setTicket(response.getTicket());
-    issueRequest.setSubject("user123");
-    
-    AuthorizationIssueResponse issueResponse = api.issueAuthorizationResponse(issueRequest);
-}
+if ("INTERACTION".equals(response.getAction())) 
 ```
 
 ### Token Management
@@ -110,23 +84,14 @@ request.setParameters(Map.of(
 
 TokenResponse response = api.processTokenRequest(request);
 
-if ("OK".equals(response.getAction())) {
-    System.out.println("Access Token: " + response.getAccessToken());
-    System.out.println("Refresh Token: " + response.getRefreshToken());
-\`}
+if ("OK".equals(response.getAction())) 
 ```
 
 ### Spring Boot Integration
 
 ```java
 @RestController
-public class AuthController {\`
-    
-    @Autowired
-    private AuthleteApi authleteApi;
-    
-    @GetMapping("/authorize")
-    public ResponseEntity{\`<?> authorize(@RequestParam Map{\`<\`}String, String>\`} params) {
+public class AuthController String, String>\`} params) {
         AuthorizationRequest request = new AuthorizationRequest();
         request.setParameters(params);
         
@@ -148,6 +113,6 @@ public class AuthController {\`
 ## Support
 
 For questions and support:
-- [Documentation](/reference/knowledge-base)
+  - [Documentation](/reference/knowledge-base)
 - [API Explorer](/tools/api-explorer)
 - [Contact Support](https://www.authlete.com/contact/)

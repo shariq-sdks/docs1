@@ -1,7 +1,8 @@
 ---
-description: Introduction
-title: Introduction
+description: "Introduction"
+title: "Introduction"
 ---
+
 
 
 # Introduction
@@ -65,7 +66,7 @@ The Grant Management specification defines a new endpoint called “**grant mana
 | QUERY |  |  |
 | --- | --- | --- |
 | Request | HTTP Method | GET |
-|  | URL | {\`endpoint}/{grant-id\`} |
+|  | URL | / |
 |  | Protection | Acccess token having the grant_management_query scope |
 | Response | Status Code | 200 OK |
 |  | Content-Type | application/json |
@@ -103,7 +104,7 @@ A client application can request claims by including special scopes (`profile`, 
 
 The value of `"authorization_details"` is an array of pieces of detailed information about authorization. The pieces of information are ones specified by the `authorization_details` request parameter which is defined in “**[OAuth 2.0 Rich Authorization Requests](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/)**” (**RAR**).
 
-Before RAR was developed, authorization server implementations had to introduce a nonstandard request parameter or use the `scope` request parameter in a nonstandard way in order to attach detailed information to an authorization request. The latter approach is called “parameterized scope” or “dynamic scope” which embeds a dynamic value in a scope string. For example, [Open Banking Brasil Financial-grade API Security Profile 1.0](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html) defines “Dynamic Consent Scope” ([Section 7.1.2](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-dynamic-consent-scope-defin)) whose format is `consent:{\`ConsentID}` where `consent:` is a fixed-string prefix and `{ConsentID\`}` is the dynamic part (e.g. `consent:urn:bancoex:C1DD33123`).
+Before RAR was developed, authorization server implementations had to introduce a nonstandard request parameter or use the `scope` request parameter in a nonstandard way in order to attach detailed information to an authorization request. The latter approach is called “parameterized scope” or “dynamic scope” which embeds a dynamic value in a scope string. For example, [Open Banking Brasil Financial-grade API Security Profile 1.0](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html) defines “Dynamic Consent Scope” ([Section 7.1.2](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-dynamic-consent-scope-defin)) whose format is `consent:` where `consent:` is a fixed-string prefix and `` is the dynamic part (e.g. `consent:urn:bancoex:C1DD33123`).
 
 The problem of the dynamic scope approach is that it is not standardized and interoperability among implementations is hopeless due to its intrinsically variant formats. RAR was developed to solve the problem and is positioned as a part of Financial-grade API 2.0.
 
@@ -116,7 +117,7 @@ The problem of the dynamic scope approach is that it is not standardized and int
 | REVOKE |  |  |
 | --- | --- | --- |
 | Request | HTTP Method | DELETE |
-|  | URL | {\`endpoint}/{grant-id\`} |
+|  | URL | / |
 |  | Protection | Access token having the grant_management_revoke scope |
 | Response | Status Code | 204 No Content |
 
@@ -175,8 +176,8 @@ The following are prior knowledge about Authlete’s access token implementation
 1. It is configurable whether a new refresh token is issued when a refresh token flow succeeds or new one is not issued and the used refresh token remains valid (cf. *"[Refresh tokens after being used](/kb/oauth-and-openid-connect/refreshing-refresh-tokens)"*). When a new refresh token is issued, the used refresh token is revoked even if it has not expired yet.
 1. The relationship between refresh token and access token is one-to-one. That is, the number of valid access tokens per refresh token is at most one, and vice versa.
 1. When a refresh token is deleted, the access token coupled with the refresh token is deleted. Likewise, when an access token is deleted, the refresh token coupled with the access token is deleted. Some people may get surprised at the latter behavior, but [Section 2.1](https://www.rfc-editor.org/rfc/rfc7009.html#section-2.1) of [RFC 7009 OAuth 2.0 Token Introspection](https://www.rfc-editor.org/rfc/rfc7009.html) states explicitly as follows: *“If the token passed to the request is an access token, the server MAY revoke the respective refresh token as well.”*
-1. The behaviors of refresh tokens described above can be explained by the design decision made in the very early phase of Authlete: **a pair of access token and refresh token is managed in one database record in the access token table.**
-1. An access token record is regarded as live (not expired) when either or both of access token and refresh token in the record have not expired.
+  1. The behaviors of refresh tokens described above can be explained by the design decision made in the very early phase of Authlete: **a pair of access token and refresh token is managed in one database record in the access token table.**
+  1. An access token record is regarded as live (not expired) when either or both of access token and refresh token in the record have not expired.
 
 The implementation type of access tokens is “handle”, not “self-contained” (typically JWT). By setting “Access Token Signature Algorithm”, you can make Authlete issue JWT access tokens (cf. *"[Enabling JWT-based access tokens](/kb/oauth-and-openid-connect/jwt-based-access-token)"*). However, for privacy and security reasons, Authlete’s JWT access tokens intentionally do not contain all data associated with them, and some portions of the data are stored only in the database of Authlete without being embedded in access tokens themselves. Read *"[Leakage of Personal Information via JWT Access Token](https://darutk.medium.com/leakage-of-personal-information-via-jwt-access-token-c222a3293898)"* and *"[OAuth Access Token Implementation](https://darutk.medium.com/oauth-access-token-implementation-30c2e8b90ff0)"* for details.
 
@@ -293,28 +294,24 @@ the collection will be compressed to the following.
 As a result, the `scopes` array in the grant management response will look like below.
 
 ```json
-{\`
-  "scopes": [
-    { "scope": "B1 G1 X1",    "resource": [ "r1"       ] },
-    { "scope": "A12 H12 X12", "resource": [ "r1", "r2" ] \`},
-    {\` "scope": "D13 I13 X13", "resource": [ "r1", "r3" ] },
-    { "scope": "C2 K2 X2",    "resource": [ "r2"       ] \`},
-    {\` "scope": "E23 L23 X23", "resource": [ "r2", "r3" ] },
-    { "scope": "F3 J3 X3",    "resource": [ "r3"       ] \`}
+,
+    ,
+    ,
+    ,
+    ,
+    
   ]
 }
 
 ```
 
 ```json
-{\`
-  "scopes": [
-    { "scope": "B1 G1 X1",    "resource": [ "r1"       ] },
-    { "scope": "A12 H12 X12", "resource": [ "r1", "r2" ] \`},
-    {\` "scope": "D13 I13 X13", "resource": [ "r1", "r3" ] },
-    { "scope": "C2 K2 X2",    "resource": [ "r2"       ] \`},
-    {\` "scope": "E23 L23 X23", "resource": [ "r2", "r3" ] },
-    { "scope": "F3 J3 X3",    "resource": [ "r3"       ] \`}
+,
+    ,
+    ,
+    ,
+    ,
+    
   ]
 }
 
@@ -341,20 +338,12 @@ the collection will be compressed to the following.
 As a result, the `claims` array in the grant management response will look like below.
 
 ```json
-{\`
-  "claims": [
-    "c1", "c2", "c3", "c4", "c5"
-  ]
-}
+
 
 ```
 
 ```json
-{
-  "claims": [
-    "c1", "c2", "c3", "c4", "c5"
-  ]
-\`}
+
 
 ```
 
@@ -363,18 +352,9 @@ As a result, the `claims` array in the grant management response will look like 
 Duplicates in the `authorization_details` array are removed. Authlete detects duplicates by comparing hash values of the array elements. Spaces and newlines in JSON do not affect the result of hash computation. The key order in JSON objects do not affect the result, either. The following two `authorization_details` elements are regarded as identical.
 
 ```json
-{\`
-  "authorization_details": [
-    {
-      "type": "t1",
-      "actions": [ "a1", "a2" ],
-      "my_custom_data": {
-        "key1": "value1",
-        "key2": "value2"
-      }
+
     \`},
-    {\`
-      "my_custom_data": { "key2": "value2", "key1": "value1" },
+    ,
       "actions": [
         "a1",
         "a2"
@@ -387,18 +367,9 @@ Duplicates in the `authorization_details` array are removed. Authlete detects du
 ```
 
 ```json
-{\`
-  "authorization_details": [
-    {
-      "type": "t1",
-      "actions": [ "a1", "a2" ],
-      "my_custom_data": {
-        "key1": "value1",
-        "key2": "value2"
-      }
+
     \`},
-    {\`
-      "my_custom_data": { "key2": "value2", "key1": "value1" },
+    ,
       "actions": [
         "a1",
         "a2"
@@ -475,4 +446,4 @@ The table below lists the request parameters of the `/api/gm` API. See the JavaD
 Grant Management for OAuth 2.0 is supported from Authlete 2.3. The version is not deployed on the shared server (`api.authlete.com`) as of this writing. Please [contact us](/contact/) for early access to Authlete 2.3.
 
 *November 9, 2021*
-*Responsibility for the wording and content of this article: Takahiko Kawasaki*
+  *Responsibility for the wording and content of this article: Takahiko Kawasaki*

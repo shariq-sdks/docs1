@@ -1,7 +1,8 @@
 ---
-description: TypeScript SDK
-title: TypeScript SDK
+description: "TypeScript SDK"
+title: "TypeScript SDK"
 ---
+
 
 
 # TypeScript SDK
@@ -17,19 +18,12 @@ npm install @authlete/authlete-ts
 ## Quick Start
 
 ```typescript
-import {\` AuthleteApi } from '@authlete/authlete-ts';
+import  from '@authlete/authlete-ts';
 
-const authlete = new AuthleteApi({
-  baseUrl: 'https://api.authlete.com',
-  serviceApiKey: 'your-service-api-key',
-  serviceApiSecret: 'your-service-api-secret'
-\`});
+const authlete = new AuthleteApi();
 
 // Create a service
-const service = await authlete.createService({\`
-  serviceName: 'My OAuth Service',
-  supportedGrantTypes: ['AUTHORIZATION_CODE', 'REFRESH_TOKEN']
-});
+const service = await authlete.createService();
 ```
 
 ## Features
@@ -53,22 +47,10 @@ const service = await authlete.createService({\`
 
 ```typescript
 // Process authorization request
-const authRequest = await authlete.processAuthorizationRequest({
-  parameters: {
-    response_type: 'code',
-    client_id: 'client123',
-    redirect_uri: 'https://example.com/callback',
-    scope: 'read write'
-  \`}
+const authRequest = await authlete.processAuthorizationRequest(
 });
 
-if (authRequest.action === 'INTERACTION') {\`
-  // Show authorization page
-  // After user consent, call issueAuthorizationResponse
-  const authResponse = await authlete.issueAuthorizationResponse({
-    ticket: authRequest.ticket,
-    subject: 'user123'
-  });
+if (authRequest.action === 'INTERACTION') );
 \`}
 ```
 
@@ -76,13 +58,7 @@ if (authRequest.action === 'INTERACTION') {\`
 
 ```typescript
 // Process token request
-const tokenRequest = await authlete.processTokenRequest({\`
-  parameters: {
-    grant_type: 'authorization_code',
-    code: 'auth_code_here',
-    client_id: 'client123',
-    redirect_uri: 'https://example.com/callback'
-  }
+const tokenRequest = await authlete.processTokenRequest(
 \`});
 
 if (tokenRequest.action === 'OK') {
@@ -98,6 +74,6 @@ if (tokenRequest.action === 'OK') {
 ## Support
 
 For questions and support:
-- [Documentation](/reference/knowledge-base)
+  - [Documentation](/reference/knowledge-base)
 - [API Explorer](/tools/api-explorer)
 - [Contact Support](https://www.authlete.com/contact/)

@@ -1,7 +1,8 @@
 ---
-title: 'Comprehensive API Protection with Standard Specifications - Authlete'
-description: 'This article introduces how to fully leverage the standards developed since RFC 6749 to protect APIs.'
+  title: 'Comprehensive API Protection with Standard Specifications - Authlete'
+description: "'This article introduces how to fully leverage the standards developed since RFC 6749 to protect APIs.'"
 ---
+
 
 ## Introduction
 The Internet Engineering Task Force ([IETF](https://www.ietf.org/)) published [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html),
@@ -123,7 +124,7 @@ In addition to these, standards developed elsewhere are also referenced in the
 context of OAuth and OpenID. For example, the
 [OpenID Shared Signals Framework Specification 1.0](https://openid.github.io/sharedsignals/openid-sharedsignals-framework-1_0.html) relies on the following
 RFCs developed by the now-closed IETF’s [SECEVENT Working Group](https://datatracker.ietf.org/wg/secevent/about/):
-| Date | RFC | Title |
+  | Date | RFC | Title |
 | --- | --- | --- |
 | 2018-07 | [RFC 8417](https://www.rfc-editor.org/rfc/rfc8417.html) | [Security Event Token (SET)](https://www.rfc-editor.org/rfc/rfc8417.html) |
 | 2020-11 | [RFC 8935](https://www.rfc-editor.org/rfc/rfc8935.html) | [Push-Based Security Event Token (SET) Delivery Using HTTP](https://www.rfc-editor.org/rfc/rfc8935.html) |
@@ -131,7 +132,7 @@ RFCs developed by the now-closed IETF’s [SECEVENT Working Group](https://datat
 | 2023-12 | [RFC 9493](https://www.rfc-editor.org/rfc/rfc9493.html) | [Subject Identifiers for Security Event Tokens](https://www.rfc-editor.org/rfc/rfc9493.html) |
 Similarly, [FAPI 2.0 Http Signatures](https://openid.bitbucket.io/fapi/fapi-2_0-http-signatures.html) relies on the
 following RFCs developed by the IETF’s [HTTPBIS Working Group](https://datatracker.ietf.org/wg/httpbis/about/):
-| Date | RFC | Title |
+  | Date | RFC | Title |
 | --- | --- | --- |
 | 2021-02 | [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html) | [Structured Field Values for HTTP](https://www.rfc-editor.org/rfc/rfc8941.html)★ |
 | 2024-02 | [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421.html) | [HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html)★ |
@@ -157,7 +158,7 @@ sender-constrained access tokens using MTLS ([RFC 8705](https://www.rfc-editor.o
 [Cedar](https://www.cedarpolicy.com/).
 As Authlete is always committed to supporting developers, this article also
 covers implementation-oriented considerations, such as:
-- How to determine access token expiration while accounting for clock
+  - How to determine access token expiration while accounting for clock
 skew between systems
 - How to receive the client certificate used in mutual TLS between the
 reverse proxy and the client
@@ -168,7 +169,7 @@ Let’s get started!
 ## Access Token Usage
 [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750.html) (Bearer Token Usage) defines three methods for presenting
 an access token to a resource server:
-1. Using the `Authorization` header ([Section 2.1](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.1))
+  1. Using the `Authorization` header ([Section 2.1](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.1))
 2. Using a form parameter ([Section 2.2](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.2))
 3. Using a query parameter ([Section 2.3](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3))
 However, the second method is rarely used because it restricts the format
@@ -178,7 +179,7 @@ and the third method is generally avoided due to security concerns.
 As a result, the first method is used in most cases.
 In the method that uses the `Authorization` header, the value of the header
 is formatted as follows:
-`
+  `
 Bearer Access Token
 `
 Here, the `Bearer` part is a fixed string, and the Access Token should
@@ -289,10 +290,10 @@ signature. If the verification succeeds, it can be concluded that the JWT
 access token has not been tampered with.
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/jwt_access_token_signature_verification-6.png)](/api_protection)
 Summary:
-[![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/jwt_access_token_signature_verification.png)](/api_protection)
+  [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/jwt_access_token_signature_verification.png)](/api_protection)
 ## Time
 An access token can have up to three time-related attributes:
-1. issuance time
+  1. issuance time
 2. validity start time
 3. validity end time
 Regardless of whether the access token information is obtained from an
@@ -310,7 +311,7 @@ when all three attributes—`iat`, `nbf`, and `exp`—are specified.
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/access_token_validity_period.png)](/api_protection)
 The resource server checks whether the current time falls within the validity
 period of the access token. Specifically, it performs the following checks:
-1. The issuance time is in the past (i.e., not after the current time).
+  1. The issuance time is in the past (i.e., not after the current time).
 2. The not-before time is in the past (i.e., not after the current time).
 3. The expiration time is in the future (i.e., after the current time).
 However, in real-world systems, these checks are performed with clock skew
@@ -339,7 +340,7 @@ the value of 30 seconds is needed to fully eliminate clock skew issues. To
 prevent implementations switching off `iat` and `nbf` checks completely this
 document imposes a maximum timestamp in the future of 60 seconds.
 Technically, when accounting for clock skew, there are two approaches:
-tightening the validation (making tokens less likely to be considered valid),
+  tightening the validation (making tokens less likely to be considered valid),
 and loosening the validation (making tokens more likely to be considered valid).
 What is typically required in real-world system operations is the latter.
 With this in mind, when comparing `iat` and `nbf` to the current time, the
@@ -384,7 +385,7 @@ token to the client application with the requested scopes attached.
 The client application accesses the API with the access token attached.
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/access_token_scope-3.png)](/api_protection)
 Summary:
-[![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/access_token_scope.png)](/api_protection)
+  [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/access_token_scope.png)](/api_protection)
 ## Audience Restriction
 There is a method to restrict the audience of an access token.
 By using this method, for example, it is possible to designate only a specific
@@ -400,11 +401,7 @@ For example, if an introspection response includes `https://rs.example.com` in
 the value of its `aud` property, it means that the access token can be used
 only at `https://rs.example.com`.
 ```json
-{\`
-"aud": [
-"https://rs.example.com"
-]
-}
+
 ```If that access token is presented to
 `https://rs.example.org`, and if the APIs on
 `https://rs.example.org` are correctly validating
@@ -459,7 +456,7 @@ use are referred to as “sender-constrained”
 access tokens.
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/sender_constrained_access_token.png)](/api_protection)
 There are two methods for implementing sender-constrained access tokens:
-MTLS ([RFC 8705 Section 3](https://www.rfc-editor.org/rfc/rfc8705.html#section-3)) and DPoP ([RFC 9449](https://www.rfc-editor.org/rfc/rfc9449.html)).
+  MTLS ([RFC 8705 Section 3](https://www.rfc-editor.org/rfc/rfc8705.html#section-3)) and DPoP ([RFC 9449](https://www.rfc-editor.org/rfc/rfc9449.html)).
 The following two sections describe these methods.
 ## MTLS
 [RFC 8705](https://www.rfc-editor.org/rfc/rfc8705.html) [Section 3](https://www.rfc-editor.org/rfc/rfc8705.html#section-3) defines a method (hereafter
@@ -557,7 +554,7 @@ application making the resource request is considered not to be the
 legitimate holder of the access token, and the resource request is denied.
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/certificate_bound_access_token-9.png)](/api_protection)
 Summary:
-[![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/certificate_bound_access_token.png)](/api_protection)
+  [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/certificate_bound_access_token.png)](/api_protection)
 ### Client Certificate Forwarding
 When deploying a TLS-protected application server, it is common to place a
 reverse proxy between the client and the application server. The reverse proxy
@@ -587,11 +584,11 @@ representing the DER-encoded ([X.690](https://www.itu.int/rec/T-REC-X.690/)) cli
 To briefly describe the format of a
 [Byte Sequence](https://www.rfc-editor.org/rfc/rfc8941.html#section-3.3.5)
 defined in [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html),
-it is expressed as `:{base64\`}:`—the original data is
+it is expressed as `::`—the original data is
 encoded in Base64 ([RFC 4648](https://www.rfc-editor.org/rfc/rfc4648.html))
 and enclosed by colons (`:`) on both sides.
 Summary:
-[![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/client_certificate_forwarding.png)](/api_protection)
+  [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/client_certificate_forwarding.png)](/api_protection)
 ## DPoP
 [RFC 9449](https://www.rfc-editor.org/rfc/rfc9449.html), commonly referred to as DPoP, is one method for
 implementing sender-constrained access tokens.
@@ -615,7 +612,7 @@ pair will be bound to the access token generated in the subsequent process.
 Next, the client creates a PoP. In [RFC 9449](https://www.rfc-editor.org/rfc/rfc9449.html), this PoP is called a
 DPoP proof JWT, and its structure is precisely defined. The key points are
 as follows:
-- The format is JWT.
+  - The format is JWT.
 - The `typ` header parameter value is `dpop+jwt`.
 - The `jwk` header parameter contains the public key to be bound to the access token.
 - The `htm` claim value is the HTTP method of the request to be sent.
@@ -676,7 +673,7 @@ that the client application making the resource request is not the legitimate
 holder of the access token and rejects the resource request.
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/dpop_bound_access_token-12.png)](/api_protection)
 Summary:
-[![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/dpop_bound_access_token.png)](/api_protection)
+  [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/dpop_bound_access_token.png)](/api_protection)
 ### DPoP Nonce
 A server may require that a nonce value it provides be included in the DPoP
 proof JWT. By setting a lifetime for the nonce value, the server can control
@@ -746,7 +743,7 @@ For this purpose, the `Forwarded` HTTP header was defined by the
 scheme of the original request was `https` and the host name was
 `rs.example.com`, the reverse proxy would add a
 `Forwarded` header like the following:
-`
+  `
 Forwarded: proto=https;host=rs.example.com
 `
 The `Forwarded` HTTP header standardized what had previously been achieved
@@ -812,7 +809,7 @@ application, depending on its particular purpose. For instance, the
 [FAPI 2.0 HTTP Signatures](https://openid.bitbucket.io/fapi/fapi-2_0-http-signatures.html) specification requires that
 the following components be included in the signature when signing an HTTP
 request:
-1. HTTP method
+  1. HTTP method
 2. Target URI
 3. `Authorization` HTTP field
 4. `DPoP` HTTP field (if present)
@@ -827,12 +824,12 @@ must first be constructed. For the precise syntax of the signature base, see
 [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421.html), [Section 2.5. Creating the Signature Base](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.5).
 [![](https://storage.googleapis.com/authlete-website/img/developers/api_protection/signature_base_syntax.png)](/api_protection)
 Here is an example of a signature base excerpted from [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421.html):
-`
+  `
 "@method": POST
 "@authority": example.com
 "@path": /foo
 "content-digest": sha-512=:WZDPaVn/7XgHaAy8pmojAkGWoRx2UFChF41A2svX+TaPm+AbwAgBWnrIiYllu7BNNyealdVLvRwEmTHWXvJwew==:
-"content-length": 18
+  "content-length": 18
 "content-type": application/json
 "@signature-params": ("@method" "@authority" "@path" "content-digest" "content-length" "content-type");created=1618884473;keyid="test-key-rsa-pss
 `
@@ -845,7 +842,7 @@ about the signature. It always begins with `"@signature-params":`, followed by
 an Inner List ([RFC 8941 Section 3.1.1](https://www.rfc-editor.org/rfc/rfc8941.html#section-3.1.1)). This Inner List
 enumerates the component identifiers of the HTTP message components included in
 the signature. In this example, the following six are listed:
-- `"@method"`
+  - `"@method"`
 - `"@authority"`
 - `"@path"`
 - `"content-digest"`
@@ -903,7 +900,7 @@ However, [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421.html) does not define
 When a resource server attempts to verify an HTTP message signature on an HTTP
 request, at first glance it may appear possible to obtain the verification key
 through the following steps:
-1. Extract the access token contained in the HTTP request
+  1. Extract the access token contained in the HTTP request
 2. Identify the client application associated with the access token
 3. Retrieve the client application’s `jwks_uri` metadata information
 4. Obtain the JWK Set from the location indicated by the `jwks_uri`
@@ -953,9 +950,9 @@ Date: Tue, 20 Apr 2021 02:07:55 GMT
 Content-Type: application/json
 Content-Length: 18
 Content-Digest: sha-512=:WZDPaVn/7XgHaAy8pmojAkGWoRx2UFChF41A2svX+TaPm+AbwAgBWnrIiYllu7BNNyealdVLvRwEmTHWXvJwew==:
-Signature-Input: sig1=("@method" "@authority" "@path" "content-digest" "content-type" "content-length");created=1618884475;keyid="test-key-ecc-p256
+  Signature-Input: sig1=("@method" "@authority" "@path" "content-digest" "content-type" "content-length");created=1618884475;keyid="test-key-ecc-p256
 Signature: sig1=:X5spyd6CFnAG5QnDyHfqoSNICd+BUP4LYMz2Q0JXlb//4Ijpzp+kve2w4NIyqeAuM7jTDX+sNalzA8ESSaHD3A==:
-{\`"hello": "world"}
+
 `
 ## FAPI 2.0 Http Signatures
 As [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421.html) itself states, the specification is designed as a tool,
@@ -963,7 +960,7 @@ and therefore additional requirements need to be defined according to the
 purposes of the application or profile when it is actually used.
 [RFC 9421 Section 1.4](https://www.rfc-editor.org/rfc/rfc9421.html#section-1.4) provides examples of such requirements.
 For instance, the following items are listed:
-- The set of components to be signed
+  - The set of components to be signed
 - The set of signature metadata parameters
 - The method of obtaining signing and verification keys
 - The signature algorithm
@@ -1068,14 +1065,11 @@ an example of an `authorization_details` array excerpted from
 that specification.
 ```json
 [
-{
-"type": "openid_credential",
-"credential_configuration_id": "UniversityDegreeCredential"
-\`}
+
 ]
 ```The RAR specification defines, in addition to the `type` property, the
 following properties. Whether or not to use them is optional:
-- `locations`
+  - `locations`
 - `actions`
 - `datatypes`
 - `identifier`
@@ -1088,39 +1082,11 @@ properties such as `geolocation` and `currency` that are not defined in
 [RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html).
 ```json
 [
-{\`
-"type": "photo-api",
-"actions": [
-"read",
-"write"
-],
-"locations": [
-"https://server.example.net/",
-"https://resource.local/other"
-],
-"datatypes": [
-"metadata",
-"images"
-],
-"geolocation": [
-{
-"lat": -32.364,
-"lng": 153.207
-},
-{
-"lat": -35.364,
-"lng": 158.207
-\`}
+,
+
 ]
 },
-{\`
-"type": "financial-transaction",
-"actions": [
-"withdraw"
-],
-"identifier": "account-14-32-32-3",
-"currency": "USD"
-}
+
 ]
 ```According to the RAR specification, the `authorization_details`
 parameter can be used anywhere the `scope` parameter is available (provided the
@@ -1131,40 +1097,14 @@ The following is an excerpt from
 [RFC 9396 Section 9.2. Token Introspection](https://www.rfc-editor.org/rfc/rfc9396.html#section-9.2), showing an example
 of an introspection response.
 ```json
-{
-"active": true,
-"sub": "24400320",
-"aud": "s6BhdRkqt3",
-"exp": 1311281970,
-"acr": "psd2_sca",
-"txn": "8b4729cc-32e4-4370-8cf0-5796154d1296",
-"authorization_details": [
-{
-"type": "https://scheme.example.com/payment_initiation",
-"actions": [
-"initiate",
-"status",
-"cancel"
-],
-"locations": [
-"https://example.com/payments"
-],
-"instructedAmount": {
-"currency": "EUR",
-"amount": "123.50"
-\`},
+,
 "creditorName": "Merchant123",
-"creditorAccount": {\`
-"iban": "DE02100100109307118603"
-},
+"creditorAccount": ,
 "remittanceInformationUnstructured": "Ref Number Merchant"
 \`}
 ],
-"debtorAccount": {\`
-"iban": "DE40100100103307118608",
-"user_role": "owner"
-}
-\`}
+"debtorAccount": 
+  \`}
 ```
 ## Cedar
 [Cedar](https://www.cedarpolicy.com/) is a language for writing authorization policies
@@ -1196,10 +1136,7 @@ principal,
 action == Action::"read",
 resource
 )
-when {\`
-resource.owner == principal ||
-resource.tag == "public"
-};
+when ;
 ### Cedar in RAR Object
 By associating scopes with an access token
 ([RFC 6749 Section 3.3](https://www.rfc-editor.org/rfc/rfc6749.html#section-3.3)), it is possible to represent the
@@ -1210,7 +1147,7 @@ One promising approach to realizing this idea is to represent Cedar policies
 as RAR objects.
 When determining the details of how to represent them, the following
 considerations arise:
-- The original syntax of Cedar policies is unique. Should we embed the policy
+  - The original syntax of Cedar policies is unique. Should we embed the policy
 in its original syntax within the RAR object, or should we convert it to
 JSON format ([JSON Policy Format](https://docs.cedarpolicy.com/policies/json-format.html)) before embedding?
 While the JSON format is highly compatible with RAR, it tends to be verbose
@@ -1259,7 +1196,7 @@ respectively, and are set as parent entities of the
 `principal`. If they follow
 [RFC 7643 Section 2.4](https://www.rfc-editor.org/rfc/rfc7643.html#section-2.4), each element is a JSON object that
 includes a `value` property (e.g.,
-`"groups":[{"value":"group1"\`}]`).
+`"groups":[]`).
 The value of this `value` property is treated as the
 unique identifier of the entity. If they do not follow
 [RFC 7643 Section 2.4](https://www.rfc-editor.org/rfc/rfc7643.html#section-2.4), they are assumed to be JSON strings
@@ -1279,22 +1216,11 @@ a Cedar policy using the original Cedar syntax, while the second RAR object
 describes a Cedar policy using the [JSON Policy Format](https://docs.cedarpolicy.com/policies/json-format.html).
 ```json
 [
-{\`
-"type":      "cedar-policy",
-"format":    "cedar",
-"policy_id": "policy-0",
-"policy":    "permit (principal == User::\"12UA45\", action == Action::\"view\", resource);"
-},
-{
-"type":      "cedar-policy",
-"format":    "json",
-"policy_id": "policy-1",
-"policy": {
-"effect":  "permit",
-"principal": { "op": "==", "entity": { "type": "User",   "id": "12UA45" \`} },
-"action":    {\` "op": "==", "entity": { "type": "Action", "id": "view"   } \`},
-"resource":  {\` "op": "All" }
-\`}
+,
+ },
+"action":     \`},
+"resource":  
+  \`}
 }
 ]
 ```
@@ -1338,25 +1264,12 @@ provide this API with the necessary information to determine whether access
 should be granted, it returns the evaluation result as a boolean value.
 Below is an example request and response for this API.
 ```json
-{\`
-"subject": {
-"type": "user",
-"id": "alice@acmecorp.com"
-},
-"resource": {
-"type": "account",
-"id": "123"
-\`},
-"action": {\`
-"name": "can_read",
-"properties": {
-"method": "GET"
-}
-\`},
-"context": {\`
-"time": "1985-10-26T01:22-07:00"
-}
-\`}
+,
+"resource": ,
+"action": 
+  \`},
+"context": 
+  \`}
 ``````json
 {
 "decision": true

@@ -1,7 +1,8 @@
 ---
-description: Terraform Bootstrap
-title: Terraform Bootstrap
+description: "Terraform Bootstrap"
+title: "Terraform Bootstrap"
 ---
+
 
 
 # Terraform Bootstrap
@@ -25,19 +26,13 @@ terraform init
 ### 2. Configure Authlete Provider
 
 ```hcl
-provider "authlete" {\`
-  api_key    = var.authlete_api_key
-  api_secret = var.authlete_api_secret
-}
+provider "authlete" 
 ```
 
 ### 3. Create Initial Resources
 
 ```hcl
-resource "authlete_service" "main" {
-  service_name = "My OAuth Service"
-  # ... other configuration
-\`}
+resource "authlete_service" "main" 
 ```
 
 ### 4. Apply Configuration

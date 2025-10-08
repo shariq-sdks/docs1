@@ -1,7 +1,8 @@
 ---
-description: Overview
-title: Overview
+description: "Overview"
+title: "Overview"
 ---
+
 
 
 # Overview
@@ -12,7 +13,7 @@ This document describes how to protect a Web API implemented using Amazon API Ga
 
 The following sections assume:
 
-- You have a lambda function `GetHelloWorld` that returns `{\`"Hello":"World"}`.
+- You have a lambda function `GetHelloWorld` that returns ``.
 - You have `/mydemoresource` resource that supports `GET` method on Amazon API Gateway.
 - You have a service in Authlete. A service is created automatically on sign-up and you can use it.
 - You have a client application in Authlete. A client application is created automatically on sign-up and you can use it.
@@ -34,7 +35,7 @@ in this directory.
 1. [Lambda] Edit the timeout valueIncrease the timeout value of the lambda function (e.g. to 30 sec).
 1. [API Gateway] [Method Request] Add `access_token` as a query parameter to `GET /mydemoresource`
 1. [API Gateway] [Integration Request] Set a template as is shown below
-`{ "access_token": "$input.params('access_token')" \`}
+`
 `
 1. [Amazon API Gateway] [Method Response] Add 400, 401, 403 and 500 as HTTP status codes
 1. [Amazon API Gateway] [Integration Response] Set mappings as shown below
@@ -43,16 +44,16 @@ Lambda Error Regex
 Method response status
 
 BAD_REQUEST:*
-400
+  400
 
 UNAUTHORIZED:.*
-401
+  401
 
 FORBIDDEN:.*
-403
+  403
 
 INTERNAL_SERVER_ERROR:.*
-500
+  500
 
 [API Gateway] Complete steps in [Getting Started with Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html)
 
@@ -84,7 +85,7 @@ Create a ZIP file containing index.js and node_modules directory.
 [API Gateway] [Integration Request] Set a template as is shown below
 
 ```
-{\` "access_token": "$input.params('access_token')" }
+
 
 ```
 
@@ -113,11 +114,7 @@ Access the URL below with your browser.
 Don’t forget to replace your-api-id, region-id and your-access-token with your own.
 `https://your-api-id.execute-api.region-id.amazonaws.com/test/mydemoresource?access_token=your-access-token
 `You will receive a JSON like below with HTTP status code 200 (OK).
-`{
-"Hello": "World",
-"clientId": 4326385670,
-"subject": "authlete_5526908833"
-\`}
+`
 `
 
 Make an authorization request

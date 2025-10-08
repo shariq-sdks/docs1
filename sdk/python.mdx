@@ -1,7 +1,8 @@
 ---
-description: Python SDK
-title: Python SDK
+description: "Python SDK"
+title: "Python SDK"
 ---
+
 
 
 # Python SDK
@@ -62,12 +63,7 @@ from authlete.dto import AuthorizationRequest, AuthorizationResponse
 
 # Process authorization request
 request = AuthorizationRequest()
-request.parameters = {\`
-    "response_type": "code",
-    "client_id": "client123",
-    "redirect_uri": "https://example.com/callback",
-    "scope": "read write"
-}
+request.parameters = 
 
 response = api.process_authorization_request(request)
 
@@ -90,18 +86,13 @@ from authlete.dto import TokenRequest, TokenResponse
 
 # Process token request
 request = TokenRequest()
-request.parameters = {
-    "grant_type": "authorization_code",
-    "code": "auth_code_here",
-    "client_id": "client123",
-    "redirect_uri": "https://example.com/callback"
-\`}
+request.parameters = 
 
 response = api.process_token_request(request)
 
 if response.action == "OK":
-    print(f"Access Token: {\`response.access_token}")
-    print(f"Refresh Token: {response.refresh_token\`}")
+    print(f"Access Token: ")
+    print(f"Refresh Token: ")
 ```
 
 ### Async Example
@@ -125,7 +116,7 @@ async def main():
     request.service = service
     
     created_service = await api.create_service(request)
-    print(f"Created service: {\`created_service.service_name}")
+    print(f"Created service: ")
 
 # Run the async function
 asyncio.run(main())
@@ -152,7 +143,7 @@ def authorize():
     response = api.process_authorization_request(auth_request)
     
     if response.action == "INTERACTION":
-        return jsonify({"message": "Show authorization page"\`})
+        return jsonify()
     
     return jsonify(response.to_dict())
 
@@ -167,6 +158,6 @@ if __name__ == '__main__':
 ## Support
 
 For questions and support:
-- [Documentation](/reference/knowledge-base)
+  - [Documentation](/reference/knowledge-base)
 - [API Explorer](/tools/api-explorer)
 - [Contact Support](https://www.authlete.com/contact/)

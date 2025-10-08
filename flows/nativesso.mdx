@@ -1,7 +1,8 @@
 ---
-title: 'Native SSO'
-description: 'Native Single Sign-On implementation for mobile applications.'
+  title: 'Native SSO'
+description: "'Native Single Sign-On implementation for mobile applications.'"
 ---
+
 
 ## Concept
 [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
@@ -54,14 +55,14 @@ that the `scope` parameter must include both the `openid` scope and the
 specification.
 The minimum required request parameters for an authorization request compliant
 with Native SSO are as follows:
-| Parameter | Description |
+  | Parameter | Description |
 | --- | --- |
 | `client_id` | The client identifier, such as `app_1`. |
 | `response_type` | A space-separated list of the tokens being requested. When requesting an authorization code, it includes `code`. |
 | `scope` | A space-separated list of the scopes being requested. To comply with the Native SSO specification, both `openid` and `device_sso` must be included. |
 | `redirect_uri` | The redirect URI. According to the OpenID Connect specification, the `redirect_uri` parameter is required when requesting the `openid` scope. |
 Here is an example of an authorization request:
-`https://trial.authlete.net/api/authorization?client_id=app_1&response_type=code&scope=openid+device_sso&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection
+  `https://trial.authlete.net/api/authorization?client_id=app_1&response_type=code&scope=openid+device_sso&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection
 `
 This example actually works. When the authorization page is displayed, please
 enter `inga` and `inga` as the login ID and password,
@@ -71,7 +72,7 @@ at the end of the authorization request.
 ### App 1 Token Request
 A token request is constructed using the authorization code obtained from the
 above authorization request. The request parameters required are as follows:
-| Parameter | Description |
+  | Parameter | Description |
 | --- | --- |
 | `grant_type` | This is the grant type. It is a mandatory parameter regardless of the flow used. For the authorization code flow, the value should be specified as `authorization_code`. |
 | `code` | This is a mandatory parameter in the authorization code flow. It specifies the authorization code obtained from the authorization request. |
@@ -88,11 +89,11 @@ request parameters are required. For more details on client authentication metho
 refer to
 “[OAuth 2.0 Client Authentication](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4)”.
 The following is an example of a token request by a public client:
-`POST https://trial.authlete.net/api/token HTTP/1.1
+  `POST https://trial.authlete.net/api/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
-client_id=app_1&grant_type=authorization_code&code={\`{authorization_code}\`}&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection
+client_id=app_1&grant_type=authorization_code&code=\`}&redirect_uri=https://nextdev-api.authlete.net/api/mock/redirection
 `
-If you try this example in practice, replace `{\`{authorization_code}\`}`
+If you try this example in practice, replace `\`}`
 with the actual value (the authorization code obtained as a result of the
 authorization request).
 ### App 1 Token Response
@@ -101,35 +102,16 @@ access token and refresh token (optional), an ID token and a device secret
 that comply with Native SSO. The device secret is returned as the value of
 the `device_secret` property.
 ```json
-{\`
-"access_token": "R28TIqhCydVvH2x2a3XsOzJykFEs7yFotO4ip-a2MbY",
-"token_type": "Bearer",
-"expires_in": 86400,
-"scope": "openid device_sso",
-"refresh_token": "lmlNXafSApRDAq7gZvy40ojya9bplgFSHczms46mTms",
-"id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzEiXSwiZXhwIjoxNzQ2NDM3MTE5LCJpYXQiOjE3NDYzNTA3MTksImF1dGhfdGltZSI6MTc0NjM1MDY3MiwiZHNfaGFzaCI6IlhrYmdHQ1JKUTFOQUhuS25NbjhKMFhIS25fOEVNenhCOWFRdUZITk0ycDQiLCJzaWQiOiJub2RlMDM4Y2F0N2ozMDhzZzE4MjhtMXNnMmRleGwzIn0.JAYlCEbGhjJwpgSZ4lUNaXkWD2ICeDs6FCBd3bKRvKPhrrGZKUAZDRij_Bmn_AF7DyTQS5ALHl82cJqjaLCcIw",
-"device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83"
-}
+
 ```The value of the `id_token` property included in the token response is the
 ID token:
-`
+  `
 eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzEiXSwiZXhwIjoxNzQ2NDM3MTE5LCJpYXQiOjE3NDYzNTA3MTksImF1dGhfdGltZSI6MTc0NjM1MDY3MiwiZHNfaGFzaCI6IlhrYmdHQ1JKUTFOQUhuS25NbjhKMFhIS25fOEVNenhCOWFRdUZITk0ycDQiLCJzaWQiOiJub2RlMDM4Y2F0N2ozMDhzZzE4MjhtMXNnMmRleGwzIn0.JAYlCEbGhjJwpgSZ4lUNaXkWD2ICeDs6FCBd3bKRvKPhrrGZKUAZDRij_Bmn_AF7DyTQS5ALHl82cJqjaLCcIw`
 The payload of this ID token, when decoded using base64url, is as follows.
 The ID token compliant with Native SSO specification includes the `ds_hash`
 claim and the `sid` claim.
 ```json
-{
-"iss": "https://trial.authlete.net",
-"sub": "1004",
-"aud": [
-"app_1"
-],
-"exp": 1746437119,
-"iat": 1746350719,
-"auth_time": 1746350672,
-"ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
-"sid": "node038cat7j308sg1828m1sg2dexl3"
-\`}
+
 ```The `ds_hash` claim is the hash value of the device secret. How this hash value
 is calculated depends on the implementation, but the `ds_hash` claim allows the
 ID token to be associated with the device secret.
@@ -148,7 +130,7 @@ For an explanation of RFC 8693, please refer to the article
 2.0 Token Exchange](https://www.authlete.com/developers/token_exchange/)".
 The request parameters for a token exchange request compliant with the Native
 SSO specification are as follows:
-| Parameter | Description |
+  | Parameter | Description |
 | --- | --- |
 | `grant_type` | The grant type. In a token exchange request, specify `urn:ietf:params:oauth:grant-type:token-exchange`. |
 | `audience` | The intended recipient of the token issued by the token exchange request. In a Native SSO token exchange request, specify the identifier of the OpenID Provider. |
@@ -169,12 +151,12 @@ request parameters are required. For more details on client authentication metho
 refer to
 “[OAuth 2.0 Client Authentication](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4)”.
 The following is an example of a token exchange request by a public client:
-`POST https://trial.authlete.net/api/token HTTP/1.1
+  `POST https://trial.authlete.net/api/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
-client_id=app_2&grant_type=urn:ietf:params:oauth:grant-type:token-exchange&audience=https://trial.authlete.net&subject_token={\`{id_token}\`}&subject_token_type=urn:ietf:params:oauth:token-type:id_token&actor_token={\`{device_secret}\`}&actor_token_type=urn:openid:params:token-type:device-secret&scope=openid
+client_id=app_2&grant_type=urn:ietf:params:oauth:grant-type:token-exchange&audience=https://trial.authlete.net&subject_token=\`}&subject_token_type=urn:ietf:params:oauth:token-type:id_token&actor_token=\`}&actor_token_type=urn:openid:params:token-type:device-secret&scope=openid
 `
-If you want to try this example in practice, replace `{\`{id_token}\`}`
-and `{\`{device_secret}\`}` with actual values.
+If you want to try this example in practice, replace `\`}`
+and `\`}` with actual values.
 ### App 2 Token Response
 The response to the token exchange request is almost identical to the token
 response of the authorization code flow. The only difference is that it
@@ -182,32 +164,13 @@ includes the `issued_token_type` property. In the case
 of Native SSO, the value of `issued_token_type` is
 `urn:ietf:params:oauth:token-type:access_token`.
 ```json
-{\`
-"access_token": "rH9115-g83z9zIiCJ1mzIe8mza3bX4NaBTWmGs5qqow",
-"token_type": "Bearer",
-"expires_in": 86400,
-"scope": "openid",
-"refresh_token": "_F7NMCU1ny8DQ-3Pru_owgII52gIew0T6wuWKeIrfL4",
-"id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzIiXSwiZXhwIjoxNzQ2NDM4MzUxLCJpYXQiOjE3NDYzNTE5NTEsImRzX2hhc2giOiJYa2JnR0NSSlExTkFIbktuTW44SjBYSEtuXzhFTXp4QjlhUXVGSE5NMnA0Iiwic2lkIjoibm9kZTAzOGNhdDdqMzA4c2cxODI4bTFzZzJkZXhsMyJ9.8jNNF5mpeHnbqp1FTK_1adR8FlgPmHK9_rwUzaz-o5P7RMyaelBaSj74IhxHY6wbCJeD0n_N14h8vD8zWYh-8w",
-"device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83",
-"issued_token_type": "urn:ietf:params:oauth:token-type:access_token"
-}
+
 ```Extracting the ID token from the above response example:
-`
+  `
 eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzIiXSwiZXhwIjoxNzQ2NDM4MzUxLCJpYXQiOjE3NDYzNTE5NTEsImRzX2hhc2giOiJYa2JnR0NSSlExTkFIbktuTW44SjBYSEtuXzhFTXp4QjlhUXVGSE5NMnA0Iiwic2lkIjoibm9kZTAzOGNhdDdqMzA4c2cxODI4bTFzZzJkZXhsMyJ9.8jNNF5mpeHnbqp1FTK_1adR8FlgPmHK9_rwUzaz-o5P7RMyaelBaSj74IhxHY6wbCJeD0n_N14h8vD8zWYh-8w`
 and decoding its payload part using base64url will show this result:
-```json
-{
-"iss": "https://trial.authlete.net",
-"sub": "1004",
-"aud": [
-"app_2"
-],
-"exp": 1746438351,
-"iat": 1746351951,
-"ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
-"sid": "node038cat7j308sg1828m1sg2dexl3"
-\`}
+  ```json
+
 ```The values of the `ds_hash` and `sid` claims are the same as those in the ID
 token received by App 1, but the value of the `aud` claim is different. In this
 ID token, the identifier of App 2, `app_2`, is included in the `aud` array.
@@ -225,7 +188,7 @@ to `true`, the discovery document generated by Authlete’s
 `/service/configuration` API (as defined in
 [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html))
 will include the following entry:
-```json
+  ```json
 "native_sso_supported": true
 ```If `nativeSsoSupported` is set to `false`, Authlete behaves as if it has no
 knowledge of Native SSO. For example, the `device_sso` scope no longer has any
@@ -246,26 +209,26 @@ Please add `TOKEN_EXCHANGE` to the list of supported grant types of the service.
 Additionally, Authlete has several configuration items related to Token Exchange,
 so please verify that they are set correctly. Pay special attention to the
 following two items:
-| Property | Description |
+  | Property | Description |
 | --- | --- |
 | `tokenExchangeByConfidentialClientsOnly` | This boolean property indicates whether token exchange requests are limited to confidential clients only. If set to `true`, token exchange requests from public clients will not be accepted. |
 | `tokenExchangeByPermittedClientsOnly` | This boolean property indicates whether token exchange requests are restricted to pre-approved clients. If set to `true`, token exchange requests from clients that have not been explicitly authorized will not be accepted. |
 #### Console Configuration
 To configure `Native SSO` in the Authlete Management Console:
-1. Login to the [Authlete Management Console](https://console.authlete.com/)
+  1. Login to the [Authlete Management Console](https://console.authlete.com/)
 2. Navigate to `Service Settings > Tokens and Claims > Advanced > Token Exchange`
 3. Go to the `Native SSO` section and toggle `Allow` to enable.
 4. Click `Save Changes` to apply the update.
 ![](https://storage.googleapis.com/authlete-website/resources/native_sso/1.png)
 To register  the `device_sso` scope:
-1. Login to the [Authlete Management Console](https://console.authlete.com/)
+  1. Login to the [Authlete Management Console](https://console.authlete.com/)
 2. Navigate to `Service Settings > Tokens and Claims > Advanced > Scope`
 3. Go to the `Supported Scopes` and click the `Add` button.
 4. Enter `device_sso` for the scope name and click add.
 5. Once back in the scope page, click `Save Changes` to apply the update.
 ![](https://storage.googleapis.com/authlete-website/resources/native_sso/2.png)
 To add the `Token_Exchange` Grant Type:
-1. Navigate to `Service Settings > Endpoints > Global Settings > General`
+  1. Navigate to `Service Settings > Endpoints > Global Settings > General`
 2. Go to `Supported Grant Types`, and select the `Token_Exchange` option.
 3. Click `Save Changes` to apply the update.
 ![](https://storage.googleapis.com/authlete-website/resources/native_sso/3.png)
@@ -285,12 +248,12 @@ explicitly permitted will be rejected. In such cases, you need to set the
 the client to `true` in the client’s settings.
 #### Console Configuration
 To add the `Token_Exchange` Grant Type:
-1. Navigate to `Client Settings > Endpoints > Global Settings > General`
+  1. Navigate to `Client Settings > Endpoints > Global Settings > General`
 2. Go to `Supported Grant Types`, and select the `Token_Exchange` option.
 3. Click `Save Changes` to apply the update.
 ![](https://storage.googleapis.com/authlete-website/resources/native_sso/5.png)
 To register  the `device_sso` scope:
-1. Login to the [Authlete Management Console](https://console.authlete.com/)
+  1. Login to the [Authlete Management Console](https://console.authlete.com/)
 2. Navigate to `Client Settings > Tokens and Claims > Advanced > Scope`
 3. Go to the `Add Requestable scope` and enter  `device_sso`for the scope name.
 4. Once back in the scope page, click `Save Changes` to apply the update.
@@ -409,10 +372,7 @@ error and return it to the client.
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
-{\`
-"error": "invalid_grant",
-"error_description": "The session ID is no longer valid."
-}
+
 ```The `sessionId` value in the response from the `/auth/token` API is originally
 passed from the OpenID Provider to Authlete as the `sessionId` request parameter
 in the `/auth/authorization/issue` API. Authlete does not
@@ -462,10 +422,7 @@ the `invalid_grant` error should be generated and returned to the client.
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
-{
-"error": "invalid_grant",
-"error_description": "The device secret hash in the subject token does not correspond to the device secret."
-\`}
+
 ```
 ### Token Endpoint Implementation (nativesso API call)
 After the verification of the session ID and the verification or generation of
@@ -476,7 +433,7 @@ The `/nativesso` API accepts HTTP POST requests in either
 `application/json` or
 `application/x-www-form-urlencoded` formats.
 The request parameters are as follows:
-| Parameter | Necessity | Description |
+  | Parameter | Necessity | Description |
 | --- | --- | --- |
 | `accessToken` | Required | If the `jwtAccessToken` is included in the `/auth/token` API response, specify its value. If not, specify the value of `accessToken`. The provided value will be used as the `access_token` property in the token response prepared by the `/nativesso` API. |
 | `refreshToken` | Optional | Specify the value of `refreshToken` included in the `/auth/token` API response. The specified value will be used as the `refresh_token` property in the token response prepared by the `/nativesso` API. |
@@ -497,7 +454,7 @@ should return a successful response (`200 OK`) to the client. The value of
 the `responseContent` property in the `/nativesso` API response can be used
 directly as the message body of the token response. Therefore, the success
 response can be constructed as follows:
-```http
+  ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 Cache-Control: no-store
@@ -537,29 +494,18 @@ When the `/nativesso/logout` API is called with the target
 session ID specified in the `sessionId` parameter, all access tokens and
 refresh tokens associated with that session ID will be deleted.
 ```http
-POST https://{\`{authlete_api_server}\`}/api/{\`{service_id}\`}/nativesso/logout HTTP/1.1
-Authorization: Bearer {\`{authlete_access_token}\`}
+POST https://\`}/api/\`}/nativesso/logout HTTP/1.1
+Authorization: Bearer \`}
 Content-Type: application/json
-{\`
-"sessionId": "{{session_id}\`}"
+\`}"
 }
 ``````json
-{\`
-"action": "OK",
-"count": 2,
-"resultCode": "A503001",
-"resultMessage": "[A503001] The /nativesso/logout API call successfully deleted 2 access/refresh token record(s)."
-}
+
 ```Even if there are no access tokens or refresh tokens associated with the
 specified session ID — and as a result, the number of deleted tokens is
 zero — the `/nativesso/logout` API does not return an error.
 ```json
-{
-"action": "OK",
-"count": 0,
-"resultCode": "A503002",
-"resultMessage": "[A503002] The /nativesso/logout API call completed without deleting any access/refresh token records."
-\`}
+
 ```
 ### Sample Implementation
 The sample implementation of Native SSO on the OpenID Provider side is included
@@ -567,7 +513,7 @@ in the [java-oauth-server](https://github.com/authlete/java-oauth-server) and
 [authlete-java-jaxrs](https://github.com/authlete/authlete-java-jaxrs) library.
 Both are open-source implementations written in Java.
 Below are some tips for reading through the sample implementation:
-- The session ID passed to the `/auth/authorization/issue` API is obtained in the [AuthorizationDecisionEndpoint](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/api/AuthorizationDecisionEndpoint.java) by executing `HttpServletRequest.getSession(false).getId()`. However, since this session is the HTTP session between the web server and browser, a different mechanism would likely be used in a production-ready Native SSO implementation.
+  - The session ID passed to the `/auth/authorization/issue` API is obtained in the [AuthorizationDecisionEndpoint](https://github.com/authlete/java-oauth-server/blob/master/src/main/java/com/authlete/jaxrs/server/api/AuthorizationDecisionEndpoint.java) by executing `HttpServletRequest.getSession(false).getId()`. However, since this session is the HTTP session between the web server and browser, a different mechanism would likely be used in a production-ready Native SSO implementation.
 - The obtained session ID is passed to the [AuthorizationDecisionHandler](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/AuthorizationDecisionHandler.java) via the [AuthorizationDecisionHandlerSpi](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/spi/AuthorizationDecisionHandlerSpi.java) interface.
 - The AuthorizationDecisionHandler calls the Authlete `/auth/authorization/issue` API through the `callAuthorizationIssue` method of [AuthleteApiCaller](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/AuthleteApiCaller.java).
 - The dispatch logic based on the `action` in the `/auth/token` API response is written in the [TokenRequestHandler](https://github.com/authlete/authlete-java-jaxrs/blob/master/src/main/java/com/authlete/jaxrs/TokenRequestHandler.java).
@@ -600,7 +546,7 @@ the `action` in the `/auth/token` API response be
 2. The `requested_token_type` parameter is specified, and its value is a known token type.
 3. The `subject_token_type` parameter is specified, and its value is `urn:ietf:params:oauth:token-type:id_token`.
 4. The `subject_token` parameter is specified, and its value (ID token) passes all the following validation checks:
-- It can be parsed as a JWT.
+  - It can be parsed as a JWT.
 - It includes the `exp` claim, and its value is numeric. Note: In the context of Native SSO, it is not checked that the `exp` value is in the future relative to the current time. This means that an expired ID token can be specified as a subject token. (see: [id_token usage](https://openid.net/specs/openid-connect-native-sso-1_0.html#name-id_token-usage))
 - It includes the `iat` claim, and its value indicates the current time or a time in the past.
 - If the `nbf` claim is included, its value indicates the current time or a time in the past.
@@ -618,7 +564,7 @@ In draft 07 of the Native SSO specification, it is stipulated that if the
 `scope` parameter is included in the token exchange request,
 the scope list must include `openid`.
 However, due to the reasons described in [AB/Connect ISSUE 2178:
-Native SSO the openid scope on token exchange](https://bitbucket.org/openid/connect/issues/2178), Authlete’s current
+  Native SSO the openid scope on token exchange](https://bitbucket.org/openid/connect/issues/2178), Authlete’s current
 implementation does not check whether `openid` is included.
 ## References
 - Specification: [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)

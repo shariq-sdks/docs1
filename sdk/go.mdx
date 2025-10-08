@@ -1,7 +1,8 @@
 ---
-description: Go SDK
-title: Go SDK
+description: "Go SDK"
+title: "Go SDK"
 ---
+
 
 
 # Go SDK
@@ -24,23 +25,11 @@ import (
     "github.com/authlete/authlete-go/dto"
 )
 
-func main() {\`
-    client := authlete.NewAuthleteClient(
-        "https://api.authlete.com",
-        "your-service-api-key",
-        "your-service-api-secret",
-    )
-
-    // Create a service
-    service := &dto.Service{
-        ServiceName: "My OAuth Service",
-        SupportedGrantTypes: []string{"AUTHORIZATION_CODE", "REFRESH_TOKEN"},
+func main() ,
     \`}
 
     createdService, err := client.CreateService(service)
-    if err != nil {\`
-        panic(err)
-    }
+    if err != nil 
 \`}
 ```
 
@@ -65,32 +54,16 @@ func main() {\`
 
 ```go
 // Process authorization request
-authRequest := &dto.AuthorizationRequest{\`
-    Parameters: map[string]string{
-        "response_type": "code",
-        "client_id":     "client123",
-        "redirect_uri":  "https://example.com/callback",
-        "scope":         "read write",
-    },
+authRequest := &dto.AuthorizationRequest,
 \`}
 
 response, err := client.ProcessAuthorizationRequest(authRequest)
-if err != nil {\`
-    panic(err)
-}
+if err != nil 
 
-if response.Action == "INTERACTION" {
-    // Show authorization page
-    // After user consent, call IssueAuthorizationResponse
-    authResponse := &dto.AuthorizationResponse{
-        Ticket: response.Ticket,
-        Subject: "user123",
-    \`}
+if response.Action == "INTERACTION" 
     
     result, err := client.IssueAuthorizationResponse(authResponse)
-    if err != nil {\`
-        panic(err)
-    }
+    if err != nil 
 \`}
 ```
 
@@ -98,24 +71,13 @@ if response.Action == "INTERACTION" {
 
 ```go
 // Process token request
-tokenRequest := &dto.TokenRequest{\`
-    Parameters: map[string]string{
-        "grant_type":   "authorization_code",
-        "code":         "auth_code_here",
-        "client_id":    "client123",
-        "redirect_uri": "https://example.com/callback",
-    },
+tokenRequest := &dto.TokenRequest,
 \`}
 
 response, err := client.ProcessTokenRequest(tokenRequest)
-if err != nil {\`
-    panic(err)
-}
+if err != nil 
 
-if response.Action == "OK" {
-    fmt.Printf("Access Token: %s\n", response.AccessToken)
-    fmt.Printf("Refresh Token: %s\n", response.RefreshToken)
-\`}
+if response.Action == "OK" 
 ```
 
 ## GitHub Repository
@@ -125,6 +87,6 @@ if response.Action == "OK" {
 ## Support
 
 For questions and support:
-- [Documentation](/reference/knowledge-base)
+  - [Documentation](/reference/knowledge-base)
 - [API Explorer](/tools/api-explorer)
 - [Contact Support](https://www.authlete.com/contact/)

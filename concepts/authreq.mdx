@@ -1,7 +1,8 @@
 ---
-title: 'Implementing FAPI2 Message Signing profile - Signing Authorization Requests with Authlete'
-description: 'Implementing FAPI2 Message Signing profile - Signing Authorization Requests with Authlete.'
+  title: 'Implementing FAPI2 Message Signing profile - Signing Authorization Requests with Authlete'
+description: "'Implementing FAPI2 Message Signing profile - Signing Authorization Requests with Authlete.'"
 ---
+
 
 ## Overview
 
@@ -40,7 +41,7 @@ Include `FAPI`.
 Select **Included**. This is required by [FAPI 2.0 Security Profile, 5.3.1.2. Authorization Code Flow](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.1.2):
 
 > “FAPI 2.0 Security Profile, 5.3.1.2. Authorization Code Flow”
-For the Authorization Code flow, Authorization servers
+> For the Authorization Code flow, Authorization servers
 7. shall return an iss parameter in the authorization response according to [RFC9207]
 
 “FAPI 2.0 Security Profile, 5.3.1.2. Authorization Code Flow”
@@ -58,9 +59,9 @@ Set your authorization server’s token endpoint URI.
 MTLS or `private_key_jwt` is required as the client authentication method, according to [FAPI2 Security profile, 5.3.1.1. General Requirements](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.1):
 
 > “FAPI2 Security profile, 5.3.1.1. General Requirements”
-Authorization servers
+> Authorization servers
 6. shall authenticate clients using one of the following methods:
-- MTLS as specified in section 2 of [RFC8705]
+  - MTLS as specified in section 2 of [RFC8705]
 - private_key_jwt as specified in section 9 of [OIDC]
 
 “FAPI2 Security profile, 5.3.1.1. General Requirements”
@@ -80,7 +81,7 @@ In the following API call simulation, we use `private_key_jwt` for client authen
 Select **Required**. This is required by [FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.1):
 
 > “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
-Authorization servers implementing FAPI2 authorization request signing
+> Authorization servers implementing FAPI2 authorization request signing
 3. shall require the request object to contain an nbf claim that is no longer than 60 minutes in the past;
 
 “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
@@ -94,7 +95,7 @@ Authorization servers implementing FAPI2 authorization request signing
 Select **Perform**. This is required by [FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.1):
 
 > “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
-Authorization servers implementing FAPI2 authorization request signing
+> Authorization servers implementing FAPI2 authorization request signing
 2. shall require the aud claim in the request object to be, or to be an array containing, the OP's Issuer Identifier URL;
 
 “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
@@ -108,7 +109,7 @@ Authorization servers implementing FAPI2 authorization request signing
 Select `PS256`, `ES256` or `EdDSA`, according to [FAPI2 Security Profile, 5.4. Cryptography and Secrets](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#name-cryptography-and-secrets):
 
 > FAPI2 Security profile, 5.4. Cryptography and Secrets
-Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
+> Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
 2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
 
 FAPI2 Security profile, 5.4. Cryptography and Secrets
@@ -122,13 +123,7 @@ Authorization Servers, Clients, and Resource Servers when creating or processing
 Create a scope attribute and set the `key` to `fapi2` and the `value` to `ms-authreq`. Then, link it to one of the supported scope. The below is an example of such a scope:
 
 ```json
-{\`
-  "name": "myscope",
-  "attributes": [
-    {
-      "key": "fapi2",
-      "value": "ms-authreq"
-    }
+
   ]
   ...
 \`}
@@ -136,13 +131,7 @@ Create a scope attribute and set the `key` to `fapi2` and the `value` to `ms-aut
 ```
 
 ```json
-{\`
-  "name": "myscope",
-  "attributes": [
-    {
-      "key": "fapi2",
-      "value": "ms-authreq"
-    }
+
   ]
   ...
 \`}
@@ -182,9 +171,9 @@ Create at least one redirect URI.
 MTLS or `private_key_jwt` is required as the client authentication method, according to [FAPI2 Security profile, 5.3.2.1. General Requirements](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.2.1):
 
 > “FAPI2 Security profile, 5.3.2.1. General Requirements”
-Clients
+> Clients
 2. shall support client authentication using one of the following methods:
-- MTLS as specified in section 2 of [RFC8705]
+  - MTLS as specified in section 2 of [RFC8705]
 - private_key_jwt as specified in section 9 of [OIDC]
 
 “FAPI2 Security profile, 5.3.2.1. General Requirements”
@@ -204,7 +193,7 @@ In the following API call simulation, we use `private_key_jwt` for client authen
 Select `PS256`, `ES256` or `EdDSA`, according to [FAPI2 Security Profile, 5.4. Cryptography and Secrets](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#name-cryptography-and-secrets):
 
 > FAPI2 Security profile, 5.4. Cryptography and Secrets
-Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
+> Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
 2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
 
 FAPI2 Security profile, 5.4. Cryptography and Secrets
@@ -218,7 +207,7 @@ Authorization Servers, Clients, and Resource Servers when creating or processing
 Select an encryption algorithm other than `NONE`, according to [FAPI2 Security Profile, 5.4. Cryptography and Secrets](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#name-cryptography-and-secrets):
 
 > “FAPI2 Security profile, 5.4. Cryptography and Secrets”
-Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
+> Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
 not use or accept the none algorithm
 
 “FAPI2 Security profile, 5.4. Cryptography and Secrets”
@@ -232,7 +221,7 @@ not use or accept the none algorithm
 Select an encryption algorithm other than `RSA1_5`. This is required by [FAPI2 Security Profile, 5.4. Cryptography and Secrets](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#name-cryptography-and-secrets):
 
 > “FAPI2 Security profile, 5.4. Cryptography and Secrets”
-Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
+> Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
 1. adhere to [RFC8725]
 
 “FAPI2 Security profile, 5.4. Cryptography and Secrets”
@@ -244,9 +233,9 @@ Authorization Servers, Clients, and Resource Servers when creating or processing
 Note that [RFC8725, 3.2. Use Appropriate Algorithms](https://www.rfc-editor.org/rfc/rfc8725.html#section-3.2) states as follows:
 
 > “RFC8725, 3.2. Use Appropriate Algorithms”
-…
+> …
 Applications SHOULD follow these algorithm-specific recommendations:
-- Avoid all RSA-PKCS1 v1.5 encryption algorithms ([RFC8017], Section 7.2), preferring RSAES-OAEP ([RFC8017], Section 7.1).
+  - Avoid all RSA-PKCS1 v1.5 encryption algorithms ([RFC8017], Section 7.2), preferring RSAES-OAEP ([RFC8017], Section 7.1).
 …
 
 “RFC8725, 3.2. Use Appropriate Algorithms”
@@ -276,9 +265,9 @@ In this section, we simulate API calls that the authorization server makes again
 Suppose that a FAPI2 MS Auth Req compliant client sends a valid request to the pushed authorization request endpoint of authorization server. The pushed authorization request endpoint must authenticate the client using MTLS or `private_key_jwt` at the pushed authorization request endpoint. This is required by [FAPI2 Security profile, 5.3.2.1. General Requirements](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.2.1):
 
 > “FAPI2 Security profile, 5.3.2.1. General Requirements”
-Clients
+> Clients
 2. shall support client authentication using one of the following methods:
-- MTLS as specified in section 2 of [RFC8705]
+  - MTLS as specified in section 2 of [RFC8705]
 - private_key_jwt as specified in section 9 of [OIDC]
 
 “FAPI2 Security profile, 5.3.2.1. General Requirements”
@@ -296,7 +285,7 @@ In this simulation, we use `private_key_jwt` as the client authentication method
 Additionally, the request object (the value of the `request` parameter) in the request must be a **signed JWT**, according to [FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.1) and [FAPI2 MS profile, 5.3.2. Requirements for Clients](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.2):
 
 > “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
-Authorization servers implementing FAPI2 authorization request signing
+> Authorization servers implementing FAPI2 authorization request signing
 1. shall support, require use of, and verify signed request objects according to JAR [RFC9101] at the PAR endpoint [RFC9126];
 
 “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
@@ -306,7 +295,7 @@ Authorization servers implementing FAPI2 authorization request signing
 1. shall support, require use of, and verify signed request objects according to JAR [RFC9101] at the PAR endpoint [RFC9126];
 
 > “FAPI2 MS profile, 5.3.2. Requirements for Clients”
-Clients implementing FAPI2 authorization request signing
+> Clients implementing FAPI2 authorization request signing
 1. shall send all authorization parameters to the PAR endpoint [RFC9126] in a JAR [RFC9101] signed requested object;
 
 “FAPI2 MS profile, 5.3.2. Requirements for Clients”
@@ -322,8 +311,8 @@ Claims in the request object must meet the following requirements:
 The `iss` claim must be the client ID, according to [RFC 9126, 3. The “request” Request Parameter](https://www.rfc-editor.org/rfc/rfc9126.html#section-3):
 
 > “RFC 9126, 3. The “request” Request Parameter”
-The authorization server MUST take the following steps beyond the processing rules defined in Section 2.1:
-…
+> The authorization server MUST take the following steps beyond the processing rules defined in Section 2.1:
+  …
 3. If the client has authentication credentials established with the authorization server, reject the request if the authenticated client_id does not match the client_id claim in the Request Object. Additionally, requiring the iss claim to match the client_id is at the discretion of the authorization server.
 
 “RFC 9126, 3. The “request” Request Parameter”
@@ -343,7 +332,7 @@ The `scope` claim must be set to a scope associated with an attribute whose key 
 The `response_type` claim must be set to `code`, according to [FAPI2 Security profile, 5.3.2.2. Authorization Code Flow](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.2.2):
 
 > “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
-For the Authorization Code flow, Clients
+> For the Authorization Code flow, Clients
 1. shall use the authorization code grant described in [RFC6749]
 
 “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
@@ -357,7 +346,7 @@ For the Authorization Code flow, Clients
 The `code_challenge` claim must be set and the `code_challenge_method` claim must be set to `S256`, according to [FAPI2 Security profile, 5.3.2.2. Authorization Code Flow](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.2.2):
 
 > “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
-For the Authorization Code flow, Clients
+> For the Authorization Code flow, Clients
 3. shall use PKCE [RFC7636] with S256 as the code challenge method
 
 “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
@@ -371,7 +360,7 @@ For the Authorization Code flow, Clients
 The `redirect_uri` claim must be a URI starting with https, according to [FAPI2 Security profile, 5.3.1.2. Authorization Code Flow](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.1.2):
 
 > “FAPI2 Security profile, 5.3.2.2. Authorization Code Flow”
-For the Authorization Code flow, Authorization servers
+> For the Authorization Code flow, Authorization servers
 6. shall require the redirect_uri parameter in pushed authorization requests
 8. shall not transmit authorization responses over unencrypted network connections, and, to this end, shall not allow redirect URIs that use the "http" scheme except for native clients that use Loopback Interface Redirection as described in [RFC8252], Section 7.3,
 
@@ -388,7 +377,7 @@ For the Authorization Code flow, Authorization servers
 The `aud` claim must be the OP’s Issuer Identifier URL or an array containing it, according to [FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.1) and [FAPI2 MS profile, 5.3.2. Requirements for Clients](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.2):
 
 > “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
-Authorization servers implementing FAPI2 authorization request signing
+> Authorization servers implementing FAPI2 authorization request signing
 2. shall require the aud claim in the request object to be, or to be an array containing, the OP's Issuer Identifier URL;
 
 “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
@@ -398,7 +387,7 @@ Authorization servers implementing FAPI2 authorization request signing
 2. shall require the aud claim in the request object to be, or to be an array containing, the OP's Issuer Identifier URL;
 
 > “FAPI2 MS profile, 5.3.2. Requirements for Clients”
-Clients implementing FAPI2 authorization request signing
+> Clients implementing FAPI2 authorization request signing
 2. shall send the aud claim in the request object as the OP's Issuer Identifier URL;
 
 “FAPI2 MS profile, 5.3.2. Requirements for Clients”
@@ -412,7 +401,7 @@ Clients implementing FAPI2 authorization request signing
 The `nbf` claim is no longer than 60 minutes in the past, according to [FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.1) and [FAPI2 MS profile, 5.3.2. Requirements for Clients](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.2):
 
 > “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
-Authorization servers implementing FAPI2 authorization request signing
+> Authorization servers implementing FAPI2 authorization request signing
 3. shall require the request object to contain an nbf claim that is no longer than 60 minutes in the past;
 
 “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
@@ -422,7 +411,7 @@ Authorization servers implementing FAPI2 authorization request signing
 3. shall require the request object to contain an nbf claim that is no longer than 60 minutes in the past;
 
 > “FAPI2 MS profile, 5.3.2. Requirements for Clients”
-Clients implementing FAPI2 authorization request signing
+> Clients implementing FAPI2 authorization request signing
 3. shall send a nbf claim in the request object;
 
 “FAPI2 MS profile, 5.3.2. Requirements for Clients”
@@ -434,7 +423,7 @@ Clients implementing FAPI2 authorization request signing
 Additionally, the lifetime of the request object (`exp` - `nbf`) is no longer than 60 minutes after the `nbf` claim, according to [FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.1) and [FAPI2 MS profile, 5.3.2. Requirements for Clients](https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.2):
 
 > “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
-Authorization servers implementing FAPI2 authorization request signing
+> Authorization servers implementing FAPI2 authorization request signing
 4. shall require the request object to contain an exp claim that has a lifetime of no longer than 60 minutes after the nbf claim.
 
 “FAPI2 MS profile, 5.3.1. Requirements for Authorization Servers”
@@ -444,7 +433,7 @@ Authorization servers implementing FAPI2 authorization request signing
 4. shall require the request object to contain an exp claim that has a lifetime of no longer than 60 minutes after the nbf claim.
 
 > “FAPI2 MS profile, 5.3.2. Requirements for Clients”
-Clients implementing FAPI2 authorization request signing
+> Clients implementing FAPI2 authorization request signing
 4. shall send an exp claim in the request object that has a lifetime of no longer than 60 minutes.
 
 “FAPI2 MS profile, 5.3.2. Requirements for Clients”
@@ -461,7 +450,7 @@ Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 
 request=eyJhbGci...&
-client_id={\`Client ID}&
+client_id=&
 client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&
 client_assertion=eyJhbGci...
 
@@ -470,9 +459,7 @@ client_assertion=eyJhbGci...
 The payload of the request object is as follows.
 
 ```json
-{
-  "jti": "kcvE4Tn",
-  "iss": "{Client ID\`}",
+",
   "aud": "https://server.example.com",
   "response_type": "code",
   "code_challenge_method": "S256",
@@ -487,9 +474,7 @@ The payload of the request object is as follows.
 ```
 
 ```json
-{\`
-  "jti": "kcvE4Tn",
-  "iss": "{Client ID}",
+",
   "aud": "https://server.example.com",
   "response_type": "code",
   "code_challenge_method": "S256",
@@ -510,52 +495,48 @@ After the authorization server receives the request from the client, the authori
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"parameters":"request=eyJhbGci...&client_id={Client ID}&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."\`}'
+-d '&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"parameters":"request=eyJhbGci...&client_id={Client ID}&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."\`}'
+-d '&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"parameters":"request=eyJhbGci...&client_id={Client ID\`}&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."}'
+-d '&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/pushed_auth_req \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"parameters":"request=eyJhbGci...&client_id={Client ID\`}&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."}'
+-d '&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGci..."}'
 ```
 
 A successful response from the API contains a request URI. The response would look like below.
 
 ```json
-{\`
-  "resultCode": "A245001",
-  "resultMessage": "[A245001] Successfully registered a request object for client ({Client ID}), URI is urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8.",
+), URI is urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8.",
   "action": "CREATED",
   "requestUri": "urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8",
-  "responseContent": "{\"expires_in\":60,\"request_uri\":\"urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8\"\`}"
+  "responseContent": ""
 }
 
 ```
 
 ```json
-{\`
-  "resultCode": "A245001",
-  "resultMessage": "[A245001] Successfully registered a request object for client ({Client ID}), URI is urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8.",
+), URI is urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8.",
   "action": "CREATED",
   "requestUri": "urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8",
-  "responseContent": "{\"expires_in\":60,\"request_uri\":\"urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8\"\`}"
+  "responseContent": ""
 }
 
 ```
@@ -565,13 +546,13 @@ A successful response from the API contains a request URI. The response would lo
 After obtaining a request URI in step 1, the client sends an authorization request, including the request URI, to the authorization endpoint of the authorization server. The request appears as below.
 
 ```bash
-GET /authorization?client_id={\`Client ID}&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8 HTTP/1.1
+GET /authorization?client_id=&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8 HTTP/1.1
 Host: server.example.com
 
 ```
 
 ```bash
-GET /authorization?client_id={Client ID\`}&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8 HTTP/1.1
+GET /authorization?client_id=&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8 HTTP/1.1
 Host: server.example.com
 
 ```
@@ -583,39 +564,36 @@ When the authorization server receives the request from the client, the authoriz
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"\`}'
+-d '&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"parameters":"client_id={Client ID}&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"\`}'
+-d '&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"parameters":"client_id={Client ID\`}&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"}'
+-d '&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"parameters":"client_id={Client ID\`}&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"}'
+-d '&request_uri=urn:ietf:params:oauth:request_uri:H7XaM5FK2-RGcSRilYwe9FosTkk9XLMDZPEBA5uKsf8"}'
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{\`
-  "type": "authorizationResponse",
-  "resultCode": "A004001",
-  "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 20699248885) for the authorization request from the client (ID = {Client ID}). [response_type=code, openid=false]",
+). [response_type=code, openid=false]",
   "ticket": "CBKnPeMO...",
   ...
 \`}
@@ -623,10 +601,7 @@ A successful response from the API would be like below.
 ```
 
 ```json
-{\`
-  "type": "authorizationResponse",
-  "resultCode": "A004001",
-  "resultMessage": "[A004001] Authlete has successfully issued a ticket to the service (API Key = 20699248885) for the authorization request from the client (ID = {Client ID}). [response_type=code, openid=false]",
+). [response_type=code, openid=false]",
   "ticket": "CBKnPeMO...",
   ...
 \`}
@@ -642,53 +617,41 @@ After the authorization server receives a successful response from `/auth/author
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"ticket":"CBKnPeMO...","subject":"john","result":"AUTHORIZED"}'
+-d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--u '{Service API Key\`}:{\`Service API Secret}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{"ticket":"CBKnPeMO...","subject":"john","result":"AUTHORIZED"\`}'
+-d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"ticket":"CBKnPeMO...","subject":"john","result":"AUTHORIZED"\`}'
+-d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"ticket":"CBKnPeMO...","subject":"john","result":"AUTHORIZED"\`}'
+-d ''
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{\`
-  "type": "authorizationIssueResponse",
-  "resultCode": "A040001",
-  "resultMessage": "[A040001] The authorization request was processed successfully.",
-  "authorizationCode": "xY1Vd-rj...",
-  ...
-}
+
 
 ```
 
 ```json
-{
-  "type": "authorizationIssueResponse",
-  "resultCode": "A040001",
-  "resultMessage": "[A040001] The authorization request was processed successfully.",
-  "authorizationCode": "xY1Vd-rj...",
-  ...
-\`}
+
 
 ```
 
@@ -699,10 +662,10 @@ After obtaining an authorization code in step 3, the client sends a token reques
 Additionally, access tokens must be sender-constrained with MTLS or DPoP, according to [FAPI2 Security profile, 5.3.1.1. General Requirements](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.1.1) and [FAPI2 Security profile, 5.3.2.1. General Requirements](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#section-5.3.2.1):
 
 > “FAPI2 Security profile, 5.3.1.1. General Requirements”
-Authorization servers
+> Authorization servers
 4. shall only issue sender-constrained access tokens,
 5. shall use one of the following methods for sender-constrained access tokens:
-- MTLS as described in [RFC8705]
+  - MTLS as described in [RFC8705]
 - DPoP as described in [I-D.ietf-oauth-dpop]
 
 “FAPI2 Security profile, 5.3.1.1. General Requirements”
@@ -718,9 +681,9 @@ Authorization servers
 - DPoP as described in [I-D.ietf-oauth-dpop]
 
 > “FAPI2 Security profile, 5.3.2.1. General Requirements”
-For the Authorization Code flow, Clients
+> For the Authorization Code flow, Clients
 1. shall support sender-constrained access tokens using one of the following methods:
-- MTLS as described in [RFC8705]
+  - MTLS as described in [RFC8705]
 - DPoP as described in [I-D.ietf-oauth-dpop]
 
 “FAPI2 Security profile, 5.3.2.1. General Requirements”
@@ -738,7 +701,7 @@ In this simulation, we use DPoP as the sender-constrained access token mechanism
 Note that DPoP proof JWT must be signed with `PS256`, `ES256` or `EdDSA`, according to [FAPI2 Security Profile, 5.4. Cryptography and Secrets](https://openid.net/specs/fapi-2_0-security-profile-ID2.html#name-cryptography-and-secrets).
 
 > FAPI2 Security profile, 5.4. Cryptography and Secrets
-Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
+> Authorization Servers, Clients, and Resource Servers when creating or processing JWTs shall
 2. use PS256, ES256, or EdDSA (using the Ed25519 subtype) algorithms
 
 FAPI2 Security profile, 5.4. Cryptography and Secrets
@@ -757,7 +720,7 @@ DPoP: eyJ0eXAi...
 
 client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer
 &client_assertion=eyJhbGci...
-&client_id={\`Client ID}
+&client_id=
 &code=xY1Vd-rj...
 &redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb
 &grant_type=authorization_code
@@ -772,51 +735,41 @@ After the token endpoint receives a request from the client, the authorization s
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--u '{Service API Key\`}:{\`Service API Secret}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJhbGci...&client_id={Client ID\`}&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."}'
+-d '&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJhbGci...&client_id={Client ID}&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."\`}'
+-d '&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."\`}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJhbGci...&client_id={Client ID\`}&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."}'
+-d '&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."}'
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/auth/token \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"parameters":"client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=eyJhbGci...&client_id={Client ID\`}&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."}'
+-d '&code=xY1Vd-rj...&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&grant_type=authorization_code&code_verifier=dBjftJeZ...","dpop":"eyJ0eXAi..."}'
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{\`
-  "resultCode": "A050001",
-  "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
-  "accessToken": "7i9xPkbk...",
-  ...
-}
+
 
 ```
 
 ```json
-{
-  "resultCode": "A050001",
-  "resultMessage": "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
-  "accessToken": "7i9xPkbk...",
-  ...
-\`}
+
 
 ```
 
@@ -841,50 +794,40 @@ When the resource server receives the request from the client, it calls Authlete
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--u '{\`Service API Key}:{Service API Secret\`}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{\`"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"}'
+-d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--u '{Service API Key\`}:{\`Service API Secret}' \
+-u ':' \
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"\`}'
+-d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"\`}'
+-d ''
 ```
 
 ```shell
 curl -s -X POST https://api.authlete.com/api/auth/introspection \
--H 'Bearer {\`Authlete API Access Token}'
+-H 'Bearer '
 -H 'Content-type: application/json' \
--d '{"token":"7i9xPkbk...","dpop":"eyJ0eXAi...","htm":"GET","htu":"https://resource.example.com/api/sample"\`}'
+-d ''
 ```
 
 A successful response from the API would be like below.
 
 ```json
-{\`
-  "resultCode": "A056001",
-  "resultMessage": "[A056001] The access token is valid.",
-  "action": "OK",
-  ...
-}
+
 
 ```
 
 ```json
-{
-  "resultCode": "A056001",
-  "resultMessage": "[A056001] The access token is valid.",
-  "action": "OK",
-  ...
-\`}
+
 
 ```

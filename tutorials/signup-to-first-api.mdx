@@ -1,9 +1,10 @@
 ---
-title: 'Using Demo Authorization Server'
-description: 'Quickly set up an authorization server that works as a frontend for Authlete to test OAuth2 and OpenID Connect flows.'
+  title: 'Using Demo Authorization Server'
+description: "'Quickly set up an authorization server that works as a frontend for Authlete to test OAuth2 and OpenID Connect flows.'"
 ---
 
-{\`{\`<\`}Info>
+
+Info>
 This page is for Authlete 3.0. For 2.x, refer to this page.
 </Info>\`}
 
@@ -58,7 +59,7 @@ To manage and run authorization services, you need an [Authlete Account](https:/
 ## Step 5: Set Up Demo AS
 
 1. **Clone** the Authlete Java OAuth Server repository, one of several reference authorization server implementations [available on GitHub](https://github.com/authlete):
-git clone https://github.com/authlete/java-oauth-server.git
+  git clone https://github.com/authlete/java-oauth-server.git
 cd java-oauth-server
 1. **Configure** the `authlete.properties` file to connect the authorization server to the Authlete service created in the Step 3.
 
@@ -77,12 +78,12 @@ The `authlete.properties` file includes commented values for Authlete properties
 1. **Run the server** using either Docker (recommended) or Java:
 
 **Using Docker** (preferred):
-Use the following command to start the server:
-docker compose up
+  Use the following command to start the server:
+  docker compose up
 
 **Using Java**:
-Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
-mvn jetty:run
+  Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
+  mvn jetty:run
 
 **Clone** the Authlete Java OAuth Server repository, one of several reference authorization server implementations [available on GitHub](https://github.com/authlete):
 
@@ -111,16 +112,16 @@ cd java-oauth-server
 ```properties
 api_version = V3
 base_url = https://us.authlete.com
-service.api_key = {\`<{\`<\`}Service_ID>>\`}
-service.access_token = {\`<{\`<\`}SERVICE_ACCESS_TOKEN>>\`}
+service.api_key = Service_ID>>\`}
+service.access_token = SERVICE_ACCESS_TOKEN>>\`}
 
 ```
 
 ```properties
 api_version = V3
 base_url = https://us.authlete.com
-service.api_key = {\`<{\`<\`}Service_ID>>\`}
-service.access_token = {\`<{\`<\`}SERVICE_ACCESS_TOKEN>>\`}
+service.api_key = Service_ID>>\`}
+service.access_token = SERVICE_ACCESS_TOKEN>>\`}
 
 ```
 
@@ -129,11 +130,11 @@ service.access_token = {\`<{\`<\`}SERVICE_ACCESS_TOKEN>>\`}
 **Run the server** using either Docker (recommended) or Java:
 
 - **Using Docker** (preferred):
-Use the following command to start the server:
-docker compose up
+  Use the following command to start the server:
+  docker compose up
 - **Using Java**:
-Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
-mvn jetty:run
+  Ensure that you have Maven installed and `JAVA_HOME` is set correctly. Then, run the following command:
+  mvn jetty:run
 
 **Using Docker** (preferred):
 

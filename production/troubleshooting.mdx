@@ -1,5 +1,5 @@
 ---
-title: "Troubleshooting"
+  title: "Troubleshooting"
 description: "Common issues and solutions for Authlete deployments"
 ---
 
@@ -12,12 +12,12 @@ This guide helps you diagnose and resolve common issues with Authlete deployment
 ### Health Check Endpoints
 
 **Service Health:**
-```bash
+  ```bash
 curl -X GET "https://api.authlete.com/health"
 ```
 
 **Service Status:**
-```bash
+  ```bash
 curl -X GET "https://api.authlete.com/api/service/status" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY"
 ```
@@ -41,19 +41,19 @@ curl -X GET "https://api.authlete.com/api/service/status" \
 ### Invalid Client Credentials
 
 **Symptoms:**
-- 401 Unauthorized errors
+  - 401 Unauthorized errors
 - "Invalid client" error messages
 - Authentication failures
 
 **Diagnosis:**
-```bash
+  ```bash
 # Check client configuration
 curl -X GET "https://api.authlete.com/api/client/get/$CLIENT_ID" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY"
 ```
 
 **Solutions:**
-1. **Verify Client ID**
+  1. **Verify Client ID**
    - Check client ID format
    - Ensure client exists
    - Verify client is active
@@ -71,19 +71,19 @@ curl -X GET "https://api.authlete.com/api/client/get/$CLIENT_ID" \
 ### Invalid Grant Type
 
 **Symptoms:**
-- "Unsupported grant type" errors
+  - "Unsupported grant type" errors
 - Token request failures
 - Authorization code issues
 
 **Diagnosis:**
-```bash
+  ```bash
 # Check service configuration
 curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY"
 ```
 
 **Solutions:**
-1. **Enable Grant Type**
+  1. **Enable Grant Type**
    - Add grant type to service settings
    - Check client grant type configuration
    - Verify grant type is supported
@@ -96,12 +96,12 @@ curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
 ### Invalid Redirect URI
 
 **Symptoms:**
-- "Invalid redirect URI" errors
+  - "Invalid redirect URI" errors
 - Authorization failures
 - Redirect mismatches
 
 **Solutions:**
-1. **Exact Match Required**
+  1. **Exact Match Required**
    - Redirect URI must match exactly
    - Check for trailing slashes
    - Verify protocol (http vs https)
@@ -116,12 +116,12 @@ curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
 ### Token Validation Failures
 
 **Symptoms:**
-- "Invalid token" errors
+  - "Invalid token" errors
 - Token rejection
 - Authentication failures
 
 **Diagnosis:**
-```bash
+  ```bash
 # Validate token
 curl -X POST "https://api.authlete.com/api/auth/introspection" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY" \
@@ -130,7 +130,7 @@ curl -X POST "https://api.authlete.com/api/auth/introspection" \
 ```
 
 **Solutions:**
-1. **Check Token Format**
+  1. **Check Token Format**
    - Verify JWT structure
    - Check token encoding
    - Validate token signature
@@ -148,12 +148,12 @@ curl -X POST "https://api.authlete.com/api/auth/introspection" \
 ### Token Refresh Issues
 
 **Symptoms:**
-- Refresh token failures
+  - Refresh token failures
 - "Invalid refresh token" errors
 - Token renewal problems
 
 **Solutions:**
-1. **Refresh Token Validity**
+  1. **Refresh Token Validity**
    - Check refresh token expiration
    - Verify refresh token format
    - Ensure refresh token is not revoked
@@ -168,19 +168,19 @@ curl -X POST "https://api.authlete.com/api/auth/introspection" \
 ### Service Configuration Problems
 
 **Symptoms:**
-- Service not responding
+  - Service not responding
 - Configuration errors
 - Endpoint failures
 
 **Diagnosis:**
-```bash
+  ```bash
 # Check service configuration
 curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY"
 ```
 
 **Solutions:**
-1. **Verify Service Settings**
+  1. **Verify Service Settings**
    - Check service configuration
    - Verify endpoint URLs
    - Ensure service is active
@@ -193,12 +193,12 @@ curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
 ### Client Configuration Issues
 
 **Symptoms:**
-- Client authentication failures
+  - Client authentication failures
 - Scope permission errors
 - Redirect URI mismatches
 
 **Solutions:**
-1. **Client Settings**
+  1. **Client Settings**
    - Verify client configuration
    - Check redirect URIs
    - Ensure client is active
@@ -213,19 +213,19 @@ curl -X GET "https://api.authlete.com/api/service/get/$SERVICE_ID" \
 ### Slow Response Times
 
 **Symptoms:**
-- High latency
+  - High latency
 - Timeout errors
 - Slow token issuance
 
 **Diagnosis:**
-```bash
+  ```bash
 # Check service metrics
 curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY"
 ```
 
 **Solutions:**
-1. **Database Performance**
+  1. **Database Performance**
    - Check database connections
    - Monitor query performance
    - Optimize database queries
@@ -243,12 +243,12 @@ curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
 ### High Error Rates
 
 **Symptoms:**
-- Increased error responses
+  - Increased error responses
 - Service degradation
 - User complaints
 
 **Solutions:**
-1. **Monitor Error Logs**
+  1. **Monitor Error Logs**
    - Check application logs
    - Monitor error patterns
    - Identify root causes
@@ -268,12 +268,12 @@ curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
 ### Certificate Problems
 
 **Symptoms:**
-- SSL/TLS errors
+  - SSL/TLS errors
 - Certificate validation failures
 - HTTPS issues
 
 **Solutions:**
-1. **Certificate Validity**
+  1. **Certificate Validity**
    - Check certificate expiration
    - Verify certificate chain
    - Update expired certificates
@@ -286,12 +286,12 @@ curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
 ### Security Vulnerabilities
 
 **Symptoms:**
-- Security warnings
+  - Security warnings
 - Vulnerability alerts
 - Compliance issues
 
 **Solutions:**
-1. **Update Dependencies**
+  1. **Update Dependencies**
    - Update libraries
    - Patch vulnerabilities
    - Monitor security advisories
@@ -306,7 +306,7 @@ curl -X GET "https://api.authlete.com/api/service/metrics/$SERVICE_ID" \
 ### Log Analysis
 
 **Enable Debug Logging:**
-```yaml
+  ```yaml
 logging:
   level: DEBUG
   authlete: DEBUG
@@ -315,7 +315,7 @@ logging:
 ```
 
 **Log Analysis Commands:**
-```bash
+  ```bash
 # Filter error logs
 grep "ERROR" /var/log/authlete/app.log
 
@@ -329,7 +329,7 @@ grep "duration" /var/log/authlete/app.log | sort -n
 ### API Testing
 
 **Test Authorization Endpoint:**
-```bash
+  ```bash
 curl -X GET "https://auth.example.com/oauth/authorize" \
   -G -d "response_type=code" \
   -d "client_id=$CLIENT_ID" \
@@ -339,7 +339,7 @@ curl -X GET "https://auth.example.com/oauth/authorize" \
 ```
 
 **Test Token Endpoint:**
-```bash
+  ```bash
 curl -X POST "https://auth.example.com/oauth/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=authorization_code" \
@@ -352,7 +352,7 @@ curl -X POST "https://auth.example.com/oauth/token" \
 ### Monitoring Commands
 
 **Check Service Status:**
-```bash
+  ```bash
 # Service health
 curl -X GET "https://api.authlete.com/health"
 

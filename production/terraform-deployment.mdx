@@ -1,5 +1,5 @@
 ---
-title: "Terraform Deployment"
+  title: "Terraform Deployment"
 description: "Deploy and manage Authlete infrastructure using Terraform for Infrastructure as Code"
 ---
 
@@ -10,7 +10,7 @@ Deploy and manage your Authlete infrastructure using Terraform for consistent, r
 ## Overview
 
 The Authlete Terraform provider allows you to:
-- Define your OAuth 2.0 services as code
+  - Define your OAuth 2.0 services as code
 - Manage client applications programmatically
 - Version control your authentication configuration
 - Automate deployment pipelines
@@ -148,68 +148,6 @@ resource "authlete_client" "mobile_app" {
   # PKCE required for public clients
   pkce_required = true
   pkce_s256_required = true
-}
-```
-
-### Service Configuration
-
-Advanced service settings:
-
-```hcl
-resource "authlete_service" "advanced" {
-  service_name = "Advanced OAuth Service"
-  issuer      = "https://auth.example.com"
-  
-  # OpenID Connect settings
-  supported_claims = [
-    "sub",
-    "name", 
-    "email",
-    "email_verified",
-    "phone_number",
-    "address"
-  ]
-  
-  # JWT settings
-  access_token_sign_alg = "RS256"
-  id_token_sign_alg = "RS256"
-  
-  # Security features
-  pkce_required = true
-  pkce_s256_required = true
-  tls_client_certificate_bound_access_tokens = true
-  
-  # Token settings
-  access_token_duration = 3600
-  refresh_token_duration = 86400
-  id_token_duration = 3600
-}
-```
-
-### Key Management
-
-Generate and manage cryptographic keys:
-
-```hcl
-resource "tls_private_key" "service_key" {
-  algorithm = "RSA"
-  rsa_bits  = 2048
-}
-
-resource "authlete_service_jwks" "main" {
-  service_api_key = authlete_service.main.api_key
-  jwks = jsonencode({
-    keys = [
-      {
-        kty = "RSA"
-        kid = "key-1"
-        use = "sig"
-        alg = "RS256"
-        n   = tls_private_key.service_key.public_key_pem
-        e   = "AQAB"
-      }
-    ]
-  })
 }
 ```
 

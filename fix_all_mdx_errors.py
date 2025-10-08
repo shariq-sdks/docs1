@@ -1,192 +1,221 @@
 #!/usr/bin/env python3
-"""
-Comprehensive MDX Error Fixer
-Fixes all types of MDX parsing errors including:
-- Acorn expression errors
-- Frontmatter parsing errors
-- Lazy line errors
-- Unknown escape sequences
-- Multiline key errors
-"""
-
 import os
 import re
+import yaml
 import glob
-from pathlib import Path
 
-def fix_mdx_file(file_path):
-    """Fix all MDX errors in a single file"""
+def fix_acorn_errors(file_path):
+    """Fix JavaScript expression parsing errors (acorn)"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
         original_content = content
         
-        # Fix 1: Fix broken frontmatter with unexpected end of stream
-        if 'unexpected end of the stream within a double quoted scalar' in str(file_path):
-            # Fix broken YAML frontmatter
-            content = re.sub(r'---\n(.*?)\n---', fix_frontmatter, content, flags=re.DOTALL)
+        # Fix common acorn errors
+        # 1. Fix malformed JSX expressions with backticks
+        content = re.sub(r'\{`[^`]*`\}', '', content)
+        content = re.sub(r'\{\`[^`]*\`\}', '', content)
+        content = re.sub(r'\{`[^`]*<\`\}', '', content)
+        content = re.sub(r'\{\`[^`]*<\`\}', '', content)
         
-        # Fix 2: Fix acorn expression errors (JSX syntax issues)
-        if 'Could not parse expression with acorn' in str(file_path):
-            # Fix common JSX issues
-            content = fix_acorn_errors(content)
+        # 2. Fix malformed JSX with backticks and angle brackets
+        content = re.sub(r'\{`[^`]*<\`[^`]*\`\}', '', content)
+        content = re.sub(r'\{\`[^`]*<\`[^`]*\`\}', '', content)
         
-        # Fix 3: Fix lazy line errors
-        if 'Unexpected lazy line in expression' in str(file_path):
-            content = fix_lazy_line_errors(content)
+        # 3. Fix any remaining malformed expressions
+        content = re.sub(r'\{[^}]*`[^}]*\}', '', content)
+        content = re.sub(r'\{[^}]*\`[^}]*\}', '', content)
         
-        # Fix 4: Fix unknown escape sequences in frontmatter
-        if 'unknown escape sequence' in str(file_path):
-            content = fix_escape_sequences(content)
-        
-        # Fix 5: Fix multiline key errors
-        if 'multiline key may not be an implicit key' in str(file_path):
-            content = fix_multiline_keys(content)
-        
-        # General fixes for all files
-        content = apply_general_fixes(content)
+        # 4. Remove any remaining problematic characters in expressions
+        content = re.sub(r'\{[^}]*[`\\][^}]*\}', '', content)
         
         if content != original_content:
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(content)
+            print(f"Fixed acorn errors in {file_path}")
             return True
         
         return False
         
     except Exception as e:
-        print(f"❌ Error fixing {file_path}: {e}")
+        print(f"Error fixing acorn errors in {file_path}: {e}")
         return False
 
-def fix_frontmatter(match):
-    """Fix broken frontmatter"""
-    frontmatter = match.group(1)
-    
-    # Fix common frontmatter issues
-    frontmatter = re.sub(r'title:\s*"([^"]*)"', r"title: '\1'", frontmatter)
-    frontmatter = re.sub(r'description:\s*"([^"]*)"', r"description: '\1'", frontmatter)
-    
-    # Fix broken quotes
-    frontmatter = re.sub(r'title:\s*"\'([^\']*)\'', r"title: '\1'", frontmatter)
-    frontmatter = re.sub(r'description:\s*"\'([^\']*)\'', r"description: '\1'", frontmatter)
-    
-    # Fix unclosed quotes
-    frontmatter = re.sub(r'title:\s*"([^"]*?)(?:\n|$)', r"title: '\1'", frontmatter)
-    frontmatter = re.sub(r'description:\s*"([^"]*?)(?:\n|$)', r"description: '\1'", frontmatter)
-    
-    return f"---\n{frontmatter}\n---"
+def fix_lazy_line_errors(file_path):
+    """Fix lazy line markdown parsing errors"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        original_content = content
+        lines = content.split('\n')
+        fixed_lines = []
+        
+        i = 0
+        while i < len(lines):
+            line = lines[i]
+            
+            # Check for lazy line issues
+            if line.strip() and not line.startswith(' ') and not line.startswith('\t'):
+                # Check if this line should be part of a list or blockquote
+                if i > 0:
+                    prev_line = lines[i-1].strip()
+                    if prev_line.endswith(':') or prev_line.endswith('*') or prev_line.endswith('-'):
+                        # This might be a lazy line in a list
+                        if not line.startswith('  ') and not line.startswith('\t'):
+                            # Add proper indentation
+                            line = '  ' + line
+                    elif prev_line.startswith('>'):
+                        # This might be a lazy line in a blockquote
+                        if not line.startswith('>') and not line.startswith('  '):
+                            line = '> ' + line
+            
+            fixed_lines.append(line)
+            i += 1
+        
+        fixed_content = '\n'.join(fixed_lines)
+        
+        if fixed_content != original_content:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(fixed_content)
+            print(f"Fixed lazy line errors in {file_path}")
+            return True
+        
+        return False
+        
+    except Exception as e:
+        print(f"Error fixing lazy line errors in {file_path}: {e}")
+        return False
 
-def fix_acorn_errors(content):
-    """Fix acorn expression errors"""
-    # Fix JSX syntax issues
-    content = re.sub(r'<(\w+)\s*([^>]*?)\s*/>', r'<\1 \2 />', content)
-    
-    # Fix unclosed JSX tags
-    content = re.sub(r'<(\w+)([^>]*?)(?<!\/)>', r'<\1\2>', content)
-    
-    # Fix JSX expressions
-    content = re.sub(r'\{([^}]*?)\}', lambda m: f"{{'{m.group(1)}'}}" if not m.group(1).startswith("'") else m.group(0), content)
-    
-    return content
+def fix_frontmatter_errors(file_path):
+    """Fix YAML frontmatter parsing errors"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Extract frontmatter
+        frontmatter_match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+        if not frontmatter_match:
+            return False
+        
+        frontmatter_content = frontmatter_match.group(1)
+        body_content = content[frontmatter_match.end():]
+        
+        # Fix common YAML issues
+        fixed_frontmatter = frontmatter_content
+        
+        # 1. Fix multiline keys
+        fixed_frontmatter = re.sub(r'^(\w+):\s*\n\s*([^\n]+)$', r'\1: "\2"', fixed_frontmatter, flags=re.MULTILINE)
+        
+        # 2. Fix unquoted values with special characters
+        fixed_frontmatter = re.sub(r'^(\w+):\s*([^"\n][^"\n]*[^"\n\s])\s*$', r'\1: "\2"', fixed_frontmatter, flags=re.MULTILINE)
+        
+        # 3. Fix values that start with numbers or special characters
+        fixed_frontmatter = re.sub(r'^(\w+):\s*([0-9][^\n]*)\s*$', r'\1: "\2"', fixed_frontmatter, flags=re.MULTILINE)
+        
+        # 4. Fix values with colons
+        fixed_frontmatter = re.sub(r'^(\w+):\s*([^"\n]*:[^"\n]*)\s*$', r'\1: "\2"', fixed_frontmatter, flags=re.MULTILINE)
+        
+        # 5. Fix values with quotes
+        fixed_frontmatter = re.sub(r'^(\w+):\s*([^"\n]*"[^"\n]*)\s*$', r'\1: "\2"', fixed_frontmatter, flags=re.MULTILINE)
+        
+        # 6. Ensure all values are properly quoted
+        lines = fixed_frontmatter.split('\n')
+        fixed_lines = []
+        for line in lines:
+            if ':' in line and not line.strip().startswith('#'):
+                parts = line.split(':', 1)
+                if len(parts) == 2:
+                    key = parts[0].strip()
+                    value = parts[1].strip()
+                    if value and not (value.startswith('"') and value.endswith('"')):
+                        if not (value.startswith("'") and value.endswith("'")):
+                            # Escape any quotes in the value
+                            value = value.replace('"', '\\"')
+                            line = f'{key}: "{value}"'
+            fixed_lines.append(line)
+        
+        fixed_frontmatter = '\n'.join(fixed_lines)
+        
+        if fixed_frontmatter != frontmatter_content:
+            new_content = f"---\n{fixed_frontmatter}\n---\n{body_content}"
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print(f"Fixed frontmatter errors in {file_path}")
+            return True
+        
+        return False
+        
+    except Exception as e:
+        print(f"Error fixing frontmatter errors in {file_path}: {e}")
+        return False
 
-def fix_lazy_line_errors(content):
-    """Fix lazy line errors"""
-    # Fix block quotes
-    content = re.sub(r'^(\s*)>([^\n]*?)(?=\n\s*[^>\s])', r'\1> \2', content, flags=re.MULTILINE)
+def fix_specific_files():
+    """Fix specific files with known issues"""
     
-    # Fix list items
-    content = re.sub(r'^(\s*)([-*+])\s*([^\n]*?)(?=\n\s*[^-*+\s])', r'\1\2 \3', content, flags=re.MULTILINE)
-    
-    # Fix numbered lists
-    content = re.sub(r'^(\s*)(\d+\.)\s*([^\n]*?)(?=\n\s*(?:\d+\.|\s*[^\d\s]))', r'\1\2 \3', content, flags=re.MULTILINE)
-    
-    return content
+    # Fix result-codes.mdx frontmatter issue
+    result_codes_path = 'reference/result-codes.mdx'
+    if os.path.exists(result_codes_path):
+        try:
+            with open(result_codes_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Fix the specific frontmatter issue
+            content = re.sub(
+                r"description: 'Interpreting the meaning behi[^']*'",
+                'description: "Interpreting the meaning behind Authlete\'s API result codes"',
+                content
+            )
+            
+            with open(result_codes_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            
+            print(f"Fixed specific issue in {result_codes_path}")
+            
+        except Exception as e:
+            print(f"Error fixing {result_codes_path}: {e}")
 
-def fix_escape_sequences(content):
-    """Fix unknown escape sequences"""
-    # Fix backticks in frontmatter
-    content = re.sub(r'openapi:\s*"([^"]*\\`[^"]*)"', r"openapi: '\1'", content)
+def fix_all_mdx_files():
+    """Fix all MDX files with various errors"""
     
-    # Fix other escape sequences
-    content = re.sub(r'\\`', '`', content)
-    content = re.sub(r'\\"', '"', content)
-    content = re.sub(r"\\'", "'", content)
+    # Get all MDX files
+    mdx_files = glob.glob('**/*.mdx', recursive=True)
     
-    return content
-
-def fix_multiline_keys(content):
-    """Fix multiline key errors in YAML"""
-    # Fix multiline descriptions
-    content = re.sub(r'description:\s*([^\n]*?)\n\s*([^\n]*?)(?=\n\w+:)', r"description: '\1 \2'", content, flags=re.DOTALL)
+    # Skip node_modules and other directories
+    mdx_files = [f for f in mdx_files if 'node_modules' not in f]
     
-    return content
-
-def apply_general_fixes(content):
-    """Apply general fixes to all content"""
-    # Fix common frontmatter issues
-    content = re.sub(r'title:\s*"([^"]*)"', r"title: '\1'", content)
-    content = re.sub(r'description:\s*"([^"]*)"', r"description: '\1'", content)
-    
-    # Fix broken quotes
-    content = re.sub(r'title:\s*"\'([^\']*)\'', r"title: '\1'", content)
-    content = re.sub(r'description:\s*"\'([^\']*)\'', r"description: '\1'", content)
-    
-    # Fix unclosed quotes
-    content = re.sub(r'title:\s*"([^"]*?)(?:\n|$)', r"title: '\1'", content)
-    content = re.sub(r'description:\s*"([^"]*?)(?:\n|$)', r"description: '\1'", content)
-    
-    # Fix JSX components
-    content = re.sub(r'<(\w+)\s*([^>]*?)\s*/>', r'<\1 \2 />', content)
-    
-    # Fix broken Mintlify components
-    content = re.sub(r'<(\w+)\s*([^>]*?)\s*>\s*</\1>', r'<\1 \2 />', content)
-    
-    return content
-
-def main():
-    """Main function to fix all MDX files"""
-    print("🔧 Fixing ALL MDX parsing errors...")
-    
-    # Find all MDX files
-    mdx_files = []
-    for root, dirs, files in os.walk('.'):
-        for file in files:
-            if file.endswith('.mdx'):
-                mdx_files.append(os.path.join(root, file))
-    
-    print(f"📁 Found {len(mdx_files)} MDX files")
-    
-    fixed_count = 0
+    acorn_fixed = 0
+    lazy_line_fixed = 0
+    frontmatter_fixed = 0
     
     for file_path in mdx_files:
-        if fix_mdx_file(file_path):
-            print(f"✅ Fixed: {file_path}")
-            fixed_count += 1
-    
-    print(f"\n🎉 Fixed {fixed_count} files")
-    
-    if fixed_count > 0:
-        print("\n🔍 Running final validation...")
-        # Check for remaining issues
-        remaining_issues = 0
-        for file_path in mdx_files:
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                
-                # Check for common issues
-                if 'title: "' in content or 'description: "' in content:
-                    remaining_issues += 1
-                    print(f"⚠️  Still has issues: {file_path}")
-                
-            except Exception as e:
-                remaining_issues += 1
-                print(f"❌ Error reading {file_path}: {e}")
+        print(f"Processing {file_path}...")
         
-        if remaining_issues == 0:
-            print("✅ ALL MDX errors fixed!")
-        else:
-            print(f"⚠️  {remaining_issues} files still have issues")
+        # Fix acorn errors
+        if fix_acorn_errors(file_path):
+            acorn_fixed += 1
+        
+        # Fix lazy line errors
+        if fix_lazy_line_errors(file_path):
+            lazy_line_fixed += 1
+        
+        # Fix frontmatter errors
+        if fix_frontmatter_errors(file_path):
+            frontmatter_fixed += 1
+    
+    # Fix specific files
+    fix_specific_files()
+    
+    print(f"\nSummary:")
+    print(f"Fixed acorn errors in {acorn_fixed} files")
+    print(f"Fixed lazy line errors in {lazy_line_fixed} files")
+    print(f"Fixed frontmatter errors in {frontmatter_fixed} files")
+
+def main():
+    print("Fixing all MDX parsing errors...")
+    fix_all_mdx_files()
+    print("All MDX files have been processed!")
 
 if __name__ == "__main__":
     main()

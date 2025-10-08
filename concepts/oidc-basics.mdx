@@ -1,10 +1,11 @@
 ---
-description: Introduction
-title: Introduction
+description: "Introduction"
+title: "Introduction"
 ---
 
 
-{\`{\`<\`}Info>
+
+Info>
 This page is for Authlete 3.0. For 2.x, refer to this page.
 </Info>\`}
 
@@ -144,7 +145,7 @@ sequenceDiagram
     AS ->> API: POST /auth/authorization
     API -->> AS: OK to proceed(including ticket)
     AS -->> UA: User authentication and consent page
-    RO {\`<<->>\`} UA: Enter credentials
+    RO  UA: Enter credentials
     UA ->> AS: Login and consent
     AS ->> API: POST /auth/authorization/issue(with ticket)
     API -->> AS: Authorization response content(including authorization code)
@@ -205,45 +206,31 @@ You’ll now simulate the authorization server’s request to this API.
 Execute the `curl` command as follows (message #5). Make sure to replace `&lt;Service ID&gt;`, `&lt;Service Access Token&gt;` and `&lt;Client ID&gt;` by your own values generated in the previous step.
 
 ```
-curl -s -X POST https://us.authlete.com/api/{\`{\`<\`}Service ID e.g. 10738933707579>/auth/authorization \
--H 'Authorization: Bearer {\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
+curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization \
+-H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
 -H 'Content-Type: application/json' \
--d '{\` "parameters": "redirect_uri=https://client.example.org/cb/example.com&response_type=code&client_id={\`{\`<\`}Client ID e.g. 12898884596863>&scope=openid&nonce=n-0S6_WzA2Mj" }'
+-d 'Client ID e.g. 12898884596863>&scope=openid&nonce=n-0S6_WzA2Mj" }'
 ```
 
 If successful, Authlete will reply with the following response (shortened for brevity) (message #6).
 
 ```json
-{
-   "resultMessage" : "[A004001] Authlete has successfully issued a ticket to the service (API Key = 10738933707579) for the authorization request from the client (ID = 12898884596863). [response_type=code, openid=true]",
-   "resultCode" : "A004001",
-   "client" : { [...] \`},
+,
    "ticket" : "bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU",
    "action" : "INTERACTION",
    [...]
-   "service" : {\`
-      [...]
-      "supportedClaims" : null,
-      "supportedScopes" : null,
-   }
-\`}
+   "service" : 
+  \`}
 
 ```
 
 ```json
-{\`
-   "resultMessage" : "[A004001] Authlete has successfully issued a ticket to the service (API Key = 10738933707579) for the authorization request from the client (ID = 12898884596863). [response_type=code, openid=true]",
-   "resultCode" : "A004001",
-   "client" : { [...] },
+,
    "ticket" : "bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU",
    "action" : "INTERACTION",
    [...]
-   "service" : {
-      [...]
-      "supportedClaims" : null,
-      "supportedScopes" : null,
-   \`}
-}
+   "service" : 
+  }
 
 ```
 
@@ -271,39 +258,21 @@ The authorization server makes a request to Authlete’s `/auth/authorization/is
 Execute the following `curl` command (message #10), making sure to replace `&lt;Service ID&gt;`, `&lt;Service Access Token&gt;` and `&lt;Ticket&gt;` by your own values generated in the previous step.
 
 ```
-curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization/issue \
--H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization/issue \
+-H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{\` "ticket": "{\`<\`}Ticket e.g. bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU>\`}", "subject": "testuser01" }'
+-d 'Ticket e.g. bi2Kxe2WW5mK_GZ_fDFOpK1bnY6xTy40Ap_8nxf-7AU>\`}", "subject": "testuser01" }'
 ```
 
 If successful, Authlete will reply with the following response (step #11).
 
 ```json
-{
-   "action" : "LOCATION",
-   "resultCode" : "A040001",
-   "accessTokenDuration" : 0,
-   "accessTokenExpiresAt" : 0,
-   "resultMessage" : "[A040001] The authorization request was processed successfully.",
-   "responseContent" : "https://client.example.org/cb/example.com?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U",
-   "authorizationCode" : "GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U",
-   ...
-\`}
+
 
 ```
 
 ```json
-{\`
-   "action" : "LOCATION",
-   "resultCode" : "A040001",
-   "accessTokenDuration" : 0,
-   "accessTokenExpiresAt" : 0,
-   "resultMessage" : "[A040001] The authorization request was processed successfully.",
-   "responseContent" : "https://client.example.org/cb/example.com?code=GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U",
-   "authorizationCode" : "GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U",
-   ...
-}
+
 
 ```
 
@@ -384,26 +353,16 @@ Once again, let’s simulate this step using Authlete’s  `/auth/token` API to 
 Execute the following `curl` command (step #15), again making sure to replace `&lt;Service ID&gt;`, `&lt;Service Access Token&gt;`, `&lt;Client ID&gt;`, `&lt;Client Secret&gt;` and `&lt;Code&gt;` by your own values generated in the previous step.
 
 ```
-curl -s -X POST https://us.authlete.com/api/{\`{\`<\`}Service ID e.g. 10738933707579>/auth/token \
--H 'Authorization: Bearer {\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
+curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/token \
+-H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
 -H 'Content-Type: application/json' \
--d '{ "clientId": "{\`{\`<\`}Client ID e.g. 12898884596863>", "clientSecret": "{\`<\`}Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>\`}", "parameters": "grant_type=authorization_code&code={\`{\`<\`}Code e.g. GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U>&redirect_uri=https://client.example.org/cb/example.com" \`}'
+-d 'Client ID e.g. 12898884596863>", "clientSecret": "Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>\`}", "parameters": "grant_type=authorization_code&code=Code e.g. GrYz5vtk6VaF0jxfnDrB2yvmk4deIrnMkrGT07JdM5U>&redirect_uri=https://client.example.org/cb/example.com" \`}'
 ```
 
 If successful, Authlete will reply with the following response (message #16).
 
 ```json
-{\`
-   "resultMessage" : "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
-   "action" : "OK",
-   "clientIdAliasUsed" : false,
-   "subject" : "testuser01",
-   "resultCode" : "A050001",
-   "refreshTokenExpiresAt" : 1730552811449,
-   "grantType" : "AUTHORIZATION_CODE",
-   "accessToken" : "7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
-   "idToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk",
-   "responseContent" : "{\"access_token\":\"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY\",\"refresh_token\":\"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk\",\"token_type\":\"Bearer\",\"expires_in\":86400}",
+",
    "scopes" : [
       "openid"
    ],
@@ -418,17 +377,7 @@ If successful, Authlete will reply with the following response (message #16).
 ```
 
 ```json
-{\`
-   "resultMessage" : "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
-   "action" : "OK",
-   "clientIdAliasUsed" : false,
-   "subject" : "testuser01",
-   "resultCode" : "A050001",
-   "refreshTokenExpiresAt" : 1730552811449,
-   "grantType" : "AUTHORIZATION_CODE",
-   "accessToken" : "7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
-   "idToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk",
-   "responseContent" : "{\"access_token\":\"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY\",\"refresh_token\":\"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk\",\"token_type\":\"Bearer\",\"expires_in\":86400}",
+",
    "scopes" : [
       "openid"
    ],
@@ -454,14 +403,7 @@ The authorization server would then pass the following response to the client (m
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{\`
- "access_token":"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
- "refresh_token":"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE",
- "scope":"openid",
- "id_token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk",
- "token_type":"Bearer",
- "expires_in":86400
-}
+
 
 ```
 
@@ -469,14 +411,7 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
- "access_token":"7FfwOnGjVHwxXhs2Wr67XV1-ZhQaoy3ctKcGkLyKxuY",
- "refresh_token":"T1h7fJ6k55CyipDtXNPbzN8ta3FgAAf4QKjo36OVfIE",
- "scope":"openid",
- "id_token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImlzcyI6Imh0dHBzOi8vYXV0aGxldGUuY29tIiwiZXhwIjoxNTU5MTA2ODE1LCJpYXQiOjE1NTkwMjA0MTUsIm5vbmNlIjoibi0wUzZfV3pBMk1qIn0.5uSFMTGnubyvtiExHc9l7HT9UsF8a_Qb0STtWzyclBk",
- "token_type":"Bearer",
- "expires_in":86400
-\`}
+
 
 ```
 
@@ -501,46 +436,24 @@ The decoded results are as follows.
 **Header:**
 
 ```json
-{\`
-  "alg": "HS256"
-}
+
 
 ```
 
 ```json
-{
-  "alg": "HS256"
-\`}
+
 
 ```
 
 **Payload:**
 
 ```json
-{\`
-  "sub": "testuser01",
-  "aud": [
-    "12898884596863"
-  ],
-  "iss": "https://authlete.com",
-  "exp": 1730552811,
-  "iat": 1730552811,
-  "nonce": "n-0S6_WzA2Mj"
-}
+
 
 ```
 
 ```json
-{
-  "sub": "testuser01",
-  "aud": [
-    "12898884596863"
-  ],
-  "iss": "https://authlete.com",
-  "exp": 1730552811,
-  "iat": 1730552811,
-  "nonce": "n-0S6_WzA2Mj"
-\`}
+
 
 ```
 
@@ -577,33 +490,21 @@ Let’s make the same authorization request as the previous one (using the same 
 Make sure to replace `&lt;Service ID&gt;`, `&lt;Service Access Token&gt;` and `&lt;Client ID&gt;` by your own values generated in the previous step.
 
 ```
-curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/authorization \
--H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/authorization \
+-H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{\` "parameters": "redirect_uri=https://client.example.org/cb/example.com&response_type=code&client_id={\`<\`}Client ID e.g. 12898884596863>\`}&scope=openid&nonce=n-0S6_WzA2Mj" }'
+-d 'Client ID e.g. 12898884596863>\`}&scope=openid&nonce=n-0S6_WzA2Mj" }'
 ```
 
 You should receive the following response (shortened for brevity).
 
 ```json
-{
-   [...]
-   "action" : "INTERACTION",
-   "resultCode" : "A004001",
-   "resultMessage" : "[A004001] Authlete has successfully issued a ticket to the service (API Key = 10738933707579) for the authorization request from the client (ID = 12898884596863). [response_type=code, openid=true]",
-   "ticket" : "JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A",
-\`}
+
 
 ```
 
 ```json
-{\`
-   [...]
-   "action" : "INTERACTION",
-   "resultCode" : "A004001",
-   "resultMessage" : "[A004001] Authlete has successfully issued a ticket to the service (API Key = 10738933707579) for the authorization request from the client (ID = 12898884596863). [response_type=code, openid=true]",
-   "ticket" : "JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A",
-}
+
 
 ```
 
@@ -622,39 +523,21 @@ This time the following additional claims are included on making the request to 
 You can use the `claims` parameter to add claims. The request will be constructed as follows.
 
 ```
-curl -s -X POST https://us.authlete.com/api/{\`{\`<\`}Service ID e.g. 10738933707579>/auth/authorization/issue \
--H 'Authorization: Bearer {\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
+curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>/auth/authorization/issue \
+-H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>\`}' \
 -H 'Content-Type: application/json' \
--d '{ "ticket": "{\`{\`<\`}Ticket e.g. JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A>", "subject": "testuser01", "claims": "{\"name\": \"Test User\", \"email\": \"testuser01@example.com\", \"email_verified\": true\`}" }'
+-d 'Ticket e.g. JjQ_Th1UvZyU5MsdKTLIfLv3VlKwEiYnnULmW6l_d9A>", "subject": "testuser01", "claims": "" }'
 ```
 
 Then you will receive the following response.
 
 ```json
-{\`
-   "responseContent" : "https://client.example.org/cb/example.com?code=ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
-   "accessTokenDuration" : 0,
-   "authorizationCode" : "ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
-   "accessTokenExpiresAt" : 0,
-   "type" : "authorizationIssueResponse",
-   "resultMessage" : "[A040001] The authorization request was processed successfully.",
-   "resultCode" : "A040001",
-   "action" : "LOCATION"
-}
+
 
 ```
 
 ```json
-{
-   "responseContent" : "https://client.example.org/cb/example.com?code=ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
-   "accessTokenDuration" : 0,
-   "authorizationCode" : "ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI",
-   "accessTokenExpiresAt" : 0,
-   "type" : "authorizationIssueResponse",
-   "resultMessage" : "[A040001] The authorization request was processed successfully.",
-   "resultCode" : "A040001",
-   "action" : "LOCATION"
-\`}
+
 
 ```
 
@@ -703,18 +586,16 @@ grant_type=authorization_code
 The authorization server is supposed to make a request to Authlete’s `/auth/token` API.
 
 ```
-curl -s -X POST https://us.authlete.com/api/{\`<\`}Service ID e.g. 10738933707579>\`}/auth/token \
--H 'Authorization: Bearer {\`{\`<\`}Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
+curl -s -X POST https://us.authlete.com/api/Service ID e.g. 10738933707579>\`}/auth/token \
+-H 'Authorization: Bearer Service Access Token e.g. Xg6jVpJCvsaXvy2ks8R5WzjdMYlvQqOym3slDX0wNhQ>' \
 -H 'Content-Type: application/json' \
--d '{\` "clientId": "{\`<\`}Client ID e.g. 12898884596863>\`}", "clientSecret": "{\`{\`<\`}Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code={\`<\`}Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>\`}&redirect_uri=https://client.example.org/cb/example.com" }'
+-d 'Client ID e.g. 12898884596863>\`}", "clientSecret": "Client Secret e.g. -olDIKD9BihRfB8O1JxobUEKBZ7PIV5Z6oaqxAshmoUtUZgB-wjmmxTYDiDV6vM_Mgl267PeNrRftq8cWplvmg>", "parameters": "grant_type=authorization_code&code=Code e.g. ILePyGjraVgeU_fzaQRfd0gv10pzxgcpHY_vHT2dsPI>\`}&redirect_uri=https://client.example.org/cb/example.com" }'
 ```
 
 Authlete returns the following response.
 
 ```json
-{
-   "grantType" : "AUTHORIZATION_CODE",
-   "responseContent" : "{\"access_token\":\"R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro\",\"refresh_token\":\"k4WqWw2tcDOHxXXo29NxOCwQJyeDOtZ6aw_Y9Ugy-6U\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0\",\"token_type\":\"Bearer\",\"expires_in\":86400\`}",
+",
    "resultMessage" : "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
    "accessTokenExpiresAt" : 1730554257440,
    "accessToken" : "R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro",
@@ -736,9 +617,7 @@ Authlete returns the following response.
 ```
 
 ```json
-{\`
-   "grantType" : "AUTHORIZATION_CODE",
-   "responseContent" : "{\"access_token\":\"R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro\",\"refresh_token\":\"k4WqWw2tcDOHxXXo29NxOCwQJyeDOtZ6aw_Y9Ugy-6U\",\"scope\":\"openid\",\"id_token\":\"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0\",\"token_type\":\"Bearer\",\"expires_in\":86400}",
+",
    "resultMessage" : "[A050001] The token request (grant_type=authorization_code) was processed successfully.",
    "accessTokenExpiresAt" : 1730554257440,
    "accessToken" : "R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro",
@@ -765,14 +644,7 @@ The authorization server is expected to return the following response to the cli
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{\`
- "access_token":"R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro",
- "refresh_token":"k4WqWw2tcDOHxXXo29NxOCwQJyeDOtZ6aw_Y9Ugy-6U",
- "scope":"openid",
- "id_token":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0",
- "token_type":"Bearer",
- "expires_in":86400
-}
+
 
 ```
 
@@ -780,21 +652,14 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
- "access_token":"R4sd3s02Y1Gj72iI5Md6ZkGapXZ6mSnIEdihTvrM_Ro",
- "refresh_token":"k4WqWw2tcDOHxXXo29NxOCwQJyeDOtZ6aw_Y9Ugy-6U",
- "scope":"openid",
- "id_token":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0",
- "token_type":"Bearer",
- "expires_in":86400
-\`}
+
 
 ```
 
 As the client on receiving the response, let’s try to decode the token with [Online JWT Verfier](https://kjur.github.io/jsrsasign/tool/tool_jwtveri.html) again.
 
 Open the link above, and paste the value of the `id_token` to textarea in *Step 1*. In this tutorial, the value is:
-`eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0`
+  `eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0dXNlcjAxQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXMuZXhhbXBsZS5jb20iLCJzdWIiOiJ0ZXN0dXNlcjAxIiwiYXVkIjpbIjEyODk4ODg0NTk2ODYzIl0sImV4cCI6MTU1OTEzNzMwMSwiaWF0IjoxNTU5MDUwOTAxLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.8ngbBoGLUvHXIO4VyGN0-txJfE5Yq86xElMSxqGlLv0`
 
 Click the **Just Decode JWT** button in *(Step 3) Verify* and see decoded content in the *Parsed JWT* section.
 
@@ -807,52 +672,24 @@ The decoded results are as follows.
 **Header:**
 
 ```json
-{\`
-  "alg": "HS256"
-}
+
 
 ```
 
 ```json
-{
-  "alg": "HS256"
-\`}
+
 
 ```
 
 **Payload:**
 
 ```json
-{\`
-  "name": "Test User",
-  "email": "testuser01@example.com",
-  "email_verified": true,
-  "iss": "https://as.example.com",
-  "sub": "testuser01",
-  "aud": [
-    "12898884596863"
-  ],
-  "exp": 1559137301,
-  "iat": 1559050901,
-  "nonce": "n-0S6_WzA2Mj"
-}
+
 
 ```
 
 ```json
-{
-  "name": "Test User",
-  "email": "testuser01@example.com",
-  "email_verified": true,
-  "iss": "https://as.example.com",
-  "sub": "testuser01",
-  "aud": [
-    "12898884596863"
-  ],
-  "exp": 1559137301,
-  "iat": 1559050901,
-  "nonce": "n-0S6_WzA2Mj"
-\`}
+
 
 ```
 

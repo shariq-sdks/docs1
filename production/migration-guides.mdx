@@ -1,5 +1,5 @@
 ---
-title: "Migration Guides"
+  title: "Migration Guides"
 description: "Comprehensive guides for migrating to Authlete from other OAuth 2.0 and OpenID Connect solutions"
 ---
 
@@ -10,7 +10,7 @@ This section provides step-by-step migration guides for moving from other OAuth 
 ## Overview
 
 Migrating to Authlete offers several benefits:
-- **Simplified Implementation** - Reduce development time and complexity
+  - **Simplified Implementation** - Reduce development time and complexity
 - **Enhanced Security** - Built-in security best practices
 - **Better Performance** - Optimized for high-scale deployments
 - **Comprehensive Support** - Full OAuth 2.0 and OpenID Connect compliance
@@ -23,12 +23,12 @@ Migrating to Authlete offers several benefits:
 Migrate everything at once during a maintenance window.
 
 **Pros:**
-- Clean cutover
+  - Clean cutover
 - No dual-system complexity
 - Immediate benefits
 
 **Cons:**
-- Higher risk
+  - Higher risk
 - Requires extensive testing
 - Longer maintenance window
 
@@ -37,12 +37,12 @@ Migrate everything at once during a maintenance window.
 Migrate components incrementally over time.
 
 **Pros:**
-- Lower risk
+  - Lower risk
 - Easier rollback
 - Continuous operation
 
 **Cons:**
-- Longer timeline
+  - Longer timeline
 - Temporary complexity
 - Resource overhead
 
@@ -51,12 +51,12 @@ Migrate components incrementally over time.
 Run both systems simultaneously during transition.
 
 **Pros:**
-- Zero downtime
+  - Zero downtime
 - Easy comparison
 - Safe rollback
 
 **Cons:**
-- Higher costs
+  - Higher costs
 - Data synchronization
 - Complex testing
 
@@ -65,13 +65,13 @@ Run both systems simultaneously during transition.
 ### From Custom OAuth 2.0 Implementation
 
 **Challenges:**
-- Custom code maintenance
+  - Custom code maintenance
 - Security vulnerabilities
 - Compliance issues
 - Performance bottlenecks
 
 **Migration Steps:**
-1. **Audit Current Implementation**
+  1. **Audit Current Implementation**
    - Document existing flows
    - Identify custom features
    - Assess security gaps
@@ -108,7 +108,7 @@ AUTHLETE_BASE_URL: "https://api.authlete.com"
 ```
 
 **Migration Checklist:**
-- [ ] Export user data
+  - [ ] Export user data
 - [ ] Map user attributes
 - [ ] Configure scopes
 - [ ] Set up clients
@@ -130,7 +130,7 @@ AUTHLETE_BASE_URL: "https://api.authlete.com"
 ```
 
 **Migration Checklist:**
-- [ ] Export user profiles
+  - [ ] Export user profiles
 - [ ] Map group memberships
 - [ ] Configure custom attributes
 - [ ] Set up authorization servers
@@ -154,7 +154,7 @@ AUTHLETE_BASE_URL: "https://api.authlete.com"
 ```
 
 **Migration Steps:**
-1. **Export Keycloak Configuration**
+  1. **Export Keycloak Configuration**
    - Realm settings
    - Client configurations
    - User data
@@ -175,7 +175,7 @@ AUTHLETE_BASE_URL: "https://api.authlete.com"
 ### User Data Migration
 
 **Export from Source:**
-```json
+  ```json
 {
   "users": [
     {
@@ -192,7 +192,7 @@ AUTHLETE_BASE_URL: "https://api.authlete.com"
 ```
 
 **Import to Authlete:**
-```bash
+  ```bash
 # Using Authlete API
 curl -X POST "https://api.authlete.com/api/user/import" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY" \
@@ -203,7 +203,7 @@ curl -X POST "https://api.authlete.com/api/user/import" \
 ### Client Configuration Migration
 
 **Export Client Data:**
-```json
+  ```json
 {
   "clients": [
     {
@@ -218,7 +218,7 @@ curl -X POST "https://api.authlete.com/api/user/import" \
 ```
 
 **Import to Authlete:**
-```bash
+  ```bash
 # Using Authlete API
 curl -X POST "https://api.authlete.com/api/client/create" \
   -H "Authorization: Bearer $AUTHLETE_API_KEY" \
@@ -231,13 +231,13 @@ curl -X POST "https://api.authlete.com/api/client/create" \
 ### Pre-Migration Testing
 
 **Test Environment Setup:**
-1. Create Authlete test service
+  1. Create Authlete test service
 2. Configure test clients
 3. Set up test users
 4. Run comprehensive tests
 
 **Test Scenarios:**
-- OAuth 2.0 authorization code flow
+  - OAuth 2.0 authorization code flow
 - OpenID Connect authentication
 - Token refresh
 - Token revocation
@@ -247,7 +247,7 @@ curl -X POST "https://api.authlete.com/api/client/create" \
 ### Post-Migration Validation
 
 **Validation Checklist:**
-- [ ] All OAuth flows working
+  - [ ] All OAuth flows working
 - [ ] Token format compatibility
 - [ ] User authentication successful
 - [ ] Client applications functional
@@ -259,7 +259,7 @@ curl -X POST "https://api.authlete.com/api/client/create" \
 ### Rollback Triggers
 
 **Critical Issues:**
-- Authentication failures
+  - Authentication failures
 - Token validation errors
 - Performance degradation
 - Security vulnerabilities
@@ -268,13 +268,13 @@ curl -X POST "https://api.authlete.com/api/client/create" \
 ### Rollback Procedures
 
 **Immediate Rollback:**
-1. Switch DNS/load balancer
+  1. Switch DNS/load balancer
 2. Revert application configuration
 3. Monitor system health
 4. Investigate issues
 
 **Gradual Rollback:**
-1. Stop new client migrations
+  1. Stop new client migrations
 2. Revert problematic clients
 3. Monitor remaining clients
 4. Plan next migration phase
@@ -307,13 +307,13 @@ curl -X POST "https://api.authlete.com/api/client/create" \
 ### Technical Challenges
 
 **Token Format Differences:**
-- JWT structure variations
+  - JWT structure variations
 - Claim naming differences
 - Signature algorithms
 - Key management
 
 **Endpoint Differences:**
-- URL variations
+  - URL variations
 - Parameter differences
 - Response format changes
 - Error handling
@@ -321,13 +321,13 @@ curl -X POST "https://api.authlete.com/api/client/create" \
 ### Business Challenges
 
 **User Experience:**
-- Login flow changes
+  - Login flow changes
 - UI/UX updates
 - Error messages
 - Help documentation
 
 **Integration Complexity:**
-- Multiple applications
+  - Multiple applications
 - Different client types
 - Legacy systems
 - Third-party integrations

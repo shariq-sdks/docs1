@@ -1,10 +1,11 @@
 ---
-description: Introduction
-title: Introduction
+description: "Introduction"
+title: "Introduction"
 ---
 
 
-{\`{\`<\`}Info>
+
+Info>
 This page is for Authlete 2.x. For 3.0, refer to this page.
 </Info>\`}
 
@@ -253,80 +254,14 @@ Authorization server implementations have to process the `TOKEN_EXCHANGE` action
 ```java
 // Dispatch according to the action.
 switch (action)
-{\`
-    case INVALID_CLIENT:
-        // 401 Unauthorized
-        return ResponseUtil.unauthorized(content, CHALLENGE);
 
-    case INTERNAL_SERVER_ERROR:
-        // 500 Internal Server Error
-        return ResponseUtil.internalServerError(content);
-
-    case BAD_REQUEST:
-        // 400 Bad Request
-        return ResponseUtil.badRequest(content);
-
-    case PASSWORD:
-        // Process the token request whose flow is "Resource Owner Password Credentials".
-        return handlePassword(response);
-
-    case OK:
-        // 200 OK
-        return ResponseUtil.ok(content);
-
-    case TOKEN_EXCHANGE:
-        // Process the token exchange request (RFC 8693)
-        return handleTokenExchange(response);
-
-    case JWT_BEARER:
-        // Process the token request which uses the grant type
-        // urn:ietf:params:oauth:grant-type:jwt-bearer (RFC 7523).
-        return handleJwtBearer(response);
-
-    default:
-        // This never happens.
-        throw getApiCaller().unknownAction("/api/auth/token", action);
-}
 
 ```
 
 ```java
 // Dispatch according to the action.
 switch (action)
-{
-    case INVALID_CLIENT:
-        // 401 Unauthorized
-        return ResponseUtil.unauthorized(content, CHALLENGE);
 
-    case INTERNAL_SERVER_ERROR:
-        // 500 Internal Server Error
-        return ResponseUtil.internalServerError(content);
-
-    case BAD_REQUEST:
-        // 400 Bad Request
-        return ResponseUtil.badRequest(content);
-
-    case PASSWORD:
-        // Process the token request whose flow is "Resource Owner Password Credentials".
-        return handlePassword(response);
-
-    case OK:
-        // 200 OK
-        return ResponseUtil.ok(content);
-
-    case TOKEN_EXCHANGE:
-        // Process the token exchange request (RFC 8693)
-        return handleTokenExchange(response);
-
-    case JWT_BEARER:
-        // Process the token request which uses the grant type
-        // urn:ietf:params:oauth:grant-type:jwt-bearer (RFC 7523).
-        return handleJwtBearer(response);
-
-    default:
-        // This never happens.
-        throw getApiCaller().unknownAction("/api/auth/token", action);
-\`}
 
 ```
 
@@ -365,25 +300,11 @@ $ curl http://localhost:8080/api/token -d grant_type=urn:ietf:params:oauth:grant
 ### 3. Receive a token exchange response.
 
 ```json
-{\`
-  "access_token":"NEdL-q9EfOI4S5XzaMeimXAXVqS139Jm9DTYeLUAd5o",
-  "issued_token_type":"urn:ietf:params:oauth:token-type:access_token",
-  "token_type":"Bearer",
-  "expires_in":86400,
-  "scope":"email",
-  "refresh_token":"pK9f5OWIrx58_XWrE_SpCLLN-BM673ljliTSffjqwao"
-}
+
 
 ```
 
 ```json
-{
-  "access_token":"NEdL-q9EfOI4S5XzaMeimXAXVqS139Jm9DTYeLUAd5o",
-  "issued_token_type":"urn:ietf:params:oauth:token-type:access_token",
-  "token_type":"Bearer",
-  "expires_in":86400,
-  "scope":"email",
-  "refresh_token":"pK9f5OWIrx58_XWrE_SpCLLN-BM673ljliTSffjqwao"
-\`}
+
 
 ```

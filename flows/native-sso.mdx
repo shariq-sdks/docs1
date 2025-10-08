@@ -1,12 +1,13 @@
 ---
-title: 'Native SSO'
-description: 'Native Single Sign-On implementation for mobile applications.'
+  title: 'Native SSO'
+description: "'Native Single Sign-On implementation for mobile applications.'"
 ---
+
 
 ## Concept
 
 **[OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)**
-(hereafter referred to as “**Native SSO**”) is a standard specification that
+  (hereafter referred to as “**Native SSO**”) is a standard specification that
 defines a mechanism for achieving single sign-on (SSO) across multiple mobile
 applications under the control of the same vendor. If this specification is
 implemented, users are not required to authenticate individually for each
@@ -67,7 +68,7 @@ To summarize, the following diagram illustrates the overview.
 The device secret is described in the Native SSO specification as follows.
 
 > The device secret contains relevant data to the device and the current users
-authenticated with the device. The device secret is completely opaque to the
+> authenticated with the device. The device secret is completely opaque to the
 client and as such the AS MUST adequately protect the value such as using a
 JWE if the AS is not maintaining state on the backend.
 
@@ -138,28 +139,12 @@ that comply with Native SSO. The device secret is returned as the value of
 the `device_secret` property.
 
 ```json
-{\`
-  "access_token": "R28TIqhCydVvH2x2a3XsOzJykFEs7yFotO4ip-a2MbY",
-  "token_type": "Bearer",
-  "expires_in": 86400,
-  "scope": "openid device_sso",
-  "refresh_token": "lmlNXafSApRDAq7gZvy40ojya9bplgFSHczms46mTms",
-  "id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzEiXSwiZXhwIjoxNzQ2NDM3MTE5LCJpYXQiOjE3NDYzNTA3MTksImF1dGhfdGltZSI6MTc0NjM1MDY3MiwiZHNfaGFzaCI6IlhrYmdHQ1JKUTFOQUhuS25NbjhKMFhIS25fOEVNenhCOWFRdUZITk0ycDQiLCJzaWQiOiJub2RlMDM4Y2F0N2ozMDhzZzE4MjhtMXNnMmRleGwzIn0.JAYlCEbGhjJwpgSZ4lUNaXkWD2ICeDs6FCBd3bKRvKPhrrGZKUAZDRij_Bmn_AF7DyTQS5ALHl82cJqjaLCcIw",
-  "device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83"
-}
+
 
 ```
 
 ```json
-{
-  "access_token": "R28TIqhCydVvH2x2a3XsOzJykFEs7yFotO4ip-a2MbY",
-  "token_type": "Bearer",
-  "expires_in": 86400,
-  "scope": "openid device_sso",
-  "refresh_token": "lmlNXafSApRDAq7gZvy40ojya9bplgFSHczms46mTms",
-  "id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzEiXSwiZXhwIjoxNzQ2NDM3MTE5LCJpYXQiOjE3NDYzNTA3MTksImF1dGhfdGltZSI6MTc0NjM1MDY3MiwiZHNfaGFzaCI6IlhrYmdHQ1JKUTFOQUhuS25NbjhKMFhIS25fOEVNenhCOWFRdUZITk0ycDQiLCJzaWQiOiJub2RlMDM4Y2F0N2ozMDhzZzE4MjhtMXNnMmRleGwzIn0.JAYlCEbGhjJwpgSZ4lUNaXkWD2ICeDs6FCBd3bKRvKPhrrGZKUAZDRij_Bmn_AF7DyTQS5ALHl82cJqjaLCcIw",
-  "device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83"
-\`}
+
 
 ```
 
@@ -171,34 +156,12 @@ The ID token compliant with Native SSO specification includes the `ds_hash`
 claim and the `sid` claim.
 
 ```json
-{\`
-  "iss": "https://trial.authlete.net",
-  "sub": "1004",
-  "aud": [
-    "app_1"
-  ],
-  "exp": 1746437119,
-  "iat": 1746350719,
-  "auth_time": 1746350672,
-  "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
-  "sid": "node038cat7j308sg1828m1sg2dexl3"
-}
+
 
 ```
 
 ```json
-{
-  "iss": "https://trial.authlete.net",
-  "sub": "1004",
-  "aud": [
-    "app_1"
-  ],
-  "exp": 1746437119,
-  "iat": 1746350719,
-  "auth_time": 1746350672,
-  "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
-  "sid": "node038cat7j308sg1828m1sg2dexl3"
-\`}
+
 
 ```
 
@@ -257,30 +220,12 @@ of Native SSO, the value of issued_token_type is
 urn:ietf:params:oauth:token-type:access_token.
 
 ```json
-{\`
-  "access_token": "rH9115-g83z9zIiCJ1mzIe8mza3bX4NaBTWmGs5qqow",
-  "token_type": "Bearer",
-  "expires_in": 86400,
-  "scope": "openid",
-  "refresh_token": "_F7NMCU1ny8DQ-3Pru_owgII52gIew0T6wuWKeIrfL4",
-  "id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzIiXSwiZXhwIjoxNzQ2NDM4MzUxLCJpYXQiOjE3NDYzNTE5NTEsImRzX2hhc2giOiJYa2JnR0NSSlExTkFIbktuTW44SjBYSEtuXzhFTXp4QjlhUXVGSE5NMnA0Iiwic2lkIjoibm9kZTAzOGNhdDdqMzA4c2cxODI4bTFzZzJkZXhsMyJ9.8jNNF5mpeHnbqp1FTK_1adR8FlgPmHK9_rwUzaz-o5P7RMyaelBaSj74IhxHY6wbCJeD0n_N14h8vD8zWYh-8w",
-  "device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83",
-  "issued_token_type": "urn:ietf:params:oauth:token-type:access_token"
-}
+
 
 ```
 
 ```json
-{
-  "access_token": "rH9115-g83z9zIiCJ1mzIe8mza3bX4NaBTWmGs5qqow",
-  "token_type": "Bearer",
-  "expires_in": 86400,
-  "scope": "openid",
-  "refresh_token": "_F7NMCU1ny8DQ-3Pru_owgII52gIew0T6wuWKeIrfL4",
-  "id_token": "eyJraWQiOiJaWUdJT0hZdUE5SXBVaWpWd1FOdWwzbkU1MzZ4MUpTV0hpT2ZkUzdzYWRnIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL3RyaWFsLmF1dGhsZXRlLm5ldCIsInN1YiI6IjEwMDQiLCJhdWQiOlsiYXBwXzIiXSwiZXhwIjoxNzQ2NDM4MzUxLCJpYXQiOjE3NDYzNTE5NTEsImRzX2hhc2giOiJYa2JnR0NSSlExTkFIbktuTW44SjBYSEtuXzhFTXp4QjlhUXVGSE5NMnA0Iiwic2lkIjoibm9kZTAzOGNhdDdqMzA4c2cxODI4bTFzZzJkZXhsMyJ9.8jNNF5mpeHnbqp1FTK_1adR8FlgPmHK9_rwUzaz-o5P7RMyaelBaSj74IhxHY6wbCJeD0n_N14h8vD8zWYh-8w",
-  "device_secret": "b81d5ae9-9f85-4c6d-8658-1a36ffa42c83",
-  "issued_token_type": "urn:ietf:params:oauth:token-type:access_token"
-\`}
+
 
 ```
 
@@ -289,32 +234,12 @@ Extracting the ID token from the above response example:
 and decoding its payload part using base64url will show this result:
 
 ```json
-{\`
-  "iss": "https://trial.authlete.net",
-  "sub": "1004",
-  "aud": [
-    "app_2"
-  ],
-  "exp": 1746438351,
-  "iat": 1746351951,
-  "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
-  "sid": "node038cat7j308sg1828m1sg2dexl3"
-}
+
 
 ```
 
 ```json
-{
-  "iss": "https://trial.authlete.net",
-  "sub": "1004",
-  "aud": [
-    "app_2"
-  ],
-  "exp": 1746438351,
-  "iat": 1746351951,
-  "ds_hash": "XkbgGCRJQ1NAHnKnMn8J0XHKn_8EMzxB9aQuFHNM2p4",
-  "sid": "node038cat7j308sg1828m1sg2dexl3"
-\`}
+
 
 ```
 
@@ -613,10 +538,7 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
-{\`
-    "error": "invalid_grant",
-    "error_description": "The session ID is no longer valid."
-}
+
 
 ```
 
@@ -625,10 +547,7 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
-{
-    "error": "invalid_grant",
-    "error_description": "The session ID is no longer valid."
-\`}
+
 
 ```
 
@@ -704,10 +623,7 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
-{\`
-    "error": "invalid_grant",
-    "error_description": "The device secret hash in the subject token does not correspond to the device secret."
-}
+
 
 ```
 
@@ -716,10 +632,7 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json
 Cache-Control: no-store
 
-{
-    "error": "invalid_grant",
-    "error_description": "The device secret hash in the subject token does not correspond to the device secret."
-\`}
+
 
 ```
 
@@ -841,44 +754,32 @@ session ID specified in the `sessionId` parameter, all access tokens and
 refresh tokens associated with that session ID will be deleted.
 
 ```http
-POST https://{\`{authlete_api_server}\`}/api/{\`{service_id}\`}/nativesso/logout HTTP/1.1
-Authorization: Bearer {\`{authlete_access_token}\`}
+POST https://\`}/api/\`}/nativesso/logout HTTP/1.1
+Authorization: Bearer \`}
 Content-Type: application/json
 
-{\`
-    "sessionId": "{{session_id}\`}"
+\`}"
 }
 
 ```
 
 ```http
-POST https://{\`{authlete_api_server}\`}/api/{\`{service_id}\`}/nativesso/logout HTTP/1.1
-Authorization: Bearer {\`{authlete_access_token}\`}
+POST https://\`}/api/\`}/nativesso/logout HTTP/1.1
+Authorization: Bearer \`}
 Content-Type: application/json
 
-{\`
-    "sessionId": "{{session_id}\`}"
+\`}"
 }
 
 ```
 
 ```json
-{\`
-  "action": "OK",
-  "count": 2,
-  "resultCode": "A503001",
-  "resultMessage": "[A503001] The /nativesso/logout API call successfully deleted 2 access/refresh token record(s)."
-}
+
 
 ```
 
 ```json
-{
-  "action": "OK",
-  "count": 2,
-  "resultCode": "A503001",
-  "resultMessage": "[A503001] The /nativesso/logout API call successfully deleted 2 access/refresh token record(s)."
-\`}
+
 
 ```
 
@@ -887,22 +788,12 @@ specified session ID — and as a result, the number of deleted tokens is
 zero — the /nativesso/logout API does not return an error.
 
 ```json
-{\`
-  "action": "OK",
-  "count": 0,
-  "resultCode": "A503002",
-  "resultMessage": "[A503002] The /nativesso/logout API call completed without deleting any access/refresh token records."
-}
+
 
 ```
 
 ```json
-{
-  "action": "OK",
-  "count": 0,
-  "resultCode": "A503002",
-  "resultMessage": "[A503002] The /nativesso/logout API call completed without deleting any access/refresh token records."
-\`}
+
 
 ```
 
@@ -923,7 +814,7 @@ Below are some tips for reading through the sample implementation:
 - The implementation of TokenRequestHandlerSpi, TokenRequestHandlerSpiImpl, calls the `process` method of the NativeSsoProcessor from within its `nativeSso` method.
 - The NativeSsoProcessor extracts the session ID, device secret, and device secret hash from the instance of the TokenResponse class, which represents the response from the /auth/token API.
 - NativeSsoProcessor obtains the device identifier of the accessing device in the retrieveDeviceId() method. **Note: in the sample implementation, this method is empty.**
-- The validateParameters method in NativeSsoProcessor performs validation on the session ID, device secret, device secret hash, and device identifier.
+  - The validateParameters method in NativeSsoProcessor performs validation on the session ID, device secret, device secret hash, and device identifier.
 - The check for whether a session ID is valid is done by calling the isActiveSessionId(String) method of the SessionTracker. SessionTracker implements the HttpSessionListener interface and monitors session creation and deletion. It is registered as a listener in [web.xml](https://github.com/authlete/java-oauth-server/blob/master/src/main/webapp/WEB-INF/web.xml).
 - The relationship between device secret, session ID, device secret hash, and device identifier is represented by the DeviceSecret class.
 - Instances of DeviceSecret are managed by the DeviceSecretManager.
@@ -939,8 +830,8 @@ Authlete supports Native SSO starting from version 3.0.
 The first version of Authlete Native SSO was implemented based on draft 07 of
 [OpenID Connect Native SSO for Mobile Apps 1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
 specification. Therefore, urn:openid:params:*
-identifiers are used instead of urn:openid:params:*
-identifiers, which were used in earlier drafts.
+  identifiers are used instead of urn:openid:params:*
+  identifiers, which were used in earlier drafts.
 
 ### Token Exchange Verification
 
