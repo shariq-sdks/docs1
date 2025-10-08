@@ -11,12 +11,6 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Welcome",
-        "pages": [
-          "welcome"
-        ]
-      },
-      {
         "tab": "Developer Platform",
         "groups": [
           {
@@ -31,7 +25,7 @@
           {
             "group": "API Docs",
             "pages": [
-              "api-reference",
+              "Authelte API",
               {
                 "group": "SDKs",
                 "pages": [
