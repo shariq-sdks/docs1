@@ -1,0 +1,190 @@
+---
+title: "Java SDK"
+description: "Authlete Java SDK の使用方法"
+---
+
+# Java SDK
+
+Authlete Java SDKを使用して、JavaアプリケーションでAuthlete APIと簡単に統合できます。
+
+## インストール
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>com.authlete</groupId>
+    <artifactId>authlete-java-common</artifactId>
+    <version>3.0.16</version>
+</dependency>
+```
+
+### Gradle
+
+```gradle
+implementation 'com.authlete:authlete-java-common:3.0.16'
+```
+
+## 基本的な使用方法
+
+### 1. クライアントの初期化
+
+```java
+import com.authlete.common.api.AuthleteApi;
+import com.authlete.common.api.AuthleteApiFactory;
+
+public class AuthleteExample {
+    private AuthleteApi api;
+    
+    public AuthleteExample() {
+        this.api = AuthleteApiFactory.create(
+            "https://us.authlete.com",
+            "YOUR_SERVICE_API_KEY",
+            "YOUR_SERVICE_API_SECRET"
+        );
+    }
+}
+```
+
+### 2. サービス情報の取得
+
+```java
+public void getService() {
+    try {
+        Service service = api.getService();
+        System.out.println("サービス情報: " + service);
+    } catch (Exception e) {
+        System.err.println("エラー: " + e.getMessage());
+    }
+}
+```
+
+### 3. クライアントの作成
+
+```java
+public void createClient() {
+    try {
+        ClientCreateRequest request = new ClientCreateRequest();
+        request.setClientName("My Test Client");
+        request.setClientType(ClientType.PUBLIC);
+        request.setRedirectUris(Arrays.asList("https://example.com/callback"));
+        
+        Client client = api.createClient(request);
+        System.out.println("クライアントID: " + client.getClientId());
+    } catch (Exception e) {
+        System.err.println("エラー: " + e.getMessage());
+    }
+}
+```
+
+## 認可フローの実装
+
+### 認可リクエストの処理
+
+```java
+public void handleAuthorizationRequest(HttpServletRequest request) {
+    try {
+        AuthorizationRequest authRequest = new AuthorizationRequest();
+        authRequest.setParameters(request.getQueryString());
+        
+        AuthorizationResponse response = api.authorization(authRequest);
+        
+        if (response.getAction() == AuthorizationAction.INTERACTION) {
+            // ユーザー認証と同意画面を表示
+            showUserConsent(response);
+        }
+    } catch (Exception e) {
+        System.err.println("認可リクエストエラー: " + e.getMessage());
+    }
+}
+```
+
+### トークンリクエストの処理
+
+```java
+public void handleTokenRequest(HttpServletRequest request) {
+    try {
+        TokenRequest tokenRequest = new TokenRequest();
+        tokenRequest.setParameters(request.getParameterMap());
+        
+        TokenResponse response = api.token(tokenRequest);
+        
+        if (response.getAction() == TokenAction.OK) {
+            // トークンレスポンスを返す
+            response.getResponseContent();
+        }
+    } catch (Exception e) {
+        System.err.println("トークンリクエストエラー: " + e.getMessage());
+    }
+}
+```
+
+## エラーハンドリング
+
+```java
+public void handleError(Exception e) {
+    if (e instanceof AuthleteException) {
+        AuthleteException authleteException = (AuthleteException) e;
+        System.err.printf("Authleteエラー: %s - %s%n", 
+            authleteException.getResultCode(), 
+            authleteException.getResultMessage());
+    } else {
+        System.err.printf("一般的なエラー: %s%n", e.getMessage());
+    }
+}
+```
+
+## Spring Boot統合
+
+### 設定
+
+```java
+@Configuration
+public class AuthleteConfig {
+    
+    @Value("${authlete.base-url}")
+    private String baseUrl;
+    
+    @Value("${authlete.service-api-key}")
+    private String serviceApiKey;
+    
+    @Value("${authlete.service-api-secret}")
+    private String serviceApiSecret;
+    
+    @Bean
+    public AuthleteApi authleteApi() {
+        return AuthleteApiFactory.create(baseUrl, serviceApiKey, serviceApiSecret);
+    }
+}
+```
+
+### コントローラー
+
+```java
+@RestController
+public class AuthController {
+    
+    @Autowired
+    private AuthleteApi authleteApi;
+    
+    @GetMapping("/oauth/authorize")
+    public ResponseEntity<String> authorize(HttpServletRequest request) {
+        try {
+            AuthorizationRequest authRequest = new AuthorizationRequest();
+            authRequest.setParameters(request.getQueryString());
+            
+            AuthorizationResponse response = authleteApi.authorization(authRequest);
+            return ResponseEntity.ok(response.toString());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("エラー: " + e.getMessage());
+        }
+    }
+}
+```
+
+## 次のステップ
+
+- [TypeScript SDK](/ja/sdk/typescript)を確認
+- [Go SDK](/ja/sdk/go)を確認
+- [Python SDK](/ja/sdk/python)を確認
+- [APIリファレンス](/ja/api-reference)で詳細を確認

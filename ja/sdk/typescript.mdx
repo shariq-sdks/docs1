@@ -1,0 +1,137 @@
+---
+title: "TypeScript SDK"
+description: "Authlete TypeScript/JavaScript SDK の使用方法"
+---
+
+# TypeScript SDK
+
+Authlete TypeScript/JavaScript SDKを使用して、Node.jsやブラウザ環境でAuthlete APIと簡単に統合できます。
+
+## インストール
+
+```bash
+npm install @authlete/authlete-js
+```
+
+## 基本的な使用方法
+
+### 1. クライアントの初期化
+
+```typescript
+import { AuthleteApi } from '@authlete/authlete-js';
+
+const authleteApi = new AuthleteApi({
+  baseUrl: 'https://us.authlete.com',
+  serviceApiKey: 'YOUR_SERVICE_API_KEY',
+  serviceApiSecret: 'YOUR_SERVICE_API_SECRET'
+});
+```
+
+### 2. サービス情報の取得
+
+```typescript
+async function getService() {
+  try {
+    const service = await authleteApi.getService();
+    console.log('サービス情報:', service);
+  } catch (error) {
+    console.error('エラー:', error);
+  }
+}
+```
+
+### 3. クライアントの作成
+
+```typescript
+async function createClient() {
+  try {
+    const client = await authleteApi.createClient({
+      clientName: 'My Test Client',
+      clientType: 'PUBLIC',
+      redirectUris: ['https://example.com/callback']
+    });
+    console.log('クライアントID:', client.clientId);
+  } catch (error) {
+    console.error('エラー:', error);
+  }
+}
+```
+
+## 認可フローの実装
+
+### 認可リクエストの処理
+
+```typescript
+async function handleAuthorizationRequest(request: any) {
+  try {
+    const response = await authleteApi.authorization({
+      parameters: request.query
+    });
+    
+    if (response.action === 'INTERACTION') {
+      // ユーザー認証と同意画面を表示
+      return showUserConsent(response);
+    }
+    
+    return response;
+  } catch (error) {
+    console.error('認可リクエストエラー:', error);
+  }
+}
+```
+
+### トークンリクエストの処理
+
+```typescript
+async function handleTokenRequest(request: any) {
+  try {
+    const response = await authleteApi.token({
+      parameters: request.body
+    });
+    
+    if (response.action === 'OK') {
+      return response.responseContent;
+    }
+    
+    return response;
+  } catch (error) {
+    console.error('トークンリクエストエラー:', error);
+  }
+}
+```
+
+## エラーハンドリング
+
+```typescript
+import { AuthleteError } from '@authlete/authlete-js';
+
+try {
+  const result = await authleteApi.someMethod();
+} catch (error) {
+  if (error instanceof AuthleteError) {
+    console.error('Authleteエラー:', error.resultCode, error.resultMessage);
+  } else {
+    console.error('一般的なエラー:', error);
+  }
+}
+```
+
+## 設定オプション
+
+```typescript
+const authleteApi = new AuthleteApi({
+  baseUrl: 'https://us.authlete.com',
+  serviceApiKey: 'YOUR_SERVICE_API_KEY',
+  serviceApiSecret: 'YOUR_SERVICE_API_SECRET',
+  timeout: 30000, // 30秒
+  retryAttempts: 3,
+  retryDelay: 1000 // 1秒
+});
+```
+
+## 次のステップ
+
+- [Go SDK](/ja/sdk/go)を確認
+- [Java SDK](/ja/sdk/java)を確認
+- [Python SDK](/ja/sdk/python)を確認
+- [APIリファレンス](/ja/api-reference)で詳細を確認

@@ -1,0 +1,142 @@
+---
+title: "Go SDK"
+description: "Authlete Go SDK の使用方法"
+---
+
+# Go SDK
+
+Authlete Go SDKを使用して、GoアプリケーションでAuthlete APIと簡単に統合できます。
+
+## インストール
+
+```bash
+go get github.com/authlete/authlete-go
+```
+
+## 基本的な使用方法
+
+### 1. クライアントの初期化
+
+```go
+package main
+
+import (
+    "github.com/authlete/authlete-go"
+    "github.com/authlete/authlete-go/dto"
+)
+
+func main() {
+    client := authlete.New(
+        "https://us.authlete.com",
+        "YOUR_SERVICE_API_KEY",
+        "YOUR_SERVICE_API_SECRET",
+    )
+}
+```
+
+### 2. サービス情報の取得
+
+```go
+func getService(client *authlete.AuthleteClient) {
+    service, err := client.GetService()
+    if err != nil {
+        log.Fatal("エラー:", err)
+    }
+    
+    fmt.Printf("サービス情報: %+v\n", service)
+}
+```
+
+### 3. クライアントの作成
+
+```go
+func createClient(client *authlete.AuthleteClient) {
+    request := &dto.ClientCreateRequest{
+        ClientName:   "My Test Client",
+        ClientType:   dto.ClientType_PUBLIC,
+        RedirectUris: []string{"https://example.com/callback"},
+    }
+    
+    client, err := client.CreateClient(request)
+    if err != nil {
+        log.Fatal("エラー:", err)
+    }
+    
+    fmt.Printf("クライアントID: %d\n", client.ClientId)
+}
+```
+
+## 認可フローの実装
+
+### 認可リクエストの処理
+
+```go
+func handleAuthorizationRequest(client *authlete.AuthleteClient, request *http.Request) {
+    authRequest := &dto.AuthorizationRequest{
+        Parameters: request.URL.RawQuery,
+    }
+    
+    response, err := client.Authorization(authRequest)
+    if err != nil {
+        log.Fatal("認可リクエストエラー:", err)
+    }
+    
+    if response.Action == dto.AuthorizationAction_INTERACTION {
+        // ユーザー認証と同意画面を表示
+        showUserConsent(response)
+    }
+}
+```
+
+### トークンリクエストの処理
+
+```go
+func handleTokenRequest(client *authlete.AuthleteClient, request *http.Request) {
+    tokenRequest := &dto.TokenRequest{
+        Parameters: request.Form.Encode(),
+    }
+    
+    response, err := client.Token(tokenRequest)
+    if err != nil {
+        log.Fatal("トークンリクエストエラー:", err)
+    }
+    
+    if response.Action == dto.TokenAction_OK {
+        // トークンレスポンスを返す
+        fmt.Fprint(w, response.ResponseContent)
+    }
+}
+```
+
+## エラーハンドリング
+
+```go
+func handleError(err error) {
+    if authleteErr, ok := err.(*authlete.AuthleteError); ok {
+        fmt.Printf("Authleteエラー: %s - %s\n", 
+            authleteErr.ResultCode, authleteErr.ResultMessage)
+    } else {
+        fmt.Printf("一般的なエラー: %v\n", err)
+    }
+}
+```
+
+## 設定オプション
+
+```go
+client := authlete.NewWithConfig(&authlete.Config{
+    BaseUrl:        "https://us.authlete.com",
+    ServiceApiKey:  "YOUR_SERVICE_API_KEY",
+    ServiceApiSecret: "YOUR_SERVICE_API_SECRET",
+    Timeout:        30 * time.Second,
+    RetryAttempts:  3,
+    RetryDelay:     1 * time.Second,
+})
+```
+
+## 次のステップ
+
+- [TypeScript SDK](/ja/sdk/typescript)を確認
+- [Java SDK](/ja/sdk/java)を確認
+- [Python SDK](/ja/sdk/python)を確認
+- [APIリファレンス](/ja/api-reference)で詳細を確認
