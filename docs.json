@@ -28,7 +28,7 @@
           {
             "group": "API Docs",
             "pages": [
-              "Authlete API",
+              "api-reference",
               {
                 "group": "SDKs",
                 "pages": [
