@@ -7,7 +7,7 @@
     "light": "#4D8FEA",
     "dark": "#00347A"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
   "navigation": {
     "tabs": [
       {
