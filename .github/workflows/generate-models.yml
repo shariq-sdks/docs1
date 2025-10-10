@@ -1,0 +1,47 @@
+name: Auto-generate Models Documentation
+
+on:
+  push:
+    paths:
+      - 'app/specs/shared/**/*.yaml'
+      - 'app/specs/shared/**/*.yml'
+  workflow_dispatch:
+
+jobs:
+  generate-models:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        pip install pyyaml
+        
+    - name: Generate models.mdx
+      run: |
+        python3 generate_models.py --spec app/specs/shared/3.0.15/speakeasy.yaml --output reference/models.mdx
+        
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit changes
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add reference/models.mdx
+        git commit -m "Auto-update models.mdx from OpenAPI spec [skip ci]"
+        git push

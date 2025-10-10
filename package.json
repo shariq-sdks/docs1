@@ -1,4 +1,13 @@
 {
+  "name": "authlete-docs",
+  "version": "1.0.0",
+  "description": "Authlete API Documentation",
+  "scripts": {
+    "generate-models": "python3 generate_models.py",
+    "update-models": "./update-models.sh",
+    "dev": "mintlify dev",
+    "build": "mintlify build"
+  },
   "dependencies": {
     "js-yaml": "^4.1.0"
   }
