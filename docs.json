@@ -386,8 +386,7 @@
               {
                 "group": "ガイド",
                 "pages": [
-                  "ja/guides/authentication",
-                  "ja/reference/models"
+                  "ja/guides/authentication"
                 ]
               },
               {
