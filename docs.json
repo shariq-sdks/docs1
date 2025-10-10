@@ -108,6 +108,10 @@
     {
       "group": "Authlete API",
       "openapi": "app/specs/shared/3.0.15/en2.yaml"
+    },
+    {
+      "group": "Authlete API2",
+      "openapi": "app/specs/shared/3.0.15/speakeasy.yaml"
     }
   ]
 },
