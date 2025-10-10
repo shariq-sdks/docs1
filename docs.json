@@ -8,12 +8,13 @@
     "dark": "#00347A"
   },
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
-  "defaultLanguage": "en",
   "navigation": {
     "languages": [
       {
         "language": "en",
         "tabs": [
+       
+        
       {
         "tab": "Developer Platform",
         "groups": [
@@ -21,7 +22,6 @@
             "group": "Getting Started",
             "pages": [
               "index",
-              "welcome",
               "getting-started",
               "quickstart"
             ]
@@ -63,7 +63,7 @@
               "flows/native-sso",
               "flows/grant-management",
               "flows/token-exchange",
-              "security/pkce",
+              "flows/pkce",
               "reference/pushed-authorization-requests",
               "reference/rich-authorization-requests",
               "reference/jar",
@@ -105,11 +105,28 @@
         "guides/authentication"
       ]
     },
+    
     {
       "group": "Authlete API",
-      "openapi": "app/specs/shared/3.0.16/en.yaml"
+      "openapi": "app/specs/shared/3.0.15/speakeasy.yaml",
+       "schemas": {
+     "enabled": true,
+     "showExamples": true,
+     "showDescriptions": true
+  }
+    },
+
+{
+      "group": "Example",
+      "openapi": "app/specs/shared/3.0.15/example.yaml",
+       "schemas": {
+     "enabled": true,
+     "showExamples": true,
+     "showDescriptions": true
+  }
     }
   ]
+        
 },
       
       {
