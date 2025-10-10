@@ -107,7 +107,12 @@
     },
     {
       "group": "Authlete API",
-      "openapi": "app/specs/shared/3.0.15/en2.yaml"
+      "openapi": "app/specs/shared/3.0.15/en2.yaml",
+      "schemas": {
+     "enabled": true,
+     "showExamples": true,
+     "showDescriptions": true
+  }
     },
     {
       "group": "Authlete API2",
