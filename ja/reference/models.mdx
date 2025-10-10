@@ -1,0 +1,278 @@
+---
+title: "API モデル"
+description: "Authlete APIで使用されるデータモデルとスキーマ"
+---
+
+# API モデル
+
+このページには、Authlete API全体で使用されるデータモデルとスキーマが含まれています。これらのモデルは、リクエスト、レスポンス、データオブジェクトの構造を定義します。
+
+*このページはOpenAPI仕様から自動生成されています。*
+
+## コアモデル
+
+### Client
+
+ClientモデルはOAuth 2.0クライアントアプリケーションを表します。
+
+<CodeGroup>
+
+```yaml Client スキーマ
+Client:
+  type: object
+  properties:
+    clientId:
+      type: string
+      description: クライアントの識別子
+    clientSecret:
+      type: string
+      description: クライアントのシークレット
+    clientType:
+      type: string
+      enum: [PUBLIC, CONFIDENTIAL]
+      description: クライアントタイプ
+    applicationType:
+      type: string
+      enum: [WEB, NATIVE]
+      description: アプリケーションタイプ
+    redirectUris:
+      type: array
+      items:
+        type: string
+      description: リダイレクトURIのリスト
+    grantTypes:
+      type: array
+      items:
+        type: string
+      description: サポートされるグラントタイプ
+    responseTypes:
+      type: array
+      items:
+        type: string
+      description: サポートされるレスポンスタイプ
+    scopes:
+      type: array
+      items:
+        type: string
+      description: サポートされるスコープ
+```
+
+</CodeGroup>
+
+### Service
+
+ServiceモデルはOAuth 2.0認可サーバーを表します。
+
+<CodeGroup>
+
+```yaml Service スキーマ
+Service:
+  type: object
+  properties:
+    serviceApiKey:
+      type: string
+      description: サービスのAPIキー
+    serviceApiSecret:
+      type: string
+      description: サービスのAPIシークレット
+    issuer:
+      type: string
+      description: 発行者識別子
+    authorizationEndpoint:
+      type: string
+      description: 認可エンドポイントURL
+    tokenEndpoint:
+      type: string
+      description: トークンエンドポイントURL
+    userInfoEndpoint:
+      type: string
+      description: UserInfoエンドポイントURL
+    jwksUri:
+      type: string
+      description: JWKSエンドポイントURL
+    supportedGrantTypes:
+      type: array
+      items:
+        type: string
+      description: サポートされるグラントタイプ
+    supportedResponseTypes:
+      type: array
+      items:
+        type: string
+      description: サポートされるレスポンスタイプ
+    supportedScopes:
+      type: array
+      items:
+        type: string
+      description: サポートされるスコープ
+```
+
+</CodeGroup>
+
+## リクエストモデル
+
+### AuthorizationRequest
+
+OAuth 2.0認可のリクエストモデルです。
+
+<CodeGroup>
+
+```yaml AuthorizationRequest スキーマ
+AuthorizationRequest:
+  type: object
+  required:
+    - parameters
+  properties:
+    parameters:
+      type: string
+      description: |
+        OAuth 2.0認可リクエストパラメータ。認可サーバー実装のOAuth 2.0認可エンドポイントが
+        クライアントアプリケーションから受信したリクエストパラメータです。
+
+        parametersの値は、クライアントアプリケーションからのリクエストのHTTPメソッドが`GET`の場合は
+        クエリ文字列全体、(2) クライアントアプリケーションからのリクエストのHTTPメソッドが`POST`の場合は
+        エンティティボディ全体（`application/x-www-form-urlencoded`でフォーマット）です。
+    context:
+      type: string
+      description: |
+        `/auth/authorization` APIから発行されるチケットに添付される任意のテキスト。
+
+        このテキストは後で`/auth/authorization/ticket/info` APIで取得でき、
+        `/auth/authorization/ticket/update` APIで更新できます。
+
+        テキストはAuthleteデータベースに保存される際に圧縮・暗号化されます。
+```
+
+</CodeGroup>
+
+## レスポンスモデル
+
+### AuthorizationResponse
+
+OAuth 2.0認可のレスポンスモデルです。
+
+<CodeGroup>
+
+```yaml AuthorizationResponse スキーマ
+AuthorizationResponse:
+  type: object
+  properties:
+    action:
+      type: string
+      enum: [INTERNAL_SERVER_ERROR, BAD_REQUEST, LOCATION, FORM, NO_INTERACTION, INTERACTION]
+      description: 実行するアクション
+    resultCode:
+      type: string
+      description: 結果コード
+    resultMessage:
+      type: string
+      description: 結果メッセージ
+    ticket:
+      type: string
+      description: チケット識別子
+    redirectUri:
+      type: string
+      description: リダイレクトURI
+    responseContent:
+      type: string
+      description: レスポンスコンテンツ
+    accessTokenDuration:
+      type: integer
+      description: アクセストークンの有効期限（秒）
+    refreshTokenDuration:
+      type: integer
+      description: リフレッシュトークンの有効期限（秒）
+    scopes:
+      type: array
+      items:
+        type: string
+      description: 付与されたスコープ
+```
+
+</CodeGroup>
+
+## エラーモデル
+
+### ErrorResponse
+
+標準的なエラーレスポンスモデルです。
+
+<CodeGroup>
+
+```yaml ErrorResponse スキーマ
+ErrorResponse:
+  type: object
+  properties:
+    resultCode:
+      type: string
+      description: エラーコード
+    resultMessage:
+      type: string
+      description: エラーメッセージ
+    resultDescription:
+      type: string
+      description: 詳細なエラー説明
+    action:
+      type: string
+      description: 推奨アクション
+```
+
+</CodeGroup>
+
+## 列挙型
+
+### GrantType
+
+サポートされるOAuth 2.0グラントタイプです。
+
+<CodeGroup>
+
+```yaml GrantType 列挙型
+GrantType:
+  type: string
+  enum:
+    - AUTHORIZATION_CODE
+    - IMPLICIT
+    - PASSWORD
+    - CLIENT_CREDENTIALS
+    - REFRESH_TOKEN
+    - URN_IETF_PARAMS_OAUTH_GRANT_TYPE_DEVICE_CODE
+    - URN_OPENID_NET_GRANTS_JWT_BEARER
+    - URN_IETF_PARAMS_OAUTH_GRANT_TYPE_TOKEN_EXCHANGE
+```
+
+</CodeGroup>
+
+### ResponseType
+
+サポートされるOAuth 2.0レスポンスタイプです。
+
+<CodeGroup>
+
+```yaml ResponseType 列挙型
+ResponseType:
+  type: string
+  enum:
+    - CODE
+    - TOKEN
+    - ID_TOKEN
+    - CODE_TOKEN
+    - CODE_ID_TOKEN
+    - TOKEN_ID_TOKEN
+    - CODE_TOKEN_ID_TOKEN
+```
+
+</CodeGroup>
+
+## 追加リソース
+
+これらのモデルとその使用方法の詳細については、以下を参照してください：
+
+- [OAuth 2.0 RFC 6749](https://tools.ietf.org/html/rfc6749)
+- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
+- [OAuth 2.0 Dynamic Client Registration Protocol (RFC 7591)](https://tools.ietf.org/html/rfc7591)
+- [OAuth 2.0 Token Exchange (RFC 8693)](https://tools.ietf.org/html/rfc8693)
+
+---
+
+*このページはOpenAPI仕様から自動生成されました。*

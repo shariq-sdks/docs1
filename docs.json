@@ -102,7 +102,8 @@
     {
       "group": "Guides",
       "pages": [
-        "guides/authentication"
+        "guides/authentication",
+        "reference/models"
       ]
     },
     
@@ -385,7 +386,8 @@
               {
                 "group": "ガイド",
                 "pages": [
-                  "ja/guides/authentication"
+                  "ja/guides/authentication",
+                  "ja/reference/models"
                 ]
               },
               {
