@@ -1,0 +1,7 @@
+type: string
+enum:
+  - OK
+  - SERVER_ERROR
+  - CALLER_ERROR
+description: |
+  The next action that the API caller should take.

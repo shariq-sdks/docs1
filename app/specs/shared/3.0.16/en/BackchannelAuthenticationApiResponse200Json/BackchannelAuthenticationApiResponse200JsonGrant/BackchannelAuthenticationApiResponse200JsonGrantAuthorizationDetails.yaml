@@ -1,0 +1,16 @@
+type: object
+description: >
+  The authorization details. This represents the value of the
+  `authorization_details`
+
+  request parameter in the preceding device authorization request which is
+  defined in
+
+  "OAuth 2.0 Rich Authorization Requests".
+properties:
+  elements:
+    type: array
+    items:
+      $ref: ../../../en_test.yaml#/components/schemas/BackchannelAuthenticationApiResponse200JsonGrantAuthorizationDetailsElementsItems
+    description: |
+      Elements of this authorization details.

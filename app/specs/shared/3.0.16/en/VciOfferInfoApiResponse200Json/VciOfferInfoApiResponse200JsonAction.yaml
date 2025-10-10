@@ -1,0 +1,8 @@
+type: string
+enum:
+  - OK
+  - FORBIDDEN
+  - NOT_FOUND
+  - CALLER_ERROR
+  - AUTHLETE_ERROR
+description: The result of the `/vci/offer/info` API call.

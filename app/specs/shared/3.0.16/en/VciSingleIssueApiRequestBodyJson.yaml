@@ -1,0 +1,7 @@
+type: object
+properties:
+  accessToken:
+    type: string
+    description: The access token that came along with the credential request.
+  order:
+    $ref: ../en_test.yaml#/components/schemas/VciSingleIssueApiRequestBodyJsonOrder

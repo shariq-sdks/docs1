@@ -1,0 +1,100 @@
+type: object
+properties:
+  identifier:
+    type: string
+    description: The identifier of the credential offer.
+  credentialOffer:
+    type: string
+    description: The credential offer in the JSON format.
+  credentialIssuer:
+    type: string
+    description: The identifier of the credential issuer.
+  authorizationCodeGrantIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the `authorization_code` object is
+      included in the `grants` object.
+  issuerStateIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the `issuer_state` property is
+      included in the `authorization_code` object in the `grants`
+      object.
+  issuerState:
+    type: string
+    description: |
+      The value of the `issuer_state` property in the
+      `authorization_code` object in the `grants` object.
+  preAuthorizedCodeGrantIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object is
+      included in the `grants` object.
+  preAuthorizedCode:
+    type: string
+    description: |
+      The value of the `pre-authorized_code` property in the
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object in
+      the `grants` object.
+  subject:
+    type: string
+    description: The subject associated with the credential offer.
+  expiresAt:
+    type: integer
+    format: int64
+    description: The time at which the credential offer will expire.
+  context:
+    type: string
+    description: The general-purpose arbitrary string.
+  properties:
+    type: array
+    items:
+      $ref: ../../en_test.yaml#/components/schemas/VciOfferInfoApiResponse200JsonInfoPropertiesItems
+    description: Extra properties to associate with the credential offer.
+  jwtAtClaims:
+    type: string
+    description: |
+      Additional claims that are added to the payload part of the JWT
+      access token.
+  authTime:
+    type: integer
+    format: int64
+    description: |
+      The time at which the user authentication was performed during
+      the course of issuing the credential offer.
+  acr:
+    type: string
+    description: |
+      The Authentication Context Class Reference of the user authentication
+      performed during the course of issuing the credential offer.
+  credentialConfigurationIds:
+    type: array
+    items:
+      type: string
+    description: >
+      The value of the `credential_configuration_ids` property of the credential
+      offer.
+
+
+      ```
+
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": { ... }
+      }
+
+      ```
+  txCode:
+    type: string
+    description: |
+      The transaction code.
+  txCodeInputMode:
+    type: string
+    description: |
+      The input mode of the transaction code.
+  txCodeDescription:
+    type: string
+    description: |
+      The description of the transaction code.

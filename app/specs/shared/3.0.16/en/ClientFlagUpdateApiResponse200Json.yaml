@@ -1,0 +1,11 @@
+type: object
+required:
+  - resultCode
+  - resultMessage
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.

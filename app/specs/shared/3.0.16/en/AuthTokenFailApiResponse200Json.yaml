@@ -1,0 +1,18 @@
+type: object
+properties:
+  resultCode:
+    type: string
+    description: The code which represents the result of the API call.
+  resultMessage:
+    type: string
+    description: A short message which explains the result of the API call.
+  action:
+    $ref: ../en_test.yaml#/components/schemas/AuthTokenFailApiResponse200JsonAction
+  responseContent:
+    type: string
+    description: >
+      The content that the authorization server implementation is to return to
+      the client application.
+
+      Its format varies depending on the value of `action` parameter. See
+      description for details.

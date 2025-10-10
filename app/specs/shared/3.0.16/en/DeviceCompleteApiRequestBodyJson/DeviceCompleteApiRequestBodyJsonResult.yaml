@@ -1,0 +1,10 @@
+type: string
+enum:
+  - TRANSACTION_FAILED
+  - ACCESS_DENIED
+  - AUTHORIZED
+description: >
+  The result of the end-user authentication and authorization. One of the
+  following. Details are
+
+  described in the description.

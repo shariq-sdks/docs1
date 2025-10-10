@@ -1,0 +1,43 @@
+type: object
+properties:
+  clientId:
+    type: integer
+    description: The client id.
+  clientIdAlias:
+    type: string
+    description: The alias of the client.
+  clientIdAliasUsed:
+    type: boolean
+    description: Flag specifying if the alias was used to identify the client
+  subject:
+    type: string
+    description: the resource owner unique id
+  scopes:
+    type: array
+    items:
+      type: string
+    description: The scopes granted on the token
+  expiresAt:
+    type: integer
+    description: time which the token expires.
+  properties:
+    type: array
+    description: Extra properties associated with the token
+    items:
+      $ref: ../../en_test.yaml#/components/schemas/AuthTokenApiResponse200JsonSubjectTokenInfoPropertiesItems
+  resources:
+    type: array
+    description: The array of the resources of the token.
+    items:
+      type: string
+  authorizationDetails:
+    $ref: ../../en_test.yaml#/components/schemas/AuthTokenApiResponse200JsonSubjectTokenInfoAuthorizationDetails
+  clientEntityId:
+    type: string
+    description: |
+      The entity ID of the client.
+  clientEntityIdUsed:
+    type: boolean
+    description: >
+      Flag which indicates whether the entity ID of the client was used when the
+      request for the access token was made.

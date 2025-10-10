@@ -1,0 +1,7 @@
+type: string
+enum:
+  - INTERNAL_SERVER_ERROR
+  - BAD_REQUEST
+  - FORBIDDEN
+  - OK
+description: The next action that the authorization server implementation should take.

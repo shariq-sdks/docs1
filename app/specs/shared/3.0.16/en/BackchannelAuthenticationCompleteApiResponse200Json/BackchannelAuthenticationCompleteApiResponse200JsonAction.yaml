@@ -1,0 +1,7 @@
+type: string
+enum:
+  - SERVER_ERROR
+  - NO_ACTION
+  - NOTIFICATION
+description: |
+  The next action that the authorization server implementation should take.

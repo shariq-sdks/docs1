@@ -1,0 +1,9 @@
+type: string
+enum:
+  - SERVER_ERROR
+  - USER_CODE_NOT_EXIST
+  - USER_CODE_EXPIRED
+  - INVALID_REQUEST
+  - SUCCESS
+description: |
+  The next action that the authorization server implementation should take.

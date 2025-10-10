@@ -1,0 +1,7 @@
+allOf:
+  - $ref: ../en_test.yaml#/components/schemas/ClientRegistrationUpdateApiRequestBodyJsonAllOf0
+  - type: object
+    required:
+      - clientId
+      - token
+      - json

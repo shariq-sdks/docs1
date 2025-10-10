@@ -1,0 +1,14 @@
+type: object
+properties:
+  scopes:
+    type: array
+    items:
+      $ref: ../../en_test.yaml#/components/schemas/DeviceAuthorizationApiResponse200JsonGrantScopesItems
+  claims:
+    type: array
+    items:
+      type: string
+    description: |
+      The claims associated with the Grant.
+  authorizationDetails:
+    $ref: ../../en_test.yaml#/components/schemas/DeviceAuthorizationApiResponse200JsonGrantAuthorizationDetails

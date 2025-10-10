@@ -1,0 +1,34 @@
+type: object
+required:
+  - ticket
+  - reason
+properties:
+  ticket:
+    type: string
+    description: >
+      The ticket which should be deleted on a call of Authlete's
+      `/backchannel/authentication/fail` API.
+
+      This request parameter is not mandatory but optional. If this request
+      parameter is given and the
+
+      ticket belongs to the service, the specified ticket is deleted from the
+      database. Giving this
+
+      parameter is recommended to clean up the storage area for the service.
+  reason:
+    $ref: ../en_test.yaml#/components/schemas/BackchannelAuthenticationFailApiRequestBodyReason
+  errorDescription:
+    type: string
+    description: >
+      The description of the error. This corresponds to the `error_description`
+      property in the response
+
+      to the client.
+  errorUri:
+    type: string
+    description: >
+      The URI of a document which describes the error in detail. If this
+      optional request parameter
+
+      is given, its value is used as the value of the `error_uri` property.

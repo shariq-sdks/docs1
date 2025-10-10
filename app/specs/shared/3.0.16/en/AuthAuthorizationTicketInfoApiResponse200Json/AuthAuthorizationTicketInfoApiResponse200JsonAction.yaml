@@ -1,0 +1,7 @@
+type: string
+enum:
+  - OK
+  - NOT_FOUND
+  - CALLER_ERROR
+  - AUTHLETE_ERROR
+description: The result of the `/auth/authorization/ticket/info` API call.

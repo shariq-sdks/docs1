@@ -1,0 +1,6 @@
+allOf:
+  - $ref: ../en_test.yaml#/components/schemas/ClientRegistrationDeleteApiRequestBodyJsonAllOf0
+  - type: object
+    required:
+      - clientId
+      - token

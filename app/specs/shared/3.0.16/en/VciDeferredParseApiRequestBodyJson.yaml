@@ -1,0 +1,8 @@
+type: object
+properties:
+  accessToken:
+    type: string
+    description: The access token that came along with the deferred credential request.
+  requestContent:
+    type: string
+    description: The message body of the deferred credential request.

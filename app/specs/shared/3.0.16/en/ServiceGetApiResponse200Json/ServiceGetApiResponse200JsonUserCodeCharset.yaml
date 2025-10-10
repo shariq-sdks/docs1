@@ -1,0 +1,7 @@
+type: string
+description: >
+  The character set for end-user verification codes (`user_code`) for Device
+  Flow.
+enum:
+  - BASE20
+  - NUMERIC

@@ -1,0 +1,163 @@
+type: object
+required:
+  - token
+properties:
+  token:
+    type: string
+    description: |
+      An access token.
+  clientCertificate:
+    type: string
+    description: >
+      Client certificate used in the TLS connection established between the
+      client application and the userinfo endpoint.
+
+
+      The value of this request parameter is referred to when the access token
+      given to the userinfo endpoint was bound to
+
+      a client certificate when it was issued. See [OAuth 2.0 Mutual TLS Client
+      Authentication and Certificate-Bound Access Tokens]
+
+      (https://datatracker.ietf.org/doc/rfc8705/) for details about the
+      specification of certificate-bound access tokens.
+  dpop:
+    type: string
+    description: >
+      `DPoP` header presented by the client during the request to the user info
+      endpoint.
+
+
+      The header contains a signed JWT which includes the public key that is
+      paired with the private key used to sign the JWT.
+
+      See [OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+      Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)
+
+      for details.
+  htm:
+    type: string
+    description: >
+      HTTP method of the user info request. This field is used to validate the
+      DPoP header.
+
+      In normal cases, the value is either `GET` or `POST`.
+  htu:
+    type: string
+    description: >
+      URL of the user info endpoint. This field is used to validate the DPoP
+      header.
+
+
+      If this parameter is omitted, the `userInfoEndpoint` property of the
+      service is used as the default value.
+
+      See [OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+      Layer (DPoP)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop)
+
+      for details.
+  uri:
+    type: string
+    description: |
+      The full URL of the userinfo endpoint.
+  message:
+    type: string
+    description: |
+      The HTTP message body of the request, if present.
+  headers:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/AuthUserinfoApiRequestBodyJsonHeadersItems
+    description: >
+      HTTP headers to be included in processing the signature. If this is a
+      signed request, this must include the
+
+      Signature and Signature-Input headers, as well as any additional headers
+      covered by the signature.
+  targetUri:
+    type: string
+    description: >
+      The target URI of the userinfo request, including the query part, if any.
+
+
+      This parameter is used as the value of the `@target-uri` derived component
+      for HTTP message signatures
+
+      ([RFC 9421 HTTP Message Signatures, Section 2.2.2. Target
+      URI](https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2)).
+
+      Additionally, other derived components such as `@authority`, `@scheme`,
+      `@path`, `@query` and
+
+      `@query-param` are computed from this parameter.
+
+
+      When this parameter is omitted, the value of the `htu` parameter is used.
+      The `htu` parameter
+
+      represents the URL of the userinfo endpoint, which usually serves as the
+      target URI of the userinfo request.
+
+      The only exception is when the access token is specified as a query
+      parameter, as defined in
+
+      [RFC 6750 Section
+      2.3](https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3). However,
+      RFC 6750
+
+      states that this method "SHOULD NOT be used" unless other methods are not
+      viable.
+
+
+      If neither this `targetUri` parameter nor the `htu` parameter is
+      specified, the `userInfoEndpoint`
+
+      property of the service is used as a fallback.
+  dpopNonceRequired:
+    type: boolean
+    description: >
+      The flag indicating whether to check if the DPoP proof JWT includes the
+      expected `nonce` value.
+
+
+      If this request parameter is set to `true` or if the service's
+      `dpopNonceRequired` property is
+
+      set to `true`, the `/auth/userinfo` API checks if the DPoP proof JWT
+      includes the expected `nonce`
+
+      value. In this case, the response from the `/auth/userinfo` API will
+      include the `dpopNonce` response
+
+      parameter, which should be used as the value of the DPoP-Nonce HTTP
+      header.
+  requestBodyContained:
+    type: boolean
+    description: >
+      The flag indicating whether the userinfo request contains a request body.
+
+
+      When the userinfo request must comply with the HTTP message signing
+      requirements defined in the
+
+      FAPI 2.0 Message Signing specification, the `"content-digest"` component
+      identifier must be included
+
+      in the signature base of the HTTP message signature (see [RFC 9421 HTTP
+      Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html))
+
+      if the userinfo request contains a request body.
+
+
+      When this `requestBodyContained` parameter is set to `true`, Authlete
+      checks whether `"content-digest"`
+
+      is included in the signature base, if the FAPI profile applies to the
+      userinfo request.
+
+
+      NOTE: The FAPI 2.0 Message Signing specification is not applied to the
+      userinfo endpoint until
+
+      its necessity is agreed upon by the industry (cf. [FAPI Issue
+      723](https://bitbucket.org/openid/fapi/issues/723)).

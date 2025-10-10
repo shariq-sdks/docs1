@@ -1,0 +1,11 @@
+type: string
+enum:
+  - BAD_REQUEST
+  - CREATED
+  - DELETED
+  - INTERNAL_SERVER_ERROR
+  - OK
+  - UNAUTHORIZED
+  - UPDATED
+description: |
+  The next action that the authorization server implementation should take.

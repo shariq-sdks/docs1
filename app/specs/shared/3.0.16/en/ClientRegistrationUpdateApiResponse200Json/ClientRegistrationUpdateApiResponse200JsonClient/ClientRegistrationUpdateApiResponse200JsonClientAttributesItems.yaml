@@ -1,0 +1,8 @@
+type: object
+properties:
+  key:
+    type: string
+    description: The key part.
+  value:
+    type: string
+    description: The value part.

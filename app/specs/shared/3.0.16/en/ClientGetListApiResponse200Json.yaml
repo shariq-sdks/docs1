@@ -1,0 +1,26 @@
+type: object
+properties:
+  start:
+    type: integer
+    format: int32
+    description: |
+      Start index (inclusive) of the result set of the query.
+  end:
+    type: integer
+    format: int32
+    description: |
+      End index (exclusive) of the result set of the query.
+  totalCount:
+    type: integer
+    format: int32
+    description: >
+      Total number of clients that belong to the service. This doesn't mean the
+      number of clients
+
+      contained in the response.
+  clients:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientGetListApiResponse200JsonClientsItems
+    description: |
+      An array of clients.

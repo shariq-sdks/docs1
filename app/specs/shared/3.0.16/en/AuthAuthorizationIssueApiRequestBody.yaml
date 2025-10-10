@@ -1,0 +1,247 @@
+type: object
+required:
+  - ticket
+  - subject
+properties:
+  ticket:
+    type: string
+    description: |
+      The ticket issued from Authlete `/auth/authorization` API.
+  subject:
+    type: string
+    description: >
+      The subject (= a user account managed by the service) who has granted
+      authorization to the client application.
+  authTime:
+    type: integer
+    format: int64
+    description: >
+      The time when the authentication of the end-user occurred. Its value is
+      the number of seconds from `1970-01-01`.
+  acr:
+    type: string
+    description: The Authentication Context Class Reference performed for the
+      end-user authentication.
+  claims:
+    type: string
+    description: >
+      The claims of the end-user (= pieces of information about the end-user) in
+      JSON format.
+
+      See [OpenID Connect Core 1.0, 5.1. Standard
+      Claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)
+      for details about the format.
+  properties:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/AuthAuthorizationIssueApiRequestBodyPropertiesItems
+    description: Extra properties to associate with an access token and/or an
+      authorization code.
+  scopes:
+    type: array
+    items:
+      type: string
+    description: >
+      Scopes to associate with an access token and/or an authorization code.
+
+      If a non-empty string array is given, it replaces the scopes specified by
+      the original authorization request.
+  sub:
+    type: string
+    description: >
+      The value of the `sub` claim to embed in an ID token. If this request
+      parameter is `null` or empty,
+
+      the value of the `subject` request parameter is used as the value of the
+      `sub` claim.
+  idtHeaderParams:
+    type: string
+    description: >
+      JSON that represents additional JWS header parameters for ID tokens that
+      may be issued based on
+
+      the authorization request.
+  claimsForTx:
+    type: string
+    description: |
+      Claim key-value pairs that are used to compute transformed claims.
+  consentedClaims:
+    type: array
+    items:
+      type: string
+    description: |
+      the claims that the user has consented for the client application
+      to know.
+  authorizationDetails:
+    $ref: ../en_test.yaml#/components/schemas/AuthAuthorizationIssueApiRequestBodyAuthorizationDetails
+  jwtAtClaims:
+    type: string
+    description: >
+      Additional claims that are added to the payload part of the JWT access
+      token.
+  accessToken:
+    type: string
+    description: >
+      The representation of an access token that may be issued as a result of
+      the Authlete API call.
+  accessTokenDuration:
+    type: integer
+    format: int64
+    description: >
+      The duration (in seconds) of the access token that may be issued as a
+      result of the Authlete
+
+      API call.
+
+
+      When this request parameter holds a positive integer, it is used as the
+      duration of the access
+
+      token in. In other cases, this request parameter is ignored.
+  sessionId:
+    type: string
+    description: >
+      The session ID of the user's authentication session. The specified value
+      will be embedded in the
+
+      ID token as the value of the `sid` claim. This parameter needs to be
+      provided only if you want
+
+      to support the [OpenID Connect Native SSO for Mobile Apps
+      1.0](https://openid.net/specs/openid-connect-native-sso-1_0.html)
+
+      specification (a.k.a. "Native SSO"). To enable support for the Native SSO
+      specification, the
+
+      `nativeSsoSupported` property of your service must be set to `true`.
+
+
+      NOTE: When the response from the `/auth/authorization` API contains the
+      `nativeSsoRequested`
+
+      property with a value of `true`, the `sessionId` request parameter must be
+      provided to the
+
+      `/auth/authorization/issue` API.
+  idTokenAudType:
+    type: string
+    description: >
+      The type of the `aud` claim of the ID token being issued. Valid values are
+      as follows.
+
+
+      | Value | Description |
+
+      | ----- | ----------- |
+
+      | "array" | The type of the aud claim is always an array of strings. |
+
+      | "string" | The type of the aud claim is always a single string. |
+
+      | null | The type of the aud claim remains the same as before. |
+
+
+      This request parameter takes precedence over the `idTokenAudType` property
+      of the service.
+  verifiedClaimsForTx:
+    type: string
+    description: >
+      Values of verified claims requested indirectly by "transformed claims".
+
+
+      A client application may request "transformed claims". Each of transformed
+      claims uses an existing
+
+      claim as input. As a result, to compute the value of a transformed claim,
+      the value of the referenced
+
+      existing claim is needed. This `verifiedClaimsForTx` request parameter has
+      to be used to provide
+
+      values of existing claims for computation of transformed claims.
+
+
+      A response from the `/auth/authorization` API may include the
+      `requestedVerifiedClaimsForTx` response
+
+      parameter which is a list of verified claims that are referenced
+      indirectly by transformed claims
+
+      (cf. `requestedVerifiedClaimsForTx` in `/auth/authorization` API
+      response). The authorization
+
+      server implementation should prepare values of the verified claims listed
+      in `requestedVerifiedClaimsForTx`
+
+      and pass them as the value of this `verifiedClaimsForTx` request
+      parameter.
+
+
+      The following is an example of the value of this request parameter.
+
+
+      ```
+
+      [
+        "{\"birthdate\":\"1970-01-23\",\"nationalities\":[\"DEU\",\"USA\"]}"
+      ]
+
+      ```
+
+
+      The reason that this `verifiedClaimsForTx` property is an array is that
+      the `"verified_claims"`
+
+      property in the claims request parameter of an authorization request can
+      be an array like below.
+
+
+      ```
+
+      {
+        "transformed_claims": {
+          "nationality_usa": {
+            "claim": "nationalities",
+            "fn": [
+              [ "eq", "USA" ],
+              "any"
+            ]
+          }
+        },
+        "id_token": {
+          "verified_claims": [
+            {
+              "verification": { "trust_framework": { "value": "gold" } },
+              "claims": { "::18_or_above": null }
+            },
+            {
+              "verification": { "trust_framework": { "value": "silver" } },
+              "claims": { ":nationality_usa": null }
+            }
+          ]
+        }
+      }
+
+      ```
+
+
+      For the example above, the value of this `verifiedClaimsForTx` property
+      should be an array of
+
+      size 2 and look like below. The first element is JSON including claims
+      which have been verified
+
+      under the trust framework `"gold"`, and the second element is JSON
+      including claims which have
+
+      been verified under the trust framework `"silver"`.
+
+
+      ```
+
+      [
+        "{\"birthdate\":\"1970-01-23\"}",
+        "{\"nationalities\":[\"DEU\",\"USA\"]}"
+      ]
+
+      ```

@@ -1,0 +1,7 @@
+type: string
+enum:
+  - CREATED
+  - FORBIDDEN
+  - CALLER_ERROR
+  - AUTHLETE_ERROR
+description: The result of the `/vci/offer/create` API call.

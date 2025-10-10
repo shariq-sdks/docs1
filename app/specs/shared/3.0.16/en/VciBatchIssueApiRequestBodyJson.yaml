@@ -1,0 +1,10 @@
+type: object
+properties:
+  accessToken:
+    type: string
+    description: The access token that came along with the credential request.
+  orders:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/VciBatchIssueApiRequestBodyJsonOrdersItems
+    description: The instructions for issuance of credentials and/or transaction IDs.

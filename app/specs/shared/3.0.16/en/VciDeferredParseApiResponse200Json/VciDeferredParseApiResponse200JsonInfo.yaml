@@ -1,0 +1,20 @@
+type: object
+properties:
+  identifier:
+    type: string
+    description: The identifier of the credential offer.
+  format:
+    type: string
+    description: The value of the format parameter in the credential request.
+  bindingKey:
+    type: string
+    description: The binding key specified by the proof in the credential request.
+  bindingKeys:
+    type: array
+    items:
+      type: string
+    description: The binding keys specified by the proofs in the credential request.
+  details:
+    type: string
+    description: The details about the credential request.
+description: Information about the credential request bound to the transaction ID.

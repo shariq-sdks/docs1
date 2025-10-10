@@ -1,0 +1,8 @@
+type: object
+required:
+  - clientLocked
+properties:
+  clientLocked:
+    type: boolean
+    description: |
+      The flag value to be set

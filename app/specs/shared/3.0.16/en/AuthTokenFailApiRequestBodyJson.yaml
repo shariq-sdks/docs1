@@ -1,0 +1,11 @@
+type: object
+required:
+  - ticket
+  - reason
+properties:
+  ticket:
+    type: string
+    description: |
+      The ticket issued from Authlete `/auth/token` API.
+  reason:
+    $ref: ../en_test.yaml#/components/schemas/AuthTokenFailApiRequestBodyJsonReason

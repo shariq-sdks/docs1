@@ -1,0 +1,29 @@
+type: object
+properties:
+  start:
+    type: integer
+    format: int32
+    description: |
+      Start index of search results (inclusive).
+  end:
+    type: integer
+    format: int32
+    description: |
+      End index of search results (exclusive).
+  totalCount:
+    type: integer
+    format: int32
+    description: |
+      Unique ID of a client developer.
+  client:
+    $ref: ../en_test.yaml#/components/schemas/AuthTokenGetListApiResponse200JsonClient
+  subject:
+    type: string
+    description: |
+      Unique user ID of an end-user.
+  accessTokens:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/AuthTokenGetListApiResponse200JsonAccessTokensItems
+    description: |
+      An array of access tokens.

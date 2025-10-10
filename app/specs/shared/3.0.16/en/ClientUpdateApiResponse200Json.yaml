@@ -1,0 +1,1112 @@
+type: object
+properties:
+  number:
+    type: integer
+    format: int32
+    readOnly: true
+    description: >
+      The sequential number of the client. The value of this property is
+      assigned by Authlete.
+  serviceNumber:
+    type: integer
+    format: int32
+    readOnly: true
+    description: >
+      The sequential number of the service of the client application. The value
+      of this property is
+
+      assigned by Authlete.
+  clientName:
+    type: string
+    description: >
+      The name of the client application. This property corresponds to
+      `client_name` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  clientNames:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonClientNamesItems
+    description: >
+      Client names with language tags. If the client application has different
+      names for different
+
+      languages, this property can be used to register the names.
+  description:
+    type: string
+    description: The description about the client application.
+  descriptions:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonDescriptionsItems
+    description: >
+      Descriptions about the client application with language tags. If the
+      client application has different
+
+      descriptions for different languages, this property can be used to
+      register the descriptions.
+  clientId:
+    type: integer
+    format: int64
+    readOnly: true
+    description: The client identifier used in Authlete API calls. The value of this
+      property is assigned by Authlete.
+  clientSecret:
+    type: string
+    readOnly: true
+    description: >
+      The client secret. A random 512-bit value encoded by base64url (86
+      letters). The value of this
+
+      property is assigned by Authlete.
+
+
+      Note that Authlete issues a client secret even to a "public" client
+      application, but the client
+
+      application should not use the client secret unless it changes its client
+      type to "confidential".
+
+      That is, a public client application should behave as if it had not been
+      issued a client secret.
+
+      To be specific, a token request from a public client of Authlete should
+      not come along with a
+
+      client secret although [RFC 6749, 3.2.1. Client
+      Authentication](https://datatracker.ietf.org/doc/html/rfc6749#section-3.2.1)
+
+      says as follows.
+
+
+      > Confidential clients or other clients issued client credentials MUST
+      authenticate with the
+
+      authorization server as described in Section 2.3 when making requests to
+      the token endpoint.
+  clientIdAlias:
+    type: string
+    description: >
+      The value of the client's `client_id` property used in OAuth and OpenID
+      Connect calls. By
+
+      default, this is a string version of the `clientId` property.
+  clientIdAliasEnabled:
+    type: boolean
+    description: Deprecated. Always set to `true`.
+  clientType:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonClientType
+  applicationType:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonApplicationType
+  logoUri:
+    type: string
+    description: >
+      The URL pointing to the logo image of the client application.
+
+
+      This property corresponds to `logo_uri` in [OpenID Connect Dynamic Client
+      Registration 1.0, 2.
+
+      Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  logoUris:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonLogoUrisItems
+    description: >
+      Logo image URLs with language tags. If the client application has
+      different logo images for
+
+      different languages, this property can be used to register URLs of the
+      images.
+  contacts:
+    type: array
+    items:
+      type: string
+    description: >
+      An array of email addresses of people responsible for the client
+      application.
+
+
+      This property corresponds to contacts in [OpenID Connect Dynamic Client
+      Registration 1.0, 2. Client
+
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  tlsClientCertificateBoundAccessTokens:
+    type: boolean
+    description: >
+      The flag to indicate whether this client use TLS client certificate bound
+      access tokens.
+  dynamicallyRegistered:
+    type: boolean
+    readOnly: true
+    description: >
+      The flag to indicate whether this client has been registered dynamically.
+
+      For more details, see [RFC
+      7591](https://datatracker.ietf.org/doc/html/rfc7591).
+  softwareId:
+    type: string
+    description: >
+      The unique identifier string assigned by the client developer or software
+      publisher used by
+
+      registration endpoints to identify the client software to be dynamically
+      registered.
+
+
+      This property corresponds to the `software_id metadata` defined in [2.
+      Client Metadata](https://datatracker.ietf.org/doc/html/rfc7591#section-2)
+
+      of [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591).
+  softwareVersion:
+    type: string
+    description: >
+      The version identifier string for the client software identified by the
+      software ID.
+
+
+      This property corresponds to the software_version metadata defined in [2.
+      Client Metadata](https://datatracker.ietf.org/doc/html/rfc7591#section-2)
+
+      of [RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591).
+  registrationAccessTokenHash:
+    type: string
+    description: |
+      The hash of the registration access token for this client.
+  createdAt:
+    type: integer
+    format: int64
+    readOnly: true
+    description: The time at which this client was created. The value is represented
+      as milliseconds since the UNIX epoch (1970-01-01).
+  modifiedAt:
+    type: integer
+    format: int64
+    readOnly: true
+    description: The time at which this client was last modified. The value is
+      represented as milliseconds since the UNIX epoch (1970-01-01).
+  grantTypes:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonGrantTypesItems
+    description: >
+      A string array of grant types which the client application declares that
+      it will restrict itself to using.
+
+      This property corresponds to `grant_types` in [OpenID Connect Dynamic
+      Client Registration 1.0,
+
+      2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  responseTypes:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonResponseTypesItems
+    description: >
+      A string array of response types which the client application declares
+      that it will restrict itself to using.
+
+      This property corresponds to `response_types` in [OpenID Connect Dynamic
+      Client Registration 1.0,
+
+      2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  redirectUris:
+    type: array
+    items:
+      type: string
+    description: >
+      Redirect URIs that the client application uses to receive a response from
+      the authorization endpoint.
+
+      Requirements for a redirect URI are as follows.
+
+
+      **Requirements by RFC 6749** (From [RFC 6749, 3.1.2. Redirection
+      Endpoint](https://datatracker.ietf.org/doc/html/rfc6749#section-3.1.2))
+
+
+      - Must be an absolute URI.
+
+      - Must not have a fragment component.
+
+
+      **Requirements by OpenID Connect** (From "[OpenID Connect Dynamic Client
+      Registration 1.0, 2.
+
+      Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata),
+
+      application_type")
+
+
+      - The scheme of the redirect URI used for Implicit Grant by a client
+      application whose application
+
+      is `web` must be `https`. This is checked at runtime by Authlete.
+
+      - The hostname of the redirect URI used for Implicit Grant by a client
+      application whose application
+
+      type is `web` must not be `localhost`. This is checked at runtime by
+      Authlete.
+
+      - The scheme of the redirect URI used by a client application whose
+      application type is `native`
+
+      must be either (1) a custom scheme or (2) `http`, which is allowed only
+      when the hostname part
+
+      is `localhost`. This is checked at runtime by Authlete.
+
+
+      **Requirements by Authlete**
+
+
+      - Must consist of printable ASCII letters only.
+
+      - Must not exceed 200 letters.
+
+
+      Note that Authlete allows the application type to be `null`. In other
+      words, a client application
+
+      does not have to choose `web` or `native` as its application type.
+
+      If the application type is `null`, the requirements by OpenID Connect are
+      not checked at runtime.
+
+
+      An authorization request from a client application which has not
+      registered any redirect URI
+
+      fails unless at least all the following conditions are satisfied.
+
+
+      - The client type of the client application is `confidential`.
+
+      - The value of `response_type` request parameter is `code`.
+
+      - The authorization request has the `redirect_uri` request parameter.
+
+      - The value of `scope` request parameter does not contain `openid`.
+
+
+      RFC 6749 allows partial match of redirect URI under some conditions (see
+      [RFC 6749, 3.1.2.2.
+
+      Registration
+      Requirements](https://datatracker.ietf.org/doc/html/rfc6749#section-3.1.2.2)
+      for
+
+      details), but OpenID Connect requires exact match.
+  authorizationSignAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonAuthorizationSignAlg
+  authorizationEncryptionAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonAuthorizationEncryptionAlg
+  authorizationEncryptionEnc:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonAuthorizationEncryptionEnc
+  tokenAuthMethod:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonTokenAuthMethod
+  tokenAuthSignAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonTokenAuthSignAlg
+  selfSignedCertificateKeyId:
+    type: string
+    description: |
+      The key ID of a JWK containing a self-signed certificate of this client.
+  tlsClientAuthSubjectDn:
+    type: string
+    description: >
+      The string representation of the expected subject distinguished name of
+      the certificate this
+
+      client will use in mutual TLS authentication.
+
+
+      See `tls_client_auth_subject_dn` in "Mutual TLS Profiles for OAuth
+      Clients, 2.3. Dynamic Client
+
+      Registration" for details.
+  tlsClientAuthSanDns:
+    type: string
+    description: >
+      The string representation of the expected DNS subject alternative name of
+      the certificate this
+
+      client will use in mutual TLS authentication.
+
+
+      See `tls_client_auth_san_dns` in "Mutual TLS Profiles for OAuth Clients,
+      2.3. Dynamic Client
+
+      Registration" for details.
+  tlsClientAuthSanUri:
+    type: string
+    description: >
+      The string representation of the expected URI subject alternative name of
+      the certificate this
+
+      client will use in mutual TLS authentication.
+
+
+      See `tls_client_auth_san_uri` in "Mutual TLS Profiles for OAuth Clients,
+      2.3. Dynamic Client
+
+      Registration" for details.
+  tlsClientAuthSanIp:
+    type: string
+    description: >
+      The string representation of the expected IP address subject alternative
+      name of the certificate
+
+      this client will use in mutual TLS authentication.
+
+
+      See `tls_client_auth_san_ip` in "Mutual TLS Profiles for OAuth Clients,
+      2.3. Dynamic Client
+
+      Registration" for details.
+  tlsClientAuthSanEmail:
+    type: string
+    description: >
+      The string representation of the expected email address subject
+      alternative name of the certificate
+
+      this client will use in mutual TLS authentication.
+
+
+      See `tls_client_auth_san_email` in "Mutual TLS Profiles for OAuth Clients,
+      2.3. Dynamic Client
+
+      Registration" for details.
+  parRequired:
+    type: boolean
+    description: >
+      The flag to indicate whether this client is required to use the pushed
+      authorization request endpoint.
+
+      This property corresponds to the `require_pushed_authorization_requests`
+      client metadata defined
+
+      in "OAuth 2.0 Pushed Authorization Requests".
+  requestObjectRequired:
+    type: boolean
+    description: >
+      The flag to indicate whether authorization requests from this client are
+      always required to
+
+      utilize a request object by using either `request` or `request_uri`
+      request parameter.
+
+
+      If this flag is set to `true` and the service's
+      `traditionalRequestObjectProcessingApplied` is
+
+      set to `false`, authorization requests from this client are processed as
+      if `require_signed_request_object`
+
+      client metadata of this client is `true`. The metadata is defined in "JAR
+      (JWT Secured Authorization Request)".
+  requestSignAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonRequestSignAlg
+  requestEncryptionAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonRequestEncryptionAlg
+  requestEncryptionEnc:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonRequestEncryptionEnc
+  requestUris:
+    type: array
+    items:
+      type: string
+    description: >
+      An array of URLs each of which points to a request object.
+
+
+      Authlete requires that URLs used as values for `request_uri` request
+      parameter be pre-registered.
+
+      This property is used for the pre-registration.
+
+      See [OpenID Connect Core 1.0, 6.2. Passing a Request Object by
+      Reference](https://openid.net/specs/openid-connect-core-1_0.html#RequestUriParameter)
+      for details.
+  defaultMaxAge:
+    type: integer
+    format: int32
+    description: >
+      The default maximum authentication age in seconds. This value is used when
+      an authorization request from the client application does not have
+      `max_age` request parameter.
+
+
+      This property corresponds to `default_max_age` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  defaultAcrs:
+    type: array
+    items:
+      type: string
+    description: >
+      The default ACRs (Authentication Context Class References). This value is
+      used when an authorization
+
+      request from the client application has neither `acr_values` request
+      parameter nor `acr` claim
+
+      in claims request parameter.
+  idTokenSignAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonIdTokenSignAlg
+  idTokenEncryptionAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonIdTokenEncryptionAlg
+  idTokenEncryptionEnc:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonIdTokenEncryptionEnc
+  authTimeRequired:
+    type: boolean
+    description: >
+      The flag to indicate whether this client requires `auth_time` claim to be
+      embedded in the ID token.
+
+
+      This property corresponds to `require_auth_time` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  subjectType:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonSubjectType
+  sectorIdentifierUri:
+    type: string
+    description: >
+      The value of the sector identifier URI.
+
+      This represents the `sector_identifier_uri` client metadata which is
+      defined in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
+  derivedSectorIdentifier:
+    type: string
+    readOnly: true
+    description: >
+      The sector identifier host component as derived from either the
+      `sector_identifier_uri` or the
+
+      registered redirect URI. If no `sector_identifier_uri` is registered and
+      multiple redirect URIs
+
+      are also registered, the value of this property is `null`.
+  jwksUri:
+    type: string
+    description: >
+      The URL pointing to the JWK Set of the client application.
+
+      The content pointed to by the URL is JSON which complies with the format
+      described in
+
+      [JSON Web Key (JWK), 5. JWK Set
+      Format](https://datatracker.ietf.org/doc/html/rfc7517#section-5).
+
+      The JWK Set must not include private keys of the client application.
+
+
+      If the client application requests encryption for ID tokens (from the
+      authorization/token/userinfo endpoints)
+
+      and/or signs request objects, it must make available its JWK Set
+      containing public keys for the
+
+      encryption and/or the signature at the URL of `jwksUri`. The service
+      (Authlete) fetches the JWK
+
+      Set from the URL as necessary.
+
+
+      [OpenID Connect Dynamic Client Registration
+      1.0](https://openid.net/specs/openid-connect-registration-1_0.html)
+
+      says that `jwks` must not be used when the client can use `jwks_uri`, but
+      Authlete allows both
+
+      properties to be registered at the same time. However, Authlete does not
+      use the content of `jwks`
+
+      when `jwksUri` is registered.
+
+
+      This property corresponds to `jwks_uri` in [OpenID Connect Dynamic Client
+      Registration 1.0, 2.
+
+      Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  jwks:
+    type: string
+    description: >
+      The content of the JWK Set of the client application.
+
+      The format is described in
+
+      [JSON Web Key (JWK), 5. JWK Set
+      Format](https://datatracker.ietf.org/doc/html/rfc7517#section-5).
+
+      The JWK Set must not include private keys of the client application.
+
+
+      [OpenID Connect Dynamic Client Registration
+      1.0](https://openid.net/specs/openid-connect-registration-1_0.html)
+
+      says that `jwks` must not be used when the client can use `jwks_uri`, but
+      Authlete allows both
+
+      properties to be registered at the same time. However, Authlete does not
+      use the content of `jwks`
+
+      when `jwksUri` is registered.
+
+
+      This property corresponds to `jwks_uri` in [OpenID Connect Dynamic Client
+      Registration 1.0, 2.
+
+      Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  userInfoSignAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonUserInfoSignAlg
+  userInfoEncryptionAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonUserInfoEncryptionAlg
+  userInfoEncryptionEnc:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonUserInfoEncryptionEnc
+  loginUri:
+    type: string
+    description: >
+      The URL which a third party can use to initiate a login by the client
+      application.
+
+
+      This property corresponds to `initiate_login_uri` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  tosUri:
+    type: string
+    description: >
+      The URL pointing to the "Terms Of Service" page.
+
+
+      This property corresponds to `tos_uri` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  tosUris:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonTosUrisItems
+    description: >
+      URLs of "Terms Of Service" pages with language tags.
+
+
+      If the client application has different "Terms Of Service" pages for
+      different languages,
+
+      this property can be used to register the URLs.
+  policyUri:
+    type: string
+    description: >
+      The URL pointing to the page which describes the policy as to how
+      end-user's profile data is used.
+
+
+      This property corresponds to `policy_uri` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  policyUris:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonPolicyUrisItems
+    description: >
+      URLs of policy pages with language tags.
+
+      If the client application has different policy pages for different
+      languages, this property can be used to register the URLs.
+  clientUri:
+    type: string
+    description: >
+      The URL pointing to the home page of the client application.
+
+
+      This property corresponds to `client_uri` in
+
+      [OpenID Connect Dynamic Client Registration 1.0, 2. Client
+      Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata).
+  clientUris:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonClientUrisItems
+    description: >
+      Home page URLs with language tags.
+
+      If the client application has different home pages for different
+      languages, this property can
+
+      be used to register the URLs.
+  bcDeliveryMode:
+    type: string
+    description: >
+      The backchannel token delivery mode.
+
+
+      This property corresponds to the `backchannel_token_delivery_mode`
+      metadata.
+
+      The backchannel token delivery mode is defined in the specification of
+      "CIBA (Client Initiated
+
+      Backchannel Authentication)".
+  bcNotificationEndpoint:
+    type: string
+    description: >
+      The backchannel client notification endpoint.
+
+
+      This property corresponds to the
+      `backchannel_client_notification_endpoint` metadata.
+
+      The backchannel token delivery mode is defined in the specification of
+      "CIBA (Client Initiated
+
+      Backchannel Authentication)".
+  bcRequestSignAlg:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonBcRequestSignAlg
+  bcUserCodeRequired:
+    type: boolean
+    description: >
+      The boolean flag to indicate whether a user code is required when this
+      client makes a backchannel
+
+      authentication request.
+
+
+      This property corresponds to the `backchannel_user_code_parameter`
+      metadata.
+  attributes:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonAttributesItems
+    description: |
+      The attributes of this client.
+  extension:
+    $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonExtension
+  authorizationDetailsTypes:
+    type: array
+    items:
+      type: string
+    description: >
+      The authorization details types that this client may use as values of the
+      `type` field in
+
+      `authorization_details`.
+
+
+      This property corresponds to the `authorization_details_types` metadata.
+      See [OAuth 2.0 Rich
+
+      Authorization Requests
+      (RAR)](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/) for
+      details.
+
+
+      Note that the property name was renamed from authorizationDataTypes to
+      authorizationDetailsTypes
+
+      to align with the change made by the 5th draft of the RAR specification.
+  customMetadata:
+    type: string
+    description: >
+      The custom client metadata in JSON format.
+
+
+      Standard specifications define client metadata as necessary. The following
+      are such examples.
+
+
+      * [OpenID Connect Dynamic Client Registration
+      1.0](https://openid.net/specs/openid-connect-registration-1_0.html)
+
+      * [RFC 7591 OAuth 2.0 Dynamic Client Registration
+      Protocol](https://www.rfc-editor.org/rfc/rfc7591.html)
+
+      * [RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and
+      Certificate-Bound Access
+      Tokens](https://www.rfc-editor.org/rfc/rfc8705.html)
+
+      * [OpenID Connect Client-Initiated Backchannel Authentication Flow - Core
+      1.0](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html)
+
+      * [The OAuth 2.0 Authorization Framework: JWT Secured Authorization
+      Request (JAR)](https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/)
+
+      * [Financial-grade API: JWT Secured Authorization Response Mode for OAuth
+      2.0 (JARM)](https://openid.net/specs/openid-financial-api-jarm.html)
+
+      * [OAuth 2.0 Pushed Authorization Requests
+      (PAR)](https://datatracker.ietf.org/doc/rfc9126/)
+
+      * [OAuth 2.0 Rich Authorization Requests
+      (RAR)](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/)
+
+
+      Standard client metadata included in Client Registration Request and
+      Client Update Request (cf.
+
+      [OIDC
+      DynReg](https://openid.net/specs/openid-connect-registration-1_0.html),
+      [RFC 7591](https://www.rfc-editor.org/rfc/rfc7591.html)
+
+      and [RFC 7592](https://www.rfc-editor.org/rfc/rfc7592.html)) are, if
+      supported by Authlete, set
+
+      to corresponding properties of the client application. For example, the
+      value of the `client_name`
+
+      client metadata in Client Registration/Update Request is set to the
+      clientName property. On the
+
+      other hand, unrecognized client metadata are discarded.
+
+
+      By listing up custom client metadata in advance by using the
+      `supportedCustomClientMetadata` property
+
+      of Service, Authlete can recognize them and stores their values into the
+      database. The stored
+
+      custom client metadata values can be referenced by this property.
+  frontChannelRequestObjectEncryptionRequired:
+    type: boolean
+    description: >
+      The flag indicating whether encryption of request object is required when
+      the request object
+
+      is passed through the front channel.
+
+
+      This flag does not affect the processing of request objects at the Pushed
+      Authorization Request
+
+      Endpoint, which is defined in [OAuth 2.0 Pushed Authorization
+      Requests](https://datatracker.ietf.org/doc/rfc9126/).
+
+      Unecrypted request objects are accepted at the endpoint even if this flag
+      is `true`.
+
+
+      This flag does not indicate whether a request object is always required.
+      There is a different
+
+      flag, `requestObjectRequired`, for the purpose.
+
+
+      Even if this flag is `false`, encryption of request object is required if
+      the `frontChannelRequestObjectEncryptionRequired`
+
+      flag of the service is `true`.
+  requestObjectEncryptionAlgMatchRequired:
+    type: boolean
+    description: >
+      The flag indicating whether the JWE alg of encrypted request object must
+      match the `request_object_encryption_alg`
+
+      client metadata.
+
+
+      The `request_object_encryption_alg` client metadata itself is defined in
+      [OpenID Connect Dynamic
+
+      Client Registration
+      1.0](https://openid.net/specs/openid-connect-registration-1_0.html) as
+      follows.
+
+
+      > request_object_encryption_alg
+
+      >
+
+      > OPTIONAL. JWE [JWE] alg algorithm [JWA] the RP is declaring that it may
+      use for encrypting Request
+        Objects sent to the OP. This parameter SHOULD be included when symmetric encryption will be used,
+        since this signals to the OP that a client_secret value needs to be returned from which the
+        symmetric key will be derived, that might not otherwise be returned. The RP MAY still use other
+        supported encryption algorithms or send unencrypted Request Objects, even when this parameter
+        is present. If both signing and encryption are requested, the Request Object will be signed
+        then encrypted, with the result being a Nested JWT, as defined in [JWT]. The default, if omitted,
+        is that the RP is not declaring whether it might encrypt any Request Objects.
+
+      The point here is "The RP MAY still use other supported encryption
+      algorithms or send unencrypted
+
+      Request Objects, even when this parameter is present."
+
+
+      The property that represents the client metadata is
+      `requestEncryptionAlg`. See the description
+
+      of `requestEncryptionAlg` for details.
+
+
+      Even if this flag is `false`, the match is required if the
+      `requestObjectEncryptionAlgMatchRequired`
+
+      flag of the service is `true`.
+  requestObjectEncryptionEncMatchRequired:
+    type: boolean
+    description: >
+      The flag indicating whether the JWE enc of encrypted request object must
+      match the `request_object_encryption_enc`
+
+      client metadata.
+
+
+      The `request_object_encryption_enc` client metadata itself is defined in
+      [OpenID Connect Dynamic
+
+      Client Registration
+      1.0](https://openid.net/specs/openid-connect-registration-1_0.html) as
+      follows.
+
+
+      > request_object_encryption_enc
+
+      >
+
+      > OPTIONAL. JWE enc algorithm [JWA] the RP is declaring that it may use
+      for encrypting Request
+        Objects sent to the OP. If request_object_encryption_alg is specified, the default for this
+        value is A128CBC-HS256. When request_object_encryption_enc is included, request_object_encryption_alg
+        MUST also be provided.
+
+      The property that represents the client metadata is
+      `requestEncryptionEnc`. See the description
+
+      of `requestEncryptionEnc`  for details.
+
+
+      Even if this flag is `false`, the match is required if the
+      `requestObjectEncryptionEncMatchRequired`
+
+      flag of the service is `true`.
+  digestAlgorithm:
+    type: string
+    description: >
+      The digest algorithm that this client requests the server to use
+
+      when it computes digest values of <a href=
+
+      "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+
+      >external attachments</a>, which may be referenced from within ID tokens
+
+      or userinfo responses (or any place that can have the `verified_claims`
+      claim).
+
+
+      Possible values are listed in the <a href=
+
+      "https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+
+      >Hash Algorithm Registry</a> of IANA (Internet Assigned Numbers
+      Authority),
+
+      but the server does not necessarily support all the values there. When
+
+      this property is omitted, `sha-256` is used as the default algorithm.
+
+
+      This property corresponds to the `digest_algorithm` client metadata
+
+      which was defined by the third implementer's draft of
+
+      [OpenID Connect for Identity Assurance
+      1.0](https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html).
+  singleAccessTokenPerSubject:
+    type: boolean
+    description: >
+      If `Enabled` is selected, an attempt to issue a new access token
+      invalidates existing access tokens that are associated with the same
+      combination of subject and client.
+
+
+      Note that, however, attempts by Client Credentials Flow do not invalidate
+      existing access tokens because access tokens issued by Client Credentials
+      Flow are not associated with any end-user's subject.
+
+
+      Even if `Disabled` is selected here, single access token per subject is
+      effective if `singleAccessTokenPerSubject` of the `Service` this client
+      belongs to is Enabled.
+  pkceRequired:
+    type: boolean
+    description: >
+      The flag to indicate whether the use of Proof Key for Code Exchange (PKCE)
+      is always required for authorization requests by Authorization Code Flow.
+
+
+      If `true`, `code_challenge` request parameter is always required for
+      authorization requests using Authorization Code Flow.
+
+
+      See [RFC 7636](https://tools.ietf.org/html/rfc7636) (Proof Key for Code
+      Exchange by OAuth Public Clients) for details about `code_challenge`
+      request parameter.
+  pkceS256Required:
+    type: boolean
+    description: >
+      The flag to indicate whether `S256` is always required as the code
+      challenge method whenever [PKCE (RFC
+      7636)](https://tools.ietf.org/html/rfc7636) is used.
+
+
+      If this flag is set to `true`, `code_challenge_method=S256` must be
+      included in the authorization request
+
+      whenever it includes the `code_challenge` request parameter.
+
+      Neither omission of the `code_challenge_method` request parameter nor use
+      of plain (`code_challenge_method=plain`) is allowed.
+  dpopRequired:
+    type: boolean
+    description: |
+      If the DPoP is required for this client
+  automaticallyRegistered:
+    type: boolean
+    description: |
+      The flag indicating whether this client was registered by the
+      "automatic" client registration of OIDC Federation.
+  explicitlyRegistered:
+    type: boolean
+    description: |
+      The flag indicating whether this client was registered by the
+      "explicit" client registration of OIDC Federation.
+  rsRequestSigned:
+    type: boolean
+    description: >
+      The flag indicating whether this service signs responses from the resource
+      server.
+  rsSignedRequestKeyId:
+    type: string
+    description: >
+      The key ID of a JWK containing the public key used by this client to sign
+      requests to the resource server.
+  clientRegistrationTypes:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonClientRegistrationTypesItems
+    description: |
+      The client registration types that the client has declared it may use.
+  organizationName:
+    type: string
+    description: >
+      The human-readable name representing the organization that manages this
+      client. This property corresponds
+
+      to the organization_name client metadata that is defined in OpenID Connect
+      Federation 1.0.
+  signedJwksUri:
+    type: string
+    description: >
+      The URI of the endpoint that returns this client's JWK Set document in the
+      JWT format. This property
+
+      corresponds to the `signed_jwks_uri` client metadata defined in OpenID
+      Connect Federation 1.0.
+  entityId:
+    type: string
+    description: |
+      the entity ID of this client.
+  trustAnchorId:
+    type: string
+    description: >
+      The entity ID of the trust anchor of the trust chain that was used when
+      this client was registered or updated by
+
+      the mechanism defined in OpenID Connect Federation 1.0
+  trustChain:
+    type: array
+    items:
+      type: string
+    description: >
+      The trust chain that was used when this client was registered or updated
+      by the mechanism defined in
+
+      OpenID Connect Federation 1.0
+  trustChainExpiresAt:
+    type: integer
+    format: int64
+    description: >
+      the expiration time of the trust chain that was used when this client was
+      registered or updated by the mechanism
+
+      defined in OpenID Connect Federation 1.0. The value is represented as
+      milliseconds elapsed since the Unix epoch (1970-01-01).
+  trustChainUpdatedAt:
+    type: integer
+    format: int64
+    description: >
+      the time at which the trust chain was updated by the mechanism defined in
+      OpenID Connect Federation 1.0
+  locked:
+    type: boolean
+    description: |
+      The flag which indicates whether this client is locked.
+  credentialOfferEndpoint:
+    type: string
+    description: |
+      The URL of the credential offer endpoint at which this client
+      (wallet) receives a credential offer from the credential issuer.
+  fapiModes:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonFapiModesItems
+    description: >
+      The FAPI modes for this client.
+
+
+      When the value of this property is not `null`, Authlete always processes
+      requests from this client
+
+      based on the specified FAPI modes if the FAPI feature is enabled in
+      Authlete, the FAPI profile
+
+      is supported by the service, and the FAPI modes for the service are set to
+      `null`.
+
+
+      For instance, when this property is set to an array containing
+      `FAPI1_ADVANCED` only, Authlete
+
+      always processes requests from this client based on "Financial-grade API
+      Security Profile 1.0 -
+
+      Part 2: Advanced" if the FAPI feature is enabled in Authlete, the FAPI
+      profile is supported by
+
+      the service, and the FAPI modes for the service are set to `null`.
+  responseModes:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/ClientUpdateApiResponse200JsonResponseModesItems
+    description: The response modes that this client may use.
+  credentialResponseEncryptionRequired:
+    type: boolean
+    description: True if credential responses to this client must be always encrypted.
+  mtlsEndpointAliasesUsed:
+    type: boolean
+    description: >
+      The flag indicating whether the client intends to prefer mutual TLS
+      endpoints over non-MTLS endpoints.
+
+
+      This property corresponds to the `use_mtls_endpoint_aliases` client
+      metadata that is defined in
+
+      [FAPI 2.0 Security Profile, 8.1.1.
+      use_mtls_endpoint_aliases](https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1).

@@ -1,0 +1,7 @@
+type: object
+required:
+  - ticket
+properties:
+  ticket:
+    type: string
+    description: The ticket that has been issued from the `/auth/authorization` API.

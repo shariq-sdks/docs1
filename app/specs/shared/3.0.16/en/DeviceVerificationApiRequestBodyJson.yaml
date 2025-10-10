@@ -1,0 +1,8 @@
+type: object
+required:
+  - userCode
+properties:
+  userCode:
+    type: string
+    description: |
+      A user code.

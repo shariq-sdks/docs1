@@ -1,0 +1,10 @@
+type: string
+enum:
+  - OK
+  - NO_CONTENT
+  - UNAUTHORIZED
+  - FORBIDDEN
+  - NOT_FOUND
+  - CALLER_ERROR
+  - AUTHLETE_ERROR
+description: The next action that the authorization server implementation should take.

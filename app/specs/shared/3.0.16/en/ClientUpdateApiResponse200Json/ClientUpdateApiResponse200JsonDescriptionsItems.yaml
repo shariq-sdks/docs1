@@ -1,0 +1,8 @@
+type: object
+properties:
+  tag:
+    type: string
+    description: The language tag part.
+  value:
+    type: string
+    description: The value part.

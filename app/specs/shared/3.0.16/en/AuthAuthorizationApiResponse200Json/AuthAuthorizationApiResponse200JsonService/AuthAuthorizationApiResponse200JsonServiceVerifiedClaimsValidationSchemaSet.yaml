@@ -1,0 +1,6 @@
+type: string
+description: |
+  OIDC4IDA / verifiedClaimsValidationSchemaSet
+enum:
+  - standard
+  - standard+id_document

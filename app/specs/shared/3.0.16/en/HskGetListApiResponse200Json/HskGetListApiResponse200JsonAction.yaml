@@ -1,0 +1,6 @@
+type: string
+enum:
+  - SUCCESS
+  - INVALID_REQUEST
+  - SERVER_ERROR
+description: Result of the API call

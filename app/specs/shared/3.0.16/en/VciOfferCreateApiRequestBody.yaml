@@ -1,0 +1,159 @@
+type: object
+properties:
+  authorizationCodeGrantIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the `authorization_code` object is
+      included in the `grants` object.
+  issuerStateIncluded:
+    type: boolean
+    description: |
+      The flag indicating whether the `issuer_state` property is
+      included in the `authorization_code` object in the `grants`
+      object.
+  preAuthorizedCodeGrantIncluded:
+    type: boolean
+    description: |
+      The flag to include the
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object
+      in the `grants` object.
+  subject:
+    type: string
+    description: The subject associated with the credential offer.
+  duration:
+    type: integer
+    format: int64
+    description: The duration of the credential offer.
+  context:
+    type: string
+    description: The general-purpose arbitrary string.
+  properties:
+    type: array
+    items:
+      $ref: ../en_test.yaml#/components/schemas/VciOfferCreateApiRequestBodyPropertiesItems
+    description: Extra properties to associate with the credential offer.
+  jwtAtClaims:
+    type: string
+    description: |
+      Additional claims that are added to the payload part of the JWT
+      access token.
+  authTime:
+    type: integer
+    format: int64
+    description: |
+      The time at which the user authentication was performed during
+      the course of issuing the credential offer.
+  acr:
+    type: string
+    description: |
+      The Authentication Context Class Reference of the user authentication
+      performed during the course of issuing the credential offer.
+  credentialConfigurationIds:
+    type: array
+    items:
+      type: string
+    description: |
+      The value of the `credential_configuration_ids` array.
+
+      ```
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": { ... }
+      }
+      ```
+
+      This property is mandatory.
+  txCode:
+    type: string
+    description: >
+      The transaction code that should be associated with the credential offer.
+
+
+      If this parameter is not empty and the `preAuthorizedCodeGrantIncluded`
+      parameter is `true`, the
+
+      `urn:ietf:params:oauth:grant-type:pre-authorized_code` object will include
+      the `tx_code` object.
+
+
+      The length of the value of this parameter will be used as the value of the
+      `length` property in
+
+      the `tx_code` object.
+
+
+      ```
+
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": {
+          "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+            "pre-authorized_code": "...",
+            "tx_code": {
+              "length": length
+            }
+          }
+        }
+      }
+
+      ```
+  txCodeInputMode:
+    type: string
+    description: >
+      The input mode of the transaction code.
+
+
+      The value of this property will be used as the value of the `input_mode`
+      property in the `tx_code`
+
+      object.
+
+
+      ```
+
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": {
+          "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+            "pre-authorized_code": "...",
+            "tx_code": {
+              "length": length,
+              "input_mode": "..."
+            }
+          }
+        }
+      }
+
+      ```
+  txCodeDescription:
+    type: string
+    description: >
+      The description of the transaction code.
+
+
+      The value of this property will be used as the value of the `description`
+      property in the `tx_code`
+
+      object.
+
+
+      ```
+
+      {
+        "credential_issuer": "...",
+        "credential_configuration_ids": [ ... ],
+        "grants": {
+          "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+            "pre-authorized_code": "...",
+            "tx_code": {
+              "length": length,
+              "description": "..."
+            }
+          }
+        }
+      }
+
+      ```

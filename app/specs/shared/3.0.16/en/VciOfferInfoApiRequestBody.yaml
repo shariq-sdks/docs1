@@ -1,0 +1,5 @@
+type: object
+properties:
+  identifier:
+    type: string
+    description: The identifier of the credential offer.

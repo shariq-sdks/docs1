@@ -1,0 +1,15 @@
+type: object
+required:
+  - ticket
+  - reason
+properties:
+  ticket:
+    type: string
+    description: |
+      The ticket issued from Authlete `/auth/authorization` API.
+  reason:
+    $ref: ../en_test.yaml#/components/schemas/AuthAuthorizationFailApiRequestBodyReason
+  description:
+    type: string
+    description: |
+      The custom description about the authorization failure.

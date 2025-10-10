@@ -1,0 +1,25 @@
+{
+    "ImportSettings": {
+        "ExampleResolvingMaxDepth": 1,
+        "PreferJsonSchemaNameOverTitle": false,
+        "AppendParentNameForClashes": false,
+        "AutoGenerateTestCases": true,
+        "IgnoreRamlTypeDeclarationDisplayName": false,
+        "PreferSwaggerOperationSummaryOverId": false,
+        "AllowModelTypesWithNoFields": false,
+        "IgnoreInlineEnumModelDescription": false,
+        "ImportMultipleResponses": true,
+        "ImportTypeCombinators": true,
+        "UseRamlUnionTypeAsOneOf": true,
+        "LoadOneOfAsOptionalFields": false,
+        "ImportArrayOfMapsAndMapOfArrays": false,
+        "ImportWsdlWithJsonMediaTypes": false,
+        "EnableCookieAuthentication": false,
+        "AllowAuthForEmptySecurityObject": false,
+        "ImportFromOpenApiDiscriminatorMapping": true,
+        "ImportRequestBodyContentTypeHeader": true,
+        "ImportMultipleAuthentication": true,
+        "LoadBaseTypesForOneOfAnyOfDiscriminator": true,
+        "ImportOpenApi3EmptySchema": true
+    }
+}
