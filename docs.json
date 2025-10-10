@@ -105,20 +105,28 @@
         "guides/authentication"
       ]
     },
+    
     {
       "group": "Authlete API",
-      "openapi": "app/specs/shared/3.0.15/en2.yaml",
-      "schemas": {
+      "openapi": "app/specs/shared/3.0.15/speakeasy.yaml",
+       "schemas": {
      "enabled": true,
      "showExamples": true,
      "showDescriptions": true
   }
     },
-    {
-      "group": "Authlete API2",
-      "openapi": "app/specs/shared/3.0.15/speakeasy.yaml"
+
+{
+      "group": "Example",
+      "openapi": "app/specs/shared/3.0.15/example.yaml",
+       "schemas": {
+     "enabled": true,
+     "showExamples": true,
+     "showDescriptions": true
+  }
     }
   ]
+        
 },
       
       {

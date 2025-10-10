@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Authlete Example API
+  version: 1.0.0
+  description: |
+    This example demonstrates how to structure an OpenAPI file so that Mintlify
+    properly renders **models**, property tables, and examples.
+
+servers:
+  - url: https://us.authlete.com
+
+paths:
+  /service:
+    get:
+      summary: Get service details
+      description: Retrieve details about a specific Authlete service.
+      operationId: getService
+      tags:
+        - Service Management
+      parameters:
+        - name: serviceId
+          in: query
+          required: true
+          description: The unique ID of the service.
+          schema:
+            type: string
+            example: "svc_1234"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+              examples:
+                example1:
+                  summary: Example response
+                  value:
+                    serviceId: "svc_1234"
+                    serviceName: "My OAuth Server"
+                    owner: "Authlete Inc."
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /token:
+    post:
+      summary: Issue an access token
+      operationId: issueToken
+      tags:
+        - Token Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TokenRequest"
+      responses:
+        "200":
+          description: Token issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+
+components:
+  schemas:
+    Service:
+      type: object
+      description: Represents an Authlete service configuration.
+      properties:
+        serviceId:
+          type: string
+          description: Unique identifier for the service.
+          example: svc_1234
+        serviceName:
+          type: string
+          description: The name of the service.
+          example: My OAuth Server
+        owner:
+          type: string
+          description: Owner organization name.
+          example: Authlete Inc.
+
+    TokenRequest:
+      type: object
+      description: Request body for token issuance.
+      properties:
+        grant_type:
+          type: string
+          description: OAuth 2.0 grant type.
+          example: client_credentials
+        client_id:
+          type: string
+          description: The client identifier.
+          example: client_abc
+        client_secret:
+          type: string
+          description: The client secret.
+          example: supersecret
+
+    TokenResponse:
+      type: object
+      description: Response after issuing a token.
+      properties:
+        access_token:
+          type: string
+          description: The issued access token.
+          example: eyJhbGciOi...
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 3600
+
+    ErrorResponse:
+      type: object
+      description: Error response model.
+      properties:
+        error:
+          type: string
+          description: Error type.
+          example: invalid_request
+        error_description:
+          type: string
+          description: Detailed explanation of the error.
+          example: Missing required parameter "client_id".

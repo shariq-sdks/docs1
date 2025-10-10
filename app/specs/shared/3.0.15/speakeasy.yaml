@@ -83,7 +83,7 @@ security:
   - authlete: []
   - bearer: []
 paths:
-  /api/{serviceId}/service/get:
+  '/api/{serviceId}/service/get':
     get:
       summary: Get Service
       description: |
@@ -274,7 +274,7 @@ paths:
             api.getService(serviceId)
       tags:
         - Service Management
-  /api/service/get/list:
+  '/api/service/get/list':
     get:
       summary: List Services
       description: |
@@ -487,7 +487,7 @@ paths:
             api.getServiceList(start, end)
       tags:
         - Service Management
-  /api/service/create:
+  '/api/service/create':
     post:
       summary: Create Service
       description: |
@@ -709,7 +709,7 @@ paths:
             api.createService(service)
       tags:
         - Service Management
-  /api/{serviceId}/service/update:
+  '/api/{serviceId}/service/update':
     post:
       summary: Update Service
       description: |
@@ -992,7 +992,7 @@ paths:
             api.updateService(service)
       tags:
         - Service Management
-  /api/{serviceId}/service/delete:
+  '/api/{serviceId}/service/delete':
     delete:
       summary: Delete Service ⚡
       description: |
@@ -1075,7 +1075,7 @@ paths:
             api.deleteService(serviceId)
       tags:
         - Service Management
-  /api/{serviceId}/client/get/{clientId}:
+  '/api/{serviceId}/client/get/{clientId}':
     get:
       summary: Get Client
       description: |
@@ -1209,7 +1209,7 @@ paths:
             api.getClient(clientId)
       tags:
         - Client Management
-  /api/{serviceId}/client/get/list:
+  '/api/{serviceId}/client/get/list':
     get:
       summary: List Clients
       description: |
@@ -1388,7 +1388,7 @@ paths:
             api.getClientList(developer, start, end)
       tags:
         - Client Management
-  /api/{serviceId}/client/create:
+  '/api/{serviceId}/client/create':
     post:
       summary: Create Client
       description: |
@@ -1552,7 +1552,7 @@ paths:
             api.createClient(client)
       tags:
         - Client Management
-  /api/{serviceId}/client/update/{clientId}:
+  '/api/{serviceId}/client/update/{clientId}':
     post:
       summary: Update Client
       description: |
@@ -1742,7 +1742,7 @@ paths:
             api.updatedClient(client)
       tags:
         - Client Management
-  /api/{serviceId}/client/delete/{clientId}:
+  '/api/{serviceId}/client/delete/{clientId}':
     delete:
       summary: Delete Client ⚡
       description: |
@@ -1831,7 +1831,7 @@ paths:
             api.deleteClient(clientId)
       tags:
         - Client Management
-  /api/{serviceId}/client/lock_flag/update/{clientIdentifier}:
+  '/api/{serviceId}/client/lock_flag/update/{clientIdentifier}':
     post:
       summary: Update Client Lock
       description: |
@@ -1912,7 +1912,7 @@ paths:
       operationId: client_flag_update_api
       tags:
         - Client Management
-  /api/{serviceId}/client/secret/refresh/{clientIdentifier}:
+  '/api/{serviceId}/client/secret/refresh/{clientIdentifier}':
     get:
       summary: Rotate Client Secret
       description: |
@@ -2014,7 +2014,7 @@ paths:
             api.refreshClientSecret(clientIdentifier)
       tags:
         - Client Management
-  /api/{serviceId}/client/secret/update/{clientIdentifier}:
+  '/api/{serviceId}/client/secret/update/{clientIdentifier}':
     post:
       summary: Update Client Secret
       description: |
@@ -2131,7 +2131,7 @@ paths:
             api.updateClientSecret(clientIdentifier, clientSecret)
       tags:
         - Client Management
-  /api/{serviceId}/client/authorization/get/list:
+  '/api/{serviceId}/client/authorization/get/list':
     get:
       summary: Get Authorized Applications
       description: |
@@ -2260,7 +2260,7 @@ paths:
             api.getClientAuthorizationList(req)
       tags:
         - Authorization Management
-  /api/{serviceId}/client/authorization/update/{clientId}:
+  '/api/{serviceId}/client/authorization/update/{clientId}':
     post:
       summary: Update Client Tokens
       description: |
@@ -2380,7 +2380,7 @@ paths:
             api.updateClientAuthorization(clientId, req)
       tags:
         - Authorization Management
-  /api/{serviceId}/client/authorization/delete/{clientId}:
+  '/api/{serviceId}/client/authorization/delete/{clientId}':
     delete:
       summary: Delete Client Tokens
       description: |
@@ -2481,7 +2481,7 @@ paths:
             api.deleteClientAuthorization(clientId, subject)
       tags:
         - Authorization Management
-  /api/{serviceId}/client/granted_scopes/get/{clientId}:
+  '/api/{serviceId}/client/granted_scopes/get/{clientId}':
     get:
       summary: Get Granted Scopes
       description: |
@@ -2612,7 +2612,7 @@ paths:
             api.getGrantedScopes(clientId, subject)
       tags:
         - Authorization Management
-  /api/{serviceId}/client/granted_scopes/delete/{clientId}:
+  '/api/{serviceId}/client/granted_scopes/delete/{clientId}':
     delete:
       summary: Delete Granted Scopes
       description: |
@@ -2718,7 +2718,7 @@ paths:
             api.deleteGrantedScopes(clientId, subject)
       tags:
         - Authorization Management
-  /api/{serviceId}/auth/authorization:
+  '/api/{serviceId}/auth/authorization':
     post:
       summary: Process Authorization Request
       x-badges:
@@ -3383,7 +3383,7 @@ paths:
             api.authorization(req)
       tags:
         - Authorization Management
-  /api/{serviceId}/auth/authorization/fail:
+  '/api/{serviceId}/auth/authorization/fail':
     post:
       summary: Fail Authorization Request
       x-badges:
@@ -3605,7 +3605,7 @@ paths:
             api.authorizationFail(req)
       tags:
         - Authorization Management
-  /api/{serviceId}/auth/authorization/issue:
+  '/api/{serviceId}/auth/authorization/issue':
     post:
       summary: Issue Authorization Response
       x-badges:
@@ -3833,7 +3833,7 @@ paths:
             api.authorizationIssue(req)
       tags:
         - Authorization Management
-  /api/{serviceId}/pushed_auth_req:
+  '/api/{serviceId}/pushed_auth_req':
     post:
       summary: Process Pushed Authorization Request
       description: |
@@ -3951,7 +3951,7 @@ paths:
             api.token(req)
       tags:
         - Authorization Management
-  /api/{serviceId}/auth/token:
+  '/api/{serviceId}/auth/token':
     post:
       summary: Process Token Request
       description: |
@@ -4530,7 +4530,7 @@ paths:
             api.token(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/token/fail:
+  '/api/{serviceId}/auth/token/fail':
     post:
       summary: Fail Token Request
       description: |
@@ -4708,7 +4708,7 @@ paths:
             api.tokenFail(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/token/issue:
+  '/api/{serviceId}/auth/token/issue':
     post:
       summary: Issue Token Response
       description: |
@@ -4904,7 +4904,7 @@ paths:
             api.tokenIssue(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/introspection:
+  '/api/{serviceId}/auth/introspection':
     post:
       summary: Process Introspection Request
       description: |
@@ -5203,7 +5203,7 @@ paths:
             api.introspection(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/introspection/standard:
+  '/api/{serviceId}/auth/introspection/standard':
     post:
       summary: Process OAuth 2.0 Introspection Request
       description: |
@@ -5404,7 +5404,7 @@ paths:
             api.standardIntrospection(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/revocation:
+  '/api/{serviceId}/auth/revocation':
     post:
       summary: Process Revocation Request
       description: |
@@ -5643,7 +5643,7 @@ paths:
             api.revocation(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/userinfo:
+  '/api/{serviceId}/auth/userinfo':
     post:
       summary: Process UserInfo Request
       description: |
@@ -5895,7 +5895,7 @@ paths:
             api.userinfo(req)
       tags:
         - User Information
-  /api/{serviceId}/auth/userinfo/issue:
+  '/api/{serviceId}/auth/userinfo/issue':
     post:
       summary: Issue UserInfo Response
       description: |
@@ -6150,7 +6150,7 @@ paths:
             api.userinfoIssue(req)
       tags:
         - User Information
-  /api/{serviceId}/idtoken/reissue:
+  '/api/{serviceId}/idtoken/reissue':
     post:
       summary: Reissue ID Token
       description: |
@@ -6223,7 +6223,7 @@ paths:
       operationId: idtoken_reissue_api
       tags:
         - Token Management
-  /api/{serviceId}/gm:
+  '/api/{serviceId}/gm':
     post:
       summary: Process Grant Management Request
       description: |
@@ -6299,7 +6299,7 @@ paths:
       operationId: grant_m_api
       tags:
         - Token Management
-  /api/{serviceId}/service/jwks/get:
+  '/api/{serviceId}/service/jwks/get':
     get:
       summary: Get JWK Set
       description: |
@@ -6437,7 +6437,7 @@ paths:
             api.getServiceJwks(pretty, includePrivateKey)
       tags:
         - Service Management
-  /api/{serviceId}/service/configuration:
+  '/api/{serviceId}/service/configuration':
     get:
       summary: Get Service Configuration
       description: |
@@ -6825,7 +6825,7 @@ paths:
             api.getServiceConfiguration(True)
       tags:
         - Service Management
-  /api/{serviceId}/client/registration:
+  '/api/{serviceId}/client/registration':
     post:
       summary: Register Client
       description: |
@@ -7053,7 +7053,7 @@ paths:
             api.dynamicClientRegister(req)
       tags:
         - Client Management
-  /api/{serviceId}/client/registration/get:
+  '/api/{serviceId}/client/registration/get':
     post:
       summary: Get Client
       description: |
@@ -7312,7 +7312,7 @@ paths:
             api.dynamicClientGet(req)
       tags:
         - Client Management
-  /api/{serviceId}/client/registration/update:
+  '/api/{serviceId}/client/registration/update':
     post:
       summary: Update Client
       description: |
@@ -7575,7 +7575,7 @@ paths:
             api.dynamicClientUpdate(req)
       tags:
         - Client Management
-  /api/{serviceId}/client/registration/delete:
+  '/api/{serviceId}/client/registration/delete':
     post:
       summary: Delete Client
       description: |
@@ -7804,7 +7804,7 @@ paths:
             api.DynamicClientDelete(req)
       tags:
         - Client Management
-  /api/{serviceId}/backchannel/authentication:
+  '/api/{serviceId}/backchannel/authentication':
     post:
       summary: Process Backchannel Authentication Request
       description: |
@@ -8244,7 +8244,7 @@ paths:
             api.backchannelAuthentication(req)
       tags:
         - Backchannel Authentication
-  /api/{serviceId}/backchannel/authentication/issue:
+  '/api/{serviceId}/backchannel/authentication/issue':
     post:
       summary: Issue Backchannel Authentication Response
       description: |
@@ -8442,7 +8442,7 @@ paths:
             api.backchannelAuthenticationIssue(req)
       tags:
         - Backchannel Authentication
-  /api/{serviceId}/backchannel/authentication/fail:
+  '/api/{serviceId}/backchannel/authentication/fail':
     post:
       summary: Fail Backchannel Authentication Request
       description: |
@@ -8584,7 +8584,7 @@ paths:
             api.backchannelAuthenticationFail(req)
       tags:
         - Backchannel Authentication
-  /api/{serviceId}/backchannel/authentication/complete:
+  '/api/{serviceId}/backchannel/authentication/complete':
     post:
       summary: Complete Backchannel Authentication
       description: |
@@ -8816,7 +8816,7 @@ paths:
             api.backchannelAuthenticationComplete(req)
       tags:
         - Backchannel Authentication
-  /api/{serviceId}/device/authorization:
+  '/api/{serviceId}/device/authorization':
     post:
       summary: Process Device Authorization Request
       description: |
@@ -9041,7 +9041,7 @@ paths:
             api.deviceAuthorization(req)
       tags:
         - Device Flow
-  /api/{serviceId}/device/verification:
+  '/api/{serviceId}/device/verification':
     post:
       summary: Process Device Verification Request
       description: |
@@ -9199,7 +9199,7 @@ paths:
             api.deviceVerification(req)
       tags:
         - Device Flow
-  /api/{serviceId}/device/complete:
+  '/api/{serviceId}/device/complete':
     post:
       summary: Complete Device Authorization
       description: |
@@ -9380,7 +9380,7 @@ paths:
             api.deviceComplete(req)
       tags:
         - Device Flow
-  /api/{serviceId}/auth/token/get/list:
+  '/api/{serviceId}/auth/token/get/list':
     get:
       summary: List Issued Tokens
       description: |
@@ -9549,7 +9549,7 @@ paths:
             api.getTokenList(clientIdentifier, subject, start, end)
       tags:
         - Token Management
-  /api/{serviceId}/auth/token/create:
+  '/api/{serviceId}/auth/token/create':
     post:
       summary: Create Access Token
       description: |
@@ -9677,7 +9677,7 @@ paths:
             api.tokenCreate(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/token/update:
+  '/api/{serviceId}/auth/token/update':
     post:
       summary: Update Access Token
       description: |
@@ -9792,7 +9792,7 @@ paths:
             api.tokenUpdate(req)
       tags:
         - Token Management
-  /api/{serviceId}/auth/token/delete/{accessTokenIdentifier}:
+  '/api/{serviceId}/auth/token/delete/{accessTokenIdentifier}':
     delete:
       summary: Delete Access Token
       description: |
@@ -9885,7 +9885,7 @@ paths:
             api.tokenDelete(accessToken)
       tags:
         - Token Management
-  /api/{serviceId}/auth/token/revoke:
+  '/api/{serviceId}/auth/token/revoke':
     post:
       summary: Revoke Access Token
       description: |
@@ -9998,7 +9998,7 @@ paths:
             api.tokenUpdate(req)
       tags:
         - Token Management
-  /api/{serviceId}/jose/verify:
+  '/api/{serviceId}/jose/verify':
     post:
       summary: Verify JOSE
       description: |
@@ -10116,7 +10116,7 @@ paths:
             api.verifyJose(req)
       tags:
         - Federation & JOSE
-  /api/{serviceId}/federation/configuration:
+  '/api/{serviceId}/federation/configuration':
     post:
       summary: Process Entity Configuration Request
       description: |
@@ -10286,7 +10286,7 @@ paths:
             api.getFederationConfiguration(True)
       tags:
         - Federation & JOSE
-  /api/{serviceId}/federation/registration:
+  '/api/{serviceId}/federation/registration':
     post:
       summary: Process Federation Registration Request
       description: |
@@ -10394,7 +10394,7 @@ paths:
       operationId: federation_registration_api
       tags:
         - Federation & JOSE
-  /api/info:
+  '/api/info':
     get:
       summary: Get Server Metadata
       description: |
@@ -10463,7 +10463,7 @@ paths:
       operationId: info_api
       tags:
         - Service Management
-  /api/{serviceId}/client/extension/requestable_scopes/get/{clientId}:
+  '/api/{serviceId}/client/extension/requestable_scopes/get/{clientId}':
     get:
       summary: Get Requestable Scopes
       description: |
@@ -10534,7 +10534,7 @@ paths:
       operationId: client_extension_requestables_scopes_get_api
       tags:
         - Client Management
-  /api/{serviceId}/client/extension/requestable_scopes/update/{clientId}:
+  '/api/{serviceId}/client/extension/requestable_scopes/update/{clientId}':
     put:
       summary: Update Requestable Scopes
       description: |
@@ -10611,7 +10611,7 @@ paths:
       operationId: client_extension_requestables_scopes_update_api
       tags:
         - Client Management
-  /api/{serviceId}/client/extension/requestable_scopes/delete/{clientId}:
+  '/api/{serviceId}/client/extension/requestable_scopes/delete/{clientId}':
     delete:
       summary: Delete Requestable Scopes
       description: |
@@ -10678,7 +10678,7 @@ paths:
       operationId: client_extension_requestables_scopes_delete_api
       tags:
         - Client Management
-  /api/{serviceId}/hsk/create:
+  '/api/{serviceId}/hsk/create':
     post:
       summary: Create Security Key
       x-badges:
@@ -10753,7 +10753,7 @@ paths:
       tags:
         - Hardware Security Keys (HSK)
       description: POST /api/{serviceId}/hsk/create
-  /api/{serviceId}/hsk/delete/{handle}:
+  '/api/{serviceId}/hsk/delete/{handle}':
     delete:
       summary: Delete Security Key
       x-badges:
@@ -10824,7 +10824,7 @@ paths:
       tags:
         - Hardware Security Keys (HSK)
       description: DELETE /api/{serviceId}/hsk/delete/{handle}
-  /api/{serviceId}/hsk/get/{handle}:
+  '/api/{serviceId}/hsk/get/{handle}':
     get:
       summary: Get Security Key
       x-badges:
@@ -10895,7 +10895,7 @@ paths:
       tags:
         - Hardware Security Keys (HSK)
       description: GET /api/{serviceId}/hsk/get/{handle}
-  /api/{serviceId}/hsk/get/list:
+  '/api/{serviceId}/hsk/get/list':
     get:
       summary: List Security Keys
       x-badges:
@@ -10961,7 +10961,7 @@ paths:
       tags:
         - Hardware Security Keys (HSK)
       description: GET /api/{serviceId}/hsk/get/list
-  /api/misc/echo:
+  '/api/misc/echo':
     get:
       summary: Echo
       description: |
@@ -11003,7 +11003,7 @@ paths:
       operationId: misc_echo_api
       tags:
         - Service Management
-  /api/{serviceId}/vci/metadata:
+  '/api/{serviceId}/vci/metadata':
     post:
       summary: /api/{serviceId}/vci/metadata API
       description: No description available
@@ -11075,7 +11075,7 @@ paths:
       operationId: getVciMetadata
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/jwtissuer:
+  '/api/{serviceId}/vci/jwtissuer':
     post:
       summary: /api/{serviceId}/vci/jwtissuer API
       description: No description available
@@ -11147,7 +11147,7 @@ paths:
       operationId: vci_jwtissuer_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/jwks:
+  '/api/{serviceId}/vci/jwks':
     post:
       summary: /api/{serviceId}/vci/jwks API
       description: No description available
@@ -11219,7 +11219,7 @@ paths:
       operationId: vci_jwks_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/offer/create:
+  '/api/{serviceId}/vci/offer/create':
     post:
       summary: /api/{serviceId}/vci/offer/create API
       description: No description available
@@ -11291,7 +11291,7 @@ paths:
       operationId: vci_offer_create_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/offer/info:
+  '/api/{serviceId}/vci/offer/info':
     post:
       summary: /api/{serviceId}/vci/offer/info API
       description: No description available
@@ -11363,7 +11363,7 @@ paths:
       operationId: vci_offer_info_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/single/parse:
+  '/api/{serviceId}/vci/single/parse':
     post:
       summary: /api/{serviceId}/vci/single/parse API
       description: No description available
@@ -11435,7 +11435,7 @@ paths:
       operationId: vci_single_parse_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/single/issue:
+  '/api/{serviceId}/vci/single/issue':
     post:
       summary: /api/{serviceId}/vci/single/issue API
       description: No description available
@@ -11504,7 +11504,7 @@ paths:
       operationId: vci_single_issue_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/batch/parse:
+  '/api/{serviceId}/vci/batch/parse':
     post:
       summary: /api/{serviceId}/vci/batch/parse API
       description: No description available
@@ -11576,7 +11576,7 @@ paths:
       operationId: vci_batch_parse_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/batch/issue:
+  '/api/{serviceId}/vci/batch/issue':
     post:
       summary: /api/{serviceId}/vci/batch/issue API
       description: No description available
@@ -11645,7 +11645,7 @@ paths:
       operationId: vci_batch_issue_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/deferred/parse:
+  '/api/{serviceId}/vci/deferred/parse':
     post:
       summary: /api/{serviceId}/vci/deferred/parse API
       description: No description available
@@ -11717,7 +11717,7 @@ paths:
       operationId: vci_deferred_parse_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/vci/deferred/issue:
+  '/api/{serviceId}/vci/deferred/issue':
     post:
       summary: /api/{serviceId}/vci/deferred/issue API
       description: No description available
@@ -11786,7 +11786,7 @@ paths:
       operationId: vci_deferred_issue_api
       tags:
         - Verifiable Credentials (VCI)
-  /api/{serviceId}/auth/authorization/ticket/info:
+  '/api/{serviceId}/auth/authorization/ticket/info':
     get:
       summary: Get Ticket Information
       parameters:
@@ -11858,7 +11858,7 @@ paths:
         - Authorization Management
       operationId: get_ticket_information
       description: GET /api/{serviceId}/auth/authorization/ticket/info
-  /api/{serviceId}/auth/authorization/ticket/update:
+  '/api/{serviceId}/auth/authorization/ticket/update':
     post:
       summary: Update Ticket Information
       parameters:
@@ -11930,7 +11930,7 @@ paths:
         - Authorization Management
       operationId: update_ticket_information
       description: POST /api/{serviceId}/auth/authorization/ticket/update
-  /api/{serviceId}/nativesso:
+  '/api/{serviceId}/nativesso':
     post:
       summary: Native SSO Processing
       description: |
@@ -12081,7 +12081,7 @@ paths:
             api.nativeSso(req);
       tags:
         - Native SSO
-  /api/{serviceId}/nativesso/logout:
+  '/api/{serviceId}/nativesso/logout':
     post:
       summary: Native SSO Logout Processing
       description: |
