@@ -109,7 +109,7 @@
     
     {
       "group": "Authlete API",
-      "openapi": "https://spec.speakeasy.com/authlete/sdk-workspace/authlete-api-explorer-with-code-samples",
+      "openapi": "app/specs/shared/3.0.15/se.yaml",
       "url": "api-reference",
       "icon": "square-terminal"
     },
