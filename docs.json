@@ -1,40 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "Authlete API Documentation",
   "theme": "mint",
+  "name": "Authlete API Documentation",
   "colors": {
     "primary": "#0057B7",
     "light": "#4D8FEA",
     "dark": "#00347A"
   },
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
-  "logo": {
-    "light": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
-    "dark": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg"
-  },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Get Started",
-      "href": "https://console.authlete.com/register"
-    }
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/authlete",
-      "github": "https://github.com/authlete",
-      "linkedin": "https://linkedin.com/company/authlete"
-    }
-  },
-  "contextual": {
-    "options": ["copy", "view", "chatgpt", "claude", "mcp", "cursor"]
-  },
-  "api": {
-    "baseUrl": "https://us.authlete.com",
-    "auth": { "method": "bearer" },
-    "playground": { "mode": "show" }
-  },
-
   "navigation": {
     "languages": [
       {
@@ -52,219 +25,25 @@
                 "pages": [
                   "concepts/oauth2-basics",
                   "concepts/oidc-basics",
-                  "concepts/authlete-architecture",
-                  "concepts/security-fundamentals"
+                  "concepts/authlete-architecture"
                 ]
-              },
-              {
-                "group": "Flows & Protocol Guides",
-                "pages": [
-                  "flows/device-flow",
-                  "flows/ciba",
-                  "flows/native-sso",
-                  "flows/pkce",
-                  "flows/grant-management",
-                  "flows/token-exchange",
-                  "reference/pushed-authorization-requests",
-                  "reference/rich-authorization-requests"
-                ]
-              },
-              {
-                "group": "Tutorials & Examples",
-                "pages": [
-                  "tutorials/signup-to-first-api",
-                  "tutorials/oauth-tutorial",
-                  "tutorials/oidc-tutorial",
-                  "tutorials/fapi-tutorial",
-                  "tutorials/java-getting-started",
-                  "tutorials/aws-cognito-integration",
-                  "tutorials/financial-grade-apigateway"
-                ]
-              },
-              {
-                "group": "Error Handling",
-                "pages": ["reference/error-handling"]
               }
             ]
           },
-
           {
             "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Authlete API (Main)",
-                "openapi": "app/specs/shared/3.0.15/se.yaml"
-              },
-              {
-                "group": "Examples & Sandbox",
-                "openapi": "app/specs/shared/3.0.15/example.yaml"
-              },
-              {
-                "group": "Speakeasy SDK Spec",
-                "openapi": "app/specs/shared/3.0.15/speakeasy.yaml"
-              }
-            ]
+            "openapi": "app/specs/shared/3.0.15/se.yaml"
           },
-
           {
-            "tab": "Standards & Compliance",
-            "groups": [
-              {
-                "group": "OAuth & OIDC Standards",
-                "pages": [
-                  "reference/client-authentication",
-                  "reference/scopes",
-                  "reference/introspection",
-                  "reference/authorization-requests"
-                ]
-              },
-              {
-                "group": "OpenID Connect",
-                "pages": [
-                  "oidc/user-authentication",
-                  "oidc/userinfo-endpoint",
-                  "oidc/id-token-handling",
-                  "oidc/oidc-best-practices"
-                ]
-              },
-              {
-                "group": "Token Types",
-                "pages": [
-                  "reference/access-tokens",
-                  "reference/refresh-tokens",
-                  "reference/token-management",
-                  "reference/proof-of-possession-tokens"
-                ]
-              },
-              {
-                "group": "Security Practices",
-                "pages": [
-                  "security/token-security",
-                  "security/api-protection",
-                  "security/security-best-practices"
-                ]
-              },
-              {
-                "group": "Financial-grade API (FAPI)",
-                "pages": [
-                  "fapi/fapi2-overview",
-                  "fapi/fapi2-implementation",
-                  "fapi/high-assurance-security",
-                  "fapi/compliance-requirements"
-                ]
-              },
-              {
-                "group": "Federation & Credentials",
-                "pages": [
-                  "federation/oidc-federation",
-                  "federation/verifiable-credentials",
-                  "federation/trust-frameworks",
-                  "federation/step-up-authentication"
-                ]
-              }
-            ]
+            "tab": "Example API",
+            "openapi": "app/specs/shared/3.0.15/example.yaml"
           },
-
           {
-            "tab": "Deployment & Operations",
-            "groups": [
-              {
-                "group": "Infrastructure",
-                "pages": [
-                  "production/infrastructure-setup",
-                  "reference/kubernetes-deployment",
-                  "reference/aws-ecs-deployment",
-                  "reference/on-premises-packaging"
-                ]
-              },
-              {
-                "group": "Performance & Monitoring",
-                "pages": [
-                  "production/monitoring-logging",
-                  "reference/caching-introspection"
-                ]
-              },
-              {
-                "group": "Terraform",
-                "pages": [
-                  "production/terraform-deployment",
-                  "tools/terraform-provider",
-                  "reference/terraform-intro",
-                  "reference/terraform-bootstrap"
-                ]
-              },
-              {
-                "group": "Migration & Troubleshooting",
-                "pages": [
-                  "production/migration-guides",
-                  "production/troubleshooting",
-                  "reference/migrate-from-old-version",
-                  "reference/migrating-access-tokens"
-                ]
-              },
-              {
-                "group": "Integration",
-                "pages": [
-                  "reference/amazon-api-gateway",
-                  "reference/api-gateway-products"
-                ]
-              },
-              {
-                "group": "Operations",
-                "pages": [
-                  "reference/service-settings",
-                  "reference/developer-console-login"
-                ]
-              }
-            ]
-          },
-
-          {
-            "tab": "Developer Tools",
-            "groups": [
-              {
-                "group": "Management Consoles",
-                "pages": [
-                  "tools/management-console",
-                  "reference/service-owner-console",
-                  "reference/developer-console"
-                ]
-              },
-              {
-                "group": "Explorers & Providers",
-                "pages": [
-                  "tools/api-explorer",
-                  "tools/terraform-provider"
-                ]
-              },
-              {
-                "group": "Generators & Utilities",
-                "pages": [
-                  "tools/mkjwk-generator",
-                  "tools/mkjose-generator",
-                  "tools/cbor-zone",
-                  "tools/templates-toolkits"
-                ]
-              },
-              {
-                "group": "Resources",
-                "pages": ["reference/knowledge-base"]
-              }
-            ]
-          },
-
-          {
-            "tab": "Release Notes",
-            "groups": [
-              {
-                "group": "Change Log",
-                "pages": ["reference/release-notes"]
-              }
-            ]
+            "tab": "Speakeasy SDK Spec",
+            "openapi": "app/specs/shared/3.0.15/speakeasy.yaml"
           }
         ]
       },
-
       {
         "language": "ja",
         "tabs": [
@@ -273,38 +52,25 @@
             "groups": [
               {
                 "group": "はじめに",
-                "pages": [
-                  "ja/overview",
-                  "ja/getting-started",
-                  "ja/quickstart"
-                ]
-              },
-              {
-                "group": "API ドキュメント",
-                "pages": ["ja/api-reference"]
-              },
-              {
-                "group": "コアコンセプト",
-                "pages": [
-                  "ja/concepts/oauth2-basics",
-                  "ja/concepts/oidc-basics",
-                  "ja/concepts/authlete-architecture"
-                ]
+                "pages": ["ja/overview", "ja/getting-started", "ja/quickstart"]
               }
             ]
           },
           {
             "tab": "API リファレンス",
-            "groups": [
-              {
-                "group": "Authlete API (日本語)",
-                "openapi": "app/specs/shared/3.0.16/en.yaml"
-              }
-            ]
+            "openapi": "app/specs/shared/3.0.16/en.yaml"
           }
         ]
       }
-    ],
-    "global": { "anchors": [] }
+    ]
+  },
+  "api": {
+    "baseUrl": "https://us.authlete.com",
+    "auth": { "method": "bearer" },
+    "playground": { "mode": "show" }
+  },
+  "logo": {
+    "light": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
+    "dark": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg"
   }
 }
