@@ -110,11 +110,8 @@
     {
       "group": "Authlete API",
       "openapi": "https://spec.speakeasy.com/authlete/sdk-workspace/authlete-api-explorer-with-code-samples",
-       "schemas": {
-     "enabled": true,
-     "showExamples": true,
-     "showDescriptions": true
-  }
+      "url": "api-reference",
+      "icon": "square-terminal"
     },
 
 {
