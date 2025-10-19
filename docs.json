@@ -109,19 +109,7 @@
     
     {
       "group": "Authlete API",
-      "openapi": "app/specs/shared/3.0.15/se.yaml",
-      "url": "api-reference",
-      "icon": "square-terminal"
-    },
-
-{
-      "group": "Example",
-      "openapi": "app/specs/shared/3.0.15/example.yaml",
-       "schemas": {
-     "enabled": true,
-     "showExamples": true,
-     "showDescriptions": true
-  }
+      "openapi": "app/specs/shared/3.0.15/se.yaml"
     }
   ]
         
