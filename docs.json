@@ -30,10 +30,7 @@
               }
             ]
           },
-          {
-            "tab": "API Reference",
-            "openapi": "app/specs/shared/3.0.15/se.yaml"
-          },
+    
           {
             "tab": "Example API",
             "openapi": "app/specs/shared/3.0.15/example.yaml"
