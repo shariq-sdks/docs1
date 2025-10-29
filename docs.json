@@ -51,7 +51,7 @@
           },
           {
             "tab": "API リファレンス",
-            "openapi": "app/specs/shared/3.0.16/en.yaml"
+            "openapi": "https://spec.speakeasy.com/authlete/sdk-workspace/authlete-api-explorer-with-code-samples"
           }
         ]
       }
