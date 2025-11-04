@@ -1,0 +1,31 @@
+/* /styles/gradient.css */
+
+/* full-page gradient using Authlete blues */
+body {
+  background: linear-gradient(180deg, #00347A 0%, #0057B7 50%, #4D8FEA 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* keep docs sections transparent */
+main, .page, .content {
+  background: transparent !important;
+}
+
+/* readable doc content area */
+article, .doc-content {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+/* subtle glowing accent (like Replit's soft orange light) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 10%, rgba(77, 143, 234, 0.3), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}

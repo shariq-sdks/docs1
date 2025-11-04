@@ -33,6 +33,7 @@
     "baseUrl": "https://us.authlete.com",
     "auth": { "method": "bearer" },
     "playground": { "mode": "show" }
+    
   },
 
   "navigation": {
@@ -92,7 +93,7 @@
             "tab": "API Reference",
             "groups": [
               {
-                "group": "SDKs",
+                "group": "Guides",
                 "pages": [
                   "sdk/typescript",
                   "sdk/go",
@@ -101,7 +102,7 @@
               },
               
               {
-                "group": "Speakeasy SDK Spec",
+                "group": "Authelte APIs",
                 "openapi": "https://spec.speakeasy.com/authlete/sdk-workspace/authlete-api-explorer-with-code-samples"
               }
             ]
@@ -266,5 +267,6 @@
         ]
       }
     ]
-  }
+  },
+  "customCss": ["/styles/gradient.css"]
 }
