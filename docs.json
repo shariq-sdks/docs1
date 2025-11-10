@@ -4,8 +4,7 @@
   "theme": "mint",
   "colors": {
     "primary": "#0057B7",
-    "light": "#4D8FEA",
-    "dark": "#00347A"
+    "light": "#4D8FEA"
   },
   "favicon": "https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg",
   "logo": {
