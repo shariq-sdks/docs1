@@ -1,181 +1,301 @@
 ---
-title: "What is Authlete?"
+title: Introduction to Authlete
+description: Understand where Authlete fits in your architecture, how it works, and why to use it as the protocol engine for your OAuth 2.0 and OpenID Connect authorization server.
 ---
 
-# What is Authlete?
+<img
+  src="https://www.authlete.com/img/logo/authlete-blue-horizontal-logo.svg"
+  alt="Authlete logo"
+  width="140"
+/>
 
-Authlete is a managed-cloud/on-prem solution that provides Web APIs to implement [OAuth 2.0](https://tools.ietf.org/html/rfc6749) and [OpenID Connect](https://openid.net/). Using [our Web APIs](/api-specification), you can easily get the functionality of OAuth 2.0 and OpenID Connect.
+# Overview
 
-# Why Authlete?
+Authlete provides the OAuth 2.0 and OpenID Connect logic your authorization server needs.
 
-A company has to implement OAuth 2.0 (and OpenID Connect) as prerequisites to provide Web APIs of its service. However, it requires enormous time and effort to implement the specifications. Also, managing data related to the specifications is an annoyance. This hurdle could prove fatal to service providers who compete on time to market and/or cannot afford to implement the prerequisites only with their developer resources.
+You run the endpoints, control the UX, manage user data, and decide how authentication and consent work. Authlete supplies the protocol-correct behavior through Web APIs that your server calls during each step of the OAuth/OIDC flow.
 
-It is Authlete that solves the problem. Authlete does support an overwhelming number of related specifications and host related data. Authlete users can start to implement Web APIs of their services without being bothered with the prerequisites.
+> Authlete is built for teams that want to operate their own identity layer without re-implementing OAuth and OpenID Connect.
 
-# How Authlete Works
+---
 
-Authlete is a backend as a service and provides APIs that help you to implement OAuth and OpenID Connect. Authlete works behind your web service and does not interact directly with your end-users, OAuth clients, or relying parties.
+## Authlete tools
 
-![authlete's role in authorization](https://storage.googleapis.com/authlete-website/img/developers/overview/authletes-role-in-authorization.png)
+- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '0.5rem' }}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg> **[APIs](/api-reference)** - REST endpoints that perform OAuth/OIDC validation, generate tokens, manage client metadata, introspect access tokens, and enforce security profiles. These APIs act as the protocol engine behind your authorization server.
 
-<<<<<<< HEAD
-# Authlete Features
+- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '0.5rem' }}><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> **[Console](/tools/management-console)** - A management UI to configure services, register clients, define policies, review logs, and monitor traffic. The Console gives you operational control without changing your application code.
 
-The Authlete “semi-hosted” architecture enables you to:
+- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '0.5rem' }}><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> **SDKs & Client Libraries** - Official SDKs and client libraries for popular languages including TypeScript, Java, and Go. See the [SDK documentation](/sdk/typescript) for language-specific guides and code examples.
 
-[Open all tabs](javascript:openTabs('authleteFeatures')) | [Close all tabs](javascript:closeTabs('authleteFeatures'))
+---
 
-=======
-# Authlete Feature
->>>>>>> 7609f16f77090ff1f3a3d1c20c5c1b52cb1c2f60
+# Why use Authlete
 
-The Authlete "semi-hosted" architecture enables you to:
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+  <div>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ marginBottom: '0.75rem' }}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    <h3 style={{ marginTop: 0, marginBottom: '0.25rem', fontSize: '1rem', fontWeight: 600 }}>Full control</h3>
+    <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
+      You define endpoints, UX, and branding. Authlete provides only the protocol engine behind your system.
+    </p>
+  </div>
 
-##### Build authorization servers with your favorite programming languages and frameworks
+  <div>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ marginBottom: '0.75rem' }}><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+    <h3 style={{ marginTop: 0, marginBottom: '0.25rem', fontSize: '1rem', fontWeight: 600 }}>No OAuth/OIDC implementation</h3>
+    <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
+      Authlete handles validation, tokens, and security rules through APIs. No custom security code needed.
+    </p>
+  </div>
 
-Authlete has designed and implemented all functions necessary to implement an OAuth 2.0 & OpenID Connect server as Web APIs. On top of the functions to manage metadata of client applications and authorization servers, Authlete also provides functions to implement endpoints such as an authorization endpoint and a token endpoint.
+  <div>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ marginBottom: '0.75rem' }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+    <h3 style={{ marginTop: 0, marginBottom: '0.25rem', fontSize: '1rem', fontWeight: 600 }}>Broad standards coverage</h3>
+    <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
+      PKCE, PAR, JARM, CIBA, RAR, DPoP, FAPI, and more—all implemented behind Authlete's APIs.
+    </p>
+  </div>
 
-This unique architecture enables developers to use any programming language, including Java, Ruby, PHP and C#. [Our OSS libraries and sample implementations](https://github.com) will help you build OAuth/OIDC servers within a few days or weeks.
+  <div>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ marginBottom: '0.75rem' }}><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+    <h3 style={{ marginTop: 0, marginBottom: '0.25rem', fontSize: '1rem', fontWeight: 600 }}>AI-ready</h3>
+    <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
+      Register OAuth clients programmatically for agent workflows with lightweight metadata.
+    </p>
+  </div>
+</div>
 
-##### Manage multiple OAuth/OIDC servers and API Clients with one Authlete
+---
 
-Authlete can run and manage multiple instances of OAuth 2.0 & OpenID Connect servers simultaneously, which can be managed by consoles.
+## How Authlete fits into your system
 
-It is easy to set up new instances: an architect therefore can place multiple authorization servers in a system wherever appropriate without a huge development cost. For example, an architect may have a separate authorization servers for smartphone applications from internal services.
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+  <div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+      <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>Your Application</h3>
+    </div>
+    <p style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.9rem', color: 'var(--mint-text-subtle)' }}>Exposes public endpoints:</p>
+    <ul style={{ marginTop: 0, marginBottom: '1rem', fontSize: '0.9rem' }}>
+      <li><code>/authorize</code></li>
+      <li><code>/token</code></li>
+      <li>Additional OAuth/OIDC endpoints</li>
+    </ul>
+    <p style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.9rem', color: 'var(--mint-text-subtle)' }}>Handles:</p>
+    <ul style={{ marginTop: 0, fontSize: '0.9rem' }}>
+      <li>User authentication and sessions</li>
+      <li>Consent screens and UX</li>
+      <li>Business logic and access decisions</li>
+      <li>Final HTTP responses to clients</li>
+    </ul>
+  </div>
 
-##### Prevent from sharing your end-users' credentials with third-party OAuth/OIDC services
+  <div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+      <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>Authlete API</h3>
+    </div>
+    <p style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.9rem', color: 'var(--mint-text-subtle)' }}>Sits behind your endpoints. Your server calls Authlete to:</p>
+    <ul style={{ marginTop: 0, fontSize: '0.9rem' }}>
+      <li>Validate authorization and token requests</li>
+      <li>Decide next action (authenticate, consent, error)</li>
+      <li>Issue authorization codes and tokens</li>
+      <li>Validate access tokens via introspection</li>
+      <li>Enforce scopes, permissions, and security profiles</li>
+    </ul>
+  </div>
+</div>
 
-Authlete receives subjects of end-users from your system and associates the subjects with access tokens and other data. Therefore, you don't have to share your end-users credentials with us, which is quite unique compared with other API authorization solutions.
+<Info>
+Authlete never communicates directly with end users or client applications. Your server defines the behavior; Authlete ensures it follows the specifications.
+</Info>
 
-##### ClientID Alias
+---
 
-![client_id_alias](https://storage.googleapis.com/authlete-website/img/developers/overview/client_id_alias_en.png)
+### Architecture at a glance
 
-Authlete allows each client to have a client ID alias in addition to the client ID.
+```mermaid
+sequenceDiagram
+    participant Client
+    participant YourServer as Your Authorization Server
+    participant Authlete as Authlete API
+    
+    Client->>YourServer: 1. Authorization Request
+    YourServer->>Authlete: 2. POST /auth/authorization<br/>(Validate request)
+    Authlete-->>YourServer: 3. Return ticket
+    YourServer->>YourServer: 4. Show consent screen
+    YourServer->>Authlete: 5. POST /auth/authorization/issue<br/>(Issue authorization code)
+    Authlete-->>YourServer: 6. Return authorization code
+    YourServer-->>Client: 7. Redirect with code
+    Client->>YourServer: 8. Token Request<br/>(with authorization code)
+    YourServer->>Authlete: 9. POST /auth/token<br/>(Exchange code for tokens)
+    Authlete-->>YourServer: 10. Return access token
+    YourServer-->>Client: 11. Return tokens
+    Client->>YourServer: 12. API Request<br/>(with access token)
+    YourServer->>Authlete: 13. POST /auth/introspection<br/>(Validate token)
+    Authlete-->>YourServer: 14. Return token info
+    YourServer-->>Client: 15. Return API response
+```
 
-This function would be useful when you migrate from the existing authorization server to Authlete and keep using the existing client IDs in the new Authlete system.
+---
 
-Please refer to [this document](/ja/kb/oauth-and-openid-connect/client-id-alias) for more details.
+## Flow overview
 
-##### Access/Refresh Token Duration per Scope or Client
+A typical authorization code flow with Authlete looks like this:
 
-![](https://storage.googleapis.com/authlete-website/img/developers/overview/token_duration_en.png)
+1. **Client → `/authorize`**  
+   The client sends an authorization request to your authorization endpoint.
 
-You can shorten the access token and refresh token duration per scope using [the scope attribute functionality](/kb/oauth-and-openid-connect/scope-attributes).
+2. **`/authorize` → `POST /auth/authorization`**  
+   Your server forwards the request parameters to Authlete for validation.
 
-To activate this feature, set up a scope that has a scope attribute with its key of `access_token.duration` or `refresh_token.duration` and value of a "shorter" token duration in second. The duration of the tokens with the scope will be the duration set in the scope attribute. Please refer to [this document](/kb/oauth-and-openid-connect/token-duration-per-scope) for more details.
+3. **Authlete → your server**  
+   Authlete returns a ticket and an action (e.g. authenticate user, ask for consent, or return an error).
 
-Also, you can shorten the access token and refresh token duration per client by configuring from the client developer console.
+4. **Your server: authenticate + consent**  
+   You authenticate the user and present a consent screen according to your UX and policy.
 
-##### Forced S256 for Code Challenge Method
+5. **`/authorize` → `POST /auth/authorization/issue`**  
+   After consent is granted, your server asks Authlete to issue an authorization code.
 
-With this option, Authlete only accepts a request with `code_challenge_method` = `S256` when using PKCE protocol.
+6. **Authlete → your server → client**  
+   Authlete returns the code; your server includes it in the redirect back to the client.
 
-You can configure this setting from the "Authorization" tab in the service owner console.
+7. **Client → `/token`**  
+   The client exchanges the authorization code at your token endpoint.
 
-##### Granted Scopes Management
+8. **`/token` → `POST /auth/token`**  
+   Your server forwards the token request to Authlete.
 
-Authlete enables customers to get a list of (or remove) scopes that are granted end-users.
+9. **Authlete → your server → client**  
+   Authlete returns access, refresh, and (optionally) ID tokens. Your server formats the HTTP response.
 
-This function is only available for Enterprise Plan users.
+10. **Resource server → `POST /auth/introspection`**  
+    When an API receives an access token, it sends it to Authlete for introspection (via your backend) and decides whether to honor the request.
 
-##### Allowable Clock Skew
+This pattern generalizes across all supported flows such as PKCE, PAR, JARM, Device Flow, and CIBA.
 
-The allowable clock skew between the server and clients is configurable in seconds.
+---
 
-##### Binding Message in FAPI Context
+## Responsibilities
 
-Authlete can reject requests without `binding_message` request parameter in FAPI-CIBA protocols.
+<div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1.1fr)', gap: '1.5rem', marginTop: '1rem' }}>
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'linear-gradient(to bottom, var(--mint-bg-elevated), transparent)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <div style={{ width: '32px', height: '32px', borderRadius: '6px', backgroundColor: '#0057B71A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </div>
+      <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 600 }}>You implement</h3>
+    </div>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.9rem', lineHeight: 1.7 }}>
+      <li>Public OAuth/OIDC endpoints (e.g. <code>/authorize</code>, <code>/token</code>)</li>
+      <li>Login, consent, and session management flows</li>
+      <li>User and application data models</li>
+      <li>Business-specific logic and policies</li>
+      <li>Final HTTP responses and error formats</li>
+    </ul>
+  </div>
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'linear-gradient(to bottom, var(--mint-bg-elevated), transparent)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <div style={{ width: '32px', height: '32px', borderRadius: '6px', backgroundColor: '#0057B71A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0057B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 600 }}>Authlete provides</h3>
+    </div>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.9rem', lineHeight: 1.7 }}>
+      <li>OAuth/OIDC parameter and request validation</li>
+      <li>Token generation and lifecycle management</li>
+      <li>Scope, client, and policy enforcement</li>
+      <li>Token introspection and revocation</li>
+      <li>Standards-compliant protocol behavior as specifications evolve</li>
+    </ul>
+  </div>
+</div>
 
-# OpenID Certification
-<<<<<<< HEAD
-=======
+---
 
-1. [Home](https://www.authlete.com/)
-3. What is Authlete?
->>>>>>> 7609f16f77090ff1f3a3d1c20c5c1b52cb1c2f60
+## Supported standards
 
-Authlete conforms several [OpenID Provider (OP) Profiles](https://openid.net/certification/) of the OpenID Connect protocol. So far, Authlete has received the following certifications.
+Authlete provides API-level support for a wide range of OAuth 2.0, OpenID Connect, identity federation, credential issuance, and modern security extensions. All capabilities are accessed through a unified Web API surface.
 
-<table style="min-width: 75px">
-<colgroup><col style="min-width: 25px"><col style="min-width: 25px"><col style="min-width: 25px"></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>OpenID Certification</p></th><th colspan="1" rowspan="1"><p>Version</p></th><th colspan="1" rowspan="1"><p>Categories</p></th></tr><tr><td colspan="1" rowspan="1"><p>OpenID Provider</p></td><td colspan="1" rowspan="1"><p>1.1 ~</p></td><td colspan="1" rowspan="1"><p>Basic OP</p></td></tr><tr><td colspan="1" rowspan="1"><p>Implicit OP</p></td></tr><tr><td colspan="1" rowspan="1"><p>Hybrid OP</p></td></tr><tr><td colspan="1" rowspan="1"><p>Config OP</p></td></tr><tr><td colspan="1" rowspan="1"><p>2.1 ~</p></td><td colspan="1" rowspan="1"><p>Dynamic OP</p></td></tr><tr><td colspan="1" rowspan="1"><p>Form Post OP</p></td></tr><tr><td colspan="1" rowspan="1"><p>FAPI OpenID Provider</p></td><td colspan="1" rowspan="1"><p>2.1 ~</p></td><td colspan="1" rowspan="1"><p>Financial-grade API (FAPI) 1.0 Second Implementer's Draft</p></td></tr></tbody>
-</table>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginTop: '1.5rem' }}>
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>OAuth 2.0 & OIDC Core</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>Authorization Code, Hybrid, Implicit flows</li>
+      <li>PKCE</li>
+      <li>ID Token and UserInfo handling</li>
+      <li>Token introspection & revocation</li>
+      <li>Native SSO</li>
+    </ul>
+  </div>
 
-- Basic OP
-- Implicit OP
-- Hybrid OP
-- Config OP
-- Dynamic OP
-- Form Post OP
-- Financial-grade API (FAPI) 1.0 Second Implementer's Draft
-- FAPI R/W OP w/ MTLS
-- FAPI R/W OP w/ Private Key
-- Financial-grade API (FAPI) 1.0 Final
-- FAPI Adv. OP w/ MTLS
-- FAPI Adv. OP w/ MTLS, PAR
-- FAPI Adv. OP w/ Private Key
-- FAPI Adv. OP w/ Private Key, PAR
-- FAPI Adv. OP w/ MTLS, JARM
-- FAPI Adv. OP w/ Private Key, JARM
-- FAPI Adv. OP w/ MTLS, PAR, JARM
-- FAPI Adv. OP w/ Private Key, PAR, JARM
-- UK Open Banking (Based on FAPI 1 Advanced Final)
-- UK-OB Adv. OP w/ MTLS
-- UK-OB Adv. OP w/ Private Key
-- Australia CDR (Based on FAPI 1 Advanced Final)
-- AU-CDR Adv. OP w/ Private Key
-- AU-CDR Adv. OP w/ Private Key, PAR
-- Brazil Open Banking (Based on FAPI 1 Advanced Final)
-- BR-OB Adv. OP w/ MTLS
-- BR-OB Adv. OP w/ Private Key
-- BR-OB Adv. OP w/ MTLS, PAR
-- BR-OB Adv. OP w/ Private Key, PAR
-- BR-OB Adv. OP w/ MTLS, JARM
-- BR-OB Adv. OP w/ Private Key, JARM
-- BR-OB Adv. OP w/ MTLS, PAR, JARM
-- BR-OB Adv. OP w/ Private Key, PAR, JARM
-- BR-OB Adv. OP DCR
-- FAPI R/W OP w/ MTLS
-- FAPI R/W OP w/ MTLS, PAR
-- FAPI R/W OP w/ Private Key
-- FAPI R/W OP w/ Private Key, PAR
-- UK-OB R/W OP w/ MTLS
-- UK-OB R/W OP w/ Private Key
-- AU-CDR R/W OP w/ Private Key
-- AU-CDR R/W OP w/ Private Key, PAR
-- Brazil Open Insurance (Based on FAPI 1 Advanced Final)
-- BR-OPIN Adv. OP w/ MTLS
-- BR-OPIN Adv. OP w/ Private Key
-- BR-OPIN Adv. OP w/ MTLS, PAR
-- BR-OPIN Adv. OP w/ Private Key, PAR
-- BR-OPIN Adv. OP w/ MTLS, JARM
-- BR-OPIN Adv. OP w/ Private Key, JARM
-- BR-OPIN Adv. OP w/ MTLS, PAR, JARM
-- BR-OPIN Adv. OP w/ Private Key, PAR, JARM
-- BR-OPIN Adv. OP DCR
-- KSA Open Banking (Based on FAPI 1 Advanced Final)
-- KSA-OB Adv. OP w/ MTLS, PAR
-- KSA-OB Adv. OP w/ Private Key, PAR
-- FAPI-CIBA OP Poll w/ MTLS
-- FAPI-CIBA OP Poll w/ Private Key
-- FAPI-CIBA OP Ping w/ MTLS
-- FAPI-CIBA OP Ping w/ Private Key
-- FAPI 2.0 Security Profile Second Implementer's Draft & Message Signing First Implementer's Draft
-- FAPI2SP MTLS + MTLS
-- FAPI2SP private key + MTLS
-- FAPI2SP OpenID Connect
-- FAPI2MS JAR
-- FAPI2MS JARM
-- Australia FAPI 2.0 ConnectId Implementer's Draft
-- FAPI2MS with ConnectId support
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>Modern OAuth Extensions</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>PAR, JARM, DPoP, RAR</li>
+      <li>Device Flow</li>
+      <li>CIBA</li>
+      <li>Dynamic Client Registration</li>
+    </ul>
+  </div>
 
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>Federation & Credentials</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>OIDC Federation 1.0</li>
+      <li>Verifiable Credentials (OID4VCI)</li>
+      <li>AI agent client registration</li>
+    </ul>
+  </div>
 
-<<<<<<< HEAD
-# Summary
-=======
-- : Authlete is the only certified implementation in the world as of Feb 3rd, 2020.
->>>>>>> 7609f16f77090ff1f3a3d1c20c5c1b52cb1c2f60
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>Financial-Grade</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>FAPI 1.0 & 2.0</li>
+      <li>mTLS</li>
+      <li>Regulated environment profiles</li>
+    </ul>
+  </div>
 
-You can support OAuth 2.0 and OpenID Connect in your Web service if you use Authlete. Sign up and start with [Getting Started](/developers/getting_started/) document.
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>Signing & Keys</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>JWK, JWKS, key rotation</li>
+      <li>HSM-backed signing</li>
+      <li>Algorithm enforcement</li>
+    </ul>
+  </div>
 
-#### On this page
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>OpenID Certified</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>Basic, Implicit, Hybrid OP</li>
+      <li>Config, Dynamic, Form Post OP</li>
+      <li>FAPI-aligned certifications</li>
+    </ul>
+  </div>
+
+  <div style={{ borderRadius: '0.75rem', border: '1px solid var(--mint-border-subtle)', padding: '1.25rem', background: 'var(--mint-bg-elevated)' }}>
+    <h4 style={{ marginTop: 0, marginBottom: '0.75rem', fontSize: '0.95rem', fontWeight: 600, color: '#0057B7' }}>Enterprise</h4>
+    <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', lineHeight: 1.8 }}>
+      <li>SAML 2.0 for SSO</li>
+    </ul>
+  </div>
+</div>
+
+<Info>
+Authlete integrates with your HSM or signing backend rather than hosting your keys.
+</Info>
+
+**Learn more**
+
+For flow-by-flow details, see the [Flows & Protocol Guides](/flows/device-flow).
+
+---
+
+## Next steps
+
+- Start with the **Quickstart** to implement a minimal OAuth 2.0 authorization server.  
+- Explore the **API Reference** for endpoint-by-endpoint integration details.  
+- Review the **Flows & Protocol Guides** to see how Authlete supports specific profiles such as PKCE, FAPI, and CIBA.

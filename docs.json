@@ -15,7 +15,8 @@
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://console.authlete.com/register"
+      "href": "https://console.authlete.com/register",
+      "style": "primary"
     }
   },
   "footer": {
@@ -45,7 +46,7 @@
             "groups": [
               {
                 "group": "Getting Started",
-                "pages": ["index", "getting-started", "quickstart"]
+                "pages": ["index", "overview", "getting-started", "quickstart"]
               },
               {
                 "group": "Core Concepts",
