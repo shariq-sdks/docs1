@@ -1,338 +1,438 @@
 ---
-title: "Quickstart"
-description: "Build a production-ready OAuth 2.0 authorization server in minutes using Authlete's TypeScript SDK"
+title: Authlete OAuth Demo Guide
+description: Quick start guide for creating services, registering clients, and calling OAuth endpoints with Authlete’s official TypeScript SDK.
 ---
 
-## Prerequisites
+## Quick Start
 
-Before you begin, make sure you have completed the following. See [Getting Started with Authlete](/getting-started) for detailed instructions:
+Copy page
 
-1. **Sign up for an Authlete account** - Create your account at [console.authlete.com](https://console.authlete.com/register)
+Get up and running with Authlete API in minutes
 
-2. **Create a service** - Set up your OAuth 2.0 authorization server service in the Authlete Console
+### Quick Start Guide
 
-3. **Register a client application** - Create a client application that will use your authorization server
+Get started with Authlete API in just a few minutes. This guide walks you through creating a service, registering a client, installing the SDK, and wiring the five key OAuth endpoints with real payloads.
 
-Once you have your Service ID and Bearer Token (Service Access Token) from the Authlete Console, you're ready to implement the OAuth endpoints!
+### Prerequisites
 
-## OAuth 2.0 Flow
+- An Authlete account ([Sign up here](https://console.authlete.com))
+- Basic understanding of OAuth 2.0 concepts
+- Node.js 18+, TypeScript, and `curl`
 
-This quickstart implements the OAuth 2.0 authorization code flow with four endpoints:
+---
 
-1. **Authorization endpoint** - Receives authorization requests from clients and returns a ticket for user consent
-2. **Authorization issue endpoint** - Processes user consent and issues an authorization code
-3. **Token endpoint** - Exchanges the authorization code for access tokens
-4. **Introspection endpoint** - Validates access tokens for protected API access
+## Step 1: Create a Service (Console)
 
-<Info>
-See [How Authlete Works](/overview) to understand the OAuth 2.0 flow and what Authlete does vs what you do.
-</Info>
+1. Go to [console.authlete.com](https://console.authlete.com)
+2. Sign up or log in
+3. Click **Create Service**
+4. Fill in the form:
+   - **Service Name:** e.g., `Customer Portal`
+   - **Description:** `Internal OAuth server for customer apps`
+   - **Service Profile:** Pick the region/profile that matches your data residency and regulatory needs
+5. Save the service
 
-## Implementation Steps
+## Step 2: Get Your API Credentials
 
-<Steps>
-  <Step title="Download and initialize SDK">
-    Install the Authlete TypeScript SDK. This package provides all the methods you need to implement OAuth 2.0 endpoints.
+After saving, Authlete shows:
 
-<CodeGroup>
-    ```bash npm
-    npm install @authlete/typescript-sdk
-    ```
-    </CodeGroup>
-  </Step>
+- **Service API Key** (`serviceId`)
+- **Service API Secret** (`serviceSecret`)
+- **Service Access Token** (create under **Service Settings → Access Tokens**, scope: `service.manage`, `client.manage`, `authserver.*`)
 
-  <Step title="Download project structure">
-    Download the starter project that includes Express server setup, TypeScript configuration, and all necessary files. It will create an app with the name `my-auth-server` in your current directory.
+Keep secrets server-side only. For this guide we’ll assume:
 
-    <CodeGroup>
-    ```bash npm
-    npm create authlete-app@latest my-auth-server
-    cd my-auth-server
-    ```
-
-    ```bash npx
-    npx create-authlete-app@latest my-auth-server
-    cd my-auth-server
-    ```
-    </CodeGroup>
-  </Step>
-
-  <Step title="Environment setup">
-    Configure your environment variables with your Authlete credentials. This tutorial assumes you have already created a service and client as described in the [Getting Started with Authlete](/getting-started) guide.
-
-    | Item | Value |
-    |------|-------|
-    | Authlete API - US Cluster | `https://us.authlete.com` |
-    | Service ID | Auto-generated, e.g., `933860280` |
-    | Service Access Token (Bearer Token) | Auto-generated, e.g., `DL7jo1z3-iUIXyI5MnX...` |
-    | Client ID | Auto-generated, e.g., `12818600553323` |
-    | Client Secret | Auto-generated |
-
-    Open the `.env` file in your project root and replace the sample values:
-
-    <CodeGroup>
-    ```env .env
-    AUTHLETE_BASE_URL=https://us.authlete.com
-    AUTHLETE_SERVICE_ID=your_service_id
-    AUTHLETE_BEARER_TOKEN=your_bearer_token
-    PORT=3000
 ```
-</CodeGroup>
+SERVICE_ID=715948317
+SERVICE_SECRET=5t5CO9JsNiBNXVdnjMzMf6jlx6gxSPTL9E9zhXiFyto
+SERVICE_ACCESS_TOKEN=xk1Cnyy9O-7b5q9a6-98g2oYO0trF9IS0ERi0iOGMqQ
+```
 
-    <Info>
-    The `AUTHLETE_BEARER_TOKEN` is your Service Access Token from the Authlete Console. The Service Access Token and Bearer Token are the same credential.
-    </Info>
+Store them in `.env`:
 
-    <Warning>
-    Get your credentials from the [Authlete Console](https://console.authlete.com). Never commit your `.env` file to version control.
-    </Warning>
-  </Step>
+```dotenv
+AUTHLETE_BASE_URL=https://us.authlete.com
+AUTHLETE_SERVICE_ID=715948317
+AUTHLETE_SERVICE_SECRET=5t5CO9JsNiBNXVdnjMzMf6jlx6gxSPTL9E9zhXiFyto
+AUTHLETE_BEARER=xk1Cnyy9O-7b5q9a6-98g2oYO0trF9IS0ERi0iOGMqQ
+```
 
-  <Step title="Implement authorization endpoint">
-    Open `src/endpoints/authorization.ts` and paste this code. This endpoint receives authorization requests from clients, validates them with Authlete, and returns a ticket that will be used in the next step for user consent.
+## Step 3: Make Your First API Call (Get Service)
 
-<CodeGroup>
-    ```typescript TypeScript
-    import { Authlete } from '@authlete/typescript-sdk';
-    import { Request, Response } from 'express';
+Install the official SDK and call `service.get` to verify connectivity.
 
-    const authlete = new Authlete({
-      bearer: process.env.AUTHLETE_BEARER_TOKEN || '',
-    });
+```bash
+npm install @authlete/typescript-sdk
+```
 
-    export async function handleAuthorization(req: Request, res: Response) {
-      const params = new URLSearchParams({
-        response_type: req.body.response_type || 'code',
-        client_id: req.body.client_id,
-        redirect_uri: req.body.redirect_uri,
-        scope: req.body.scope || 'openid',
-        state: req.body.state || '',
-      });
+```typescript
+// get-service.ts
+import 'dotenv/config';
+import { Authlete } from '@authlete/typescript-sdk';
 
-      const response = await authlete.authorizationEndpoint.authAuthorizationApi({
-        serviceId: process.env.AUTHLETE_SERVICE_ID as string,
-        requestBody: {
-          parameters: params.toString(),
-        },
-      });
+const authlete = new Authlete({
+  bearer: process.env.AUTHLETE_BEARER ?? '',
+  serverURL: process.env.AUTHLETE_BASE_URL ?? 'https://us.authlete.com'
+});
 
-      if (response.action === 'INTERACTION') {
-        return res.json({ ticket: response.ticket });
-      }
+async function main() {
+  const service = await authlete.service.get({
+    serviceId: process.env.AUTHLETE_SERVICE_ID ?? ''
+  });
+  console.log('✅ Service loaded:', service.serviceName);
+}
 
-      return res.status(400).json({ error: response.resultMessage });
+main().catch(console.error);
+```
+
+Run with `npx tsx get-service.ts`.
+
+**Equivalent cURL**
+
+```bash
+curl -X GET "https://us.authlete.com/api/service/get/715948317" \
+  -H "Authorization: Bearer xk1Cnyy9O-7b5q9a6-98g2oYO0trF9IS0ERi0iOGMqQ" \
+  -H "Content-Type: application/json"
+```
+
+<ApiExample
+  method="GET"
+  endpoint="/api/service/get/715948317"
+  proxy="default"
+  title="Live Service Lookup"
+  description="Calls Authlete's service.get endpoint using the proxy configured in your Mintlify workspace."
+  request={{
+    headers: {
+      Authorization: 'Bearer {{ env.AUTHLETE_BEARER }}',
+      'Content-Type': 'application/json'
     }
-    ```
+  }}
+/>
 
-    ```bash curl
-    curl -X POST "https://us.authlete.com/api/{SERVICE_ID}/auth/authorization" \
-      -H "Authorization: Bearer $AUTHLETE_BEARER_TOKEN" \
+## Step 4: Create Your First Client
+
+### TypeScript
+
+```typescript
+// create-client.ts
+import 'dotenv/config';
+import { Authlete } from '@authlete/typescript-sdk';
+
+const authlete = new Authlete({
+  bearer: process.env.AUTHLETE_BEARER ?? '',
+  serverURL: process.env.AUTHLETE_BASE_URL ?? 'https://us.authlete.com'
+});
+
+async function main() {
+  const client = await authlete.client.create({
+    serviceId: process.env.AUTHLETE_SERVICE_ID ?? '',
+    client: {
+      clientName: 'Demo SPA',
+      description: 'Local React application',
+      clientType: 'CONFIDENTIAL',
+      redirectUris: ['http://localhost:3000/callback'],
+      grantTypes: ['AUTHORIZATION_CODE', 'REFRESH_TOKEN'],
+      applicationType: 'WEB',
+      defaultMaxAge: 3600
+    }
+  });
+
+  console.log('Client ID:', client.clientId);
+  console.log('Client Secret:', client.clientSecret);
+}
+
+main().catch(console.error);
+```
+
+### cURL
+
+```bash
+curl -X POST "https://us.authlete.com/api/client/create/715948317" \
+  -H "Authorization: Bearer xk1Cnyy9O-7b5q9a6-98g2oYO0trF9IS0ERi0iOGMqQ" \
   -H "Content-Type: application/json" \
-      -d '{
-        "parameters": "response_type=code&client_id=YOUR_CLIENT_ID&redirect_uri=https://client.example.org/callback&scope=openid"
-      }'
-    ```
-    </CodeGroup>
-  </Step>
-
-  <Step title="Implement authorization issue endpoint">
-    Open `src/endpoints/authorization-issue.ts` and paste this code. This endpoint processes the user's consent decision using the ticket from the previous step and issues an authorization code that the client will exchange for tokens.
-
-    <CodeGroup>
-    ```typescript TypeScript
-    import { Authlete } from '@authlete/typescript-sdk';
-    import { Request, Response } from 'express';
-
-    const authlete = new Authlete({
-      bearer: process.env.AUTHLETE_BEARER_TOKEN || '',
-    });
-
-    export async function handleAuthorizationIssue(req: Request, res: Response) {
-      const response = await authlete.authorizationEndpoint.authAuthorizationIssueApi({
-        ticket: req.body.ticket,
-        subject: 'user123', // Replace with actual authenticated user ID
-        claims: {},
-      });
-
-      if (response.action === 'OK') {
-        return res.json({
-          authorizationCode: response.authorizationCode,
-          redirectUri: response.responseContent,
-        });
-      }
-
-      return res.status(400).json({ error: response.resultMessage });
+  -d '{
+    "client": {
+      "clientName": "Demo SPA",
+      "description": "Local React application",
+      "clientType": "CONFIDENTIAL",
+      "redirectUris": ["http://localhost:3000/callback"],
+      "grantTypes": ["AUTHORIZATION_CODE", "REFRESH_TOKEN"],
+      "applicationType": "WEB"
     }
-    ```
-
-    ```bash curl
-    curl -X POST "https://us.authlete.com/api/{SERVICE_ID}/auth/authorization/issue" \
-      -H "Authorization: Bearer $AUTHLETE_BEARER_TOKEN" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "ticket": "TICKET_FROM_AUTHORIZATION_STEP",
-        "subject": "user123"
-      }'
-    ```
-    </CodeGroup>
-  </Step>
-
-  <Step title="Implement token endpoint">
-    Open `src/endpoints/token.ts` and paste this code. This endpoint exchanges the authorization code (received from the client) for access tokens and refresh tokens that can be used to access protected resources.
-
-    <CodeGroup>
-    ```typescript TypeScript
-    import { Authlete } from '@authlete/typescript-sdk';
-    import { Request, Response } from 'express';
-
-    const authlete = new Authlete({
-      bearer: process.env.AUTHLETE_BEARER_TOKEN || '',
-    });
-
-    export async function handleToken(req: Request, res: Response) {
-      const params = new URLSearchParams({
-        grant_type: req.body.grant_type || 'authorization_code',
-        code: req.body.code,
-        client_id: req.body.client_id,
-        client_secret: req.body.client_secret || '',
-        redirect_uri: req.body.redirect_uri,
-      });
-
-      const response = await authlete.tokenEndpoint.postTokenApi({
-        parameters: params.toString(),
-      });
-
-      if (response.action === 'OK') {
-        return res.json({
-          access_token: response.accessToken,
-          token_type: 'Bearer',
-          expires_in: response.accessTokenExpiresAt,
-          refresh_token: response.refreshToken,
-          id_token: response.idToken,
-          scope: response.scope,
-        });
-      }
-
-      return res.status(400).json({ 
-        error: response.error,
-        error_description: response.errorDescription 
-      });
-    }
-    ```
-
-    ```bash curl
-    curl -X POST "https://us.authlete.com/api/{SERVICE_ID}/auth/token" \
-      -H "Authorization: Bearer $AUTHLETE_BEARER_TOKEN" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "clientId": "YOUR_CLIENT_ID",
-        "clientSecret": "YOUR_CLIENT_SECRET",
-        "parameters": "grant_type=authorization_code&code=AUTHORIZATION_CODE&redirect_uri=https://client.example.org/callback"
-      }'
-    ```
-    </CodeGroup>
-  </Step>
-
-  <Step title="Implement introspection endpoint">
-    Open `src/endpoints/introspection.ts` and paste this code. This endpoint validates access tokens when clients make API requests. Use this in your resource server to verify tokens before allowing access to protected resources.
-
-    <CodeGroup>
-    ```typescript TypeScript
-    import { Authlete } from '@authlete/typescript-sdk';
-    import { Request, Response } from 'express';
-
-    const authlete = new Authlete({
-      bearer: process.env.AUTHLETE_BEARER_TOKEN || '',
-    });
-
-    export async function handleIntrospection(req: Request, res: Response) {
-      const response = await authlete.introspectionEndpoint.postIntrospectionApi({
-        token: req.body.token,
-      });
-
-      if (response.active) {
-        return res.json({
-          active: true,
-          scope: response.scope,
-          client_id: response.clientId,
-          username: response.username,
-          subject: response.subject,
-          exp: response.expiresAt,
-        });
-      }
-
-      return res.json({ active: false });
-    }
-    ```
-
-    ```bash curl
-    curl -X POST "https://us.authlete.com/api/{SERVICE_ID}/auth/introspection" \
-      -H "Authorization: Bearer $AUTHLETE_BEARER_TOKEN" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "token": "ACCESS_TOKEN_FROM_TOKEN_STEP"
-      }'
-    ```
-    </CodeGroup>
-  </Step>
-
-  <Step title="Test your authorization server">
-    Start your server by running the following command. This will start the Express server on port 3000.
-
-    <CodeGroup>
-    ```bash
-    npm run dev
+  }'
 ```
-</CodeGroup>
 
-    Visit your server at [http://localhost:3000](http://localhost:3000). Your authorization server is now running with four endpoints:
+<ApiExample
+  method="POST"
+  endpoint="/api/client/create/715948317"
+  proxy="default"
+  title="Create OAuth Client"
+  request={{
+    headers: {
+      Authorization: 'Bearer {{ env.AUTHLETE_BEARER }}',
+      'Content-Type': 'application/json'
+    },
+    body: {
+      client: {
+        clientName: 'Demo SPA',
+        description: 'Local React application',
+        clientType: 'CONFIDENTIAL',
+        redirectUris: ['http://localhost:3000/callback'],
+        grantTypes: ['AUTHORIZATION_CODE', 'REFRESH_TOKEN'],
+        applicationType: 'WEB'
+      }
+    }
+  }}
+/>
 
-    - `POST /auth/authorization` - Push authorization request to Authlete server
-    - `POST /auth/authorization/issue` - Process user consent and issue authorization code
-    - `POST /auth/token` - Exchange authorization code for access token
-    - `POST /auth/introspection` - Validate access tokens and get token metadata
-  </Step>
+Write down the returned `clientId` and `clientSecret` (e.g., `3737820648` / `dETX4AAyQh7s0CSq...`).
 
-  <Step title="It's time to build!">
-    You've added Authlete to your authorization server! 🎉 From here, you can continue developing your application.
+---
 
-    To make configuration changes to your Authlete service, visit the [Authlete Console](https://console.authlete.com) to create services, register clients, and manage all OAuth settings.
-  </Step>
-</Steps>
+## Step 5: Test the OAuth Flow (Five Endpoints)
 
-<Info>
-For detailed API documentation, request/response formats, and all available parameters, see the [API Reference](/api-reference).
-</Info>
+Use the same credentials to stand up an Express API. Each endpoint uses `@authlete/typescript-sdk` and includes a matching `curl` invocation so you can test manually.
 
-## Next steps
+```typescript
+// oauth-server.ts
+import 'dotenv/config';
+import express from 'express';
+import { Authlete } from '@authlete/typescript-sdk';
 
-<CardGroup cols={2}>
-  <Card
-    title="Protect your APIs"
-    icon="shield"
-    href="/guides/api-protection"
-  >
-    Learn how to use the introspection endpoint to protect your API routes with access tokens.
-  </Card>
-  <Card
-    title="Add user authentication"
-    icon="key"
-    href="/guides/user-authentication"
-  >
-    Implement user login and session management for your authorization server.
-  </Card>
-  <Card
-    title="Configure client applications"
-    icon="settings"
-    href="/guides/client-management"
-  >
-    Register and manage OAuth client applications in your Authlete service.
-  </Card>
-  <Card
-    title="API Reference"
-    icon="code"
-    href="/api-reference"
-  >
-    Explore all available Authlete API endpoints and their parameters.
-  </Card>
-</CardGroup>
+const app = express();
+app.use(express.json());
+
+const authlete = new Authlete({
+  bearer: process.env.AUTHLETE_BEARER ?? '',
+  serverURL: process.env.AUTHLETE_BASE_URL ?? 'https://us.authlete.com'
+});
+
+const SERVICE_ID = process.env.AUTHLETE_SERVICE_ID ?? '';
+const CLIENT_ID = process.env.AUTHLETE_CLIENT_ID ?? '3737820648';
+const CLIENT_SECRET =
+  process.env.AUTHLETE_CLIENT_SECRET ??
+  'dETX4AAyQh7s0CSq-mX7EK5Vayq8TOp5RiumH7N_YBuj8pfAYZtmVLwFvvDUZRg8sUzgmajqmut282STbDZXMw';
+```
+
+### 1. Authorization Request (`POST /oauth/authorize`)
+
+**What happens?** Authlete parses the raw authorization request and returns a `ticket` plus `action` for the next step.
+
+```typescript
+app.post('/oauth/authorize', async (req, res) => {
+  const payload = new URLSearchParams({
+    response_type: 'code',
+    client_id: CLIENT_ID,
+    redirect_uri: 'http://localhost:3000/callback',
+    scope: 'openid profile email',
+    state: 'demo123'
+  }).toString();
+
+  const result = await authlete.authorization.processRequest({
+    serviceId: SERVICE_ID,
+    authorizationRequest: { parameters: payload }
+  });
+
+  res.json(result);
+});
+```
+
+**cURL**
+
+```bash
+curl -X POST "http://localhost:3004/oauth/authorize" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+(The backend constructs the `parameters` string internally with demo values.)
+
+### 2. Consent / Issue Authorization Code (`POST /oauth/consent`)
+
+**What happens?** Exchange Authlete’s `ticket` plus a user `subject` for an authorization code.
+
+```typescript
+app.post('/oauth/consent', async (req, res) => {
+  const { ticket } = req.body;
+
+  const result = await authlete.authorization.issue({
+    serviceId: SERVICE_ID,
+    authorizationIssueRequest: {
+      ticket,
+      subject: 'user-123',
+      authTime: Math.floor(Date.now() / 1000),
+      scopes: ['openid', 'profile', 'email']
+    }
+  });
+
+  res.json(result);
+});
+```
+
+**cURL**
+
+```bash
+curl -X POST "http://localhost:3004/oauth/consent" \
+  -H "Content-Type: application/json" \
+  -d '{ "ticket": "5d4f6c0a-authorization-ticket" }'
+```
+
+### 3. Token Exchange (`POST /oauth/token`)
+
+**What happens?** Send the authorization `code` plus client credentials to Authlete; receive access/refresh tokens.
+
+```typescript
+app.post('/oauth/token', async (req, res) => {
+  const params = new URLSearchParams({
+    grant_type: 'authorization_code',
+    code: req.body.code ?? 'AUTHZ_CODE_FROM_CONSENT_STEP',
+    redirect_uri: 'http://localhost:3000/callback'
+  }).toString();
+
+  const result = await authlete.token.process({
+    serviceId: SERVICE_ID,
+    tokenRequest: {
+      parameters: params,
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET
+    }
+  });
+
+  res.json(result);
+});
+```
+
+**cURL**
+
+```bash
+curl -X POST "http://localhost:3004/oauth/token" \
+  -H "Content-Type: application/json" \
+  -d '{ "code": "AUTHZ_CODE_FROM_CONSENT_STEP" }'
+```
+
+<ApiExample
+  method="POST"
+  endpoint="/oauth/token"
+  proxy="default"
+  title="Exchange Authorization Code"
+  description="Uses your running quickstart server via the configured proxy."
+  request={{
+    headers: { 'Content-Type': 'application/json' },
+    body: { code: 'AUTHZ_CODE_FROM_CONSENT_STEP' }
+  }}
+/>
+
+### 4. Introspect Access Token (`POST /oauth/introspect`)
+
+**What happens?** Verify if the access token is active and what scopes/subject it represents.
+
+```typescript
+app.post('/oauth/introspect', async (req, res) => {
+  const result = await authlete.introspection.process({
+    serviceId: SERVICE_ID,
+    introspectionRequest: {
+      token: req.body.token ?? 'ACCESS_TOKEN_FROM_TOKEN_STEP',
+      scopes: ['openid']
+    }
+  });
+
+  res.json(result);
+});
+```
+
+**cURL**
+
+```bash
+curl -X POST "http://localhost:3004/oauth/introspect" \
+  -H "Content-Type: application/json" \
+  -d '{ "token": "ACCESS_TOKEN_FROM_TOKEN_STEP" }'
+```
+
+<ApiExample
+  method="POST"
+  endpoint="/oauth/introspect"
+  proxy="default"
+  title="Introspect Access Token"
+  request={{
+    headers: { 'Content-Type': 'application/json' },
+    body: { token: 'ACCESS_TOKEN_FROM_TOKEN_STEP' }
+  }}
+/>
+
+### 5. Call a Protected API (`GET /api/profile`)
+
+**What happens?** Your resource server calls `/oauth/introspect`; if `active: true` it returns private data.
+
+```typescript
+app.get('/api/profile', async (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (!token) {
+    return res.status(401).json({ error: 'Missing Bearer token' });
+  }
+
+  const introspection = await authlete.introspection.process({
+    serviceId: SERVICE_ID,
+    introspectionRequest: { token, scopes: ['profile'] }
+  });
+
+  if (!introspection.active) {
+    return res.status(403).json({ error: 'Token inactive' });
+  }
+
+  res.json({
+    accountId: '12345',
+    subject: introspection.sub,
+    scopes: introspection.scope?.split(' '),
+    email: 'user@example.com'
+  });
+});
+```
+
+**cURL**
+
+```bash
+curl -X GET "http://localhost:3004/api/profile" \
+  -H "Authorization: Bearer ACCESS_TOKEN_FROM_TOKEN_STEP"
+```
+
+<ApiExample
+  method="GET"
+  endpoint="/api/profile"
+  proxy="default"
+  title="Call Protected Resource"
+  request={{
+    headers: { Authorization: 'Bearer ACCESS_TOKEN_FROM_TOKEN_STEP' }
+  }}
+/>
+
+Start the server with:
+
+```bash
+npx tsx oauth-server.ts
+```
+
+```typescript
+app.listen(3004, () => {
+  console.log('Authlete quickstart running on http://localhost:3004');
+});
+```
+
+---
+
+## Next Steps
+
+| Guide | Summary |
+| --- | --- |
+| [Authentication Guide](/guides/authentication) | Learn Authlete authentication models and token scopes |
+| [OAuth 2.0 Flow](/guides/oauth2-flow) | Deep dive into the full flow and consent UX |
+| [API Reference](/api-reference) | Browse every management and runtime endpoint |
+| [Service Management](/guides/service-management) | Automate service configuration and governance |
+
+---
+
+## Need Help?
+
+- Read the [API Reference](/api-reference) for schemas and responses
+- Follow the [Authentication Guide](/guides/authentication) for security best practices
+- Contact support: `support@authlete.com`
+
